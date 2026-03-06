@@ -7,242 +7,104 @@
 <link rel="stylesheet" href="style.css"/>
 <title>Step 1 Study Hub</title>
 <style>
-
 /* ═══════════════════════════════════════════════════════════
-   INDEX PAGE
-   Unified hover system — one token governs every card
+   INDEX PAGE - Unified Theme
    ═══════════════════════════════════════════════════════════ */
-
 :root {
   --lift: translateY(-3px);
   --t:    .18s ease;
 }
 
-/* ── Hero ──────────────────────────────────────────────── */
-.hero {
-  padding: 56px 0 32px;
-  border-bottom: 1px solid var(--border2);
-  margin-bottom: 28px;
-}
-.hero-eyebrow {
-  font-size: 10px; font-weight: 700; letter-spacing: 3px;
-  text-transform: uppercase; color: var(--sakura2);
-  opacity: .75; margin-bottom: 12px;
-}
-.hero-title {
-  font-family: 'Playfair Display', serif;
-  font-size: clamp(34px, 5vw, 54px);
-  font-weight: 700; line-height: 1.12; color: var(--ink);
-}
+.hero { padding: 56px 0 32px; border-bottom: 1px solid var(--border2); margin-bottom: 28px; }
+.hero-eyebrow { font-size: 10px; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; color: var(--sakura2); opacity: .75; margin-bottom: 12px; }
+.hero-title { font-family: 'Playfair Display', serif; font-size: clamp(34px, 5vw, 54px); font-weight: 700; line-height: 1.12; color: var(--ink); }
 .hero-title em { font-style: italic; color: var(--sakura2); }
 
-/* ── Section label ─────────────────────────────────────── */
-.sec-label {
-  font-size: 10px; font-weight: 700; letter-spacing: 2.5px;
-  text-transform: uppercase; color: var(--sakura2);
-  opacity: .6; margin: 32px 0 14px;
-}
+.sec-label { font-size: 10px; font-weight: 700; letter-spacing: 2.5px; text-transform: uppercase; color: var(--sakura2); opacity: .6; margin: 32px 0 14px; }
 
-/* ── Exam countdown card ───────────────────────────────── */
-.countdown-card {
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-left: 3px solid var(--fuji);
-  border-radius: var(--r-lg);
-  padding: 20px 28px;
-  display: flex; align-items: center; gap: 28px; flex-wrap: wrap;
-  margin-bottom: 14px;
-}
+.countdown-card { background: var(--surface); border: 1px solid var(--border); border-left: 3px solid var(--fuji); border-radius: var(--r-lg); padding: 20px 28px; display: flex; align-items: center; gap: 28px; flex-wrap: wrap; margin-bottom: 14px; }
 .cd-block { display: flex; flex-direction: column; }
-.cd-lbl   { font-size: 10px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--muted); margin-bottom: 3px; }
-.cd-days  { font-family: 'Playfair Display', serif; font-size: 44px; font-weight: 700; line-height: 1; color: var(--fuji); }
-.cd-unit  { font-size: 11px; color: var(--muted); margin-top: 2px; }
-.cd-date  { font-size: 17px; font-weight: 600; color: var(--ink); }
-.cd-sep   { width: 1px; height: 52px; background: var(--border); flex-shrink: 0; }
-.cd-edit  {
-  margin-left: auto; background: transparent; color: var(--sakura2);
-  border: 1px solid var(--sakura); border-radius: var(--r);
-  padding: 8px 18px; font-size: 12px; font-weight: 600;
-  transition: background var(--t); white-space: nowrap;
-}
+.cd-lbl { font-size: 10px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--muted); margin-bottom: 3px; }
+.cd-days { font-family: 'Playfair Display', serif; font-size: 44px; font-weight: 700; line-height: 1; color: var(--fuji); }
+.cd-unit { font-size: 11px; color: var(--muted); margin-top: 2px; }
+.cd-date { font-size: 17px; font-weight: 600; color: var(--ink); }
+.cd-sep { width: 1px; height: 52px; background: var(--border); flex-shrink: 0; }
+.cd-edit { margin-left: auto; background: transparent; color: var(--sakura2); border: 1px solid var(--sakura); border-radius: var(--r); padding: 8px 18px; font-size: 12px; font-weight: 600; transition: background var(--t); white-space: nowrap; }
 .cd-edit:hover { background: var(--sakura-light); }
 
-/* ── UWorld strip ──────────────────────────────────────── */
-.uw-strip {
-  display: none;
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-left: 3px solid var(--sakura2);
-  border-radius: var(--r-lg);
-  padding: 16px 24px;
-  margin-bottom: 28px;
-  align-items: center; gap: 24px; flex-wrap: wrap;
-}
+.uw-strip { display: none; background: var(--surface); border: 1px solid var(--border); border-left: 3px solid var(--sakura2); border-radius: var(--r-lg); padding: 16px 24px; margin-bottom: 28px; align-items: center; gap: 24px; flex-wrap: wrap; }
 .uw-strip.on { display: flex; }
-.uw-prog  { flex: 1; min-width: 180px; }
-.uw-lbl   { font-size: 10px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--muted); margin-bottom: 7px; }
-.uw-row   { display: flex; align-items: center; gap: 12px; margin-bottom: 4px; }
-.uw-bg    { flex: 1; height: 6px; background: var(--border2); border-radius: 99px; overflow: hidden; }
-.uw-fill  { height: 100%; border-radius: 99px; background: linear-gradient(90deg, var(--sakura2), var(--gold)); transition: width .7s ease; }
-.uw-pct   { font-family: 'Playfair Display', serif; font-size: 14px; font-weight: 700; color: var(--sakura2); min-width: 36px; text-align: right; }
-.uw-sub   { font-size: 11px; color: var(--muted); }
-.uw-div   { width: 1px; height: 36px; background: var(--border2); flex-shrink: 0; }
-.uw-qd    { text-align: center; flex-shrink: 0; }
-.uw-qd-v  { font-family: 'Playfair Display', serif; font-size: 30px; font-weight: 700; line-height: 1; color: var(--sakura2); }
-.uw-qd-l  { font-size: 10px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: var(--muted); margin-top: 2px; }
+.uw-prog { flex: 1; min-width: 180px; }
+.uw-lbl { font-size: 10px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--muted); margin-bottom: 7px; }
+.uw-row { display: flex; align-items: center; gap: 12px; margin-bottom: 4px; }
+.uw-bg { flex: 1; height: 6px; background: var(--border2); border-radius: 99px; overflow: hidden; }
+.uw-fill { height: 100%; border-radius: 99px; background: linear-gradient(90deg, var(--sakura2), var(--gold)); transition: width .7s ease; }
+.uw-pct { font-family: 'Playfair Display', serif; font-size: 14px; font-weight: 700; color: var(--sakura2); min-width: 36px; text-align: right; }
+.uw-sub { font-size: 11px; color: var(--muted); }
+.uw-div { width: 1px; height: 36px; background: var(--border2); flex-shrink: 0; }
+.uw-qd { text-align: center; flex-shrink: 0; }
+.uw-qd-v { font-family: 'Playfair Display', serif; font-size: 30px; font-weight: 700; line-height: 1; color: var(--sakura2); }
+.uw-qd-l { font-size: 10px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: var(--muted); margin-top: 2px; }
 
-/* ══════════════════════════════════════════════════════════
-   CARD SYSTEM — single unified hover mechanic
-   Default: plain border, no accent
-   Hover:   left border accent appears + lift + shadow
-   One effect, no competing decorations
-   ══════════════════════════════════════════════════════════ */
+.feat-card, .tracker-card, .tool-card { position: relative; overflow: hidden; border-radius: var(--r-lg); border: 1px solid var(--border); border-left: 3px solid transparent; background: var(--surface); transition: transform var(--t), box-shadow var(--t), border-color var(--t); }
+.feat-card:hover, .tracker-card:hover, .tool-card:hover { transform: var(--lift); box-shadow: var(--shadow-md); border-color: var(--border); border-left-color: var(--ca, var(--sakura2)); }
 
-.feat-card,
-.tracker-card,
-.tool-card {
-  position: relative; overflow: hidden;
-  border-radius: var(--r-lg);
-  border: 1px solid var(--border);
-  border-left: 3px solid transparent;
-  background: var(--surface);
-  transition: transform var(--t), box-shadow var(--t), border-color var(--t);
-}
-.feat-card:hover,
-.tracker-card:hover,
-.tool-card:hover {
-  transform: var(--lift);
-  box-shadow: var(--shadow-md);
-  border-color: var(--border);
-  border-left-color: var(--ca, var(--sakura2));
-}
-
-/* ── Daily feature cards (DOTD + OotD) ─────────────────── */
-.daily-grid {
-  display: grid; grid-template-columns: 1fr 1fr;
-  gap: 14px; margin-bottom: 4px;
-}
-.feat-card {
-  display: none; /* shown by JS */
-  flex-direction: column;
-  padding: 22px 24px; cursor: pointer;
-}
+.daily-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 4px; }
+.feat-card { display: none; flex-direction: column; padding: 22px 24px; cursor: pointer; }
 .feat-card:hover .feat-cta { opacity: 1; }
-
-.feat-eyebrow {
-  font-size: 10px; font-weight: 700; letter-spacing: 1.8px;
-  text-transform: uppercase; color: var(--ca, var(--sakura2));
-  margin-bottom: 10px;
-}
-.feat-name {
-  font-family: 'Playfair Display', serif;
-  font-size: 18px; font-weight: 600; line-height: 1.3;
-  color: var(--ink); margin-bottom: 8px;
-}
+.feat-eyebrow { font-size: 10px; font-weight: 700; letter-spacing: 1.8px; text-transform: uppercase; color: var(--ca, var(--sakura2)); margin-bottom: 10px; }
+.feat-name { font-family: 'Playfair Display', serif; font-size: 18px; font-weight: 600; line-height: 1.3; color: var(--ink); margin-bottom: 8px; }
 .feat-pearl { font-size: 13px; font-style: italic; color: var(--ink2); line-height: 1.55; flex: 1; }
-.feat-cta   { margin-top: 16px; font-size: 12px; font-weight: 600; color: var(--ca, var(--sakura2)); opacity: .7; transition: opacity var(--t); }
+.feat-cta { margin-top: 16px; font-size: 12px; font-weight: 600; color: var(--ca, var(--sakura2)); opacity: .7; transition: opacity var(--t); }
+.feat-drug { --ca: var(--sakura2); }
+.feat-micro { --ca: var(--sage); }
 
-.feat-drug  { --ca: var(--sakura2); }
-.feat-micro { --ca: var(--sage);    }
-
-/* ── Tracker cards ─────────────────────────────────────── */
-.tracker-grid {
-  display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px;
-}
-.tracker-card {
-  padding: 20px 20px 16px; display: block;
-}
+.tracker-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+.tracker-card { padding: 20px 20px 16px; display: block; }
 .tracker-card:hover .tc-arrow { color: var(--ca, var(--peach)); }
-
 .tc-arrow { position: absolute; top: 18px; right: 18px; font-size: 13px; color: var(--dim); transition: color var(--t); }
-.tc-lbl   { font-size: 10px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: var(--muted); margin-bottom: 5px; }
+.tc-lbl { font-size: 10px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: var(--muted); margin-bottom: 5px; }
 .tc-title { font-family: 'Playfair Display', serif; font-size: 16px; font-weight: 600; color: var(--ink); margin-bottom: 14px; }
-.tc-bg    { height: 5px; background: var(--border2); border-radius: 99px; overflow: hidden; margin-bottom: 7px; }
-.tc-fill  { height: 100%; border-radius: 99px; background: var(--ca, var(--peach)); transition: width .6s ease; }
+.tc-bg { height: 5px; background: var(--border2); border-radius: 99px; overflow: hidden; margin-bottom: 7px; }
+.tc-fill { height: 100%; border-radius: 99px; background: var(--ca, var(--peach)); transition: width .6s ease; }
 .tc-stats { display: flex; justify-content: space-between; font-size: 11px; color: var(--muted); }
 
-/* ── Reference tool cards ──────────────────────────────── */
-.ref-grid {
-  display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 14px;
-}
-.tool-card {
-  padding: 20px 22px; display: block;
-}
+.ref-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 14px; }
+.tool-card { padding: 20px 22px; display: block; }
 .tool-card:hover .card-arrow { color: var(--ca, var(--sakura2)); transform: translate(1px,-1px); }
-
-.card-hdr  { display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px; }
-.card-tag  {
-  font-size: 10px; font-weight: 700; letter-spacing: 1px;
-  text-transform: uppercase; color: var(--muted);
-  background: var(--surface2); border: 1px solid var(--border2);
-  padding: 3px 9px; border-radius: 99px;
-}
+.card-hdr { display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px; }
+.card-tag { font-size: 10px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: var(--muted); background: var(--surface2); border: 1px solid var(--border2); padding: 3px 9px; border-radius: 99px; }
 .card-arrow { font-size: 16px; color: var(--dim); transition: color var(--t), transform var(--t); }
 .card-title { font-family: 'Playfair Display', serif; font-size: 17px; font-weight: 600; color: var(--ink); margin-bottom: 8px; }
-.card-desc  { font-size: 13px; color: var(--ink2); line-height: 1.55; }
+.card-desc { font-size: 13px; color: var(--ink2); line-height: 1.55; }
 
-/* Card accent assignments */
-.card-pharm  { --ca: var(--sakura2); }
-.card-micro  { --ca: var(--sage);    }
-.card-smicro { --ca: var(--sage);    }
-.card-spharm { --ca: var(--peach);   }
-.card-pix    { --ca: var(--lavender);}
-.card-dash   { --ca: var(--sky);     }
+.card-pharm { --ca: var(--sakura2); }
+.card-micro { --ca: var(--sage); }
+.card-smicro { --ca: var(--sage); }
+.card-spharm { --ca: var(--peach); }
+.card-pix { --ca: var(--lavender); }
+.card-dash { --ca: var(--sky); }
 
-/* ── External resources list ───────────────────────────── */
-.ext-list {
-  background: var(--surface); border: 1px solid var(--border);
-  border-radius: var(--r-lg); overflow: hidden;
-}
-.ext-row {
-  display: flex; align-items: center; gap: 16px;
-  padding: 13px 20px; border-bottom: 1px solid var(--border2);
-  border-left: 3px solid transparent;
-  text-decoration: none; color: inherit;
-  transition: background var(--t), border-color var(--t);
-}
+.ext-list { background: var(--surface); border: 1px solid var(--border); border-radius: var(--r-lg); overflow: hidden; }
+.ext-row { display: flex; align-items: center; gap: 16px; padding: 13px 20px; border-bottom: 1px solid var(--border2); border-left: 3px solid transparent; text-decoration: none; color: inherit; transition: background var(--t), border-color var(--t); }
 .ext-row:last-child { border-bottom: none; }
 .ext-row:hover { background: var(--surface2); border-left-color: var(--ea, var(--gold)); }
-.ext-dot  { width: 7px; height: 7px; border-radius: 50%; flex-shrink: 0; }
+.ext-dot { width: 7px; height: 7px; border-radius: 50%; flex-shrink: 0; }
 .ext-name { font-size: 13.5px; font-weight: 600; min-width: 130px; }
 .ext-desc { font-size: 13px; color: var(--muted); flex: 1; }
-.ext-pill {
-  font-size: 10px; font-weight: 700; letter-spacing: .8px;
-  text-transform: uppercase; color: var(--muted);
-  background: var(--surface2); border: 1px solid var(--border2);
-  padding: 2px 8px; border-radius: 99px; white-space: nowrap;
-}
+.ext-pill { font-size: 10px; font-weight: 700; letter-spacing: .8px; text-transform: uppercase; color: var(--muted); background: var(--surface2); border: 1px solid var(--border2); padding: 2px 8px; border-radius: 99px; white-space: nowrap; }
 .ext-arrow { font-size: 12px; color: var(--dim); flex-shrink: 0; }
 
-/* ── Motivational block ─────────────────────────────────── */
-.motive {
-  margin-top: 32px;
-  background: linear-gradient(135deg, var(--sakura-light) 0%, var(--lav-light) 100%);
-  border: 1px solid var(--sakura);
-  border-radius: var(--r-lg);
-  padding: 28px 32px;
-  display: grid; grid-template-columns: 1fr 1px 1fr;
-  gap: 28px; align-items: center;
-}
-.motive-sep  { background: var(--sakura); opacity: .25; }
-.motive-txt  { font-size: 14px; color: var(--ink2); line-height: 1.7; }
+.motive { margin-top: 32px; background: linear-gradient(135deg, var(--sakura-light) 0%, var(--lav-light) 100%); border: 1px solid var(--sakura); border-radius: var(--r-lg); padding: 28px 32px; display: grid; grid-template-columns: 1fr 1px 1fr; gap: 28px; align-items: center; }
+.motive-sep { background: var(--sakura); opacity: .25; }
+.motive-txt { font-size: 14px; color: var(--ink2); line-height: 1.7; }
 .motive-txt strong { color: var(--ink); }
-.motive-q    { text-align: center; }
-.motive-qt   { font-family: 'Playfair Display', serif; font-size: 16px; font-style: italic; color: var(--ink2); line-height: 1.75; }
+.motive-q { text-align: center; }
+.motive-qt { font-family: 'Playfair Display', serif; font-size: 16px; font-style: italic; color: var(--ink2); line-height: 1.75; }
 .motive-attr { display: block; margin-top: 10px; font-size: 10px; font-weight: 700; letter-spacing: 1.2px; text-transform: uppercase; color: var(--muted); }
 
-/* ── Responsive ─────────────────────────────────────────── */
-@media (max-width: 720px) {
-  .daily-grid   { grid-template-columns: 1fr; }
-  .tracker-grid { grid-template-columns: 1fr 1fr; }
-  .motive       { grid-template-columns: 1fr; }
-  .motive-sep   { display: none; }
-}
-@media (max-width: 480px) {
-  .tracker-grid { grid-template-columns: 1fr; }
-  .cd-days { font-size: 34px; }
-  .countdown-card { gap: 16px; padding: 16px 20px; }
-}
+@media (max-width: 720px) { .daily-grid { grid-template-columns: 1fr; } .tracker-grid { grid-template-columns: 1fr 1fr; } .motive { grid-template-columns: 1fr; } .motive-sep { display: none; } }
+@media (max-width: 480px) { .tracker-grid { grid-template-columns: 1fr; } .cd-days { font-size: 34px; } .countdown-card { gap: 16px; padding: 16px 20px; } }
 </style>
 </head>
 <body>
@@ -257,14 +119,11 @@
 <script src="nav.js"></script>
 
 <div class="wrap">
-
-  <!-- 1 ── HERO ─────────────────────────────────────────── -->
   <header class="hero">
     <div class="hero-eyebrow">USMLE Step 1 Study Hub</div>
     <h1 class="hero-title">Your <em>Study Resources,</em><br>All in One Place</h1>
   </header>
 
-  <!-- 2 ── EXAM COUNTDOWN ───────────────────────────────── -->
   <div class="countdown-card">
     <div class="cd-block">
       <span class="cd-lbl">Days Remaining</span>
@@ -279,7 +138,6 @@
     <button class="cd-edit" onclick="openDateModal()">Set Date ✦</button>
   </div>
 
-  <!-- 3 ── UWORLD STRIP ────────────────────────────────── -->
   <div class="uw-strip" id="uw-strip">
     <div class="uw-prog">
       <div class="uw-lbl">UWorld Progress</div>
@@ -296,30 +154,24 @@
     </div>
   </div>
 
-  <!-- 4 ── TODAY'S HIGH YIELD ──────────────────────────── -->
   <div class="sec-label">Today's High Yield</div>
   <div class="daily-grid">
-
     <div class="feat-card feat-drug" id="dotd-card" onclick="openDotdModal()">
       <div class="feat-eyebrow">Drug of the Day</div>
       <div class="feat-name" id="dotd-name">Loading…</div>
       <div class="feat-pearl" id="dotd-pearl"></div>
       <div class="feat-cta">View full card ↗</div>
     </div>
-
     <div class="feat-card feat-micro" id="ootd-card" onclick="openOotdModal()">
       <div class="feat-eyebrow">Organism of the Day</div>
       <div class="feat-name" id="ootd-name">Loading…</div>
       <div class="feat-pearl" id="ootd-pearl"></div>
       <div class="feat-cta">View full card ↗</div>
     </div>
-
   </div>
 
-  <!-- 5 ── PROGRESS TRACKERS ───────────────────────────── -->
   <div class="sec-label">Progress Trackers</div>
   <div class="tracker-grid">
-
     <a class="tracker-card card-spharm" href="sketchy-pharm.html">
       <span class="tc-arrow">↗</span>
       <div class="tc-lbl">Sketchy</div>
@@ -327,7 +179,6 @@
       <div class="tc-bg"><div class="tc-fill" id="tp-bar" style="width:0%"></div></div>
       <div class="tc-stats"><span id="tp-stats">0 / 101 reviewed</span><span id="tp-pct">0%</span></div>
     </a>
-
     <a class="tracker-card card-smicro" href="sketchy-micro.html">
       <span class="tc-arrow">↗</span>
       <div class="tc-lbl">Sketchy</div>
@@ -335,7 +186,6 @@
       <div class="tc-bg"><div class="tc-fill" id="tm-bar" style="width:0%"></div></div>
       <div class="tc-stats"><span id="tm-stats">0 / 104 reviewed</span><span id="tm-pct">0%</span></div>
     </a>
-
     <a class="tracker-card card-pix" href="pixorize.html">
       <span class="tc-arrow">↗</span>
       <div class="tc-lbl">Pixorize</div>
@@ -343,71 +193,52 @@
       <div class="tc-bg"><div class="tc-fill" id="tpx-bar" style="width:0%"></div></div>
       <div class="tc-stats"><span id="tpx-stats">0 / 244 reviewed</span><span id="tpx-pct">0%</span></div>
     </a>
-
   </div>
 
-  <!-- 6 ── REFERENCE ───────────────────────────────────── -->
   <div class="sec-label">Reference</div>
   <div class="ref-grid">
-
     <a class="tool-card card-pharm" href="drugfacts.html">
       <div class="card-hdr"><span class="card-tag">Pharmacology</span><span class="card-arrow">↗</span></div>
       <div class="card-title">Drug Facts</div>
       <p class="card-desc">Complete Step 1 pharmacology — mechanism, side effects, clinical pearls, and tier ratings across all systems.</p>
     </a>
-
     <a class="tool-card card-micro" href="microfacts.html">
       <div class="card-hdr"><span class="card-tag">Microbiology</span><span class="card-arrow">↗</span></div>
       <div class="card-title">Micro Facts</div>
       <p class="card-desc">Bacteria, viruses, fungi, and parasites — virulence factors, diseases, treatments, and high-yield pearls.</p>
     </a>
-
     <a class="tool-card card-dash" href="dashboard.html">
       <div class="card-hdr"><span class="card-tag">Analytics</span><span class="card-arrow">↗</span></div>
       <div class="card-title">Dashboard</div>
       <p class="card-desc">Log UWorld sessions, track practice exam scores, find weak points, and calculate your daily question goal.</p>
     </a>
-
   </div>
 
-  <!-- 7 ── EXTERNAL RESOURCES ──────────────────────────── -->
   <div class="sec-label">External Resources</div>
   <div class="ext-list">
-    <a class="ext-row" style="--ea:var(--sakura2);"
-       href="https://bootcamp.com/med-school/usmle-step-1-question-of-the-day" target="_blank" rel="noopener">
+    <a class="ext-row" style="--ea:var(--sakura2);" href="https://bootcamp.com/med-school/usmle-step-1-question-of-the-day" target="_blank" rel="noopener">
       <div class="ext-dot" style="background:var(--sakura2);"></div>
       <div class="ext-name">Question of the Day</div>
       <div class="ext-desc">Bootcamp's daily Step 1 question — keep your streak alive.</div>
       <div class="ext-pill">Daily Practice</div>
       <div class="ext-arrow">↗</div>
     </a>
-    <a class="ext-row" style="--ea:var(--sky);"
-       href="https://www.uworld.com" target="_blank" rel="noopener">
+    <a class="ext-row" style="--ea:var(--sky);" href="https://www.uworld.com" target="_blank" rel="noopener">
       <div class="ext-dot" style="background:var(--sky);"></div>
       <div class="ext-name">UWorld</div>
       <div class="ext-desc">The gold standard Step 1 question bank with detailed explanations.</div>
       <div class="ext-pill">QBank</div>
       <div class="ext-arrow">↗</div>
     </a>
-    <a class="ext-row" style="--ea:var(--sage);"
-       href="https://www.pathoma.com" target="_blank" rel="noopener">
+    <a class="ext-row" style="--ea:var(--sage);" href="https://www.pathoma.com" target="_blank" rel="noopener">
       <div class="ext-dot" style="background:var(--sage);"></div>
       <div class="ext-name">Pathoma</div>
       <div class="ext-desc">Dr. Sattar's high-yield pathology videos — essential for Step 1 Path.</div>
       <div class="ext-pill">Pathology</div>
       <div class="ext-arrow">↗</div>
     </a>
-    <a class="ext-row" style="--ea:var(--gold);"
-       href="https://www.bootcamp.com" target="_blank" rel="noopener">
-      <div class="ext-dot" style="background:var(--gold);"></div>
-      <div class="ext-name">Bootcamp</div>
-      <div class="ext-desc">High-yield question bank with daily practice and subject reviews.</div>
-      <div class="ext-pill">QBank</div>
-      <div class="ext-arrow">↗</div>
-    </a>
   </div>
 
-  <!-- 8 ── MOTIVATIONAL ────────────────────────────────── -->
   <div class="motive">
     <div class="motive-txt">
       <strong>Japan after Step 1 —</strong> Cherry blossoms, Mount Fuji, ramen at 2am.
@@ -424,10 +255,8 @@
     <div>Step 1 Study Hub</div>
     <div id="footer-date"></div>
   </footer>
-
 </div>
 
-<!-- DOTD Modal -->
 <div class="modal-overlay" id="dotd-modal">
   <div class="modal detail-modal" style="max-width:560px;">
     <div class="modal-header">
@@ -446,7 +275,6 @@
   </div>
 </div>
 
-<!-- OotD Modal -->
 <div class="modal-overlay" id="ootd-modal">
   <div class="modal detail-modal" style="max-width:560px;">
     <div class="modal-header">
@@ -469,7 +297,7 @@
 <script src="micro_data.js"></script>
 <script src="app.js"></script>
 <script>
-const fmt  = t => t ? t.replace(/\*\*(.*?)\*\*/g,'<strong>$1</strong>') : '—';
+const fmt = t => t ? t.replace(/\*\*(.*?)\*\*/g,'<strong>$1</strong>') : '—';
 const bare = t => t ? t.replace(/\*\*/g,'') : '';
 function seed() {
   const d = new Date();
@@ -491,10 +319,11 @@ function initDotd() {
   document.getElementById('dotd-pearl').textContent = p.length > 130 ? p.slice(0,130)+'…' : p;
   document.getElementById('dotd-card').style.display = 'flex';
 }
+
 function openDotdModal() {
   if (!dotdDrug) return;
-  document.getElementById('dm-name').textContent  = dotdDrug.name;
-  document.getElementById('dm-aka').textContent   = dotdDrug.aka || '';
+  document.getElementById('dm-name').textContent = dotdDrug.name;
+  document.getElementById('dm-aka').textContent = dotdDrug.aka || '';
   document.getElementById('dm-group').textContent = dotdDrug.groupName || 'Pharmacology';
   document.getElementById('dm-content').innerHTML = `
     <div class="drug-row"><span class="drug-label">Mechanism</span><div class="drug-text">${fmt(dotdDrug.moa)}</div></div>
@@ -506,14 +335,24 @@ function openDotdModal() {
   openModal('dotd-modal');
 }
 
-/* Organism of the Day */
+/* Organism of the Day (REFACTORED) */
 let ootdOrg = null;
 function initOotd() {
   if (typeof MICRO === 'undefined') return;
   const all = [];
-  Object.values(MICRO).forEach(cat =>
-    (Array.isArray(cat)?cat:[cat]).forEach(o => { if(o?.name) all.push(o); })
-  );
+  // Nested loops to handle Category -> Group -> Organisms structure
+  Object.values(MICRO).forEach(category => {
+    category.forEach(groupObj => {
+      if (groupObj.organisms && Array.isArray(groupObj.organisms)) {
+        groupObj.organisms.forEach(org => {
+          if (org.name) {
+            all.push({ ...org, groupName: groupObj.group });
+          }
+        });
+      }
+    });
+  });
+
   if (!all.length) return;
   ootdOrg = all[(seed()+37) % all.length];
   document.getElementById('ootd-name').textContent = ootdOrg.name;
@@ -521,41 +360,49 @@ function initOotd() {
   document.getElementById('ootd-pearl').textContent = p.length > 130 ? p.slice(0,130)+'…' : p;
   document.getElementById('ootd-card').style.display = 'flex';
 }
+
 function openOotdModal() {
   if (!ootdOrg) return;
-  document.getElementById('om-name').textContent  = ootdOrg.name;
-  document.getElementById('om-aka').textContent   = ootdOrg.aka || '';
-  document.getElementById('om-group').textContent = ootdOrg.group || 'Microbiology';
-  const fields = [['Gram Stain / Type',ootdOrg.gram],['Virulence',ootdOrg.virulence],
-    ['Disease',ootdOrg.disease],['Treatment',ootdOrg.treatment],['Unique Features',ootdOrg.unique]];
+  document.getElementById('om-name').textContent = ootdOrg.name;
+  document.getElementById('om-aka').textContent = ootdOrg.aka || '';
+  document.getElementById('om-group').textContent = ootdOrg.groupName || 'Microbiology';
+  
+  const fields = [
+    ['Gram Stain / Type', ootdOrg.gram],
+    ['Virulence', ootdOrg.virulence],
+    ['Disease', ootdOrg.disease],
+    ['Treatment', ootdOrg.treatment],
+    ['Unique Features', ootdOrg.unique]
+  ];
+  
   document.getElementById('om-content').innerHTML =
     fields.filter(([,v])=>v).map(([l,v])=>`<div class="drug-row"><span class="drug-label">${l}</span><div class="drug-text">${fmt(v)}</div></div>`).join('')+
     (ootdOrg.pearl?`<div class="pearl-box" style="background:var(--sage-light);border-color:#b0d4bc;"><span class="drug-label" style="color:var(--sage);">Pearl</span><div class="drug-text">${fmt(ootdOrg.pearl)}</div></div>`:'');
   openModal('ootd-modal');
 }
 
-/* UWorld strip */
+/* UI Rendering */
 function renderUWorld() {
   const days = getDaysRemaining();
   if (!days || days <= 0) return;
   const uwSet = Store.get('uw-settings',{total:3661});
   const total = uwSet.total||3661;
-  const done  = Store.get('uw-unique-done',0);
-  const pct   = Math.min(100, Math.round(done/total*100));
-  const qpd   = Math.ceil(Math.max(0,total-done)/days);
-  document.getElementById('uw-fill').style.width  = pct+'%';
-  document.getElementById('uw-pct').textContent   = pct+'%';
-  document.getElementById('uw-sub').textContent   = `${done.toLocaleString()} / ${total.toLocaleString()} done`;
-  document.getElementById('uw-qday').textContent  = qpd;
+  const done = Store.get('uw-unique-done',0);
+  const pct = Math.min(100, Math.round(done/total*100));
+  const qpd = Math.ceil(Math.max(0,total-done)/days);
+  document.getElementById('uw-fill').style.width = pct+'%';
+  document.getElementById('uw-pct').textContent = pct+'%';
+  document.getElementById('uw-sub').textContent = `${done.toLocaleString()} / ${total.toLocaleString()} done`;
+  document.getElementById('uw-qday').textContent = qpd;
   document.getElementById('uw-strip').classList.add('on');
 }
 
-/* Tracker tiles */
 function renderTrackers() {
   load('sp-progress',101,'tp-bar','tp-stats','tp-pct');
   load('sm-progress',104,'tm-bar','tm-stats','tm-pct');
   load('px-progress',244,'tpx-bar','tpx-stats','tpx-pct');
 }
+
 function load(key,total,bId,sId,pId) {
   const data = Store.get(key,{});
   let w=0, r=0;
@@ -563,13 +410,14 @@ function load(key,total,bId,sId,pId) {
   const pct = total>0 ? Math.round(r/total*100) : 0;
   document.getElementById(bId).style.width = pct+'%';
   document.getElementById(pId).textContent = pct+'%';
-  document.getElementById(sId).textContent = w>0
-    ? `${r} / ${total} reviewed · ${w} watched`
-    : `${r} / ${total} reviewed`;
+  document.getElementById(sId).textContent = w>0 ? `${r} / ${total} reviewed · ${w} watched` : `${r} / ${total} reviewed`;
 }
 
 document.addEventListener('DOMContentLoaded', ()=>{
-  initDotd(); initOotd(); renderUWorld(); renderTrackers();
+  initDotd(); 
+  initOotd(); 
+  renderUWorld(); 
+  renderTrackers();
 });
 </script>
 </body>
