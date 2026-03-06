@@ -7,7 +7,16 @@
 <link rel="stylesheet" href="style.css"/>
 <title>Drug Facts · Step 1 Hub</title>
 <style>
-/* ═══════ SHARED REFERENCE PAGE STYLES ═══════════════════ */
+/* ═══════ DRUGFACTS PAGE STYLES ══════════════════════════════
+   Page-scoped overrides and expand/collapse system.
+   All shared .rcard, .ref-tab-bar, .search-hl rules live in style.css.
+   ═══════════════════════════════════════════════════════════ */
+
+:root {
+  --accent: var(--sakura2);
+  --accent-light: var(--sakura-light);
+  --accent-glow: rgba(196,80,94,.12);
+}
 
 /* ── Page header ─────────────────────────────────────────── */
 .ref-page-header {
@@ -15,16 +24,19 @@
   display: flex; align-items: flex-end; justify-content: space-between;
   gap: 20px; flex-wrap: wrap;
 }
-.ref-page-left {}
-/* page-eyebrow and page-title are defined in style.css; 
-   ref-page-eyebrow/title are kept as aliases for compatibility */
-.ref-page-eyebrow { font-size: 10px; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; color: var(--accent); opacity: .8; margin-bottom: 10px; }
-.ref-page-title { font-family: 'Playfair Display', serif; font-size: clamp(28px, 3.8vw, 44px); font-weight: 700; line-height: 1.1; letter-spacing: -0.4px; color: var(--ink); margin-bottom: 6px; }
+.ref-page-eyebrow {
+  font-size: 10px; font-weight: 700; letter-spacing: 3px;
+  text-transform: uppercase; color: var(--accent); opacity: .8; margin-bottom: 10px;
+}
+.ref-page-title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(28px, 3.8vw, 44px); font-weight: 700;
+  line-height: 1.1; letter-spacing: -0.4px; color: var(--ink); margin-bottom: 6px;
+}
 .ref-page-title em { font-style: italic; color: var(--accent); }
 .ref-count {
   font-size: 12px; color: var(--muted);
-  align-self: flex-end; padding-bottom: 6px;
-  white-space: nowrap;
+  align-self: flex-end; padding-bottom: 6px; white-space: nowrap;
 }
 .ref-count strong { color: var(--ink2); font-weight: 600; }
 
@@ -33,9 +45,7 @@
   display: flex; align-items: center; gap: 10px;
   padding: 16px 0 0;
 }
-.ref-search-wrap {
-  flex: 1; position: relative; max-width: 540px;
-}
+.ref-search-wrap { flex: 1; position: relative; max-width: 540px; }
 .ref-search-icon {
   position: absolute; left: 14px; top: 50%; transform: translateY(-50%);
   font-size: 14px; color: var(--dim); pointer-events: none;
@@ -52,15 +62,29 @@
   box-shadow: 0 0 0 3px var(--accent-glow);
 }
 .ref-search-input::placeholder { color: var(--dim); }
+.search-hint {
+  font-size: 11px; color: var(--dim); white-space: nowrap;
+  padding-left: 4px;
+}
+kbd {
+  display: inline-block; padding: 1px 5px; border-radius: 4px;
+  border: 1px solid var(--border); background: var(--surface2);
+  font-family: 'DM Mono', monospace; font-size: 10px; color: var(--muted);
+  line-height: 1.6;
+}
 
-/* ── Category tabs — pill style ──────────────────────────── */
-.cat-tab-bar {
+/* ── Category tab bar ────────────────────────────────────── */
+.ref-tab-bar {
   display: flex; gap: 4px; flex-wrap: wrap;
-  margin-top: 20px; padding-bottom: 0;
+  margin-top: 20px;
   border-bottom: 1px solid var(--border2);
   padding-bottom: 12px;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
 }
-.cat-tab {
+.ref-tab-bar::-webkit-scrollbar { display: none; }
+.ref-tab {
   padding: 6px 14px;
   font-size: 11.5px; font-weight: 600; color: var(--muted);
   border-radius: 99px;
@@ -70,31 +94,47 @@
   font-family: 'DM Sans', sans-serif;
   transition: color .15s, background .15s, border-color .15s;
   letter-spacing: 0.2px;
+  flex-shrink: 0;
 }
-.cat-tab:hover { color: var(--ink2); background: var(--surface2); }
-.cat-tab.active {
+.ref-tab:hover { color: var(--ink2); background: var(--surface2); }
+.ref-tab.active {
   color: var(--accent);
   background: var(--accent-light);
   border-color: color-mix(in srgb, var(--accent) 30%, transparent);
 }
-
-/* ── Content panel ───────────────────────────────────────── */
-.ref-panel { padding-top: 4px; }
-.ref-panel.hidden { display: none; }
+.ref-tab.all-tab { font-weight: 700; }
 
 /* ── Group section header ────────────────────────────────── */
+.group-section { margin-top: 4px; }
 .group-header {
   display: flex; align-items: center; gap: 12px;
-  margin: 28px 0 14px;
+  margin: 28px 0 10px;
 }
 .group-header:first-child { margin-top: 20px; }
 .group-title {
   font-size: 11px; font-weight: 700; letter-spacing: 1.8px;
-  text-transform: uppercase; color: var(--muted);
-  white-space: nowrap;
+  text-transform: uppercase; color: var(--muted); white-space: nowrap;
 }
 .group-line { flex: 1; height: 1px; background: var(--border2); }
 .group-badge { font-size: 10px; font-weight: 600; color: var(--dim); white-space: nowrap; }
+
+/* ── Group action buttons (Expand All / Collapse All) ─────── */
+.group-actions {
+  display: flex; gap: 6px; justify-content: flex-end;
+  margin-bottom: 10px;
+}
+.expand-btn {
+  font-size: 10.5px; font-weight: 600; color: var(--muted);
+  background: transparent; border: 1.5px solid var(--border);
+  border-radius: 99px; padding: 4px 12px; cursor: pointer;
+  font-family: 'DM Sans', sans-serif;
+  transition: color .14s, border-color .14s, background .14s;
+}
+.expand-btn:hover {
+  color: var(--accent);
+  border-color: color-mix(in srgb, var(--accent) 40%, transparent);
+  background: var(--accent-light);
+}
 
 /* ── Card grid ───────────────────────────────────────────── */
 .cards-grid {
@@ -104,7 +144,7 @@
   margin-bottom: 4px;
 }
 
-/* ── Ref card ────────────────────────────────────────────── */
+/* ── Base card ───────────────────────────────────────────── */
 .rcard {
   background: var(--surface);
   border: 1px solid var(--border);
@@ -113,7 +153,6 @@
   cursor: pointer;
   transition: transform .16s ease, box-shadow .16s ease, border-color .16s ease;
   position: relative;
-  display: flex; flex-direction: column; gap: 5px;
   overflow: hidden;
 }
 .rcard::before {
@@ -129,17 +168,97 @@
   border-color: color-mix(in srgb, var(--accent) 30%, var(--border));
 }
 .rcard:hover::before { opacity: 1; }
+.rcard.expanded {
+  transform: none;
+  box-shadow: 0 6px 28px rgba(42,31,26,.12), 0 2px 6px rgba(42,31,26,.07);
+  border-color: color-mix(in srgb, var(--accent) 40%, var(--border));
+  grid-column: 1 / -1;
+}
+.rcard.expanded::before { opacity: 1; }
 .rcard:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
 
+/* ── Card header row ─────────────────────────────────────── */
+.rcard-header {
+  display: flex; align-items: flex-start; justify-content: space-between;
+  gap: 10px;
+}
+.rcard-header-left { flex: 1; min-width: 0; }
 .rcard-name {
   font-family: 'Playfair Display', serif;
   font-size: 15px; font-weight: 600; line-height: 1.3; color: var(--ink);
 }
 .rcard-aka {
-  font-size: 11.5px; color: var(--muted); font-style: italic; line-height: 1.4;
+  font-size: 11.5px; color: var(--muted); font-style: italic;
+  line-height: 1.4; margin-top: 2px;
 }
 .rcard-summary {
-  font-size: 12.5px; color: var(--ink2); line-height: 1.55; margin-top: 2px;
+  font-size: 12.5px; color: var(--ink2); line-height: 1.55; margin-top: 6px;
+}
+
+/* ── Chevron toggle ──────────────────────────────────────── */
+.rcard-toggle {
+  flex-shrink: 0;
+  background: none; border: none; cursor: pointer;
+  color: var(--dim); padding: 2px 0 0 4px;
+  font-size: 13px; line-height: 1;
+  transition: color .14s, transform .22s ease;
+  align-self: flex-start;
+}
+.rcard-toggle:hover { color: var(--accent); }
+.rcard.expanded .rcard-toggle { transform: rotate(180deg); color: var(--accent); }
+
+/* ── Expandable detail panel ─────────────────────────────── */
+.rcard-detail {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height .32s cubic-bezier(.4,0,.2,1), opacity .22s ease;
+  opacity: 0;
+}
+.rcard.expanded .rcard-detail {
+  max-height: 800px;
+  opacity: 1;
+}
+.rcard-detail-inner {
+  padding-top: 14px;
+  border-top: 1px solid var(--border2);
+  margin-top: 12px;
+  display: flex; flex-direction: column; gap: 6px;
+}
+
+/* ── Detail field rows ───────────────────────────────────── */
+.rcard-field {
+  padding: 10px 13px;
+  border-radius: 9px;
+  background: var(--bg);
+  border: 1px solid var(--border2);
+}
+.rcard-field-label {
+  display: block;
+  font-size: 9px; font-weight: 700; letter-spacing: 2px;
+  text-transform: uppercase; color: var(--accent);
+  margin-bottom: 4px; opacity: .85;
+}
+.rcard-field-text {
+  font-size: 13px; color: var(--ink2); line-height: 1.65;
+}
+.rcard-field-text strong { color: var(--ink); font-weight: 600; }
+
+/* ── Pearl block ─────────────────────────────────────────── */
+.rcard-pearl {
+  padding: 10px 13px;
+  border-radius: 9px;
+  background: var(--accent-light);
+  border: 1px solid color-mix(in srgb, var(--accent) 25%, transparent);
+}
+.rcard-pearl .rcard-field-label { opacity: 1; }
+
+/* ── Search highlight ────────────────────────────────────── */
+mark.search-hl {
+  background: color-mix(in srgb, var(--accent) 18%, transparent);
+  color: var(--ink);
+  border-radius: 2px;
+  padding: 0 2px;
+  font-style: normal;
 }
 
 /* ── Empty state ─────────────────────────────────────────── */
@@ -150,73 +269,25 @@
 }
 .ref-empty-sub { font-size: 13px; color: var(--muted); }
 
-/* ── Detail modal content ────────────────────────────────── */
-.modal-group-label {
-  font-size: 10px; font-weight: 700; letter-spacing: 1.5px;
-  text-transform: uppercase; margin-bottom: 4px;
-}
-.modal-name {
-  font-family: 'Playfair Display', serif; font-size: 22px; font-weight: 700;
-  line-height: 1.2; margin-bottom: 3px;
-}
-.modal-sub-line {
-  font-size: 12.5px; color: var(--muted); font-style: italic;
-  margin-bottom: 0; line-height: 1.5;
-}
+/* ── Keep openModal/closeModal available (date modal via nav.js) ── */
+/* No styles needed here — modal infrastructure is in style.css + app.js */
 
-/* ── Drug section rows — each as a distinct block ────────── */
-#ddm-content {
-  display: flex; flex-direction: column; gap: 0;
-  margin-top: 18px;
-}
-#ddm-content .drug-row {
-  padding: 12px 14px;
-  border-radius: 10px;
-  background: var(--bg);
-  border: 1px solid var(--border2);
-  margin-bottom: 6px;
-}
-#ddm-content .drug-label {
-  display: block;
-  font-size: 9px; font-weight: 700; letter-spacing: 2px;
-  text-transform: uppercase; color: var(--accent);
-  margin-bottom: 5px; opacity: .85;
-}
-#ddm-content .drug-text {
-  font-size: 13.5px; color: var(--ink2); line-height: 1.65;
-}
-#ddm-content .drug-text strong { color: var(--ink); font-weight: 600; }
-
-/* Pearl box — standout accent block */
-#ddm-content .pearl-box {
-  background: var(--accent-light);
-  border: 1px solid color-mix(in srgb, var(--accent) 25%, transparent);
-  border-radius: 10px;
-  padding: 12px 14px;
-  margin-top: 2px; margin-bottom: 6px;
-}
-#ddm-content .pearl-box .drug-label {
-  color: var(--accent); opacity: 1;
-}
-
-/* Header divider below aka */
-.modal-header-divider {
-  height: 1px; background: var(--border2); margin: 14px 0 0;
-}
-/* ── Drug-specific accent ────────────────────────────────── */
-:root {
-  --accent: var(--sakura2);
-  --accent-light: var(--sakura-light);
-  --accent-glow: rgba(196,80,94,.12);
-}
-
-/* ── Tabs: all 10 fit on one line at desktop ─────────────── */
+/* ── Desktop: all 10 tabs on one line ────────────────────── */
 @media (min-width: 900px) {
-  .cat-tab-bar { flex-wrap: nowrap; }
-  .cat-tab { padding: 6px 11px; font-size: 11px; }
+  .ref-tab-bar { flex-wrap: nowrap; }
+  .ref-tab { padding: 6px 11px; font-size: 11px; }
 }
 @media (min-width: 1100px) {
-  .cat-tab { padding: 6px 13px; font-size: 11.5px; }
+  .ref-tab { padding: 6px 13px; font-size: 11.5px; }
+}
+
+/* ── Mobile ──────────────────────────────────────────────── */
+@media (max-width: 640px) {
+  .cards-grid { grid-template-columns: 1fr; }
+  .rcard.expanded { grid-column: 1; }
+  .rcard-detail.expanded { max-height: 1200px; }
+  .rcard-field-text { font-size: 13px; }
+  .search-hint { display: none; }
 }
 </style>
 </head>
@@ -247,58 +318,44 @@
     <div class="ref-search-wrap">
       <span class="ref-search-icon">🔍</span>
       <input class="ref-search-input" type="text" id="drug-search"
-             placeholder="Drug name, mechanism, side effects, tags…"
+             placeholder="Drug name, mechanism, side effects…"
              oninput="onSearch()" autocomplete="off"/>
     </div>
+    <span class="search-hint"><kbd>/</kbd> to search</span>
   </div>
 
   <!-- ── Category tabs ───────────────────────────────────── -->
-  <div class="cat-tab-bar" id="cat-tabs" role="tablist"></div>
+  <div class="ref-tab-bar" id="cat-tabs" role="tablist"></div>
 
-  <!-- ── Panels rendered here ────────────────────────────── -->
+  <!-- ── Panels ──────────────────────────────────────────── -->
   <div id="panels-container"></div>
 
 </div><!-- /wrap -->
 
-<!-- ── Detail Modal ──────────────────────────────────────── -->
-<div class="modal-overlay" id="drug-detail-modal" role="dialog" aria-modal="true" aria-labelledby="ddm-name">
-  <div class="modal detail-modal">
-    <div class="modal-header">
-      <div style="flex:1;min-width:0;">
-        <div class="modal-group-label" id="ddm-system" style="color:var(--accent);"></div>
-        <div class="modal-name" id="ddm-name"></div>
-        <div class="modal-sub-line" id="ddm-aka"></div>
-      </div>
-      <button class="modal-close-btn" onclick="closeModal('drug-detail-modal')" aria-label="Close">&times;</button>
-    </div>
-    <div class="modal-header-divider"></div>
-    <div id="ddm-content" style="max-height:62vh;overflow-y:auto;padding-right:4px;"></div>
-    <div class="modal-btns" style="margin-top:20px;padding-top:16px;border-top:1px solid var(--border);">
-      <button class="btn-cancel" onclick="closeModal('drug-detail-modal')">Close</button>
-    </div>
-  </div>
-</div>
-
 <script src="drug_data.js"></script>
 <script src="app.js"></script>
 <script>
-/* ── Config ─────────────────────────────────────────────── */
+/* ════════════════════════════════════════════════════════════
+   drugfacts.js — inline script
+   ════════════════════════════════════════════════════════════ */
+
+/* ── Category metadata — text labels only, no emojis ─────── */
 const CAT_META = {
-  autonomic:   { label: 'Autonomic',       icon: '⚡' },
-  cv:          { label: 'Cardiovascular',  icon: '❤️' },
-  blood:       { label: 'Blood',           icon: '🩸' },
-  neuro:       { label: 'Neuro / Psych',   icon: '🧠' },
-  micro:       { label: 'Antimicrobials',  icon: '🦠' },
-  gi:          { label: 'GI',              icon: '🫁' },
-  endo:        { label: 'Endocrine',       icon: '🔬' },
-  pulm:        { label: 'Pulmonary',       icon: '🫀' },
-  onco:        { label: 'Oncology',        icon: '⚗️' },
-  toxicology:  { label: 'Toxicology',      icon: '☠️' },
+  autonomic:  { label: 'Autonomic'      },
+  cv:         { label: 'Cardiovascular' },
+  blood:      { label: 'Blood'          },
+  neuro:      { label: 'Neuro / Psych'  },
+  micro:      { label: 'Antimicrobials' },
+  gi:         { label: 'GI / Hepatic'   },
+  endo:       { label: 'Endocrine'      },
+  pulm:       { label: 'Pulmonary'      },
+  onco:       { label: 'Oncology'       },
+  toxicology: { label: 'Toxicology'     },
 };
 
 let allDrugs = [];
-let activeTab = '';
-let searchQ = '';
+let activeTab = 'all';   // 'all' or a category key
+let searchQ   = '';
 
 /* ── Build flat drug list ────────────────────────────────── */
 function buildDrugList() {
@@ -314,69 +371,79 @@ function buildDrugList() {
 /* ── Filtering ───────────────────────────────────────────── */
 function getFiltered() {
   return allDrugs.filter(d => {
-    if (activeTab && d.category !== activeTab) return false;
+    if (activeTab !== 'all' && d.category !== activeTab) return false;
     if (searchQ) {
-      const blob = [d.name, d.aka, d.summary, d.moa, d.use, d.se,
-                    (d.tags || []).join(' ')].join(' ').toLowerCase();
+      const blob = [d.name, d.aka, d.summary, d.moa, d.use, d.se, d.ci, d.pk, d.pearl]
+        .join(' ').toLowerCase();
       if (!blob.includes(searchQ)) return false;
     }
     return true;
   });
 }
 
-/* ── Render everything ───────────────────────────────────── */
+/* ── Search highlight helper ─────────────────────────────── */
+function hl(text, q) {
+  if (!text) return '';
+  if (!q) return escHtml(text);
+  const escaped = escHtml(text);
+  const escapedQ = q.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+  return escaped.replace(new RegExp(escapedQ, 'gi'),
+    m => `<mark class="search-hl">${m}</mark>`);
+}
+
+function escHtml(str) {
+  return str.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+}
+
+/* ── Bold markdown helper ────────────────────────────────── */
+function fmt(text, q) {
+  if (!text) return '';
+  // First apply search highlight on raw text, then bold
+  const highlighted = hl(text, q);
+  return highlighted.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
+}
+
+/* ── Master render ───────────────────────────────────────── */
 function render() {
   const filtered = getFiltered();
 
-  // Update count
+  // Count display
   const meta = document.getElementById('results-meta');
   meta.innerHTML = filtered.length === allDrugs.length
     ? `<strong>${allDrugs.length}</strong> drugs`
     : `<strong>${filtered.length}</strong> of ${allDrugs.length} drugs`;
 
-  // Rebuild tabs with live counts
   renderTabs(filtered);
-
-  // Render panels
   renderPanels(filtered);
 }
 
+/* ── Render tab bar ──────────────────────────────────────── */
 function renderTabs(filtered) {
   const tabBar = document.getElementById('cat-tabs');
   const cats = Object.keys(CAT_META);
-
-  // "All" tab — only show when searching
-  const showAll = !!searchQ;
-
   let html = '';
-  if (showAll) {
-    html += `<button class="cat-tab${activeTab === '' ? ' active' : ''}"
-               onclick="switchTab('')" role="tab" aria-selected="${activeTab===''}"
-               data-cat="">All</button>`;
-  }
 
+  // All tab — always visible
+  html += `<button class="ref-tab all-tab${activeTab === 'all' ? ' active' : ''}"
+             onclick="switchTab('all')" role="tab"
+             aria-selected="${activeTab === 'all'}">All</button>`;
+
+  // Category tabs — hide empty ones only when searching
   cats.forEach(cat => {
-    const catFiltered = filtered.filter(d => d.category === cat);
-    if (catFiltered.length === 0 && searchQ) return; // hide empty cats when searching
-    const meta = CAT_META[cat];
+    if (searchQ && !filtered.some(d => d.category === cat)) return;
     const isActive = activeTab === cat;
-    html += `<button class="cat-tab${isActive ? ' active' : ''}"
-               onclick="switchTab('${cat}')" role="tab" aria-selected="${isActive}"
-               data-cat="${cat}">${meta.label}</button>`;
+    const label = CAT_META[cat].label;
+    html += `<button class="ref-tab${isActive ? ' active' : ''}"
+               onclick="switchTab('${cat}')" role="tab"
+               aria-selected="${isActive}">${label}</button>`;
   });
 
   tabBar.innerHTML = html;
-
-  // Auto-select first visible tab if current is gone
-  if (!showAll && activeTab === '') {
-    const firstCat = cats.find(c => filtered.some(d => d.category === c));
-    if (firstCat) switchTab(firstCat, false);
-  }
 }
 
+/* ── Render panels ───────────────────────────────────────── */
 function renderPanels(filtered) {
   const container = document.getElementById('panels-container');
-  const cats = activeTab ? [activeTab] : Object.keys(CAT_META);
 
   if (filtered.length === 0) {
     container.innerHTML = `
@@ -389,96 +456,166 @@ function renderPanels(filtered) {
     return;
   }
 
+  // Which categories to show
+  const cats = activeTab === 'all'
+    ? Object.keys(CAT_META).filter(c => filtered.some(d => d.category === c))
+    : [activeTab];
+
   container.innerHTML = cats.map(cat => {
     const catDrugs = filtered.filter(d => d.category === cat);
     if (!catDrugs.length) return '';
     const groups = [...new Set(catDrugs.map(d => d.groupName))];
 
     return `<div class="ref-panel" id="panel-${cat}">
-      ${groups.map(grp => {
+      ${groups.map((grp, gi) => {
         const grpDrugs = catDrugs.filter(d => d.groupName === grp);
+        const grpId = `grp-${cat}-${gi}`;
         return `
-          <div class="group-header">
-            <span class="group-title">${grp}</span>
-            <div class="group-line"></div>
-            <span class="group-badge">${grpDrugs.length}</span>
-          </div>
-          <div class="cards-grid">
-            ${grpDrugs.map(d => renderCard(d)).join('')}
+          <div class="group-section">
+            <div class="group-header">
+              <span class="group-title">${grp}</span>
+              <div class="group-line"></div>
+              <span class="group-badge">${grpDrugs.length}</span>
+            </div>
+            <div class="group-actions">
+              <button class="expand-btn" onclick="expandAll('${grpId}')">Expand All</button>
+              <button class="expand-btn" onclick="collapseAll('${grpId}')">Collapse All</button>
+            </div>
+            <div class="cards-grid" id="${grpId}">
+              ${grpDrugs.map(d => renderCard(d)).join('')}
+            </div>
           </div>`;
       }).join('')}
     </div>`;
   }).join('');
 }
 
+/* ── Render a single card ────────────────────────────────── */
 function renderCard(d) {
-  return `<div class="rcard"
-               onclick='openDrugDetail(${JSON.stringify(d).replace(/'/g,"&#39;")})'
-               tabindex="0" role="button" aria-label="${d.name}">
-    <div class="rcard-name">${d.name}</div>
-    ${d.aka ? `<div class="rcard-aka">${d.aka}</div>` : ''}
-    <div class="rcard-summary">${d.summary || ''}</div>
+  const q = searchQ;
+  const cardId = 'card-' + d.name.replace(/\s+/g, '-').replace(/[^a-zA-Z0-9-]/g,'');
+
+  const sections = [
+    ['Mechanism',         d.moa],
+    ['Clinical Use',      d.use],
+    ['Side Effects',      d.se],
+    ['Contraindications', d.ci],
+    ['Pharmacokinetics',  d.pk],
+  ].filter(([, v]) => v);
+
+  const fieldsHtml = sections.map(([label, val]) => `
+    <div class="rcard-field">
+      <span class="rcard-field-label">${label}</span>
+      <div class="rcard-field-text">${fmt(val, q)}</div>
+    </div>`).join('');
+
+  const pearlHtml = d.pearl ? `
+    <div class="rcard-pearl">
+      <span class="rcard-field-label">Clinical Pearl</span>
+      <div class="rcard-field-text">${fmt(d.pearl, q)}</div>
+    </div>` : '';
+
+  return `<div class="rcard" id="${cardId}" tabindex="0" role="button"
+               aria-label="${escHtml(d.name)}" aria-expanded="false"
+               onclick="toggleCard(this)">
+    <div class="rcard-header">
+      <div class="rcard-header-left">
+        <div class="rcard-name">${hl(d.name, q)}</div>
+        ${d.aka ? `<div class="rcard-aka">${hl(d.aka, q)}</div>` : ''}
+      </div>
+      <button class="rcard-toggle" tabindex="-1" aria-hidden="true">&#8964;</button>
+    </div>
+    <div class="rcard-summary">${fmt(d.summary, q)}</div>
+    <div class="rcard-detail">
+      <div class="rcard-detail-inner">
+        ${fieldsHtml}
+        ${pearlHtml}
+      </div>
+    </div>
   </div>`;
 }
 
-/* ── Tab switching ───────────────────────────────────────── */
-function switchTab(cat, doRender = true) {
-  activeTab = cat;
-  if (doRender) render();
+/* ── Toggle single card ──────────────────────────────────── */
+function toggleCard(el) {
+  // Don't toggle if clicking inside the detail panel itself
+  if (event && event.target.closest && event.target.closest('.rcard-detail-inner')) return;
+  const isExpanded = el.classList.contains('expanded');
+  el.classList.toggle('expanded', !isExpanded);
+  el.setAttribute('aria-expanded', !isExpanded);
 }
 
+/* ── Expand / Collapse all in a group ────────────────────── */
+function expandAll(grpId) {
+  document.querySelectorAll(`#${grpId} .rcard`).forEach(el => {
+    el.classList.add('expanded');
+    el.setAttribute('aria-expanded', 'true');
+  });
+}
+
+function collapseAll(grpId) {
+  document.querySelectorAll(`#${grpId} .rcard`).forEach(el => {
+    el.classList.remove('expanded');
+    el.setAttribute('aria-expanded', 'false');
+  });
+}
+
+/* ── Tab switching ───────────────────────────────────────── */
+function switchTab(cat) {
+  activeTab = cat;
+  render();
+  // Scroll panels container to top
+  document.getElementById('panels-container').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+}
+
+/* ── Search ──────────────────────────────────────────────── */
 function onSearch() {
   searchQ = document.getElementById('drug-search').value.toLowerCase().trim();
+  // When searching, switch to All so all matching drugs show
+  if (searchQ && activeTab !== 'all') activeTab = 'all';
   render();
 }
 
-/* ── Detail modal ────────────────────────────────────────── */
-function openDrugDetail(d) {
-  const fmt = t => t ? t.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>') : '';
-  const catLabel = (CAT_META[d.category]?.label || d.category);
-
-  document.getElementById('ddm-system').textContent =
-    catLabel + (d.groupName ? ' · ' + d.groupName : '');
-  document.getElementById('ddm-name').textContent = d.name;
-  document.getElementById('ddm-aka').textContent = d.aka || '';
-
-  const sections = [
-    ['Mechanism',        d.moa],
-    ['Clinical Use',     d.use],
-    ['Side Effects',     d.se],
-    ['Contraindications',d.ci],
-    ['Pharmacokinetics', d.pk],
-  ].filter(([, v]) => v);
-
-  document.getElementById('ddm-content').innerHTML =
-    sections.map(([label, val]) =>
-      `<div class="drug-row">
-         <span class="drug-label">${label}</span>
-         <div class="drug-text">${fmt(val)}</div>
-       </div>`
-    ).join('') +
-    (d.pearl ? `<div class="pearl-box">
-       <span class="drug-label">Clinical Pearl</span>
-       <div class="drug-text">${fmt(d.pearl)}</div>
-     </div>` : '');
-
-  openModal('drug-detail-modal');
-}
-
-/* ── Keyboard support ────────────────────────────────────── */
+/* ── Keyboard shortcuts ──────────────────────────────────── */
 document.addEventListener('keydown', e => {
+  const searchEl = document.getElementById('drug-search');
+
+  // / to focus search (unless already in input)
+  if (e.key === '/' && document.activeElement !== searchEl &&
+      !['INPUT','TEXTAREA','SELECT'].includes(document.activeElement.tagName)) {
+    e.preventDefault();
+    searchEl.focus();
+    searchEl.select();
+    return;
+  }
+
+  // Enter or Space on focused card
   if ((e.key === 'Enter' || e.key === ' ') && e.target.classList.contains('rcard')) {
     e.preventDefault();
-    e.target.click();
+    toggleCard(e.target);
+    return;
   }
-  if (e.key === 'Escape') closeModal('drug-detail-modal');
+
+  // Escape: collapse focused card or clear search
+  if (e.key === 'Escape') {
+    if (document.activeElement.classList.contains('rcard') &&
+        document.activeElement.classList.contains('expanded')) {
+      toggleCard(document.activeElement);
+    } else if (searchQ) {
+      searchEl.value = '';
+      onSearch();
+    }
+  }
 });
 
 /* ── Init ────────────────────────────────────────────────── */
+window.addEventListener('appAuthStateChanged', () => {
+  // Auth state change from nav.js — re-render if needed
+  if (allDrugs.length) render();
+});
+
 document.addEventListener('DOMContentLoaded', () => {
   allDrugs = buildDrugList();
-  // Set default tab to first category
-  activeTab = Object.keys(CAT_META)[0];
+  activeTab = 'all';
   render();
 });
 </script>
