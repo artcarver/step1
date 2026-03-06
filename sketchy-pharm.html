@@ -6,280 +6,534 @@
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet"/>
 <link rel="stylesheet" href="style.css"/>
 <title>Sketchy Pharm · Step 1 Hub</title>
+<style>
+/* ── Tracker shared styles ─────────────────────────────── */
+.tracker-toolbar {
+  display: flex; gap: 10px; align-items: center; flex-wrap: wrap;
+  margin-bottom: 20px;
+}
+.tracker-search {
+  flex: 1; min-width: 200px; padding: 9px 14px;
+  border: 1px solid var(--border); border-radius: var(--r);
+  font-size: 14px; font-family: inherit; background: var(--surface);
+  color: var(--ink); outline: none; transition: border-color .15s;
+}
+.tracker-search:focus { border-color: var(--sky); }
+.filter-chips { display: flex; gap: 6px; flex-wrap: wrap; }
+.filter-chip {
+  padding: 6px 14px; border-radius: 99px; font-size: 12px; font-weight: 600;
+  border: 1px solid var(--border); background: var(--surface2); color: var(--muted);
+  cursor: pointer; transition: all .15s; white-space: nowrap;
+}
+.filter-chip.active { background: var(--sky); color: #fff; border-color: var(--sky); }
+.filter-chip.f-watched.active  { background: var(--sakura2); border-color: var(--sakura2); }
+.filter-chip.f-reviewed.active { background: var(--gold); border-color: var(--gold); color: #fff; }
+.filter-chip.f-mastered.active { background: var(--sage); border-color: var(--sage); }
+.toolbar-right { display: flex; gap: 8px; margin-left: auto; }
+.toolbar-btn {
+  padding: 7px 14px; border-radius: var(--r); font-size: 12px; font-weight: 600;
+  border: 1px solid var(--border); background: transparent; color: var(--ink2);
+  cursor: pointer; transition: all .15s; white-space: nowrap;
+}
+.toolbar-btn:hover { background: var(--surface2); }
+
+/* ── Overall progress card ─────────────────────────────── */
+.overall-card {
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: var(--r-lg); padding: 22px 26px; margin-bottom: 20px;
+}
+.overall-top { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; margin-bottom: 12px; }
+.overall-title { font-family: 'Playfair Display', serif; font-size: 19px; font-weight: 600; }
+.overall-stats { display: flex; gap: 18px; font-size: 13px; }
+.overall-stat { color: var(--muted); }
+.overall-stat strong { color: var(--ink2); }
+.overall-bar-bg { background: var(--border2); border-radius: 99px; height: 8px; overflow: hidden; }
+.overall-bar-fill { height: 100%; border-radius: 99px; background: linear-gradient(90deg, var(--sky), var(--fuji)); transition: width .5s ease; }
+.overall-sub { display: flex; justify-content: space-between; font-size: 11px; color: var(--muted); margin-top: 6px; }
+
+/* ── Category sections ─────────────────────────────────── */
+.cat-section {
+  border: 1px solid var(--border); border-radius: var(--r-lg);
+  margin-bottom: 10px; overflow: hidden;
+  background: var(--surface);
+}
+.cat-header {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 16px 20px; cursor: pointer; user-select: none;
+  gap: 12px; transition: background .12s;
+}
+.cat-header:hover { background: var(--surface2); }
+.cat-header-left { display: flex; align-items: center; gap: 12px; flex: 1; min-width: 0; }
+.cat-accent { width: 4px; height: 36px; border-radius: 99px; flex-shrink: 0; }
+.cat-name { font-family: 'Playfair Display', serif; font-size: 17px; font-weight: 600; }
+.cat-why { font-size: 12px; color: var(--muted); margin-top: 2px; }
+.cat-header-right { display: flex; align-items: center; gap: 14px; flex-shrink: 0; }
+.cat-count { font-size: 12px; color: var(--muted); font-weight: 600; white-space: nowrap; }
+.cat-mini-bar { width: 80px; height: 5px; background: var(--border2); border-radius: 99px; overflow: hidden; }
+.cat-mini-fill { height: 100%; border-radius: 99px; transition: width .4s; }
+.cat-chevron { font-size: 11px; color: var(--dim); transition: transform .2s; }
+.cat-section.open .cat-chevron { transform: rotate(180deg); }
+
+/* ── Video rows ────────────────────────────────────────── */
+.cat-body { display: none; border-top: 1px solid var(--border2); }
+.cat-section.open .cat-body { display: block; }
+.video-header-row {
+  display: flex; align-items: center; padding: 8px 20px;
+  font-size: 10px; font-weight: 700; letter-spacing: 1.2px; text-transform: uppercase;
+  color: var(--muted); border-bottom: 1px solid var(--border2); background: var(--bg);
+}
+.video-row {
+  display: flex; align-items: center; padding: 11px 20px;
+  border-bottom: 1px solid var(--border2); gap: 12px; transition: background .1s;
+}
+.video-row:last-child { border-bottom: none; }
+.video-row:hover { background: var(--surface2); }
+.video-row.hidden-row { display: none; }
+.video-num { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--muted); min-width: 28px; }
+.video-name { flex: 1; font-size: 13.5px; color: var(--ink2); line-height: 1.4; }
+.video-time { font-size: 11px; color: var(--dim); min-width: 48px; text-align: right; font-family: 'DM Mono', monospace; }
+.check-btns { display: flex; gap: 6px; }
+
+/* ── Status icon buttons ───────────────────────────────── */
+.icon-btn {
+  width: 34px; height: 34px; border-radius: 8px;
+  border: 1.5px solid var(--border); background: var(--bg);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 16px; cursor: pointer; transition: all .15s;
+  line-height: 1; flex-shrink: 0;
+}
+.icon-btn:hover { transform: scale(1.1); }
+.icon-btn.active-w { background: var(--sakura2); border-color: var(--sakura2); }
+.icon-btn.active-r { background: var(--gold); border-color: var(--gold); }
+.icon-btn.active-m { background: var(--sage); border-color: var(--sage); }
+
+/* ── Legend ────────────────────────────────────────────── */
+.tracker-legend {
+  display: flex; gap: 16px; align-items: center; flex-wrap: wrap;
+  font-size: 12px; color: var(--muted); margin-bottom: 16px;
+}
+.legend-item { display: flex; align-items: center; gap: 6px; }
+
+.no-results {
+  text-align: center; padding: 40px; color: var(--muted); font-size: 14px;
+}
+
+/* ── Accent colors ─────────────────────────────────────── */
+.accent-0 { background: var(--sakura2); }
+.accent-1 { background: var(--sky); }
+.accent-2 { background: var(--gold); }
+.accent-3 { background: var(--sage); }
+.accent-4 { background: var(--fuji); }
+.accent-5 { background: var(--peach); }
+.accent-6 { background: var(--lavender); }
+.accent-7 { background: #7ba8cf; }
+</style>
 </head>
 <body>
 <script src="nav.js"></script>
 
 <div class="wrap">
-  <header class="hero" style="padding:40px 0 28px;">
+  <header class="hero" style="padding:40px 0 20px;">
     <div class="hero-eyebrow">Progress Tracker</div>
-    <h1 class="hero-name" style="font-size:clamp(28px,4vw,42px);">Sketchy <em>Pharm</em></h1>
+    <h1 class="hero-name" style="font-size:clamp(28px,4vw,44px);">Sketchy <em>Pharm</em></h1>
   </header>
 
   <!-- Overall Progress -->
-  <div style="background:var(--surface);border:1px solid var(--border);border-radius:var(--r-lg);padding:24px 28px;margin-bottom:28px;">
-    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px;flex-wrap:wrap;gap:8px;">
-      <div style="font-family:'Playfair Display',serif;font-size:20px;font-weight:600;">Overall Progress</div>
-      <div style="display:flex;gap:16px;font-size:13px;color:var(--muted);">
-        <span>👁 <strong id="total-watched">0</strong> Watched</span>
-        <span>🔁 <strong id="total-reviewed">0</strong> Reviewed</span>
-        <span>⭐ <strong id="total-mastered">0</strong> Mastered</span>
+  <div class="overall-card">
+    <div class="overall-top">
+      <span class="overall-title">Overall Progress</span>
+      <div class="overall-stats">
+        <span class="overall-stat">👁 <strong id="tot-w">0</strong> Watched</span>
+        <span class="overall-stat">🔁 <strong id="tot-r">0</strong> Reviewed</span>
+        <span class="overall-stat">⭐ <strong id="tot-m">0</strong> Mastered</span>
       </div>
     </div>
-    <div class="prog-bar-wrap"><div class="prog-bar-fill" id="overall-bar" style="width:0%;background:linear-gradient(90deg,var(--peach),var(--sakura2));"></div></div>
-    <div style="display:flex;justify-content:space-between;font-size:12px;color:var(--muted);">
-      <span id="overall-pct">0% complete</span>
-      <span id="overall-frac">0 / 0 videos</span>
+    <div class="overall-bar-bg"><div class="overall-bar-fill" id="overall-bar" style="width:0%;"></div></div>
+    <div class="overall-sub">
+      <span id="overall-note">0% mastered</span>
+      <span id="overall-total">0 / 0 videos</span>
+    </div>
+  </div>
+
+  <!-- Toolbar -->
+  <div class="tracker-toolbar">
+    <input class="tracker-search" id="search-input" type="text" placeholder="🔍  Search videos…" oninput="applyFilters()"/>
+    <div class="filter-chips">
+      <div class="filter-chip active" data-filter="all" onclick="setFilter('all',this)">All</div>
+      <div class="filter-chip f-watched" data-filter="unwatched" onclick="setFilter('unwatched',this)">Not Watched</div>
+      <div class="filter-chip f-watched" data-filter="watched" onclick="setFilter('watched',this)">👁 Watched</div>
+      <div class="filter-chip f-reviewed" data-filter="reviewed" onclick="setFilter('reviewed',this)">🔁 Reviewed</div>
+      <div class="filter-chip f-mastered" data-filter="mastered" onclick="setFilter('mastered',this)">⭐ Mastered</div>
+    </div>
+    <div class="toolbar-right">
+      <button class="toolbar-btn" onclick="expandAll()">Expand All</button>
+      <button class="toolbar-btn" onclick="collapseAll()">Collapse All</button>
+      <button class="toolbar-btn" onclick="exportCSV()">Export CSV</button>
+      <button class="toolbar-btn" onclick="resetAll()" style="color:var(--sakura2);">Reset All</button>
     </div>
   </div>
 
   <!-- Legend -->
-  <div style="display:flex;gap:16px;margin-bottom:20px;flex-wrap:wrap;font-size:12px;font-weight:600;color:var(--ink2);">
-    <span>👁 = Watched</span>
-    <span>🔁 = Reviewed</span>
-    <span>⭐ = Mastered</span>
-    <button onclick="resetAll()" style="margin-left:auto;background:none;border:1px solid var(--border);border-radius:99px;padding:4px 14px;font-size:12px;color:var(--muted);cursor:pointer;">Reset All</button>
-    <button onclick="exportProgress()" style="background:none;border:1px solid var(--border);border-radius:99px;padding:4px 14px;font-size:12px;color:var(--muted);cursor:pointer;">Export CSV</button>
+  <div class="tracker-legend">
+    <span class="legend-item"><span class="icon-btn active-w" style="width:22px;height:22px;font-size:12px;border-radius:5px;">👁</span> = Watched</span>
+    <span class="legend-item"><span class="icon-btn active-r" style="width:22px;height:22px;font-size:12px;border-radius:5px;">🔁</span> = Reviewed</span>
+    <span class="legend-item"><span class="icon-btn active-m" style="width:22px;height:22px;font-size:12px;border-radius:5px;">⭐</span> = Mastered</span>
   </div>
 
-  <div id="sections-container"></div>
+  <!-- Categories -->
+  <div id="tracker-container"></div>
+  <div class="no-results" id="no-results" style="display:none;">No videos match your search.</div>
 
   <footer class="footer"><div>Step 1 Study Hub · 🌸</div><div id="footer-date"></div></footer>
 </div>
 
-<script src="drug_data.js"></script>
 <script src="app.js"></script>
 <script>
-// Sketchy Pharm videos derived from drug_data.js categories
-const SKETCHY_PHARM_SECTIONS = [
+const STORE_KEY = 'sp-progress';
+
+const CATEGORIES = [
   {
-    title: "Autonomic Pharmacology",
-    videos: [
-      "Cholinomimetics & AChE Inhibitors",
-      "Anticholinergics (Muscarinic Antagonists)",
-      "Sympathomimetics: Epi, NE, Dopamine",
-      "Alpha & Beta Blockers",
-      "Ganglionic Blockers & NMJ Drugs"
+    id:"autonomic", name:"Autonomic Pharmacology", why:"Foundational for CV, neuro, and organ systems", time:"2.5 hrs",
+    videos:[
+      {id:"au1",num:"1.1",name:"Cholinomimetics",time:"16min"},
+      {id:"au2",num:"1.2",name:"Cholinesterase Inhibitors",time:"21min"},
+      {id:"au3",num:"1.3",name:"Muscarinic Antagonists",time:"20min"},
+      {id:"au4",num:"2.1",name:"Sympathomimetics",time:"30min"},
+      {id:"au5",num:"2.2",name:"Indirect Sympathomimetics",time:"17min"},
+      {id:"au6",num:"2.3",name:"Alpha Drugs",time:"22min"},
+      {id:"au7",num:"2.4",name:"Beta Blockers",time:"24min"}
     ]
   },
   {
-    title: "Cardiovascular",
-    videos: [
-      "Antihypertensives: ACE Inhibitors & ARBs",
-      "Calcium Channel Blockers",
-      "Beta Blockers in CVD",
-      "Diuretics: Loops, Thiazides, K+-sparing",
-      "Antiarrhythmics: Class I (Na+ Blockers)",
-      "Antiarrhythmics: Class II–IV",
-      "Heart Failure Drugs",
-      "Anticoagulants: Heparin & Warfarin",
-      "Direct Oral Anticoagulants (DOACs)",
-      "Antiplatelet Drugs",
-      "Thrombolytics",
-      "Statins & Lipid-Lowering Agents",
-      "Vasodilators & Nitrates"
+    id:"cv", name:"Cardiovascular & Renal", why:"CV drugs are heavily tested on Step 1", time:"4 hrs",
+    videos:[
+      {id:"cv1",num:"1.1",name:"Digoxin, Milrinone, Nesiritide",time:"20min"},
+      {id:"cv2",num:"1.2",name:"ACE Inhibitors, ARBs, Aliskiren",time:"26min"},
+      {id:"cv3",num:"2.1",name:"Acetazolamide, Mannitol",time:"24min"},
+      {id:"cv4",num:"2.2",name:"Loop Diuretics",time:"21min"},
+      {id:"cv5",num:"2.3",name:"Thiazides",time:"20min"},
+      {id:"cv6",num:"2.4",name:"K+ Sparing Diuretics",time:"25min"},
+      {id:"cv7",num:"3.1",name:"Calcium Channel Blockers",time:"21min"},
+      {id:"cv8",num:"3.2",name:"Primary HTN & Hypertensive Emergency",time:"25min"},
+      {id:"cv9",num:"4.1",name:"Antiarrhythmics - Class I A-C",time:"24min"},
+      {id:"cv10",num:"4.2",name:"Antiarrhythmics - Class II",time:"10min"},
+      {id:"cv11",num:"4.3",name:"Antiarrhythmics - Class III",time:"12min"},
+      {id:"cv12",num:"4.4",name:"Antiarrhythmics - Class IV",time:"9min"},
+      {id:"cv13",num:"4.5",name:"Antiarrhythmics - Class V (Adenosine, Mg)",time:"13min"}
     ]
   },
   {
-    title: "Pulmonary",
-    videos: [
-      "Beta-2 Agonists (SABA/LABA)",
-      "Inhaled Corticosteroids",
-      "Anticholinergics in COPD",
-      "Leukotriene Modifiers",
-      "Methylxanthines & Cromolyn",
-      "Biologics: Anti-IgE, Anti-IL-5"
+    id:"blood", name:"Blood & Inflammation", why:"Anticoagulants and NSAIDs appear on nearly every exam", time:"3.5 hrs",
+    videos:[
+      {id:"bl1",num:"1.1",name:"Heparin, LMWH, Fondaparinux, DTIs, Direct Xa",time:"30min"},
+      {id:"bl2",num:"1.2",name:"Warfarin",time:"21min"},
+      {id:"bl3",num:"1.3",name:"Anti-Platelet Agents",time:"29min"},
+      {id:"bl4",num:"1.4",name:"Thrombolytics",time:"15min"},
+      {id:"bl5",num:"2.1",name:"Statins (HMG-CoA Reductase Inhibitors)",time:"26min"},
+      {id:"bl6",num:"2.2",name:"Cholestyramine, Ezetimibe",time:"17min"},
+      {id:"bl7",num:"2.3",name:"Fibrates, Niacin",time:"16min"},
+      {id:"bl8",num:"3.1",name:"NSAIDs",time:"34min"},
+      {id:"bl9",num:"3.2",name:"Gout Drugs",time:"24min"}
     ]
   },
   {
-    title: "Neurology & Psychiatry",
-    videos: [
-      "Opioid Analgesics",
-      "General Anesthesia",
-      "Local Anesthetics",
-      "Benzodiazepines & Barbiturates",
-      "Antiepileptics: Na+ Channel Blockers",
-      "Antiepileptics: GABA Enhancers",
-      "Parkinson's Disease Drugs",
-      "Antipsychotics: Typical",
-      "Antipsychotics: Atypical",
-      "Antidepressants: SSRIs & SNRIs",
-      "TCAs & MAOIs",
-      "Mood Stabilizers (Lithium, Valproate)",
-      "Alzheimer's Drugs",
-      "Migraine Treatments",
-      "Drugs of Abuse"
+    id:"smooth", name:"Smooth Muscle", why:"Asthma and migraine drugs test MOA and specificity", time:"1.5 hrs",
+    videos:[
+      {id:"sm1",num:"1.1",name:"Nitrates",time:"19min"},
+      {id:"sm2",num:"1.2",name:"Triptans & Migraine",time:"9min"},
+      {id:"sm3",num:"1.3",name:"Prostaglandins, Prostacyclin, Bosentan, PDE5i",time:"16min"},
+      {id:"sm4",num:"2.1",name:"Anti-Histamines",time:"16min"},
+      {id:"sm5",num:"2.2",name:"Asthma Therapy",time:"22min"}
     ]
   },
   {
-    title: "Endocrine",
-    videos: [
-      "Insulin & Glucose Management",
-      "Oral Antidiabetics: Metformin & Others",
-      "GLP-1 Agonists & SGLT2 Inhibitors",
-      "Thyroid Drugs",
-      "Corticosteroids",
-      "Adrenal Drugs",
-      "Estrogens, Progestins & OCPs",
-      "Androgens & Anti-Androgens",
-      "Bone Drugs: Bisphosphonates & Others"
+    id:"gi", name:"GI & Endocrine", why:"Diabetes drugs are extremely high-yield", time:"3.75 hrs",
+    videos:[
+      {id:"gi1",num:"1.1",name:"Anti-Emetic Agents",time:"19min"},
+      {id:"gi2",num:"1.2",name:"H2 Receptor Blockers, PPIs",time:"23min"},
+      {id:"gi3",num:"1.3",name:"Laxative Agents",time:"17min"},
+      {id:"gi4",num:"2.1",name:"Insulin, Sulfonylureas, Meglitinides, GLP-1, DPP-4",time:"30min"},
+      {id:"gi5",num:"2.2",name:"Metformin, TZDs, Pramlintide, SGLT2 Inhibitors",time:"24min"},
+      {id:"gi6",num:"3.1",name:"Propylthiouracil, Methimazole, Levothyroxine",time:"22min"},
+      {id:"gi7",num:"3.2",name:"Bisphosphonates, Raloxifene, Denosumab, Calcitonin",time:"18min"},
+      {id:"gi8",num:"3.3",name:"Teriparatide, Vitamin D, Cinacalcet, Sevelamer",time:"19min"},
+      {id:"gi9",num:"3.4",name:"Glucocorticoids",time:"21min"},
+      {id:"gi10",num:"4.1",name:"ADH, DDAVP, ADH Receptor Antagonists",time:"19min"},
+      {id:"gi11",num:"4.2",name:"Growth Hormone, Mecasermin, Octreotide, Pegvisomant",time:"18min"}
     ]
   },
   {
-    title: "GI Pharmacology",
-    videos: [
-      "Antacids, H2 Blockers & PPIs",
-      "H. pylori Treatment",
-      "Antiemetics",
-      "Laxatives & Antidiarrheals",
-      "IBD Drugs"
+    id:"neuro", name:"Neuro & Psych", why:"Antidepressants and antipsychotics appear constantly", time:"4.5 hrs",
+    videos:[
+      {id:"np1",num:"1.1",name:"Benzodiazepines, Flumazenil",time:"20min"},
+      {id:"np2",num:"1.2",name:"Nonbenzo Hypnotics, Melatonin, Ramelteon",time:"13min"},
+      {id:"np3",num:"1.3",name:"Barbiturates",time:"14min"},
+      {id:"np4",num:"2.1",name:"Propofol, Etomidate, Ketamine",time:"10min"},
+      {id:"np5",num:"2.2",name:"Inhaled Anesthetics, Dantrolene",time:"15min"},
+      {id:"np6",num:"2.3",name:"Opiates, Naloxone, Naltrexone",time:"21min"},
+      {id:"np7",num:"3.1",name:"SSRIs, SNRIs, Cyproheptadine",time:"21min"},
+      {id:"np8",num:"3.2",name:"Tricyclic Antidepressants",time:"16min"},
+      {id:"np9",num:"3.3",name:"MAO Inhibitors",time:"13min"},
+      {id:"np10",num:"3.4",name:"Bupropion, Mirtazapine, Trazodone",time:"15min"},
+      {id:"np11",num:"4.1",name:"Lithium",time:"12min"},
+      {id:"np12",num:"4.2",name:"Valproate, Topiramate, Lamotrigine, Levetiracetam",time:"14min"},
+      {id:"np13",num:"4.3",name:"Carbamazepine, Phenytoin, Gabapentin, Tiagabine, Vigabatrin",time:"19min"},
+      {id:"np14",num:"4.4",name:"Ethosuximide",time:"6min"},
+      {id:"np15",num:"5.1",name:"First Generation Antipsychotics",time:"20min"},
+      {id:"np16",num:"5.2",name:"Second Generation Antipsychotics",time:"17min"},
+      {id:"np17",num:"5.3",name:"Parkinson's Pharmacology",time:"20min"}
     ]
   },
   {
-    title: "Antimicrobials",
-    videos: [
-      "Penicillins",
-      "Cephalosporins",
-      "Carbapenems & Monobactams",
-      "Beta-Lactamase Inhibitors",
-      "Vancomycin",
-      "Aminoglycosides",
-      "Tetracyclines",
-      "Macrolides",
-      "Fluoroquinolones",
-      "Sulfonamides & TMP-SMX",
-      "Clindamycin & Metronidazole",
-      "Antifungals",
-      "Antivirals: HSV, CMV",
-      "Antivirals: HIV (NRTIs, NNRTIs, PIs)",
-      "Antivirals: Influenza & Hepatitis",
-      "Antimycobacterials: TB Drugs",
-      "Antiparasitics"
+    id:"antimicro", name:"Antimicrobials", why:"Infections are the largest Step 1 category", time:"5.5 hrs",
+    videos:[
+      {id:"am1",num:"1.1",name:"Penicillin",time:"13min"},
+      {id:"am2",num:"1.2",name:"Nafcillin, Oxacillin, Methicillin, Dicloxacillin",time:"6min"},
+      {id:"am3",num:"1.3",name:"Ampicillin, Amoxicillin, Piperacillin, Ticarcillin",time:"13min"},
+      {id:"am4",num:"1.4",name:"Cephalosporins",time:"15min"},
+      {id:"am5",num:"1.5",name:"Monobactams & Carbapenems",time:"9min"},
+      {id:"am6",num:"1.6",name:"Vancomycin",time:"11min"},
+      {id:"am7",num:"1.7",name:"Daptomycin",time:"6min"},
+      {id:"am8",num:"2.1",name:"Tetracyclines",time:"13min"},
+      {id:"am9",num:"2.2",name:"Macrolides",time:"7min"},
+      {id:"am10",num:"2.3",name:"Clindamycin",time:"11min"},
+      {id:"am11",num:"2.4",name:"Chloramphenicol",time:"5min"},
+      {id:"am12",num:"2.5",name:"Linezolid",time:"7min"},
+      {id:"am13",num:"2.6",name:"Aminoglycosides",time:"13min"},
+      {id:"am14",num:"3.1",name:"Tuberculosis Drugs",time:"17min"},
+      {id:"am15",num:"3.2",name:"Leprosy Drugs",time:"7min"},
+      {id:"am16",num:"4.1",name:"Trimethoprim / Sulfamethoxazole",time:"17min"},
+      {id:"am17",num:"4.2",name:"Fluoroquinolones",time:"12min"},
+      {id:"am18",num:"4.3",name:"Metronidazole",time:"9min"},
+      {id:"am19",num:"5.1",name:"Amphotericin B, Flucytosine",time:"12min"},
+      {id:"am20",num:"5.2",name:"Azoles",time:"12min"},
+      {id:"am21",num:"5.3",name:"Griseofulvin, Terbinafine, Echinocandins",time:"9min"},
+      {id:"am22",num:"6.1",name:"NRTIs",time:"11min"},
+      {id:"am23",num:"6.2",name:"NNRTIs",time:"5min"},
+      {id:"am24",num:"6.3",name:"Protease Inhibitors",time:"7min"},
+      {id:"am25",num:"6.4",name:"Maraviroc, Fusion Inhibitors, Integrase Inhibitors",time:"10min"},
+      {id:"am26",num:"7.1",name:"IFN-α, IFN-β, IFN-γ",time:"10min"},
+      {id:"am27",num:"7.2",name:"Ribavirin, Sofosbuvir, Simeprevir",time:"11min"},
+      {id:"am28",num:"8.1",name:"Acyclovir, Valacyclovir, Famciclovir, Cidofovir, Foscarnet",time:"14min"},
+      {id:"am29",num:"8.2",name:"Ganciclovir, Valganciclovir, Foscarnet, Cidofovir",time:"12min"}
     ]
   },
   {
-    title: "Oncology",
-    videos: [
-      "Alkylating Agents",
-      "Antimetabolites: Methotrexate & Others",
-      "Antitumor Antibiotics",
-      "Microtubule Poisons (Vincas, Taxanes)",
-      "Topoisomerase Inhibitors",
-      "Hormonal Therapies",
-      "Targeted Therapies: Tyrosine Kinase Inhibitors",
-      "Monoclonal Antibodies in Cancer"
-    ]
-  },
-  {
-    title: "Immunology & Toxicology",
-    videos: [
-      "Immunosuppressants",
-      "NSAIDs & Acetaminophen",
-      "Gout Drugs",
-      "Antidotes & Toxicology",
-      "Alcohol & Addiction Pharmacology"
+    id:"onco", name:"Antineoplastics", why:"Focus heavily on unique drug toxicities", time:"~2 hrs",
+    videos:[
+      {id:"on1",num:"1.1",name:"Methotrexate, Leucovorin, 5-FU, Hydroxyurea",time:"29min"},
+      {id:"on2",num:"1.2",name:"Azathioprine, 6-MP, Mycophenolate Mofetil",time:"16min"},
+      {id:"on3",num:"1.3",name:"Cladribine, Cytarabine, Gemcitabine",time:"7min"},
+      {id:"on4",num:"2.1",name:"Cyclophosphamide, Ifosfamide, Busulfan, Nitrosureas",time:"12min"},
+      {id:"on5",num:"2.2",name:"Cisplatin, Carboplatin, Amifostine",time:"6min"},
+      {id:"on6",num:"2.3",name:"Bleomycin, Doxorubicin, Daunorubicin",time:"8min"},
+      {id:"on7",num:"2.4",name:"Etoposide, Teniposide, Topotecan, Irinotecan",time:"6min"},
+      {id:"on8",num:"2.5",name:"Vincristine, Vinblastine, Paclitaxel",time:"7min"},
+      {id:"on9",num:"3.1",name:"Imatinib, Erlotinib, Sorafenib, Sunitinib, Vemurafenib",time:"15min"},
+      {id:"on10",num:"3.2",name:"Rituximab, Cetuximab, Bevacizumab, Alemtuzumab, Trastuzumab",time:"23min"}
     ]
   }
 ];
 
-const STORAGE_KEY = 'sketchy-pharm-progress';
+const ACCENTS = ['accent-0','accent-1','accent-2','accent-3','accent-4','accent-5','accent-6','accent-7'];
+let progress = {};
+let activeFilter = 'all';
 
-function loadProgress() { return Store.get(STORAGE_KEY, {}); }
-function saveProgress(p) { Store.set(STORAGE_KEY, p); }
+function load() { progress = Store.get(STORE_KEY, {}); }
+function save() { Store.set(STORE_KEY, progress); }
+function getState(id) { return progress[id] || {w:false,r:false,m:false}; }
 
-function getKey(secIdx, vidIdx) { return `${secIdx}-${vidIdx}`; }
-function getState(prog, key) { return prog[key] || {w:false, r:false, m:false}; }
-
-function toggleState(secIdx, vidIdx, field) {
-  const prog = loadProgress();
-  const key = getKey(secIdx, vidIdx);
-  if (!prog[key]) prog[key] = {w:false, r:false, m:false};
-  prog[key][field] = !prog[key][field];
-  // mastered implies watched & reviewed
-  if (field === 'm' && prog[key][field]) { prog[key].w = true; prog[key].r = true; }
-  if (field === 'w' && !prog[key][field]) { prog[key].r = false; prog[key].m = false; }
-  if (field === 'r' && !prog[key][field]) { prog[key].m = false; }
-  saveProgress(prog);
-  renderAll();
+function toggle(id, field) {
+  const s = getState(id);
+  if (field === 'm') {
+    s.m = !s.m;
+    if (s.m) { s.w = true; s.r = true; }
+  } else if (field === 'w') {
+    s.w = !s.w;
+    if (!s.w) { s.r = false; s.m = false; }
+  } else {
+    s.r = !s.r;
+    if (!s.r) s.m = false;
+    if (s.r) s.w = true;
+  }
+  progress[id] = s;
+  save();
+  updateVideoRow(id);
+  updateSummary();
 }
+
+function updateVideoRow(id) {
+  const s = getState(id);
+  const wb = document.getElementById('btn-w-'+id);
+  const rb = document.getElementById('btn-r-'+id);
+  const mb = document.getElementById('btn-m-'+id);
+  if (wb) wb.className = `icon-btn${s.w?' active-w':''}`;
+  if (rb) rb.className = `icon-btn${s.r?' active-r':''}`;
+  if (mb) mb.className = `icon-btn${s.m?' active-m':''}`;
+  // re-check visibility
+  const row = document.getElementById('row-'+id);
+  if (row) row.classList.toggle('hidden-row', !rowVisible(id));
+}
+
+function rowVisible(id) {
+  const s = getState(id);
+  if (activeFilter === 'all') return true;
+  if (activeFilter === 'unwatched') return !s.w;
+  if (activeFilter === 'watched') return s.w;
+  if (activeFilter === 'reviewed') return s.r;
+  if (activeFilter === 'mastered') return s.m;
+  return true;
+}
+
+function setFilter(f, el) {
+  activeFilter = f;
+  document.querySelectorAll('.filter-chip').forEach(c => c.classList.remove('active'));
+  el.classList.add('active');
+  applyFilters();
+}
+
+function applyFilters() {
+  const q = document.getElementById('search-input').value.toLowerCase().trim();
+  let anyVisible = false;
+  CATEGORIES.forEach(cat => {
+    let catHasVisible = false;
+    cat.videos.forEach(v => {
+      const matchesSearch = !q || v.name.toLowerCase().includes(q) || v.num.toLowerCase().includes(q);
+      const matchesFilter = rowVisible(v.id);
+      const visible = matchesSearch && matchesFilter;
+      const row = document.getElementById('row-'+v.id);
+      if (row) row.classList.toggle('hidden-row', !visible);
+      if (visible) { catHasVisible = true; anyVisible = true; }
+    });
+    const sec = document.getElementById('sec-'+cat.id);
+    if (sec) sec.style.display = catHasVisible ? '' : 'none';
+    if (catHasVisible && q) {
+      sec.classList.add('open');
+    }
+  });
+  document.getElementById('no-results').style.display = anyVisible ? 'none' : 'block';
+  updateCatHeaders();
+}
+
+function updateCatHeaders() {
+  CATEGORIES.forEach(cat => {
+    const w = cat.videos.filter(v => getState(v.id).w).length;
+    const r = cat.videos.filter(v => getState(v.id).r).length;
+    const m = cat.videos.filter(v => getState(v.id).m).length;
+    const total = cat.videos.length;
+    const pct = total ? Math.round(m/total*100) : 0;
+    const el = document.getElementById('cat-count-'+cat.id);
+    if (el) el.textContent = `${w}w · ${r}r · ${m}/${total} mastered`;
+    const fill = document.getElementById('cat-fill-'+cat.id);
+    if (fill) fill.style.width = pct+'%';
+  });
+}
+
+function updateSummary() {
+  const all = CATEGORIES.flatMap(c=>c.videos);
+  const tw = all.filter(v=>getState(v.id).w).length;
+  const tr = all.filter(v=>getState(v.id).r).length;
+  const tm = all.filter(v=>getState(v.id).m).length;
+  const total = all.length;
+  document.getElementById('tot-w').textContent = tw;
+  document.getElementById('tot-r').textContent = tr;
+  document.getElementById('tot-m').textContent = tm;
+  document.getElementById('overall-bar').style.width = (total?Math.round(tm/total*100):0)+'%';
+  document.getElementById('overall-note').textContent = (total?Math.round(tm/total*100):0)+'% mastered';
+  document.getElementById('overall-total').textContent = tm+' / '+total+' videos';
+  updateCatHeaders();
+}
+
+function expandAll()  { document.querySelectorAll('.cat-section').forEach(s=>s.classList.add('open')); }
+function collapseAll(){ document.querySelectorAll('.cat-section').forEach(s=>s.classList.remove('open')); }
 
 function resetAll() {
-  if (!confirm('Reset all Sketchy Pharm progress?')) return;
-  Store.set(STORAGE_KEY, {});
-  renderAll();
+  if (!confirm('Reset ALL progress?')) return;
+  progress = {}; save(); renderAll(); showToast('Progress reset');
 }
 
-function exportProgress() {
-  const prog = loadProgress();
-  let csv = 'Section,Video,Watched,Reviewed,Mastered\n';
-  SKETCHY_PHARM_SECTIONS.forEach((sec, si) => {
-    sec.videos.forEach((vid, vi) => {
-      const s = getState(prog, getKey(si, vi));
-      csv += `"${sec.title}","${vid}",${s.w},${s.r},${s.m}\n`;
+function exportCSV() {
+  let csv = 'Section,Num,Video,Watched,Reviewed,Mastered\n';
+  CATEGORIES.forEach(cat => {
+    cat.videos.forEach(v => {
+      const s = getState(v.id);
+      csv += `"${cat.name}","${v.num}","${v.name}",${s.w?1:0},${s.r?1:0},${s.m?1:0}\n`;
     });
   });
   const a = document.createElement('a');
-  a.href = 'data:text/csv;charset=utf-8,' + encodeURIComponent(csv);
+  a.href = 'data:text/csv;charset=utf-8,'+encodeURIComponent(csv);
   a.download = 'sketchy_pharm_progress.csv';
-  document.body.appendChild(a);
-  a.click();
-  document.body.removeChild(a);
+  document.body.appendChild(a); a.click(); document.body.removeChild(a);
 }
 
 function renderAll() {
-  const prog = loadProgress();
-  let totalVids = 0, totalW = 0, totalR = 0, totalM = 0;
-
-  const container = document.getElementById('sections-container');
-  container.innerHTML = SKETCHY_PHARM_SECTIONS.map((sec, si) => {
-    let secW = 0, secM = 0;
-    const rows = sec.videos.map((vid, vi) => {
-      const key = getKey(si, vi);
-      const s = getState(prog, key);
-      totalVids++; if (s.w) { totalW++; secW++; } if (s.r) totalR++; if (s.m) { totalM++; secM++; }
-      return `
-        <tr>
-          <td style="width:100%;">${vid}</td>
-          <td>
-            <div class="check-wrap">
-              <button class="check-btn ${s.w?'on':''}" onclick="toggleState(${si},${vi},'w')" title="Watched">👁</button>
-              <button class="check-btn ${s.r?'on-gold':''}" onclick="toggleState(${si},${vi},'r')" title="Reviewed">🔁</button>
-              <button class="check-btn ${s.m?'on-sage':''}" onclick="toggleState(${si},${vi},'m')" title="Mastered">⭐</button>
-            </div>
-          </td>
-        </tr>`;
+  const container = document.getElementById('tracker-container');
+  container.innerHTML = CATEGORIES.map((cat, idx) => {
+    const accent = ACCENTS[idx % ACCENTS.length];
+    const rows = cat.videos.map(v => {
+      const s = getState(v.id);
+      return `<div class="video-row" id="row-${v.id}">
+        <div class="video-num">${v.num}</div>
+        <div class="video-name">${v.name}</div>
+        <div class="video-time">${v.time}</div>
+        <div class="check-btns">
+          <button id="btn-w-${v.id}" class="icon-btn${s.w?' active-w':''}" onclick="toggle('${v.id}','w')" title="Watched">👁</button>
+          <button id="btn-r-${v.id}" class="icon-btn${s.r?' active-r':''}" onclick="toggle('${v.id}','r')" title="Reviewed">🔁</button>
+          <button id="btn-m-${v.id}" class="icon-btn${s.m?' active-m':''}" onclick="toggle('${v.id}','m')" title="Mastered">⭐</button>
+        </div>
+      </div>`;
     }).join('');
 
-    const pct = sec.videos.length ? Math.round(secM / sec.videos.length * 100) : 0;
-    return `
-      <div class="prog-section">
-        <div class="prog-section-header">
-          <div class="prog-section-title">${sec.title}</div>
-          <div style="display:flex;align-items:center;gap:12px;">
-            <span class="prog-count">${secW}/${sec.videos.length} watched</span>
-            <span class="prog-count">${secM}/${sec.videos.length} mastered</span>
+    return `<div class="cat-section" id="sec-${cat.id}">
+      <div class="cat-header" onclick="document.getElementById('sec-${cat.id}').classList.toggle('open')">
+        <div class="cat-header-left">
+          <div class="cat-accent ${accent}"></div>
+          <div>
+            <div class="cat-name">${cat.name}</div>
+            <div class="cat-why">${cat.why} · ${cat.time}</div>
           </div>
         </div>
-        <div class="prog-bar-wrap">
-          <div class="prog-bar-fill" style="width:${pct}%;background:linear-gradient(90deg,var(--peach),var(--sakura2));"></div>
+        <div class="cat-header-right">
+          <span class="cat-count" id="cat-count-${cat.id}">0w · 0r · 0/${cat.videos.length} mastered</span>
+          <div class="cat-mini-bar"><div class="cat-mini-fill ${accent}" id="cat-fill-${cat.id}" style="width:0%;"></div></div>
+          <span class="cat-chevron">▼</span>
         </div>
-        <table class="tracker-table">
-          <thead><tr><th>Video</th><th>Status</th></tr></thead>
-          <tbody>${rows}</tbody>
-        </table>
-      </div>`;
+      </div>
+      <div class="cat-body">
+        <div class="video-header-row">
+          <div style="min-width:28px;">No.</div>
+          <div style="flex:1;">Video</div>
+          <div style="min-width:48px;text-align:right;">Time</div>
+          <div style="min-width:118px;text-align:right;">Status</div>
+        </div>
+        ${rows}
+      </div>
+    </div>`;
   }).join('');
-
-  const overallPct = totalVids ? Math.round(totalM / totalVids * 100) : 0;
-  document.getElementById('overall-bar').style.width = overallPct + '%';
-  document.getElementById('overall-pct').textContent = overallPct + '% mastered';
-  document.getElementById('overall-frac').textContent = `${totalM} / ${totalVids} videos`;
-  document.getElementById('total-watched').textContent = totalW;
-  document.getElementById('total-reviewed').textContent = totalR;
-  document.getElementById('total-mastered').textContent = totalM;
+  updateSummary();
+  applyFilters();
 }
 
-document.addEventListener('DOMContentLoaded', renderAll);
+function showToast(msg) {
+  const t = document.getElementById('toast') || (() => {
+    const el = document.createElement('div');
+    el.id='toast'; el.className='toast'; document.body.appendChild(el); return el;
+  })();
+  t.textContent = msg; t.classList.add('show');
+  setTimeout(()=>t.classList.remove('show'), 2000);
+}
+
+document.addEventListener('DOMContentLoaded', () => { load(); renderAll(); });
 </script>
+
+<style>
+.toast {
+  position:fixed;bottom:28px;left:50%;transform:translateX(-50%) translateY(80px);
+  background:var(--ink);color:#fff;padding:10px 22px;border-radius:99px;
+  font-size:13px;font-weight:600;z-index:9999;opacity:0;
+  transition:opacity .25s,transform .25s;pointer-events:none;
+}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0);}
+</style>
 </body>
 </html>

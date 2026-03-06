@@ -6,190 +6,618 @@
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet"/>
 <link rel="stylesheet" href="style.css"/>
 <title>Pixorize · Step 1 Hub</title>
+<style>
+.tracker-toolbar{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-bottom:20px;}
+.tracker-search{flex:1;min-width:200px;padding:9px 14px;border:1px solid var(--border);border-radius:var(--r);font-size:14px;font-family:inherit;background:var(--surface);color:var(--ink);outline:none;transition:border-color .15s;}
+.tracker-search:focus{border-color:var(--sky);}
+.filter-chips{display:flex;gap:6px;flex-wrap:wrap;}
+.filter-chip{padding:6px 14px;border-radius:99px;font-size:12px;font-weight:600;border:1px solid var(--border);background:var(--surface2);color:var(--muted);cursor:pointer;transition:all .15s;white-space:nowrap;}
+.filter-chip.active{background:var(--sky);color:#fff;border-color:var(--sky);}
+.filter-chip.f-watched.active{background:var(--sakura2);border-color:var(--sakura2);}
+.filter-chip.f-reviewed.active{background:var(--gold);border-color:var(--gold);color:#fff;}
+.filter-chip.f-mastered.active{background:var(--sage);border-color:var(--sage);}
+.toolbar-right{display:flex;gap:8px;margin-left:auto;}
+.toolbar-btn{padding:7px 14px;border-radius:var(--r);font-size:12px;font-weight:600;border:1px solid var(--border);background:transparent;color:var(--ink2);cursor:pointer;transition:all .15s;white-space:nowrap;}
+.toolbar-btn:hover{background:var(--surface2);}
+.overall-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--r-lg);padding:22px 26px;margin-bottom:20px;}
+.overall-top{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;margin-bottom:12px;}
+.overall-title{font-family:'Playfair Display',serif;font-size:19px;font-weight:600;}
+.overall-stats{display:flex;gap:18px;font-size:13px;}
+.overall-stat{color:var(--muted);}
+.overall-stat strong{color:var(--ink2);}
+.overall-bar-bg{background:var(--border2);border-radius:99px;height:8px;overflow:hidden;}
+.overall-bar-fill{height:100%;border-radius:99px;background:linear-gradient(90deg,var(--sky),var(--fuji));transition:width .5s ease;}
+.overall-sub{display:flex;justify-content:space-between;font-size:11px;color:var(--muted);margin-top:6px;}
+.cat-section{border:1px solid var(--border);border-radius:var(--r-lg);margin-bottom:10px;overflow:hidden;background:var(--surface);}
+.cat-header{display:flex;align-items:center;justify-content:space-between;padding:16px 20px;cursor:pointer;user-select:none;gap:12px;transition:background .12s;}
+.cat-header:hover{background:var(--surface2);}
+.cat-header-left{display:flex;align-items:center;gap:12px;flex:1;min-width:0;}
+.cat-accent{width:4px;height:36px;border-radius:99px;flex-shrink:0;}
+.cat-name{font-family:'Playfair Display',serif;font-size:17px;font-weight:600;}
+.cat-why{font-size:12px;color:var(--muted);margin-top:2px;}
+.cat-header-right{display:flex;align-items:center;gap:14px;flex-shrink:0;}
+.cat-count{font-size:12px;color:var(--muted);font-weight:600;white-space:nowrap;}
+.cat-mini-bar{width:80px;height:5px;background:var(--border2);border-radius:99px;overflow:hidden;}
+.cat-mini-fill{height:100%;border-radius:99px;transition:width .4s;}
+.cat-chevron{font-size:11px;color:var(--dim);transition:transform .2s;}
+.cat-section.open .cat-chevron{transform:rotate(180deg);}
+.cat-body{display:none;border-top:1px solid var(--border2);}
+.cat-section.open .cat-body{display:block;}
+.video-header-row{display:flex;align-items:center;padding:8px 20px;font-size:10px;font-weight:700;letter-spacing:1.2px;text-transform:uppercase;color:var(--muted);border-bottom:1px solid var(--border2);background:var(--bg);}
+.video-row{display:flex;align-items:center;padding:11px 20px;border-bottom:1px solid var(--border2);gap:12px;transition:background .1s;}
+.video-row:last-child{border-bottom:none;}
+.video-row:hover{background:var(--surface2);}
+.video-row.hidden-row{display:none;}
+.video-name{flex:1;font-size:13.5px;color:var(--ink2);line-height:1.4;}
+.video-time{font-size:11px;color:var(--dim);min-width:52px;text-align:right;font-family:'DM Mono',monospace;}
+.check-btns{display:flex;gap:6px;}
+.icon-btn{width:34px;height:34px;border-radius:8px;border:1.5px solid var(--border);background:var(--bg);display:flex;align-items:center;justify-content:center;font-size:16px;cursor:pointer;transition:all .15s;line-height:1;flex-shrink:0;}
+.icon-btn:hover{transform:scale(1.1);}
+.icon-btn.active-w{background:var(--sakura2);border-color:var(--sakura2);}
+.icon-btn.active-r{background:var(--gold);border-color:var(--gold);}
+.icon-btn.active-m{background:var(--sage);border-color:var(--sage);}
+.tracker-legend{display:flex;gap:16px;align-items:center;flex-wrap:wrap;font-size:12px;color:var(--muted);margin-bottom:16px;}
+.no-results{text-align:center;padding:40px;color:var(--muted);font-size:14px;}
+.accent-0{background:var(--sakura2);}
+.accent-1{background:var(--sky);}
+.accent-2{background:var(--gold);}
+.accent-3{background:var(--sage);}
+.accent-4{background:var(--fuji);}
+.accent-5{background:var(--peach);}
+.accent-6{background:var(--lavender);}
+.accent-7{background:#7ba8cf;}
+.toast{position:fixed;bottom:28px;left:50%;transform:translateX(-50%) translateY(80px);background:var(--ink);color:#fff;padding:10px 22px;border-radius:99px;font-size:13px;font-weight:600;z-index:9999;opacity:0;transition:opacity .25s,transform .25s;pointer-events:none;}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0);}
+</style>
 </head>
 <body>
 <script src="nav.js"></script>
-
 <div class="wrap">
-  <header class="hero" style="padding:40px 0 28px;">
+  <header class="hero" style="padding:40px 0 20px;">
     <div class="hero-eyebrow">Progress Tracker</div>
-    <h1 class="hero-name" style="font-size:clamp(28px,4vw,42px);"><em>Pixorize</em></h1>
+    <h1 class="hero-name" style="font-size:clamp(28px,4vw,44px);">Pixorize <em>Biochem & Immuno</em></h1>
   </header>
 
-  <div style="background:var(--surface);border:1px solid var(--border);border-radius:var(--r-lg);padding:24px 28px;margin-bottom:28px;">
-    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px;flex-wrap:wrap;gap:8px;">
-      <div style="font-family:'Playfair Display',serif;font-size:20px;font-weight:600;">Overall Progress</div>
-      <div style="display:flex;gap:16px;font-size:13px;color:var(--muted);">
-        <span>👁 <strong id="total-watched">0</strong> Watched</span>
-        <span>⭐ <strong id="total-mastered">0</strong> Mastered</span>
+  <div class="overall-card">
+    <div class="overall-top">
+      <span class="overall-title">Overall Progress</span>
+      <div class="overall-stats">
+        <span class="overall-stat">👁 <strong id="tot-w">0</strong> Watched</span>
+        <span class="overall-stat">🔁 <strong id="tot-r">0</strong> Reviewed</span>
+        <span class="overall-stat">⭐ <strong id="tot-m">0</strong> Mastered</span>
       </div>
     </div>
-    <div class="prog-bar-wrap"><div class="prog-bar-fill" id="overall-bar" style="width:0%;background:linear-gradient(90deg,var(--lavender),var(--sky));"></div></div>
-    <div style="display:flex;justify-content:space-between;font-size:12px;color:var(--muted);">
-      <span id="overall-pct">0% complete</span>
-      <span id="overall-frac">0 / 0 videos</span>
+    <div class="overall-bar-bg"><div class="overall-bar-fill" id="overall-bar" style="width:0%;"></div></div>
+    <div class="overall-sub">
+      <span id="overall-note">0% mastered</span>
+      <span id="overall-total">0 / 0 videos</span>
     </div>
   </div>
 
-  <div style="display:flex;gap:16px;margin-bottom:20px;flex-wrap:wrap;font-size:12px;font-weight:600;color:var(--ink2);">
-    <span>👁 = Watched &nbsp; ⭐ = Mastered</span>
-    <button onclick="resetAll()" style="margin-left:auto;background:none;border:1px solid var(--border);border-radius:99px;padding:4px 14px;font-size:12px;color:var(--muted);cursor:pointer;">Reset All</button>
-    <button onclick="exportProgress()" style="background:none;border:1px solid var(--border);border-radius:99px;padding:4px 14px;font-size:12px;color:var(--muted);cursor:pointer;">Export CSV</button>
+  <div class="tracker-toolbar">
+    <input class="tracker-search" id="search-input" type="text" placeholder="🔍  Search videos…" oninput="applyFilters()"/>
+    <div class="filter-chips">
+      <div class="filter-chip active" onclick="setFilter('all',this)">All</div>
+      <div class="filter-chip f-watched" onclick="setFilter('unwatched',this)">Not Watched</div>
+      <div class="filter-chip f-watched" onclick="setFilter('watched',this)">👁 Watched</div>
+      <div class="filter-chip f-reviewed" onclick="setFilter('reviewed',this)">🔁 Reviewed</div>
+      <div class="filter-chip f-mastered" onclick="setFilter('mastered',this)">⭐ Mastered</div>
+    </div>
+    <div class="toolbar-right">
+      <button class="toolbar-btn" onclick="expandAll()">Expand All</button>
+      <button class="toolbar-btn" onclick="collapseAll()">Collapse All</button>
+      <button class="toolbar-btn" onclick="exportCSV()">Export CSV</button>
+      <button class="toolbar-btn" onclick="resetAll()" style="color:var(--sakura2);">Reset All</button>
+    </div>
   </div>
 
-  <div id="sections-container"></div>
+  <div class="tracker-legend">
+    <span style="font-size:12px;color:var(--muted);">👁 = Watched &nbsp;·&nbsp; 🔁 = Reviewed &nbsp;·&nbsp; ⭐ = Mastered</span>
+  </div>
+
+  <div id="tracker-container"></div>
+  <div class="no-results" id="no-results" style="display:none;">No videos match your search.</div>
+
   <footer class="footer"><div>Step 1 Study Hub · 🌸</div><div id="footer-date"></div></footer>
 </div>
-
 <script src="app.js"></script>
 <script>
-const PIXORIZE_SECTIONS = [
-  {
-    title: "Biochemistry",
-    icon: "🧪",
-    videos: [
-      "Amino Acids: Structure & Properties","Essential Amino Acids Mnemonics","Enzyme Kinetics","Glycolysis Overview","TCA Cycle & Oxidative Phosphorylation","Gluconeogenesis","Glycogen Synthesis & Breakdown","Fatty Acid Synthesis & Beta-Oxidation","Ketone Bodies","Cholesterol Synthesis & Regulation","Urea Cycle","Purine & Pyrimidine Synthesis","Nucleotide Salvage Pathways","DNA Replication","Transcription & Translation","DNA Repair Mechanisms","Vitamins: Fat-Soluble (A, D, E, K)","Vitamins: Water-Soluble B Vitamins","Vitamin B12 & Folate","Vitamin C","Lysosomal Storage Diseases","Glycogen Storage Diseases","Phenylketonuria & Amino Acid Disorders","Maple Syrup Urine Disease","Homocystinuria","Alkaptonuria","Fabry, Gaucher, Niemann-Pick","Tay-Sachs & GM2 Gangliosidoses","Mucopolysaccharidoses","Porphyrias"
-    ]
-  },
-  {
-    title: "Immunology",
-    icon: "🛡️",
-    videos: [
-      "Innate vs Adaptive Immunity","Complement System: Classical Pathway","Complement System: Lectin & Alternative","MHC Class I & II","T Cell Development & Activation","CD4 Helper T Cell Subsets","CD8 Cytotoxic T Cells","B Cell Development & Activation","Antibody Classes (IgG, IgM, IgA, IgE, IgD)","Hypersensitivity Type I (IgE-mediated)","Hypersensitivity Type II (Cytotoxic)","Hypersensitivity Type III (Immune Complex)","Hypersensitivity Type IV (Delayed-Type)","Primary Immunodeficiencies: B Cell","Primary Immunodeficiencies: T Cell","Combined Immunodeficiencies","Phagocyte Defects","Transplant Rejection","Autoimmunity Mechanisms","Key Cytokines (IL-1, 2, 4, 5, 6, 8, 10, 12)"
-    ]
-  },
-  {
-    title: "Microbiology — Bacteria",
-    icon: "🦠",
-    videos: [
-      "Gram-Positive Cocci: Staph","Gram-Positive Cocci: Strep","Gram-Negative Rods: Enterobacteriaceae","Gram-Negative Rods: H. influenzae & Others","Gram-Negative Cocci: Neisseria","Anaerobes: Clostridium","Anaerobes: Bacteroides & Others","Atypical Bacteria: Mycoplasma & Chlamydia","Spirochetes: Treponema & Borrelia","Mycobacteria: TB & Leprosy"
-    ]
-  },
-  {
-    title: "Microbiology — Viruses",
-    icon: "🧬",
-    videos: [
-      "DNA Viruses Overview","RNA Viruses Overview","Herpesviruses (HSV, VZV, EBV, CMV)","HIV Life Cycle & Pathogenesis","Influenza & Paramyxoviruses","Picornaviruses (Polio, Coxsackie, Rhino)","Hepatitis Viruses A–E","HPV & Papillomaviruses","Arboviruses & Hemorrhagic Fever Viruses","Prions"
-    ]
-  },
-  {
-    title: "Embryology",
-    icon: "🐣",
-    videos: [
-      "Fertilization & Early Embryogenesis","Germ Layers & Gastrulation","Placenta Development","Cardiac Embryology & Congenital Heart Defects","Vascular Development","Gut Tube & GI Embryology","Renal Development","Genital Development & Disorders","Neural Tube Defects","Branchial Arches & Pharyngeal Pouches","Face & Palate Development","Limb Development"
-    ]
-  },
-  {
-    title: "Genetics",
-    icon: "🧬",
-    videos: [
-      "Autosomal Dominant Disorders","Autosomal Recessive Disorders","X-Linked Disorders","Chromosomal Abnormalities (Trisomies)","Chromosomal Structural Abnormalities","Imprinting: Prader-Willi & Angelman","Trinucleotide Repeat Disorders","Mitochondrial Genetics","Hardy-Weinberg Principles","Population Genetics"
-    ]
-  },
-  {
-    title: "Pathology — Cell Injury",
-    icon: "🫀",
-    videos: [
-      "Cell Death: Necrosis vs Apoptosis","Types of Necrosis","Free Radicals & Oxidative Stress","Cellular Adaptations","Reversible vs Irreversible Injury","Inflammation: Acute","Inflammation: Chronic","Wound Healing & Repair","Granuloma Formation","Neoplasia: Benign vs Malignant","Oncogenes & Tumor Suppressors","Metastasis Mechanisms"
-    ]
-  },
-  {
-    title: "Pharmacology — Key Concepts",
-    icon: "💊",
-    videos: [
-      "Pharmacokinetics: ADME","Volume of Distribution & Half-Life","Drug Receptor Interactions","Agonists, Antagonists & Partial Agonists","Enzyme Inducers & Inhibitors","Phase I & Phase II Metabolism","First-Pass Effect","Autonomic Pharmacology Overview"
-    ]
-  }
+const STORE_KEY = 'px-progress';
+
+const CATEGORIES = [
+  {id:"vitamins",name:"Vitamins",icon:"🍊",why:"Vitamin deficiencies are among the most frequently tested biochem topics",
+   videos:[
+    {id:"v01",name:"Vitamin B1 (Thiamine) Biochemistry",time:"7:20"},
+    {id:"v02",name:"Vitamin B1 (Thiamine) Deficiency",time:"10:51"},
+    {id:"v03",name:"Vitamin B2 (Riboflavin)",time:"6:30"},
+    {id:"v04",name:"Vitamin B3 (Niacin) Biochemistry",time:"7:51"},
+    {id:"v05",name:"Vitamin B3 (Niacin) Deficiency and Excess",time:"8:33"},
+    {id:"v06",name:"Hartnup Disease",time:"5:58"},
+    {id:"v07",name:"Vitamin B5 (Pantothenic Acid)",time:"5:34"},
+    {id:"v08",name:"Vitamin B6 (Pyridoxine)",time:"10:15"},
+    {id:"v09",name:"Vitamin B7 (Biotin)",time:"7:53"},
+    {id:"v10",name:"Vitamin B9 (Folate)",time:"3:40"},
+    {id:"v11",name:"Vitamin B12 (Cobalamin) Biochemistry",time:"7:03"},
+    {id:"v12",name:"Vitamins B9 and B12 Deficiencies",time:"20:09"},
+    {id:"v13",name:"Vitamin A (Retinol) Biochemistry",time:"9:24"},
+    {id:"v14",name:"Vitamin A (Retinol) Deficiency and Excess",time:"9:17"},
+    {id:"v15",name:"Vitamin C (Ascorbic Acid) Biochemistry",time:"8:06"},
+    {id:"v16",name:"Vitamin C (Ascorbic Acid) Deficiency and Excess",time:"9:02"},
+    {id:"v17",name:"Vitamin D Biochemistry",time:"11:42"},
+    {id:"v18",name:"Vitamin D Deficiency and Excess",time:"11:37"},
+    {id:"v19",name:"Vitamin E (Tocopherol/Tocotrienol)",time:"7:23"},
+    {id:"v20",name:"Vitamin K Biochemistry",time:"6:53"},
+    {id:"v21",name:"Vitamin K Deficiency",time:"6:35"},
+    {id:"v22",name:"Kwashiorkor and Marasmus",time:"5:57"},
+    {id:"v23",name:"Zinc",time:"6:59"}
+  ]},
+  {id:"biochempathways",name:"Biochemical Pathways",icon:"⚗️",why:"Metabolic pathway questions thread through every organ system",
+   videos:[
+    {id:"bp01",name:"Cori Cycle",time:"6:41"},
+    {id:"bp02",name:"De Novo Purine Synthesis",time:"8:49"},
+    {id:"bp03",name:"Pyruvate Metabolism",time:"11:12"},
+    {id:"bp04",name:"Sorbitol (Polyol) Pathway",time:"10:18"},
+    {id:"bp05",name:"Fatty Acid Synthesis (Citrate Shuttle)",time:"5:08"},
+    {id:"bp06",name:"Fatty Acid Breakdown (Carnitine Shuttle)",time:"7:01"},
+    {id:"bp07",name:"Ethanol Metabolism",time:"12:41"},
+    {id:"bp08",name:"Urea Cycle",time:"12:58"},
+    {id:"bp09",name:"Purine Salvage",time:"11:31"},
+    {id:"bp10",name:"Purine Excretion",time:"9:35"},
+    {id:"bp11",name:"Catecholamine Synthesis & Breakdown",time:"19:01"},
+    {id:"bp12",name:"De Novo Pyrimidine Synthesis",time:"21:04"},
+    {id:"bp13",name:"Homocysteine Metabolism",time:"9:29"},
+    {id:"bp14",name:"Alanine (Cahill) Cycle",time:"11:16"},
+    {id:"bp15",name:"Heme Synthesis",time:"17:52"},
+    {id:"bp16",name:"Galactose Metabolism",time:"11:14"},
+    {id:"bp17",name:"HMP Shunt (Pentose Phosphate Pathway)",time:"—"}
+  ]},
+  {id:"porphyrias",name:"Porphyrias",icon:"🔴",why:"AIP and PCT are classic vignettes — know urine changes and precipitating drugs",
+   videos:[
+    {id:"po01",name:"Acute Intermittent Porphyria (AIP)",time:"8:53"},
+    {id:"po02",name:"Porphyria Cutanea Tarda (PCT)",time:"6:36"}
+  ]},
+  {id:"autosomal_dom",name:"Autosomal Dominant Diseases",icon:"🧬",why:"Know the key finding and inheritance pattern for each",
+   videos:[
+    {id:"ad01",name:"Marfan Syndrome",time:"4:45"},
+    {id:"ad02",name:"Li-Fraumeni Syndrome (LFS)",time:"5:04"},
+    {id:"ad03",name:"Huntington Disease",time:"5:45"},
+    {id:"ad04",name:"Achondroplasia",time:"4:13"},
+    {id:"ad05",name:"Job (Hyper IgE) Syndrome",time:"4:22"},
+    {id:"ad06",name:"HHT",time:"3:45"},
+    {id:"ad07",name:"Hereditary Spherocytosis",time:"6:42"},
+    {id:"ad08",name:"von Hippel-Lindau (VHL)",time:"4:36"},
+    {id:"ad09",name:"MEN 1",time:"5:02"},
+    {id:"ad10",name:"MEN 2",time:"4:29"},
+    {id:"ad11",name:"Von Recklinghausen Disease (NF I)",time:"4:22"},
+    {id:"ad12",name:"Neurofibromatosis Type II (NF II)",time:"2:18"},
+    {id:"ad13",name:"Myotonic Dystrophy",time:"3:51"},
+    {id:"ad14",name:"ADPKD",time:"6:27"}
+  ]},
+  {id:"metabolic",name:"Metabolic Disorders",icon:"🧪",why:"Amino acid disorders and sugar metabolism defects are high-yield",
+   videos:[
+    {id:"md01",name:"Albinism",time:"5:40"},
+    {id:"md02",name:"Cystinuria",time:"7:38"},
+    {id:"md03",name:"Maple Syrup Urine Disease",time:"6:54"},
+    {id:"md04",name:"Essential Fructosuria",time:"3:49"},
+    {id:"md05",name:"Hereditary Fructose Intolerance",time:"7:07"},
+    {id:"md06",name:"Ornithine Transcarbamylase Deficiency",time:"7:11"},
+    {id:"md07",name:"Phenylketonuria (PKU)",time:"8:53"},
+    {id:"md08",name:"Alkaptonuria",time:"6:36"},
+    {id:"md09",name:"Galactosemia",time:"12:02"},
+    {id:"md10",name:"Galactokinase Deficiency",time:"6:16"},
+    {id:"md11",name:"Lesch-Nyhan Syndrome",time:"6:49"},
+    {id:"md12",name:"Pyruvate Kinase Deficiency",time:"8:14"},
+    {id:"md13",name:"Pyruvate Dehydrogenase Deficiency",time:"5:49"},
+    {id:"md14",name:"Propionic Acidemia",time:"7:54"}
+  ]},
+  {id:"lysosomal",name:"Lysosomal Storage Diseases",icon:"🫙",why:"High-yield for enzyme deficiencies, substrate accumulation, and ethnic associations",
+   videos:[
+    {id:"ls01",name:"Krabbe Disease",time:"4:43"},
+    {id:"ls02",name:"Hurler and Hunter Syndromes",time:"7:54"},
+    {id:"ls03",name:"Fabry Disease",time:"5:33"},
+    {id:"ls04",name:"Tay-Sachs and Niemann-Pick",time:"7:16"},
+    {id:"ls05",name:"Gaucher Disease",time:"3:53"},
+    {id:"ls06",name:"Metachromatic Leukodystrophy",time:"4:45"},
+    {id:"ls07",name:"I-Cell Disease",time:"8:52"}
+  ]},
+  {id:"glycogen",name:"Glycogen Storage Diseases",icon:"🔋",why:"Pompe, Von Gierke, Cori, and McArdle are the four to know",
+   videos:[
+    {id:"gs01",name:"Pompe Disease (Type II)",time:"5:16"},
+    {id:"gs02",name:"Von Gierke (Type I)",time:"5:05"},
+    {id:"gs03",name:"Cori Disease (Type III)",time:"5:00"},
+    {id:"gs04",name:"McArdle Disease (Type V)",time:"5:06"}
+  ]},
+  {id:"chromosomal",name:"Chromosomal Abnormalities",icon:"🔬",why:"Trisomies and sex chromosome disorders appear on every exam",
+   videos:[
+    {id:"ch01",name:"Down Syndrome (Trisomy 21)",time:"10:53"},
+    {id:"ch02",name:"Edwards Syndrome (Trisomy 18)",time:"7:54"},
+    {id:"ch03",name:"Patau Syndrome (Trisomy 13)",time:"6:22"},
+    {id:"ch04",name:"Klinefelter Syndrome",time:"7:09"},
+    {id:"ch05",name:"Turner Syndrome",time:"8:43"},
+    {id:"ch06",name:"Williams Syndrome",time:"6:58"},
+    {id:"ch07",name:"Cri du Chat Syndrome",time:"3:38"},
+    {id:"ch08",name:"Imprinting",time:"5:31"}
+  ]},
+  {id:"collagen",name:"Collagen Related Disorders",icon:"🦴",why:"Collagen synthesis steps and associated diseases are very high-yield",
+   videos:[
+    {id:"co01",name:"Alport Syndrome",time:"5:39"},
+    {id:"co02",name:"Menkes Disease",time:"7:32"},
+    {id:"co03",name:"Osteogenesis Imperfecta (Brittle Bone Disease)",time:"6:50"},
+    {id:"co04",name:"Collagen Synthesis",time:"11:45"},
+    {id:"co05",name:"Ehlers-Danlos Syndrome",time:"9:45"},
+    {id:"co06",name:"Goodpasture Syndrome",time:"6:12"}
+  ]},
+  {id:"dnarepair",name:"DNA Repair",icon:"🔧",why:"DNA repair pathway disorders are classic vignette setups",
+   videos:[
+    {id:"dr01",name:"Lynch Syndrome",time:"9:40"},
+    {id:"dr02",name:"Xeroderma Pigmentosum",time:"5:54"},
+    {id:"dr03",name:"Ataxia-Telangiectasia",time:"7:44"},
+    {id:"dr04",name:"Bloom Syndrome",time:"4:39"},
+    {id:"dr05",name:"G6PD Deficiency",time:"—"}
+  ]},
+  {id:"misc",name:"Miscellaneous",icon:"📋",why:"These span multiple systems and are all individually high-yield",
+   videos:[
+    {id:"mi01",name:"Chediak-Higashi Syndrome",time:"10:09"},
+    {id:"mi02",name:"Bruton (X-linked) Agammaglobulinemia",time:"9:06"},
+    {id:"mi03",name:"Familial Adenomatous Polyposis (FAP)",time:"10:26"},
+    {id:"mi04",name:"Lactase Deficiency",time:"10:04"},
+    {id:"mi05",name:"McCune-Albright Syndrome",time:"8:17"},
+    {id:"mi06",name:"Hexokinase vs Glucokinase",time:"14:21"},
+    {id:"mi07",name:"COP I & II and Clathrin",time:"7:29"},
+    {id:"mi08",name:"Kartagener Syndrome (Primary Ciliary Dyskinesia)",time:"8:34"},
+    {id:"mi09",name:"Peutz-Jeghers Syndrome",time:"8:04"},
+    {id:"mi10",name:"Cystic Fibrosis Overview",time:"8:33"},
+    {id:"mi11",name:"Medicare vs Medicaid",time:"11:34"},
+    {id:"mi12",name:"Duchenne and Becker Muscular Dystrophy",time:"11:09"},
+    {id:"mi13",name:"Yolk Sac Tumor",time:"4:08"},
+    {id:"mi14",name:"Burkitt Lymphoma",time:"6:35"},
+    {id:"mi15",name:"Rett Syndrome",time:"4:30"},
+    {id:"mi16",name:"Fragile X Syndrome",time:"8:18"},
+    {id:"mi17",name:"Whipple's Disease",time:"6:05"},
+    {id:"mi18",name:"Osteoid Osteoma vs Osteoblastoma",time:"8:40"},
+    {id:"mi19",name:"T1 vs T2 MRIs",time:"4:25"},
+    {id:"mi20",name:"Cystic Fibrosis Complications",time:"13:04"},
+    {id:"mi21",name:"Coagulation Panel",time:"8:38"},
+    {id:"mi22",name:"Homocystinuria Findings",time:"10:09"},
+    {id:"mi23",name:"HMP Shunt (Pentose Phosphate Pathway)",time:"—"},
+    {id:"mi24",name:"Microscopic Polyangiitis",time:"11:22"},
+    {id:"mi25",name:"Pinealoma",time:"4:39"},
+    {id:"mi26",name:"Systemic Primary Carnitine Deficiency",time:"—"},
+    {id:"mi27",name:"Abetalipoproteinemia",time:"—"},
+    {id:"mi28",name:"Wegener's Granulomatosis",time:"14:05"},
+    {id:"mi29",name:"MCAD Deficiency",time:"9:14"},
+    {id:"mi30",name:"Apolipoproteins",time:"7:29"},
+    {id:"mi31",name:"Hyperchylomicronemia",time:"3:55"},
+    {id:"mi32",name:"Hypercholesterolemia",time:"4:53"},
+    {id:"mi33",name:"Dysbetalipoproteinemia",time:"2:54"},
+    {id:"mi34",name:"Hypertriglyceridemia",time:"—"},
+    {id:"mi35",name:"Propionic Acid Pathway",time:"11:10"},
+    {id:"mi36",name:"ABG",time:"6:15"},
+    {id:"mi37",name:"CMP",time:"8:13"},
+    {id:"mi38",name:"BMP (Chem7) Fishbone",time:"7:41"},
+    {id:"mi39",name:"CBC",time:"7:06"}
+  ]},
+  {id:"neuro_disorders",name:"Neurological Disorders",icon:"🧠",why:"CNS tumors are classic one-liners — histology, location, and patient age distinguish them",
+   videos:[
+    {id:"nd01",name:"Craniopharyngioma",time:"8:09"},
+    {id:"nd02",name:"Ependymoma",time:"7:04"},
+    {id:"nd03",name:"Schwannoma",time:"9:08"},
+    {id:"nd04",name:"Oligodendroglioma",time:"5:49"},
+    {id:"nd05",name:"Meningioma",time:"7:54"},
+    {id:"nd06",name:"Glioblastoma Multiforme (Grade IV Astrocytoma)",time:"7:07"},
+    {id:"nd07",name:"Tuberous Sclerosis",time:"9:53"},
+    {id:"nd08",name:"Charcot-Marie-Tooth Disease",time:"7:35"},
+    {id:"nd09",name:"Tension Headache",time:"6:31"}
+  ]},
+  {id:"toxicology",name:"Toxicology",icon:"☠️",why:"Toxidromes and antidotes — know the mechanism and the antidote",
+   videos:[
+    {id:"tx01",name:"Cyanide Poisoning",time:"10:09"},
+    {id:"tx02",name:"Tetrodotoxin",time:"6:22"},
+    {id:"tx03",name:"Methanol Poisoning",time:"6:33"},
+    {id:"tx04",name:"Ethylene Glycol Poisoning",time:"8:10"},
+    {id:"tx05",name:"Ciguatoxin (Ciguatera Fish Poisoning)",time:"5:47"},
+    {id:"tx06",name:"Spoiled Fish (Scombroid) Poisoning",time:"4:42"},
+    {id:"tx07",name:"Carbon Monoxide Poisoning",time:"11:11"},
+    {id:"tx08",name:"Amanita Phalloides",time:"—"}
+  ]},
+  {id:"peroxisome",name:"Peroxisome Disorders",icon:"🔬",why:"Zellweger and adrenoleukodystrophy are the key peroxisomal diseases",
+   videos:[
+    {id:"px01",name:"Zellweger Syndrome",time:"4:09"},
+    {id:"px02",name:"Adrenoleukodystrophy",time:"6:16"},
+    {id:"px03",name:"Refsum Disease",time:"9:19"}
+  ]},
+  {id:"mitochondrial",name:"Mitochondrial Diseases",icon:"⚡",why:"Mitochondrial inheritance (maternal) and MELAS are classic board questions",
+   videos:[
+    {id:"mt01",name:"Leber Hereditary Optic Neuropathy",time:"3:49"},
+    {id:"mt02",name:"Mitochondrial Myopathies",time:"9:30"}
+  ]},
+  {id:"immunoglobulins",name:"Immunoglobulins",icon:"🛡️",why:"Ig class functions, switching, and deficiency syndromes are tested frequently",
+   videos:[
+    {id:"ig01",name:"IgA",time:"6:45"},
+    {id:"ig02",name:"IgG",time:"8:56"},
+    {id:"ig03",name:"IgM",time:"7:06"},
+    {id:"ig04",name:"IgE",time:"9:25"},
+    {id:"ig05",name:"IgD",time:"2:25"}
+  ]},
+  {id:"complement",name:"Complement System",icon:"💥",why:"Complement pathways, C3b opsonization, MAC, and deficiency diseases appear on nearly every exam",
+   videos:[
+    {id:"cp01",name:"Common Complement Pathway",time:"13:41"},
+    {id:"cp02",name:"Classical Complement Pathway",time:"7:04"},
+    {id:"cp03",name:"Alternative Complement Pathway",time:"7:04"},
+    {id:"cp04",name:"Lectin Complement Pathway",time:"5:44"}
+  ]},
+  {id:"celltypes",name:"Other Cell Types",icon:"🔵",why:"Neutrophil oxidative burst, mast cell mediators, and NK cell mechanisms are all high-yield",
+   videos:[
+    {id:"ct01",name:"Neutrophils - Overview",time:"11:32"},
+    {id:"ct02",name:"Neutrophils - Granules",time:"9:35"},
+    {id:"ct03",name:"Neutrophils - Oxidative Burst",time:"11:04"},
+    {id:"ct04",name:"Basophils",time:"8:21"},
+    {id:"ct05",name:"Eosinophils",time:"11:38"},
+    {id:"ct06",name:"Mast Cells",time:"14:20"},
+    {id:"ct07",name:"Monocytes / Macrophages",time:"16:26"},
+    {id:"ct08",name:"Natural Killer (NK) Cells",time:"13:08"},
+    {id:"ct09",name:"Dendritic Cells",time:"5:11"}
+  ]},
+  {id:"bcells_tcells",name:"B Cells and T Cells",icon:"🎯",why:"Lymphocyte activation, MHC restriction, and T cell differentiation form the backbone of immunology",
+   videos:[
+    {id:"bt01",name:"MHC I",time:"7:56"},
+    {id:"bt02",name:"MHC II",time:"10:13"},
+    {id:"bt03",name:"B Cells - Overview",time:"6:47"},
+    {id:"bt04",name:"B Cells - Activation",time:"9:25"},
+    {id:"bt05",name:"Plasma B Cells",time:"5:48"},
+    {id:"bt06",name:"Memory B Cells",time:"5:27"},
+    {id:"bt07",name:"T Cells - Overview",time:"3:30"},
+    {id:"bt08",name:"T Cells - Activation",time:"9:34"},
+    {id:"bt09",name:"T Cells - Differentiation",time:"14:56"},
+    {id:"bt10",name:"Cytotoxic (Killer) T Cells",time:"6:31"},
+    {id:"bt11",name:"Helper T Cells - Overview",time:"6:42"},
+    {id:"bt12",name:"Th1 Cells",time:"10:15"},
+    {id:"bt13",name:"Th2 Cells",time:"11:14"},
+    {id:"bt14",name:"Th17 Cells",time:"6:27"},
+    {id:"bt15",name:"Regulatory T Cells (Tregs)",time:"11:15"}
+  ]},
+  {id:"cytokines",name:"Cytokines",icon:"📡",why:"Cytokine functions are tested directly — memorize what each one does",
+   videos:[
+    {id:"cy01",name:"TNF-alpha",time:"6:04"},
+    {id:"cy02",name:"IL-1",time:"7:07"},
+    {id:"cy03",name:"IL-2",time:"6:35"},
+    {id:"cy04",name:"IL-3",time:"2:41"},
+    {id:"cy05",name:"IL-4",time:"5:54"},
+    {id:"cy06",name:"IL-5",time:"5:09"},
+    {id:"cy07",name:"IL-6",time:"5:29"},
+    {id:"cy08",name:"IL-8",time:"2:29"},
+    {id:"cy09",name:"IL-10",time:"3:26"},
+    {id:"cy10",name:"IL-12",time:"4:30"},
+    {id:"cy11",name:"TGF-beta",time:"3:32"},
+    {id:"cy12",name:"IFN-alpha and IFN-beta",time:"2:54"},
+    {id:"cy13",name:"IFN-gamma",time:"8:09"}
+  ]},
+  {id:"immunodef",name:"Immunodeficiencies",icon:"🚫",why:"Primary immunodeficiencies are a guaranteed multi-question topic",
+   videos:[
+    {id:"id01",name:"Selective IgA Deficiency",time:"5:27"},
+    {id:"id02",name:"DiGeorge Syndrome",time:"10:07"},
+    {id:"id03",name:"Hyper-IgM Syndrome",time:"8:36"},
+    {id:"id04",name:"IPEX",time:"7:09"},
+    {id:"id05",name:"Leukocyte Adhesion Deficiency (LAD)",time:"9:40"},
+    {id:"id06",name:"Chronic Granulomatous Disease (CGD)",time:"7:51"},
+    {id:"id07",name:"IL-12 Receptor Deficiency",time:"8:58"},
+    {id:"id08",name:"Wiskott-Aldrich Syndrome",time:"7:40"}
+  ]},
+  {id:"hypersensitivity",name:"Hypersensitivity Reactions",icon:"⚠️",why:"Types I–IV — know the mechanism, timing, and prototypical disease",
+   videos:[
+    {id:"hs01",name:"Type 1 Hypersensitivity Reactions",time:"9:42"},
+    {id:"hs02",name:"Type 2 Hypersensitivity Reactions",time:"7:33"},
+    {id:"hs03",name:"Type 3 Hypersensitivity Reactions",time:"6:06"},
+    {id:"hs04",name:"Type 4 Hypersensitivity Reactions",time:"5:16"}
+  ]},
+  {id:"transfusion",name:"Transfusion Reactions",icon:"🩸",why:"ABO incompatibility, TRALI, and febrile reactions are all independently tested",
+   videos:[
+    {id:"tr01",name:"Anaphylactic Transfusion Reactions",time:"4:36"},
+    {id:"tr02",name:"Acute Hemolytic Transfusion Reaction",time:"10:56"},
+    {id:"tr03",name:"Febrile Nonhemolytic Transfusion Reaction",time:"5:55"},
+    {id:"tr04",name:"TRALI",time:"5:34"}
+  ]},
+  {id:"transplant",name:"Transplant Rejection",icon:"🫀",why:"Hyperacute/acute/chronic rejection and GVHD are high-yield",
+   videos:[
+    {id:"tp01",name:"Hyperacute Transplant Rejection",time:"5:00"},
+    {id:"tp02",name:"Acute Transplant Rejection",time:"5:29"},
+    {id:"tp03",name:"Chronic Transplant Rejection",time:"7:15"},
+    {id:"tp04",name:"Graft vs Host Disease (GVHD)",time:"9:04"}
+  ]},
+  {id:"germlayer",name:"Germ Layer Derivatives",icon:"🐣",why:"Embryology questions hinge on knowing which germ layer gives rise to which tissue",
+   videos:[
+    {id:"gl01",name:"Ectoderm Derivatives",time:"9:56"},
+    {id:"gl02",name:"Mesoderm Derivatives",time:"11:52"},
+    {id:"gl03",name:"Endoderm Derivatives",time:"6:00"},
+    {id:"gl04",name:"Cell Junctions",time:"17:03"},
+    {id:"gl05",name:"Gap Junctions",time:"4:28"},
+    {id:"gl06",name:"Tight Junctions",time:"7:51"},
+    {id:"gl07",name:"Desmosomes",time:"4:44"}
+  ]},
+  {id:"personality",name:"Personality Disorders & Conditioning",icon:"🧩",why:"Cluster A/B/C and conditioning types are bread-and-butter behavioral science",
+   videos:[
+    {id:"ps01",name:"Cluster A Personality Disorders",time:"7:31"},
+    {id:"ps02",name:"Cluster B Personality Disorders",time:"8:03"},
+    {id:"ps03",name:"Cluster C Personality Disorders",time:"7:19"},
+    {id:"ps04",name:"Classical Conditioning",time:"4:47"},
+    {id:"ps05",name:"Operant Conditioning",time:"4:48"}
+  ]},
+  {id:"cytoskeleton",name:"Cytoskeleton",icon:"🔩",why:"Microtubule/microfilament function underlies several drug MOAs (colchicine, vinca alkaloids)",
+   videos:[
+    {id:"cs01",name:"Cytoskeleton",time:"9:41"},
+    {id:"cs02",name:"Microfilaments (Actin Filaments)",time:"6:21"},
+    {id:"cs03",name:"Intermediate Filaments",time:"3:20"},
+    {id:"cs04",name:"Microtubules",time:"—"}
+  ]},
+  {id:"dyslipidemias",name:"Dyslipidemias",icon:"💛",why:"Lipoprotein disorders, apolipoproteins, and familial dyslipidemias connect to CV risk",
+   videos:[
+    {id:"dl01",name:"Dyslipidemias (Overview)",time:"21:56"}
+  ]}
 ];
 
-const STORAGE_KEY = 'pixorize-progress';
-function loadProgress() { return Store.get(STORAGE_KEY, {}); }
-function saveProgress(p) { Store.set(STORAGE_KEY, p); }
-function getKey(si, vi) { return `${si}-${vi}`; }
-function getState(prog, key) { return prog[key] || {w:false, m:false}; }
+const ACCENTS = ['accent-0','accent-1','accent-2','accent-3','accent-4','accent-5','accent-6','accent-7'];
+let progress = {};
+let activeFilter = 'all';
 
-function toggleState(si, vi, field) {
-  const prog = loadProgress();
-  const key = getKey(si, vi);
-  if (!prog[key]) prog[key] = {w:false, m:false};
-  prog[key][field] = !prog[key][field];
-  if (field === 'm' && prog[key][field]) prog[key].w = true;
-  if (field === 'w' && !prog[key][field]) prog[key].m = false;
-  saveProgress(prog);
-  renderAll();
+function load() { progress = Store.get(STORE_KEY, {}); }
+function save() { Store.set(STORE_KEY, progress); }
+function getState(id) { return progress[id] || {w:false,r:false,m:false}; }
+
+function toggle(id, field) {
+  const s = getState(id);
+  if (field==='m') { s.m=!s.m; if(s.m){s.w=true;s.r=true;} }
+  else if (field==='w') { s.w=!s.w; if(!s.w){s.r=false;s.m=false;} }
+  else { s.r=!s.r; if(!s.r)s.m=false; if(s.r)s.w=true; }
+  progress[id]=s; save(); updateVideoRow(id); updateSummary();
 }
 
-function resetAll() {
-  if (!confirm('Reset all Pixorize progress?')) return;
-  Store.set(STORAGE_KEY, {}); renderAll();
+function updateVideoRow(id) {
+  const s = getState(id);
+  const wb=document.getElementById('btn-w-'+id);
+  const rb=document.getElementById('btn-r-'+id);
+  const mb=document.getElementById('btn-m-'+id);
+  if(wb) wb.className=`icon-btn${s.w?' active-w':''}`;
+  if(rb) rb.className=`icon-btn${s.r?' active-r':''}`;
+  if(mb) mb.className=`icon-btn${s.m?' active-m':''}`;
+  const row=document.getElementById('row-'+id);
+  if(row) row.classList.toggle('hidden-row',!rowVisible(id));
 }
 
-function exportProgress() {
-  const prog = loadProgress();
-  let csv = 'Section,Video,Watched,Mastered\n';
-  PIXORIZE_SECTIONS.forEach((sec, si) => {
-    sec.videos.forEach((vid, vi) => {
-      const s = getState(prog, getKey(si, vi));
-      csv += `"${sec.title}","${vid}",${s.w},${s.m}\n`;
+function rowVisible(id) {
+  const s=getState(id);
+  if(activeFilter==='all') return true;
+  if(activeFilter==='unwatched') return !s.w;
+  if(activeFilter==='watched') return s.w;
+  if(activeFilter==='reviewed') return s.r;
+  if(activeFilter==='mastered') return s.m;
+  return true;
+}
+
+function setFilter(f,el) {
+  activeFilter=f;
+  document.querySelectorAll('.filter-chip').forEach(c=>c.classList.remove('active'));
+  el.classList.add('active');
+  applyFilters();
+}
+
+function applyFilters() {
+  const q=document.getElementById('search-input').value.toLowerCase().trim();
+  let anyVisible=false;
+  CATEGORIES.forEach(cat => {
+    let catHasVisible=false;
+    cat.videos.forEach(v => {
+      const ms=!q||v.name.toLowerCase().includes(q);
+      const mf=rowVisible(v.id);
+      const visible=ms&&mf;
+      const row=document.getElementById('row-'+v.id);
+      if(row) row.classList.toggle('hidden-row',!visible);
+      if(visible){catHasVisible=true;anyVisible=true;}
+    });
+    const sec=document.getElementById('sec-'+cat.id);
+    if(sec) sec.style.display=catHasVisible?'':'none';
+    if(catHasVisible&&q) sec.classList.add('open');
+  });
+  document.getElementById('no-results').style.display=anyVisible?'none':'block';
+  updateCatHeaders();
+}
+
+function updateCatHeaders() {
+  CATEGORIES.forEach(cat => {
+    const w=cat.videos.filter(v=>getState(v.id).w).length;
+    const r=cat.videos.filter(v=>getState(v.id).r).length;
+    const m=cat.videos.filter(v=>getState(v.id).m).length;
+    const total=cat.videos.length;
+    const el=document.getElementById('cat-count-'+cat.id);
+    if(el) el.textContent=`${w}w · ${r}r · ${m}/${total} mastered`;
+    const fill=document.getElementById('cat-fill-'+cat.id);
+    if(fill) fill.style.width=(total?Math.round(m/total*100):0)+'%';
+  });
+}
+
+function updateSummary() {
+  const all=CATEGORIES.flatMap(c=>c.videos);
+  const tw=all.filter(v=>getState(v.id).w).length;
+  const tr=all.filter(v=>getState(v.id).r).length;
+  const tm=all.filter(v=>getState(v.id).m).length;
+  const total=all.length;
+  document.getElementById('tot-w').textContent=tw;
+  document.getElementById('tot-r').textContent=tr;
+  document.getElementById('tot-m').textContent=tm;
+  document.getElementById('overall-bar').style.width=(total?Math.round(tm/total*100):0)+'%';
+  document.getElementById('overall-note').textContent=(total?Math.round(tm/total*100):0)+'% mastered';
+  document.getElementById('overall-total').textContent=tm+' / '+total+' videos';
+  updateCatHeaders();
+}
+
+function expandAll(){document.querySelectorAll('.cat-section').forEach(s=>s.classList.add('open'));}
+function collapseAll(){document.querySelectorAll('.cat-section').forEach(s=>s.classList.remove('open'));}
+function resetAll(){if(!confirm('Reset ALL progress?'))return;progress={};save();renderAll();showToast('Progress reset');}
+
+function exportCSV(){
+  let csv='Section,Video,Watched,Reviewed,Mastered\n';
+  CATEGORIES.forEach(cat=>{
+    cat.videos.forEach(v=>{
+      const s=getState(v.id);
+      csv+=`"${cat.name}","${v.name}",${s.w?1:0},${s.r?1:0},${s.m?1:0}\n`;
     });
   });
-  const a = document.createElement('a');
-  a.href = 'data:text/csv;charset=utf-8,' + encodeURIComponent(csv);
-  a.download = 'pixorize_progress.csv';
-  document.body.appendChild(a);
-  a.click();
-  document.body.removeChild(a);
+  const a=document.createElement('a');
+  a.href='data:text/csv;charset=utf-8,'+encodeURIComponent(csv);
+  a.download='pixorize_progress.csv';
+  document.body.appendChild(a);a.click();document.body.removeChild(a);
 }
 
-function renderAll() {
-  const prog = loadProgress();
-  let totalVids = 0, totalW = 0, totalM = 0;
-
-  const container = document.getElementById('sections-container');
-  container.innerHTML = PIXORIZE_SECTIONS.map((sec, si) => {
-    let secW = 0, secM = 0;
-    const rows = sec.videos.map((vid, vi) => {
-      const key = getKey(si, vi);
-      const s = getState(prog, key);
-      totalVids++; if (s.w) { totalW++; secW++; } if (s.m) { totalM++; secM++; }
-      return `
-        <tr>
-          <td style="width:100%;">${vid}</td>
-          <td>
-            <div class="check-wrap">
-              <button class="check-btn ${s.w?'on':''}" onclick="toggleState(${si},${vi},'w')" title="Watched">👁</button>
-              <button class="check-btn ${s.m?'on-sage':''}" onclick="toggleState(${si},${vi},'m')" title="Mastered">⭐</button>
-            </div>
-          </td>
-        </tr>`;
-    }).join('');
-
-    const pct = sec.videos.length ? Math.round(secM/sec.videos.length*100) : 0;
-    return `
-      <div class="prog-section">
-        <div class="prog-section-header">
-          <div class="prog-section-title">${sec.icon} ${sec.title}</div>
-          <span class="prog-count">${secM}/${sec.videos.length} mastered</span>
+function renderAll(){
+  const container=document.getElementById('tracker-container');
+  container.innerHTML=CATEGORIES.map((cat,idx)=>{
+    const accent=ACCENTS[idx%ACCENTS.length];
+    const rows=cat.videos.map(v=>{
+      const s=getState(v.id);
+      return `<div class="video-row" id="row-${v.id}">
+        <div class="video-name">${v.name}</div>
+        <div class="video-time">${v.time}</div>
+        <div class="check-btns">
+          <button id="btn-w-${v.id}" class="icon-btn${s.w?' active-w':''}" onclick="toggle('${v.id}','w')" title="Watched">👁</button>
+          <button id="btn-r-${v.id}" class="icon-btn${s.r?' active-r':''}" onclick="toggle('${v.id}','r')" title="Reviewed">🔁</button>
+          <button id="btn-m-${v.id}" class="icon-btn${s.m?' active-m':''}" onclick="toggle('${v.id}','m')" title="Mastered">⭐</button>
         </div>
-        <div class="prog-bar-wrap">
-          <div class="prog-bar-fill" style="width:${pct}%;background:linear-gradient(90deg,var(--lavender),var(--sky));"></div>
-        </div>
-        <table class="tracker-table">
-          <thead><tr><th>Video</th><th>Status</th></tr></thead>
-          <tbody>${rows}</tbody>
-        </table>
       </div>`;
+    }).join('');
+    return `<div class="cat-section" id="sec-${cat.id}">
+      <div class="cat-header" onclick="document.getElementById('sec-${cat.id}').classList.toggle('open')">
+        <div class="cat-header-left">
+          <div class="cat-accent ${accent}"></div>
+          <div>
+            <div class="cat-name">${cat.icon} ${cat.name}</div>
+            <div class="cat-why">${cat.why}</div>
+          </div>
+        </div>
+        <div class="cat-header-right">
+          <span class="cat-count" id="cat-count-${cat.id}">0w · 0r · 0/${cat.videos.length} mastered</span>
+          <div class="cat-mini-bar"><div class="cat-mini-fill ${accent}" id="cat-fill-${cat.id}" style="width:0%;"></div></div>
+          <span class="cat-chevron">▼</span>
+        </div>
+      </div>
+      <div class="cat-body">
+        <div class="video-header-row">
+          <div style="flex:1;">Video</div>
+          <div style="min-width:52px;text-align:right;">Time</div>
+          <div style="min-width:118px;text-align:right;">Status</div>
+        </div>
+        ${rows}
+      </div>
+    </div>`;
   }).join('');
-
-  const pct = totalVids ? Math.round(totalM/totalVids*100) : 0;
-  document.getElementById('overall-bar').style.width = pct + '%';
-  document.getElementById('overall-pct').textContent = pct + '% mastered';
-  document.getElementById('overall-frac').textContent = `${totalM} / ${totalVids} videos`;
-  document.getElementById('total-watched').textContent = totalW;
-  document.getElementById('total-mastered').textContent = totalM;
+  updateSummary();
+  applyFilters();
 }
 
-document.addEventListener('DOMContentLoaded', renderAll);
+function showToast(msg){
+  const t=document.getElementById('toast')||(() => {const el=document.createElement('div');el.id='toast';el.className='toast';document.body.appendChild(el);return el;})();
+  t.textContent=msg;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),2000);
+}
+
+document.addEventListener('DOMContentLoaded',()=>{load();renderAll();});
 </script>
 </body>
 </html>

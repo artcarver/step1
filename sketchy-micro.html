@@ -6,182 +6,464 @@
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet"/>
 <link rel="stylesheet" href="style.css"/>
 <title>Sketchy Micro · Step 1 Hub</title>
+<style>
+.tracker-toolbar{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-bottom:20px;}
+.tracker-search{flex:1;min-width:200px;padding:9px 14px;border:1px solid var(--border);border-radius:var(--r);font-size:14px;font-family:inherit;background:var(--surface);color:var(--ink);outline:none;transition:border-color .15s;}
+.tracker-search:focus{border-color:var(--sky);}
+.filter-chips{display:flex;gap:6px;flex-wrap:wrap;}
+.filter-chip{padding:6px 14px;border-radius:99px;font-size:12px;font-weight:600;border:1px solid var(--border);background:var(--surface2);color:var(--muted);cursor:pointer;transition:all .15s;white-space:nowrap;}
+.filter-chip.active{background:var(--sky);color:#fff;border-color:var(--sky);}
+.filter-chip.f-watched.active{background:var(--sakura2);border-color:var(--sakura2);}
+.filter-chip.f-reviewed.active{background:var(--gold);border-color:var(--gold);color:#fff;}
+.filter-chip.f-mastered.active{background:var(--sage);border-color:var(--sage);}
+.toolbar-right{display:flex;gap:8px;margin-left:auto;}
+.toolbar-btn{padding:7px 14px;border-radius:var(--r);font-size:12px;font-weight:600;border:1px solid var(--border);background:transparent;color:var(--ink2);cursor:pointer;transition:all .15s;white-space:nowrap;}
+.toolbar-btn:hover{background:var(--surface2);}
+.overall-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--r-lg);padding:22px 26px;margin-bottom:20px;}
+.overall-top{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;margin-bottom:12px;}
+.overall-title{font-family:'Playfair Display',serif;font-size:19px;font-weight:600;}
+.overall-stats{display:flex;gap:18px;font-size:13px;}
+.overall-stat{color:var(--muted);}
+.overall-stat strong{color:var(--ink2);}
+.overall-bar-bg{background:var(--border2);border-radius:99px;height:8px;overflow:hidden;}
+.overall-bar-fill{height:100%;border-radius:99px;background:linear-gradient(90deg,var(--sky),var(--fuji));transition:width .5s ease;}
+.overall-sub{display:flex;justify-content:space-between;font-size:11px;color:var(--muted);margin-top:6px;}
+.cat-section{border:1px solid var(--border);border-radius:var(--r-lg);margin-bottom:10px;overflow:hidden;background:var(--surface);}
+.cat-header{display:flex;align-items:center;justify-content:space-between;padding:16px 20px;cursor:pointer;user-select:none;gap:12px;transition:background .12s;}
+.cat-header:hover{background:var(--surface2);}
+.cat-header-left{display:flex;align-items:center;gap:12px;flex:1;min-width:0;}
+.cat-accent{width:4px;height:36px;border-radius:99px;flex-shrink:0;}
+.cat-name{font-family:'Playfair Display',serif;font-size:17px;font-weight:600;}
+.cat-why{font-size:12px;color:var(--muted);margin-top:2px;}
+.cat-header-right{display:flex;align-items:center;gap:14px;flex-shrink:0;}
+.cat-count{font-size:12px;color:var(--muted);font-weight:600;white-space:nowrap;}
+.cat-mini-bar{width:80px;height:5px;background:var(--border2);border-radius:99px;overflow:hidden;}
+.cat-mini-fill{height:100%;border-radius:99px;transition:width .4s;}
+.cat-chevron{font-size:11px;color:var(--dim);transition:transform .2s;}
+.cat-section.open .cat-chevron{transform:rotate(180deg);}
+.cat-body{display:none;border-top:1px solid var(--border2);}
+.cat-section.open .cat-body{display:block;}
+.video-header-row{display:flex;align-items:center;padding:8px 20px;font-size:10px;font-weight:700;letter-spacing:1.2px;text-transform:uppercase;color:var(--muted);border-bottom:1px solid var(--border2);background:var(--bg);}
+.video-row{display:flex;align-items:center;padding:11px 20px;border-bottom:1px solid var(--border2);gap:12px;transition:background .1s;}
+.video-row:last-child{border-bottom:none;}
+.video-row:hover{background:var(--surface2);}
+.video-row.hidden-row{display:none;}
+.video-num{font-family:'DM Mono',monospace;font-size:11px;color:var(--muted);min-width:36px;}
+.video-name{flex:1;font-size:13.5px;color:var(--ink2);line-height:1.4;}
+.video-time{font-size:11px;color:var(--dim);min-width:52px;text-align:right;font-family:'DM Mono',monospace;}
+.check-btns{display:flex;gap:6px;}
+.icon-btn{width:34px;height:34px;border-radius:8px;border:1.5px solid var(--border);background:var(--bg);display:flex;align-items:center;justify-content:center;font-size:16px;cursor:pointer;transition:all .15s;line-height:1;flex-shrink:0;}
+.icon-btn:hover{transform:scale(1.1);}
+.icon-btn.active-w{background:var(--sakura2);border-color:var(--sakura2);}
+.icon-btn.active-r{background:var(--gold);border-color:var(--gold);}
+.icon-btn.active-m{background:var(--sage);border-color:var(--sage);}
+.tracker-legend{display:flex;gap:16px;align-items:center;flex-wrap:wrap;font-size:12px;color:var(--muted);margin-bottom:16px;}
+.no-results{text-align:center;padding:40px;color:var(--muted);font-size:14px;}
+.accent-0{background:var(--sakura2);}
+.accent-1{background:var(--sky);}
+.accent-2{background:var(--gold);}
+.accent-3{background:var(--sage);}
+.accent-4{background:var(--fuji);}
+.accent-5{background:var(--peach);}
+.accent-6{background:var(--lavender);}
+.accent-7{background:#7ba8cf;}
+.toast{position:fixed;bottom:28px;left:50%;transform:translateX(-50%) translateY(80px);background:var(--ink);color:#fff;padding:10px 22px;border-radius:99px;font-size:13px;font-weight:600;z-index:9999;opacity:0;transition:opacity .25s,transform .25s;pointer-events:none;}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0);}
+</style>
 </head>
 <body>
 <script src="nav.js"></script>
-
 <div class="wrap">
-  <header class="hero" style="padding:40px 0 28px;">
+  <header class="hero" style="padding:40px 0 20px;">
     <div class="hero-eyebrow">Progress Tracker</div>
-    <h1 class="hero-name" style="font-size:clamp(28px,4vw,42px);">Sketchy <em>Micro</em></h1>
+    <h1 class="hero-name" style="font-size:clamp(28px,4vw,44px);">Sketchy <em>Micro</em></h1>
   </header>
 
-  <!-- Overall Progress -->
-  <div style="background:var(--surface);border:1px solid var(--border);border-radius:var(--r-lg);padding:24px 28px;margin-bottom:28px;">
-    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px;flex-wrap:wrap;gap:8px;">
-      <div style="font-family:'Playfair Display',serif;font-size:20px;font-weight:600;">Overall Progress</div>
-      <div style="display:flex;gap:16px;font-size:13px;color:var(--muted);">
-        <span>👁 <strong id="total-watched">0</strong> Watched</span>
-        <span>🔁 <strong id="total-reviewed">0</strong> Reviewed</span>
-        <span>⭐ <strong id="total-mastered">0</strong> Mastered</span>
+  <div class="overall-card">
+    <div class="overall-top">
+      <span class="overall-title">Overall Progress</span>
+      <div class="overall-stats">
+        <span class="overall-stat">👁 <strong id="tot-w">0</strong> Watched</span>
+        <span class="overall-stat">🔁 <strong id="tot-r">0</strong> Reviewed</span>
+        <span class="overall-stat">⭐ <strong id="tot-m">0</strong> Mastered</span>
       </div>
     </div>
-    <div class="prog-bar-wrap"><div class="prog-bar-fill" id="overall-bar" style="width:0%;background:linear-gradient(90deg,var(--sage),var(--sky));"></div></div>
-    <div style="display:flex;justify-content:space-between;font-size:12px;color:var(--muted);">
-      <span id="overall-pct">0% complete</span>
-      <span id="overall-frac">0 / 0 videos</span>
+    <div class="overall-bar-bg"><div class="overall-bar-fill" id="overall-bar" style="width:0%;"></div></div>
+    <div class="overall-sub">
+      <span id="overall-note">0% mastered</span>
+      <span id="overall-total">0 / 0 videos</span>
     </div>
   </div>
 
-  <div style="display:flex;gap:16px;margin-bottom:20px;flex-wrap:wrap;font-size:12px;font-weight:600;color:var(--ink2);">
-    <span>👁 = Watched &nbsp; 🔁 = Reviewed &nbsp; ⭐ = Mastered</span>
-    <button onclick="resetAll()" style="margin-left:auto;background:none;border:1px solid var(--border);border-radius:99px;padding:4px 14px;font-size:12px;color:var(--muted);cursor:pointer;">Reset All</button>
-    <button onclick="exportProgress()" style="background:none;border:1px solid var(--border);border-radius:99px;padding:4px 14px;font-size:12px;color:var(--muted);cursor:pointer;">Export CSV</button>
+  <div class="tracker-toolbar">
+    <input class="tracker-search" id="search-input" type="text" placeholder="🔍  Search organisms…" oninput="applyFilters()"/>
+    <div class="filter-chips">
+      <div class="filter-chip active" data-filter="all" onclick="setFilter('all',this)">All</div>
+      <div class="filter-chip f-watched" data-filter="unwatched" onclick="setFilter('unwatched',this)">Not Watched</div>
+      <div class="filter-chip f-watched" data-filter="watched" onclick="setFilter('watched',this)">👁 Watched</div>
+      <div class="filter-chip f-reviewed" data-filter="reviewed" onclick="setFilter('reviewed',this)">🔁 Reviewed</div>
+      <div class="filter-chip f-mastered" data-filter="mastered" onclick="setFilter('mastered',this)">⭐ Mastered</div>
+    </div>
+    <div class="toolbar-right">
+      <button class="toolbar-btn" onclick="expandAll()">Expand All</button>
+      <button class="toolbar-btn" onclick="collapseAll()">Collapse All</button>
+      <button class="toolbar-btn" onclick="exportCSV()">Export CSV</button>
+      <button class="toolbar-btn" onclick="resetAll()" style="color:var(--sakura2);">Reset All</button>
+    </div>
   </div>
 
-  <div id="sections-container"></div>
+  <div class="tracker-legend">
+    <span style="font-size:12px;color:var(--muted);">👁 = Watched &nbsp;·&nbsp; 🔁 = Reviewed &nbsp;·&nbsp; ⭐ = Mastered</span>
+  </div>
+
+  <div id="tracker-container"></div>
+  <div class="no-results" id="no-results" style="display:none;">No videos match your search.</div>
 
   <footer class="footer"><div>Step 1 Study Hub · 🌸</div><div id="footer-date"></div></footer>
 </div>
-
-<script src="micro_data.js"></script>
 <script src="app.js"></script>
 <script>
-// Generate sections from MICRO data directly
-function buildSections() {
-  if (typeof MICRO === 'undefined') return [];
-  return Object.entries(MICRO).map(([cat, groups]) => ({
-    cat,
-    title: cat.charAt(0).toUpperCase() + cat.slice(1),
-    icon: {bacteria:'🦠',viruses:'🧬',fungi:'🍄',parasites:'🪱'}[cat] || '🦠',
-    groups: groups.map(grp => ({
-      name: grp.group,
-      items: grp.organisms.map(o => ({
-        name: o.name,
-        tier: o.tier,
-        summary: o.summary || ''
-      }))
-    }))
-  }));
+const STORE_KEY = 'sm-progress';
+
+const CATEGORIES = [
+  {id:"gpc",name:"Gram Positive Cocci",why:"S. aureus and Streptococci are among the most tested organisms",time:"51 min",
+   videos:[
+    {id:"b1",num:"1.1",name:"Staph aureus",time:"11min"},
+    {id:"b2",num:"1.2",name:"Staph epidermidis & Staph saprophyticus",time:"7min"},
+    {id:"b3",num:"1.3",name:"Strep pyogenes",time:"14.5min"},
+    {id:"b4",num:"1.4",name:"Strep agalactiae",time:"5.5min"},
+    {id:"b5",num:"1.5",name:"Strep pneumoniae & Strep viridans",time:"9min"},
+    {id:"b6",num:"1.6",name:"Enterococcus",time:"4min"}
+  ]},
+  {id:"gpb",name:"Gram Positive Bacilli",why:"Clostridium toxins and Listeria are classic vignettes",time:"49 min",
+   videos:[
+    {id:"b7",num:"2.1",name:"Bacillus anthracis and cereus",time:"10min"},
+    {id:"b8",num:"2.2",name:"Clostridium tetani",time:"7min"},
+    {id:"b9",num:"2.3",name:"Clostridium botulinum",time:"7.5min"},
+    {id:"b10",num:"2.4",name:"Clostridium difficile",time:"8min"},
+    {id:"b11",num:"2.5",name:"Clostridium perfringens",time:"5.5min"},
+    {id:"b12",num:"2.6",name:"Corynebacterium diphtheriae",time:"7min"},
+    {id:"b13",num:"2.7",name:"Listeria monocytogenes",time:"4min"}
+  ]},
+  {id:"gpfr",name:"GP Branching Filamentous Rods",why:"Actinomyces vs Nocardia distinction is a classic board comparison",time:"10 min",
+   videos:[
+    {id:"b14",num:"3.1",name:"Actinomyces",time:"3min"},
+    {id:"b15",num:"3.2",name:"Nocardia",time:"7min"}
+  ]},
+  {id:"gnc",name:"Gram Negative Cocci",why:"Neisseria species cause meningitis and STIs",time:"22 min",
+   videos:[
+    {id:"b16",num:"4.1",name:"Neisseria species overview",time:"5min"},
+    {id:"b17",num:"4.2",name:"Neisseria meningitidis",time:"9min"},
+    {id:"b18",num:"4.3",name:"Neisseria gonorrhoeae",time:"7.5min"}
+  ]},
+  {id:"gne",name:"GN Bacilli - Enteric",why:"Enteric bacteria cause the majority of GI and UTI vignettes",time:"70 min",
+   videos:[
+    {id:"b19",num:"5.1",name:"Klebsiella, Enterobacter, Serratia",time:"8.5min"},
+    {id:"b20",num:"5.2",name:"Salmonella",time:"8min"},
+    {id:"b21",num:"5.3",name:"Shigella",time:"6.5min"},
+    {id:"b22",num:"5.4",name:"Escherichia coli",time:"9min"},
+    {id:"b23",num:"5.5",name:"Yersinia enterocolitica",time:"8min"},
+    {id:"b24",num:"5.6",name:"Campylobacter",time:"5.5min"},
+    {id:"b25",num:"5.7",name:"Vibrio",time:"6min"},
+    {id:"b26",num:"5.8",name:"Helicobacter pylori",time:"5.5min"},
+    {id:"b27",num:"5.9",name:"Pseudomonas",time:"10min"},
+    {id:"b28",num:"5.10",name:"Proteus mirabilis",time:"3.5min"}
+  ]},
+  {id:"gnr",name:"GN Bacilli - Respiratory",why:"Pertussis, H. flu, and Legionella are frequently tested",time:"24 min",
+   videos:[
+    {id:"b29",num:"6.1",name:"Bordetella pertussis",time:"7.5min"},
+    {id:"b30",num:"6.2",name:"Haemophilus influenzae",time:"9min"},
+    {id:"b31",num:"6.3",name:"Legionella",time:"7.5min"}
+  ]},
+  {id:"gnz",name:"GN Bacilli - Zoonotics",why:"Francisella and Brucella appear as classic vignettes",time:"18 min",
+   videos:[
+    {id:"b32",num:"7.1",name:"Bartonella henselae",time:"4min"},
+    {id:"b33",num:"7.2",name:"Brucella",time:"5min"},
+    {id:"b34",num:"7.3",name:"Francisella tularensis",time:"4min"},
+    {id:"b35",num:"7.4",name:"Pasteurella multocida",time:"5min"}
+  ]},
+  {id:"myco",name:"Mycobacteria",why:"TB is one of the most tested organisms",time:"26 min",
+   videos:[
+    {id:"b36",num:"8.1",name:"Mycobacterium tuberculosis",time:"16.5min"},
+    {id:"b37",num:"8.2",name:"Mycobacterium leprae",time:"9min"}
+  ]},
+  {id:"spiro",name:"Spirochetes",why:"Syphilis and Lyme disease are classic clinical vignettes",time:"26 min",
+   videos:[
+    {id:"b38",num:"9.1",name:"Borrelia burgdorferi",time:"8min"},
+    {id:"b39",num:"9.2",name:"Leptospirosis",time:"5min"},
+    {id:"b40",num:"9.3",name:"Treponema pallidum",time:"13min"}
+  ]},
+  {id:"gi_bact",name:"Gram-Indeterminate (Atypicals)",why:"Chlamydia, Mycoplasma, and Rickettsia are high-yield atypicals",time:"43 min",
+   videos:[
+    {id:"b41",num:"10.1",name:"Chlamydia",time:"15min"},
+    {id:"b42",num:"10.2",name:"Coxiella burnetii",time:"5min"},
+    {id:"b43",num:"10.3",name:"Gardnerella vaginalis",time:"5.5min"},
+    {id:"b44",num:"10.4",name:"Mycoplasma pneumoniae",time:"6min"},
+    {id:"b45",num:"10.5",name:"Rickettsia species overview",time:"3.5min"},
+    {id:"b46",num:"10.6",name:"Rickettsia prowazekii",time:"4min"},
+    {id:"b47",num:"10.7",name:"Rickettsia rickettsii",time:"4min"}
+  ]},
+  {id:"rna_pos",name:"RNA Viruses: Positive Sense",why:"HIV and Hepatitis viruses are heavily tested",time:"101 min",
+   videos:[
+    {id:"v1",num:"1.1",name:"Picornavirus overview",time:"11min"},
+    {id:"v2",num:"1.2",name:"Poliovirus",time:"7min"},
+    {id:"v3",num:"1.3",name:"Coxsackievirus",time:"5min"},
+    {id:"v4",num:"1.4",name:"Rhinovirus",time:"5min"},
+    {id:"v5",num:"1.5",name:"Hepatitis A",time:"7min"},
+    {id:"v6",num:"1.6",name:"Calicivirus (Norovirus)",time:"5.5min"},
+    {id:"v7",num:"1.7",name:"Flavivirus (Dengue, WNV, Yellow Fever)",time:"8min"},
+    {id:"v8",num:"1.8",name:"Hepatitis C",time:"10.5min"},
+    {id:"v9",num:"1.9",name:"Togavirus (Rubella)",time:"11.5min"},
+    {id:"v10",num:"1.10",name:"Coronavirus",time:"14min"},
+    {id:"v11",num:"1.11",name:"HIV",time:"16.5min"}
+  ]},
+  {id:"rna_neg",name:"RNA Viruses: Negative Sense",why:"Influenza and paramyxoviruses are classic respiratory pathogens",time:"67 min",
+   videos:[
+    {id:"v12",num:"2.1",name:"Orthomyxovirus (Influenza)",time:"18.5min"},
+    {id:"v13",num:"2.2",name:"Paramyxovirus (Measles, Mumps)",time:"16min"},
+    {id:"v14",num:"2.3",name:"Rhabdovirus",time:"9min"},
+    {id:"v15",num:"2.4",name:"Filovirus (Ebola)",time:"5min"},
+    {id:"v16",num:"2.5",name:"Bunyavirus (California Encephalitis)",time:"6min"},
+    {id:"v17",num:"2.6",name:"Arenavirus",time:"5min"},
+    {id:"v18",num:"2.7",name:"Reovirus (Rotavirus)",time:"7min"}
+  ]},
+  {id:"dna_virus",name:"DNA Viruses",why:"Herpesviruses and Hepatitis B are heavily tested",time:"120 min",
+   videos:[
+    {id:"v19",num:"3.1",name:"HSV-1 and HSV-2",time:"11min"},
+    {id:"v20",num:"3.2",name:"HHV-4 (Epstein-Barr Virus)",time:"13.5min"},
+    {id:"v21",num:"3.3",name:"HHV-5 (Cytomegalovirus)",time:"12min"},
+    {id:"v22",num:"3.4",name:"HHV-3 (Varicella Zoster Virus)",time:"12min"},
+    {id:"v23",num:"3.5",name:"HHV-6 (Roseola)",time:"5min"},
+    {id:"v24",num:"3.6",name:"HHV-8 (Kaposi's Sarcoma)",time:"7min"},
+    {id:"v25",num:"3.7",name:"Polyomavirus (JC virus)",time:"6.5min"},
+    {id:"v26",num:"3.8",name:"Papillomavirus",time:"14min"},
+    {id:"v27",num:"3.9",name:"Parvovirus",time:"7min"},
+    {id:"v28",num:"3.10",name:"Adenovirus",time:"5min"},
+    {id:"v29",num:"3.11",name:"Poxvirus",time:"8.5min"},
+    {id:"v30",num:"3.12",name:"Hepatitis B (DNA) & Hep D",time:"18.5min"}
+  ]},
+  {id:"proto_int",name:"Protozoa - Intestinal",why:"Classic diarrhea vignettes in immunocompromised",time:"18 min",
+   videos:[
+    {id:"p1",num:"1.1",name:"Giardia lamblia",time:"5.5min"},
+    {id:"p2",num:"1.2",name:"Entamoeba histolytica",time:"8min"},
+    {id:"p3",num:"1.3",name:"Cryptosporidium",time:"4.5min"}
+  ]},
+  {id:"proto_cns",name:"Protozoa - CNS",why:"Toxoplasma is extremely high-yield in HIV and pregnancy contexts",time:"22 min",
+   videos:[
+    {id:"p4",num:"2.1",name:"Toxoplasma gondii",time:"10.5min"},
+    {id:"p5",num:"2.2",name:"Trypanosoma brucei",time:"5min"},
+    {id:"p6",num:"2.3",name:"Naegleria fowleri",time:"6min"}
+  ]},
+  {id:"proto_blood",name:"Protozoa - Blood",why:"Plasmodium (malaria) is the most tested parasite on Step 1",time:"33 min",
+   videos:[
+    {id:"p7",num:"3.1",name:"Trypanosoma cruzi (Chagas Disease)",time:"6min"},
+    {id:"p8",num:"3.2",name:"Babesia",time:"7min"},
+    {id:"p9",num:"3.3",name:"Plasmodium species",time:"14min"},
+    {id:"p10",num:"3.4",name:"Leishmaniasis",time:"6min"}
+  ]},
+  {id:"proto_other",name:"Protozoa - Other",why:"Trichomonas is a high-yield STI comparison question",time:"6 min",
+   videos:[
+    {id:"p11",num:"4.1",name:"Trichomonas vaginalis",time:"6min"}
+  ]},
+  {id:"helm_nem",name:"Helminths - Nematodes",why:"Intestinal and tissue nematode vignettes appear occasionally",time:"25 min",
+   videos:[
+    {id:"p12",num:"5.1",name:"Intestinal nematodes",time:"13min"},
+    {id:"p13",num:"5.2",name:"Tissue nematodes",time:"11.5min"}
+  ]},
+  {id:"helm_tc",name:"Helminths - Trematodes & Cestodes",why:"Schistosoma and tapeworm lifecycle questions",time:"22 min",
+   videos:[
+    {id:"p14",num:"6.1",name:"Cestodes",time:"10.5min"},
+    {id:"p15",num:"6.2",name:"Trematodes",time:"11min"}
+  ]},
+  {id:"fungi_sys",name:"Systemic Mycoses",why:"Geographic fungi are classic board vignettes based on travel history",time:"28 min",
+   videos:[
+    {id:"f1",num:"1.1",name:"Histoplasmosis",time:"9.5min"},
+    {id:"f2",num:"1.2",name:"Blastomycosis",time:"6min"},
+    {id:"f3",num:"1.3",name:"Coccidioidomycosis",time:"7.5min"},
+    {id:"f4",num:"1.4",name:"Paracoccidioidomycosis",time:"5min"}
+  ]},
+  {id:"fungi_cut",name:"Cutaneous Mycoses",why:"Dermatophyte and Sporothrix vignettes test morphology",time:"16 min",
+   videos:[
+    {id:"f5",num:"2.1",name:"Malassezia furfur",time:"5min"},
+    {id:"f6",num:"2.2",name:"Dermatophytes",time:"6min"},
+    {id:"f7",num:"2.3",name:"Sporothrix schenckii",time:"4.5min"}
+  ]},
+  {id:"fungi_opp",name:"Opportunistic Fungal Infections",why:"Extremely tested in HIV/immunocompromised patients",time:"44 min",
+   videos:[
+    {id:"f8",num:"3.1",name:"Candida albicans",time:"13min"},
+    {id:"f9",num:"3.2",name:"Aspergillus fumigatus",time:"11min"},
+    {id:"f10",num:"3.3",name:"Cryptococcus neoformans",time:"9min"},
+    {id:"f11",num:"3.4",name:"Mucormycosis",time:"6min"},
+    {id:"f12",num:"3.5",name:"Pneumocystis pneumonia",time:"5min"}
+  ]}
+];
+
+const ACCENTS = ['accent-0','accent-1','accent-2','accent-3','accent-4','accent-5','accent-6','accent-7'];
+let progress = {};
+let activeFilter = 'all';
+
+function load() { progress = Store.get(STORE_KEY, {}); }
+function save() { Store.set(STORE_KEY, progress); }
+function getState(id) { return progress[id] || {w:false,r:false,m:false}; }
+
+function toggle(id, field) {
+  const s = getState(id);
+  if (field==='m') { s.m=!s.m; if(s.m){s.w=true;s.r=true;} }
+  else if (field==='w') { s.w=!s.w; if(!s.w){s.r=false;s.m=false;} }
+  else { s.r=!s.r; if(!s.r)s.m=false; if(s.r)s.w=true; }
+  progress[id]=s; save(); updateVideoRow(id); updateSummary();
 }
 
-const STORAGE_KEY = 'sketchy-micro-progress';
-function loadProgress() { return Store.get(STORAGE_KEY, {}); }
-function saveProgress(p) { Store.set(STORAGE_KEY, p); }
-
-function getKey(cat, gi, oi) { return `${cat}-${gi}-${oi}`; }
-function getState(prog, key) { return prog[key] || {w:false, r:false, m:false}; }
-
-let sections = [];
-
-function toggleState(cat, gi, oi, field) {
-  const prog = loadProgress();
-  const key = getKey(cat, gi, oi);
-  if (!prog[key]) prog[key] = {w:false, r:false, m:false};
-  prog[key][field] = !prog[key][field];
-  if (field === 'm' && prog[key][field]) { prog[key].w = true; prog[key].r = true; }
-  if (field === 'w' && !prog[key][field]) { prog[key].r = false; prog[key].m = false; }
-  if (field === 'r' && !prog[key][field]) { prog[key].m = false; }
-  saveProgress(prog);
-  renderAll();
+function updateVideoRow(id) {
+  const s = getState(id);
+  const wb=document.getElementById('btn-w-'+id);
+  const rb=document.getElementById('btn-r-'+id);
+  const mb=document.getElementById('btn-m-'+id);
+  if(wb) wb.className=`icon-btn${s.w?' active-w':''}`;
+  if(rb) rb.className=`icon-btn${s.r?' active-r':''}`;
+  if(mb) mb.className=`icon-btn${s.m?' active-m':''}`;
+  const row=document.getElementById('row-'+id);
+  if(row) row.classList.toggle('hidden-row',!rowVisible(id));
 }
 
-function resetAll() {
-  if (!confirm('Reset all Sketchy Micro progress?')) return;
-  Store.set(STORAGE_KEY, {}); renderAll();
+function rowVisible(id) {
+  const s=getState(id);
+  if(activeFilter==='all') return true;
+  if(activeFilter==='unwatched') return !s.w;
+  if(activeFilter==='watched') return s.w;
+  if(activeFilter==='reviewed') return s.r;
+  if(activeFilter==='mastered') return s.m;
+  return true;
 }
 
-function exportProgress() {
-  const prog = loadProgress();
-  let csv = 'Category,Group,Organism,Tier,Watched,Reviewed,Mastered\n';
-  sections.forEach(sec => {
-    sec.groups.forEach((grp, gi) => {
-      grp.items.forEach((item, oi) => {
-        const s = getState(prog, getKey(sec.cat, gi, oi));
-        csv += `"${sec.title}","${grp.name}","${item.name}",${item.tier},${s.w},${s.r},${s.m}\n`;
-      });
+function setFilter(f,el) {
+  activeFilter=f;
+  document.querySelectorAll('.filter-chip').forEach(c=>c.classList.remove('active'));
+  el.classList.add('active');
+  applyFilters();
+}
+
+function applyFilters() {
+  const q=document.getElementById('search-input').value.toLowerCase().trim();
+  let anyVisible=false;
+  CATEGORIES.forEach(cat => {
+    let catHasVisible=false;
+    cat.videos.forEach(v => {
+      const ms=!q||v.name.toLowerCase().includes(q)||v.num.toLowerCase().includes(q);
+      const mf=rowVisible(v.id);
+      const visible=ms&&mf;
+      const row=document.getElementById('row-'+v.id);
+      if(row) row.classList.toggle('hidden-row',!visible);
+      if(visible){catHasVisible=true;anyVisible=true;}
+    });
+    const sec=document.getElementById('sec-'+cat.id);
+    if(sec) sec.style.display=catHasVisible?'':'none';
+    if(catHasVisible&&q) sec.classList.add('open');
+  });
+  document.getElementById('no-results').style.display=anyVisible?'none':'block';
+  updateCatHeaders();
+}
+
+function updateCatHeaders() {
+  CATEGORIES.forEach(cat => {
+    const w=cat.videos.filter(v=>getState(v.id).w).length;
+    const r=cat.videos.filter(v=>getState(v.id).r).length;
+    const m=cat.videos.filter(v=>getState(v.id).m).length;
+    const total=cat.videos.length;
+    const pct=total?Math.round(m/total*100):0;
+    const el=document.getElementById('cat-count-'+cat.id);
+    if(el) el.textContent=`${w}w · ${r}r · ${m}/${total} mastered`;
+    const fill=document.getElementById('cat-fill-'+cat.id);
+    if(fill) fill.style.width=pct+'%';
+  });
+}
+
+function updateSummary() {
+  const all=CATEGORIES.flatMap(c=>c.videos);
+  const tw=all.filter(v=>getState(v.id).w).length;
+  const tr=all.filter(v=>getState(v.id).r).length;
+  const tm=all.filter(v=>getState(v.id).m).length;
+  const total=all.length;
+  document.getElementById('tot-w').textContent=tw;
+  document.getElementById('tot-r').textContent=tr;
+  document.getElementById('tot-m').textContent=tm;
+  document.getElementById('overall-bar').style.width=(total?Math.round(tm/total*100):0)+'%';
+  document.getElementById('overall-note').textContent=(total?Math.round(tm/total*100):0)+'% mastered';
+  document.getElementById('overall-total').textContent=tm+' / '+total+' videos';
+  updateCatHeaders();
+}
+
+function expandAll(){document.querySelectorAll('.cat-section').forEach(s=>s.classList.add('open'));}
+function collapseAll(){document.querySelectorAll('.cat-section').forEach(s=>s.classList.remove('open'));}
+function resetAll(){if(!confirm('Reset ALL progress?'))return;progress={};save();renderAll();showToast('Progress reset');}
+
+function exportCSV(){
+  let csv='Section,Num,Video,Watched,Reviewed,Mastered\n';
+  CATEGORIES.forEach(cat=>{
+    cat.videos.forEach(v=>{
+      const s=getState(v.id);
+      csv+=`"${cat.name}","${v.num}","${v.name}",${s.w?1:0},${s.r?1:0},${s.m?1:0}\n`;
     });
   });
-  const a = document.createElement('a');
-  a.href = 'data:text/csv;charset=utf-8,' + encodeURIComponent(csv);
-  a.download = 'sketchy_micro_progress.csv';
-  document.body.appendChild(a);
-  a.click();
-  document.body.removeChild(a);
+  const a=document.createElement('a');
+  a.href='data:text/csv;charset=utf-8,'+encodeURIComponent(csv);
+  a.download='sketchy_micro_progress.csv';
+  document.body.appendChild(a);a.click();document.body.removeChild(a);
 }
 
-function renderAll() {
-  const prog = loadProgress();
-  let totalVids = 0, totalW = 0, totalR = 0, totalM = 0;
-
-  const container = document.getElementById('sections-container');
-  container.innerHTML = sections.map(sec => {
-    const groupsHTML = sec.groups.map((grp, gi) => {
-      let grpW = 0, grpM = 0;
-      const rows = grp.items.map((item, oi) => {
-        const key = getKey(sec.cat, gi, oi);
-        const s = getState(prog, key);
-        totalVids++; if (s.w) { totalW++; grpW++; } if (s.r) totalR++; if (s.m) { totalM++; grpM++; }
-        const tierColor = item.tier === 1 ? 'var(--sakura2)' : item.tier === 2 ? 'var(--gold)' : 'var(--sage)';
-        return `
-          <tr>
-            <td style="width:100%;">
-              <span style="font-size:9px;font-weight:700;color:${tierColor};margin-right:6px;letter-spacing:.5px;">T${item.tier}</span>
-              ${item.name}
-            </td>
-            <td>
-              <div class="check-wrap">
-                <button class="check-btn ${s.w?'on':''}" onclick="toggleState('${sec.cat}',${gi},${oi},'w')" title="Watched">👁</button>
-                <button class="check-btn ${s.r?'on-gold':''}" onclick="toggleState('${sec.cat}',${gi},${oi},'r')" title="Reviewed">🔁</button>
-                <button class="check-btn ${s.m?'on-sage':''}" onclick="toggleState('${sec.cat}',${gi},${oi},'m')" title="Mastered">⭐</button>
-              </div>
-            </td>
-          </tr>`;
-      }).join('');
-
-      return `
-        <div style="margin-bottom:20px;">
-          <div style="font-size:13px;font-weight:700;color:var(--muted);letter-spacing:.5px;margin-bottom:8px;padding-left:12px;border-left:3px solid var(--sage);">
-            ${grp.name} &nbsp;<span style="font-weight:400;">${grpM}/${grp.items.length} mastered</span>
-          </div>
-          <table class="tracker-table">
-            <thead><tr><th>Organism</th><th>Status</th></tr></thead>
-            <tbody>${rows}</tbody>
-          </table>
-        </div>`;
-    }).join('');
-
-    const secTotal = sec.groups.reduce((a,g)=>a+g.items.length, 0);
-    let secM = 0;
-    sec.groups.forEach((grp, gi) => grp.items.forEach((_, oi) => { if (getState(prog, getKey(sec.cat, gi, oi)).m) secM++; }));
-    const pct = secTotal ? Math.round(secM/secTotal*100) : 0;
-
-    return `
-      <div class="prog-section">
-        <div class="prog-section-header">
-          <div class="prog-section-title">${sec.icon} ${sec.title}</div>
-          <span class="prog-count">${secM}/${secTotal} mastered</span>
+function renderAll(){
+  const container=document.getElementById('tracker-container');
+  container.innerHTML=CATEGORIES.map((cat,idx)=>{
+    const accent=ACCENTS[idx%ACCENTS.length];
+    const rows=cat.videos.map(v=>{
+      const s=getState(v.id);
+      return `<div class="video-row" id="row-${v.id}">
+        <div class="video-num">${v.num}</div>
+        <div class="video-name">${v.name}</div>
+        <div class="video-time">${v.time}</div>
+        <div class="check-btns">
+          <button id="btn-w-${v.id}" class="icon-btn${s.w?' active-w':''}" onclick="toggle('${v.id}','w')" title="Watched">👁</button>
+          <button id="btn-r-${v.id}" class="icon-btn${s.r?' active-r':''}" onclick="toggle('${v.id}','r')" title="Reviewed">🔁</button>
+          <button id="btn-m-${v.id}" class="icon-btn${s.m?' active-m':''}" onclick="toggle('${v.id}','m')" title="Mastered">⭐</button>
         </div>
-        <div class="prog-bar-wrap">
-          <div class="prog-bar-fill" style="width:${pct}%;background:linear-gradient(90deg,var(--sage),var(--sky));"></div>
-        </div>
-        ${groupsHTML}
       </div>`;
+    }).join('');
+    return `<div class="cat-section" id="sec-${cat.id}">
+      <div class="cat-header" onclick="document.getElementById('sec-${cat.id}').classList.toggle('open')">
+        <div class="cat-header-left">
+          <div class="cat-accent ${accent}"></div>
+          <div>
+            <div class="cat-name">${cat.name}</div>
+            <div class="cat-why">${cat.why} · ${cat.time}</div>
+          </div>
+        </div>
+        <div class="cat-header-right">
+          <span class="cat-count" id="cat-count-${cat.id}">0w · 0r · 0/${cat.videos.length} mastered</span>
+          <div class="cat-mini-bar"><div class="cat-mini-fill ${accent}" id="cat-fill-${cat.id}" style="width:0%;"></div></div>
+          <span class="cat-chevron">▼</span>
+        </div>
+      </div>
+      <div class="cat-body">
+        <div class="video-header-row">
+          <div style="min-width:36px;">No.</div>
+          <div style="flex:1;">Organism / Video</div>
+          <div style="min-width:52px;text-align:right;">Time</div>
+          <div style="min-width:118px;text-align:right;">Status</div>
+        </div>
+        ${rows}
+      </div>
+    </div>`;
   }).join('');
-
-  const overallPct = totalVids ? Math.round(totalM/totalVids*100) : 0;
-  document.getElementById('overall-bar').style.width = overallPct + '%';
-  document.getElementById('overall-pct').textContent = overallPct + '% mastered';
-  document.getElementById('overall-frac').textContent = `${totalM} / ${totalVids} organisms`;
-  document.getElementById('total-watched').textContent = totalW;
-  document.getElementById('total-reviewed').textContent = totalR;
-  document.getElementById('total-mastered').textContent = totalM;
+  updateSummary();
+  applyFilters();
 }
 
-document.addEventListener('DOMContentLoaded', () => {
-  sections = buildSections();
-  renderAll();
-});
+function showToast(msg){
+  const t=document.getElementById('toast')||(() => {const el=document.createElement('div');el.id='toast';el.className='toast';document.body.appendChild(el);return el;})();
+  t.textContent=msg;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),2000);
+}
+
+document.addEventListener('DOMContentLoaded',()=>{load();renderAll();});
 </script>
 </body>
 </html>
