@@ -1,20 +1,37 @@
 /* nav.js — injects shared navigation, Firebase SDK, and auth.js */
 
 // ── Firebase SDK ───────────────────────────────────────────────
+// Scripts are loaded sequentially — each waits for the previous to
+// finish before the next loads. auth.js runs only after all three
+// SDK modules are fully ready.
+// NOTE: defer is intentionally NOT used — it is silently ignored on
+// dynamically-created script elements, causing unpredictable load order.
 (function injectFirebase() {
-  const scripts = [
+  const sdkUrls = [
     'https://www.gstatic.com/firebasejs/10.8.1/firebase-app-compat.js',
     'https://www.gstatic.com/firebasejs/10.8.1/firebase-auth-compat.js',
     'https://www.gstatic.com/firebasejs/10.8.1/firebase-firestore-compat.js',
   ];
-  scripts.forEach(src => {
+
+  function loadScript(src, onload) {
     const s = document.createElement('script');
-    s.src = src; s.defer = true;
+    s.src = src;
+    s.async = false; // preserve execution order
+    s.onload  = onload || null;
+    s.onerror = () => console.error('Firebase load failed:', src);
     document.head.appendChild(s);
-  });
-  const authScript = document.createElement('script');
-  authScript.src = 'auth.js';
-  document.head.appendChild(authScript);
+  }
+
+  // Recursive chain: loads each URL in order, then loads auth.js last
+  function loadChain(urls, finalSrc) {
+    if (!urls.length) {
+      loadScript(finalSrc, null);
+      return;
+    }
+    loadScript(urls[0], () => loadChain(urls.slice(1), finalSrc));
+  }
+
+  loadChain(sdkUrls, 'auth.js');
 })();
 
 // ── Nav + Modal ────────────────────────────────────────────────
@@ -80,7 +97,7 @@
 
   document.body.insertAdjacentHTML('afterbegin', nav + dateModal);
 
-  // Update auth button when user state changes (called from auth.js)
+  // Update auth button state — called from app.js via updateNavAuth()
   window.updateNavAuth = function (user) {
     const btn   = document.getElementById('auth-btn');
     const label = document.getElementById('auth-btn-label');
