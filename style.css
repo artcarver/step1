@@ -227,9 +227,9 @@ input, select, textarea { font-family: inherit; }
 .card-pharm  { --card-accent: var(--sakura2); }
 .card-micro  { --card-accent: var(--sage); }
 .card-spharm { --card-accent: var(--peach); }
-.card-smicro { --card-accent: var(--sage); }
-.card-pix    { --card-accent: var(--lavender); }
-.card-dash   { --card-accent: var(--sky); }
+.card-smicro { --card-accent: var(--lavender); }
+.card-pix    { --card-accent: var(--sage); }
+.card-dash   { --card-accent: var(--sakura2); }
 .card-uworld { --card-accent: var(--fuji); }
 .card-ext    { --card-accent: var(--gold); }
 .card-dotd   { --card-accent: var(--sakura2); background: var(--sakura-light); }
