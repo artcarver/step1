@@ -18,7 +18,7 @@
   font-size: 14px; font-family: inherit; background: var(--surface);
   color: var(--ink); outline: none; transition: border-color .15s;
 }
-.tracker-search:focus { border-color: var(--sky); }
+.tracker-search:focus { border-color: var(--dim); }
 .filter-chips { display: flex; gap: 6px; flex-wrap: wrap; }
 .filter-chip {
   padding: 6px 14px; border-radius: 99px; font-size: 12px; font-weight: 600;
@@ -44,8 +44,8 @@
 .overall-top { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; margin-bottom: 12px; }
 .overall-title { font-family: 'Playfair Display', serif; font-size: 19px; font-weight: 600; }
 .overall-stats { display: flex; gap: 18px; font-size: 13px; }
-.overall-stat { color: var(--muted); }
-.overall-stat strong { color: var(--ink2); }
+.overall-stat { color: var(--muted); font-size: 12px; }
+.overall-stat strong { color: var(--ink2); font-size: 14px; }
 .overall-bar-bg { background: var(--border2); border-radius: 99px; height: 8px; overflow: hidden; }
 .overall-bar-fill { height: 100%; border-radius: 99px; background: linear-gradient(90deg, var(--sky), var(--fuji)); transition: width .5s ease; }
 .overall-sub { display: flex; justify-content: space-between; font-size: 11px; color: var(--muted); margin-top: 6px; }
@@ -90,6 +90,7 @@
 .video-row.hidden-row { display: none; }
 .video-num { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--muted); min-width: 28px; }
 .video-name { flex: 1; font-size: 13.5px; color: var(--ink2); line-height: 1.4; }
+.video-row.is-reviewed .video-name{text-decoration:line-through;color:var(--dim);}
 .video-time { font-size: 11px; color: var(--dim); min-width: 48px; text-align: right; font-family: 'DM Mono', monospace; }
 .check-btns { display: flex; gap: 6px; }
 
@@ -139,8 +140,8 @@
     <div class="overall-top">
       <span class="overall-title">Overall Progress</span>
       <div class="overall-stats">
-        <span class="overall-stat">W <strong id="tot-w">0</strong> Watched</span>
-        <span class="overall-stat">R <strong id="tot-r">0</strong> Reviewed</span>
+        <span class="overall-stat" style="display:inline-flex;align-items:center;gap:5px;"><span style="display:inline-flex;align-items:center;justify-content:center;width:18px;height:18px;border-radius:5px;background:var(--sage);color:#fff;font-size:10px;">✔</span><strong id="tot-w">0</strong> Watched</span>
+        <span class="overall-stat" style="display:inline-flex;align-items:center;gap:5px;"><span style="display:inline-flex;align-items:center;justify-content:center;width:18px;height:18px;border-radius:5px;background:var(--gold);color:#fff;font-size:10px;">✦</span><strong id="tot-r">0</strong> Reviewed</span>
       </div>
     </div>
     <div class="overall-bar-bg"><div class="overall-bar-fill" id="overall-bar" style="width:0%;"></div></div>
@@ -160,7 +161,6 @@
     </div>
     <div class="toolbar-right">
       <button class="toolbar-btn" id="toggle-expand-btn" onclick="toggleExpand()">Expand All</button>
-      <button class="toolbar-btn" onclick="resetAll()" style="color:var(--sakura2);">Reset All</button>
     </div>
   </div>
 
@@ -361,6 +361,7 @@ function updateVideoRow(id) {
   if (rb) rb.className = `icon-btn${s.r?' active-r':''}`;
   const row = document.getElementById('row-'+id);
   if (row) row.classList.toggle('hidden-row', !rowVisible(id));
+  if (row) row.classList.toggle('is-reviewed', s.r);
 }
 
 function rowVisible(id) {
@@ -448,7 +449,7 @@ function renderAll() {
     const accent = ACCENTS[idx % ACCENTS.length];
     const rows = cat.videos.map(v => {
       const s = getState(v.id);
-      return `<div class="video-row" id="row-${v.id}">
+      return `<div class="video-row${s.r ? ' is-reviewed' : ''}" id="row-${v.id}">
         <div class="video-num">${v.num}</div>
         <div class="video-name">${v.name}</div>
         <div class="video-time">${v.time}</div>
