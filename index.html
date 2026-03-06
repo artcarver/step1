@@ -7,22 +7,22 @@
 <link rel="stylesheet" href="style.css"/>
 <title>Step 1 Study Hub</title>
 <style>
-/* ── Hero — centered dramatic countdown ─────────────────── */
+/* ── Hero ────────────────────────────────────────────────── */
 .hero {
-  text-align: center;
-  padding: 52px 0 36px;
+  text-align: left;
+  padding: 48px 0 32px;
 }
 .hero-eyebrow {
-  font-size: 10px; font-weight: 600; letter-spacing: 3px;
-  text-transform: uppercase; color: var(--sakura2); opacity: 0.7;
-  margin-bottom: 18px;
+  font-size: 10px; font-weight: 600; letter-spacing: 2.5px;
+  text-transform: uppercase; color: var(--muted);
+  margin-bottom: 16px;
 }
 .hero-countdown {
   font-family: 'Playfair Display', serif;
-  font-size: clamp(40px, 7vw, 80px);
-  font-weight: 700; line-height: 1.1;
-  color: var(--ink2);
-  margin-bottom: 14px;
+  font-size: clamp(36px, 6.5vw, 76px);
+  font-weight: 700; line-height: 1.05;
+  color: var(--ink);
+  margin-bottom: 12px;
 }
 .hero-countdown em { font-style: italic; color: var(--sakura2); }
 .cd-num { transition: color .3s; }
@@ -30,7 +30,7 @@
   font-size: 15px; color: var(--ink2); margin-bottom: 20px; line-height: 1.6;
 }
 .hero-sub span { color: var(--sakura2); font-weight: 600; }
-.hero-actions { display: flex; justify-content: center; gap: 10px; flex-wrap: wrap; }
+.hero-actions { display: flex; justify-content: flex-start; gap: 10px; flex-wrap: wrap; }
 .hero-set-btn {
   background: transparent; color: var(--sakura2);
   border: 1px solid var(--sakura); border-radius: var(--r);
@@ -52,7 +52,8 @@
   border: 1px solid var(--border);
   border-radius: var(--r-lg);
   overflow: hidden;
-  margin-bottom: 28px;
+  margin-bottom: 24px;
+  flex-wrap: wrap;
 }
 .stats-strip.visible { display: flex; }
 .strip-stat {
@@ -82,13 +83,13 @@
   display: flex; align-items: center; justify-content: center;
   font-size: 16px; flex-shrink: 0;
 }
-.focus-meta { flex: 1; min-width: 0; display: flex; align-items: center; gap: 10px; }
+.focus-meta { flex: 1; min-width: 0; }
 .focus-eyebrow {
   font-size: 10px; font-weight: 600; letter-spacing: 1.2px;
   text-transform: uppercase; color: var(--muted); flex-shrink: 0;
 }
-.focus-title { font-size: 13px; font-weight: 600; color: var(--ink); }
-.focus-desc  { font-size: 12px; color: var(--muted); display: none; }
+.focus-title { font-size: 13px; font-weight: 600; color: var(--ink); margin-bottom: 1px; }
+.focus-desc  { font-size: 12px; color: var(--muted); margin-left: 4px; }
 .focus-arrow { font-size: 12px; font-weight: 500; color: var(--muted); flex-shrink: 0; white-space: nowrap; }
 
 /* ── Featured daily grid — DOTD + OOTD side-by-side ─────── */
@@ -112,7 +113,9 @@
   content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
 }
 .feat-banner.feat-drug::before  { background: var(--sakura2); }
+.feat-banner.feat-drug  { background: #fffbfb; }
 .feat-banner.feat-micro::before { background: var(--sage); }
+.feat-banner.feat-micro { background: #f8fbf8; }
 .feat-banner:hover { box-shadow: var(--shadow-md); transform: translateY(-2px); }
 .feat-eyebrow {
   font-size: 10px; font-weight: 600; letter-spacing: 1.2px;
@@ -122,16 +125,8 @@
 .feat-eyebrow.ey-drug  { color: var(--sakura2); background: var(--sakura-light); }
 .feat-eyebrow.ey-micro { color: var(--sage);    background: var(--sage-light); }
 .feat-name  { font-family: 'Playfair Display', serif; font-size: 18px; font-weight: 600; color: var(--ink); }
-.feat-pearl { font-size: 12.5px; color: var(--muted); font-style: italic; line-height: 1.6; flex: 1; }
-.feat-link  { font-size: 12px; font-weight: 600; color: var(--muted); margin-top: 4px; }
-
-/* ── Section labels ──────────────────────────────────────── */
-.sec-label {
-  font-size: 10px; font-weight: 700; letter-spacing: 2px;
-  text-transform: uppercase; color: var(--sakura2);
-  opacity: 0.6;
-  margin: 32px 0 14px;
-}
+.feat-pearl { font-size: 13px; color: var(--ink2); font-style: italic; line-height: 1.6; flex: 1; opacity: 0.85; }
+.feat-link  { font-size: 12px; font-weight: 600; color: var(--sakura2); margin-top: 4px; opacity: 0.75; }
 
 /* ── Tracker row — with progress bars ───────────────────── */
 .tracker-row {
@@ -198,7 +193,7 @@
 
 /* ── Slim quote footer ───────────────────────────────────── */
 .quote-footer {
-  margin-top: 36px;
+  margin-top: 28px;
   padding: 18px 26px;
   background: linear-gradient(135deg, var(--sakura-light) 0%, var(--lav-light) 100%);
   border: 1px solid var(--sakura);
@@ -220,35 +215,30 @@
 }
 
 
-/* ── UWorld progress bar ─────────────────────────────────── */
+/* ── UWorld progress bar (top of stats strip) ───────────── */
 .uw-prog-wrap {
   display: none;
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: var(--r-lg);
-  padding: 14px 22px;
-  margin-bottom: 10px;
+  width: 100%;
+  padding: 12px 22px 11px;
+  border-bottom: 1px solid var(--border2);
 }
-.uw-prog-wrap.visible { display: block; }
-.uw-prog-head {
-  display: flex; justify-content: space-between; align-items: baseline;
-  margin-bottom: 8px;
-}
+.uw-prog-wrap.visible { display: flex; align-items: center; gap: 16px; }
 .uw-prog-label {
   font-size: 10px; font-weight: 600; letter-spacing: 1.4px;
-  text-transform: uppercase; color: var(--muted);
+  text-transform: uppercase; color: var(--muted); white-space: nowrap; flex-shrink: 0;
 }
+.uw-prog-head { display: none; }
 .uw-prog-nums {
-  font-size: 11px; color: var(--muted);
+  font-size: 11px; color: var(--muted); white-space: nowrap; flex-shrink: 0;
 }
-.uw-prog-nums strong { color: var(--ink2); font-weight: 600; }
+.uw-prog-nums strong { color: var(--sakura2); font-weight: 700; }
 .uw-prog-bg {
-  height: 6px; background: var(--border2); border-radius: 99px; overflow: hidden;
+  flex: 1; height: 4px; background: var(--border2); border-radius: 99px; overflow: hidden;
 }
 .uw-prog-fill {
   height: 100%; border-radius: 99px;
-  background: var(--sakura2);
-  transition: width .6s ease;
+  background: linear-gradient(90deg, var(--peach), var(--sakura2));
+  transition: width .7s ease;
 }
 
 /* ── Responsive ──────────────────────────────────────────── */
@@ -291,26 +281,22 @@
     </div>
   </header>
 
-  <!-- ── UWorld progress bar ── -->
-  <div class="uw-prog-wrap" id="uw-prog-wrap">
-    <div class="uw-prog-head">
-      <span class="uw-prog-label">UWorld Progress</span>
-      <span class="uw-prog-nums"><strong id="uw-prog-done">0</strong> / <span id="uw-prog-total">3,661</span> questions &nbsp;·&nbsp; <strong id="uw-prog-pct">0%</strong></span>
-    </div>
-    <div class="uw-prog-bg"><div class="uw-prog-fill" id="uw-prog-fill" style="width:0%;"></div></div>
-  </div>
-
-  <!-- ── 2. Smarter stats strip ── -->
+  <!-- ── Stats strip with UWorld progress header ── -->
   <div class="stats-strip" id="stats-strip">
+    <div class="uw-prog-wrap" id="uw-prog-wrap">
+      <span class="uw-prog-label">UWorld</span>
+      <div class="uw-prog-bg"><div class="uw-prog-fill" id="uw-prog-fill" style="width:0%;"></div></div>
+      <span class="uw-prog-nums"><strong id="uw-prog-pct">0%</strong> &nbsp;·&nbsp; <span id="uw-prog-done">0</span> / <span id="uw-prog-total">3,661</span></span>
+    </div>
     <div class="strip-stat">
       <div class="strip-label">UWorld Q / Day</div>
       <div class="strip-value" id="strip-qday" style="color:var(--sakura2);">—</div>
       <div class="strip-sub" id="strip-qsub"></div>
     </div>
     <div class="strip-stat">
-      <div class="strip-label">Days Until Exam</div>
-      <div class="strip-value" id="strip-days" style="color:var(--sakura2);">—</div>
-      <div class="strip-sub">Stay consistent</div>
+      <div class="strip-label">Avg Q / Session</div>
+      <div class="strip-value" id="strip-avg" style="color:var(--lavender);">—</div>
+      <div class="strip-sub" id="strip-avg-sub">log sessions to see</div>
     </div>
     <div class="strip-stat">
       <div class="strip-label">Sketchy Reviewed</div>
@@ -344,7 +330,7 @@
       <span class="feat-eyebrow ey-drug">Drug of the Day</span>
       <div class="feat-name"  id="dotd-name">Loading…</div>
       <div class="feat-pearl" id="dotd-pearl"></div>
-      <div class="feat-link">View full card ↗</div>
+      <div class="feat-link" style="color:var(--sage);">View full card ↗</div>
     </div>
     <div class="feat-banner feat-micro" id="ootd-banner" onclick="openOotdModal()" style="display:none;">
       <span class="feat-eyebrow ey-micro">Organism of the Day</span>
@@ -440,7 +426,7 @@
       <div class="ext-arrow">↗</div>
     </a>
     <a class="ext-row" href="https://www.bootcamp.com" target="_blank" rel="noopener">
-      <div class="ext-dot" style="background:var(--border2);border:1px solid var(--border);"></div>
+      <div class="ext-dot" style="background:var(--peach);"></div>
       <div class="ext-name">Bootcamp</div>
       <div class="ext-desc">High-yield question bank with daily practice and subject reviews.</div>
       <div class="ext-pill">QBank</div>
@@ -693,8 +679,14 @@ function renderStatsStrip() {
   document.getElementById('strip-qday').textContent = Math.ceil(remaining / days);
   document.getElementById('strip-qsub').textContent = `${done.toLocaleString()} / ${uwSet.total.toLocaleString()} done`;
 
-  // Days until exam
-  document.getElementById('strip-days').textContent = days;
+  // Avg questions per logged session
+  const uwEnts = Store.get('uw-entries', []);
+  const totalQ = uwEnts.reduce((s, e) => s + (e.qs || 0), 0);
+  const avgQ   = uwEnts.length > 0 ? Math.round(totalQ / uwEnts.length) : 0;
+  document.getElementById('strip-avg').textContent     = avgQ || '—';
+  document.getElementById('strip-avg-sub').textContent = uwEnts.length > 0
+    ? `over ${uwEnts.length} sessions`
+    : 'log sessions to see';
 
   // Sketchy combined reviewed % — totals computed from loaded CATEGORIES data
   const pharmProg  = Store.get('sketchy-pharm', {});
