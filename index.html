@@ -6,6 +6,208 @@
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet"/>
 <link rel="stylesheet" href="style.css"/>
 <title>Step 1 Study Hub</title>
+<style>
+/* ── Index page layout ───────────────────────────────────── */
+
+/* Hero: text left, countdown card right */
+.hero {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 32px;
+  align-items: end;
+  padding: 52px 0 40px;
+}
+.hero-left {}
+.hero-eyebrow {
+  font-size: 11px; font-weight: 600; letter-spacing: 2.5px;
+  text-transform: uppercase; color: var(--sakura2);
+  margin-bottom: 14px;
+}
+.hero-name {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(32px, 4.5vw, 52px);
+  font-weight: 700; line-height: 1.15;
+  color: var(--ink);
+}
+.hero-name em { font-style: italic; color: var(--sakura2); }
+
+/* Countdown card — right side of hero */
+.countdown-wrap {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--r-lg);
+  padding: 22px 26px;
+  box-shadow: var(--shadow);
+  display: flex; flex-direction: column; gap: 14px;
+  min-width: 210px; flex-shrink: 0;
+}
+.cd-label     { font-size: 10px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--muted); margin-bottom: 2px; }
+.cd-days      { font-family: 'Playfair Display', serif; font-size: 50px; font-weight: 700; line-height: 1; color: var(--fuji); }
+.cd-unit      { font-size: 11px; color: var(--muted); margin-top: 1px; }
+.cd-divider   { height: 1px; background: var(--border2); }
+.cd-date-lbl  { font-size: 10px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--muted); margin-bottom: 2px; }
+.cd-date      { font-size: 15px; font-weight: 600; color: var(--ink); }
+.cd-edit {
+  background: transparent; color: var(--sakura2);
+  border: 1px solid var(--sakura);
+  border-radius: var(--r); padding: 7px 14px;
+  font-size: 12px; font-weight: 600;
+  transition: background .15s; text-align: center;
+}
+.cd-edit:hover { background: var(--sakura-light); }
+
+/* Stats strip — shows when exam date is set */
+.stats-strip {
+  display: none;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--r-lg);
+  padding: 0;
+  margin-bottom: 32px;
+  overflow: hidden;
+}
+.stats-strip.visible { display: flex; }
+.strip-stat {
+  flex: 1;
+  padding: 16px 22px;
+  border-right: 1px solid var(--border2);
+  min-width: 0;
+}
+.strip-stat:last-of-type { border-right: none; }
+.strip-label { font-size: 10px; font-weight: 700; letter-spacing: 1.8px; text-transform: uppercase; color: var(--muted); margin-bottom: 4px; }
+.strip-value { font-family: 'Playfair Display', serif; font-size: 28px; font-weight: 700; line-height: 1; }
+.strip-sub   { font-size: 11px; color: var(--muted); margin-top: 3px; }
+.strip-cta   { display: flex; align-items: center; padding: 16px 22px; flex-shrink: 0; }
+
+/* Drug of the Day — featured banner */
+.dotd-banner {
+  display: none; /* shown by JS */
+  align-items: center; gap: 20px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-left: 4px solid var(--sakura2);
+  border-radius: var(--r-lg);
+  padding: 20px 24px;
+  margin-bottom: 32px;
+  cursor: pointer;
+  transition: box-shadow .2s, transform .15s;
+}
+.dotd-banner:hover { box-shadow: var(--shadow-md); transform: translateY(-2px); }
+.dotd-eyebrow {
+  font-size: 10px; font-weight: 700; letter-spacing: 1.8px;
+  text-transform: uppercase; color: var(--sakura2);
+  background: var(--sakura-light);
+  padding: 3px 10px; border-radius: 99px;
+  white-space: nowrap; flex-shrink: 0;
+}
+.dotd-body    { flex: 1; min-width: 0; }
+.dotd-name    { font-family: 'Playfair Display', serif; font-size: 19px; font-weight: 600; margin-bottom: 3px; }
+.dotd-pearl   { font-size: 13px; color: var(--ink2); font-style: italic; line-height: 1.5; }
+.dotd-arrow   { font-size: 13px; font-weight: 600; color: var(--muted); white-space: nowrap; flex-shrink: 0; }
+
+/* Section labels */
+.sec-label {
+  font-size: 10px; font-weight: 700; letter-spacing: 2.5px;
+  text-transform: uppercase; color: var(--muted);
+  margin: 36px 0 14px;
+}
+
+/* Reference tools grid — 2-up, taller cards */
+.tool-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 14px;
+}
+
+/* Progress trackers — compact 3-col strip */
+.tracker-row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+}
+.tracker-tile {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--r-lg);
+  padding: 18px 20px;
+  display: block;
+  position: relative; overflow: hidden;
+  transition: transform .18s, box-shadow .18s, border-color .18s;
+}
+.tracker-tile::after {
+  content: '';
+  position: absolute; bottom: 0; left: 0; right: 0; height: 3px;
+  background: var(--card-accent, var(--sakura2));
+  transform: scaleX(0); transform-origin: left;
+  transition: transform .2s ease;
+}
+.tracker-tile:hover { transform: translateY(-2px); box-shadow: var(--shadow-md); border-color: var(--card-accent, var(--sakura)); }
+.tracker-tile:hover::after { transform: scaleX(1); }
+.tile-label  { font-size: 10px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: var(--muted); margin-bottom: 6px; }
+.tile-title  { font-family: 'Playfair Display', serif; font-size: 16px; font-weight: 600; margin-bottom: 4px; color: var(--ink); }
+.tile-desc   { font-size: 12px; color: var(--muted); line-height: 1.45; }
+.tile-arrow  { position: absolute; top: 16px; right: 16px; font-size: 13px; color: var(--dim); transition: color .18s; }
+.tracker-tile:hover .tile-arrow { color: var(--card-accent, var(--sakura2)); }
+
+/* External links — compact list */
+.ext-list {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--r-lg);
+  overflow: hidden;
+}
+.ext-row {
+  display: flex; align-items: center; gap: 16px;
+  padding: 13px 20px;
+  border-bottom: 1px solid var(--border2);
+  text-decoration: none; color: inherit;
+  transition: background .12s;
+}
+.ext-row:last-child { border-bottom: none; }
+.ext-row:hover { background: var(--surface2); }
+.ext-dot  { width: 7px; height: 7px; border-radius: 50%; flex-shrink: 0; }
+.ext-name { font-size: 13.5px; font-weight: 600; min-width: 120px; }
+.ext-desc { font-size: 13px; color: var(--muted); flex: 1; }
+.ext-pill {
+  font-size: 10px; font-weight: 700; letter-spacing: .8px;
+  text-transform: uppercase; color: var(--muted);
+  background: var(--surface2); border: 1px solid var(--border2);
+  padding: 2px 8px; border-radius: 99px; white-space: nowrap;
+}
+.ext-arrow { font-size: 12px; color: var(--dim); flex-shrink: 0; }
+
+/* Motivational footer block */
+.motive-block {
+  margin-top: 32px;
+  background: linear-gradient(135deg, var(--sakura-light) 0%, var(--lav-light) 100%);
+  border: 1px solid var(--sakura);
+  border-radius: var(--r-lg);
+  padding: 28px 32px;
+  display: grid;
+  grid-template-columns: 1fr 1px 1fr;
+  gap: 28px;
+  align-items: center;
+}
+.motive-divider { background: var(--sakura); opacity: .3; height: 100%; }
+.motive-callout { font-size: 14px; color: var(--ink2); line-height: 1.65; }
+.motive-callout strong { color: var(--ink); }
+.motive-quote { text-align: center; }
+.motive-q-text { font-family: 'Playfair Display', serif; font-size: 16px; font-style: italic; color: var(--ink2); line-height: 1.7; }
+.motive-q-attr { font-size: 10px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: var(--muted); display: block; margin-top: 8px; }
+
+@media (max-width: 780px) {
+  .hero { grid-template-columns: 1fr; }
+  .countdown-wrap { flex-direction: row; flex-wrap: wrap; min-width: unset; }
+  .tracker-row { grid-template-columns: 1fr 1fr; }
+  .motive-block { grid-template-columns: 1fr; }
+  .motive-divider { display: none; }
+}
+@media (max-width: 480px) {
+  .tracker-row { grid-template-columns: 1fr; }
+  .stats-strip.visible { flex-direction: column; }
+  .strip-stat { border-right: none; border-bottom: 1px solid var(--border2); }
+}
+</style>
 </head>
 <body>
 
@@ -22,8 +224,10 @@
 
   <!-- ── Hero ── -->
   <header class="hero">
-    <div class="hero-eyebrow">USMLE Step 1 Study Hub</div>
-    <h1 class="hero-name">Your <em>Study Resources,</em><br/>All in One Place</h1>
+    <div class="hero-left">
+      <div class="hero-eyebrow">USMLE Step 1 Study Hub</div>
+      <h1 class="hero-name">Your <em>Study Resources,</em><br/>All in One Place</h1>
+    </div>
     <div class="countdown-wrap">
       <div>
         <div class="cd-label">Days Remaining</div>
@@ -32,153 +236,148 @@
       </div>
       <div class="cd-divider"></div>
       <div>
-        <div class="cd-date-lbl">Target Exam Date</div>
+        <div class="cd-date-lbl">Exam Date</div>
         <div class="cd-date" id="cd-date">Not set</div>
       </div>
       <button class="cd-edit" onclick="openDateModal()">Set Date ✦</button>
     </div>
   </header>
 
-  <!-- ── Daily Goals Banner ── -->
-  <div id="daily-goals-banner" style="display:none;
-    background:var(--surface); border:1px solid var(--border); border-radius:var(--r-lg);
-    padding:18px 24px; margin-bottom:24px; gap:24px; flex-wrap:wrap; align-items:center;">
+  <!-- ── Stats Strip (visible when exam date is set) ── -->
+  <div class="stats-strip" id="stats-strip">
+    <div class="strip-stat">
+      <div class="strip-label">UWorld Q / Day</div>
+      <div class="strip-value" id="strip-qday" style="color:var(--sakura2);">—</div>
+      <div class="strip-sub" id="strip-qsub"></div>
+    </div>
+    <div class="strip-stat">
+      <div class="strip-label">Days Until Exam</div>
+      <div class="strip-value" id="strip-days" style="color:var(--fuji);">—</div>
+      <div class="strip-sub">Stay consistent</div>
+    </div>
+    <div class="strip-stat">
+      <div class="strip-label">Today</div>
+      <div class="strip-value" id="strip-today" style="color:var(--ink); font-size:20px;">—</div>
+      <div class="strip-sub">頑張って</div>
+    </div>
+    <div class="strip-cta">
+      <a href="dashboard.html" class="btn-save" style="text-decoration:none; white-space:nowrap;">Dashboard ↗</a>
+    </div>
   </div>
 
-  <!-- ── My Tools ── -->
-  <div class="sec-label">🌸 &nbsp;My Study Tools</div>
-  <div class="tool-grid">
-
-    <!-- Drug of the Day -->
-    <div class="tool-card card-dotd" id="dotd-card" onclick="openDotdModal()" style="cursor:pointer;">
-      <div class="card-top">
-        <div class="card-icon">💊</div>
-        <div class="card-meta">
-          <span class="card-tag" style="background:var(--sakura-light);color:var(--sakura2);">Daily High Yield</span>
-          <span class="card-arrow">↗</span>
-        </div>
-      </div>
-      <h2 class="card-title" id="dotd-name" style="font-size:17px;">Loading…</h2>
-      <p class="card-desc" id="dotd-pearl" style="font-style:italic;font-size:13px;"></p>
-      <div class="card-pills"><span class="pill">Drug of the Day</span><span class="pill">View Full Card</span></div>
+  <!-- ── Drug of the Day — featured ── -->
+  <div class="dotd-banner" id="dotd-banner" onclick="openDotdModal()">
+    <div class="dotd-eyebrow">Drug of the Day</div>
+    <div class="dotd-body">
+      <div class="dotd-name" id="dotd-name">Loading…</div>
+      <div class="dotd-pearl" id="dotd-pearl"></div>
     </div>
+    <div class="dotd-arrow">View full card ↗</div>
+  </div>
 
+  <!-- ── Reference ── -->
+  <div class="sec-label">Reference</div>
+  <div class="tool-grid">
     <a class="tool-card card-pharm" href="drugfacts.html">
       <div class="card-top">
         <div class="card-icon">💊</div>
         <div class="card-meta"><span class="card-tag">Pharmacology</span><span class="card-arrow">↗</span></div>
       </div>
       <h2 class="card-title">Drug Facts</h2>
-      <p class="card-desc">Complete Step 1 pharmacology — MOA, side effects, clinical pearls, and tier ratings across all systems.</p>
+      <p class="card-desc">Complete Step 1 pharmacology — mechanism, side effects, clinical pearls, and tier ratings across all systems.</p>
       <div class="card-pills"><span class="pill">MOA</span><span class="pill">Side Effects</span><span class="pill">Pearls</span></div>
     </a>
-
     <a class="tool-card card-micro" href="microfacts.html">
       <div class="card-top">
-        <div class="card-icon">🦠</div>
+        <div class="card-icon">🔬</div>
         <div class="card-meta"><span class="card-tag">Microbiology</span><span class="card-arrow">↗</span></div>
       </div>
       <h2 class="card-title">Micro Facts</h2>
       <p class="card-desc">Bacteria, viruses, fungi, and parasites — virulence factors, diseases, treatments, and high-yield pearls.</p>
       <div class="card-pills"><span class="pill">Gram Stain</span><span class="pill">Treatment</span><span class="pill">Pearls</span></div>
     </a>
-
-    <a class="tool-card card-spharm" href="-pharm.html">
-      <div class="card-top">
-        <div class="card-icon">🎨</div>
-        <div class="card-meta"><span class="card-tag">Progress Tracker</span><span class="card-arrow">↗</span></div>
-      </div>
-      <h2 class="card-title"> Pharm</h2>
-      <p class="card-desc">Track which Sketchy Pharm videos you've watched, reviewed, and mastered across all organ systems.</p>
-    </a>
-
-    <a class="tool-card card-smicro" href="sketchy-micro.html">
-      <div class="card-top">
-        <div class="card-icon">🦠</div>
-        <div class="card-meta"><span class="card-tag">Progress Tracker</span><span class="card-arrow">↗</span></div>
-      </div>
-      <h2 class="card-title">Sketchy Micro</h2>
-      <p class="card-desc">Track your progress through bacteria, viruses, fungi, and parasites with yield ratings.</p>
-    </a>
-
-    <a class="tool-card card-pix" href="pixorize.html">
-      <div class="card-top">
-        <div class="card-icon">🎯</div>
-        <div class="card-meta"><span class="card-tag">Progress Tracker</span><span class="card-arrow">↗</span></div>
-      </div>
-      <h2 class="card-title">Pixorize</h2>
-      <p class="card-desc">Track all Pixorize videos across biochemistry, immunology, embryology, and more.</p>
-    </a>
-
     <a class="tool-card card-dash" href="dashboard.html">
       <div class="card-top">
         <div class="card-icon">📊</div>
-        <div class="card-meta"><span class="card-tag">Dashboard</span><span class="card-arrow">↗</span></div>
+        <div class="card-meta"><span class="card-tag">Analytics</span><span class="card-arrow">↗</span></div>
       </div>
-      <h2 class="card-title">Performance Dashboard</h2>
-      <p class="card-desc">Upload scores, find weak points, track UWorld progress, and calculate daily question goals.</p>
+      <h2 class="card-title">Dashboard</h2>
+      <p class="card-desc">Log UWorld sessions, track practice exam scores, find weak points, and calculate your daily question goal.</p>
+      <div class="card-pills"><span class="pill">UWorld</span><span class="pill">NBMEs</span><span class="pill">Weak Points</span></div>
+    </a>
+  </div>
+
+  <!-- ── Progress Trackers ── -->
+  <div class="sec-label">Progress Trackers</div>
+  <div class="tracker-row">
+    <a class="tracker-tile card-spharm" href="sketchy-pharm.html">
+      <span class="tile-arrow">↗</span>
+      <div class="tile-label">Sketchy</div>
+      <div class="tile-title">Pharm</div>
+      <div class="tile-desc">Track watched and reviewed videos across all organ systems.</div>
+    </a>
+    <a class="tracker-tile card-smicro" href="sketchy-micro.html">
+      <span class="tile-arrow">↗</span>
+      <div class="tile-label">Sketchy</div>
+      <div class="tile-title">Micro</div>
+      <div class="tile-desc">Bacteria, viruses, fungi, and parasites with yield ratings.</div>
+    </a>
+    <a class="tracker-tile card-pix" href="pixorize.html">
+      <span class="tile-arrow">↗</span>
+      <div class="tile-label">Pixorize</div>
+      <div class="tile-title">Biochem &amp; Immuno</div>
+      <div class="tile-desc">Biochemistry, immunology, genetics, and embryology videos.</div>
     </a>
   </div>
 
   <!-- ── External Resources ── -->
-  <div class="sec-label" style="margin-top:44px;">🔗 &nbsp;External Resources</div>
-  <div class="tool-grid">
-    <a class="tool-card card-ext" href="https://www.uworld.com" target="_blank" rel="noopener">
-      <div class="card-top">
-        <div class="card-icon">📝</div>
-        <div class="card-meta"><span class="card-tag">Question Bank</span><span class="card-arrow">↗</span></div>
-      </div>
-      <h2 class="card-title">UWorld</h2>
-      <p class="card-desc">The gold standard Step 1 question bank with detailed explanations and high-yield diagrams.</p>
-      <div class="card-pills"><span class="pill">QBank</span><span class="pill">Gold Standard</span></div>
+  <div class="sec-label">External Resources</div>
+  <div class="ext-list">
+    <a class="ext-row" href="https://bootcamp.com/med-school/usmle-step-1-question-of-the-day" target="_blank" rel="noopener">
+      <div class="ext-dot" style="background:var(--sakura2);"></div>
+      <div class="ext-name">Question of the Day</div>
+      <div class="ext-desc">Bootcamp's daily Step 1 question — keep your streak alive.</div>
+      <div class="ext-pill">Daily Practice</div>
+      <div class="ext-arrow">↗</div>
     </a>
-    <a class="tool-card card-ext" href="https://www.pathoma.com" target="_blank" rel="noopener">
-      <div class="card-top">
-        <div class="card-icon">🫀</div>
-        <div class="card-meta"><span class="card-tag">Pathology</span><span class="card-arrow">↗</span></div>
-      </div>
-      <h2 class="card-title">Pathoma</h2>
-      <p class="card-desc">Dr. Sattar's high-yield pathology videos and textbook. Essential foundation for Step 1 Path.</p>
-      <div class="card-pills"><span class="pill">Videos</span><span class="pill">High-Yield</span></div>
+    <a class="ext-row" href="https://www.uworld.com" target="_blank" rel="noopener">
+      <div class="ext-dot" style="background:var(--sky);"></div>
+      <div class="ext-name">UWorld</div>
+      <div class="ext-desc">The gold standard Step 1 question bank with detailed explanations.</div>
+      <div class="ext-pill">QBank</div>
+      <div class="ext-arrow">↗</div>
     </a>
-    <a class="tool-card card-ext" href="https://www.bootcamp.com" target="_blank" rel="noopener">
-      <div class="card-top">
-        <div class="card-icon">🏕️</div>
-        <div class="card-meta"><span class="card-tag">Videos & Question Bank</span><span class="card-arrow">↗</span></div>
-      </div>
-      <h2 class="card-title">Bootcamp</h2>
-      <p class="card-desc">High-yield Step 1 question bank with daily practice and focused subject reviews.</p>
-      <div class="card-pills"><span class="pill">QBank</span><span class="pill">Daily Q</span></div>
+    <a class="ext-row" href="https://www.pathoma.com" target="_blank" rel="noopener">
+      <div class="ext-dot" style="background:var(--sage);"></div>
+      <div class="ext-name">Pathoma</div>
+      <div class="ext-desc">Dr. Sattar's high-yield pathology videos. Essential for Step 1 Path.</div>
+      <div class="ext-pill">Pathology</div>
+      <div class="ext-arrow">↗</div>
+    </a>
+    <a class="ext-row" href="https://www.bootcamp.com" target="_blank" rel="noopener">
+      <div class="ext-dot" style="background:var(--gold);"></div>
+      <div class="ext-name">Bootcamp</div>
+      <div class="ext-desc">High-yield question bank with daily practice and subject reviews.</div>
+      <div class="ext-pill">QBank</div>
+      <div class="ext-arrow">↗</div>
     </a>
   </div>
 
-  <!-- ── Daily Practice ── -->
-  <div class="sec-label" style="margin-top:44px;">✦ &nbsp;Daily Practice</div>
-  <a href="https://bootcamp.com/med-school/usmle-step-1-question-of-the-day" target="_blank" rel="noopener" class="qotd-banner">
-    <div class="qotd-left">
-      <div class="qotd-icon">✦</div>
-      <div>
-        <div class="qotd-label">Bootcamp · Daily</div>
-        <div class="qotd-title">Question of the Day</div>
-        <div class="qotd-sub">Keep your streak alive — one question every day adds up.</div>
-      </div>
+  <!-- ── Motivational block: callout + quote side by side ── -->
+  <div class="motive-block">
+    <div class="motive-callout">
+      <div style="font-size:22px; margin-bottom:10px;">🗻</div>
+      <strong>Japan after Step 1 —</strong> Cherry blossoms, Mount Fuji, ramen at 2am. Every page you study now is a step closer. 頑張って (Ganbatte) — you've got this.
     </div>
-    <div class="qotd-cta">Open Today's Q ↗</div>
-  </a>
-
-  <!-- ── Quote ── -->
-  <div class="quote-strip" style="margin-top:20px;">
-    <p class="q-text" id="daily-quote"></p>
-    <span class="q-attr" id="quote-attr"></span>
-  </div>
-
-  <div class="callout" style="margin-top:20px;">
-    <span style="font-size:22px;">🗻</span>
-    <div><strong>Japan after Step 1 —</strong> Cherry blossoms, Mount Fuji, ramen at 2am. Every page you study now is a step closer. 頑張って (Ganbatte) — you've got this.</div>
+    <div class="motive-divider"></div>
+    <div class="motive-quote">
+      <p class="motive-q-text" id="daily-quote"></p>
+      <span class="motive-q-attr" id="quote-attr"></span>
+    </div>
   </div>
 
   <footer class="footer">
-    <div>Step 1 Study Hub &nbsp;·&nbsp; 🌸</div>
+    <div>Step 1 Study Hub</div>
     <div id="footer-date"></div>
   </footer>
 </div>
@@ -205,7 +404,6 @@
 <script src="drug_data.js"></script>
 <script src="app.js"></script>
 <script>
-// Drug of the Day
 let dotdDrug = null;
 
 function initDotd() {
@@ -221,63 +419,46 @@ function initDotd() {
   const seed = today.getFullYear() * 10000 + (today.getMonth()+1) * 100 + today.getDate();
   dotdDrug = all[seed % all.length];
   document.getElementById('dotd-name').textContent = dotdDrug.name;
-  const pearl = dotdDrug.pearl ? '💡 ' + dotdDrug.pearl.replace(/\*\*/g,'') : 'High-yield concept — tap to review.';
-  document.getElementById('dotd-pearl').textContent = pearl.length > 90 ? pearl.substring(0,90)+'…' : pearl;
+  const raw = dotdDrug.pearl ? dotdDrug.pearl.replace(/\*\*/g,'') : 'High-yield concept — tap to review.';
+  document.getElementById('dotd-pearl').textContent = raw.length > 120 ? raw.substring(0,120) + '…' : raw;
+  document.getElementById('dotd-banner').style.display = 'flex';
 }
 
 function openDotdModal() {
   if (!dotdDrug) return;
-  document.getElementById('dm-name').textContent = dotdDrug.name;
-  document.getElementById('dm-aka').textContent = dotdDrug.aka || '';
-  document.getElementById('dm-group').textContent = dotdDrug.groupName || 'Pharmacology';
+  document.getElementById('dm-name').textContent    = dotdDrug.name;
+  document.getElementById('dm-aka').textContent     = dotdDrug.aka || '';
+  document.getElementById('dm-group').textContent   = dotdDrug.groupName || 'Pharmacology';
   const fmt = t => t ? t.replace(/\*\*(.*?)\*\*/g,'<strong>$1</strong>') : '—';
   document.getElementById('dm-content').innerHTML = `
     <div class="drug-row"><span class="drug-label">Mechanism</span><div class="drug-text">${fmt(dotdDrug.moa)}</div></div>
     <div class="drug-row"><span class="drug-label">Clinical Use</span><div class="drug-text">${fmt(dotdDrug.use)}</div></div>
     <div class="drug-row"><span class="drug-label">Side Effects</span><div class="drug-text">${fmt(dotdDrug.se)}</div></div>
     ${dotdDrug.ci ? `<div class="drug-row"><span class="drug-label">Contraindications</span><div class="drug-text">${fmt(dotdDrug.ci)}</div></div>` : ''}
-    ${dotdDrug.pearl ? `<div class="pearl-box"><span class="drug-label">💎 Pearl</span><div class="drug-text">${fmt(dotdDrug.pearl)}</div></div>` : ''}
+    ${dotdDrug.pearl ? `<div class="pearl-box"><span class="drug-label">Pearl</span><div class="drug-text">${fmt(dotdDrug.pearl)}</div></div>` : ''}
   `;
   openModal('dotd-modal');
 }
 
-// Daily goals display
-function renderDailyGoals() {
+function renderStatsStrip() {
   const days = getDaysRemaining();
-  const banner = document.getElementById('daily-goals-banner');
-  if (!banner || days === null || days === 0) return;
+  if (!days || days <= 0) return;
 
-  // UWorld: ~3200 total questions
-  const uworldData = Store.get('uworld-progress', {done: 0, total: 3200});
-  const remaining = uworldData.total - uworldData.done;
-  const qPerDay = days > 0 ? Math.ceil(remaining / days) : remaining;
+  const done     = Store.get('uw-unique-done', 0);
+  const uwSet    = Store.get('uw-settings', { total: 3661 });
+  const remaining = Math.max(0, uwSet.total - done);
+  const qPerDay   = Math.ceil(remaining / days);
 
-  banner.style.display = 'flex';
-  banner.innerHTML = `
-    <div style="flex:1;min-width:160px;">
-      <div class="stat-label">UWorld Q/Day Needed</div>
-      <div style="font-family:'Playfair Display',serif;font-size:32px;font-weight:700;color:var(--sky);">${qPerDay}</div>
-      <div style="font-size:12px;color:var(--muted);">${uworldData.done} / ${uworldData.total} done</div>
-    </div>
-    <div style="width:1px;background:var(--border);flex-shrink:0;"></div>
-    <div style="flex:1;min-width:160px;">
-      <div class="stat-label">Days Until Exam</div>
-      <div style="font-family:'Playfair Display',serif;font-size:32px;font-weight:700;color:var(--fuji);">${days}</div>
-      <div style="font-size:12px;color:var(--muted);">Stay consistent ✦</div>
-    </div>
-    <div style="width:1px;background:var(--border);flex-shrink:0;"></div>
-    <div style="flex:1;min-width:160px;">
-      <div class="stat-label">Today's Date</div>
-      <div style="font-family:'Playfair Display',serif;font-size:22px;font-weight:700;color:var(--ink);">${new Date().toLocaleDateString('en-US',{month:'short',day:'numeric'})}</div>
-      <div style="font-size:12px;color:var(--muted);">頑張って!</div>
-    </div>
-    <a href="dashboard.html" style="align-self:center;text-decoration:none;display:inline-block;" class="btn-save">Open Dashboard ↗</a>
-  `;
+  document.getElementById('strip-qday').textContent = qPerDay;
+  document.getElementById('strip-qsub').textContent = `${done.toLocaleString()} / ${uwSet.total.toLocaleString()} done`;
+  document.getElementById('strip-days').textContent = days;
+  document.getElementById('strip-today').textContent = new Date().toLocaleDateString('en-US',{month:'short',day:'numeric'});
+  document.getElementById('stats-strip').classList.add('visible');
 }
 
 document.addEventListener('DOMContentLoaded', () => {
   initDotd();
-  renderDailyGoals();
+  renderStatsStrip();
 });
 </script>
 </body>
