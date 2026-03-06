@@ -554,6 +554,9 @@ let editingExamId = null;
 let weakEditingId = null;
 
 // ── Load / Save ───────────────────────────────────────────
+// loadAll: reads from localStorage (fast, synchronous).
+// Firebase data is already merged into localStorage by app.js
+// via onCloudSyncComplete, so this always has the latest data.
 function loadAll() {
   entries    = Store.get(K.entries, []);
   exams      = Store.get(K.exams, []);
@@ -567,16 +570,27 @@ function loadAll() {
     if ('score' in e) { const { score, ...rest } = e; migrated = true; return rest; }
     return e;
   });
-  if (migrated) Store.set(K.entries, entries);
+  if (migrated) CloudSync.save(K.entries, entries);
 }
 
+// saveAll: writes to localStorage immediately, then syncs each
+// changed key to Firestore in the background via CloudSync.save().
 function saveAll() {
-  Store.set(K.entries, entries);
-  Store.set(K.exams, exams);
-  Store.set(K.settings, settings);
-  Store.set(K.unique, uniqueDone);
-  Store.set(K.weak, weaknesses);
+  // Sync entries + unique count together so they're always consistent
+  CloudSync.save(K.entries, entries);
+  CloudSync.save(K.exams, exams);
+  CloudSync.save(K.settings, settings);
+  CloudSync.save(K.unique, uniqueDone);
+  CloudSync.save(K.weak, weaknesses);
 }
+
+// Called by app.js after Firebase sync completes (sign-in / sign-out).
+// Re-loads all data from localStorage (which was just updated from cloud)
+// and re-renders the full dashboard.
+window.onCloudSyncComplete = function() {
+  loadAll();
+  renderAll();
+};
 
 // ── Settings ──────────────────────────────────────────────
 function toggleSettings() {
@@ -612,7 +626,7 @@ function toggleDay(el, day) {
 function saveSettings() {
   settings.total    = parseInt(document.getElementById('setup-total').value) || 3661;
   settings.finishBy = document.getElementById('setup-finish').value;
-  Store.set(K.settings, settings);
+  CloudSync.save(K.settings, settings);
   document.getElementById('settings-section').style.display = 'none';
   renderAll();
   showToast('Settings saved ✦');
@@ -649,7 +663,6 @@ function logEntry() {
   uniqueDone = entries.reduce((s,e) => s + e.qs, 0);
   saveAll();
   document.getElementById('log-qs').value = '';
-  document.getElementById('log-score').value = '';
   renderAll();
   showToast('Session logged ✦');
 }
@@ -1122,7 +1135,7 @@ function saveEditProgress() {
   const val = parseInt(document.getElementById('edit-unique-input').value);
   if (!isNaN(val) && val >= 0) {
     uniqueDone = val;
-    Store.set(K.unique, uniqueDone);
+    CloudSync.save(K.unique, uniqueDone);
     renderStats();
     showToast('Progress updated');
   }

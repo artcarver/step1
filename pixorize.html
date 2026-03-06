@@ -154,7 +154,7 @@
 </div>
 <script src="app.js"></script>
 <script>
-const STORE_KEY = 'px-progress';
+const STORE_KEY = 'pixorize';
 
 const CATEGORIES = [
   {id:"vitamins",name:"Vitamins",why:"Vitamin deficiencies are among the most frequently tested biochem topics",
@@ -513,8 +513,14 @@ function getCatsForTab() {
 let progress = {};
 let activeFilter = 'all';
 
+// load: reads from localStorage (already synced from Firestore on sign-in via app.js)
 function load() { progress = Store.get(STORE_KEY, {}); }
-function save() { Store.set(STORE_KEY, progress); }
+
+// save: writes to localStorage immediately, then pushes to Firestore in background
+function save() { CloudSync.save(STORE_KEY, progress); }
+
+// Called by app.js after Firebase sync completes — reload progress and re-render
+window.onCloudSyncComplete = function() { load(); renderAll(); };
 function getState(id) { return progress[id] || {w:false,r:false}; }
 
 function toggle(id, field) {

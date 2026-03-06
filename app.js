@@ -3,7 +3,6 @@
    ============================================================ */
 
 // ── Nav Active State ──────────────────────────────────────
-// Runs after DOMContentLoaded so nav.js has already injected the nav links
 function setNavActive() {
   const page = location.pathname.split('/').pop() || 'index.html';
   document.querySelectorAll('.nav-link').forEach(link => {
@@ -45,11 +44,14 @@ function renderCountdown() {
 }
 
 function updateNavPill() {
-  const pill = document.getElementById('nav-exam-pill');
-  if (!pill) return;
+  const lbl = document.getElementById('nav-exam-label');
+  if (!lbl) return;
   const days = getDaysRemaining();
-  if (days === null) { pill.textContent = 'Set Exam Date ✦'; return; }
-  pill.textContent = `⏱ ${days}d remaining`;
+  if (days === null) {
+    lbl.textContent = 'Set Exam Date';
+  } else {
+    lbl.textContent = days + 'd remaining';
+  }
 }
 
 // ── Modal helpers ─────────────────────────────────────────
@@ -74,70 +76,14 @@ async function saveDateModal() {
   closeDateModal();
 }
 
-// close overlay on bg click
+// Close overlay on background click
 document.addEventListener('click', e => {
   if (e.target.classList.contains('modal-overlay')) {
     e.target.classList.remove('open');
   }
 });
 
-// ── Firebase Cloud Sync ───────────────────────────────────
-// Syncs exam date and study data to Firestore when user is signed in.
-// Falls back to localStorage when signed out.
-
-const CloudSync = {
-  async saveExamDate(dateStr) {
-    if (!window.db || !window.currentUser) return;
-    try {
-      await db.collection('users').doc(currentUser.uid).set({ examDate: dateStr }, { merge: true });
-    } catch(e) { console.warn('Cloud save exam date failed:', e); }
-  },
-
-  async loadExamDate() {
-    if (!window.db || !window.currentUser) return null;
-    try {
-      const doc = await db.collection('users').doc(currentUser.uid).get();
-      return doc.exists ? (doc.data().examDate || null) : null;
-    } catch(e) { console.warn('Cloud load exam date failed:', e); return null; }
-  },
-
-  async saveCollection(key, data) {
-    if (!window.db || !window.currentUser) return;
-    try {
-      await db.collection('users').doc(currentUser.uid)
-        .collection('data').doc(key).set({ payload: JSON.stringify(data) });
-    } catch(e) { console.warn(`Cloud save ${key} failed:`, e); }
-  },
-
-  async loadCollection(key) {
-    if (!window.db || !window.currentUser) return null;
-    try {
-      const doc = await db.collection('users').doc(currentUser.uid)
-        .collection('data').doc(key).get();
-      return doc.exists ? JSON.parse(doc.data().payload) : null;
-    } catch(e) { console.warn(`Cloud load ${key} failed:`, e); return null; }
-  }
-};
-
-// Listen for auth changes dispatched by auth.js
-window.addEventListener('appAuthStateChanged', async (e) => {
-  const user = e.detail.user;
-  if (user) {
-    // User just signed in — pull exam date from cloud
-    const cloudDate = await CloudSync.loadExamDate();
-    if (cloudDate) {
-      localStorage.setItem('step1-exam-date', cloudDate);
-      renderCountdown();
-    }
-  } else {
-    // Signed out — clear sensitive data from localStorage
-    localStorage.removeItem('step1-exam-date');
-    renderCountdown();
-  }
-  // Update auth button label everywhere
-  const authBtn = document.getElementById('auth-btn');
-  if (authBtn) authBtn.textContent = user ? `Sign Out (${user.displayName || user.email})` : 'Sign In with Google';
-});
+// ── localStorage Store ────────────────────────────────────
 const Store = {
   get(k, def = null) {
     try { const v = localStorage.getItem(k); return v !== null ? JSON.parse(v) : def; }
@@ -145,6 +91,149 @@ const Store = {
   },
   set(k, v) { try { localStorage.setItem(k, JSON.stringify(v)); } catch {} },
 };
+
+// ── Firebase Cloud Sync ───────────────────────────────────
+// Primary storage is Firestore when signed in.
+// localStorage acts as a local cache / offline fallback.
+//
+// Data keys used across pages:
+//   examDate          — string, top-level user doc field
+//   uw-entries        — dashboard UWorld sessions
+//   uw-exams          — dashboard practice exams
+//   uw-settings       — dashboard settings
+//   uw-unique-done    — dashboard unique Q count
+//   uw-weaknesses     — dashboard weak points
+//   sketchy-pharm     — tracker progress object
+//   sketchy-micro     — tracker progress object
+//   pixorize          — tracker progress object
+
+const CloudSync = {
+
+  // ── Exam date ───────────────────────────────────────────
+  async saveExamDate(dateStr) {
+    // Always write to localStorage first as the fast local cache
+    localStorage.setItem('step1-exam-date', dateStr);
+    if (!window.db || !window.currentUser) return;
+    try {
+      await db.collection('users').doc(currentUser.uid)
+        .set({ examDate: dateStr }, { merge: true });
+    } catch(e) { console.warn('Cloud save examDate failed:', e); }
+  },
+
+  async loadExamDate() {
+    if (!window.db || !window.currentUser) return null;
+    try {
+      const doc = await db.collection('users').doc(currentUser.uid).get();
+      return doc.exists ? (doc.data().examDate || null) : null;
+    } catch(e) { console.warn('Cloud load examDate failed:', e); return null; }
+  },
+
+  // ── Generic save: localStorage first, then Firestore ───
+  async save(key, data) {
+    Store.set(key, data); // instant local write
+    if (!window.db || !window.currentUser) return;
+    try {
+      await db.collection('users').doc(currentUser.uid)
+        .collection('data').doc(key)
+        .set({ payload: JSON.stringify(data), updatedAt: Date.now() });
+    } catch(e) { console.warn(`Cloud save "${key}" failed:`, e); }
+  },
+
+  // ── Generic load: Firestore first, fall back to localStorage
+  // Merge strategy: for arrays take the longer one; for objects prefer cloud.
+  async load(key, localDefault = null) {
+    const local = Store.get(key, localDefault);
+    if (!window.db || !window.currentUser) return local;
+    try {
+      const doc = await db.collection('users').doc(currentUser.uid)
+        .collection('data').doc(key).get();
+      if (!doc.exists) return local;
+      const cloud = JSON.parse(doc.data().payload);
+      if (Array.isArray(cloud) && Array.isArray(local)) {
+        return cloud.length >= local.length ? cloud : local;
+      }
+      return cloud ?? local;
+    } catch(e) { console.warn(`Cloud load "${key}" failed:`, e); return local; }
+  },
+
+  // ── On sign-in: push local data up, then pull merged state down ──
+  // This preserves anything logged offline and ensures every page
+  // sees fresh data without needing page-level logic.
+  async syncOnSignIn() {
+    if (!window.db || !window.currentUser) return;
+    const keys = [
+      'uw-entries', 'uw-exams', 'uw-settings', 'uw-unique-done', 'uw-weaknesses',
+      'sketchy-pharm', 'sketchy-micro', 'pixorize'
+    ];
+    const uid = currentUser.uid;
+
+    for (const key of keys) {
+      try {
+        const local = Store.get(key);
+        const snap  = await db.collection('users').doc(uid).collection('data').doc(key).get();
+
+        if (!snap.exists && local !== null) {
+          // Nothing in cloud — upload local data
+          await db.collection('users').doc(uid).collection('data').doc(key)
+            .set({ payload: JSON.stringify(local), updatedAt: Date.now() });
+        } else if (snap.exists) {
+          const cloud = JSON.parse(snap.data().payload);
+          let winner = cloud;
+          // Prefer the longer array; for numbers prefer larger; for objects prefer cloud
+          if (Array.isArray(cloud) && Array.isArray(local) && local.length > cloud.length) {
+            winner = local;
+          } else if (typeof cloud === 'number' && typeof local === 'number' && local > cloud) {
+            winner = local;
+          }
+          // Write winner back to both stores
+          Store.set(key, winner);
+          if (winner !== cloud) {
+            await db.collection('users').doc(uid).collection('data').doc(key)
+              .set({ payload: JSON.stringify(winner), updatedAt: Date.now() });
+          }
+        }
+      } catch(e) { console.warn(`Sync failed for "${key}":`, e); }
+    }
+  }
+};
+
+// ── Auth state handler ────────────────────────────────────
+window.addEventListener('appAuthStateChanged', async (e) => {
+  const user = e.detail.user;
+
+  // Update nav auth button
+  if (typeof window.updateNavAuth === 'function') window.updateNavAuth(user);
+
+  if (user) {
+    // Merge local <-> cloud for all data keys
+    await CloudSync.syncOnSignIn();
+
+    // Pull exam date
+    const cloudDate = await CloudSync.loadExamDate();
+    if (cloudDate) {
+      localStorage.setItem('step1-exam-date', cloudDate);
+    }
+
+    renderCountdown();
+
+    // Notify the current page that fresh data is ready
+    if (typeof window.onCloudSyncComplete === 'function') {
+      window.onCloudSyncComplete();
+    }
+  } else {
+    // Signed out — clear all cached user data
+    localStorage.removeItem('step1-exam-date');
+    [
+      'uw-entries', 'uw-exams', 'uw-settings', 'uw-unique-done', 'uw-weaknesses',
+      'sketchy-pharm', 'sketchy-micro', 'pixorize'
+    ].forEach(k => localStorage.removeItem(k));
+    renderCountdown();
+
+    if (typeof window.onCloudSyncComplete === 'function') {
+      window.onCloudSyncComplete();
+    }
+  }
+});
 
 // ── Quotes ────────────────────────────────────────────────
 const QUOTES = [

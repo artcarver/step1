@@ -168,7 +168,7 @@
 
 <script src="app.js"></script>
 <script>
-const STORE_KEY = 'sp-progress';
+const STORE_KEY = 'sketchy-pharm';
 
 const CATEGORIES = [
   {
@@ -318,8 +318,14 @@ const ACCENTS = ['accent-0','accent-1','accent-2','accent-3','accent-4','accent-
 let progress = {};
 let activeFilter = 'all';
 
+// load: reads from localStorage (already synced from Firestore on sign-in via app.js)
 function load() { progress = Store.get(STORE_KEY, {}); }
-function save() { Store.set(STORE_KEY, progress); }
+
+// save: writes to localStorage immediately, then pushes to Firestore in background
+function save() { CloudSync.save(STORE_KEY, progress); }
+
+// Called by app.js after Firebase sync completes — reload progress and re-render
+window.onCloudSyncComplete = function() { load(); renderAll(); };
 function getState(id) { return progress[id] || {w:false,r:false}; }
 
 function toggle(id, field) {
