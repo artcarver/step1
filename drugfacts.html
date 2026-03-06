@@ -7,18 +7,13 @@
 <link rel="stylesheet" href="style.css"/>
 <title>Drug Facts · Step 1 Hub</title>
 <style>
-/* ═══════ DRUGFACTS PAGE STYLES ══════════════════════════════
-   Page-scoped overrides and expand/collapse system.
-   All shared .rcard, .ref-tab-bar, .search-hl rules live in style.css.
-   ═══════════════════════════════════════════════════════════ */
-
 :root {
   --accent: var(--sakura2);
   --accent-light: var(--sakura-light);
   --accent-glow: rgba(196,80,94,.12);
 }
 
-/* ── Page header ─────────────────────────────────────────── */
+/* ── Page header ─────────────────────────────────────── */
 .ref-page-header {
   padding: 40px 0 0;
   display: flex; align-items: flex-end; justify-content: space-between;
@@ -40,20 +35,17 @@
 }
 .ref-count strong { color: var(--ink2); font-weight: 600; }
 
-/* ── Search bar ──────────────────────────────────────────── */
-.ref-search-row {
-  display: flex; align-items: center; gap: 10px;
-  padding: 16px 0 0;
-}
-.ref-search-wrap { flex: 1; position: relative; max-width: 540px; }
+/* ── Search ──────────────────────────────────────────── */
+.ref-search-row { padding: 16px 0 0; }
+.ref-search-wrap { position: relative; max-width: 480px; }
 .ref-search-icon {
-  position: absolute; left: 14px; top: 50%; transform: translateY(-50%);
-  font-size: 14px; color: var(--dim); pointer-events: none;
+  position: absolute; left: 13px; top: 50%; transform: translateY(-50%);
+  font-size: 13px; color: var(--dim); pointer-events: none;
 }
 .ref-search-input {
-  width: 100%; padding: 10px 14px 10px 38px;
+  width: 100%; padding: 9px 14px 9px 36px;
   border: 1.5px solid var(--border); border-radius: 99px;
-  background: var(--surface); font-size: 13.5px; color: var(--ink);
+  background: var(--surface); font-size: 13px; color: var(--ink);
   font-family: 'DM Sans', sans-serif;
   outline: none; transition: border-color .15s, box-shadow .15s;
 }
@@ -62,71 +54,52 @@
   box-shadow: 0 0 0 3px var(--accent-glow);
 }
 .ref-search-input::placeholder { color: var(--dim); }
-.search-hint {
-  font-size: 11px; color: var(--dim); white-space: nowrap;
-  padding-left: 4px;
-}
-kbd {
-  display: inline-block; padding: 1px 5px; border-radius: 4px;
-  border: 1px solid var(--border); background: var(--surface2);
-  font-family: 'DM Mono', monospace; font-size: 10px; color: var(--muted);
-  line-height: 1.6;
-}
 
-/* ── Category tab bar ────────────────────────────────────── */
+/* ── Tab bar ─────────────────────────────────────────── */
 .ref-tab-bar {
   display: flex; gap: 4px; flex-wrap: wrap;
-  margin-top: 20px;
+  margin-top: 18px;
   border-bottom: 1px solid var(--border2);
-  padding-bottom: 12px;
-  overflow-x: auto;
-  -webkit-overflow-scrolling: touch;
-  scrollbar-width: none;
+  padding-bottom: 10px;
 }
-.ref-tab-bar::-webkit-scrollbar { display: none; }
 .ref-tab {
-  padding: 6px 14px;
+  padding: 5px 13px;
   font-size: 11.5px; font-weight: 600; color: var(--muted);
-  border-radius: 99px;
-  border: 1.5px solid transparent;
-  cursor: pointer; white-space: nowrap;
-  background: transparent;
+  border-radius: 99px; border: 1.5px solid transparent;
+  cursor: pointer; white-space: nowrap; background: transparent;
   font-family: 'DM Sans', sans-serif;
   transition: color .15s, background .15s, border-color .15s;
-  letter-spacing: 0.2px;
-  flex-shrink: 0;
 }
 .ref-tab:hover { color: var(--ink2); background: var(--surface2); }
 .ref-tab.active {
-  color: var(--accent);
-  background: var(--accent-light);
+  color: var(--accent); background: var(--accent-light);
   border-color: color-mix(in srgb, var(--accent) 30%, transparent);
 }
 .ref-tab.all-tab { font-weight: 700; }
 
-/* ── Group section header ────────────────────────────────── */
-.group-section { margin-top: 4px; }
+/* ── Group header ────────────────────────────────────── */
+.group-section { margin-bottom: 8px; }
 .group-header {
-  display: flex; align-items: center; gap: 12px;
-  margin: 28px 0 10px;
+  display: flex; align-items: center; gap: 10px;
+  margin: 24px 0 8px;
 }
-.group-header:first-child { margin-top: 20px; }
+.group-header:first-child { margin-top: 18px; }
 .group-title {
-  font-size: 11px; font-weight: 700; letter-spacing: 1.8px;
+  font-size: 10px; font-weight: 700; letter-spacing: 1.8px;
   text-transform: uppercase; color: var(--muted); white-space: nowrap;
 }
 .group-line { flex: 1; height: 1px; background: var(--border2); }
-.group-badge { font-size: 10px; font-weight: 600; color: var(--dim); white-space: nowrap; }
+.group-badge { font-size: 10px; font-weight: 600; color: var(--dim); }
 
-/* ── Group action buttons (Expand All / Collapse All) ─────── */
+/* ── Group actions ───────────────────────────────────── */
 .group-actions {
   display: flex; gap: 6px; justify-content: flex-end;
-  margin-bottom: 10px;
+  margin-bottom: 8px;
 }
 .expand-btn {
-  font-size: 10.5px; font-weight: 600; color: var(--muted);
+  font-size: 10px; font-weight: 600; color: var(--muted);
   background: transparent; border: 1.5px solid var(--border);
-  border-radius: 99px; padding: 4px 12px; cursor: pointer;
+  border-radius: 99px; padding: 3px 11px; cursor: pointer;
   font-family: 'DM Sans', sans-serif;
   transition: color .14s, border-color .14s, background .14s;
 }
@@ -136,158 +109,139 @@ kbd {
   background: var(--accent-light);
 }
 
-/* ── Card grid ───────────────────────────────────────────── */
+/* ── Card grid — cards stay in their column when expanded ── */
 .cards-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  gap: 10px;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 8px;
   margin-bottom: 4px;
+  align-items: start;
 }
 
-/* ── Base card ───────────────────────────────────────────── */
+/* ── Card ────────────────────────────────────────────── */
 .rcard {
   background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: 12px;
-  padding: 16px 18px;
+  border: 1.5px solid var(--border);
+  border-radius: 10px;
+  padding: 14px 16px;
   cursor: pointer;
-  transition: transform .16s ease, box-shadow .16s ease, border-color .16s ease;
+  transition: border-color .15s ease, box-shadow .15s ease;
   position: relative;
-  overflow: hidden;
-}
-.rcard::before {
-  content: '';
-  position: absolute; left: 0; top: 0; bottom: 0;
-  width: 3px; border-radius: 12px 0 0 12px;
-  background: var(--accent);
-  opacity: 0; transition: opacity .16s;
 }
 .rcard:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 4px 20px rgba(42,31,26,.10), 0 1px 4px rgba(42,31,26,.06);
-  border-color: color-mix(in srgb, var(--accent) 30%, var(--border));
+  border-color: color-mix(in srgb, var(--accent) 35%, var(--border));
+  box-shadow: 0 2px 12px rgba(42,31,26,.08);
 }
-.rcard:hover::before { opacity: 1; }
 .rcard.expanded {
-  transform: none;
-  box-shadow: 0 6px 28px rgba(42,31,26,.12), 0 2px 6px rgba(42,31,26,.07);
-  border-color: color-mix(in srgb, var(--accent) 40%, var(--border));
-  grid-column: 1 / -1;
+  border-color: color-mix(in srgb, var(--accent) 45%, var(--border));
+  box-shadow: 0 3px 16px rgba(42,31,26,.10);
 }
-.rcard.expanded::before { opacity: 1; }
 .rcard:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
 
-/* ── Card header row ─────────────────────────────────────── */
+/* left accent bar — only when expanded */
+.rcard::before {
+  content: ''; position: absolute; left: 0; top: 0; bottom: 0;
+  width: 3px; border-radius: 10px 0 0 10px;
+  background: var(--accent); opacity: 0; transition: opacity .15s;
+}
+.rcard.expanded::before { opacity: 1; }
+
+/* ── Card header ─────────────────────────────────────── */
 .rcard-header {
-  display: flex; align-items: flex-start; justify-content: space-between;
-  gap: 10px;
+  display: flex; align-items: flex-start; justify-content: space-between; gap: 8px;
 }
 .rcard-header-left { flex: 1; min-width: 0; }
 .rcard-name {
   font-family: 'Playfair Display', serif;
-  font-size: 15px; font-weight: 600; line-height: 1.3; color: var(--ink);
+  font-size: 14.5px; font-weight: 600; line-height: 1.3; color: var(--ink);
 }
 .rcard-aka {
-  font-size: 11.5px; color: var(--muted); font-style: italic;
-  line-height: 1.4; margin-top: 2px;
+  font-size: 11px; color: var(--muted); font-style: italic;
+  line-height: 1.4; margin-top: 3px;
 }
 .rcard-summary {
-  font-size: 12.5px; color: var(--ink2); line-height: 1.55; margin-top: 6px;
+  font-size: 12px; color: var(--ink2); line-height: 1.55; margin-top: 7px;
 }
 
-/* ── Chevron toggle ──────────────────────────────────────── */
+/* ── Chevron ─────────────────────────────────────────── */
 .rcard-toggle {
-  flex-shrink: 0;
-  background: none; border: none; cursor: pointer;
-  color: var(--dim); padding: 2px 0 0 4px;
-  font-size: 13px; line-height: 1;
-  transition: color .14s, transform .22s ease;
-  align-self: flex-start;
+  flex-shrink: 0; background: none; border: none; cursor: pointer;
+  color: var(--dim); padding: 1px 0 0 2px; font-size: 12px;
+  transition: color .14s, transform .2s ease; align-self: flex-start; margin-top: 1px;
 }
-.rcard-toggle:hover { color: var(--accent); }
 .rcard.expanded .rcard-toggle { transform: rotate(180deg); color: var(--accent); }
 
-/* ── Expandable detail panel ─────────────────────────────── */
+/* ── Expandable detail ───────────────────────────────── */
 .rcard-detail {
-  max-height: 0;
   overflow: hidden;
-  transition: max-height .32s cubic-bezier(.4,0,.2,1), opacity .22s ease;
+  max-height: 0;
   opacity: 0;
+  transition: max-height .3s cubic-bezier(.4,0,.2,1), opacity .2s ease;
 }
 .rcard.expanded .rcard-detail {
-  max-height: 800px;
+  max-height: 2000px;
   opacity: 1;
 }
 .rcard-detail-inner {
-  padding-top: 14px;
-  border-top: 1px solid var(--border2);
   margin-top: 12px;
-  display: flex; flex-direction: column; gap: 6px;
+  padding-top: 12px;
+  border-top: 1px solid var(--border2);
 }
 
-/* ── Detail field rows ───────────────────────────────────── */
-.rcard-field {
-  padding: 10px 13px;
-  border-radius: 9px;
-  background: var(--bg);
-  border: 1px solid var(--border2);
-}
+/* ── Fields: clean label + value stacking, thin dividers ── */
+.rcard-field { padding: 10px 0; }
+.rcard-field:first-child { padding-top: 0; }
+.rcard-field + .rcard-field { border-top: 1px solid var(--border2); }
+
 .rcard-field-label {
   display: block;
-  font-size: 9px; font-weight: 700; letter-spacing: 2px;
+  font-size: 9px; font-weight: 700; letter-spacing: 1.8px;
   text-transform: uppercase; color: var(--accent);
-  margin-bottom: 4px; opacity: .85;
+  margin-bottom: 5px;
 }
 .rcard-field-text {
   font-size: 13px; color: var(--ink2); line-height: 1.65;
 }
 .rcard-field-text strong { color: var(--ink); font-weight: 600; }
 
-/* ── Pearl block ─────────────────────────────────────────── */
+/* ── Pearl ───────────────────────────────────────────── */
 .rcard-pearl {
-  padding: 10px 13px;
-  border-radius: 9px;
+  margin-top: 10px;
+  padding: 10px 12px;
+  border-radius: 8px;
   background: var(--accent-light);
-  border: 1px solid color-mix(in srgb, var(--accent) 25%, transparent);
+  border: 1px solid color-mix(in srgb, var(--accent) 22%, transparent);
 }
-.rcard-pearl .rcard-field-label { opacity: 1; }
+.rcard-pearl .rcard-field-label { margin-bottom: 5px; }
+.rcard-pearl .rcard-field-text { font-size: 12.5px; }
 
-/* ── Search highlight ────────────────────────────────────── */
+/* ── Search highlight ────────────────────────────────── */
 mark.search-hl {
-  background: color-mix(in srgb, var(--accent) 18%, transparent);
-  color: var(--ink);
-  border-radius: 2px;
-  padding: 0 2px;
-  font-style: normal;
+  background: color-mix(in srgb, var(--accent) 16%, transparent);
+  color: var(--ink); border-radius: 2px; padding: 0 2px; font-style: normal;
 }
 
-/* ── Empty state ─────────────────────────────────────────── */
-.ref-empty { grid-column: 1 / -1; padding: 56px 24px; text-align: center; }
+/* ── Empty state ─────────────────────────────────────── */
+.ref-empty { grid-column: 1 / -1; padding: 48px 24px; text-align: center; }
 .ref-empty-title {
   font-family: 'Playfair Display', serif;
   font-size: 18px; font-weight: 600; color: var(--ink2); margin-bottom: 6px;
 }
 .ref-empty-sub { font-size: 13px; color: var(--muted); }
 
-/* ── Keep openModal/closeModal available (date modal via nav.js) ── */
-/* No styles needed here — modal infrastructure is in style.css + app.js */
-
-/* ── Desktop: all 10 tabs on one line ────────────────────── */
+/* ── Desktop tabs ────────────────────────────────────── */
 @media (min-width: 900px) {
-  .ref-tab-bar { flex-wrap: nowrap; }
-  .ref-tab { padding: 6px 11px; font-size: 11px; }
+  .ref-tab-bar { flex-wrap: nowrap; overflow-x: auto; scrollbar-width: none; }
+  .ref-tab-bar::-webkit-scrollbar { display: none; }
+  .ref-tab { font-size: 11px; padding: 5px 11px; flex-shrink: 0; }
 }
 @media (min-width: 1100px) {
-  .ref-tab { padding: 6px 13px; font-size: 11.5px; }
+  .ref-tab { font-size: 11.5px; padding: 5px 13px; }
 }
 
-/* ── Mobile ──────────────────────────────────────────────── */
+/* ── Mobile ──────────────────────────────────────────── */
 @media (max-width: 640px) {
   .cards-grid { grid-template-columns: 1fr; }
-  .rcard.expanded { grid-column: 1; }
-  .rcard-detail.expanded { max-height: 1200px; }
-  .rcard-field-text { font-size: 13px; }
-  .search-hint { display: none; }
 }
 </style>
 </head>
@@ -304,42 +258,31 @@ mark.search-hl {
 
 <div class="wrap">
 
-  <!-- ── Header ──────────────────────────────────────────── -->
   <div class="ref-page-header">
-    <div class="ref-page-left">
+    <div>
       <div class="ref-page-eyebrow">Pharmacology Reference</div>
       <h1 class="ref-page-title">Drug <em>Facts</em></h1>
     </div>
     <div class="ref-count" id="results-meta"></div>
   </div>
 
-  <!-- ── Search ──────────────────────────────────────────── -->
   <div class="ref-search-row">
     <div class="ref-search-wrap">
       <span class="ref-search-icon">🔍</span>
       <input class="ref-search-input" type="text" id="drug-search"
-             placeholder="Drug name, mechanism, side effects…"
+             placeholder="Search drugs, mechanisms, side effects…"
              oninput="onSearch()" autocomplete="off"/>
     </div>
-    <span class="search-hint"><kbd>/</kbd> to search</span>
   </div>
 
-  <!-- ── Category tabs ───────────────────────────────────── -->
   <div class="ref-tab-bar" id="cat-tabs" role="tablist"></div>
-
-  <!-- ── Panels ──────────────────────────────────────────── -->
   <div id="panels-container"></div>
 
-</div><!-- /wrap -->
+</div>
 
 <script src="drug_data.js"></script>
 <script src="app.js"></script>
 <script>
-/* ════════════════════════════════════════════════════════════
-   drugfacts.js — inline script
-   ════════════════════════════════════════════════════════════ */
-
-/* ── Category metadata — text labels only, no emojis ─────── */
 const CAT_META = {
   autonomic:  { label: 'Autonomic'      },
   cv:         { label: 'Cardiovascular' },
@@ -353,11 +296,8 @@ const CAT_META = {
   toxicology: { label: 'Toxicology'     },
 };
 
-let allDrugs = [];
-let activeTab = 'all';   // 'all' or a category key
-let searchQ   = '';
+let allDrugs = [], activeTab = 'all', searchQ = '';
 
-/* ── Build flat drug list ────────────────────────────────── */
 function buildDrugList() {
   const list = [];
   Object.entries(DRUGS).forEach(([cat, groups]) =>
@@ -368,95 +308,65 @@ function buildDrugList() {
   return list;
 }
 
-/* ── Filtering ───────────────────────────────────────────── */
 function getFiltered() {
   return allDrugs.filter(d => {
     if (activeTab !== 'all' && d.category !== activeTab) return false;
     if (searchQ) {
-      const blob = [d.name, d.aka, d.summary, d.moa, d.use, d.se, d.ci, d.pk, d.pearl]
-        .join(' ').toLowerCase();
+      const blob = [d.name,d.aka,d.summary,d.moa,d.use,d.se,d.ci,d.pk,d.pearl]
+        .filter(Boolean).join(' ').toLowerCase();
       if (!blob.includes(searchQ)) return false;
     }
     return true;
   });
 }
 
-/* ── Search highlight helper ─────────────────────────────── */
-function hl(text, q) {
-  if (!text) return '';
-  if (!q) return escHtml(text);
-  const escaped = escHtml(text);
-  const escapedQ = q.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-  return escaped.replace(new RegExp(escapedQ, 'gi'),
-    m => `<mark class="search-hl">${m}</mark>`);
+function esc(s) {
+  return (s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
 }
 
-function escHtml(str) {
-  return str.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
-}
-
-/* ── Bold markdown helper ────────────────────────────────── */
 function fmt(text, q) {
   if (!text) return '';
-  // First apply search highlight on raw text, then bold
-  const highlighted = hl(text, q);
-  return highlighted.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
+  let out = esc(text);
+  out = out.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
+  if (q) {
+    const sq = q.replace(/[.*+?^${}()|[\]\\]/g,'\\$&');
+    out = out.replace(new RegExp(`(${sq})(?![^<]*>)`,'gi'),
+      '<mark class="search-hl">$1</mark>');
+  }
+  return out;
 }
 
-/* ── Master render ───────────────────────────────────────── */
 function render() {
   const filtered = getFiltered();
-
-  // Count display
   const meta = document.getElementById('results-meta');
   meta.innerHTML = filtered.length === allDrugs.length
     ? `<strong>${allDrugs.length}</strong> drugs`
     : `<strong>${filtered.length}</strong> of ${allDrugs.length} drugs`;
-
   renderTabs(filtered);
   renderPanels(filtered);
 }
 
-/* ── Render tab bar ──────────────────────────────────────── */
 function renderTabs(filtered) {
-  const tabBar = document.getElementById('cat-tabs');
-  const cats = Object.keys(CAT_META);
-  let html = '';
-
-  // All tab — always visible
-  html += `<button class="ref-tab all-tab${activeTab === 'all' ? ' active' : ''}"
-             onclick="switchTab('all')" role="tab"
-             aria-selected="${activeTab === 'all'}">All</button>`;
-
-  // Category tabs — hide empty ones only when searching
-  cats.forEach(cat => {
+  let html = `<button class="ref-tab all-tab${activeTab==='all'?' active':''}"
+    onclick="switchTab('all')" role="tab">All</button>`;
+  Object.keys(CAT_META).forEach(cat => {
     if (searchQ && !filtered.some(d => d.category === cat)) return;
-    const isActive = activeTab === cat;
-    const label = CAT_META[cat].label;
-    html += `<button class="ref-tab${isActive ? ' active' : ''}"
-               onclick="switchTab('${cat}')" role="tab"
-               aria-selected="${isActive}">${label}</button>`;
+    html += `<button class="ref-tab${activeTab===cat?' active':''}"
+      onclick="switchTab('${cat}')" role="tab">${CAT_META[cat].label}</button>`;
   });
-
-  tabBar.innerHTML = html;
+  document.getElementById('cat-tabs').innerHTML = html;
 }
 
-/* ── Render panels ───────────────────────────────────────── */
 function renderPanels(filtered) {
   const container = document.getElementById('panels-container');
-
-  if (filtered.length === 0) {
-    container.innerHTML = `
-      <div class="cards-grid" style="margin-top:16px;">
-        <div class="ref-empty">
-          <div class="ref-empty-title">No results</div>
-          <div class="ref-empty-sub">Try a different search term.</div>
-        </div>
-      </div>`;
+  if (!filtered.length) {
+    container.innerHTML = `<div class="cards-grid" style="margin-top:16px;">
+      <div class="ref-empty">
+        <div class="ref-empty-title">No results</div>
+        <div class="ref-empty-sub">Try a different search term.</div>
+      </div></div>`;
     return;
   }
-
-  // Which categories to show
   const cats = activeTab === 'all'
     ? Object.keys(CAT_META).filter(c => filtered.some(d => d.category === c))
     : [activeTab];
@@ -465,158 +375,116 @@ function renderPanels(filtered) {
     const catDrugs = filtered.filter(d => d.category === cat);
     if (!catDrugs.length) return '';
     const groups = [...new Set(catDrugs.map(d => d.groupName))];
-
-    return `<div class="ref-panel" id="panel-${cat}">
-      ${groups.map((grp, gi) => {
+    return `<div class="ref-panel" id="panel-${cat}">${
+      groups.map((grp, gi) => {
         const grpDrugs = catDrugs.filter(d => d.groupName === grp);
-        const grpId = `grp-${cat}-${gi}`;
-        return `
-          <div class="group-section">
-            <div class="group-header">
-              <span class="group-title">${grp}</span>
-              <div class="group-line"></div>
-              <span class="group-badge">${grpDrugs.length}</span>
-            </div>
-            <div class="group-actions">
-              <button class="expand-btn" onclick="expandAll('${grpId}')">Expand All</button>
-              <button class="expand-btn" onclick="collapseAll('${grpId}')">Collapse All</button>
-            </div>
-            <div class="cards-grid" id="${grpId}">
-              ${grpDrugs.map(d => renderCard(d)).join('')}
-            </div>
-          </div>`;
-      }).join('')}
-    </div>`;
+        const gid = `grp-${cat}-${gi}`;
+        return `<div class="group-section">
+          <div class="group-header">
+            <span class="group-title">${grp}</span>
+            <div class="group-line"></div>
+            <span class="group-badge">${grpDrugs.length}</span>
+          </div>
+          <div class="group-actions">
+            <button class="expand-btn" onclick="expandAll('${gid}')">Expand all</button>
+            <button class="expand-btn" onclick="collapseAll('${gid}')">Collapse all</button>
+          </div>
+          <div class="cards-grid" id="${gid}">
+            ${grpDrugs.map(d => renderCard(d)).join('')}
+          </div>
+        </div>`;
+      }).join('')
+    }</div>`;
   }).join('');
 }
 
-/* ── Render a single card ────────────────────────────────── */
 function renderCard(d) {
   const q = searchQ;
-  const cardId = 'card-' + d.name.replace(/\s+/g, '-').replace(/[^a-zA-Z0-9-]/g,'');
-
   const sections = [
     ['Mechanism',         d.moa],
     ['Clinical Use',      d.use],
     ['Side Effects',      d.se],
     ['Contraindications', d.ci],
     ['Pharmacokinetics',  d.pk],
-  ].filter(([, v]) => v);
+  ].filter(([,v]) => v);
 
-  const fieldsHtml = sections.map(([label, val]) => `
-    <div class="rcard-field">
-      <span class="rcard-field-label">${label}</span>
-      <div class="rcard-field-text">${fmt(val, q)}</div>
-    </div>`).join('');
-
-  const pearlHtml = d.pearl ? `
-    <div class="rcard-pearl">
-      <span class="rcard-field-label">Clinical Pearl</span>
-      <div class="rcard-field-text">${fmt(d.pearl, q)}</div>
-    </div>` : '';
-
-  return `<div class="rcard" id="${cardId}" tabindex="0" role="button"
-               aria-label="${escHtml(d.name)}" aria-expanded="false"
-               onclick="toggleCard(this)">
+  return `<div class="rcard" tabindex="0" role="button"
+      aria-label="${esc(d.name)}" aria-expanded="false"
+      onclick="toggleCard(this)">
     <div class="rcard-header">
       <div class="rcard-header-left">
-        <div class="rcard-name">${hl(d.name, q)}</div>
-        ${d.aka ? `<div class="rcard-aka">${hl(d.aka, q)}</div>` : ''}
+        <div class="rcard-name">${fmt(d.name,q)}</div>
+        ${d.aka?`<div class="rcard-aka">${fmt(d.aka,q)}</div>`:''}
       </div>
       <button class="rcard-toggle" tabindex="-1" aria-hidden="true">&#8964;</button>
     </div>
-    <div class="rcard-summary">${fmt(d.summary, q)}</div>
+    <div class="rcard-summary">${fmt(d.summary,q)}</div>
     <div class="rcard-detail">
       <div class="rcard-detail-inner">
-        ${fieldsHtml}
-        ${pearlHtml}
+        ${sections.map(([label,val])=>`
+          <div class="rcard-field">
+            <span class="rcard-field-label">${label}</span>
+            <div class="rcard-field-text">${fmt(val,q)}</div>
+          </div>`).join('')}
+        ${d.pearl?`
+          <div class="rcard-pearl">
+            <span class="rcard-field-label">Clinical Pearl</span>
+            <div class="rcard-field-text">${fmt(d.pearl,q)}</div>
+          </div>`:''}
       </div>
     </div>
   </div>`;
 }
 
-/* ── Toggle single card ──────────────────────────────────── */
 function toggleCard(el) {
-  // Don't toggle if clicking inside the detail panel itself
-  if (event && event.target.closest && event.target.closest('.rcard-detail-inner')) return;
-  const isExpanded = el.classList.contains('expanded');
-  el.classList.toggle('expanded', !isExpanded);
-  el.setAttribute('aria-expanded', !isExpanded);
+  /* Ignore clicks that land inside an open detail panel */
+  if (event && event.target.closest &&
+      event.target.closest('.rcard-detail-inner') &&
+      el.classList.contains('expanded')) return;
+  const expanding = !el.classList.contains('expanded');
+  el.classList.toggle('expanded', expanding);
+  el.setAttribute('aria-expanded', String(expanding));
 }
 
-/* ── Expand / Collapse all in a group ────────────────────── */
-function expandAll(grpId) {
-  document.querySelectorAll(`#${grpId} .rcard`).forEach(el => {
-    el.classList.add('expanded');
-    el.setAttribute('aria-expanded', 'true');
+function expandAll(gid) {
+  document.querySelectorAll(`#${gid} .rcard`).forEach(el => {
+    el.classList.add('expanded'); el.setAttribute('aria-expanded','true');
+  });
+}
+function collapseAll(gid) {
+  document.querySelectorAll(`#${gid} .rcard`).forEach(el => {
+    el.classList.remove('expanded'); el.setAttribute('aria-expanded','false');
   });
 }
 
-function collapseAll(grpId) {
-  document.querySelectorAll(`#${grpId} .rcard`).forEach(el => {
-    el.classList.remove('expanded');
-    el.setAttribute('aria-expanded', 'false');
-  });
-}
-
-/* ── Tab switching ───────────────────────────────────────── */
 function switchTab(cat) {
   activeTab = cat;
   render();
-  // Scroll panels container to top
-  document.getElementById('panels-container').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+  /* intentionally no scroll — user stays at current position */
 }
 
-/* ── Search ──────────────────────────────────────────────── */
 function onSearch() {
   searchQ = document.getElementById('drug-search').value.toLowerCase().trim();
-  // When searching, switch to All so all matching drugs show
-  if (searchQ && activeTab !== 'all') activeTab = 'all';
+  if (searchQ) activeTab = 'all';
   render();
 }
 
-/* ── Keyboard shortcuts ──────────────────────────────────── */
 document.addEventListener('keydown', e => {
-  const searchEl = document.getElementById('drug-search');
-
-  // / to focus search (unless already in input)
-  if (e.key === '/' && document.activeElement !== searchEl &&
-      !['INPUT','TEXTAREA','SELECT'].includes(document.activeElement.tagName)) {
-    e.preventDefault();
-    searchEl.focus();
-    searchEl.select();
-    return;
+  if ((e.key==='Enter'||e.key===' ') && e.target.classList.contains('rcard')) {
+    e.preventDefault(); toggleCard(e.target);
   }
-
-  // Enter or Space on focused card
-  if ((e.key === 'Enter' || e.key === ' ') && e.target.classList.contains('rcard')) {
-    e.preventDefault();
-    toggleCard(e.target);
-    return;
-  }
-
-  // Escape: collapse focused card or clear search
-  if (e.key === 'Escape') {
-    if (document.activeElement.classList.contains('rcard') &&
-        document.activeElement.classList.contains('expanded')) {
+  if (e.key==='Escape') {
+    if (document.activeElement.classList.contains('expanded'))
       toggleCard(document.activeElement);
-    } else if (searchQ) {
-      searchEl.value = '';
-      onSearch();
+    else if (searchQ) {
+      document.getElementById('drug-search').value=''; onSearch();
     }
   }
 });
 
-/* ── Init ────────────────────────────────────────────────── */
-window.addEventListener('appAuthStateChanged', () => {
-  // Auth state change from nav.js — re-render if needed
-  if (allDrugs.length) render();
-});
-
+window.addEventListener('appAuthStateChanged', () => { if (allDrugs.length) render(); });
 document.addEventListener('DOMContentLoaded', () => {
-  allDrugs = buildDrugList();
-  activeTab = 'all';
-  render();
+  allDrugs = buildDrugList(); activeTab = 'all'; render();
 });
 </script>
 </body>
