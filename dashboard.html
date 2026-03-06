@@ -94,7 +94,7 @@
 .prog-bar-label { font-size: 13px; font-weight: 600; color: var(--ink2); }
 .prog-bar-pct { font-family: 'Playfair Display', serif; font-size: 22px; font-weight: 700; color: var(--ink); }
 .prog-bg { background: var(--border2); border-radius: 99px; height: 10px; overflow: hidden; }
-.prog-fill { height: 100%; border-radius: 99px; background: linear-gradient(90deg, var(--sakura2), var(--gold)); transition: width .6s ease; }
+.prog-fill { height: 100%; border-radius: 99px; background: var(--sakura2); transition: width .6s ease; }
 .prog-bar-sub { display: flex; justify-content: space-between; font-size: 11px; color: var(--muted); margin-top: 6px; }
 .edit-prog-btn {
   font-size: 11px; font-weight: 600; color: var(--sakura2);
@@ -123,7 +123,7 @@
   padding: 3px 10px; border-radius: 99px;
 }
 .chip-green  { background: var(--sage-light); color: var(--sage); }
-.chip-yellow { background: var(--gold-light); color: var(--gold); }
+.chip-yellow { background: var(--sky-light); color: var(--sky); }
 .chip-red    { background: var(--sakura-light); color: var(--sakura2); }
 .chip-blue   { background: var(--sky-light); color: var(--sky); }
 .hist-empty { color: var(--muted); font-size: 14px; text-align: center; padding: 32px; }
@@ -152,12 +152,12 @@ tr.editing-row td { background: var(--sky-light) !important; }
   border: 1px solid var(--border); border-left: 3px solid var(--sakura2);
   margin-bottom: 8px; background: var(--surface);
 }
-.weak-item.med  { border-left-color: var(--gold); }
+.weak-item.med  { border-left-color: var(--sky); }
 .weak-item.low  { border-left-color: var(--sage); }
 .weak-name { font-weight: 600; font-size: 14px; }
 .weak-meta { font-size: 12px; color: var(--muted); margin-top: 2px; }
 .weak-pct  { font-family: 'Playfair Display', serif; font-size: 22px; font-weight: 700; color: var(--sakura2); flex-shrink: 0; }
-.weak-item.med .weak-pct { color: var(--gold); }
+.weak-item.med .weak-pct { color: var(--sky); }
 .weak-item.low .weak-pct { color: var(--sage); }
 
 /* ── Pace modal ──────────────────────────────────────────── */
@@ -183,11 +183,12 @@ tr.editing-row td { background: var(--sky-light) !important; }
 
 /* ── Import ──────────────────────────────────────────────── */
 .drop-zone {
-  border: 2px dashed var(--border); border-radius: var(--r-lg);
+  border: 2px dashed var(--sky); border-radius: var(--r-lg);
   padding: 32px; text-align: center; cursor: pointer;
   transition: border-color .15s, background .15s; margin-top: 16px;
+  background: var(--sky-light);
 }
-.drop-zone:hover, .drop-zone.drag-over { border-color: var(--sky); background: var(--sky-light); }
+.drop-zone:hover, .drop-zone.drag-over { border-color: var(--fuji); background: var(--lav-light); }
 .drop-zone-icon { font-size: 32px; margin-bottom: 8px; }
 .drop-zone-text { font-size: 14px; color: var(--ink2); }
 .drop-zone-text span { color: var(--sky); font-weight: 600; }
@@ -322,7 +323,7 @@ tr.editing-row td { background: var(--sky-light) !important; }
       <div class="prog-stat-lbl">Day Streak</div>
     </div>
     <div class="prog-stat clickable" onclick="showPaceModal()" title="Click for pace calculator">
-      <div class="prog-stat-num" id="stat-needed" style="color:var(--gold);">—</div>
+      <div class="prog-stat-num" id="stat-needed" style="color:var(--sakura2);">—</div>
       <div class="prog-stat-lbl">Q / Day Needed <span style="font-size:9px;display:block;color:var(--dim);">tap for calc</span></div>
     </div>
   </div>
@@ -480,19 +481,19 @@ tr.editing-row td { background: var(--sky-light) !important; }
       <button onclick="closeModal('import-modal')" style="background:none;border:none;font-size:22px;cursor:pointer;color:var(--dim);">&times;</button>
     </div>
     <p style="font-size:13px;color:var(--ink2);margin-bottom:4px;">Upload a CSV with <strong>date</strong> and <strong>questions</strong> columns (score optional).</p>
-    <div style="background:var(--surface2);border:1px solid var(--border2);border-radius:var(--r);padding:14px;margin-top:12px;font-size:13px;color:var(--ink2);">
-      <strong style="font-size:12px;">How to get your UWorld data:</strong>
-      <ol style="padding-left:18px;margin-top:6px;font-size:12px;line-height:2;color:var(--ink2);">
-        <li>Go to UWorld → <strong>Previous Tests</strong> → set Items/page to 100</li>
-        <li>Select all & copy the table</li>
-        <li>Paste into an AI with this prompt:</li>
+    <div style="background:var(--surface);border:1px solid var(--border);border-left:3px solid var(--sky);border-radius:var(--r);padding:16px 18px;margin-top:14px;font-size:13px;color:var(--ink2);">
+      <strong style="font-size:12px;color:var(--ink);display:block;margin-bottom:8px;">How to get your UWorld data:</strong>
+      <ol style="padding-left:18px;margin:0;font-size:13px;line-height:1.9;color:var(--ink2);">
+        <li>In UWorld, go to <strong>Previous Tests</strong> → set Items/page to <strong>100</strong></li>
+        <li>Select all &amp; copy the entire table</li>
+        <li>Paste into Claude or ChatGPT with this prompt:</li>
       </ol>
-      <code class="prompt-code">"Convert this UWorld data into a clean CSV with only three columns: Date, Questions, PercentCorrect. No other data."</code>
+      <code class="prompt-code" style="margin-top:10px;background:var(--surface2);border:1px solid var(--border2);border-radius:6px;padding:10px 14px;font-size:12px;font-family:'DM Mono',monospace;display:block;line-height:1.7;color:var(--ink);">"Convert this UWorld data into a clean CSV with only three columns: Date, Questions, PercentCorrect. No other data."</code>
     </div>
     <div class="drop-zone" id="drop-zone"
       onclick="document.getElementById('csv-input').click()">
-      <div class="drop-zone-icon" style="font-size:28px;color:var(--muted);">↑</div>
-      <div class="drop-zone-text">Drop CSV here or <span>click to browse</span></div>
+      <div class="drop-zone-icon" style="font-size:32px;color:var(--sky);">⬆</div>
+      <div class="drop-zone-text" style="font-weight:600;color:var(--ink2);">Drop your CSV here or <span style="color:var(--sky);text-decoration:underline;cursor:pointer;">click to browse</span></div>
       <div class="drop-zone-sub">UWorld exports, spreadsheets, any CSV</div>
       <input type="file" id="csv-input" accept=".csv,.txt" style="display:none;" onchange="handleFileSelect(this)"/>
     </div>
@@ -1098,8 +1099,8 @@ function showPaceModal() {
     const calDays   = Math.max(0, Math.round((finish - now) / 86400000));
     const studyDays = Math.round(calDays * (settings.studyDays.length || 5) / 7);
     const qDay      = studyDays > 0 ? Math.ceil(remaining / studyDays) : '—';
-    html += paceRow('Days until finish date', calDays, 'var(--gold)');
-    html += paceRow(`Study days (${settings.studyDays.length} days/wk)`, studyDays, 'var(--gold)');
+    html += paceRow('Days until finish date', calDays, 'var(--fuji)');
+    html += paceRow(`Study days (${settings.studyDays.length} days/wk)`, studyDays, 'var(--fuji)');
     html += paceRow('Questions / study day', qDay, 'var(--sakura2)');
   }
 
