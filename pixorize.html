@@ -8,14 +8,13 @@
 <title>Pixorize · Step 1 Hub</title>
 <style>
 .tracker-toolbar{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-bottom:20px;}
-.tracker-search{flex:1;min-width:200px;padding:9px 14px;border:1px solid var(--border);border-radius:var(--r);font-size:14px;font-family:inherit;background:var(--surface);color:var(--ink);outline:none;transition:border-color .15s;}
-.tracker-search:focus{border-color:var(--sky);}
+.tracker-search{flex:1;min-width:160px;padding:7px 12px;border:1px solid var(--border2);border-radius:var(--r);font-size:13px;font-family:inherit;background:var(--bg);color:var(--ink2);outline:none;transition:border-color .15s;box-shadow:none;}
+.tracker-search:focus{border-color:var(--dim);}
 .filter-chips{display:flex;gap:6px;flex-wrap:wrap;}
 .filter-chip{padding:6px 14px;border-radius:99px;font-size:12px;font-weight:600;border:1px solid var(--border);background:var(--surface2);color:var(--muted);cursor:pointer;transition:all .15s;white-space:nowrap;}
 .filter-chip.active{background:var(--sky);color:#fff;border-color:var(--sky);}
 .filter-chip.f-watched.active{background:var(--sakura2);border-color:var(--sakura2);}
 .filter-chip.f-reviewed.active{background:var(--gold);border-color:var(--gold);color:#fff;}
-.filter-chip.f-mastered.active{background:var(--sage);border-color:var(--sage);}
 .toolbar-right{display:flex;gap:8px;margin-left:auto;}
 .toolbar-btn{padding:7px 14px;border-radius:var(--r);font-size:12px;font-weight:600;border:1px solid var(--border);background:transparent;color:var(--ink2);cursor:pointer;transition:all .15s;white-space:nowrap;}
 .toolbar-btn:hover{background:var(--surface2);}
@@ -23,8 +22,8 @@
 .overall-top{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;margin-bottom:12px;}
 .overall-title{font-family:'Playfair Display',serif;font-size:19px;font-weight:600;}
 .overall-stats{display:flex;gap:18px;font-size:13px;}
-.overall-stat{color:var(--muted);}
-.overall-stat strong{color:var(--ink2);}
+.overall-stat{color:var(--muted);font-size:12px;}
+.overall-stat strong{color:var(--ink2);font-size:14px;}
 .overall-bar-bg{background:var(--border2);border-radius:99px;height:8px;overflow:hidden;}
 .overall-bar-fill{height:100%;border-radius:99px;background:linear-gradient(90deg,var(--sky),var(--fuji));transition:width .5s ease;}
 .overall-sub{display:flex;justify-content:space-between;font-size:11px;color:var(--muted);margin-top:6px;}
@@ -51,13 +50,31 @@
 .video-name{flex:1;font-size:13.5px;color:var(--ink2);line-height:1.4;}
 .video-time{font-size:11px;color:var(--dim);min-width:52px;text-align:right;font-family:'DM Mono',monospace;}
 .check-btns{display:flex;gap:6px;}
-.icon-btn{width:34px;height:34px;border-radius:8px;border:1.5px solid var(--border);background:var(--bg);display:flex;align-items:center;justify-content:center;font-size:16px;cursor:pointer;transition:all .15s;line-height:1;flex-shrink:0;}
+.icon-btn{width:34px;height:34px;border-radius:8px;border:1.5px solid var(--border);background:var(--bg);display:flex;align-items:center;justify-content:center;font-size:16px;cursor:pointer;transition:all .15s;line-height:1;flex-shrink:0;color:var(--dim);}
 .icon-btn:hover{transform:scale(1.1);}
-.icon-btn.active-w{background:var(--sakura2);border-color:var(--sakura2);}
-.icon-btn.active-r{background:var(--gold);border-color:var(--gold);}
-.icon-btn.active-m{background:var(--sage);border-color:var(--sage);}
+.icon-btn.active-w{background:var(--sage);border-color:var(--sage);color:#fff;}
+.icon-btn.active-r{background:var(--gold);border-color:var(--gold);color:#fff;}
 .tracker-legend{display:flex;gap:16px;align-items:center;flex-wrap:wrap;font-size:12px;color:var(--muted);margin-bottom:16px;}
 .no-results{text-align:center;padding:40px;color:var(--muted);font-size:14px;}
+/* ── Tabs ──────────────────────────────────────────────── */
+.tab-bar {
+  display: flex; gap: 4px; margin-bottom: 16px;
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: var(--r-lg); padding: 5px;
+}
+.tab-btn {
+  flex: 1; padding: 8px 10px; border-radius: 10px;
+  border: none; background: transparent;
+  font-size: 12px; font-weight: 600; color: var(--muted);
+  cursor: pointer; transition: all .15s; white-space: nowrap;
+  display: flex; flex-direction: column; align-items: center; gap: 2px;
+}
+.tab-btn:hover { background: var(--surface2); color: var(--ink2); }
+.tab-btn.active { background: var(--bg); color: var(--ink); box-shadow: 0 1px 4px rgba(42,31,26,.08); }
+.tab-btn .tab-label { font-size: 12px; font-weight: 600; }
+.tab-btn .tab-sub { font-size: 10px; color: var(--dim); font-weight: 400; }
+.tab-btn.active .tab-sub { color: var(--muted); }
+
 .accent-0{background:var(--sakura2);}
 .accent-1{background:var(--sky);}
 .accent-2{background:var(--gold);}
@@ -73,23 +90,22 @@
 <body>
 <script src="nav.js"></script>
 <div class="wrap">
-  <header class="hero" style="padding:40px 0 20px;">
-    <div class="hero-eyebrow">Progress Tracker</div>
-    <h1 class="hero-name" style="font-size:clamp(28px,4vw,44px);">Pixorize <em>Biochem & Immuno</em></h1>
+  <header class="hero" style="padding:36px 0 16px;">
+    <div class="hero-eyebrow" style="font-size:10px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--sakura2);margin-bottom:10px;">Progress Tracker</div>
+    <h1 class="hero-name" style="font-size:clamp(30px,4vw,46px);letter-spacing:-0.5px;font-weight:700;line-height:1.1;margin-bottom:6px;">Pixorize <em>Biochem & Immuno</em></h1>
   </header>
 
   <div class="overall-card">
     <div class="overall-top">
       <span class="overall-title">Overall Progress</span>
       <div class="overall-stats">
-        <span class="overall-stat">👁 <strong id="tot-w">0</strong> Watched</span>
-        <span class="overall-stat">🔁 <strong id="tot-r">0</strong> Reviewed</span>
-        <span class="overall-stat">⭐ <strong id="tot-m">0</strong> Mastered</span>
+        <span class="overall-stat" style="display:inline-flex;align-items:center;gap:5px;"><span style="display:inline-flex;align-items:center;justify-content:center;width:18px;height:18px;border-radius:5px;background:var(--sage);color:#fff;font-size:10px;">✔</span><strong id="tot-w">0</strong> Watched</span>
+        <span class="overall-stat" style="display:inline-flex;align-items:center;gap:5px;"><span style="display:inline-flex;align-items:center;justify-content:center;width:18px;height:18px;border-radius:5px;background:var(--gold);color:#fff;font-size:10px;">✦</span><strong id="tot-r">0</strong> Reviewed</span>
       </div>
     </div>
     <div class="overall-bar-bg"><div class="overall-bar-fill" id="overall-bar" style="width:0%;"></div></div>
     <div class="overall-sub">
-      <span id="overall-note">0% mastered</span>
+      <span id="overall-note">0% reviewed</span>
       <span id="overall-total">0 / 0 videos</span>
     </div>
   </div>
@@ -99,20 +115,44 @@
     <div class="filter-chips">
       <div class="filter-chip active" onclick="setFilter('all',this)">All</div>
       <div class="filter-chip f-watched" onclick="setFilter('unwatched',this)">Not Watched</div>
-      <div class="filter-chip f-watched" onclick="setFilter('watched',this)">👁 Watched</div>
-      <div class="filter-chip f-reviewed" onclick="setFilter('reviewed',this)">🔁 Reviewed</div>
-      <div class="filter-chip f-mastered" onclick="setFilter('mastered',this)">⭐ Mastered</div>
+      <div class="filter-chip f-watched" onclick="setFilter('watched',this)">Watched</div>
+      <div class="filter-chip f-reviewed" onclick="setFilter('reviewed',this)">Reviewed</div>
     </div>
     <div class="toolbar-right">
-      <button class="toolbar-btn" onclick="expandAll()">Expand All</button>
-      <button class="toolbar-btn" onclick="collapseAll()">Collapse All</button>
-      <button class="toolbar-btn" onclick="exportCSV()">Export CSV</button>
-      <button class="toolbar-btn" onclick="resetAll()" style="color:var(--sakura2);">Reset All</button>
+      <button class="toolbar-btn" id="toggle-expand-btn" onclick="toggleExpand()">Expand All</button>
     </div>
   </div>
 
   <div class="tracker-legend">
-    <span style="font-size:12px;color:var(--muted);">👁 = Watched &nbsp;·&nbsp; 🔁 = Reviewed &nbsp;·&nbsp; ⭐ = Mastered</span>
+    <span style="display:inline-flex;align-items:center;gap:6px;font-size:12px;color:var(--muted);">
+      <span style="display:inline-flex;align-items:center;justify-content:center;width:20px;height:20px;border-radius:6px;background:var(--sage);color:#fff;font-size:11px;font-weight:700;">✔</span>
+      <span>Watched (left button)</span>
+    </span>
+    <span style="color:var(--dim);">·</span>
+    <span style="display:inline-flex;align-items:center;gap:6px;font-size:12px;color:var(--muted);">
+      <span style="display:inline-flex;align-items:center;justify-content:center;width:20px;height:20px;border-radius:6px;background:var(--gold);color:#fff;font-size:11px;font-weight:700;">✦</span>
+      <span>Reviewed (right button)</span>
+    </span>
+  </div>
+
+
+  <div class="tab-bar" id="tab-bar">
+    <button class="tab-btn active" onclick="setTab('biochem',this)">
+      <span class="tab-label">⚗️ Biochemistry</span>
+      <span class="tab-sub">Vitamins · Pathways · Metabolism</span>
+    </button>
+    <button class="tab-btn" onclick="setTab('genetics',this)">
+      <span class="tab-label">🧬 Genetics & Disease</span>
+      <span class="tab-sub">Chromosomes · Collagen · Neuro</span>
+    </button>
+    <button class="tab-btn" onclick="setTab('immuno',this)">
+      <span class="tab-label">🛡️ Immunology</span>
+      <span class="tab-sub">Cells · Cytokines · Reactions</span>
+    </button>
+    <button class="tab-btn" onclick="setTab('misc',this)">
+      <span class="tab-label">🧩 Behavioral & Misc</span>
+      <span class="tab-sub">Psych · Embryo · Cytoskeleton</span>
+    </button>
   </div>
 
   <div id="tracker-container"></div>
@@ -456,130 +496,147 @@ const CATEGORIES = [
 ];
 
 const ACCENTS = ['accent-0','accent-1','accent-2','accent-3','accent-4','accent-5','accent-6','accent-7'];
+
+const TAB_GROUPS = {
+  biochem:   ["vitamins","biochempathways","porphyrias","metabolic","lysosomal","glycogen","peroxisome","mitochondrial","dyslipidemias"],
+  genetics:  ["autosomal_dom","chromosomal","collagen","dnarepair","neuro_disorders","toxicology","germlayer","cytoskeleton"],
+  immuno:    ["immunoglobulins","complement","celltypes","bcells_tcells","cytokines","immunodef","hypersensitivity","transfusion","transplant"],
+  misc:      ["misc","personality"]
+};
+
+let activeTab = 'biochem';
+
+function setTab(tab, el) {
+  activeTab = tab;
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  el.classList.add('active');
+  renderAll();
+}
+
+function getCatsForTab() {
+  const ids = TAB_GROUPS[activeTab] || [];
+  return CATEGORIES.filter(c => ids.includes(c.id));
+}
+
 let progress = {};
 let activeFilter = 'all';
 
 function load() { progress = Store.get(STORE_KEY, {}); }
 function save() { Store.set(STORE_KEY, progress); }
-function getState(id) { return progress[id] || {w:false,r:false,m:false}; }
+function getState(id) { return progress[id] || {w:false,r:false}; }
 
 function toggle(id, field) {
   const s = getState(id);
-  if (field==='m') { s.m=!s.m; if(s.m){s.w=true;s.r=true;} }
-  else if (field==='w') { s.w=!s.w; if(!s.w){s.r=false;s.m=false;} }
-  else { s.r=!s.r; if(!s.r)s.m=false; if(s.r)s.w=true; }
-  progress[id]=s; save(); updateVideoRow(id); updateSummary();
+  if (field === 'w') { 
+    s.w = !s.w; 
+    if (!s.w) s.r = false; 
+  } else { 
+    s.r = !s.r; 
+    if (s.r) s.w = true; 
+  }
+  progress[id] = s; 
+  save(); 
+  updateVideoRow(id); 
+  updateSummary();
 }
 
 function updateVideoRow(id) {
   const s = getState(id);
-  const wb=document.getElementById('btn-w-'+id);
-  const rb=document.getElementById('btn-r-'+id);
-  const mb=document.getElementById('btn-m-'+id);
-  if(wb) wb.className=`icon-btn${s.w?' active-w':''}`;
-  if(rb) rb.className=`icon-btn${s.r?' active-r':''}`;
-  if(mb) mb.className=`icon-btn${s.m?' active-m':''}`;
-  const row=document.getElementById('row-'+id);
-  if(row) row.classList.toggle('hidden-row',!rowVisible(id));
+  const wb = document.getElementById('btn-w-'+id);
+  const rb = document.getElementById('btn-r-'+id);
+  if(wb) wb.className = `icon-btn${s.w ? ' active-w' : ''}`;
+  if(rb) rb.className = `icon-btn${s.r ? ' active-r' : ''}`;
+  const row = document.getElementById('row-'+id);
+  if(row) row.classList.toggle('hidden-row', !rowVisible(id));
 }
 
 function rowVisible(id) {
-  const s=getState(id);
-  if(activeFilter==='all') return true;
-  if(activeFilter==='unwatched') return !s.w;
-  if(activeFilter==='watched') return s.w;
-  if(activeFilter==='reviewed') return s.r;
-  if(activeFilter==='mastered') return s.m;
+  const s = getState(id);
+  if(activeFilter === 'all') return true;
+  if(activeFilter === 'unwatched') return !s.w;
+  if(activeFilter === 'watched') return s.w;
+  if(activeFilter === 'reviewed') return s.r;
   return true;
 }
 
 function setFilter(f,el) {
-  activeFilter=f;
-  document.querySelectorAll('.filter-chip').forEach(c=>c.classList.remove('active'));
+  activeFilter = f;
+  document.querySelectorAll('.filter-chip').forEach(c => c.classList.remove('active'));
   el.classList.add('active');
   applyFilters();
 }
 
 function applyFilters() {
-  const q=document.getElementById('search-input').value.toLowerCase().trim();
-  let anyVisible=false;
-  CATEGORIES.forEach(cat => {
-    let catHasVisible=false;
+  const q = document.getElementById('search-input').value.toLowerCase().trim();
+  let anyVisible = false;
+  getCatsForTab().forEach(cat => {
+    let catHasVisible = false;
     cat.videos.forEach(v => {
-      const ms=!q||v.name.toLowerCase().includes(q);
-      const mf=rowVisible(v.id);
-      const visible=ms&&mf;
-      const row=document.getElementById('row-'+v.id);
-      if(row) row.classList.toggle('hidden-row',!visible);
-      if(visible){catHasVisible=true;anyVisible=true;}
+      const ms = !q || v.name.toLowerCase().includes(q);
+      const mf = rowVisible(v.id);
+      const visible = ms && mf;
+      const row = document.getElementById('row-'+v.id);
+      if(row) row.classList.toggle('hidden-row', !visible);
+      if(visible) { catHasVisible = true; anyVisible = true; }
     });
-    const sec=document.getElementById('sec-'+cat.id);
-    if(sec) sec.style.display=catHasVisible?'':'none';
-    if(catHasVisible&&q) sec.classList.add('open');
+    const sec = document.getElementById('sec-'+cat.id);
+    if(sec) sec.style.display = catHasVisible ? '' : 'none';
+    if(catHasVisible && q) sec.classList.add('open');
   });
-  document.getElementById('no-results').style.display=anyVisible?'none':'block';
+  document.getElementById('no-results').style.display = anyVisible ? 'none' : 'block';
   updateCatHeaders();
 }
 
 function updateCatHeaders() {
-  CATEGORIES.forEach(cat => {
-    const w=cat.videos.filter(v=>getState(v.id).w).length;
-    const r=cat.videos.filter(v=>getState(v.id).r).length;
-    const m=cat.videos.filter(v=>getState(v.id).m).length;
-    const total=cat.videos.length;
-    const el=document.getElementById('cat-count-'+cat.id);
-    if(el) el.textContent=`${w}w · ${r}r · ${m}/${total} mastered`;
-    const fill=document.getElementById('cat-fill-'+cat.id);
-    if(fill) fill.style.width=(total?Math.round(m/total*100):0)+'%';
+  getCatsForTab().forEach(cat => {
+    const w = cat.videos.filter(v => getState(v.id).w).length;
+    const r = cat.videos.filter(v => getState(v.id).r).length;
+    const total = cat.videos.length;
+    const pct = total ? Math.round((r / total) * 100) : 0;
+    const el = document.getElementById('cat-count-'+cat.id);
+    if(el) el.textContent = `${w}w · ${r}/${total} reviewed`;
+    const fill = document.getElementById('cat-fill-'+cat.id);
+    if(fill) fill.style.width = pct + '%';
   });
 }
 
 function updateSummary() {
-  const all=CATEGORIES.flatMap(c=>c.videos);
-  const tw=all.filter(v=>getState(v.id).w).length;
-  const tr=all.filter(v=>getState(v.id).r).length;
-  const tm=all.filter(v=>getState(v.id).m).length;
-  const total=all.length;
-  document.getElementById('tot-w').textContent=tw;
-  document.getElementById('tot-r').textContent=tr;
-  document.getElementById('tot-m').textContent=tm;
-  document.getElementById('overall-bar').style.width=(total?Math.round(tm/total*100):0)+'%';
-  document.getElementById('overall-note').textContent=(total?Math.round(tm/total*100):0)+'% mastered';
-  document.getElementById('overall-total').textContent=tm+' / '+total+' videos';
+  const all = CATEGORIES.flatMap(c => c.videos);
+  const tw = all.filter(v => getState(v.id).w).length;
+  const tr = all.filter(v => getState(v.id).r).length;
+  const total = all.length;
+  const pct = total ? Math.round((tr / total) * 100) : 0;
+  
+  document.getElementById('tot-w').textContent = tw;
+  document.getElementById('tot-r').textContent = tr;
+  document.getElementById('overall-bar').style.width = pct + '%';
+  document.getElementById('overall-note').textContent = pct + '% reviewed';
+  document.getElementById('overall-total').textContent = tr + ' / ' + total + ' videos';
   updateCatHeaders();
 }
 
-function expandAll(){document.querySelectorAll('.cat-section').forEach(s=>s.classList.add('open'));}
-function collapseAll(){document.querySelectorAll('.cat-section').forEach(s=>s.classList.remove('open'));}
-function resetAll(){if(!confirm('Reset ALL progress?'))return;progress={};save();renderAll();showToast('Progress reset');}
-
-function exportCSV(){
-  let csv='Section,Video,Watched,Reviewed,Mastered\n';
-  CATEGORIES.forEach(cat=>{
-    cat.videos.forEach(v=>{
-      const s=getState(v.id);
-      csv+=`"${cat.name}","${v.name}",${s.w?1:0},${s.r?1:0},${s.m?1:0}\n`;
-    });
-  });
-  const a=document.createElement('a');
-  a.href='data:text/csv;charset=utf-8,'+encodeURIComponent(csv);
-  a.download='pixorize_progress.csv';
-  document.body.appendChild(a);a.click();document.body.removeChild(a);
+function toggleExpand() {
+  const sections = document.querySelectorAll('.cat-section');
+  const anyClosed = Array.from(sections).some(s => !s.classList.contains('open'));
+  sections.forEach(s => s.classList.toggle('open', anyClosed));
+  document.getElementById('toggle-expand-btn').textContent = anyClosed ? 'Collapse All' : 'Expand All';
 }
 
-function renderAll(){
-  const container=document.getElementById('tracker-container');
-  container.innerHTML=CATEGORIES.map((cat,idx)=>{
-    const accent=ACCENTS[idx%ACCENTS.length];
-    const rows=cat.videos.map(v=>{
-      const s=getState(v.id);
+function resetAll() { if(!confirm('Reset ALL progress?')) return; progress={}; save(); renderAll(); showToast('Progress reset'); }
+
+function renderAll() {
+  const container = document.getElementById('tracker-container');
+  const tabCats = getCatsForTab();
+  container.innerHTML = tabCats.map((cat, idx) => {
+    const accent = ACCENTS[idx % ACCENTS.length];
+    const rows = cat.videos.map(v => {
+      const s = getState(v.id);
       return `<div class="video-row" id="row-${v.id}">
         <div class="video-name">${v.name}</div>
         <div class="video-time">${v.time}</div>
         <div class="check-btns">
-          <button id="btn-w-${v.id}" class="icon-btn${s.w?' active-w':''}" onclick="toggle('${v.id}','w')" title="Watched">👁</button>
-          <button id="btn-r-${v.id}" class="icon-btn${s.r?' active-r':''}" onclick="toggle('${v.id}','r')" title="Reviewed">🔁</button>
-          <button id="btn-m-${v.id}" class="icon-btn${s.m?' active-m':''}" onclick="toggle('${v.id}','m')" title="Mastered">⭐</button>
+          <button id="btn-w-${v.id}" class="icon-btn${s.w ? ' active-w' : ''}" onclick="toggle('${v.id}','w')" title="Watched">✔</button>
+          <button id="btn-r-${v.id}" class="icon-btn${s.r ? ' active-r' : ''}" onclick="toggle('${v.id}','r')" title="Reviewed">✦</button>
         </div>
       </div>`;
     }).join('');
@@ -593,7 +650,7 @@ function renderAll(){
           </div>
         </div>
         <div class="cat-header-right">
-          <span class="cat-count" id="cat-count-${cat.id}">0w · 0r · 0/${cat.videos.length} mastered</span>
+          <span class="cat-count" id="cat-count-${cat.id}">0w · 0/${cat.videos.length} reviewed</span>
           <div class="cat-mini-bar"><div class="cat-mini-fill ${accent}" id="cat-fill-${cat.id}" style="width:0%;"></div></div>
           <span class="cat-chevron">▼</span>
         </div>
@@ -602,7 +659,7 @@ function renderAll(){
         <div class="video-header-row">
           <div style="flex:1;">Video</div>
           <div style="min-width:52px;text-align:right;">Time</div>
-          <div style="min-width:118px;text-align:right;">Status</div>
+          <div style="min-width:74px;text-align:center;">Status</div>
         </div>
         ${rows}
       </div>
@@ -612,12 +669,12 @@ function renderAll(){
   applyFilters();
 }
 
-function showToast(msg){
-  const t=document.getElementById('toast')||(() => {const el=document.createElement('div');el.id='toast';el.className='toast';document.body.appendChild(el);return el;})();
-  t.textContent=msg;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),2000);
+function showToast(msg) {
+  const t = document.getElementById('toast') || (() => { const el = document.createElement('div'); el.id = 'toast'; el.className = 'toast'; document.body.appendChild(el); return el; })();
+  t.textContent = msg; t.classList.add('show'); setTimeout(() => t.classList.remove('show'), 2000);
 }
 
-document.addEventListener('DOMContentLoaded',()=>{load();renderAll();});
+document.addEventListener('DOMContentLoaded', () => { load(); renderAll(); });
 </script>
 </body>
 </html>
