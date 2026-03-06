@@ -15,7 +15,6 @@
 .filter-chip.active{background:var(--sky);color:#fff;border-color:var(--sky);}
 .filter-chip.f-watched.active{background:var(--sakura2);border-color:var(--sakura2);}
 .filter-chip.f-reviewed.active{background:var(--gold);border-color:var(--gold);color:#fff;}
-.filter-chip.f-mastered.active{background:var(--sage);border-color:var(--sage);}
 .toolbar-right{display:flex;gap:8px;margin-left:auto;}
 .toolbar-btn{padding:7px 14px;border-radius:var(--r);font-size:12px;font-weight:600;border:1px solid var(--border);background:transparent;color:var(--ink2);cursor:pointer;transition:all .15s;white-space:nowrap;}
 .toolbar-btn:hover{background:var(--surface2);}
@@ -56,7 +55,6 @@
 .icon-btn:hover{transform:scale(1.1);}
 .icon-btn.active-w{background:var(--sakura2);border-color:var(--sakura2);}
 .icon-btn.active-r{background:var(--gold);border-color:var(--gold);}
-.icon-btn.active-m{background:var(--sage);border-color:var(--sage);}
 .tracker-legend{display:flex;gap:16px;align-items:center;flex-wrap:wrap;font-size:12px;color:var(--muted);margin-bottom:16px;}
 .no-results{text-align:center;padding:40px;color:var(--muted);font-size:14px;}
 .accent-0{background:var(--sakura2);}
@@ -85,12 +83,11 @@
       <div class="overall-stats">
         <span class="overall-stat">W <strong id="tot-w">0</strong>Watched</span>
         <span class="overall-stat">R <strong id="tot-r">0</strong>Reviewed</span>
-        <span class="overall-stat">M <strong id="tot-m">0</strong>Mastered</span>
       </div>
     </div>
     <div class="overall-bar-bg"><div class="overall-bar-fill" id="overall-bar" style="width:0%;"></div></div>
     <div class="overall-sub">
-      <span id="overall-note">0% mastered</span>
+      <span id="overall-note">0% reviewed</span>
       <span id="overall-total">0 / 0 videos</span>
     </div>
   </div>
@@ -102,7 +99,6 @@
       <div class="filter-chip f-watched" data-filter="unwatched" onclick="setFilter('unwatched',this)">Not Watched</div>
       <div class="filter-chip f-watched" data-filter="watched" onclick="setFilter('watched',this)">Watched</div>
       <div class="filter-chip f-reviewed" data-filter="reviewed" onclick="setFilter('reviewed',this)">Reviewed</div>
-      <div class="filter-chip f-mastered" data-filter="mastered" onclick="setFilter('mastered',this)">Mastered</div>
     </div>
     <div class="toolbar-right">
       <button class="toolbar-btn" onclick="expandAll()">Expand All</button>
@@ -113,7 +109,7 @@
   </div>
 
   <div class="tracker-legend">
-    <span style="font-size:12px;color:var(--muted);">W = Watched &nbsp;·&nbsp; R = Reviewed &nbsp;·&nbsp; M = Mastered</span>
+    <span style="font-size:12px;color:var(--muted);">W = Watched &nbsp;·&nbsp; R = Reviewed</span>
   </div>
 
   <div id="tracker-container"></div>
@@ -304,127 +300,129 @@ let activeFilter = 'all';
 
 function load() { progress = Store.get(STORE_KEY, {}); }
 function save() { Store.set(STORE_KEY, progress); }
-function getState(id) { return progress[id] || {w:false,r:false,m:false}; }
+function getState(id) { return progress[id] || {w:false,r:false}; }
 
 function toggle(id, field) {
   const s = getState(id);
-  if (field==='m') { s.m=!s.m; if(s.m){s.w=true;s.r=true;} }
-  else if (field==='w') { s.w=!s.w; if(!s.w){s.r=false;s.m=false;} }
-  else { s.r=!s.r; if(!s.r)s.m=false; if(s.r)s.w=true; }
-  progress[id]=s; save(); updateVideoRow(id); updateSummary();
+  if (field === 'w') { 
+    s.w = !s.w; 
+    if (!s.w) s.r = false; 
+  } else { 
+    s.r = !s.r; 
+    if (s.r) s.w = true; 
+  }
+  progress[id] = s; 
+  save(); 
+  updateVideoRow(id); 
+  updateSummary();
 }
 
 function updateVideoRow(id) {
   const s = getState(id);
-  const wb=document.getElementById('btn-w-'+id);
-  const rb=document.getElementById('btn-r-'+id);
-  const mb=document.getElementById('btn-m-'+id);
-  if(wb) wb.className=`icon-btn${s.w?' active-w':''}`;
-  if(rb) rb.className=`icon-btn${s.r?' active-r':''}`;
-  if(mb) mb.className=`icon-btn${s.m?' active-m':''}`;
-  const row=document.getElementById('row-'+id);
-  if(row) row.classList.toggle('hidden-row',!rowVisible(id));
+  const wb = document.getElementById('btn-w-'+id);
+  const rb = document.getElementById('btn-r-'+id);
+  if(wb) wb.className = `icon-btn${s.w ? ' active-w' : ''}`;
+  if(rb) rb.className = `icon-btn${s.r ? ' active-r' : ''}`;
+  const row = document.getElementById('row-'+id);
+  if(row) row.classList.toggle('hidden-row', !rowVisible(id));
 }
 
 function rowVisible(id) {
-  const s=getState(id);
-  if(activeFilter==='all') return true;
-  if(activeFilter==='unwatched') return !s.w;
-  if(activeFilter==='watched') return s.w;
-  if(activeFilter==='reviewed') return s.r;
-  if(activeFilter==='mastered') return s.m;
+  const s = getState(id);
+  if(activeFilter === 'all') return true;
+  if(activeFilter === 'unwatched') return !s.w;
+  if(activeFilter === 'watched') return s.w;
+  if(activeFilter === 'reviewed') return s.r;
   return true;
 }
 
 function setFilter(f,el) {
-  activeFilter=f;
-  document.querySelectorAll('.filter-chip').forEach(c=>c.classList.remove('active'));
+  activeFilter = f;
+  document.querySelectorAll('.filter-chip').forEach(c => c.classList.remove('active'));
   el.classList.add('active');
   applyFilters();
 }
 
 function applyFilters() {
-  const q=document.getElementById('search-input').value.toLowerCase().trim();
-  let anyVisible=false;
+  const q = document.getElementById('search-input').value.toLowerCase().trim();
+  let anyVisible = false;
   CATEGORIES.forEach(cat => {
-    let catHasVisible=false;
+    let catHasVisible = false;
     cat.videos.forEach(v => {
-      const ms=!q||v.name.toLowerCase().includes(q)||v.num.toLowerCase().includes(q);
-      const mf=rowVisible(v.id);
-      const visible=ms&&mf;
-      const row=document.getElementById('row-'+v.id);
-      if(row) row.classList.toggle('hidden-row',!visible);
-      if(visible){catHasVisible=true;anyVisible=true;}
+      const ms = !q || v.name.toLowerCase().includes(q) || v.num.toLowerCase().includes(q);
+      const mf = rowVisible(v.id);
+      const visible = ms && mf;
+      const row = document.getElementById('row-'+v.id);
+      if(row) row.classList.toggle('hidden-row', !visible);
+      if(visible) { catHasVisible = true; anyVisible = true; }
     });
-    const sec=document.getElementById('sec-'+cat.id);
-    if(sec) sec.style.display=catHasVisible?'':'none';
-    if(catHasVisible&&q) sec.classList.add('open');
+    const sec = document.getElementById('sec-'+cat.id);
+    if(sec) sec.style.display = catHasVisible ? '' : 'none';
+    if(catHasVisible && q) sec.classList.add('open');
   });
-  document.getElementById('no-results').style.display=anyVisible?'none':'block';
+  document.getElementById('no-results').style.display = anyVisible ? 'none' : 'block';
   updateCatHeaders();
 }
 
 function updateCatHeaders() {
   CATEGORIES.forEach(cat => {
-    const w=cat.videos.filter(v=>getState(v.id).w).length;
-    const r=cat.videos.filter(v=>getState(v.id).r).length;
-    const m=cat.videos.filter(v=>getState(v.id).m).length;
-    const total=cat.videos.length;
-    const pct=total?Math.round(m/total*100):0;
-    const el=document.getElementById('cat-count-'+cat.id);
-    if(el) el.textContent=`${w}w · ${r}r · ${m}/${total} mastered`;
-    const fill=document.getElementById('cat-fill-'+cat.id);
-    if(fill) fill.style.width=pct+'%';
+    const w = cat.videos.filter(v => getState(v.id).w).length;
+    const r = cat.videos.filter(v => getState(v.id).r).length;
+    const total = cat.videos.length;
+    const pct = total ? Math.round((r / total) * 100) : 0;
+    const el = document.getElementById('cat-count-'+cat.id);
+    if(el) el.textContent = `${w}w · ${r}/${total} reviewed`;
+    const fill = document.getElementById('cat-fill-'+cat.id);
+    if(fill) fill.style.width = pct + '%';
   });
 }
 
 function updateSummary() {
-  const all=CATEGORIES.flatMap(c=>c.videos);
-  const tw=all.filter(v=>getState(v.id).w).length;
-  const tr=all.filter(v=>getState(v.id).r).length;
-  const tm=all.filter(v=>getState(v.id).m).length;
-  const total=all.length;
-  document.getElementById('tot-w').textContent=tw;
-  document.getElementById('tot-r').textContent=tr;
-  document.getElementById('tot-m').textContent=tm;
-  document.getElementById('overall-bar').style.width=(total?Math.round(tm/total*100):0)+'%';
-  document.getElementById('overall-note').textContent=(total?Math.round(tm/total*100):0)+'% mastered';
-  document.getElementById('overall-total').textContent=tm+' / '+total+' videos';
+  const all = CATEGORIES.flatMap(c => c.videos);
+  const tw = all.filter(v => getState(v.id).w).length;
+  const tr = all.filter(v => getState(v.id).r).length;
+  const total = all.length;
+  const pct = total ? Math.round((tr / total) * 100) : 0;
+  
+  document.getElementById('tot-w').textContent = tw;
+  document.getElementById('tot-r').textContent = tr;
+  document.getElementById('overall-bar').style.width = pct + '%';
+  document.getElementById('overall-note').textContent = pct + '% reviewed';
+  document.getElementById('overall-total').textContent = tr + ' / ' + total + ' videos';
   updateCatHeaders();
 }
 
-function expandAll(){document.querySelectorAll('.cat-section').forEach(s=>s.classList.add('open'));}
-function collapseAll(){document.querySelectorAll('.cat-section').forEach(s=>s.classList.remove('open'));}
-function resetAll(){if(!confirm('Reset ALL progress?'))return;progress={};save();renderAll();showToast('Progress reset');}
+function expandAll() { document.querySelectorAll('.cat-section').forEach(s => s.classList.add('open')); }
+function collapseAll() { document.querySelectorAll('.cat-section').forEach(s => s.classList.remove('open')); }
+function resetAll() { if(!confirm('Reset ALL progress?')) return; progress={}; save(); renderAll(); showToast('Progress reset'); }
 
-function exportCSV(){
-  let csv='Section,Num,Video,Watched,Reviewed,Mastered\n';
-  CATEGORIES.forEach(cat=>{
-    cat.videos.forEach(v=>{
-      const s=getState(v.id);
-      csv+=`"${cat.name}","${v.num}","${v.name}",${s.w?1:0},${s.r?1:0},${s.m?1:0}\n`;
+function exportCSV() {
+  let csv = 'Section,Num,Video,Watched,Reviewed\n';
+  CATEGORIES.forEach(cat => {
+    cat.videos.forEach(v => {
+      const s = getState(v.id);
+      csv += `"${cat.name}","${v.num}","${v.name}",${s.w ? 1 : 0},${s.r ? 1 : 0}\n`;
     });
   });
-  const a=document.createElement('a');
-  a.href='data:text/csv;charset=utf-8,'+encodeURIComponent(csv);
-  a.download='sketchy_micro_progress.csv';
-  document.body.appendChild(a);a.click();document.body.removeChild(a);
+  const a = document.createElement('a');
+  a.href = 'data:text/csv;charset=utf-8,' + encodeURIComponent(csv);
+  a.download = 'sketchy_micro_progress.csv';
+  document.body.appendChild(a); a.click(); document.body.removeChild(a);
 }
 
-function renderAll(){
-  const container=document.getElementById('tracker-container');
-  container.innerHTML=CATEGORIES.map((cat,idx)=>{
-    const accent=ACCENTS[idx%ACCENTS.length];
-    const rows=cat.videos.map(v=>{
-      const s=getState(v.id);
+function renderAll() {
+  const container = document.getElementById('tracker-container');
+  container.innerHTML = CATEGORIES.map((cat, idx) => {
+    const accent = ACCENTS[idx % ACCENTS.length];
+    const rows = cat.videos.map(v => {
+      const s = getState(v.id);
       return `<div class="video-row" id="row-${v.id}">
         <div class="video-num">${v.num}</div>
         <div class="video-name">${v.name}</div>
         <div class="video-time">${v.time}</div>
         <div class="check-btns">
-          <button id="btn-w-${v.id}" class="icon-btn${s.w?' active-w':''}" onclick="toggle('${v.id}','w')" title="Watched">W</button>
-          <button id="btn-r-${v.id}" class="icon-btn${s.r?' active-r':''}" onclick="toggle('${v.id}','r')" title="Reviewed">R</button>
-          <button id="btn-m-${v.id}" class="icon-btn${s.m?' active-m':''}" onclick="toggle('${v.id}','m')" title="Mastered">M</button>
+          <button id="btn-w-${v.id}" class="icon-btn${s.w ? ' active-w' : ''}" onclick="toggle('${v.id}','w')" title="Watched">W</button>
+          <button id="btn-r-${v.id}" class="icon-btn${s.r ? ' active-r' : ''}" onclick="toggle('${v.id}','r')" title="Reviewed">R</button>
         </div>
       </div>`;
     }).join('');
@@ -438,7 +436,7 @@ function renderAll(){
           </div>
         </div>
         <div class="cat-header-right">
-          <span class="cat-count" id="cat-count-${cat.id}">0w · 0r · 0/${cat.videos.length} mastered</span>
+          <span class="cat-count" id="cat-count-${cat.id}">0w · 0/${cat.videos.length} reviewed</span>
           <div class="cat-mini-bar"><div class="cat-mini-fill ${accent}" id="cat-fill-${cat.id}" style="width:0%;"></div></div>
           <span class="cat-chevron">▼</span>
         </div>
@@ -458,12 +456,12 @@ function renderAll(){
   applyFilters();
 }
 
-function showToast(msg){
-  const t=document.getElementById('toast')||(() => {const el=document.createElement('div');el.id='toast';el.className='toast';document.body.appendChild(el);return el;})();
-  t.textContent=msg;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),2000);
+function showToast(msg) {
+  const t = document.getElementById('toast') || (() => { const el = document.createElement('div'); el.id = 'toast'; el.className = 'toast'; document.body.appendChild(el); return el; })();
+  t.textContent = msg; t.classList.add('show'); setTimeout(() => t.classList.remove('show'), 2000);
 }
 
-document.addEventListener('DOMContentLoaded',()=>{load();renderAll();});
+document.addEventListener('DOMContentLoaded', () => { load(); renderAll(); });
 </script>
 </body>
 </html>
