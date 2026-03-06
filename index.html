@@ -92,42 +92,30 @@
 .uw-qd-l  { font-size: 10px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: var(--muted); margin-top: 2px; }
 
 /* ══════════════════════════════════════════════════════════
-   CARD SYSTEM — one hover pattern everywhere
-   border-left accent: identity marker (always visible)
-   ::before top bar:   polish layer (fades in on hover)
-   translateY(-3px):   lift (on hover)
-   All transitions: var(--t) = .18s ease
+   CARD SYSTEM — single unified hover mechanic
+   Default: plain border, no accent
+   Hover:   left border accent appears + lift + shadow
+   One effect, no competing decorations
    ══════════════════════════════════════════════════════════ */
 
-/* Shared mixin applied to all three card types */
 .feat-card,
 .tracker-card,
 .tool-card {
   position: relative; overflow: hidden;
   border-radius: var(--r-lg);
   border: 1px solid var(--border);
-  border-left: 3px solid var(--ca, var(--sakura2));
+  border-left: 3px solid transparent;
   background: var(--surface);
   transition: transform var(--t), box-shadow var(--t), border-color var(--t);
-}
-.feat-card::before,
-.tracker-card::before,
-.tool-card::before {
-  content: '';
-  position: absolute; top: 0; left: 0; right: 0; height: 3px;
-  background: var(--ca, var(--sakura2));
-  opacity: 0; transition: opacity var(--t);
 }
 .feat-card:hover,
 .tracker-card:hover,
 .tool-card:hover {
   transform: var(--lift);
   box-shadow: var(--shadow-md);
-  border-color: var(--ca, var(--sakura2));
+  border-color: var(--border);
+  border-left-color: var(--ca, var(--sakura2));
 }
-.feat-card:hover::before,
-.tracker-card:hover::before,
-.tool-card:hover::before { opacity: 1; }
 
 /* ── Daily feature cards (DOTD + OotD) ─────────────────── */
 .daily-grid {
