@@ -28,8 +28,9 @@
 .overall-bar-fill{height:100%;border-radius:99px;background:linear-gradient(90deg,var(--sky),var(--fuji));transition:width .5s ease;}
 .overall-sub{display:flex;justify-content:space-between;font-size:11px;color:var(--muted);margin-top:6px;}
 .cat-section{border:1px solid var(--border);border-radius:var(--r-lg);margin-bottom:10px;overflow:hidden;background:var(--surface);}
-.cat-header{display:flex;align-items:center;justify-content:space-between;padding:16px 20px;cursor:pointer;user-select:none;gap:12px;transition:background .12s;}
+.cat-header{display:flex;align-items:center;justify-content:space-between;padding:16px 20px;cursor:pointer;gap:12px;transition:background .12s;}
 .cat-header:hover{background:var(--surface2);}
+.cat-chevron:hover{background:var(--surface2);color:var(--ink2);}
 .cat-header-left{display:flex;align-items:center;gap:12px;flex:1;min-width:0;}
 .cat-accent{width:4px;height:36px;border-radius:99px;flex-shrink:0;}
 .cat-name{font-family:'Playfair Display',serif;font-size:17px;font-weight:600;}
@@ -37,8 +38,8 @@
 .cat-header-right{display:flex;align-items:center;gap:14px;flex-shrink:0;}
 .cat-count{font-size:12px;color:var(--muted);font-weight:600;white-space:nowrap;}
 .cat-mini-bar{width:80px;height:5px;background:var(--border2);border-radius:99px;overflow:hidden;}
-.cat-mini-fill{height:100%;border-radius:99px;transition:width .4s;background:linear-gradient(90deg,var(--sky),var(--fuji));}
-.cat-chevron{font-size:11px;color:var(--dim);transition:transform .2s;}
+.cat-mini-fill{height:100%;border-radius:99px;transition:width .4s;}
+.cat-chevron{font-size:11px;color:var(--dim);transition:transform .2s;background:none;border:none;cursor:pointer;padding:4px 6px;border-radius:4px;line-height:1;}
 .cat-section.open .cat-chevron{transform:rotate(180deg);}
 .cat-body{display:none;border-top:1px solid var(--border2);}
 .cat-section.open .cat-body{display:block;}
@@ -378,7 +379,7 @@ function updateCatHeaders() {
     const total = cat.videos.length;
     const pct = total ? Math.round((r / total) * 100) : 0;
     const el = document.getElementById('cat-count-'+cat.id);
-    if(el) el.textContent = `${w}w · ${r}/${total} reviewed`;
+    if(el) el.textContent = `${r} / ${total} reviewed`;
     const fill = document.getElementById('cat-fill-'+cat.id);
     if(fill) fill.style.width = pct + '%';
   });
@@ -425,7 +426,7 @@ function renderAll() {
       </div>`;
     }).join('');
     return `<div class="cat-section" id="sec-${cat.id}">
-      <div class="cat-header" onclick="document.getElementById('sec-${cat.id}').classList.toggle('open')">
+      <div class="cat-header" onclick="this.closest('.cat-section').classList.toggle('open')">
         <div class="cat-header-left">
           <div class="cat-accent ${accent}"></div>
           <div>
@@ -434,16 +435,16 @@ function renderAll() {
           </div>
         </div>
         <div class="cat-header-right">
-          <span class="cat-count" id="cat-count-${cat.id}">0w · 0/${cat.videos.length} reviewed</span>
+          <span class="cat-count" id="cat-count-${cat.id}">0 / ${cat.videos.length} reviewed</span>
           <div class="cat-mini-bar"><div class="cat-mini-fill ${accent}" id="cat-fill-${cat.id}" style="width:0%;"></div></div>
-          <span class="cat-chevron">▼</span>
+          <button class="cat-chevron" onclick="this.closest('.cat-section').classList.toggle('open');event.stopPropagation()">▼</button>
         </div>
       </div>
       <div class="cat-body">
         <div class="video-header-row">
           <div style="min-width:36px;">No.</div>
           <div style="flex:1;">Organism / Video</div>
-          <div style="min-width:52px;text-align:right;">Time</div>
+          <div style="min-width:52px;text-align:right;margin-right:20px;">Time</div>
           <div style="min-width:74px;text-align:center;">Status</div>
         </div>
         ${rows}
