@@ -61,7 +61,7 @@
         </button>
         <button id="auth-btn" class="nav-auth-btn" onclick="handleAuthClick()">
           <span id="auth-btn-avatar" class="nav-auth-avatar" style="display:none;"></span>
-          <span id="auth-btn-label">Sign In</span>
+          <span id="auth-btn-label" style="overflow:hidden;text-overflow:ellipsis;min-width:0;">Sign In</span>
         </button>
       </div>
 
@@ -107,6 +107,7 @@
     } else {
       label.textContent = 'Sign In';
       avatar.style.display = 'none';
+      btn.title = '';
       btn.classList.remove('nav-auth-signed-in');
     }
   };
