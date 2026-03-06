@@ -8,103 +8,263 @@
 <title>Step 1 Study Hub</title>
 <style>
 /* ═══════════════════════════════════════════════════════════
-   INDEX PAGE - Unified Theme
+   INDEX PAGE — local overrides only
    ═══════════════════════════════════════════════════════════ */
 :root {
-  --lift: translateY(-3px);
+  --lift: translateY(-2px);
   --t:    .18s ease;
 }
 
-.hero { padding: 56px 0 32px; border-bottom: 1px solid var(--border2); margin-bottom: 28px; }
-.hero-eyebrow { font-size: 10px; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; color: var(--sakura2); opacity: .75; margin-bottom: 12px; }
-.hero-title { font-family: 'Playfair Display', serif; font-size: clamp(34px, 5vw, 54px); font-weight: 700; line-height: 1.12; color: var(--ink); }
+/* ── Hero ─────────────────────────────────────────────────── */
+.hero {
+  padding: 52px 0 0;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 32px;
+  align-items: start;
+  border-bottom: 1px solid var(--border2);
+  margin-bottom: 0;
+}
+.hero-eyebrow {
+  font-size: 10px; font-weight: 700; letter-spacing: 3px;
+  text-transform: uppercase; color: var(--sakura2);
+  margin-bottom: 10px;
+}
+.hero-title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(32px, 4.5vw, 50px);
+  font-weight: 700; line-height: 1.12; color: var(--ink);
+  margin-bottom: 16px;
+}
 .hero-title em { font-style: italic; color: var(--sakura2); }
+.hero-tagline {
+  font-size: 14px; color: var(--muted); line-height: 1.65;
+  max-width: 480px; margin-bottom: 32px;
+}
 
-.sec-label { font-size: 10px; font-weight: 700; letter-spacing: 2.5px; text-transform: uppercase; color: var(--sakura2); opacity: .6; margin: 32px 0 14px; }
+/* ── Countdown — integrated into hero right column ───────── */
+.hero-countdown {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--r-xl);
+  padding: 24px 28px;
+  box-shadow: var(--shadow-md);
+  min-width: 220px;
+  display: flex; flex-direction: column; gap: 16px;
+  align-self: start;
+  margin-bottom: -1px; /* flush with hero border */
+}
+.cd-lbl {
+  font-size: 10px; font-weight: 700; letter-spacing: 2px;
+  text-transform: uppercase; color: var(--muted); margin-bottom: 4px;
+  display: block;
+}
+.cd-days-wrap { display: flex; align-items: baseline; gap: 6px; }
+.cd-days {
+  font-family: 'Playfair Display', serif;
+  font-size: 52px; font-weight: 700; line-height: 1;
+  color: var(--fuji);
+}
+.cd-unit { font-size: 12px; color: var(--muted); }
+.cd-date { font-size: 15px; font-weight: 600; color: var(--ink); }
+.cd-sep { height: 1px; background: var(--border2); }
+.cd-edit {
+  width: 100%; text-align: center;
+  background: transparent; color: var(--sakura2);
+  border: 1.5px solid var(--sakura);
+  border-radius: var(--r); padding: 9px 16px;
+  font-size: 12px; font-weight: 600;
+  transition: background var(--t), border-color var(--t);
+}
+.cd-edit:hover { background: var(--sakura-light); border-color: var(--sakura2); }
 
-.countdown-card { background: var(--surface); border: 1px solid var(--border); border-left: 3px solid var(--fuji); border-radius: var(--r-lg); padding: 20px 28px; display: flex; align-items: center; gap: 28px; flex-wrap: wrap; margin-bottom: 14px; }
-.cd-block { display: flex; flex-direction: column; }
-.cd-lbl { font-size: 10px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--muted); margin-bottom: 3px; }
-.cd-days { font-family: 'Playfair Display', serif; font-size: 44px; font-weight: 700; line-height: 1; color: var(--fuji); }
-.cd-unit { font-size: 11px; color: var(--muted); margin-top: 2px; }
-.cd-date { font-size: 17px; font-weight: 600; color: var(--ink); }
-.cd-sep { width: 1px; height: 52px; background: var(--border); flex-shrink: 0; }
-.cd-edit { margin-left: auto; background: transparent; color: var(--sakura2); border: 1px solid var(--sakura); border-radius: var(--r); padding: 8px 18px; font-size: 12px; font-weight: 600; transition: background var(--t); white-space: nowrap; }
-.cd-edit:hover { background: var(--sakura-light); }
-
-.uw-strip { display: none; background: var(--surface); border: 1px solid var(--border); border-left: 3px solid var(--sakura2); border-radius: var(--r-lg); padding: 16px 24px; margin-bottom: 28px; align-items: center; gap: 24px; flex-wrap: wrap; }
-.uw-strip.on { display: flex; }
-.uw-prog { flex: 1; min-width: 180px; }
-.uw-lbl { font-size: 10px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--muted); margin-bottom: 7px; }
-.uw-row { display: flex; align-items: center; gap: 12px; margin-bottom: 4px; }
-.uw-bg { flex: 1; height: 6px; background: var(--border2); border-radius: 99px; overflow: hidden; }
+/* ── UWorld strip ─────────────────────────────────────────── */
+.uw-strip {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--r-lg);
+  padding: 16px 22px;
+  display: flex; align-items: center; gap: 20px; flex-wrap: wrap;
+  margin-top: 20px;
+}
+/* Always show — empty state when no data */
+.uw-empty-hint {
+  font-size: 12px; color: var(--muted); font-style: italic;
+}
+.uw-prog { flex: 1; min-width: 160px; }
+.uw-lbl {
+  font-size: 10px; font-weight: 700; letter-spacing: 2px;
+  text-transform: uppercase; color: var(--muted); margin-bottom: 7px;
+}
+.uw-row { display: flex; align-items: center; gap: 10px; margin-bottom: 4px; }
+.uw-bg { flex: 1; height: 5px; background: var(--border2); border-radius: 99px; overflow: hidden; }
 .uw-fill { height: 100%; border-radius: 99px; background: linear-gradient(90deg, var(--sakura2), var(--gold)); transition: width .7s ease; }
-.uw-pct { font-family: 'Playfair Display', serif; font-size: 14px; font-weight: 700; color: var(--sakura2); min-width: 36px; text-align: right; }
+.uw-pct { font-family: 'DM Mono', monospace; font-size: 13px; font-weight: 500; color: var(--sakura2); min-width: 36px; text-align: right; }
 .uw-sub { font-size: 11px; color: var(--muted); }
-.uw-div { width: 1px; height: 36px; background: var(--border2); flex-shrink: 0; }
+.uw-div { width: 1px; height: 32px; background: var(--border2); flex-shrink: 0; }
 .uw-qd { text-align: center; flex-shrink: 0; }
-.uw-qd-v { font-family: 'Playfair Display', serif; font-size: 30px; font-weight: 700; line-height: 1; color: var(--sakura2); }
-.uw-qd-l { font-size: 10px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: var(--muted); margin-top: 2px; }
+.uw-qd-v { font-family: 'Playfair Display', serif; font-size: 28px; font-weight: 700; line-height: 1; color: var(--sakura2); }
+.uw-qd-l { font-size: 10px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: var(--muted); margin-top: 3px; }
 
-.feat-card, .tracker-card, .tool-card { position: relative; overflow: hidden; border-radius: var(--r-lg); border: 1px solid var(--border); border-left: 3px solid transparent; background: var(--surface); transition: transform var(--t), box-shadow var(--t), border-color var(--t); }
-.feat-card:hover, .tracker-card:hover, .tool-card:hover { transform: var(--lift); box-shadow: var(--shadow-md); border-color: var(--border); border-left-color: var(--ca, var(--sakura2)); }
+/* ── Daily high-yield cards ───────────────────────────────── */
+.daily-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
 
-.daily-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 4px; }
-.feat-card { display: none; flex-direction: column; padding: 22px 24px; cursor: pointer; }
-.feat-card:hover .feat-cta { opacity: 1; }
-.feat-eyebrow { font-size: 10px; font-weight: 700; letter-spacing: 1.8px; text-transform: uppercase; color: var(--ca, var(--sakura2)); margin-bottom: 10px; }
-.feat-name { font-family: 'Playfair Display', serif; font-size: 18px; font-weight: 600; line-height: 1.3; color: var(--ink); margin-bottom: 8px; }
-.feat-pearl { font-size: 13px; font-style: italic; color: var(--ink2); line-height: 1.55; flex: 1; }
-.feat-cta { margin-top: 16px; font-size: 12px; font-weight: 600; color: var(--ca, var(--sakura2)); opacity: .7; transition: opacity var(--t); }
-.feat-drug { --ca: var(--sakura2); }
+/* Skeleton loader — shows before JS hydrates cards */
+.feat-skeleton {
+  border-radius: var(--r-lg); border: 1px solid var(--border);
+  background: var(--surface); padding: 22px 24px;
+  display: flex; flex-direction: column; gap: 10px;
+  min-height: 160px;
+}
+.skel-line {
+  border-radius: 6px; background: var(--border2);
+  animation: shimmer 1.4s ease-in-out infinite;
+}
+@keyframes shimmer {
+  0%, 100% { opacity: .6; }
+  50% { opacity: 1; }
+}
+
+.feat-card {
+  display: none; flex-direction: column; padding: 22px 24px; cursor: pointer;
+  border-radius: var(--r-lg); border: 1px solid var(--border);
+  background: var(--surface);
+  transition: transform var(--t), box-shadow var(--t), border-color var(--t);
+  position: relative; overflow: hidden;
+}
+.feat-card:hover {
+  transform: var(--lift);
+  box-shadow: var(--shadow-md), inset 3px 0 0 0 var(--ca, var(--sakura2));
+}
+.feat-card:focus-visible { outline: 2px solid var(--sakura2); outline-offset: 2px; }
+.feat-card:hover .feat-cta { opacity: 1; transform: translateX(2px); }
+
+.feat-eyebrow {
+  font-size: 10px; font-weight: 700; letter-spacing: 1.8px;
+  text-transform: uppercase; color: var(--ca, var(--sakura2)); margin-bottom: 10px;
+}
+.feat-name {
+  font-family: 'Playfair Display', serif; font-size: 18px; font-weight: 600;
+  line-height: 1.3; color: var(--ink); margin-bottom: 8px;
+}
+.feat-pearl {
+  font-size: 13px; font-style: italic; color: var(--ink2); line-height: 1.55; flex: 1;
+}
+.feat-cta {
+  margin-top: 16px; font-size: 12px; font-weight: 600;
+  color: var(--ca, var(--sakura2)); opacity: .65;
+  transition: opacity var(--t), transform var(--t);
+}
+.feat-drug  { --ca: var(--sakura2); }
 .feat-micro { --ca: var(--sage); }
 
+/* ── Progress tracker cards ───────────────────────────────── */
 .tracker-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
-.tracker-card { padding: 20px 20px 16px; display: block; }
+.tracker-card {
+  padding: 20px 20px 16px; display: block;
+  border-radius: var(--r-lg); border: 1px solid var(--border);
+  background: var(--surface); position: relative; overflow: hidden;
+  transition: transform var(--t), box-shadow var(--t), border-color var(--t);
+  cursor: pointer;
+}
+.tracker-card:hover {
+  transform: var(--lift);
+  box-shadow: var(--shadow-md), inset 3px 0 0 0 var(--ca, var(--peach));
+}
+.tracker-card:focus-visible { outline: 2px solid var(--sakura2); outline-offset: 2px; }
 .tracker-card:hover .tc-arrow { color: var(--ca, var(--peach)); }
+
 .tc-arrow { position: absolute; top: 18px; right: 18px; font-size: 13px; color: var(--dim); transition: color var(--t); }
-.tc-lbl { font-size: 10px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: var(--muted); margin-bottom: 5px; }
-.tc-title { font-family: 'Playfair Display', serif; font-size: 16px; font-weight: 600; color: var(--ink); margin-bottom: 14px; }
-.tc-bg { height: 5px; background: var(--border2); border-radius: 99px; overflow: hidden; margin-bottom: 7px; }
+.tc-lbl { font-size: 10px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: var(--muted); margin-bottom: 4px; }
+.tc-title { font-family: 'Playfair Display', serif; font-size: 15px; font-weight: 600; color: var(--ink); margin-bottom: 12px; }
+.tc-bg { height: 5px; background: var(--border2); border-radius: 99px; overflow: hidden; margin-bottom: 6px; }
 .tc-fill { height: 100%; border-radius: 99px; background: var(--ca, var(--peach)); transition: width .6s ease; }
 .tc-stats { display: flex; justify-content: space-between; font-size: 11px; color: var(--muted); }
+.tc-pct { font-weight: 700; color: var(--ca, var(--peach)); }
 
-.ref-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 14px; }
+/* Tracker card accent colors */
+.card-spharm { --ca: var(--peach); }
+.card-smicro { --ca: var(--sage); }
+.card-pix    { --ca: var(--lavender); }
+
+/* ── Reference cards ──────────────────────────────────────── */
 .tool-card { padding: 20px 22px; display: block; }
-.tool-card:hover .card-arrow { color: var(--ca, var(--sakura2)); transform: translate(1px,-1px); }
-.card-hdr { display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px; }
-.card-tag { font-size: 10px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: var(--muted); background: var(--surface2); border: 1px solid var(--border2); padding: 3px 9px; border-radius: 99px; }
-.card-arrow { font-size: 16px; color: var(--dim); transition: color var(--t), transform var(--t); }
-.card-title { font-family: 'Playfair Display', serif; font-size: 17px; font-weight: 600; color: var(--ink); margin-bottom: 8px; }
-.card-desc { font-size: 13px; color: var(--ink2); line-height: 1.55; }
-
+.tool-card:hover .card-arrow { color: var(--ca, var(--sakura2)); transform: translate(2px,-2px); }
 .card-pharm { --ca: var(--sakura2); }
 .card-micro { --ca: var(--sage); }
-.card-smicro { --ca: var(--sage); }
-.card-spharm { --ca: var(--peach); }
-.card-pix { --ca: var(--lavender); }
-.card-dash { --ca: var(--sky); }
+.card-dash  { --ca: var(--sky); }
 
-.ext-list { background: var(--surface); border: 1px solid var(--border); border-radius: var(--r-lg); overflow: hidden; }
-.ext-row { display: flex; align-items: center; gap: 16px; padding: 13px 20px; border-bottom: 1px solid var(--border2); border-left: 3px solid transparent; text-decoration: none; color: inherit; transition: background var(--t), border-color var(--t); }
-.ext-row:last-child { border-bottom: none; }
-.ext-row:hover { background: var(--surface2); border-left-color: var(--ea, var(--gold)); }
-.ext-dot { width: 7px; height: 7px; border-radius: 50%; flex-shrink: 0; }
-.ext-name { font-size: 13.5px; font-weight: 600; min-width: 130px; }
-.ext-desc { font-size: 13px; color: var(--muted); flex: 1; }
-.ext-pill { font-size: 10px; font-weight: 700; letter-spacing: .8px; text-transform: uppercase; color: var(--muted); background: var(--surface2); border: 1px solid var(--border2); padding: 2px 8px; border-radius: 99px; white-space: nowrap; }
-.ext-arrow { font-size: 12px; color: var(--dim); flex-shrink: 0; }
+/* ── External resources ───────────────────────────────────── */
+.ext-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 12px;
+}
+.ext-card {
+  display: flex; flex-direction: column; gap: 8px;
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: var(--r-lg); padding: 18px 20px;
+  text-decoration: none; color: inherit;
+  transition: transform var(--t), box-shadow var(--t), border-color var(--t);
+  position: relative; overflow: hidden; cursor: pointer;
+}
+.ext-card:hover {
+  transform: var(--lift);
+  box-shadow: var(--shadow-md), inset 3px 0 0 0 var(--ea, var(--gold));
+}
+.ext-card:focus-visible { outline: 2px solid var(--sakura2); outline-offset: 2px; }
+.ext-card-top { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
+.ext-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; background: var(--ea, var(--gold)); }
+.ext-pill {
+  font-size: 10px; font-weight: 700; letter-spacing: .8px; text-transform: uppercase;
+  color: var(--muted); background: var(--surface2); border: 1px solid var(--border2);
+  padding: 2px 8px; border-radius: 99px; white-space: nowrap;
+}
+.ext-arrow { font-size: 13px; color: var(--dim); transition: color var(--t), transform var(--t); margin-left: auto; }
+.ext-card:hover .ext-arrow { color: var(--ea, var(--gold)); transform: translate(2px,-2px); }
+.ext-name { font-size: 14px; font-weight: 600; color: var(--ink); }
+.ext-desc { font-size: 12.5px; color: var(--muted); line-height: 1.55; }
 
-.motive { margin-top: 32px; background: linear-gradient(135deg, var(--sakura-light) 0%, var(--lav-light) 100%); border: 1px solid var(--sakura); border-radius: var(--r-lg); padding: 28px 32px; display: grid; grid-template-columns: 1fr 1px 1fr; gap: 28px; align-items: center; }
-.motive-sep { background: var(--sakura); opacity: .25; }
-.motive-txt { font-size: 14px; color: var(--ink2); line-height: 1.7; }
-.motive-txt strong { color: var(--ink); }
+/* ── Motivation band ──────────────────────────────────────── */
+.motive-band {
+  margin-top: 36px;
+  border-top: 1px solid var(--border2);
+  padding-top: 28px;
+  display: grid; grid-template-columns: 1fr 1px 1fr; gap: 28px; align-items: center;
+}
+.motive-sep { background: var(--border2); }
+.motive-txt { font-size: 14px; color: var(--ink2); line-height: 1.75; }
+.motive-txt strong { color: var(--ink); font-weight: 600; }
 .motive-q { text-align: center; }
-.motive-qt { font-family: 'Playfair Display', serif; font-size: 16px; font-style: italic; color: var(--ink2); line-height: 1.75; }
-.motive-attr { display: block; margin-top: 10px; font-size: 10px; font-weight: 700; letter-spacing: 1.2px; text-transform: uppercase; color: var(--muted); }
+.motive-qt {
+  font-family: 'Playfair Display', serif; font-size: 15px;
+  font-style: italic; color: var(--ink2); line-height: 1.75;
+}
+.motive-attr {
+  display: block; margin-top: 10px; font-size: 10px; font-weight: 700;
+  letter-spacing: 1.2px; text-transform: uppercase; color: var(--muted);
+}
 
-@media (max-width: 720px) { .daily-grid { grid-template-columns: 1fr; } .tracker-grid { grid-template-columns: 1fr 1fr; } .motive { grid-template-columns: 1fr; } .motive-sep { display: none; } }
-@media (max-width: 480px) { .tracker-grid { grid-template-columns: 1fr; } .cd-days { font-size: 34px; } .countdown-card { gap: 16px; padding: 16px 20px; } }
+/* ── Responsive ───────────────────────────────────────────── */
+@media (max-width: 860px) {
+  .hero { grid-template-columns: 1fr; }
+  .hero-countdown { min-width: unset; flex-direction: row; flex-wrap: wrap; align-items: center; gap: 16px; padding: 18px 22px; border-radius: var(--r-lg); }
+  .cd-sep { width: 1px; height: 36px; }
+  .cd-edit { width: auto; margin-left: auto; }
+  .cd-block { flex-direction: column; }
+}
+@media (max-width: 720px) {
+  .daily-grid { grid-template-columns: 1fr; }
+  .tracker-grid { grid-template-columns: 1fr 1fr; }
+  .motive-band { grid-template-columns: 1fr; }
+  .motive-sep { display: none; }
+}
+@media (max-width: 480px) {
+  .tracker-grid { grid-template-columns: 1fr; }
+  .cd-days { font-size: 40px; }
+  .hero-countdown { flex-direction: column; }
+  .cd-edit { width: 100%; }
+}
 </style>
 </head>
 <body>
@@ -119,33 +279,43 @@
 <script src="nav.js"></script>
 
 <div class="wrap">
+
+  <!-- ── HERO + COUNTDOWN (integrated) ──────────────────── -->
   <header class="hero">
-    <div class="hero-eyebrow">USMLE Step 1 Study Hub</div>
-    <h1 class="hero-title">Your <em>Study Resources,</em><br>All in One Place</h1>
+    <div class="hero-left">
+      <div class="hero-eyebrow">USMLE Step 1 Study Hub</div>
+      <h1 class="hero-title">Your <em>Study Resources,</em><br>All in One Place</h1>
+      <p class="hero-tagline">Everything you need for Step 1 — pharmacology, microbiology, progress tracking, and more. 頑張って.</p>
+    </div>
+
+    <div class="hero-countdown" aria-label="Exam countdown">
+      <div class="cd-block">
+        <span class="cd-lbl">Days Remaining</span>
+        <div class="cd-days-wrap">
+          <span class="cd-days" id="cd-days">—</span>
+          <span class="cd-unit">days</span>
+        </div>
+      </div>
+      <div class="cd-sep"></div>
+      <div class="cd-block">
+        <span class="cd-lbl">Exam Date</span>
+        <span class="cd-date" id="cd-date">Not set</span>
+      </div>
+      <button class="cd-edit" onclick="openDateModal()">Set Date ✦</button>
+    </div>
   </header>
 
-  <div class="countdown-card">
-    <div class="cd-block">
-      <span class="cd-lbl">Days Remaining</span>
-      <span class="cd-days" id="cd-days">—</span>
-      <span class="cd-unit">days</span>
-    </div>
-    <div class="cd-sep"></div>
-    <div class="cd-block">
-      <span class="cd-lbl">Exam Date</span>
-      <span class="cd-date" id="cd-date">Not set</span>
-    </div>
-    <button class="cd-edit" onclick="openDateModal()">Set Date ✦</button>
-  </div>
-
-  <div class="uw-strip" id="uw-strip">
+  <!-- ── UWORLD PROGRESS (always visible) ──────────────── -->
+  <div class="uw-strip" id="uw-strip" aria-label="UWorld progress">
     <div class="uw-prog">
       <div class="uw-lbl">UWorld Progress</div>
       <div class="uw-row">
-        <div class="uw-bg"><div class="uw-fill" id="uw-fill" style="width:0%"></div></div>
+        <div class="uw-bg" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" id="uw-bar-role">
+          <div class="uw-fill" id="uw-fill" style="width:0%"></div>
+        </div>
         <div class="uw-pct" id="uw-pct">0%</div>
       </div>
-      <div class="uw-sub" id="uw-sub"></div>
+      <div class="uw-sub" id="uw-sub">Set your exam date to see your daily goal</div>
     </div>
     <div class="uw-div"></div>
     <div class="uw-qd">
@@ -154,92 +324,143 @@
     </div>
   </div>
 
+  <!-- ── TODAY'S HIGH YIELD ─────────────────────────────── -->
   <div class="sec-label">Today's High Yield</div>
   <div class="daily-grid">
-    <div class="feat-card feat-drug" id="dotd-card" onclick="openDotdModal()">
+
+    <!-- Skeleton shown until JS fires -->
+    <div class="feat-skeleton" id="dotd-skeleton" aria-hidden="true">
+      <div class="skel-line" style="height:10px; width:40%; background:var(--sakura-light);"></div>
+      <div class="skel-line" style="height:20px; width:70%;"></div>
+      <div class="skel-line" style="height:13px; width:90%;"></div>
+      <div class="skel-line" style="height:13px; width:80%;"></div>
+    </div>
+    <div class="feat-skeleton" id="ootd-skeleton" aria-hidden="true">
+      <div class="skel-line" style="height:10px; width:50%; background:var(--sage-light);"></div>
+      <div class="skel-line" style="height:20px; width:65%;"></div>
+      <div class="skel-line" style="height:13px; width:90%;"></div>
+      <div class="skel-line" style="height:13px; width:75%;"></div>
+    </div>
+
+    <!-- Real cards, hidden until hydrated -->
+    <div class="feat-card feat-drug" id="dotd-card" onclick="openDotdModal()" role="button" tabindex="0" aria-label="Drug of the Day — click to expand">
       <div class="feat-eyebrow">Drug of the Day</div>
-      <div class="feat-name" id="dotd-name">Loading…</div>
+      <div class="feat-name" id="dotd-name"></div>
       <div class="feat-pearl" id="dotd-pearl"></div>
       <div class="feat-cta">View full card ↗</div>
     </div>
-    <div class="feat-card feat-micro" id="ootd-card" onclick="openOotdModal()">
+    <div class="feat-card feat-micro" id="ootd-card" onclick="openOotdModal()" role="button" tabindex="0" aria-label="Organism of the Day — click to expand">
       <div class="feat-eyebrow">Organism of the Day</div>
-      <div class="feat-name" id="ootd-name">Loading…</div>
+      <div class="feat-name" id="ootd-name"></div>
       <div class="feat-pearl" id="ootd-pearl"></div>
       <div class="feat-cta">View full card ↗</div>
     </div>
   </div>
 
+  <!-- ── PROGRESS TRACKERS ──────────────────────────────── -->
   <div class="sec-label">Progress Trackers</div>
   <div class="tracker-grid">
-    <a class="tracker-card card-spharm" href="sketchy-pharm.html">
-      <span class="tc-arrow">↗</span>
+    <a class="tracker-card card-spharm" href="sketchy-pharm.html" aria-label="Sketchy Pharm tracker">
+      <span class="tc-arrow" aria-hidden="true">↗</span>
       <div class="tc-lbl">Sketchy</div>
       <div class="tc-title">Pharm</div>
-      <div class="tc-bg"><div class="tc-fill" id="tp-bar" style="width:0%"></div></div>
-      <div class="tc-stats"><span id="tp-stats">0 / 101 reviewed</span><span id="tp-pct">0%</span></div>
+      <div class="tc-bg" role="progressbar" aria-valuemin="0" aria-valuemax="101">
+        <div class="tc-fill" id="tp-bar" style="width:0%"></div>
+      </div>
+      <div class="tc-stats">
+        <span id="tp-stats">0 / 101 reviewed</span>
+        <span class="tc-pct" id="tp-pct">0%</span>
+      </div>
     </a>
-    <a class="tracker-card card-smicro" href="sketchy-micro.html">
-      <span class="tc-arrow">↗</span>
+    <a class="tracker-card card-smicro" href="sketchy-micro.html" aria-label="Sketchy Micro tracker">
+      <span class="tc-arrow" aria-hidden="true">↗</span>
       <div class="tc-lbl">Sketchy</div>
       <div class="tc-title">Micro</div>
-      <div class="tc-bg"><div class="tc-fill" id="tm-bar" style="width:0%"></div></div>
-      <div class="tc-stats"><span id="tm-stats">0 / 104 reviewed</span><span id="tm-pct">0%</span></div>
+      <div class="tc-bg" role="progressbar" aria-valuemin="0" aria-valuemax="104">
+        <div class="tc-fill" id="tm-bar" style="width:0%"></div>
+      </div>
+      <div class="tc-stats">
+        <span id="tm-stats">0 / 104 reviewed</span>
+        <span class="tc-pct" id="tm-pct">0%</span>
+      </div>
     </a>
-    <a class="tracker-card card-pix" href="pixorize.html">
-      <span class="tc-arrow">↗</span>
+    <a class="tracker-card card-pix" href="pixorize.html" aria-label="Pixorize tracker">
+      <span class="tc-arrow" aria-hidden="true">↗</span>
       <div class="tc-lbl">Pixorize</div>
       <div class="tc-title">Biochem &amp; Immuno</div>
-      <div class="tc-bg"><div class="tc-fill" id="tpx-bar" style="width:0%"></div></div>
-      <div class="tc-stats"><span id="tpx-stats">0 / 244 reviewed</span><span id="tpx-pct">0%</span></div>
+      <div class="tc-bg" role="progressbar" aria-valuemin="0" aria-valuemax="244">
+        <div class="tc-fill" id="tpx-bar" style="width:0%"></div>
+      </div>
+      <div class="tc-stats">
+        <span id="tpx-stats">0 / 244 reviewed</span>
+        <span class="tc-pct" id="tpx-pct">0%</span>
+      </div>
     </a>
   </div>
 
+  <!-- ── REFERENCE ──────────────────────────────────────── -->
   <div class="sec-label">Reference</div>
-  <div class="ref-grid">
+  <div class="ref-grid" style="grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));">
     <a class="tool-card card-pharm" href="drugfacts.html">
-      <div class="card-hdr"><span class="card-tag">Pharmacology</span><span class="card-arrow">↗</span></div>
+      <div class="card-hdr">
+        <span class="card-tag">Pharmacology</span>
+        <span class="card-arrow" aria-hidden="true">↗</span>
+      </div>
       <div class="card-title">Drug Facts</div>
       <p class="card-desc">Complete Step 1 pharmacology — mechanism, side effects, clinical pearls, and tier ratings across all systems.</p>
     </a>
     <a class="tool-card card-micro" href="microfacts.html">
-      <div class="card-hdr"><span class="card-tag">Microbiology</span><span class="card-arrow">↗</span></div>
+      <div class="card-hdr">
+        <span class="card-tag">Microbiology</span>
+        <span class="card-arrow" aria-hidden="true">↗</span>
+      </div>
       <div class="card-title">Micro Facts</div>
       <p class="card-desc">Bacteria, viruses, fungi, and parasites — virulence factors, diseases, treatments, and high-yield pearls.</p>
     </a>
     <a class="tool-card card-dash" href="dashboard.html">
-      <div class="card-hdr"><span class="card-tag">Analytics</span><span class="card-arrow">↗</span></div>
+      <div class="card-hdr">
+        <span class="card-tag">Analytics</span>
+        <span class="card-arrow" aria-hidden="true">↗</span>
+      </div>
       <div class="card-title">Dashboard</div>
       <p class="card-desc">Log UWorld sessions, track practice exam scores, find weak points, and calculate your daily question goal.</p>
     </a>
   </div>
 
+  <!-- ── EXTERNAL RESOURCES (card grid, not flat list) ─── -->
   <div class="sec-label">External Resources</div>
-  <div class="ext-list">
-    <a class="ext-row" style="--ea:var(--sakura2);" href="https://bootcamp.com/med-school/usmle-step-1-question-of-the-day" target="_blank" rel="noopener">
-      <div class="ext-dot" style="background:var(--sakura2);"></div>
+  <div class="ext-grid">
+    <a class="ext-card" style="--ea:var(--sakura2);" href="https://bootcamp.com/med-school/usmle-step-1-question-of-the-day" target="_blank" rel="noopener">
+      <div class="ext-card-top">
+        <div class="ext-dot"></div>
+        <span class="ext-pill">Daily Practice</span>
+        <span class="ext-arrow" aria-hidden="true">↗</span>
+      </div>
       <div class="ext-name">Question of the Day</div>
       <div class="ext-desc">Bootcamp's daily Step 1 question — keep your streak alive.</div>
-      <div class="ext-pill">Daily Practice</div>
-      <div class="ext-arrow">↗</div>
     </a>
-    <a class="ext-row" style="--ea:var(--sky);" href="https://www.uworld.com" target="_blank" rel="noopener">
-      <div class="ext-dot" style="background:var(--sky);"></div>
+    <a class="ext-card" style="--ea:var(--sky);" href="https://www.uworld.com" target="_blank" rel="noopener">
+      <div class="ext-card-top">
+        <div class="ext-dot"></div>
+        <span class="ext-pill">QBank</span>
+        <span class="ext-arrow" aria-hidden="true">↗</span>
+      </div>
       <div class="ext-name">UWorld</div>
       <div class="ext-desc">The gold standard Step 1 question bank with detailed explanations.</div>
-      <div class="ext-pill">QBank</div>
-      <div class="ext-arrow">↗</div>
     </a>
-    <a class="ext-row" style="--ea:var(--sage);" href="https://www.pathoma.com" target="_blank" rel="noopener">
-      <div class="ext-dot" style="background:var(--sage);"></div>
+    <a class="ext-card" style="--ea:var(--sage);" href="https://www.pathoma.com" target="_blank" rel="noopener">
+      <div class="ext-card-top">
+        <div class="ext-dot"></div>
+        <span class="ext-pill">Pathology</span>
+        <span class="ext-arrow" aria-hidden="true">↗</span>
+      </div>
       <div class="ext-name">Pathoma</div>
       <div class="ext-desc">Dr. Sattar's high-yield pathology videos — essential for Step 1 Path.</div>
-      <div class="ext-pill">Pathology</div>
-      <div class="ext-arrow">↗</div>
     </a>
   </div>
 
-  <div class="motive">
+  <!-- ── MOTIVATION BAND ────────────────────────────────── -->
+  <div class="motive-band">
     <div class="motive-txt">
       <strong>Japan after Step 1 —</strong> Cherry blossoms, Mount Fuji, ramen at 2am.
       Every page you study now is a step closer. 頑張って (Ganbatte) — you've got this.
@@ -257,7 +478,27 @@
   </footer>
 </div>
 
-<div class="modal-overlay" id="dotd-modal">
+<!-- ── DATE MODAL ──────────────────────────────────────────── -->
+<div class="modal-overlay" id="date-modal" role="dialog" aria-modal="true" aria-labelledby="date-modal-title">
+  <div class="modal">
+    <div class="modal-header">
+      <div>
+        <div class="modal-title" id="date-modal-title">Set Exam Date</div>
+        <div class="modal-sub">Your countdown starts here</div>
+      </div>
+      <button class="modal-close-btn" onclick="closeModal('date-modal')" aria-label="Close">&times;</button>
+    </div>
+    <label for="exam-date-input">Exam Date</label>
+    <input type="date" id="exam-date-input"/>
+    <div class="modal-btns">
+      <button class="btn-cancel" onclick="closeModal('date-modal')">Cancel</button>
+      <button class="btn-save" onclick="saveExamDate()">Save Date</button>
+    </div>
+  </div>
+</div>
+
+<!-- ── DRUG OF THE DAY MODAL ──────────────────────────────── -->
+<div class="modal-overlay" id="dotd-modal" role="dialog" aria-modal="true" aria-labelledby="dm-name">
   <div class="modal detail-modal" style="max-width:560px;">
     <div class="modal-header">
       <div>
@@ -265,7 +506,7 @@
         <div class="modal-title" id="dm-name"></div>
         <div style="font-size:12px;color:var(--muted);font-style:italic;" id="dm-aka"></div>
       </div>
-      <button onclick="closeModal('dotd-modal')" style="background:none;border:none;font-size:24px;cursor:pointer;color:var(--dim);">&times;</button>
+      <button onclick="closeModal('dotd-modal')" class="modal-close-btn" aria-label="Close">&times;</button>
     </div>
     <div id="dm-content" style="max-height:65vh;overflow-y:auto;padding-right:6px;"></div>
     <div class="modal-btns" style="margin-top:20px;padding-top:16px;border-top:1px solid var(--border);">
@@ -275,7 +516,8 @@
   </div>
 </div>
 
-<div class="modal-overlay" id="ootd-modal">
+<!-- ── ORGANISM OF THE DAY MODAL ──────────────────────────── -->
+<div class="modal-overlay" id="ootd-modal" role="dialog" aria-modal="true" aria-labelledby="om-name">
   <div class="modal detail-modal" style="max-width:560px;">
     <div class="modal-header">
       <div>
@@ -283,7 +525,7 @@
         <div class="modal-title" id="om-name"></div>
         <div style="font-size:12px;color:var(--muted);font-style:italic;" id="om-aka"></div>
       </div>
-      <button onclick="closeModal('ootd-modal')" style="background:none;border:none;font-size:24px;cursor:pointer;color:var(--dim);">&times;</button>
+      <button onclick="closeModal('ootd-modal')" class="modal-close-btn" aria-label="Close">&times;</button>
     </div>
     <div id="om-content" style="max-height:65vh;overflow-y:auto;padding-right:6px;"></div>
     <div class="modal-btns" style="margin-top:20px;padding-top:16px;border-top:1px solid var(--border);">
@@ -297,26 +539,29 @@
 <script src="micro_data.js"></script>
 <script src="app.js"></script>
 <script>
-const fmt = t => t ? t.replace(/\*\*(.*?)\*\*/g,'<strong>$1</strong>') : '—';
+const fmt  = t => t ? t.replace(/\*\*(.*?)\*\*/g,'<strong>$1</strong>') : '—';
 const bare = t => t ? t.replace(/\*\*/g,'') : '';
+
 function seed() {
   const d = new Date();
   return d.getFullYear()*10000 + (d.getMonth()+1)*100 + d.getDate();
 }
 
-/* Drug of the Day */
+/* ── Drug of the Day ─────────────────────────────────────── */
 let dotdDrug = null;
 function initDotd() {
   if (typeof DRUGS === 'undefined') return;
   const all = [];
   Object.values(DRUGS).forEach(cat => cat.forEach(grp =>
-    grp.drugs.filter(d=>d.tier===1).forEach(d => all.push({...d, groupName:grp.group}))
+    grp.drugs.filter(d => d.tier === 1).forEach(d => all.push({...d, groupName: grp.group}))
   ));
   if (!all.length) return;
   dotdDrug = all[seed() % all.length];
   document.getElementById('dotd-name').textContent = dotdDrug.name;
   const p = bare(dotdDrug.pearl) || 'High-yield concept — tap to review.';
   document.getElementById('dotd-pearl').textContent = p.length > 130 ? p.slice(0,130)+'…' : p;
+  // Swap skeleton → real card
+  document.getElementById('dotd-skeleton').style.display = 'none';
   document.getElementById('dotd-card').style.display = 'flex';
 }
 
@@ -329,35 +574,33 @@ function openDotdModal() {
     <div class="drug-row"><span class="drug-label">Mechanism</span><div class="drug-text">${fmt(dotdDrug.moa)}</div></div>
     <div class="drug-row"><span class="drug-label">Clinical Use</span><div class="drug-text">${fmt(dotdDrug.use)}</div></div>
     <div class="drug-row"><span class="drug-label">Side Effects</span><div class="drug-text">${fmt(dotdDrug.se)}</div></div>
-    ${dotdDrug.ci?`<div class="drug-row"><span class="drug-label">Contraindications</span><div class="drug-text">${fmt(dotdDrug.ci)}</div></div>`:''}
-    ${dotdDrug.pearl?`<div class="pearl-box"><span class="drug-label">Pearl</span><div class="drug-text">${fmt(dotdDrug.pearl)}</div></div>`:''}
+    ${dotdDrug.ci ? `<div class="drug-row"><span class="drug-label">Contraindications</span><div class="drug-text">${fmt(dotdDrug.ci)}</div></div>` : ''}
+    ${dotdDrug.pearl ? `<div class="pearl-box"><span class="drug-label">Pearl</span><div class="drug-text">${fmt(dotdDrug.pearl)}</div></div>` : ''}
   `;
   openModal('dotd-modal');
 }
 
-/* Organism of the Day (REFACTORED) */
+/* ── Organism of the Day ─────────────────────────────────── */
 let ootdOrg = null;
 function initOotd() {
   if (typeof MICRO === 'undefined') return;
   const all = [];
-  // Nested loops to handle Category -> Group -> Organisms structure
   Object.values(MICRO).forEach(category => {
     category.forEach(groupObj => {
       if (groupObj.organisms && Array.isArray(groupObj.organisms)) {
         groupObj.organisms.forEach(org => {
-          if (org.name) {
-            all.push({ ...org, groupName: groupObj.group });
-          }
+          if (org.name) all.push({...org, groupName: groupObj.group});
         });
       }
     });
   });
-
   if (!all.length) return;
-  ootdOrg = all[(seed()+37) % all.length];
+  ootdOrg = all[(seed() + 37) % all.length];
   document.getElementById('ootd-name').textContent = ootdOrg.name;
-  const p = bare(ootdOrg.pearl) || (ootdOrg.treatment ? 'Tx: '+bare(ootdOrg.treatment) : 'High-yield organism — tap to review.');
+  const p = bare(ootdOrg.pearl) || (ootdOrg.treatment ? 'Tx: ' + bare(ootdOrg.treatment) : 'High-yield organism — tap to review.');
   document.getElementById('ootd-pearl').textContent = p.length > 130 ? p.slice(0,130)+'…' : p;
+  // Swap skeleton → real card
+  document.getElementById('ootd-skeleton').style.display = 'none';
   document.getElementById('ootd-card').style.display = 'flex';
 }
 
@@ -366,7 +609,6 @@ function openOotdModal() {
   document.getElementById('om-name').textContent = ootdOrg.name;
   document.getElementById('om-aka').textContent = ootdOrg.aka || '';
   document.getElementById('om-group').textContent = ootdOrg.groupName || 'Microbiology';
-  
   const fields = [
     ['Gram Stain / Type', ootdOrg.gram],
     ['Virulence', ootdOrg.virulence],
@@ -374,49 +616,67 @@ function openOotdModal() {
     ['Treatment', ootdOrg.treatment],
     ['Unique Features', ootdOrg.unique]
   ];
-  
   document.getElementById('om-content').innerHTML =
-    fields.filter(([,v])=>v).map(([l,v])=>`<div class="drug-row"><span class="drug-label">${l}</span><div class="drug-text">${fmt(v)}</div></div>`).join('')+
-    (ootdOrg.pearl?`<div class="pearl-box" style="background:var(--sage-light);border-color:#b0d4bc;"><span class="drug-label" style="color:var(--sage);">Pearl</span><div class="drug-text">${fmt(ootdOrg.pearl)}</div></div>`:'');
+    fields.filter(([,v]) => v)
+      .map(([l,v]) => `<div class="drug-row"><span class="drug-label">${l}</span><div class="drug-text">${fmt(v)}</div></div>`)
+      .join('') +
+    (ootdOrg.pearl ? `<div class="pearl-box" style="background:var(--sage-light);border-color:#b0d4bc;"><span class="drug-label" style="color:var(--sage);">Pearl</span><div class="drug-text">${fmt(ootdOrg.pearl)}</div></div>` : '');
   openModal('ootd-modal');
 }
 
-/* UI Rendering */
+/* ── UWorld strip — always visible with empty state ─────── */
 function renderUWorld() {
   const days = getDaysRemaining();
-  if (!days || days <= 0) return;
-  const uwSet = Store.get('uw-settings',{total:3661});
-  const total = uwSet.total||3661;
-  const done = Store.get('uw-unique-done',0);
-  const pct = Math.min(100, Math.round(done/total*100));
-  const qpd = Math.ceil(Math.max(0,total-done)/days);
-  document.getElementById('uw-fill').style.width = pct+'%';
-  document.getElementById('uw-pct').textContent = pct+'%';
-  document.getElementById('uw-sub').textContent = `${done.toLocaleString()} / ${total.toLocaleString()} done`;
-  document.getElementById('uw-qday').textContent = qpd;
-  document.getElementById('uw-strip').classList.add('on');
+  const uwSet = Store.get('uw-settings', {total: 3661});
+  const total = uwSet.total || 3661;
+  const done  = Store.get('uw-unique-done', 0);
+  const pct   = Math.min(100, Math.round(done / total * 100));
+
+  document.getElementById('uw-fill').style.width = pct + '%';
+  document.getElementById('uw-pct').textContent  = pct + '%';
+  document.getElementById('uw-bar-role').setAttribute('aria-valuenow', pct);
+
+  if (done > 0) {
+    document.getElementById('uw-sub').textContent = `${done.toLocaleString()} / ${total.toLocaleString()} done`;
+  }
+
+  if (days && days > 0) {
+    const qpd = Math.ceil(Math.max(0, total - done) / days);
+    document.getElementById('uw-qday').textContent = qpd;
+  }
 }
 
+/* ── Progress trackers ───────────────────────────────────── */
 function renderTrackers() {
-  load('sp-progress',101,'tp-bar','tp-stats','tp-pct');
-  load('sm-progress',104,'tm-bar','tm-stats','tm-pct');
-  load('px-progress',244,'tpx-bar','tpx-stats','tpx-pct');
+  loadTracker('sp-progress', 101,  'tp-bar',  'tp-stats',  'tp-pct');
+  loadTracker('sm-progress', 104,  'tm-bar',  'tm-stats',  'tm-pct');
+  loadTracker('px-progress', 244, 'tpx-bar', 'tpx-stats', 'tpx-pct');
 }
 
-function load(key,total,bId,sId,pId) {
-  const data = Store.get(key,{});
-  let w=0, r=0;
-  Object.values(data).forEach(v=>{ if(v==='w'||v==='wr')w++; if(v==='r'||v==='wr')r++; });
-  const pct = total>0 ? Math.round(r/total*100) : 0;
-  document.getElementById(bId).style.width = pct+'%';
-  document.getElementById(pId).textContent = pct+'%';
-  document.getElementById(sId).textContent = w>0 ? `${r} / ${total} reviewed · ${w} watched` : `${r} / ${total} reviewed`;
+function loadTracker(key, total, bId, sId, pId) {
+  const data = Store.get(key, {});
+  let w = 0, r = 0;
+  Object.values(data).forEach(v => { if (v==='w'||v==='wr') w++; if (v==='r'||v==='wr') r++; });
+  const pct = total > 0 ? Math.round(r / total * 100) : 0;
+  document.getElementById(bId).style.width = pct + '%';
+  document.getElementById(pId).textContent = pct + '%';
+  document.getElementById(sId).textContent = w > 0 ? `${r} / ${total} reviewed · ${w} watched` : `${r} / ${total} reviewed`;
 }
 
-document.addEventListener('DOMContentLoaded', ()=>{
-  initDotd(); 
-  initOotd(); 
-  renderUWorld(); 
+/* ── Keyboard support for feat-cards ────────────────────── */
+document.addEventListener('keydown', e => {
+  if (e.key === 'Enter' || e.key === ' ') {
+    const t = e.target;
+    if (t.id === 'dotd-card') { e.preventDefault(); openDotdModal(); }
+    if (t.id === 'ootd-card') { e.preventDefault(); openOotdModal(); }
+  }
+});
+
+/* ── Init ────────────────────────────────────────────────── */
+document.addEventListener('DOMContentLoaded', () => {
+  initDotd();
+  initOotd();
+  renderUWorld();
   renderTrackers();
 });
 </script>
