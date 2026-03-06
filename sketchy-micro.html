@@ -59,6 +59,8 @@
 .icon-btn.active-r{background:var(--gold);border-color:var(--gold);color:#fff;}
 .tracker-legend{display:flex;gap:16px;align-items:center;flex-wrap:wrap;font-size:12px;color:var(--muted);margin-bottom:16px;}
 .no-results{text-align:center;padding:40px;color:var(--muted);font-size:14px;}
+.tracker-sep{height:1px;background:var(--border2);margin:0 0 20px;border-radius:99px;}
+
 .accent-0{background:var(--sakura2);}
 .accent-1{background:var(--sky);}
 .accent-2{background:var(--gold);}
@@ -95,7 +97,7 @@
   </div>
 
   <div class="tracker-toolbar">
-    <input class="tracker-search" id="search-input" type="text" placeholder="🔍  Search organisms…" oninput="applyFilters()"/>
+    <input class="tracker-search" id="search-input" type="text" placeholder="Search organisms…" oninput="applyFilters()"/>
     <div class="filter-chips">
       <div class="filter-chip active" data-filter="all" onclick="setFilter('all',this)">All</div>
       <div class="filter-chip f-watched" data-filter="unwatched" onclick="setFilter('unwatched',this)">Not Watched</div>
@@ -107,18 +109,7 @@
     </div>
   </div>
 
-  <div class="tracker-legend">
-    <span style="display:inline-flex;align-items:center;gap:6px;font-size:12px;color:var(--muted);">
-      <span style="display:inline-flex;align-items:center;justify-content:center;width:20px;height:20px;border-radius:6px;background:var(--sage);color:#fff;font-size:11px;font-weight:700;">✔</span>
-      <span>Watched (left button)</span>
-    </span>
-    <span style="color:var(--dim);">·</span>
-    <span style="display:inline-flex;align-items:center;gap:6px;font-size:12px;color:var(--muted);">
-      <span style="display:inline-flex;align-items:center;justify-content:center;width:20px;height:20px;border-radius:6px;background:var(--gold);color:#fff;font-size:11px;font-weight:700;">✦</span>
-      <span>Reviewed (right button)</span>
-    </span>
-  </div>
-
+  <div class="tracker-sep"></div>
   <div id="tracker-container"></div>
   <div class="no-results" id="no-results" style="display:none;">No videos match your search.</div>
 
@@ -129,7 +120,7 @@
 const STORE_KEY = 'sm-progress';
 
 const CATEGORIES = [
-  {id:"gpc",name:"Gram Positive Cocci",why:"S. aureus and Streptococci are among the highest-yield bacteria on Step 1",time:"51 min",
+  {id:"gpc",name:"Gram-Positive Cocci",why:"S. aureus and Streptococci are among the highest-yield bacteria on Step 1",time:"51 min",
    videos:[
     {id:"b1",num:"1.1",name:"Staph aureus",time:"11min"},
     {id:"b2",num:"1.2",name:"Staph epidermidis and Staph saprophyticus",time:"7min"},
@@ -138,7 +129,7 @@ const CATEGORIES = [
     {id:"b5",num:"1.5",name:"Strep pneumoniae and Strep viridans",time:"9min"},
     {id:"b6",num:"1.6",name:"Enterococcus",time:"4min"}
   ]},
-  {id:"gpb",name:"Gram Positive Bacilli",why:"Clostridial toxin mechanisms and Listeria are frequently tested",time:"49 min",
+  {id:"gpb",name:"Gram-Positive Bacilli",why:"Clostridial toxin mechanisms and Listeria are frequently tested",time:"49 min",
    videos:[
     {id:"b7",num:"2.1",name:"Bacillus anthracis and B. cereus",time:"10min"},
     {id:"b8",num:"2.2",name:"Clostridium tetani",time:"7min"},
@@ -148,18 +139,18 @@ const CATEGORIES = [
     {id:"b12",num:"2.6",name:"Corynebacterium diphtheriae",time:"7min"},
     {id:"b13",num:"2.7",name:"Listeria monocytogenes",time:"4min"}
   ]},
-  {id:"gpfr",name:"GP Branching Filamentous Rods",why:"The Actinomyces vs. Nocardia distinction is a classic board question",time:"10 min",
+  {id:"gpfr",name:"Gram-Positive Branching Rods",why:"The Actinomyces vs. Nocardia distinction is a classic board question",time:"10 min",
    videos:[
     {id:"b14",num:"3.1",name:"Actinomyces",time:"3min"},
     {id:"b15",num:"3.2",name:"Nocardia",time:"7min"}
   ]},
-  {id:"gnc",name:"Gram Negative Cocci",why:"Neisseria meningitidis and gonorrhoeae are high-yield for meningitis and STI vignettes",time:"22 min",
+  {id:"gnc",name:"Gram-Negative Cocci",why:"Neisseria meningitidis and gonorrhoeae are high-yield for meningitis and STI vignettes",time:"22 min",
    videos:[
     {id:"b16",num:"4.1",name:"Neisseria Species",time:"5min"},
     {id:"b17",num:"4.2",name:"Neisseria meningitidis",time:"9min"},
     {id:"b18",num:"4.3",name:"Neisseria gonorrhoeae",time:"7.5min"}
   ]},
-  {id:"gne",name:"GN Bacilli - Enteric",why:"Enteric gram-negatives account for the majority of GI and UTI board vignettes",time:"70 min",
+  {id:"gne",name:"Gram-Negative Bacilli: Enteric",why:"Enteric gram-negatives account for the majority of GI and UTI board vignettes",time:"70 min",
    videos:[
     {id:"b19",num:"5.1",name:"Klebsiella, Enterobacter, Serratia",time:"8.5min"},
     {id:"b20",num:"5.2",name:"Salmonella",time:"8min"},
@@ -172,13 +163,13 @@ const CATEGORIES = [
     {id:"b27",num:"5.9",name:"Pseudomonas",time:"10min"},
     {id:"b28",num:"5.10",name:"Proteus mirabilis",time:"3.5min"}
   ]},
-  {id:"gnr",name:"GN Bacilli - Respiratory",why:"Bordetella, Haemophilus, and Legionella are frequently tested respiratory pathogens",time:"24 min",
+  {id:"gnr",name:"Gram-Negative Bacilli: Respiratory",why:"Bordetella, Haemophilus, and Legionella are frequently tested respiratory pathogens",time:"24 min",
    videos:[
     {id:"b29",num:"6.1",name:"Bordetella pertussis",time:"7.5min"},
     {id:"b30",num:"6.2",name:"Haemophilus influenzae",time:"9min"},
     {id:"b31",num:"6.3",name:"Legionella",time:"7.5min"}
   ]},
-  {id:"gnz",name:"GN Bacilli - Zoonotics",why:"Zoonotic bacteria appear as classic exposure-history vignettes",time:"18 min",
+  {id:"gnz",name:"Gram-Negative Bacilli: Zoonotic",why:"Zoonotic bacteria appear as classic exposure-history vignettes",time:"18 min",
    videos:[
     {id:"b32",num:"7.1",name:"Bartonella henselae",time:"4min"},
     {id:"b33",num:"7.2",name:"Brucella",time:"5min"},
@@ -196,7 +187,7 @@ const CATEGORIES = [
     {id:"b39",num:"9.2",name:"Leptospirosis",time:"5min"},
     {id:"b40",num:"9.3",name:"Treponema pallidum",time:"13min"}
   ]},
-  {id:"gi_bact",name:"Gram-Indeterminate (Atypicals)",why:"Atypical bacteria are high-yield for pneumonia, STI, and vector-borne disease questions",time:"43 min",
+  {id:"gi_bact",name:"Atypical Bacteria",why:"Atypical bacteria are high-yield for pneumonia, STI, and vector-borne disease questions",time:"43 min",
    videos:[
     {id:"b41",num:"10.1",name:"Chlamydia",time:"15min"},
     {id:"b42",num:"10.2",name:"Coxiella burnetii",time:"5min"},
@@ -206,7 +197,7 @@ const CATEGORIES = [
     {id:"b46",num:"10.6",name:"Rickettsia prowazekii",time:"4min"},
     {id:"b47",num:"10.7",name:"Rickettsia rickettsii",time:"4min"}
   ]},
-  {id:"rna_pos",name:"RNA Viruses: Positive Sense",why:"HIV and the hepatitis viruses are among the most heavily tested positive-sense RNA pathogens",time:"101 min",
+  {id:"rna_pos",name:"RNA Viruses: Positive-Sense",why:"HIV and the hepatitis viruses are among the most heavily tested positive-sense RNA pathogens",time:"101 min",
    videos:[
     {id:"v1",num:"1.1",name:"Picornavirus",time:"11min"},
     {id:"v2",num:"1.2",name:"Poliovirus",time:"7min"},
@@ -220,7 +211,7 @@ const CATEGORIES = [
     {id:"v10",num:"1.10",name:"Coronavirus",time:"14min"},
     {id:"v11",num:"1.11",name:"HIV",time:"16.5min"}
   ]},
-  {id:"rna_neg",name:"RNA Viruses: Negative Sense",why:"Influenza and paramyxoviruses are high-yield for respiratory illness and vaccine questions",time:"67 min",
+  {id:"rna_neg",name:"RNA Viruses: Negative-Sense",why:"Influenza and paramyxoviruses are high-yield for respiratory illness and vaccine questions",time:"67 min",
    videos:[
     {id:"v12",num:"2.1",name:"Orthomyxovirus (Influenza)",time:"18.5min"},
     {id:"v13",num:"2.2",name:"Paramyxovirus (Measles, Mumps)",time:"16min"},
@@ -245,35 +236,35 @@ const CATEGORIES = [
     {id:"v29",num:"3.11",name:"Poxvirus",time:"8.5min"},
     {id:"v30",num:"3.12",name:"Hepatitis B and Hepatitis D",time:"18.5min"}
   ]},
-  {id:"proto_int",name:"Protozoa - Intestinal",why:"Intestinal protozoa are high-yield for diarrhea vignettes, especially in immunocompromised patients",time:"18 min",
+  {id:"proto_int",name:"Protozoa: Intestinal",why:"Intestinal protozoa are high-yield for diarrhea vignettes, especially in immunocompromised patients",time:"18 min",
    videos:[
     {id:"p1",num:"1.1",name:"Giardia lamblia",time:"5.5min"},
     {id:"p2",num:"1.2",name:"Entamoeba histolytica",time:"8min"},
     {id:"p3",num:"1.3",name:"Cryptosporidium",time:"4.5min"}
   ]},
-  {id:"proto_cns",name:"Protozoa - CNS",why:"Toxoplasma and CNS protozoa are high-yield in HIV and pregnancy vignettes",time:"22 min",
+  {id:"proto_cns",name:"Protozoa: CNS",why:"Toxoplasma and CNS protozoa are high-yield in HIV and pregnancy vignettes",time:"22 min",
    videos:[
     {id:"p4",num:"2.1",name:"Toxoplasma gondii",time:"10.5min"},
     {id:"p5",num:"2.2",name:"Trypanosoma brucei",time:"5min"},
     {id:"p6",num:"2.3",name:"Naegleria fowleri",time:"6min"}
   ]},
-  {id:"proto_blood",name:"Protozoa - Blood",why:"Plasmodium (malaria) is the most frequently tested parasite on Step 1",time:"33 min",
+  {id:"proto_blood",name:"Protozoa: Blood & Vector-Borne",why:"Plasmodium (malaria) is the most frequently tested parasite on Step 1",time:"33 min",
    videos:[
     {id:"p7",num:"3.1",name:"Trypanosoma cruzi (Chagas disease)",time:"6min"},
     {id:"p8",num:"3.2",name:"Babesia",time:"7min"},
     {id:"p9",num:"3.3",name:"Plasmodium species",time:"14min"},
     {id:"p10",num:"3.4",name:"Leishmaniasis",time:"6min"}
   ]},
-  {id:"proto_other",name:"Protozoa - Other",why:"Trichomonas vaginalis is a high-yield STI frequently compared to Candida and BV",time:"6 min",
+  {id:"proto_other",name:"Protozoa: Other",why:"Trichomonas vaginalis is a high-yield STI frequently compared to Candida and BV",time:"6 min",
    videos:[
     {id:"p11",num:"4.1",name:"Trichomonas vaginalis",time:"6min"}
   ]},
-  {id:"helm_nem",name:"Helminths - Nematodes",why:"Nematode lifecycle and transmission routes are tested in exposure-history vignettes",time:"25 min",
+  {id:"helm_nem",name:"Helminths: Nematodes",why:"Nematode lifecycle and transmission routes are tested in exposure-history vignettes",time:"25 min",
    videos:[
     {id:"p12",num:"5.1",name:"Intestinal nematodes",time:"13min"},
     {id:"p13",num:"5.2",name:"Tissue nematodes",time:"11.5min"}
   ]},
-  {id:"helm_tc",name:"Helminths - Trematodes & Cestodes",why:"Trematode and cestode lifecycles appear as classic exposure and geographic-history questions",time:"22 min",
+  {id:"helm_tc",name:"Helminths: Trematodes & Cestodes",why:"Trematode and cestode lifecycles appear as classic exposure and geographic-history questions",time:"22 min",
    videos:[
     {id:"p14",num:"6.1",name:"Cestodes",time:"10.5min"},
     {id:"p15",num:"6.2",name:"Trematodes",time:"11min"}
