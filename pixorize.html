@@ -48,6 +48,7 @@
 .video-row:hover{background:var(--surface2);}
 .video-row.hidden-row{display:none;}
 .video-name{flex:1;font-size:13.5px;color:var(--ink2);line-height:1.4;}
+.video-row.is-reviewed .video-name{text-decoration:line-through;color:var(--dim);}
 .video-time{font-size:11px;color:var(--dim);min-width:52px;text-align:right;font-family:'DM Mono',monospace;}
 .check-btns{display:flex;gap:6px;}
 .icon-btn{width:34px;height:34px;border-radius:8px;border:1.5px solid var(--border);background:var(--bg);display:flex;align-items:center;justify-content:center;font-size:16px;cursor:pointer;transition:all .15s;line-height:1;flex-shrink:0;color:var(--dim);}
@@ -548,6 +549,7 @@ function updateVideoRow(id) {
   if(rb) rb.className = `icon-btn${s.r ? ' active-r' : ''}`;
   const row = document.getElementById('row-'+id);
   if(row) row.classList.toggle('hidden-row', !rowVisible(id));
+  if(row) row.classList.toggle('is-reviewed', s.r);
 }
 
 function rowVisible(id) {
@@ -631,7 +633,7 @@ function renderAll() {
     const accent = ACCENTS[idx % ACCENTS.length];
     const rows = cat.videos.map(v => {
       const s = getState(v.id);
-      return `<div class="video-row" id="row-${v.id}">
+      return `<div class="video-row${s.r ? ' is-reviewed' : ''}" id="row-${v.id}">
         <div class="video-name">${v.name}</div>
         <div class="video-time">${v.time}</div>
         <div class="check-btns">
