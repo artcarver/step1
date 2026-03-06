@@ -13,23 +13,23 @@
   padding: 52px 0 36px;
 }
 .hero-eyebrow {
-  font-size: 11px; font-weight: 600; letter-spacing: 2.5px;
-  text-transform: uppercase; color: var(--sakura2);
-  margin-bottom: 20px;
+  font-size: 10px; font-weight: 600; letter-spacing: 3px;
+  text-transform: uppercase; color: var(--sakura2); opacity: 0.7;
+  margin-bottom: 18px;
 }
 .hero-countdown {
   font-family: 'Playfair Display', serif;
   font-size: clamp(40px, 7vw, 80px);
   font-weight: 700; line-height: 1.1;
-  color: var(--ink);
-  margin-bottom: 10px;
+  color: var(--ink2);
+  margin-bottom: 14px;
 }
 .hero-countdown em { font-style: italic; color: var(--sakura2); }
 .cd-num { transition: color .3s; }
 .hero-sub {
-  font-size: 15px; color: var(--muted); margin-bottom: 20px; line-height: 1.5;
+  font-size: 15px; color: var(--ink2); margin-bottom: 20px; line-height: 1.6;
 }
-.hero-sub span { color: var(--ink2); font-weight: 600; }
+.hero-sub span { color: var(--sakura2); font-weight: 600; }
 .hero-actions { display: flex; justify-content: center; gap: 10px; flex-wrap: wrap; }
 .hero-set-btn {
   background: transparent; color: var(--sakura2);
@@ -60,7 +60,7 @@
   border-right: 1px solid var(--border2); min-width: 0;
 }
 .strip-stat:last-of-type { border-right: none; }
-.strip-label { font-size: 10px; font-weight: 700; letter-spacing: 1.8px; text-transform: uppercase; color: var(--muted); margin-bottom: 4px; }
+.strip-label { font-size: 10px; font-weight: 600; letter-spacing: 1.4px; text-transform: uppercase; color: var(--muted); margin-bottom: 5px; }
 .strip-value { font-family: 'Playfair Display', serif; font-size: 28px; font-weight: 700; line-height: 1; }
 .strip-sub   { font-size: 11px; color: var(--muted); margin-top: 3px; }
 .strip-cta   { display: flex; align-items: center; padding: 16px 22px; flex-shrink: 0; }
@@ -84,8 +84,8 @@
 }
 .focus-meta { flex: 1; min-width: 0; }
 .focus-eyebrow {
-  font-size: 10px; font-weight: 700; letter-spacing: 1.8px;
-  text-transform: uppercase; color: var(--muted); margin-bottom: 2px;
+  font-size: 10px; font-weight: 600; letter-spacing: 1.4px;
+  text-transform: uppercase; color: var(--muted); margin-bottom: 3px;
 }
 .focus-title { font-family: 'Playfair Display', serif; font-size: 16px; font-weight: 600; }
 .focus-desc  { font-size: 12px; color: var(--muted); margin-top: 1px; }
@@ -115,20 +115,21 @@
 .feat-banner.feat-micro::before { background: var(--sage); }
 .feat-banner:hover { box-shadow: var(--shadow-md); transform: translateY(-2px); }
 .feat-eyebrow {
-  font-size: 10px; font-weight: 700; letter-spacing: 1.8px;
+  font-size: 10px; font-weight: 600; letter-spacing: 1.2px;
   text-transform: uppercase; padding: 3px 10px; border-radius: 99px;
   white-space: nowrap; align-self: flex-start;
 }
 .feat-eyebrow.ey-drug  { color: var(--sakura2); background: var(--sakura-light); }
 .feat-eyebrow.ey-micro { color: var(--sage);    background: var(--sage-light); }
-.feat-name  { font-family: 'Playfair Display', serif; font-size: 17px; font-weight: 600; }
-.feat-pearl { font-size: 12px; color: var(--ink2); font-style: italic; line-height: 1.5; flex: 1; }
+.feat-name  { font-family: 'Playfair Display', serif; font-size: 18px; font-weight: 600; color: var(--ink); }
+.feat-pearl { font-size: 12.5px; color: var(--muted); font-style: italic; line-height: 1.6; flex: 1; }
 .feat-link  { font-size: 12px; font-weight: 600; color: var(--muted); margin-top: 4px; }
 
 /* ── Section labels ──────────────────────────────────────── */
 .sec-label {
-  font-size: 10px; font-weight: 700; letter-spacing: 2.5px;
-  text-transform: uppercase; color: var(--muted);
+  font-size: 10px; font-weight: 700; letter-spacing: 2px;
+  text-transform: uppercase; color: var(--sakura2);
+  opacity: 0.6;
   margin: 32px 0 14px;
 }
 
@@ -158,7 +159,7 @@
 .tracker-tile:hover::after { transform: scaleX(1); }
 .tile-label  { font-size: 10px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: var(--muted); margin-bottom: 4px; }
 .tile-title  { font-family: 'Playfair Display', serif; font-size: 16px; font-weight: 600; margin-bottom: 3px; color: var(--ink); }
-.tile-desc   { font-size: 12px; color: var(--muted); line-height: 1.45; margin-bottom: 14px; }
+.tile-desc   { font-size: 12px; color: var(--ink2); line-height: 1.5; margin-bottom: 14px; opacity: 0.7; }
 .tile-arrow  { position: absolute; top: 16px; right: 16px; font-size: 13px; color: var(--dim); transition: color .18s; }
 .tracker-tile:hover .tile-arrow { color: var(--card-accent, var(--sakura2)); }
 .tile-prog-bar  { height: 5px; background: var(--border2); border-radius: 99px; overflow: hidden; margin-bottom: 5px; }
@@ -185,8 +186,8 @@
 .ext-row:last-child { border-bottom: none; }
 .ext-row:hover { background: var(--surface2); }
 .ext-dot  { width: 7px; height: 7px; border-radius: 50%; flex-shrink: 0; }
-.ext-name { font-size: 13.5px; font-weight: 600; min-width: 120px; }
-.ext-desc { font-size: 13px; color: var(--muted); flex: 1; }
+.ext-name { font-size: 13.5px; font-weight: 600; min-width: 120px; color: var(--ink); }
+.ext-desc { font-size: 13px; color: var(--ink2); flex: 1; opacity: 0.75; }
 .ext-pill {
   font-size: 10px; font-weight: 700; letter-spacing: .8px;
   text-transform: uppercase; color: var(--muted);
@@ -267,7 +268,7 @@
     </div>
     <div class="strip-stat">
       <div class="strip-label">Days Until Exam</div>
-      <div class="strip-value" id="strip-days" style="color:var(--fuji);">—</div>
+      <div class="strip-value" id="strip-days" style="color:var(--sakura2);">—</div>
       <div class="strip-sub">Stay consistent</div>
     </div>
     <div class="strip-stat">
@@ -277,7 +278,7 @@
     </div>
     <div class="strip-stat">
       <div class="strip-label">Studied This Week</div>
-      <div class="strip-value" id="strip-streak" style="color:var(--fuji);">—</div>
+      <div class="strip-value" id="strip-streak" style="color:var(--lavender);">—</div>
       <div class="strip-sub">days with sessions</div>
     </div>
     <div class="strip-cta">
@@ -384,7 +385,7 @@
       <div class="ext-arrow">↗</div>
     </a>
     <a class="ext-row" href="https://www.uworld.com" target="_blank" rel="noopener">
-      <div class="ext-dot" style="background:var(--sky);"></div>
+      <div class="ext-dot" style="background:var(--lavender);"></div>
       <div class="ext-name">UWorld</div>
       <div class="ext-desc">The gold standard Step 1 question bank with detailed explanations.</div>
       <div class="ext-pill">QBank</div>
@@ -472,9 +473,9 @@
 const FOCUS_SCHEDULE = [
   { day:'Sunday',    emoji:'🧬', label:'Microbiology',     desc:'Bacteria, viruses, fungi — all categories',          href:'microfacts.html',          color:'var(--sage)',    bg:'var(--sage-light)' },
   { day:'Monday',    emoji:'❤️', label:'Cardiovascular',   desc:'CV drugs, cardiac physiology, arrhythmias',           href:'drugfacts.html?cat=cv',    color:'var(--sakura2)', bg:'var(--sakura-light)' },
-  { day:'Tuesday',   emoji:'🧠', label:'Neurology / Psych',desc:'CNS drugs, neuropharmacology, psychiatry',            href:'drugfacts.html?cat=neuro', color:'var(--fuji)',    bg:'var(--lav-light)' },
-  { day:'Wednesday', emoji:'🦠', label:'Antimicrobials',   desc:'Antibiotics, antivirals, antifungals',                href:'drugfacts.html?cat=micro', color:'var(--sky)',     bg:'var(--sky-light)' },
-  { day:'Thursday',  emoji:'🩺', label:'Endocrine',        desc:'Diabetes, thyroid, adrenal, reproductive drugs',      href:'drugfacts.html?cat=endo',  color:'var(--sky)',     bg:'var(--sky-light)' },
+  { day:'Tuesday',   emoji:'🧠', label:'Neurology / Psych',desc:'CNS drugs, neuropharmacology, psychiatry',            href:'drugfacts.html?cat=neuro', color:'var(--lavender)', bg:'var(--lav-light)' },
+  { day:'Wednesday', emoji:'🦠', label:'Antimicrobials',   desc:'Antibiotics, antivirals, antifungals',                href:'drugfacts.html?cat=micro', color:'var(--lavender)', bg:'var(--lav-light)' },
+  { day:'Thursday',  emoji:'🩺', label:'Endocrine',        desc:'Diabetes, thyroid, adrenal, reproductive drugs',      href:'drugfacts.html?cat=endo',  color:'var(--peach)',    bg:'var(--peach-light)' },
   { day:'Friday',    emoji:'💊', label:'Pharmacology',     desc:'High-yield Tier 1 drugs across all systems',          href:'drugfacts.html',           color:'var(--sakura2)', bg:'var(--sakura-light)' },
   { day:'Saturday',  emoji:'🔬', label:'Full Review',      desc:'Mixed Micro + Pharm — quiz yourself on everything',   href:'microfacts.html',          color:'var(--sage)',    bg:'var(--sage-light)' },
 ];
@@ -671,14 +672,14 @@ function renderHero() {
 
   if (days === null) {
     numEl.textContent      = '—';
-    numEl.style.color      = 'var(--fuji)';
+    numEl.style.color      = 'var(--sakura2)';
     sub.innerHTML          = 'Set your exam date to start the countdown.';
     actions.style.display  = 'flex';
     const resetBtn = actions.querySelector('.hero-set-btn');
     if (resetBtn) { resetBtn.textContent = 'Set Exam Date ✦'; resetBtn.classList.remove('edit-mode'); }
   } else {
     numEl.textContent     = days;
-    numEl.style.color     = days <= 30 ? 'var(--sakura2)' : 'var(--fuji)';
+    numEl.style.color     = 'var(--sakura2)';
     const d               = new Date(examDate + 'T12:00:00');
     const formatted       = d.toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' });
     sub.innerHTML         = `Exam on <span>${formatted}</span>`;
