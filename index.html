@@ -42,41 +42,7 @@
   max-width: 480px; margin-bottom: 32px;
 }
 
-/* ── Countdown — integrated into hero right column ───────── */
-.hero-countdown {
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: var(--r-xl);
-  padding: 24px 28px;
-  box-shadow: var(--shadow-md);
-  min-width: 220px;
-  display: flex; flex-direction: column; gap: 16px;
-  align-self: start;
-  margin-bottom: -1px; /* flush with hero border */
-}
-.cd-lbl {
-  font-size: 10px; font-weight: 700; letter-spacing: 2px;
-  text-transform: uppercase; color: var(--muted); margin-bottom: 4px;
-  display: block;
-}
-.cd-days-wrap { display: flex; align-items: baseline; gap: 6px; }
-.cd-days {
-  font-family: 'Playfair Display', serif;
-  font-size: 52px; font-weight: 700; line-height: 1;
-  color: var(--fuji);
-}
-.cd-unit { font-size: 12px; color: var(--muted); }
-.cd-date { font-size: 15px; font-weight: 600; color: var(--ink); }
-.cd-sep { height: 1px; background: var(--border2); }
-.cd-edit {
-  width: 100%; text-align: center;
-  background: transparent; color: var(--sakura2);
-  border: 1.5px solid var(--sakura);
-  border-radius: var(--r); padding: 9px 16px;
-  font-size: 12px; font-weight: 600;
-  transition: background var(--t), border-color var(--t);
-}
-.cd-edit:hover { background: var(--sakura-light); border-color: var(--sakura2); }
+/* ── Countdown — defined in style.css ────────────────────── */
 
 /* ── UWorld strip ─────────────────────────────────────────── */
 .uw-strip {
@@ -120,6 +86,10 @@
   border-radius: 6px; background: var(--border2);
   animation: shimmer 1.4s ease-in-out infinite;
 }
+/* Skeleton accent colors */
+.skel-accent-drug  { background: var(--sakura-light) !important; }
+.skel-accent-micro { background: var(--sage-light)   !important; }
+
 @keyframes shimmer {
   0%, 100% { opacity: .6; }
   50% { opacity: 1; }
@@ -134,14 +104,14 @@
 }
 .feat-card:hover {
   transform: var(--lift);
-  box-shadow: var(--shadow-md), inset 3px 0 0 0 var(--ca, var(--sakura2));
+  box-shadow: var(--shadow-md), inset 3px 0 0 0 var(--card-accent, var(--sakura2));
 }
 .feat-card:focus-visible { outline: 2px solid var(--sakura2); outline-offset: 2px; }
 .feat-card:hover .feat-cta { opacity: 1; transform: translateX(2px); }
 
 .feat-eyebrow {
   font-size: 10px; font-weight: 700; letter-spacing: 1.8px;
-  text-transform: uppercase; color: var(--ca, var(--sakura2)); margin-bottom: 10px;
+  text-transform: uppercase; color: var(--card-accent, var(--sakura2)); margin-bottom: 10px;
 }
 .feat-name {
   font-family: 'Playfair Display', serif; font-size: 18px; font-weight: 600;
@@ -152,11 +122,11 @@
 }
 .feat-cta {
   margin-top: 16px; font-size: 12px; font-weight: 600;
-  color: var(--ca, var(--sakura2)); opacity: .65;
+  color: var(--card-accent, var(--sakura2)); opacity: .65;
   transition: opacity var(--t), transform var(--t);
 }
-.feat-drug  { --ca: var(--sakura2); }
-.feat-micro { --ca: var(--sage); }
+.feat-drug  { --card-accent: var(--sakura2); }
+.feat-micro { --card-accent: var(--sage); }
 
 /* ── Progress tracker cards ───────────────────────────────── */
 .tracker-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
@@ -169,30 +139,26 @@
 }
 .tracker-card:hover {
   transform: var(--lift);
-  box-shadow: var(--shadow-md), inset 3px 0 0 0 var(--ca, var(--peach));
+  box-shadow: var(--shadow-md), inset 3px 0 0 0 var(--card-accent, var(--peach));
 }
 .tracker-card:focus-visible { outline: 2px solid var(--sakura2); outline-offset: 2px; }
-.tracker-card:hover .tc-arrow { color: var(--ca, var(--peach)); }
+.tracker-card:hover .tc-arrow { color: var(--card-accent, var(--peach)); }
 
 .tc-arrow { position: absolute; top: 18px; right: 18px; font-size: 13px; color: var(--dim); transition: color var(--t); }
 .tc-lbl { font-size: 10px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: var(--muted); margin-bottom: 4px; }
 .tc-title { font-family: 'Playfair Display', serif; font-size: 15px; font-weight: 600; color: var(--ink); margin-bottom: 12px; }
 .tc-bg { height: 5px; background: var(--border2); border-radius: 99px; overflow: hidden; margin-bottom: 6px; }
-.tc-fill { height: 100%; border-radius: 99px; background: var(--ca, var(--peach)); transition: width .6s ease; }
+.tc-fill { height: 100%; border-radius: 99px; background: var(--card-accent, var(--peach)); transition: width .6s ease; }
 .tc-stats { display: flex; justify-content: space-between; font-size: 11px; color: var(--muted); }
-.tc-pct { font-weight: 700; color: var(--ca, var(--peach)); }
+.tc-pct { font-weight: 700; color: var(--card-accent, var(--peach)); }
 
-/* Tracker card accent colors */
-.card-spharm { --ca: var(--peach); }
-.card-smicro { --ca: var(--sage); }
-.card-pix    { --ca: var(--lavender); }
+/* ── Tracker card accent colors (--card-accent drives hover inset + fill) ── */
+.card-spharm { --card-accent: var(--peach); }
+.card-smicro { --card-accent: var(--sage); }
+.card-pix    { --card-accent: var(--lavender); }
 
-/* ── Reference cards ──────────────────────────────────────── */
-.tool-card { padding: 20px 22px; display: block; }
-.tool-card:hover .card-arrow { color: var(--ca, var(--sakura2)); transform: translate(2px,-2px); }
-.card-pharm { --ca: var(--sakura2); }
-.card-micro { --ca: var(--sage); }
-.card-dash  { --ca: var(--sky); }
+/* ── Reference cards — inherit --card-accent from style.css ─ */
+/* card-pharm / card-micro / card-dash are already defined in style.css */
 
 /* ── External resources ───────────────────────────────────── */
 .ext-grid {
@@ -248,10 +214,7 @@
 /* ── Responsive ───────────────────────────────────────────── */
 @media (max-width: 860px) {
   .hero { grid-template-columns: 1fr; }
-  .hero-countdown { min-width: unset; flex-direction: row; flex-wrap: wrap; align-items: center; gap: 16px; padding: 18px 22px; border-radius: var(--r-lg); }
-  .cd-sep { width: 1px; height: 36px; }
-  .cd-edit { width: auto; margin-left: auto; }
-  .cd-block { flex-direction: column; }
+  .hero-countdown { min-width: unset; max-width: unset; }
 }
 @media (max-width: 720px) {
   .daily-grid { grid-template-columns: 1fr; }
@@ -261,10 +224,11 @@
 }
 @media (max-width: 480px) {
   .tracker-grid { grid-template-columns: 1fr; }
-  .cd-days { font-size: 40px; }
-  .hero-countdown { flex-direction: column; }
-  .cd-edit { width: 100%; }
+  .cd-days { font-size: 52px; }
 }
+
+/* ── Micro modal sage button ──────────────────────────────── */
+.btn-save-sage { background: var(--sage); }
 </style>
 </head>
 <body>
@@ -289,19 +253,16 @@
     </div>
 
     <div class="hero-countdown" aria-label="Exam countdown">
-      <div class="cd-block">
-        <span class="cd-lbl">Days Remaining</span>
-        <div class="cd-days-wrap">
-          <span class="cd-days" id="cd-days">—</span>
-          <span class="cd-unit">days</span>
-        </div>
+      <div class="cd-eyebrow">Days to Step 1</div>
+      <div class="cd-number-row">
+        <span class="cd-days" id="cd-days">—</span>
+        <span class="cd-unit">days</span>
       </div>
-      <div class="cd-sep"></div>
-      <div class="cd-block">
-        <span class="cd-lbl">Exam Date</span>
-        <span class="cd-date" id="cd-date">Not set</span>
+      <div class="cd-date-row">
+        <span class="cd-date-line"></span>
+        <span class="cd-date" id="cd-date"><span class="cd-date-empty">Exam date not set</span></span>
       </div>
-      <button class="cd-edit" onclick="openDateModal()">Set Date ✦</button>
+      <button class="cd-edit" onclick="openDateModal()">Set Exam Date ✦</button>
     </div>
   </header>
 
@@ -330,13 +291,13 @@
 
     <!-- Skeleton shown until JS fires -->
     <div class="feat-skeleton" id="dotd-skeleton" aria-hidden="true">
-      <div class="skel-line" style="height:10px; width:40%; background:var(--sakura-light);"></div>
+      <div class="skel-line skel-accent-drug" style="height:10px; width:40%;"></div>
       <div class="skel-line" style="height:20px; width:70%;"></div>
       <div class="skel-line" style="height:13px; width:90%;"></div>
       <div class="skel-line" style="height:13px; width:80%;"></div>
     </div>
     <div class="feat-skeleton" id="ootd-skeleton" aria-hidden="true">
-      <div class="skel-line" style="height:10px; width:50%; background:var(--sage-light);"></div>
+      <div class="skel-line skel-accent-micro" style="height:10px; width:50%;"></div>
       <div class="skel-line" style="height:20px; width:65%;"></div>
       <div class="skel-line" style="height:13px; width:90%;"></div>
       <div class="skel-line" style="height:13px; width:75%;"></div>
@@ -403,7 +364,6 @@
   <div class="ref-grid" style="grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));">
     <a class="tool-card card-pharm" href="drugfacts.html">
       <div class="card-hdr">
-        <span class="card-tag">Pharmacology</span>
         <span class="card-arrow" aria-hidden="true">↗</span>
       </div>
       <div class="card-title">Drug Facts</div>
@@ -411,7 +371,6 @@
     </a>
     <a class="tool-card card-micro" href="microfacts.html">
       <div class="card-hdr">
-        <span class="card-tag">Microbiology</span>
         <span class="card-arrow" aria-hidden="true">↗</span>
       </div>
       <div class="card-title">Micro Facts</div>
@@ -419,7 +378,6 @@
     </a>
     <a class="tool-card card-dash" href="dashboard.html">
       <div class="card-hdr">
-        <span class="card-tag">Analytics</span>
         <span class="card-arrow" aria-hidden="true">↗</span>
       </div>
       <div class="card-title">Dashboard</div>
@@ -427,31 +385,28 @@
     </a>
   </div>
 
-  <!-- ── EXTERNAL RESOURCES (card grid, not flat list) ─── -->
+  <!-- ── EXTERNAL RESOURCES ────────────────────────────── -->
   <div class="sec-label">External Resources</div>
   <div class="ext-grid">
-    <a class="ext-card" style="--ea:var(--sakura2);" href="https://bootcamp.com/med-school/usmle-step-1-question-of-the-day" target="_blank" rel="noopener">
+    <a class="ext-card ext-qotd" href="https://bootcamp.com/med-school/usmle-step-1-question-of-the-day" target="_blank" rel="noopener">
       <div class="ext-card-top">
         <div class="ext-dot"></div>
-        <span class="ext-pill">Daily Practice</span>
         <span class="ext-arrow" aria-hidden="true">↗</span>
       </div>
       <div class="ext-name">Question of the Day</div>
       <div class="ext-desc">Bootcamp's daily Step 1 question — keep your streak alive.</div>
     </a>
-    <a class="ext-card" style="--ea:var(--sky);" href="https://www.uworld.com" target="_blank" rel="noopener">
+    <a class="ext-card ext-uworld" href="https://www.uworld.com" target="_blank" rel="noopener">
       <div class="ext-card-top">
         <div class="ext-dot"></div>
-        <span class="ext-pill">QBank</span>
         <span class="ext-arrow" aria-hidden="true">↗</span>
       </div>
       <div class="ext-name">UWorld</div>
       <div class="ext-desc">The gold standard Step 1 question bank with detailed explanations.</div>
     </a>
-    <a class="ext-card" style="--ea:var(--sage);" href="https://www.pathoma.com" target="_blank" rel="noopener">
+    <a class="ext-card ext-pathoma" href="https://www.pathoma.com" target="_blank" rel="noopener">
       <div class="ext-card-top">
         <div class="ext-dot"></div>
-        <span class="ext-pill">Pathology</span>
         <span class="ext-arrow" aria-hidden="true">↗</span>
       </div>
       <div class="ext-name">Pathoma</div>
@@ -530,7 +485,7 @@
     <div id="om-content" style="max-height:65vh;overflow-y:auto;padding-right:6px;"></div>
     <div class="modal-btns" style="margin-top:20px;padding-top:16px;border-top:1px solid var(--border);">
       <button class="btn-cancel" onclick="closeModal('ootd-modal')">Close</button>
-      <a href="microfacts.html" class="btn-save" style="text-decoration:none;display:inline-block;background:var(--sage);">All Micro Facts ↗</a>
+      <a href="microfacts.html" class="btn-save btn-save-sage" style="text-decoration:none;display:inline-block;">All Micro Facts ↗</a>
     </div>
   </div>
 </div>
