@@ -31,14 +31,6 @@
     <div class="nav-inner">
 
       <a class="nav-brand" href="index.html">
-        <svg class="nav-brand-petal" width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <ellipse cx="9" cy="4.5" rx="3" ry="4.5" fill="#e8a0a8" opacity=".9" transform="rotate(0 9 9)"/>
-          <ellipse cx="9" cy="4.5" rx="3" ry="4.5" fill="#e8a0a8" opacity=".75" transform="rotate(72 9 9)"/>
-          <ellipse cx="9" cy="4.5" rx="3" ry="4.5" fill="#e8a0a8" opacity=".75" transform="rotate(144 9 9)"/>
-          <ellipse cx="9" cy="4.5" rx="3" ry="4.5" fill="#e8a0a8" opacity=".75" transform="rotate(216 9 9)"/>
-          <ellipse cx="9" cy="4.5" rx="3" ry="4.5" fill="#e8a0a8" opacity=".75" transform="rotate(288 9 9)"/>
-          <circle cx="9" cy="9" r="2.2" fill="#d4606e"/>
-        </svg>
         <span class="nav-brand-text">Step 1</span>
       </a>
 
@@ -60,8 +52,7 @@
           <span id="nav-exam-label">Set Exam Date</span>
         </button>
         <button id="auth-btn" class="nav-auth-btn" onclick="handleAuthClick()">
-          <span id="auth-btn-avatar" class="nav-auth-avatar" style="display:none;"></span>
-          <span id="auth-btn-label" style="overflow:hidden;text-overflow:ellipsis;min-width:0;">Sign In</span>
+          <span id="auth-btn-label">Sign In</span>
         </button>
       </div>
 
@@ -93,20 +84,13 @@
   window.updateNavAuth = function (user) {
     const btn   = document.getElementById('auth-btn');
     const label = document.getElementById('auth-btn-label');
-    const avatar = document.getElementById('auth-btn-avatar');
     if (!btn) return;
     if (user) {
-      const name = user.displayName ? user.displayName.split(' ')[0] : 'Account';
-      label.textContent = name;
-      if (user.photoURL) {
-        avatar.style.backgroundImage = `url(${user.photoURL})`;
-        avatar.style.display = 'inline-block';
-      }
+      label.textContent = '✔ Signed In';
       btn.title = 'Sign out';
       btn.classList.add('nav-auth-signed-in');
     } else {
       label.textContent = 'Sign In';
-      avatar.style.display = 'none';
       btn.title = '';
       btn.classList.remove('nav-auth-signed-in');
     }

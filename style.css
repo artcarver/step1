@@ -82,7 +82,6 @@ input, select, textarea { font-family: inherit; }
   margin-right: 4px;
   flex-shrink: 0;
 }
-.nav-brand-petal { flex-shrink: 0; }
 .nav-brand-text {
   font-family: 'Playfair Display', serif;
   font-size: 17px; font-weight: 700;
@@ -138,12 +137,6 @@ input, select, textarea { font-family: inherit; }
 .nav-auth-btn:hover { border-color: var(--sakura2); color: var(--sakura2); background: var(--sakura-light); }
 .nav-auth-btn.nav-auth-signed-in { border-color: var(--sage); color: var(--sage); background: var(--sage-light); }
 .nav-auth-btn.nav-auth-signed-in:hover { background: #d8eddf; border-color: #5a9a6a; }
-.nav-auth-avatar {
-  width: 20px; height: 20px; border-radius: 50%;
-  background-size: cover; background-position: center;
-  border: 1.5px solid var(--sage);
-  flex-shrink: 0;
-}
 .nav-exam-pill:hover { opacity: .8; }
 
 /* ── Hero ─────────────────────────────────────────────────── */
