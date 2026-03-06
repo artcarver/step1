@@ -35,9 +35,15 @@
   background: transparent; color: var(--sakura2);
   border: 1px solid var(--sakura); border-radius: var(--r);
   padding: 8px 18px; font-size: 13px; font-weight: 600;
-  cursor: pointer; transition: background .15s; font-family: inherit;
+  cursor: pointer; transition: all .15s; font-family: inherit;
 }
 .hero-set-btn:hover { background: var(--sakura-light); }
+/* When date is set, JS adds .edit-mode — renders as a quiet text link */
+.hero-set-btn.edit-mode {
+  border-color: transparent; color: var(--muted); background: transparent;
+  padding: 2px 0; font-size: 12px; font-weight: 500; letter-spacing: 0;
+}
+.hero-set-btn.edit-mode:hover { color: var(--ink2); }
 
 /* ── Stats strip ─────────────────────────────────────────── */
 .stats-strip {
@@ -271,7 +277,7 @@
     </div>
     <div class="strip-stat">
       <div class="strip-label">Studied This Week</div>
-      <div class="strip-value" id="strip-streak" style="color:var(--gold);">—</div>
+      <div class="strip-value" id="strip-streak" style="color:var(--fuji);">—</div>
       <div class="strip-sub">days with sessions</div>
     </div>
     <div class="strip-cta">
@@ -392,7 +398,7 @@
       <div class="ext-arrow">↗</div>
     </a>
     <a class="ext-row" href="https://www.bootcamp.com" target="_blank" rel="noopener">
-      <div class="ext-dot" style="background:var(--gold);"></div>
+      <div class="ext-dot" style="background:var(--border2);border:1px solid var(--border);"></div>
       <div class="ext-name">Bootcamp</div>
       <div class="ext-desc">High-yield question bank with daily practice and subject reviews.</div>
       <div class="ext-pill">QBank</div>
@@ -468,7 +474,7 @@ const FOCUS_SCHEDULE = [
   { day:'Monday',    emoji:'❤️', label:'Cardiovascular',   desc:'CV drugs, cardiac physiology, arrhythmias',           href:'drugfacts.html?cat=cv',    color:'var(--sakura2)', bg:'var(--sakura-light)' },
   { day:'Tuesday',   emoji:'🧠', label:'Neurology / Psych',desc:'CNS drugs, neuropharmacology, psychiatry',            href:'drugfacts.html?cat=neuro', color:'var(--fuji)',    bg:'var(--lav-light)' },
   { day:'Wednesday', emoji:'🦠', label:'Antimicrobials',   desc:'Antibiotics, antivirals, antifungals',                href:'drugfacts.html?cat=micro', color:'var(--sky)',     bg:'var(--sky-light)' },
-  { day:'Thursday',  emoji:'🩺', label:'Endocrine',        desc:'Diabetes, thyroid, adrenal, reproductive drugs',      href:'drugfacts.html?cat=endo',  color:'var(--gold)',    bg:'var(--gold-light)' },
+  { day:'Thursday',  emoji:'🩺', label:'Endocrine',        desc:'Diabetes, thyroid, adrenal, reproductive drugs',      href:'drugfacts.html?cat=endo',  color:'var(--sky)',     bg:'var(--sky-light)' },
   { day:'Friday',    emoji:'💊', label:'Pharmacology',     desc:'High-yield Tier 1 drugs across all systems',          href:'drugfacts.html',           color:'var(--sakura2)', bg:'var(--sakura-light)' },
   { day:'Saturday',  emoji:'🔬', label:'Full Review',      desc:'Mixed Micro + Pharm — quiz yourself on everything',   href:'microfacts.html',          color:'var(--sage)',    bg:'var(--sage-light)' },
 ];
@@ -668,16 +674,18 @@ function renderHero() {
     numEl.style.color      = 'var(--fuji)';
     sub.innerHTML          = 'Set your exam date to start the countdown.';
     actions.style.display  = 'flex';
+    const resetBtn = actions.querySelector('.hero-set-btn');
+    if (resetBtn) { resetBtn.textContent = 'Set Exam Date ✦'; resetBtn.classList.remove('edit-mode'); }
   } else {
     numEl.textContent     = days;
-    numEl.style.color     = days <= 30 ? 'var(--sakura2)' : days <= 60 ? 'var(--gold)' : 'var(--fuji)';
+    numEl.style.color     = days <= 30 ? 'var(--sakura2)' : 'var(--fuji)';
     const d               = new Date(examDate + 'T12:00:00');
     const formatted       = d.toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' });
     sub.innerHTML         = `Exam on <span>${formatted}</span>`;
     actions.style.display = 'flex'; // keep Edit button visible
     // Swap button label to Edit
     const btn = actions.querySelector('.hero-set-btn');
-    if (btn) btn.textContent = 'Edit Date ✦';
+    if (btn) { btn.textContent = 'edit date'; btn.classList.add('edit-mode'); }
   }
 }
 
