@@ -40,8 +40,8 @@
         ${navLink('index.html', 'Home')}
         ${navLink('drugfacts.html', 'Drug Facts')}
         ${navLink('microfacts.html', 'Micro Facts')}
-        ${navLink('sketchy-pharm.html', 'Sketchy Pharm')}
-        ${navLink('sketchy-micro.html', 'Sketchy Micro')}
+        ${navLink('sketchy-pharm.html', 'Sk. Pharm')}
+        ${navLink('sketchy-micro.html', 'Sk. Micro')}
         ${navLink('pixorize.html', 'Pixorize')}
         ${navLink('dashboard.html', 'Dashboard')}
       </div>
