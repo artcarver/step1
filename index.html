@@ -188,25 +188,30 @@
 @media (max-width: 860px) {
   .hero {
     grid-template-columns: 1fr;
-    grid-template-rows: auto auto;
-    padding: 32px 0 36px;
-    gap: 24px;
+    padding: 28px 0 32px;
+    gap: 20px;
   }
+  /* Keep countdown as a compact centered card, just narrower */
   .hero-countdown {
-    min-width: unset; max-width: unset;
+    min-width: unset;
+    max-width: 100%;
     width: 100%;
-    grid-row: 2;
-    display: flex; flex-direction: row; align-items: center;
-    justify-content: space-between; gap: 20px;
-    padding: 20px 24px;
-    text-align: left;
+    padding: 24px 28px 20px;
+    text-align: center;
+    align-items: center;
   }
-  .cd-eyebrow { display: none; }
-  .cd-main { flex-direction: row; align-items: baseline; gap: 8px; }
-  .cd-days { font-size: 48px !important; }
-  .cd-unit { align-self: flex-end; padding-bottom: 6px; }
-  .cd-date { font-size: 13px; }
-  .cd-edit-btn { margin-top: 0; }
+  .hero-countdown .cd-days {
+    font-size: 56px;
+    letter-spacing: -2px;
+  }
+  .hero-countdown .cd-unit {
+    font-size: 13px;
+  }
+  .hero-countdown .cd-date {
+    font-size: 15px;
+    font-weight: 700;
+    margin-bottom: 14px;
+  }
 }
 @media (max-width: 720px) {
   .daily-grid { grid-template-columns: 1fr; }
