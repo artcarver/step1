@@ -502,12 +502,19 @@ window.addEventListener('appAuthStateChanged', (e) => {
   if (e.detail?.user) {
     loadBookmarksFromCloud().then(() => { if (allOrgs.length) { renderTabs(); render(); } });
   } else {
-    // Signed out — clear local bookmarks
     _bookmarks = [];
     localStorage.removeItem(BK_KEY);
     if (allOrgs.length) { renderTabs(); render(); }
   }
 });
+
+// Called by app.js after full cloud sync completes on sign-in
+window.onCloudSyncComplete = function() {
+  _bookmarks = null; // force reload from updated localStorage
+  syncBookmarkCount();
+  renderTabs();
+  render();
+};
 document.addEventListener('DOMContentLoaded', () => {
   allOrgs = buildOrgList();
   syncBookmarkCount();

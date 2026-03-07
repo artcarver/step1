@@ -965,13 +965,19 @@ window.addEventListener('appAuthStateChanged', (e) => {
   if (e.detail?.user) {
     loadBookmarksFromCloud().then(() => { if (allDrugs.length) render(); });
   } else {
-    // Signed out — clear local bookmarks
     bookmarks = new Set();
     localStorage.removeItem(BK_LS_KEY);
     syncBookmarkCount();
     if (allDrugs.length) render();
   }
 });
+
+// Called by app.js after full cloud sync completes on sign-in
+window.onCloudSyncComplete = function() {
+  loadBookmarks(); // reload from updated localStorage
+  syncBookmarkCount();
+  if (allDrugs.length) render();
+};
 
 document.addEventListener('DOMContentLoaded', () => {
   loadBookmarks();

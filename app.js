@@ -39,7 +39,6 @@ function renderCountdown() {
     const exam = new Date(s + 'T12:00:00');
     dateEl.textContent = exam.toLocaleDateString('en-US', {month:'long',day:'numeric',year:'numeric'});
   }
-  daysEl.style.color = 'var(--gold)';
   updateNavPill();
 }
 
@@ -172,21 +171,30 @@ const CloudSync = {
         const local = Store.get(key);
         const snap  = await db.collection('users').doc(uid).collection('data').doc(key).get();
 
-        if (!snap.exists && local !== null) {
-          // Nothing in cloud — upload local data
-          await db.collection('users').doc(uid).collection('data').doc(key)
-            .set({ payload: JSON.stringify(local), updatedAt: Date.now() });
-        } else if (snap.exists) {
+        if (!snap.exists) {
+          // Nothing in cloud yet — upload whatever is local
+          if (local !== null) {
+            await db.collection('users').doc(uid).collection('data').doc(key)
+              .set({ payload: JSON.stringify(local), updatedAt: Date.now() });
+          }
+        } else {
+          // Cloud exists — it is always authoritative (handles sign-out wipe case)
           const cloud = JSON.parse(snap.data().payload);
+          // Only prefer local if cloud is empty/zero and local has real data
+          // (handles first-time use on a new device before any cloud save)
           let winner = cloud;
-          // Prefer the longer array; for numbers prefer larger; for objects prefer cloud
-          if (Array.isArray(cloud) && Array.isArray(local) && local.length > cloud.length) {
+          if (Array.isArray(cloud) && cloud.length === 0 && Array.isArray(local) && local.length > 0) {
             winner = local;
-          } else if (typeof cloud === 'number' && typeof local === 'number' && local > cloud) {
+          } else if (typeof cloud === 'number' && cloud === 0 && typeof local === 'number' && local > 0) {
+            winner = local;
+          } else if (cloud && typeof cloud === 'object' && !Array.isArray(cloud) &&
+                     Object.keys(cloud).length === 0 && local && typeof local === 'object' &&
+                     Object.keys(local).length > 0) {
+            // Cloud has empty object, local has real tracker data — prefer local
             winner = local;
           }
-          // Write winner back to both stores
           Store.set(key, winner);
+          // If local won, push it to cloud too
           if (winner !== cloud) {
             await db.collection('users').doc(uid).collection('data').doc(key)
               .set({ payload: JSON.stringify(winner), updatedAt: Date.now() });
