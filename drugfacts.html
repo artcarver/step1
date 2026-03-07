@@ -72,52 +72,84 @@
     </button>
   </div>
 
-  <!-- Quiz toolbar -->
-  <div class="quiz-toolbar" id="quiz-toolbar">
-    <div class="quiz-toolbar-row">
-      <div class="quiz-direction-toggle">
-        <button class="quiz-dir-btn active" id="dir-name" onclick="setQuizDir('name-to-facts')">Drug → Facts</button>
-        <button class="quiz-dir-btn" id="dir-guess" onclick="setQuizDir('facts-to-name')">Facts → Drug</button>
-      </div>
-      <div class="quiz-toolbar-sep"></div>
-      <div class="quiz-scope-toggle">
-        <button class="quiz-scope-btn active" data-scope="current" onclick="setQuizScope('current')">Current tab</button>
-        <button class="quiz-scope-btn" data-scope="all" onclick="setQuizScope('all')">All</button>
-        <button class="quiz-scope-btn" data-scope="custom" onclick="setQuizScope('custom')">Choose…</button>
-      </div>
-      <div class="quiz-toolbar-sep"></div>
-      <button class="quiz-icon-btn" onclick="shuffleQuiz()" title="Shuffle">
-        <svg width="13" height="13" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M1 4h2.5a4 4 0 013.2 1.6L8 7M15 4h-2.5a4 4 0 00-3.2 1.6L8 7m0 0l1.3 1.7A4 4 0 0012.5 10H15M1 12h2.5a4 4 0 003.2-1.6L8 9"/>
-          <path d="M13 2l2 2-2 2M13 8l2 2-2 2"/>
-        </svg>
-        Shuffle
-      </button>
-      <button class="quiz-icon-btn" onclick="resetQuiz()" title="Reset">
-        <svg width="13" height="13" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
-          <path d="M2 8a6 6 0 106-6H4m0 0L2 4m2-2v4"/>
-        </svg>
-        Reset
-      </button>
-      <div class="quiz-stat" id="quiz-stat"></div>
-      <span class="quiz-kbd-hint">Space=flip · 1=Again · 2=Hard · 3=Got it</span>
+  <!-- Quiz strip: progress + stat + settings toggle -->
+  <div class="quiz-strip" id="quiz-strip">
+    <div class="quiz-progress-bar-wrap">
+      <div class="quiz-progress-bar-fill" id="quiz-progress-fill" style="width:0%"></div>
     </div>
-    <div class="quiz-cat-picker" id="quiz-cat-picker" style="display:none;"></div>
+    <div class="quiz-strip-row">
+      <span class="quiz-stat" id="quiz-stat"></span>
+      <span class="quiz-kbd-hint">Space=flip · 1=Again · 2=Hard · 3=Got it</span>
+      <button class="quiz-settings-btn" id="quiz-settings-btn" onclick="toggleQuizSidebar()" title="Settings">
+        <svg width="13" height="13" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round">
+          <circle cx="8" cy="8" r="2.2"/>
+          <path d="M8 1.5v1.8M8 12.7v1.8M1.5 8h1.8M12.7 8h1.8M3.4 3.4l1.27 1.27M11.33 11.33l1.27 1.27M3.4 12.6l1.27-1.27M11.33 4.67l1.27-1.27"/>
+        </svg>
+        Settings
+      </button>
+    </div>
   </div>
 
   <!-- Tab bar -->
   <div class="cat-tab-bar" id="cat-tabs" role="tablist"></div>
 
-  <!-- Quiz progress bar -->
-  <div class="quiz-progress-bar-wrap" id="quiz-progress-wrap" style="display:none;">
-    <div class="quiz-progress-bar-fill" id="quiz-progress-fill" style="width:0%"></div>
-  </div>
-
   <!-- Browse panels -->
   <div id="panels-container"></div>
 
-  <!-- Quiz container -->
-  <div id="quiz-container" style="display:none;"></div>
+  <!-- Quiz layout: sidebar + card area -->
+  <div class="quiz-layout" id="quiz-layout" style="display:none;">
+
+    <!-- Settings sidebar -->
+    <aside class="quiz-sidebar" id="quiz-sidebar">
+
+      <div class="qsb-section">
+        <div class="qsb-label">Direction</div>
+        <div class="qsb-pill-group">
+          <button class="qsb-pill active" id="dir-name" onclick="setQuizDir('name-to-facts')">Drug → Facts</button>
+          <button class="qsb-pill" id="dir-guess" onclick="setQuizDir('facts-to-name')">Facts → Drug</button>
+        </div>
+      </div>
+
+      <div class="qsb-section">
+        <div class="qsb-label">Scope</div>
+        <div class="qsb-pill-group">
+          <button class="qsb-pill active" data-scope="current" onclick="setQuizScope('current')">Current tab</button>
+          <button class="qsb-pill" data-scope="all" onclick="setQuizScope('all')">All drugs</button>
+          <button class="qsb-pill" data-scope="custom" onclick="setQuizScope('custom')">Choose…</button>
+        </div>
+        <div class="quiz-cat-picker" id="quiz-cat-picker" style="display:none;margin-top:10px;"></div>
+      </div>
+
+      <div class="qsb-section">
+        <div class="qsb-label">Show on back</div>
+        <div class="qsb-checks">
+          <label class="qsb-check"><input type="checkbox" checked value="moa" onchange="toggleFieldVis('moa',this)"><span>Mechanism</span></label>
+          <label class="qsb-check"><input type="checkbox" checked value="use" onchange="toggleFieldVis('use',this)"><span>Clinical Use</span></label>
+          <label class="qsb-check"><input type="checkbox" checked value="se"  onchange="toggleFieldVis('se',this)"><span>Side Effects</span></label>
+          <label class="qsb-check"><input type="checkbox" checked value="ci"  onchange="toggleFieldVis('ci',this)"><span>Contraindications</span></label>
+          <label class="qsb-check"><input type="checkbox" checked value="pk"  onchange="toggleFieldVis('pk',this)"><span>Pharmacokinetics</span></label>
+        </div>
+      </div>
+
+      <div class="qsb-divider"></div>
+
+      <div class="qsb-actions">
+        <button class="qsb-action-btn" onclick="shuffleQuiz()">
+          <svg width="11" height="11" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M1 4h2.5a4 4 0 013.2 1.6L8 7M15 4h-2.5a4 4 0 00-3.2 1.6L8 7m0 0l1.3 1.7A4 4 0 0012.5 10H15M1 12h2.5a4 4 0 003.2-1.6L8 9"/><path d="M13 2l2 2-2 2M13 8l2 2-2 2"/></svg>
+          Shuffle
+        </button>
+        <button class="qsb-action-btn" onclick="resetQuiz()">
+          <svg width="11" height="11" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M2 8a6 6 0 106-6H4m0 0L2 4m2-2v4"/></svg>
+          Reset
+        </button>
+      </div>
+
+    </aside>
+
+    <!-- Card area -->
+    <div class="quiz-main" id="quiz-container"></div>
+
+  </div>
 
 </div>
 
@@ -188,6 +220,8 @@ let quizIdx = 0;
 let quizResults = { again: 0, hard: 0, good: 0 };
 let bookmarkFilter = false;
 let bookmarks = new Set();
+// which back-of-card fields are visible; pearl is always shown if present
+let quizVisibleFields = new Set(['moa','use','se','ci','pk']);
 
 // ── Bookmarks ──────────────────────────────────────────────
 function loadBookmarks() {
@@ -298,11 +332,21 @@ function setMode(mode) {
   currentMode = mode;
   document.getElementById('mode-browse').classList.toggle('active', mode === 'browse');
   document.getElementById('mode-quiz').classList.toggle('active', mode === 'quiz');
-  document.getElementById('quiz-toolbar').classList.toggle('visible', mode === 'quiz');
-  document.getElementById('quiz-progress-wrap').style.display = mode === 'quiz' ? '' : 'none';
-  document.getElementById('panels-container').style.display = mode === 'browse' ? '' : 'none';
-  document.getElementById('quiz-container').style.display = mode === 'quiz' ? '' : 'none';
-  if (mode === 'quiz') startQuiz();
+  const isQuiz = mode === 'quiz';
+  document.getElementById('quiz-strip').style.display   = isQuiz ? '' : 'none';
+  document.getElementById('quiz-layout').style.display  = isQuiz ? '' : 'none';
+  document.getElementById('panels-container').style.display = isQuiz ? 'none' : '';
+  document.getElementById('cat-tabs').style.display     = isQuiz ? 'none' : '';
+  if (isQuiz) {
+    // Open settings sidebar by default on first entry
+    const sidebar = document.getElementById('quiz-sidebar');
+    const btn = document.getElementById('quiz-settings-btn');
+    if (sidebar && !sidebar.classList.contains('open')) {
+      sidebar.classList.add('open');
+      if (btn) btn.classList.add('active');
+    }
+    startQuiz();
+  }
 }
 
 // ── Main render ────────────────────────────────────────────
@@ -579,14 +623,27 @@ function startQuiz() {
 
 function setQuizScope(scope) {
   quizScope = scope;
-  // Update toolbar button states
-  document.querySelectorAll('.quiz-scope-btn').forEach(b => {
+  document.querySelectorAll('[data-scope]').forEach(b => {
     b.classList.toggle('active', b.dataset.scope === scope);
   });
-  // Show/hide category picker
   const picker = document.getElementById('quiz-cat-picker');
   if (picker) picker.style.display = scope === 'custom' ? 'flex' : 'none';
   startQuiz();
+}
+
+function toggleQuizSidebar() {
+  const sidebar = document.getElementById('quiz-sidebar');
+  const btn = document.getElementById('quiz-settings-btn');
+  sidebar.classList.toggle('open');
+  btn.classList.toggle('active', sidebar.classList.contains('open'));
+}
+
+function toggleFieldVis(field, checkbox) {
+  if (checkbox.checked) quizVisibleFields.add(field);
+  else quizVisibleFields.delete(field);
+  // Re-render back face if currently showing
+  const back = document.getElementById('fc-back');
+  if (back && back.style.display !== 'none') renderBackFields();
 }
 
 function toggleQuizCat(cat, el) {
@@ -686,22 +743,21 @@ function renderQuizCard() {
 
   const mdFmt = v => v.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
 
-  const backFields = [
-    isNameToFacts ? null : { lbl: 'Summary', val: d.summary },
-    { lbl: 'Mechanism', val: d.moa },
-    { lbl: 'Clinical Use', val: d.use },
-    { lbl: 'Side Effects', val: d.se },
-    { lbl: 'Contraindications', val: d.ci },
-    { lbl: 'Pharmacokinetics', val: d.pk },
-    d.pearl ? { lbl: '★ Step 1 Pearl', val: d.pearl, isPearl: true } : null,
+  const ALL_BACK_FIELDS = [
+    isNameToFacts ? null : { key: 'sum', lbl: 'Summary',         val: d.summary },
+    { key: 'moa', lbl: 'Mechanism',         val: d.moa },
+    { key: 'use', lbl: 'Clinical Use',      val: d.use },
+    { key: 'se',  lbl: 'Side Effects',      val: d.se  },
+    { key: 'ci',  lbl: 'Contraindications', val: d.ci  },
+    { key: 'pk',  lbl: 'Pharmacokinetics',  val: d.pk  },
+    d.pearl ? { key: 'pearl', lbl: '★ Step 1 Pearl', val: d.pearl, isPearl: true } : null,
   ].filter(f => f && f.val);
 
+  const visFields = ALL_BACK_FIELDS.filter(f => f.isPearl || f.key === 'sum' || quizVisibleFields.has(f.key));
   const isStarred = bookmarks.has(d.name);
 
   container.innerHTML = `
     <div class="quiz-single-wrap">
-
-      <!-- NAV ROW (top) -->
       <div class="quiz-nav-row">
         <button class="quiz-nav-btn" onclick="quizNavBack()" ${quizIdx === 0 ? 'disabled' : ''}>
           <svg width="11" height="11" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M8 2L4 6l4 4"/></svg>
@@ -719,7 +775,6 @@ function renderQuizCard() {
         </button>
       </div>
 
-      <!-- FRONT FACE -->
       <div class="fc-card fc-front" id="fc-front" style="--cat-color:${color}" onclick="flipCard()">
         <div class="fc-front-eyebrow" style="color:${color}">${isNameToFacts ? 'What do you know about this drug?' : 'Identify this drug'}</div>
         <div class="fc-front-q">${frontQ}</div>
@@ -729,42 +784,72 @@ function renderQuizCard() {
         </button>
       </div>
 
-      <!-- BACK FACE (hidden until flipped) -->
       <div class="fc-card fc-back" id="fc-back" style="--cat-color:${color};display:none;">
         <div class="fc-back-header">
-          <div>
-            <div class="fc-back-eyebrow" style="color:${color}">${catLabel}${d.groupName ? ' · ' + d.groupName : ''}</div>
-            <div class="fc-back-title">${isNameToFacts ? d.name : 'Answer'}</div>
-            ${akaHtml}
-          </div>
+          <div class="fc-back-eyebrow" style="color:${color}">${catLabel}${d.groupName ? ' · ' + d.groupName : ''}</div>
+          <div class="fc-back-title">${isNameToFacts ? d.name : 'Answer'}</div>
+          ${akaHtml}
         </div>
-        <div class="fc-back-fields">
-          ${backFields.map(f => `
-            <div class="fc-field${f.isPearl ? ' fc-field-pearl' : ''}" style="--cat-color:${color}">
-              <div class="fc-field-lbl">${f.lbl}</div>
-              <div class="fc-field-val">${mdFmt(f.val)}</div>
-            </div>`).join('')}
+        <div class="fc-back-fields" id="fc-back-fields">
+          ${buildFieldsHtml(visFields, color)}
         </div>
       </div>
 
-      <!-- RATING BUTTONS (hidden until flipped) -->
       <div class="fc-rating-row" id="fc-actions" style="display:none;">
         <button class="fc-rate-btn fc-rate-again" onclick="rateCard('again')">
-          <span class="fc-rate-key">1</span>
-          <span class="fc-rate-label">Again</span>
+          <span class="fc-rate-key">1</span><span class="fc-rate-label">Again</span>
         </button>
         <button class="fc-rate-btn fc-rate-hard" onclick="rateCard('hard')">
-          <span class="fc-rate-key">2</span>
-          <span class="fc-rate-label">Hard</span>
+          <span class="fc-rate-key">2</span><span class="fc-rate-label">Hard</span>
         </button>
         <button class="fc-rate-btn fc-rate-good" onclick="rateCard('good')">
-          <span class="fc-rate-key">3</span>
-          <span class="fc-rate-label">Got it</span>
+          <span class="fc-rate-key">3</span><span class="fc-rate-label">Got it</span>
         </button>
       </div>
-
     </div>
   `;
+}
+
+function buildFieldsHtml(fields, color) {
+  const mdFmt = v => v.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
+  const regular = fields.filter(f => !f.isPearl);
+  const pearl   = fields.find(f => f.isPearl);
+  let html = '';
+  if (regular.length) {
+    html += `<div class="fc-fields-grid" style="--cat-color:${color}">
+      ${regular.map(f => `<div class="fc-field">
+        <div class="fc-field-lbl">${f.lbl}</div>
+        <div class="fc-field-val">${mdFmt(f.val)}</div>
+      </div>`).join('')}
+    </div>`;
+  }
+  if (pearl) {
+    html += `<div class="fc-field fc-field-pearl" style="--cat-color:${color}">
+      <div class="fc-field-lbl">${pearl.lbl}</div>
+      <div class="fc-field-val">${mdFmt(pearl.val)}</div>
+    </div>`;
+  }
+  return html;
+}
+
+function renderBackFields() {
+  const fieldsEl = document.getElementById('fc-back-fields');
+  if (!fieldsEl) return;
+  const idx = document.getElementById('fc-front') ? quizIdx : quizIdx - 1;
+  const d = quizDrugs[quizIdx];
+  if (!d) return;
+  const color = CAT_META[d.category]?.color || 'var(--sakura2)';
+  const isNameToFacts = quizDir === 'name-to-facts';
+  const ALL = [
+    isNameToFacts ? null : { key: 'sum', lbl: 'Summary', val: d.summary },
+    { key: 'moa', lbl: 'Mechanism',         val: d.moa },
+    { key: 'use', lbl: 'Clinical Use',      val: d.use },
+    { key: 'se',  lbl: 'Side Effects',      val: d.se  },
+    { key: 'ci',  lbl: 'Contraindications', val: d.ci  },
+    { key: 'pk',  lbl: 'Pharmacokinetics',  val: d.pk  },
+    d.pearl ? { key: 'pearl', lbl: '★ Step 1 Pearl', val: d.pearl, isPearl: true } : null,
+  ].filter(f => f && f.val).filter(f => f.isPearl || f.key === 'sum' || quizVisibleFields.has(f.key));
+  fieldsEl.innerHTML = buildFieldsHtml(ALL, color);
 }
 
 function flipCard() {
@@ -776,7 +861,6 @@ function flipCard() {
     front.style.display = 'none';
     back.style.display  = '';
     if (actions) actions.style.display = 'flex';
-    back.scrollTop = 0;
   }
 }
 
