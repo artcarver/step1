@@ -570,29 +570,128 @@ input, select, textarea { font-family: inherit; }
 /* ═══════════════════════════════════════════════════════════
    REFERENCE PAGE COMPONENT SYSTEM
    Shared by drugfacts.html, microfacts.html, and future pages.
-   All rules are additive — zero deletions from original file.
    ═══════════════════════════════════════════════════════════ */
 
+/* ── Page header ─────────────────────────────────────────── */
+.ref-page-header {
+  padding: 36px 0 20px;
+  display: flex; align-items: flex-end; justify-content: space-between;
+  gap: 20px; flex-wrap: wrap;
+}
+.ref-page-eyebrow {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 10px; font-weight: 700; letter-spacing: 3px;
+  text-transform: uppercase; color: var(--accent, var(--sakura2));
+  opacity: .85; margin-bottom: 10px;
+}
+.ref-page-title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(30px, 4vw, 46px); font-weight: 700;
+  line-height: 1.1; letter-spacing: -0.5px; color: var(--ink); margin-bottom: 0;
+}
+.ref-page-title em { font-style: italic; color: var(--accent, var(--sakura2)); }
+.ref-page-sub { display: none; }
+.ref-count { font-size: 12px; color: var(--muted); align-self: flex-end; padding-bottom: 4px; white-space: nowrap; }
+.ref-count strong { color: var(--ink2); font-weight: 600; }
 
-/* ── Drug cards (drugfacts.html) ─────────────────────────── */
-/* Base styles — drugfacts.html inline <style> takes precedence for color/border */
+/* ── Search row ──────────────────────────────────────────── */
+.ref-search-row { padding: 18px 0 0; }
+.ref-search-wrap { position: relative; max-width: 480px; }
+.ref-search-icon {
+  position: absolute; left: 13px; top: 50%; transform: translateY(-50%);
+  pointer-events: none; display: flex; align-items: center;
+}
+.ref-search-svg { width: 13px; height: 13px; stroke: var(--dim); fill: none; stroke-width: 2; stroke-linecap: round; }
+.ref-search-input {
+  width: 100%; padding: 9px 14px 9px 36px;
+  border: 1.5px solid var(--border); border-radius: 99px;
+  background: var(--surface); font-size: 13px; color: var(--ink);
+  font-family: 'DM Sans', sans-serif;
+  outline: none; transition: border-color .15s, box-shadow .15s;
+}
+.ref-search-input:focus {
+  border-color: var(--accent, var(--sakura2));
+  box-shadow: 0 0 0 3px var(--accent-glow, rgba(196,80,94,.10));
+}
+.ref-search-input::placeholder { color: var(--dim); }
+
+/* ── Category tab bar ────────────────────────────────────── */
+.cat-tab-bar {
+  display: flex; flex-wrap: nowrap; overflow-x: auto;
+  scrollbar-width: none; gap: 0; margin-top: 18px;
+  border-bottom: 1px solid var(--border2);
+}
+.cat-tab-bar::-webkit-scrollbar { display: none; }
+.cat-tab {
+  padding: 9px 10px;
+  font-family: 'DM Sans', sans-serif; font-size: 11px;
+  letter-spacing: 0.2px; text-transform: uppercase; font-weight: 600;
+  color: var(--muted); border: none; border-bottom: 2px solid transparent;
+  cursor: pointer; white-space: nowrap; background: transparent;
+  transition: color .15s, border-color .15s;
+  display: flex; align-items: center; gap: 4px; flex-shrink: 0;
+}
+.cat-tab:hover { color: var(--ink2); }
+.cat-tab.active { color: var(--ink); border-bottom-color: var(--accent, var(--sakura2)); }
+.tab-dot { width: 5px; height: 5px; border-radius: 50%; flex-shrink: 0; }
+
+/* ── Category intro banner ───────────────────────────────── */
+.cat-intro {
+  border-radius: 12px; padding: 16px 20px; margin: 18px 0 22px;
+  background: var(--surface); border: 1px solid var(--border);
+  border-left: 4px solid var(--cat-color, var(--accent, var(--sakura2)));
+}
+.cat-intro-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 22px; font-weight: 700; margin-bottom: 5px; letter-spacing: -0.4px;
+}
+.cat-intro-desc { font-size: 12.5px; color: var(--muted); line-height: 1.6; }
+
+/* ── Group section ───────────────────────────────────────── */
+.group-section { margin-bottom: 28px; }
+.class-group-header {
+  display: flex; align-items: center; justify-content: space-between; margin-bottom: 11px;
+}
+.class-label {
+  font-family: 'DM Sans', sans-serif; font-size: 10px; font-weight: 700;
+  letter-spacing: 0.3px; text-transform: uppercase; padding: 5px 14px;
+  display: inline-flex; align-items: center; gap: 6px;
+  border-radius: 99px; border: 1.5px solid currentColor; opacity: 0.9;
+}
+.group-expand-btn {
+  font-family: 'DM Mono', monospace; font-size: 8px; letter-spacing: 1px;
+  text-transform: uppercase; padding: 5px 12px; border-radius: 99px;
+  border: 1.5px solid var(--border); background: transparent;
+  color: var(--muted); cursor: pointer; white-space: nowrap; flex-shrink: 0;
+  transition: background .15s, color .15s, border-color .15s;
+}
+.group-expand-btn:hover {
+  background: color-mix(in srgb, var(--cat-color, var(--sakura2)) 10%, transparent);
+  color: var(--cat-color, var(--sakura2));
+  border-color: color-mix(in srgb, var(--cat-color, var(--sakura2)) 50%, transparent);
+}
+
+/* ── Cards grid ──────────────────────────────────────────── */
+.cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 10px; align-items: stretch;
+}
+
+/* ── Drug card ───────────────────────────────────────────── */
 .rcard {
   background: var(--surface);
   border: 1px solid var(--border);
-  border-left: 3px solid var(--sakura2);
-  border-radius: 12px;
-  cursor: pointer;
+  border-left: 3px solid var(--accent, var(--sakura2));
+  border-radius: 12px; overflow: hidden; cursor: pointer;
   transition: box-shadow .18s ease, transform .12s ease;
-  overflow: hidden;
+  box-shadow: 0 1px 3px rgba(42,31,26,.04);
 }
-.rcard:hover {
-  box-shadow: 0 4px 18px rgba(42,31,26,.10);
-  transform: translateY(-1px);
-}
-.rcard:focus-visible { outline: 2px solid var(--sakura2); outline-offset: 2px; }
+.rcard:hover { box-shadow: 0 4px 18px rgba(42,31,26,.10); transform: translateY(-1px); }
+.rcard:focus-visible { outline: 2px solid var(--accent, var(--sakura2)); outline-offset: 2px; }
 .rcard-header {
   padding: 13px 14px 0;
-  display: flex; align-items: flex-start; justify-content: space-between; gap: 8px;
+  display: flex; justify-content: space-between; align-items: flex-start; gap: 8px;
 }
 .rcard-header-left { flex: 1; min-width: 0; }
 .rcard-name {
@@ -601,31 +700,30 @@ input, select, textarea { font-family: inherit; }
 }
 .rcard-aka {
   font-family: 'DM Mono', monospace;
-  font-size: 9px; font-style: normal; line-height: 1.7; margin-top: 5px;
+  font-size: 9px; line-height: 1.7; margin-top: 5px;
   word-break: break-word; font-weight: 400; opacity: 0.85;
 }
 .rcard-toggle {
   flex-shrink: 0; background: none; border: none; cursor: pointer;
-  color: var(--dim); padding: 3px 0 0 4px; font-size: 11px; line-height: 1;
-  font-family: 'DM Mono', monospace; transition: color .14s; align-self: flex-start;
+  font-size: 11px; line-height: 1; padding: 3px 0 0 4px; align-self: flex-start;
+  font-family: 'DM Mono', monospace; transition: color .14s; color: var(--dim);
 }
-.rcard:hover .rcard-toggle { color: var(--sakura2); }
 .rcard-summary {
   padding: 8px 14px 14px; font-size: 12px; color: var(--ink2); line-height: 1.62;
   border-top: 1px solid var(--border2); margin-top: 8px;
 }
 .rcard-detail { display: none; }
 
-/* ── Field rows (modal) ──────────────────────────────────── */
+/* ── Field pill labels ───────────────────────────────────── */
 .rcard-field {
-  padding: 10px 0; background: transparent; border: none;
-  border-bottom: 1px solid var(--border2);
+  padding: 10px 14px; border-bottom: 1px solid var(--border2);
 }
 .rcard-field:last-of-type { border-bottom: none; }
 .rcard-field-label {
-  display: inline-block; font-family: 'DM Mono', monospace;
-  font-size: 8px; font-weight: 500; letter-spacing: 0.8px; text-transform: uppercase;
-  padding: 3px 9px; border-radius: 99px; border: 1px solid; margin-bottom: 7px;
+  font-family: 'DM Mono', monospace;
+  font-size: 8px; letter-spacing: 0.8px; text-transform: uppercase;
+  padding: 3px 9px; border-radius: 99px;
+  display: inline-block; margin-bottom: 7px; border: 1px solid; font-weight: 500;
 }
 .lbl-moa { background: #3a508014; color: #3a5080; border-color: #3a508045; }
 .lbl-use { background: #2e684514; color: #2e6845; border-color: #2e684545; }
@@ -634,24 +732,161 @@ input, select, textarea { font-family: inherit; }
 .lbl-pk  { background: #4a389014; color: #4a3890; border-color: #4a389045; }
 .rcard-field-text { font-size: 12px; color: var(--ink2); line-height: 1.65; }
 .rcard-field-text strong { color: var(--ink); font-weight: 600; }
-.info-line { font-size: 12px; color: var(--ink2); line-height: 1.65; }
+.info-line { line-height: 1.65; font-size: 12px; color: var(--ink2); }
 .info-line + .info-line { margin-top: 4px; }
 .info-line strong { color: var(--ink); font-weight: 600; }
 
 /* ── Pearl ───────────────────────────────────────────────── */
 .rcard-pearl {
   display: flex; gap: 10px; align-items: flex-start;
-  background: var(--sakura-light); border-top: 1px solid rgba(196,80,94,.15);
-  padding: 14px 16px; margin: 0;
+  background: var(--accent-light, var(--sakura-light));
+  border-top: 1px solid rgba(196,80,94,.15);
+  padding: 14px 16px;
 }
 .pearl-diamond { flex-shrink: 0; margin-top: 2px; line-height: 1; font-size: 12px; }
 .pearl-body { flex: 1; min-width: 0; }
 .pearl-label {
-  font-family: 'DM Sans', sans-serif; font-size: 10px; font-weight: 700;
-  letter-spacing: 0.2px; text-transform: uppercase; display: inline; margin-right: 5px;
+  font-family: 'DM Sans', sans-serif; font-size: 10px; letter-spacing: 0.2px;
+  text-transform: uppercase; display: inline; font-weight: 700; margin-right: 5px;
 }
-.pearl-text { font-family: 'DM Sans', sans-serif; font-size: 13px; color: var(--ink2); line-height: 1.65; display: inline; }
+.pearl-text {
+  font-family: 'DM Sans', sans-serif; font-size: 13px;
+  color: var(--ink2); line-height: 1.65; display: inline;
+}
 .pearl-text strong { font-weight: 700; }
+
+/* ── Drug modal overlay ──────────────────────────────────── */
+.drug-modal-overlay {
+  display: none; position: fixed; inset: 0; z-index: 1000;
+  background: rgba(42,31,26,.48); backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  align-items: center; justify-content: center; padding: 20px;
+}
+.drug-modal-overlay.open { display: flex; }
+
+/* ── Drug modal shell ────────────────────────────────────── */
+.drug-modal {
+  background: var(--surface); border-radius: 20px;
+  width: 100%; max-width: 720px; max-height: 90vh;
+  display: flex; flex-direction: column;
+  box-shadow: 0 32px 80px rgba(42,31,26,.24), 0 4px 16px rgba(42,31,26,.10);
+  overflow: hidden;
+  animation: drugModalIn .22s cubic-bezier(.22,.68,0,1.2);
+}
+@keyframes drugModalIn {
+  from { opacity: 0; transform: translateY(16px) scale(.97); }
+  to   { opacity: 1; transform: none; }
+}
+
+/* ── Top bar: breadcrumb + controls ─────────────────────── */
+.drug-modal-topbar {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 11px 20px 10px;
+  border-top: 3px solid var(--sakura2); /* overridden per-drug via JS */
+  border-bottom: 1px solid var(--border2);
+  flex-shrink: 0; gap: 12px;
+  background: var(--bg);
+}
+.drug-modal-breadcrumb {
+  display: flex; align-items: center; gap: 7px;
+  font-family: 'DM Sans', sans-serif; font-size: 10px;
+  font-weight: 700; text-transform: uppercase; letter-spacing: 0.4px;
+  min-width: 0; flex: 1;
+}
+.drug-modal-banner-cat {
+  padding: 3px 9px; border-radius: 99px;
+  border: 1.5px solid currentColor; opacity: 0.9;
+  white-space: nowrap;
+}
+.drug-modal-banner-sep { opacity: 0.35; font-size: 10px; flex-shrink: 0; }
+.drug-modal-banner-grp { opacity: 0.65; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.drug-modal-topbar-right {
+  display: flex; align-items: center; gap: 6px; flex-shrink: 0;
+}
+.drug-modal-counter {
+  font-family: 'DM Mono', monospace; font-size: 9px;
+  color: var(--dim); letter-spacing: 0.5px; padding: 0 4px;
+}
+.drug-modal-nav-btn {
+  display: flex; align-items: center; gap: 4px;
+  background: none; border: 1.5px solid var(--border); border-radius: 99px;
+  padding: 5px 12px;
+  font-family: 'DM Mono', monospace; font-size: 9px; letter-spacing: 0.4px;
+  color: var(--muted); cursor: pointer;
+  transition: border-color .14s, color .14s, background .14s;
+}
+.drug-modal-nav-btn:hover:not(:disabled) {
+  color: var(--ink2); border-color: var(--ink2); background: var(--surface2);
+}
+.drug-modal-nav-btn:disabled { opacity: 0.28; cursor: default; }
+.drug-modal-close {
+  display: flex; align-items: center; justify-content: center;
+  background: none; border: none; cursor: pointer;
+  color: var(--dim); width: 30px; height: 30px; border-radius: 8px;
+  transition: color .14s, background .14s; flex-shrink: 0;
+}
+.drug-modal-close:hover { color: var(--ink); background: var(--surface2); }
+
+/* ── Drug identity header ────────────────────────────────── */
+.drug-modal-header {
+  padding: 20px 24px 0;
+  flex-shrink: 0;
+}
+.drug-modal-title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(20px, 3vw, 26px); font-weight: 700;
+  color: var(--ink); letter-spacing: -0.5px; line-height: 1.2;
+}
+.drug-modal-aka {
+  font-family: 'DM Mono', monospace; font-size: 9.5px;
+  margin-top: 6px; line-height: 1.7; opacity: 0.8;
+}
+
+/* ── Summary strip ───────────────────────────────────────── */
+.drug-modal-summary {
+  padding: 13px 24px 14px;
+  margin-top: 14px;
+  font-size: 13px; color: var(--ink2); line-height: 1.65;
+  border-top: 1px solid var(--border2);
+  border-bottom: 1px solid var(--border2);
+  flex-shrink: 0;
+  background: var(--surface2);
+}
+
+/* ── Scrollable body ─────────────────────────────────────── */
+.drug-modal-body {
+  overflow-y: auto; padding: 4px 24px 28px; flex: 1;
+  scroll-behavior: smooth;
+}
+.drug-modal-body .rcard-field {
+  padding: 13px 0; border-bottom: 1px solid var(--border2);
+}
+.drug-modal-body .rcard-field:first-child { padding-top: 16px; }
+.drug-modal-body .rcard-field:last-of-type { border-bottom: none; }
+.drug-modal-body .rcard-pearl {
+  margin-top: 10px; border-radius: 12px;
+  border: 1px solid rgba(196,80,94,.18);
+  overflow: hidden;
+}
+
+/* ── Search results label ────────────────────────────────── */
+.search-cat-label {
+  font-family: 'DM Mono', monospace; font-size: 9px; letter-spacing: 2px;
+  text-transform: uppercase; margin: 20px 0 10px;
+  display: flex; align-items: center; gap: 8px; color: inherit;
+}
+.search-cat-label::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+
+/* ── Search highlight ────────────────────────────────────── */
+mark.search-hl {
+  background: rgba(196,80,94,.14); color: var(--ink);
+  border-radius: 2px; padding: 0 2px; font-style: normal;
+}
+
+/* ── Empty state ─────────────────────────────────────────── */
+.ref-empty { grid-column: 1/-1; padding: 52px 24px; text-align: center; }
+.ref-empty-title { font-family: 'Playfair Display', serif; font-size: 17px; font-weight: 600; color: var(--ink2); margin-bottom: 5px; }
+.ref-empty-sub { font-size: 13px; color: var(--muted); }
 
 /* ── Tab bar — horizontally scrollable, no wrapping ─────── */
 .ref-tab-bar {
@@ -666,11 +901,9 @@ input, select, textarea { font-family: inherit; }
 .ref-tab {
   padding: 6px 14px;
   font-size: 11.5px; font-weight: 600; color: var(--muted);
-  border-radius: 99px;
-  border: 1.5px solid transparent;
+  border-radius: 99px; border: 1.5px solid transparent;
   cursor: pointer; white-space: nowrap; flex-shrink: 0;
-  background: transparent;
-  font-family: 'DM Sans', sans-serif;
+  background: transparent; font-family: 'DM Sans', sans-serif;
   transition: color .15s, background .15s, border-color .15s;
   letter-spacing: 0.2px;
 }
@@ -680,15 +913,10 @@ input, select, textarea { font-family: inherit; }
   background: var(--sakura-light);
   border-color: color-mix(in srgb, var(--sakura2) 30%, transparent);
 }
-
-/* ── All tab — slightly bolder weight ───────────────────── */
 .ref-tab.all-tab { font-weight: 700; }
 
-/* ── Expand All / Collapse All group actions ─────────────── */
-.group-actions {
-  display: flex; gap: 6px; justify-content: flex-end;
-  margin-bottom: 10px;
-}
+/* ── Expand / Collapse All ───────────────────────────────── */
+.group-actions { display: flex; gap: 6px; justify-content: flex-end; margin-bottom: 10px; }
 .expand-btn {
   font-size: 10.5px; font-weight: 600; color: var(--muted);
   background: transparent; border: 1.5px solid var(--border);
@@ -702,18 +930,16 @@ input, select, textarea { font-family: inherit; }
   background: var(--sakura-light);
 }
 
-/* ── Search match highlight ──────────────────────────────── */
-mark.search-hl {
-  background: color-mix(in srgb, var(--sakura2) 18%, transparent);
-  color: var(--ink);
-  border-radius: 2px;
-  padding: 0 2px;
-  font-style: normal;
-}
-
-/* ── Mobile overrides ────────────────────────────────────── */
+/* ── Mobile ──────────────────────────────────────────────── */
 @media (max-width: 640px) {
   .cards-grid { grid-template-columns: 1fr; }
+  .ref-page-header { padding-top: 20px; }
+  .cat-tab { padding: 8px 8px; font-size: 9px; }
+  .drug-modal { border-radius: 14px; max-height: 94vh; }
+  .drug-modal-topbar { padding: 10px 16px; }
+  .drug-modal-header { padding: 16px 16px 0; }
+  .drug-modal-summary { padding: 11px 16px 12px; }
+  .drug-modal-body { padding: 4px 16px 24px; }
+  .drug-modal-counter { display: none; }
   .rcard-field-text { font-size: 12px; }
-  .ref-tab-bar { -webkit-overflow-scrolling: touch; }
 }

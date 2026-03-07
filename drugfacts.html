@@ -7,279 +7,11 @@
 <link rel="stylesheet" href="style.css"/>
 <title>Drug Facts · Step 1 Hub</title>
 <style>
+/* ── Page-level accent overrides ─────────────────────────── */
 :root {
   --accent:       var(--sakura2);
   --accent-light: var(--sakura-light);
   --accent-glow:  rgba(196,80,94,.10);
-  --c-autonomic:  #c4505e;
-  --c-cv:         #9e3a5a;
-  --c-blood:      #7a3a8a;
-  --c-neuro:      #5a4490;
-  --c-micro:      #3a6e7a;
-  --c-gi:         #9e6a3d;
-  --c-endo:       #c08c3e;
-  --c-pulm:       #3d6e8a;
-  --c-onco:       #3a5a6e;
-  --c-toxicology: #a63e3e;
-}
-
-/* ── Page header ─────────────────────────────────────────── */
-.ref-page-header {
-  padding: 36px 0 20px;
-  display: flex; align-items: flex-end; justify-content: space-between;
-  gap: 20px; flex-wrap: wrap;
-}
-.ref-page-eyebrow {
-  font-family: 'DM Sans', sans-serif;
-  font-size: 10px; font-weight: 700; letter-spacing: 3px;
-  text-transform: uppercase; color: var(--accent);
-  opacity: .85; margin-bottom: 10px;
-}
-.ref-page-title {
-  font-family: 'Playfair Display', serif;
-  font-size: clamp(30px, 4vw, 46px); font-weight: 700;
-  line-height: 1.1; letter-spacing: -0.5px; color: var(--ink); margin-bottom: 0;
-}
-.ref-page-title em { font-style: italic; color: var(--accent); }
-.ref-page-sub { display: none; }
-.ref-count { font-size: 12px; color: var(--muted); align-self: flex-end; padding-bottom: 4px; white-space: nowrap; }
-.ref-count strong { color: var(--ink2); font-weight: 600; }
-
-/* ── Search ──────────────────────────────────────────────── */
-.ref-search-row { padding: 18px 0 0; }
-.ref-search-wrap { position: relative; max-width: 480px; }
-.ref-search-icon {
-  position: absolute; left: 13px; top: 50%; transform: translateY(-50%);
-  pointer-events: none; display: flex; align-items: center;
-}
-.ref-search-svg { width: 13px; height: 13px; stroke: var(--dim); fill: none; stroke-width: 2; stroke-linecap: round; }
-.ref-search-input {
-  width: 100%; padding: 9px 14px 9px 36px;
-  border: 1.5px solid var(--border); border-radius: 99px;
-  background: var(--surface); font-size: 13px; color: var(--ink);
-  font-family: 'DM Sans', sans-serif;
-  outline: none; transition: border-color .15s, box-shadow .15s;
-}
-.ref-search-input:focus { border-color: var(--accent); box-shadow: 0 0 0 3px var(--accent-glow); }
-.ref-search-input::placeholder { color: var(--dim); }
-
-/* ── Category tabs ───────────────────────────────────────── */
-.cat-tab-bar {
-  display: flex; flex-wrap: nowrap; overflow-x: auto;
-  scrollbar-width: none; gap: 0; margin-top: 18px;
-  border-bottom: 1px solid var(--border2);
-}
-.cat-tab-bar::-webkit-scrollbar { display: none; }
-.cat-tab {
-  padding: 9px 10px;
-  font-family: 'DM Sans', sans-serif; font-size: 11px;
-  letter-spacing: 0.2px; text-transform: uppercase; font-weight: 600;
-  color: var(--muted); border: none; border-bottom: 2px solid transparent;
-  cursor: pointer; white-space: nowrap; background: transparent;
-  transition: color .15s, border-color .15s;
-  display: flex; align-items: center; gap: 4px; flex-shrink: 0;
-}
-.cat-tab:hover { color: var(--ink2); }
-.cat-tab.active { color: var(--ink); border-bottom-color: var(--accent); }
-.tab-dot { width: 5px; height: 5px; border-radius: 50%; flex-shrink: 0; }
-
-/* ── Category intro ──────────────────────────────────────── */
-.cat-intro {
-  border-radius: 12px; padding: 16px 20px; margin: 18px 0 22px;
-  background: var(--surface); border: 1px solid var(--border);
-  border-left: 4px solid var(--cat-color, var(--accent));
-}
-.cat-intro-title {
-  font-family: 'Playfair Display', serif;
-  font-size: 22px; font-weight: 700; margin-bottom: 5px; letter-spacing: -0.4px;
-}
-.cat-intro-desc { font-size: 12.5px; color: var(--muted); line-height: 1.6; }
-
-/* ── Group row ───────────────────────────────────────────── */
-.group-section { margin-bottom: 28px; }
-.class-group-header {
-  display: flex; align-items: center; justify-content: space-between; margin-bottom: 11px;
-}
-.class-label {
-  font-family: 'DM Sans', sans-serif; font-size: 10px; font-weight: 700;
-  letter-spacing: 0.3px; text-transform: uppercase; padding: 5px 14px;
-  display: inline-flex; align-items: center; gap: 6px;
-  border-radius: 99px; border: 1.5px solid currentColor; opacity: 0.9;
-}
-.group-expand-btn {
-  font-family: 'DM Mono', monospace; font-size: 8px; letter-spacing: 1px;
-  text-transform: uppercase; padding: 5px 12px; border-radius: 99px;
-  border: 1.5px solid var(--border); background: transparent;
-  color: var(--muted); cursor: pointer; white-space: nowrap; flex-shrink: 0;
-  transition: background .15s, color .15s, border-color .15s;
-}
-.group-expand-btn:hover { background: var(--sakura-light); color: var(--sakura2); border-color: var(--sakura); }
-
-/* ── Card grid ───────────────────────────────────────────── */
-.cards-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  gap: 10px; align-items: stretch;
-}
-
-/* ── Drug card ───────────────────────────────────────────── */
-.rcard {
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-left: 3px solid var(--accent);
-  border-radius: 12px; overflow: hidden; cursor: pointer;
-  transition: box-shadow .18s ease, transform .12s ease;
-  box-shadow: 0 1px 3px rgba(42,31,26,.04);
-}
-.rcard:hover { box-shadow: 0 4px 18px rgba(42,31,26,.10); transform: translateY(-1px); }
-.rcard:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
-
-.rcard-header {
-  padding: 13px 14px 0;
-  display: flex; justify-content: space-between; align-items: flex-start; gap: 8px;
-}
-.rcard-header-left { flex: 1; min-width: 0; }
-.rcard-name {
-  font-family: 'Playfair Display', serif;
-  font-size: 16px; font-weight: 700; line-height: 1.2; color: var(--ink); letter-spacing: -0.3px;
-}
-.rcard-aka {
-  font-family: 'DM Mono', monospace;
-  font-size: 9px; font-style: normal; line-height: 1.7; margin-top: 5px;
-  word-break: break-word; font-weight: 400; opacity: 0.85;
-}
-.rcard-toggle {
-  flex-shrink: 0; background: none; border: none; cursor: pointer;
-  font-size: 11px; line-height: 1; padding: 3px 0 0 4px; align-self: flex-start;
-  font-family: 'DM Mono', monospace; transition: color .14s;
-}
-.rcard-summary {
-  padding: 8px 14px 14px; font-size: 12px; color: var(--ink2); line-height: 1.62;
-  border-top: 1px solid var(--border2); margin-top: 8px;
-}
-.rcard-detail { display: none; }
-
-/* ── Field pill labels ───────────────────────────────────── */
-.rcard-field {
-  padding: 10px 14px; border-bottom: 1px solid var(--border2);
-}
-.rcard-field:last-of-type { border-bottom: none; }
-.rcard-field-label {
-  font-family: 'DM Mono', monospace;
-  font-size: 8px; letter-spacing: 0.8px; text-transform: uppercase;
-  padding: 3px 9px; border-radius: 99px;
-  display: inline-block; margin-bottom: 7px; border: 1px solid; font-weight: 500;
-}
-.lbl-moa { background: #3a508014; color: #3a5080; border-color: #3a508045; }
-.lbl-use { background: #2e684514; color: #2e6845; border-color: #2e684545; }
-.lbl-se  { background: #8a284414; color: #8a2844; border-color: #8a284445; }
-.lbl-ci  { background: #7a3e1814; color: #7a3e18; border-color: #7a3e1845; }
-.lbl-pk  { background: #4a389014; color: #4a3890; border-color: #4a389045; }
-.rcard-field-text { font-size: 12px; color: var(--ink2); line-height: 1.65; }
-.rcard-field-text strong { color: var(--ink); font-weight: 600; }
-.info-line { line-height: 1.65; font-size: 12px; color: var(--ink2); }
-.info-line + .info-line { margin-top: 4px; }
-.info-line strong { color: var(--ink); font-weight: 600; }
-
-/* ── Pearl ───────────────────────────────────────────────── */
-.rcard-pearl {
-  display: flex; gap: 10px; align-items: flex-start;
-  background: var(--accent-light);
-  border-top: 1px solid rgba(196,80,94,.15);
-  padding: 14px 16px; margin: 0;
-}
-.pearl-diamond { flex-shrink: 0; margin-top: 2px; line-height: 1; font-size: 12px; }
-.pearl-body { flex: 1; min-width: 0; }
-.pearl-label {
-  font-family: 'DM Sans', sans-serif; font-size: 10px; letter-spacing: 0.2px;
-  text-transform: uppercase; display: inline; font-weight: 700; margin-right: 5px;
-}
-.pearl-text { font-family: 'DM Sans', sans-serif; font-size: 13px; color: var(--ink2); line-height: 1.65; display: inline; }
-.pearl-text strong { font-weight: 700; }
-
-/* ── Modal ───────────────────────────────────────────────── */
-.drug-modal-overlay {
-  display: none; position: fixed; inset: 0; z-index: 1000;
-  background: rgba(42,31,26,.45); backdrop-filter: blur(3px);
-  align-items: center; justify-content: center; padding: 24px;
-}
-.drug-modal-overlay.open { display: flex; }
-.drug-modal {
-  background: var(--surface); border-radius: 18px;
-  width: 100%; max-width: 760px; max-height: 88vh;
-  display: flex; flex-direction: column;
-  box-shadow: 0 24px 80px rgba(42,31,26,.22); overflow: hidden;
-  animation: modalIn .2s ease;
-}
-@keyframes modalIn {
-  from { opacity: 0; transform: translateY(12px) scale(.98); }
-  to   { opacity: 1; transform: none; }
-}
-.drug-modal-banner {
-  display: flex; align-items: center; gap: 8px; padding: 10px 24px;
-  font-family: 'DM Sans', sans-serif; font-size: 10px; font-weight: 700;
-  text-transform: uppercase; letter-spacing: 0.3px; flex-shrink: 0;
-}
-.drug-modal-banner-cat {
-  padding: 3px 10px; border-radius: 99px; border: 1.5px solid currentColor; opacity: 0.9;
-}
-.drug-modal-banner-sep { opacity: 0.4; font-size: 9px; }
-.drug-modal-banner-grp { opacity: 0.7; }
-.drug-modal-header { padding: 0 24px 0; flex-shrink: 0; }
-.drug-modal-nav {
-  display: flex; align-items: center; justify-content: space-between; margin-bottom: 14px;
-}
-.drug-modal-nav-btn {
-  background: none; border: 1.5px solid var(--border); border-radius: 99px; padding: 6px 14px;
-  font-family: 'DM Mono', monospace; font-size: 9px; letter-spacing: 0.5px;
-  color: var(--muted); cursor: pointer; transition: border-color .14s, color .14s;
-  display: flex; align-items: center; gap: 5px;
-}
-.drug-modal-nav-btn:hover { color: var(--ink); border-color: var(--ink2); }
-.drug-modal-nav-btn:disabled { opacity: 0.3; cursor: default; }
-.drug-modal-close {
-  background: none; border: none; cursor: pointer; color: var(--dim);
-  font-size: 18px; line-height: 1; padding: 4px 8px; border-radius: 8px;
-  transition: color .14s, background .14s;
-}
-.drug-modal-close:hover { color: var(--ink); background: var(--surface2); }
-.drug-modal-counter { font-family: 'DM Mono', monospace; font-size: 9px; color: var(--dim); letter-spacing: 0.5px; }
-.drug-modal-title {
-  font-family: 'Playfair Display', serif;
-  font-size: 22px; font-weight: 700; color: var(--ink); letter-spacing: -0.4px; line-height: 1.2;
-}
-.drug-modal-aka {
-  font-family: 'DM Mono', monospace; font-size: 9.5px; margin-top: 5px; line-height: 1.7; opacity: 0.85;
-}
-.drug-modal-summary {
-  font-size: 13px; color: var(--ink2); line-height: 1.65;
-  padding: 12px 24px; border-top: 1px solid var(--border2); margin-top: 14px; flex-shrink: 0;
-}
-.drug-modal-body { overflow-y: auto; padding: 0 24px 24px; flex: 1; }
-.drug-modal-body .rcard-field { padding: 12px 0; border-bottom: 1px solid var(--border2); }
-.drug-modal-body .rcard-field:last-of-type { border-bottom: none; }
-.drug-modal-body .rcard-pearl { margin-top: 8px; border-radius: 12px; border: 1px solid rgba(196,80,94,.18); }
-
-/* ── Search results ──────────────────────────────────────── */
-.search-cat-label {
-  font-family: 'DM Mono', monospace; font-size: 9px; letter-spacing: 2px;
-  text-transform: uppercase; margin: 20px 0 10px;
-  display: flex; align-items: center; gap: 8px;
-}
-.search-cat-label::after { content: ''; flex: 1; height: 1px; background: var(--border); }
-mark.search-hl { background: rgba(196,80,94,.14); color: var(--ink); border-radius: 2px; padding: 0 2px; }
-
-/* ── Empty state ─────────────────────────────────────────── */
-.ref-empty { grid-column: 1/-1; padding: 52px 24px; text-align: center; }
-.ref-empty-title { font-family: 'Playfair Display', serif; font-size: 17px; font-weight: 600; color: var(--ink2); margin-bottom: 5px; }
-.ref-empty-sub { font-size: 13px; color: var(--muted); }
-
-/* ── Mobile ──────────────────────────────────────────────── */
-@media (max-width: 600px) {
-  .cards-grid { grid-template-columns: 1fr; }
-  .ref-page-header { padding-top: 20px; }
-  .cat-tab { padding: 8px 8px; font-size: 9px; }
-  .drug-modal { border-radius: 12px; }
 }
 </style>
 </head>
@@ -326,19 +58,38 @@ mark.search-hl { background: rgba(196,80,94,.14); color: var(--ink); border-radi
 <!-- Drug detail modal -->
 <div class="drug-modal-overlay" id="drug-modal-overlay" onclick="handleModalOverlayClick(event)">
   <div class="drug-modal" id="drug-modal">
-    <div class="drug-modal-banner" id="modal-banner"></div>
-    <div class="drug-modal-header" id="modal-header">
-      <div class="drug-modal-nav">
-        <button class="drug-modal-nav-btn" id="modal-prev" onclick="modalNav(-1)">← Prev</button>
+
+    <!-- Top bar: breadcrumb + nav controls -->
+    <div class="drug-modal-topbar" id="modal-banner">
+      <div class="drug-modal-breadcrumb" id="modal-breadcrumb"></div>
+      <div class="drug-modal-topbar-right">
         <span class="drug-modal-counter" id="modal-counter"></span>
-        <button class="drug-modal-nav-btn" id="modal-next" onclick="modalNav(1)">Next →</button>
-        <button class="drug-modal-close" onclick="closeModal()" title="Close">✕</button>
+        <button class="drug-modal-nav-btn" id="modal-prev" onclick="modalNav(-1)" title="Previous drug">
+          <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 2L4 6l4 4"/></svg>
+          Prev
+        </button>
+        <button class="drug-modal-nav-btn" id="modal-next" onclick="modalNav(1)" title="Next drug">
+          Next
+          <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 2l4 4-4 4"/></svg>
+        </button>
+        <button class="drug-modal-close" onclick="closeModal()" title="Close (Esc)">
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M2 2l10 10M12 2L2 12"/></svg>
+        </button>
       </div>
+    </div>
+
+    <!-- Drug identity -->
+    <div class="drug-modal-header" id="modal-header">
       <div class="drug-modal-title" id="modal-title"></div>
       <div class="drug-modal-aka" id="modal-aka"></div>
     </div>
+
+    <!-- Summary -->
     <div class="drug-modal-summary" id="modal-summary"></div>
+
+    <!-- Scrollable detail fields -->
     <div class="drug-modal-body" id="modal-body"></div>
+
   </div>
 </div>
 
@@ -541,17 +292,16 @@ function showModal() {
   const catLabel = CAT_META[d.category]?.label || d.category;
   const q = searchQ;
 
-  // Banner
-  document.getElementById('modal-banner').innerHTML = `
-    <span class="drug-modal-banner-cat" style="color:${color};border-color:${color}50;background:${color}12;">
-      ${catLabel}
-    </span>
-    <span class="drug-modal-banner-sep" style="color:${color}">›</span>
-    <span class="drug-modal-banner-grp" style="color:${color}">${d.groupName || ''}</span>
+  // Topbar breadcrumb
+  document.getElementById('modal-breadcrumb').innerHTML = `
+    <span class="drug-modal-banner-cat" style="color:${color};border-color:${color}50;background:${color}12;">${catLabel}</span>
+    <span class="drug-modal-banner-sep">›</span>
+    <span class="drug-modal-banner-grp">${d.groupName || ''}</span>
   `;
   document.getElementById('modal-banner').style.borderBottom = `1px solid ${color}20`;
+  document.getElementById('modal-banner').style.borderTop = `3px solid ${color}`;
 
-  document.getElementById('modal-header').style.borderTop = `3px solid ${color}`;
+  document.getElementById('modal-header').style.borderTop = 'none';
   document.getElementById('modal-title').innerHTML = fmt(d.name, q);
 
   const akaHtml = d.aka
