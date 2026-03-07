@@ -1,7 +1,7 @@
 const MICRO = {
 
 bacteria: [
-  {
+{
     group: "Gram-Positive Cocci",
     color: "bact",
     organisms: [
@@ -198,12 +198,8 @@ bacteria: [
         pearl: "Nocardia vs. Actinomyces: both form branching GP filaments, but Nocardia is aerobic and weakly acid-fast, whereas Actinomyces is anaerobic and NOT acid-fast. CNS abscess plus cavitary pneumonia in an immunocompromised patient points directly to Nocardia."
       }
     ]
-  }
-]
-
-// Note: Output paused here to adhere to the "do one chunk at a time" instruction.
-};
-{
+  },
+  {
     group: "Gram-Negative Cocci",
     color: "bact",
     organisms: [
@@ -426,10 +422,8 @@ bacteria: [
         pearl: "Rapidly progressive cellulitis within 24 hours of a cat bite is highly specific for Pasteurella. Cat bites pose a higher risk of deep tissue infection than dog bites. First-generation cephalosporins are a common prescribing error for these injuries."
       }
     ]
-  }
-
-// Note: Output paused here per "do one chunk at a time" instruction.
-{
+  },
+  {
     group: "Mycobacteria",
     color: "bact",
     organisms: [
@@ -577,10 +571,10 @@ bacteria: [
       }
     ]
   }
-]
-// Output paused here. Let me know when you are ready for the viruses chunk!
+],
+
 viruses: [
-    {
+{
       group: "DNA Viruses - Herpesviruses",
       color: "vir",
       organisms: [
@@ -711,9 +705,7 @@ viruses: [
           pearl: "The window period features only anti-HBc IgM, as HBsAg has been cleared but anti-HBs has not yet appeared. Vaccination produces anti-HBs ONLY, with no anti-HBc. HBV can directly cause HCC through genomic integration without requiring prior cirrhosis, unlike HCV. HDV superinfection is much more destructive than simultaneous co-infection."
         }
       ]
-    }
-
-// Note: Output paused here per "do one chunk at a time" instruction. Ready for RNA Viruses.
+    },
   {
     group: "RNA Viruses - Positive Sense",
     color: "vir",
@@ -905,10 +897,8 @@ viruses: [
         pearl: "HEV is infamous for causing fulminant hepatic failure and high mortality in pregnant women, a unique feature among the hepatitis viruses. While it behaves exactly like HAV in healthy individuals (acute, fecal-oral, no chronicity), it can cause chronic cirrhosis in immunocompromised patients."
       }
     ]
-  }
-
-// Note: Output paused here. Let me know when you are ready for the Retroviruses and Parasites.
-{
+  },
+  {
       group: "RNA Viruses - Retrovirus & Other",
       color: "vir",
       organisms: [
@@ -924,10 +914,10 @@ viruses: [
         }
       ]
     }
-  ],
+],
 
-  fungi: [
-    {
+fungi: [
+{
       group: "Systemic Mycoses",
       color: "fung",
       organisms: [
@@ -1019,7 +1009,7 @@ viruses: [
           gram: "Dimorphic yeast (budding yeast + pseudohyphae + hyphae)",
           virulence: "**Germ tube formation**. **Biofilm** on prosthetics and catheters. Transition between yeast and hyphae facilitates tissue invasion.",
           disease: "**Oral thrush:** white plaques that scrape off. **Esophageal candidiasis:** dysphagia + odynophagia (AIDS-defining). **Vulvovaginitis:** cottage-cheese discharge. **Diaper rash:** beefy red with satellite lesions. **Candidemia:** IV catheters, TPN, neutropenia leading to dissemination.",
-          lab_diagnosis: "**Tests:** Germ tube test is positive (forms true hyphae in serum at 37°C within 2 to 3 hours). Blood cultures for candidemia. **Microscopy:** KOH or Gram stain shows budding yeast with pseudohyphae \n\n[Image of Candida pseudohyphae]\n.",
+          lab_diagnosis: "**Tests:** Germ tube test is positive (forms true hyphae in serum at 37°C within 2 to 3 hours). Blood cultures for candidemia. **Microscopy:** KOH or Gram stain shows budding yeast with pseudohyphae\n.",
           tx: "Mucocutaneous: **fluconazole** or nystatin (topical). Esophageal: fluconazole. Candidemia: **echinocandins** (caspofungin, micafungin) for severe cases. Remove catheters.",
           pearl: "A positive germ tube test differentiates C. albicans from other Candida species. Candida glabrata and Candida krusei are intrinsically resistant to fluconazole, requiring echinocandins for invasive disease."
         },
@@ -1065,10 +1055,10 @@ viruses: [
         }
       ]
     }
-  ],
+],
 
-  parasites: [
-    {
+parasites: [
+{
       group: "Protozoa - Intestinal & Blood",
       color: "para",
       organisms: [
@@ -1098,7 +1088,7 @@ viruses: [
           gram: "Protozoa - Flagellate",
           virulence: "Trophozoites attach to duodenal/jejunal epithelium with a sucking disc, disrupting the brush border. Cysts are the infectious form and resist chlorine.",
           disease: "**Acute:** watery diarrhea, abdominal cramps, bloating, flatulence. **Chronic:** steatorrhea, malabsorption of fat and fat-soluble vitamins, weight loss. **IgA deficiency** increases susceptibility.",
-          lab_diagnosis: "**Tests:** Stool antigen (EIA) is the test of choice. **Microscopy:** Stool O&P shows pear-shaped trophozoites with two nuclei ('owl-eye' or 'old man face' appearance) and four pairs of flagella, or oval cysts with four nuclei \n\n[Image of Giardia trophozoite]\n.",
+          lab_diagnosis: "**Tests:** Stool antigen (EIA) is the test of choice. **Microscopy:** Stool O&P shows pear-shaped trophozoites with two nuclei ('owl-eye' or 'old man face' appearance) and four pairs of flagella, or oval cysts with four nuclei\n.",
           tx: "**Metronidazole**, tinidazole, or nitazoxanide.",
           pearl: "Patients with IgA deficiency are highly susceptible to severe, recurrent Giardia infections. The lack of blood and fever distinguishes this malabsorptive diarrhea from invasive pathogens."
         },
@@ -1226,5 +1216,6 @@ viruses: [
         }
       ]
     }
-  ]
+]
+
 };
