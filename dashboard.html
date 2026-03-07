@@ -214,9 +214,44 @@ tr.editing-row td { background: var(--dash-light) !important; }
 .drop-zone-text span { color: var(--dash); font-weight: 600; }
 .drop-zone-sub { font-size: 12px; color: var(--muted); margin-top: 4px; }
 .prompt-code { background: var(--bg); border: 1px solid var(--border); border-radius: 6px; padding: 4px 10px; font-size: 12px; font-family: 'DM Mono', monospace; display: block; margin-top: 6px; line-height: 1.8; }
-.mapper-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px; margin: 16px 0; }
-.mapper-field label { display: block; font-size: 10px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: var(--muted); margin-bottom: 5px; }
-.mapper-field select { width: 100%; padding: 8px 10px; border: 1px solid var(--border); border-radius: var(--r); font-size: 13px; background: var(--bg); color: var(--ink); font-family: inherit; }
+.mapper-grid { display: flex; flex-direction: column; gap: 14px; margin: 16px 0; }
+
+/* Column chips row */
+.mapper-chips-label { font-size: 10px; font-weight: 700; letter-spacing: 1.2px; text-transform: uppercase; color: var(--muted); margin-bottom: 6px; }
+.mapper-chips { display: flex; flex-wrap: wrap; gap: 6px; }
+.mapper-chip {
+  padding: 5px 12px; border-radius: 99px; border: 1.5px solid var(--border);
+  background: var(--surface); font-size: 12px; font-weight: 500; color: var(--ink2);
+  cursor: pointer; transition: all .15s; user-select: none;
+  font-family: 'DM Mono', monospace;
+}
+.mapper-chip:hover { border-color: var(--lavender); color: var(--lavender); }
+.mapper-chip.assigned-date { background: var(--lavender-light, #ede8f5); border-color: var(--lavender); color: var(--lavender); }
+.mapper-chip.assigned-qs { background: var(--sakura-light); border-color: var(--sakura2); color: var(--sakura2); }
+.mapper-chip.assigned-name { background: var(--gold-light); border-color: var(--gold); color: var(--gold); }
+.mapper-slot.slot-name.has-value { border-color: var(--gold); background: var(--gold-light); }
+
+/* Target slots */
+.mapper-slots { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.mapper-slot {
+  border: 2px dashed var(--border2); border-radius: 10px;
+  padding: 12px 14px; min-height: 56px;
+  display: flex; flex-direction: column; gap: 4px;
+  transition: border-color .15s, background .15s;
+}
+.mapper-slot.has-value { border-style: solid; }
+.mapper-slot.slot-date.has-value { border-color: var(--lavender); background: var(--lavender-light, #ede8f5); }
+.mapper-slot.slot-qs.has-value  { border-color: var(--sakura2); background: var(--sakura-light); }
+.mapper-slot-label { font-size: 9px; font-weight: 700; letter-spacing: 1.2px; text-transform: uppercase; color: var(--muted); }
+.mapper-slot-value { font-size: 13px; font-weight: 600; font-family: 'DM Mono', monospace; color: var(--ink); }
+.mapper-slot-hint { font-size: 11px; color: var(--muted); font-style: italic; }
+.mapper-slot-clear {
+  margin-left: auto; background: none; border: none; cursor: pointer;
+  font-size: 14px; color: var(--dim); line-height: 1; padding: 0; align-self: flex-start;
+  transition: color .15s;
+}
+.mapper-slot-clear:hover { color: var(--sakura2); }
+.mapper-slot-top { display: flex; align-items: center; }
 .csv-preview-table { width: 100%; border-collapse: collapse; font-size: 12px; margin-top: 12px; overflow-x: auto; display: block; }
 .csv-preview-table th { background: var(--surface2); padding: 6px 10px; text-align: left; border-bottom: 1px solid var(--border); }
 .csv-preview-table td { padding: 5px 10px; border-bottom: 1px solid var(--border2); }
@@ -237,7 +272,7 @@ tr.editing-row td { background: var(--dash-light) !important; }
 @media (max-width: 600px) {
   .log-row { flex-direction: column; }
   .log-field input, .log-field select { min-width: unset; width: 100%; }
-  .mapper-grid { grid-template-columns: 1fr; }
+
 }
 </style>
 </head>
@@ -289,6 +324,10 @@ tr.editing-row td { background: var(--dash-light) !important; }
         <div class="log-field">
           <label>Questions Done</label>
           <input type="number" id="log-qs" min="1" max="120" placeholder="e.g. 40"/>
+        </div>
+        <div class="log-field" style="flex:1.5;">
+          <label>Session Name <span style="color:var(--muted);font-weight:400;">(optional)</span></label>
+          <input type="text" id="log-name" placeholder="e.g. Cardio block, Test #157"/>
         </div>
         <button class="log-btn" id="btn-log-qs" onclick="logEntry()">Log ✦</button>
         <button class="btn-ghost hidden-panel" id="cancel-edit" onclick="cancelEdit()">Cancel</button>
@@ -500,7 +539,7 @@ tr.editing-row td { background: var(--dash-light) !important; }
       <div class="modal-title">Import Past Data</div>
       <button onclick="closeModal('import-modal')" style="background:none;border:none;font-size:22px;cursor:pointer;color:var(--dim);">&times;</button>
     </div>
-    <p style="font-size:13px;color:var(--ink2);margin-bottom:4px;">Upload a CSV with <strong>date</strong> and <strong>questions</strong> columns. Each row = one test session. Multiple sessions on the same day are fine.</p>
+    <p style="font-size:13px;color:var(--ink2);margin-bottom:4px;">Upload any CSV — you'll assign which columns are date and questions after. Each row = one test session.</p>
     <div style="background:var(--surface);border:1px solid var(--border);border-left:3px solid var(--lavender);border-radius:var(--r);padding:16px 18px;margin-top:14px;font-size:13px;color:var(--ink2);">
       <strong style="font-size:12px;color:var(--ink);display:block;margin-bottom:8px;">How to get your UWorld data:</strong>
       <ol style="padding-left:18px;margin:0;font-size:13px;line-height:1.9;color:var(--ink2);">
@@ -508,7 +547,7 @@ tr.editing-row td { background: var(--dash-light) !important; }
         <li>Set Items/page to <strong>100</strong>, select just the table rows and copy. <strong>Repeat for each page</strong> if you have &gt;100 sessions.</li>
         <li>Paste into Claude with this prompt:</li>
       </ol>
-      <code class="prompt-code" style="margin-top:10px;background:var(--surface2);border:1px solid var(--border2);border-radius:6px;padding:10px 14px;font-size:12px;font-family:'DM Mono',monospace;display:block;line-height:1.7;color:var(--ink);">Convert this UWorld Previous Tests table into a CSV with 3 columns: Date, Questions, PercentCorrect. Date = the date column. Questions = # QS column. PercentCorrect = score as a number (60% → 60). One row per test, skip omitted/blank rows.</code>
+      <code class="prompt-code" style="margin-top:10px;background:var(--surface2);border:1px solid var(--border2);border-radius:6px;padding:10px 14px;font-size:12px;font-family:'DM Mono',monospace;display:block;line-height:1.7;color:var(--ink);">Convert this UWorld test history into a CSV with 3 columns: Date, Questions, Name. Date = date column. Questions = # QS. Name = test name/number (e.g. "Test 157"). One row per test, skip omitted/blank rows.</code>
     </div>
     <div class="drop-zone" id="drop-zone"
       onclick="document.getElementById('csv-input').click()">
@@ -520,6 +559,9 @@ tr.editing-row td { background: var(--dash-light) !important; }
     <div id="col-mapper" class="hidden-panel">
       <div style="font-size:12px;color:var(--muted);margin:12px 0 4px;" id="csv-file-info"></div>
       <div class="mapper-grid" id="mapper-grid"></div>
+      <input type="hidden" id="map-date" value="0"/>
+      <input type="hidden" id="map-qs" value="1"/>
+      <input type="hidden" id="map-name" value="-1"/>
       <div id="csv-preview"></div>
       <div class="modal-btns" style="margin-top:16px;">
         <button class="btn-cancel" onclick="resetImport()">Clear</button>
@@ -668,18 +710,19 @@ function setLogMode(mode) {
 function logEntry() {
   const date  = document.getElementById('log-date').value;
   const qs    = parseInt(document.getElementById('log-qs').value);
+  const name  = document.getElementById('log-name').value.trim();
 
   if (!date) { showToast('Please select a date'); return; }
   if (!qs || qs < 1) { showToast('Please enter questions done'); return; }
 
   if (editingId !== null) {
     const idx = entries.findIndex(e => e.id === editingId);
-    if (idx !== -1) entries[idx] = { ...entries[idx], date, qs };
+    if (idx !== -1) entries[idx] = { ...entries[idx], date, qs, name };
     editingId = null;
     document.getElementById('btn-log-qs').textContent = 'Log ✦';
     document.getElementById('cancel-edit').classList.add('hidden-panel');
   } else {
-    entries.push({ id: Date.now(), date, qs });
+    entries.push({ id: Date.now(), date, qs, name });
   }
 
   entries.sort((a,b) => a.date.localeCompare(b.date));
@@ -704,6 +747,7 @@ function editEntry(id) {
   setLogMode('questions');
   document.getElementById('log-date').value = e.date;
   document.getElementById('log-qs').value   = e.qs;
+  document.getElementById('log-name').value  = e.name || '';
   document.getElementById('btn-log-qs').textContent = 'Update ✦';
   document.getElementById('cancel-edit').classList.remove('hidden-panel');
   editingId = id;
@@ -943,6 +987,7 @@ function renderHistory() {
     return `<tr id="row-${e.id}" class="${isEditing ? 'editing-row' : ''}">
       <td>${dateStr}</td>
       <td style="font-weight:600;">${e.qs.toLocaleString()}</td>
+      <td style="color:var(--dim);font-size:12.5px;">${e.name || ''}</td>
       <td>
         <div class="row-actions">
           <button class="row-edit-btn" onclick="editEntry(${e.id})">${isEditing ? '✦ Editing…' : 'Edit'}</button>
@@ -962,7 +1007,7 @@ function renderHistory() {
     </div>` : '';
 
   el.innerHTML = `<table class="hist-table">
-    <thead><tr><th>Date</th><th>Questions</th><th></th></tr></thead>
+    <thead><tr><th>Date</th><th>Questions</th><th>Name</th><th></th></tr></thead>
     <tbody>${rows}</tbody>
   </table>${pagination}`;
 }
@@ -1236,15 +1281,18 @@ function parseCSVFile(file) {
 
     const guess = (...kws) => {
       const i = csvHeaders.findIndex(h => kws.some(k => h.toLowerCase().includes(k)));
-      return i >= 0 ? i : 0;
+      return i >= 0 ? i : -1;
     };
     const di = guess('date','day');
-    const qi = guess('question','qs','#','num','count');
+    const qi = guess('question','qs','#','num','count','items');
+    const ni = guess('name','title','label','test','session','block');
 
-    const opts = (sel) => csvHeaders.map((h,i) => `<option value="${i}"${i===sel?' selected':''}>${h}</option>`).join('');
-    document.getElementById('mapper-grid').innerHTML = `
-      <div class="mapper-field"><label>Date column</label><select id="map-date">${opts(di)}</select></div>
-      <div class="mapper-field"><label>Questions column</label><select id="map-qs">${opts(qi)}</select></div>`;
+    // Set initial hidden values
+    document.getElementById('map-date').value = di >= 0 ? di : 0;
+    document.getElementById('map-qs').value   = qi >= 0 ? qi : (di === 0 ? 1 : 0);
+    document.getElementById('map-name').value = ni >= 0 ? ni : -1;
+
+    renderMapperUI();
 
     const previewRows = csvRows.slice(0,5).map(r=>`<tr>${r.map(c=>`<td>${c}</td>`).join('')}</tr>`).join('');
     document.getElementById('csv-preview').innerHTML = `
@@ -1260,9 +1308,131 @@ function parseCSVFile(file) {
   reader.readAsText(file);
 }
 
+
+// ── Flexible date parser (no timezone shifting) ───────────
+function parseFlexDate(str) {
+  if (!str) return null;
+  str = str.trim();
+
+  // ISO format: 2026-03-06
+  let m = str.match(/^(\d{4})-(\d{1,2})-(\d{1,2})$/);
+  if (m) return str.substring(0,10);
+
+  // "Mar 06, 2026" or "Mar 6 2026" or "March 06, 2026"
+  const MONTHS = {jan:1,feb:2,mar:3,apr:4,may:5,jun:6,jul:7,aug:8,sep:9,oct:10,nov:11,dec:12};
+  m = str.match(/^([A-Za-z]+)\s+(\d{1,2}),?\s+(\d{4})$/);
+  if (m) {
+    const mo = MONTHS[m[1].toLowerCase().substring(0,3)];
+    if (!mo) return null;
+    return m[3] + '-' + String(mo).padStart(2,'0') + '-' + m[2].padStart(2,'0');
+  }
+
+  // MM/DD/YYYY or M/D/YYYY
+  m = str.match(/^(\d{1,2})\/(\d{1,2})\/(\d{4})$/);
+  if (m) return m[3] + '-' + m[1].padStart(2,'0') + '-' + m[2].padStart(2,'0');
+
+  // DD/MM/YYYY fallback — only if month > 12
+  m = str.match(/^(\d{1,2})-(\d{1,2})-(\d{4})$/);
+  if (m) return m[3] + '-' + m[2].padStart(2,'0') + '-' + m[1].padStart(2,'0');
+
+  // Last resort: JS Date (may have timezone issues)
+  const d = new Date(str);
+  if (!isNaN(d.getTime())) {
+    const y = d.getFullYear(), mo = d.getMonth()+1, dy = d.getDate();
+    return y + '-' + String(mo).padStart(2,'0') + '-' + String(dy).padStart(2,'0');
+  }
+  return null;
+}
+
+
+function renderMapperUI() {
+  const dateIdx = parseInt(document.getElementById('map-date').value);
+  const qsIdx   = parseInt(document.getElementById('map-qs').value);
+  const nameIdx = parseInt(document.getElementById('map-name').value);
+
+  const chips = csvHeaders.map((h, i) => {
+    const cls = i===dateIdx?'assigned-date':i===qsIdx?'assigned-qs':i===nameIdx?'assigned-name':'';
+    return `<div class="mapper-chip ${cls}"
+      onclick="assignColumn(${i})" title="Click to assign">${h}
+      <span style="font-size:9px;opacity:.5;margin-left:4px;">${getSampleVal(i)}</span>
+    </div>`;
+  }).join('');
+
+  const dateHeader = dateIdx >= 0 ? csvHeaders[dateIdx] : null;
+  const qsHeader   = qsIdx   >= 0 ? csvHeaders[qsIdx]   : null;
+  const nameHeader = nameIdx >= 0 ? csvHeaders[nameIdx]  : null;
+
+  document.getElementById('mapper-grid').innerHTML = `
+    <div>
+      <div class="mapper-chips-label">Your columns — click to assign</div>
+      <div class="mapper-chips">${chips}</div>
+    </div>
+    <div class="mapper-slots" style="grid-template-columns:1fr 1fr 1fr;">
+      <div class="mapper-slot slot-date ${dateHeader?'has-value':''}">
+        <div class="mapper-slot-top">
+          <div class="mapper-slot-label">📅 Date</div>
+          ${dateHeader ? `<button class="mapper-slot-clear" onclick="clearSlot('date')" title="Clear">×</button>` : ''}
+        </div>
+        ${dateHeader
+          ? `<div class="mapper-slot-value">${dateHeader}</div><div class="mapper-slot-hint">${getSampleVal(dateIdx)}</div>`
+          : `<div class="mapper-slot-hint">Click a column above</div>`}
+      </div>
+      <div class="mapper-slot slot-qs ${qsHeader?'has-value':''}">
+        <div class="mapper-slot-top">
+          <div class="mapper-slot-label">🔢 Questions</div>
+          ${qsHeader ? `<button class="mapper-slot-clear" onclick="clearSlot('qs')" title="Clear">×</button>` : ''}
+        </div>
+        ${qsHeader
+          ? `<div class="mapper-slot-value">${qsHeader}</div><div class="mapper-slot-hint">${getSampleVal(qsIdx)}</div>`
+          : `<div class="mapper-slot-hint">Click a column above</div>`}
+      </div>
+      <div class="mapper-slot slot-name ${nameHeader?'has-value':''}">
+        <div class="mapper-slot-top">
+          <div class="mapper-slot-label">🏷 Name <span style="font-weight:400;opacity:.6;">(optional)</span></div>
+          ${nameHeader ? `<button class="mapper-slot-clear" onclick="clearSlot('name')" title="Clear">×</button>` : ''}
+        </div>
+        ${nameHeader
+          ? `<div class="mapper-slot-value">${nameHeader}</div><div class="mapper-slot-hint">${getSampleVal(nameIdx)}</div>`
+          : `<div class="mapper-slot-hint">Click a column above</div>`}
+      </div>
+    </div>`;
+}
+
+function getSampleVal(colIdx) {
+  const sample = csvRows.slice(0,3).map(r => r[colIdx]).filter(Boolean).join(', ');
+  return sample ? sample.substring(0,30) : '—';
+}
+
+let _nextAssign = 'date';
+function assignColumn(colIdx) {
+  const dateIdx = parseInt(document.getElementById('map-date').value);
+  const qsIdx   = parseInt(document.getElementById('map-qs').value);
+  const nameIdx = parseInt(document.getElementById('map-name').value);
+
+  // If already assigned, clear that slot
+  if (colIdx === dateIdx) { document.getElementById('map-date').value = -1; }
+  else if (colIdx === qsIdx) { document.getElementById('map-qs').value = -1; }
+  else if (colIdx === nameIdx) { document.getElementById('map-name').value = -1; }
+  else {
+    // Assign to next empty slot in order: date → qs → name
+    const dFresh = parseInt(document.getElementById('map-date').value);
+    const qFresh = parseInt(document.getElementById('map-qs').value);
+    if (dFresh < 0) document.getElementById('map-date').value = colIdx;
+    else if (qFresh < 0) document.getElementById('map-qs').value = colIdx;
+    else document.getElementById('map-name').value = colIdx;
+  }
+  renderMapperUI();
+}
+
+function clearSlot(slot) {
+  document.getElementById('map-' + slot).value = -1;
+  renderMapperUI();
+}
+
 function importCSV() {
   const dateCol = parseInt(document.getElementById('map-date').value);
   const qsCol   = parseInt(document.getElementById('map-qs').value);
+  const nameCol = parseInt(document.getElementById('map-name').value);
 
   let imported = 0, skipped = 0;
   const existing = new Set(entries.map(e => e.date + '|' + e.qs));
@@ -1272,16 +1442,17 @@ function importCSV() {
     const rawQs   = row[qsCol];
     if (!rawDate || !rawQs) { skipped++; return; }
 
-    const parsed = new Date(rawDate);
-    if (isNaN(parsed.getTime())) { skipped++; return; }
-    const date = parsed.toISOString().split('T')[0];
+    // Robust date parser — handles: "Mar 06, 2026", "2026-03-06", "3/6/2026", "Mar 6 2026"
+    const date = parseFlexDate(rawDate);
+    if (!date) { skipped++; return; }
     const qs   = parseInt(rawQs);
     if (!qs || qs < 1) { skipped++; return; }
 
     const key = date + '|' + qs;
     if (existing.has(key)) { skipped++; return; }
 
-    entries.push({ id: Date.now() + imported, date, qs });
+    const entryName = nameCol >= 0 ? (row[nameCol] || '').trim() : '';
+    entries.push({ id: Date.now() + imported, date, qs, name: entryName });
     existing.add(key);
     imported++;
   });
