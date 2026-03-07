@@ -524,51 +524,104 @@ tr.editing-row td { background: var(--dash-light) !important; }
 
 <!-- ── IMPORT MODAL ── -->
 <div class="modal-overlay" id="import-modal">
-  <div class="modal" style="max-width:560px;">
-    <div class="modal-header">
-      <div class="modal-title">Import Past Data</div>
-      <button onclick="closeModal('import-modal')" style="background:none;border:none;font-size:22px;cursor:pointer;color:var(--dim);">&times;</button>
-    </div>
-    <p style="font-size:13px;color:var(--ink2);margin-bottom:4px;">Upload any CSV — you'll assign which columns are date and questions after. Each row = one test session.</p>
-    <div style="background:var(--surface);border:1px solid var(--border);border-left:3px solid var(--lavender);border-radius:var(--r);padding:16px 18px;margin-top:14px;font-size:13px;color:var(--ink2);">
-      <strong style="font-size:12px;color:var(--ink);display:block;margin-bottom:8px;">How to get your UWorld data:</strong>
-      <ol style="padding-left:18px;margin:0;font-size:13px;line-height:1.9;color:var(--ink2);">
-        <li>Go to <strong>Previous Tests</strong> in UWorld</li>
-        <li>Set Items/page to <strong>100</strong>, select just the table rows and copy. <strong>Repeat for each page</strong> if you have &gt;100 sessions.</li>
-        <li>Paste into Claude with this prompt:</li>
-      </ol>
-      <code class="prompt-code" style="margin-top:10px;background:var(--surface2);border:1px solid var(--border2);border-radius:6px;padding:10px 14px;font-size:12px;font-family:'DM Mono',monospace;display:block;line-height:1.7;color:var(--ink);">Convert this UWorld test history into a CSV with 3 columns: Date, Questions, Name. Date = date column. Questions = # QS. Name = test name/number (e.g. "Test 157"). One row per test, skip omitted/blank rows.</code>
-    </div>
-    <div class="drop-zone" id="drop-zone"
-      onclick="document.getElementById('csv-input').click()">
-      <div class="drop-zone-icon" style="font-size:32px;color:var(--lavender);">⬆</div>
-      <div class="drop-zone-text" style="font-weight:600;color:var(--ink2);">Drop your CSV here or <span style="color:var(--lavender);text-decoration:underline;cursor:pointer;">click to browse</span></div>
-      <div class="drop-zone-sub">UWorld exports, spreadsheets, any CSV</div>
-      <input type="file" id="csv-input" accept=".csv,.txt" style="display:none;" onchange="handleFileSelect(this)"/>
-    </div>
-    <div id="col-mapper" class="hidden-panel">
-      <div style="font-size:12px;color:var(--muted);margin:12px 0 4px;" id="csv-file-info"></div>
-      <div class="mapper-grid" id="mapper-grid"></div>
-      <input type="hidden" id="map-date" value="0"/>
-      <input type="hidden" id="map-qs" value="1"/>
-      <input type="hidden" id="map-name" value="-1"/>
-      <div id="csv-preview"></div>
-      <div class="modal-btns" style="margin-top:16px;">
-        <button class="btn-cancel" onclick="resetImport()">Clear</button>
-        <button class="btn-save" onclick="importCSV()">Import ✦</button>
+  <div class="modal" style="max-width:580px;padding:0;overflow:hidden;display:flex;flex-direction:column;max-height:90vh;">
+
+    <!-- Fixed header -->
+    <div style="padding:24px 28px 0;flex-shrink:0;">
+      <div class="modal-header" style="margin-bottom:0;">
+        <div class="modal-title">Import Past Data</div>
+        <button onclick="closeModal('import-modal')" style="background:none;border:none;font-size:22px;cursor:pointer;color:var(--dim);">&times;</button>
       </div>
     </div>
-    <div id="import-success" class="hidden-panel">
-      <div class="success-box">
-        <div class="success-icon">✦</div>
-        <div class="success-msg" id="import-success-msg"></div>
-        <div class="success-sub">Stats, progress, and charts have been updated.</div>
-        <div style="display:flex;gap:10px;justify-content:center;">
+
+    <!-- Step indicator -->
+    <div id="import-step-indicator" style="display:flex;gap:0;padding:16px 28px 0;flex-shrink:0;">
+      <div id="ind-step1" style="display:flex;align-items:center;gap:6px;font-size:11px;font-weight:700;color:var(--lavender);">
+        <span style="width:20px;height:20px;border-radius:50%;background:var(--lavender);color:#fff;display:flex;align-items:center;justify-content:center;font-size:10px;">1</span>
+        Get Data
+      </div>
+      <div style="flex:1;height:1px;background:var(--border2);margin:10px 8px;"></div>
+      <div id="ind-step2" style="display:flex;align-items:center;gap:6px;font-size:11px;font-weight:700;color:var(--muted);">
+        <span id="ind-dot2" style="width:20px;height:20px;border-radius:50%;background:var(--border);color:var(--muted);display:flex;align-items:center;justify-content:center;font-size:10px;">2</span>
+        Upload
+      </div>
+      <div style="flex:1;height:1px;background:var(--border2);margin:10px 8px;"></div>
+      <div id="ind-step3" style="display:flex;align-items:center;gap:6px;font-size:11px;font-weight:700;color:var(--muted);">
+        <span id="ind-dot3" style="width:20px;height:20px;border-radius:50%;background:var(--border);color:var(--muted);display:flex;align-items:center;justify-content:center;font-size:10px;">3</span>
+        Map Columns
+      </div>
+    </div>
+
+    <!-- Scrollable body -->
+    <div style="overflow-y:auto;flex:1;padding:20px 28px 0;">
+
+      <!-- Step 1: Instructions -->
+      <div id="import-s1">
+        <p style="font-size:13px;color:var(--ink2);margin:0 0 14px;">Export your UWorld history as a CSV using AI, then upload it below.</p>
+        <div style="background:var(--surface2);border:1px solid var(--border);border-left:3px solid var(--lavender);border-radius:10px;padding:16px 18px;font-size:13px;color:var(--ink2);line-height:1.85;">
+          <strong style="font-size:12px;color:var(--ink);display:block;margin-bottom:10px;">How to get your UWorld data:</strong>
+          <div style="display:flex;flex-direction:column;gap:10px;">
+            <div style="display:flex;gap:12px;align-items:flex-start;">
+              <span style="width:20px;height:20px;border-radius:50%;background:var(--lavender);color:#fff;font-size:10px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px;">1</span>
+              <span>Go to <strong>Previous Tests</strong> in UWorld. Set Items/page to <strong>100</strong>, select the table rows and copy.</span>
+            </div>
+            <div style="display:flex;gap:12px;align-items:flex-start;">
+              <span style="width:20px;height:20px;border-radius:50%;background:var(--lavender);color:#fff;font-size:10px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px;">2</span>
+              <span>Paste into Claude or ChatGPT with this prompt:</span>
+            </div>
+          </div>
+          <div style="background:var(--bg);border:1px solid var(--border2);border-radius:8px;padding:12px 14px;font-size:11.5px;font-family:'DM Mono',monospace;line-height:1.75;color:var(--ink);margin-top:12px;user-select:all;cursor:text;">Convert this UWorld test history into a CSV with 3 columns: Date, Questions, Name. Date = date column. Questions = # QS. Name = test name/number (e.g. "Test 157"). One row per test, skip omitted/blank rows.</div>
+          <div style="display:flex;gap:12px;align-items:flex-start;margin-top:10px;">
+            <span style="width:20px;height:20px;border-radius:50%;background:var(--lavender);color:#fff;font-size:10px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px;">3</span>
+            <span>Download or copy the CSV output, then upload it below.</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Step 2: Upload -->
+      <div id="import-s2" style="margin-top:16px;">
+        <div class="drop-zone" id="drop-zone" onclick="document.getElementById('csv-input').click()">
+          <div class="drop-zone-icon" style="font-size:28px;color:var(--lavender);">&#11014;</div>
+          <div class="drop-zone-text" style="font-weight:600;color:var(--ink2);">Drop your CSV here or <span style="color:var(--lavender);text-decoration:underline;cursor:pointer;">click to browse</span></div>
+          <div class="drop-zone-sub">Any CSV — Date, Questions, and Name columns</div>
+          <input type="file" id="csv-input" accept=".csv,.txt" style="display:none;" onchange="handleFileSelect(this)"/>
+        </div>
+      </div>
+
+      <!-- Step 3: Column mapper (hidden until file loaded) -->
+      <div id="col-mapper" class="hidden-panel">
+        <div style="font-size:12px;color:var(--muted);margin:14px 0 4px;" id="csv-file-info"></div>
+        <div class="mapper-grid" id="mapper-grid"></div>
+        <input type="hidden" id="map-date" value="0"/>
+        <input type="hidden" id="map-qs" value="1"/>
+        <input type="hidden" id="map-name" value="-1"/>
+        <div id="csv-preview" style="margin-top:12px;"></div>
+      </div>
+
+      <!-- Success state -->
+      <div id="import-success" class="hidden-panel" style="margin-top:16px;">
+        <div class="success-box">
+          <div class="success-icon">&#10022;</div>
+          <div class="success-msg" id="import-success-msg"></div>
+          <div class="success-sub">Stats, progress, and charts have been updated.</div>
+        </div>
+      </div>
+
+    </div><!-- end scrollable body -->
+
+    <!-- Fixed footer buttons -->
+    <div id="import-footer" style="padding:16px 28px 24px;flex-shrink:0;border-top:1px solid var(--border2);margin-top:16px;display:flex;justify-content:space-between;align-items:center;gap:10px;">
+      <button class="btn-cancel" id="import-back-btn" style="display:none;" onclick="resetImport()">&#8592; Start over</button>
+      <div style="display:flex;gap:10px;margin-left:auto;">
+        <div id="import-success-btns" style="display:none;gap:10px;">
           <button class="btn-save" onclick="closeModal('import-modal')">Done</button>
           <button class="btn-cancel" onclick="resetImport()">Re-import</button>
         </div>
+        <button class="btn-cancel" onclick="closeModal('import-modal')" id="import-cancel-btn">Cancel</button>
+        <button class="btn-save" id="import-do-btn" onclick="importCSV()" style="display:none;">Import &#10022;</button>
       </div>
     </div>
+
   </div>
 </div>
 
@@ -1294,6 +1347,16 @@ function parseCSVFile(file) {
 
     document.getElementById('drop-zone').classList.add('hidden-panel');
     document.getElementById('col-mapper').classList.remove('hidden-panel');
+    // Update step indicator
+    document.getElementById('ind-dot2').style.background = 'var(--lavender)';
+    document.getElementById('ind-dot2').style.color = '#fff';
+    document.getElementById('ind-step2').style.color = 'var(--lavender)';
+    document.getElementById('ind-dot3').style.background = 'var(--lavender)';
+    document.getElementById('ind-dot3').style.color = '#fff';
+    document.getElementById('ind-step3').style.color = 'var(--lavender)';
+    // Show import button + back button
+    document.getElementById('import-do-btn').style.display = 'block';
+    document.getElementById('import-back-btn').style.display = 'block';
   };
   reader.readAsText(file);
 }
@@ -1418,6 +1481,10 @@ function importCSV() {
     `Imported ${imported} session${imported !== 1 ? 's' : ''}${skipped ? ` (${skipped} skipped)` : ''}`;
   document.getElementById('col-mapper').classList.add('hidden-panel');
   document.getElementById('import-success').classList.remove('hidden-panel');
+  document.getElementById('import-do-btn').style.display = 'none';
+  document.getElementById('import-back-btn').style.display = 'none';
+  document.getElementById('import-cancel-btn').style.display = 'none';
+  document.getElementById('import-success-btns').style.display = 'flex';
   renderAll();
 }
 
