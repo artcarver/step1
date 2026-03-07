@@ -1616,3 +1616,28 @@ mark.search-hl {
 .legend-badge-r { background: var(--tracker-accent); }
 .tc-fill-w { position:absolute; left:0; top:0; height:100%; border-radius:99px; background:var(--card-accent, var(--sky)); opacity:0.4; transition:width .6s ease; }
 .tc-fill-r { position:absolute; left:0; top:0; height:100%; border-radius:99px; background:var(--card-accent, var(--fuji)); transition:width .6s ease; }
+
+/* ── UWorld strip ─────────────────────────────────────────── */
+.uw-strip {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--r-lg);
+  padding: 18px 24px;
+  display: flex; align-items: center; gap: 24px; flex-wrap: wrap;
+  margin-top: 20px;
+}
+.uw-empty-hint { font-size: 12px; color: var(--muted); font-style: italic; }
+.uw-prog { flex: 1; min-width: 160px; }
+.uw-lbl {
+  font-size: 10px; font-weight: 700; letter-spacing: 2px;
+  text-transform: uppercase; color: var(--dim); margin-bottom: 10px;
+}
+.uw-row { display: flex; align-items: center; gap: 12px; margin-bottom: 6px; }
+.uw-bg { flex: 1; height: 6px; background: var(--border2); border-radius: 99px; overflow: hidden; }
+.uw-fill { height: 100%; border-radius: 99px; background: var(--lavender); opacity: 0.75; transition: width .7s ease; }
+.uw-pct { font-family: 'DM Mono', monospace; font-size: 12px; font-weight: 600; color: var(--muted); min-width: 36px; text-align: right; }
+.uw-sub { font-size: 11px; color: var(--dim); }
+.uw-div { width: 1px; height: 36px; background: var(--border2); flex-shrink: 0; }
+.uw-qd { text-align: center; flex-shrink: 0; padding: 0 4px; }
+.uw-qd-v { font-family: 'Playfair Display', serif; font-size: 32px; font-weight: 700; line-height: 1; color: var(--lavender); }
+.uw-qd-l { font-size: 9px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: var(--dim); margin-top: 4px; }
