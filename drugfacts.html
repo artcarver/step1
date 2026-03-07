@@ -365,9 +365,9 @@ function renderPanels(filtered, isSearch) {
         <span class="class-label" style="color:${meta.color};border-color:${meta.color}40;background:${meta.color}12;">
           <span style="font-size:7px;">◆</span> ${grp}
         </span>
-        <button class="group-expand-btn" style="--cat-color:${meta.color}" onclick="toggleGroup('${gid}',this)">▼ Expand</button>
+        <button class="group-expand-btn" style="--cat-color:${meta.color}" onclick="toggleGroup('${gid}',this)">▲ Collapse</button>
       </div>
-      <div class="cards-grid" id="${gid}" style="display:none;">
+      <div class="cards-grid" id="${gid}" style="display:grid;">
         ${grpDrugs.map(d => renderCard(d, meta.color)).join('')}
       </div>
     </div>`;
@@ -506,7 +506,7 @@ function handleModalOverlayClick(e) {
 // ── Browse helpers ─────────────────────────────────────────
 function toggleGroup(gid, btn) {
   const grid = document.getElementById(gid);
-  const isHidden = grid.style.display === 'none' || grid.style.display === '';
+  const isHidden = grid.style.display === 'none';
   grid.style.display = isHidden ? 'grid' : 'none';
   btn.textContent = isHidden ? '▲ Collapse' : '▼ Expand';
 }
