@@ -1070,47 +1070,97 @@ mark.search-hl {
 
 /* ── Quiz mode layout ───────────────────────────────────── */
 .quiz-toolbar {
-  display: none; align-items: center; gap: 10px;
-  padding: 12px 16px; background: var(--surface);
-  border: 1.5px solid var(--border); border-radius: 14px;
-  margin: 12px 0 4px; flex-wrap: wrap;
+  display: none; flex-direction: column; gap: 0;
+  background: var(--surface); border: 1.5px solid var(--border);
+  border-radius: 14px; margin: 10px 0 4px; overflow: hidden;
 }
 .quiz-toolbar.visible { display: flex; }
-.quiz-direction-toggle {
-  display: flex; gap: 4px; background: var(--surface2);
-  border-radius: 99px; padding: 3px;
+
+/* Single toolbar row */
+.quiz-toolbar-row {
+  display: flex; align-items: center; gap: 2px;
+  padding: 6px 8px;
 }
-.quiz-dir-btn {
+
+/* Thin vertical rule between groups */
+.quiz-toolbar-sep {
+  width: 1px; height: 18px;
+  background: var(--border); margin: 0 6px; flex-shrink: 0;
+}
+
+/* Pill toggles — direction and scope share the same style */
+.quiz-direction-toggle,
+.quiz-scope-toggle {
+  display: flex; gap: 2px;
+  background: var(--surface2); border-radius: 8px; padding: 3px;
+}
+.quiz-dir-btn,
+.quiz-scope-btn {
   background: none; border: none; cursor: pointer;
   font-size: 10px; font-weight: 600; color: var(--muted);
-  padding: 4px 12px; border-radius: 99px; transition: all .14s;
-  font-family: 'DM Sans', sans-serif;
+  padding: 4px 11px; border-radius: 6px; transition: all .14s;
+  font-family: 'DM Sans', sans-serif; white-space: nowrap; line-height: 1;
 }
-.quiz-dir-btn.active { background: var(--surface); color: var(--ink); box-shadow: var(--shadow); }
+.quiz-dir-btn.active,
+.quiz-scope-btn.active {
+  background: var(--surface); color: var(--ink);
+  box-shadow: 0 1px 3px rgba(42,31,26,.10);
+}
+.quiz-dir-btn:not(.active):hover,
+.quiz-scope-btn:not(.active):hover { color: var(--ink2); }
+
+/* Ghost icon buttons — Shuffle / Reset */
+.quiz-icon-btn {
+  display: flex; align-items: center; gap: 5px;
+  background: none; border: none; cursor: pointer;
+  font-size: 10px; font-weight: 600; color: var(--muted);
+  padding: 5px 10px; border-radius: 7px;
+  font-family: 'DM Sans', sans-serif; transition: all .14s;
+  white-space: nowrap;
+}
+.quiz-icon-btn:hover { background: var(--surface2); color: var(--ink2); }
+.quiz-icon-btn svg { flex-shrink: 0; opacity: 0.7; }
+
+/* Stat counter — pushed to right */
 .quiz-stat {
-  font-family: 'DM Mono', monospace; font-size: 10px; color: var(--muted);
-  margin-left: auto;
+  font-family: 'DM Mono', monospace; font-size: 10px;
+  color: var(--muted); margin-left: auto; padding: 0 6px;
+  white-space: nowrap;
 }
 .quiz-stat strong { color: var(--ink); }
-.quiz-shuffle-btn, .quiz-reset-btn {
-  background: none; border: 1.5px solid var(--border); border-radius: 99px;
-  padding: 5px 12px; font-size: 10px; font-weight: 600; color: var(--muted);
-  cursor: pointer; font-family: 'DM Sans', sans-serif; transition: all .14s;
-}
-.quiz-shuffle-btn:hover, .quiz-reset-btn:hover { border-color: var(--ink2); color: var(--ink2); }
 
-
-/* ══════════════════════════════════════════════════════════
-   FLASHCARD QUIZ — complete redesign
-   ══════════════════════════════════════════════════════════ */
-
-/* Keyboard hint in toolbar — subtle, monospace, right-aligned */
+/* Keyboard hint — far right, very dim */
 .quiz-kbd-hint {
-  font-family: 'DM Mono', monospace;
-  font-size: 9px; color: var(--dim);
-  letter-spacing: 0.5px; white-space: nowrap;
-  margin-left: auto; padding-left: 8px;
-  opacity: 0.7;
+  font-family: 'DM Mono', monospace; font-size: 9px;
+  color: var(--dim); letter-spacing: 0.4px;
+  white-space: nowrap; padding-left: 6px; opacity: 0.65;
+}
+
+/* Category picker row */
+.quiz-cat-picker {
+  display: flex; flex-wrap: wrap; gap: 5px;
+  padding: 8px 10px 10px;
+  border-top: 1px solid var(--border2);
+  background: var(--surface2);
+}
+.quiz-cat-chip {
+  background: var(--surface);
+  border: 1.5px solid color-mix(in srgb, var(--chip-color) 28%, var(--border));
+  color: color-mix(in srgb, var(--chip-color) 70%, var(--muted));
+  border-radius: 99px; padding: 3px 12px;
+  font-size: 10px; font-weight: 600;
+  font-family: 'DM Sans', sans-serif;
+  cursor: pointer; transition: all .14s; white-space: nowrap;
+}
+.quiz-cat-chip:hover {
+  border-color: var(--chip-color);
+  color: var(--chip-color);
+  background: color-mix(in srgb, var(--chip-color) 7%, var(--surface));
+}
+.quiz-cat-chip.active {
+  background: var(--chip-color);
+  border-color: var(--chip-color);
+  color: #fff;
 }
 
 /* Outer wrapper — constrains max width and stacks everything */
@@ -1236,38 +1286,35 @@ mark.search-hl {
 
 /* Fields grid */
 .fc-back-fields {
-  padding: 18px 26px 24px;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 16px 24px;
+  padding: 6px 26px 22px;
+  display: flex; flex-direction: column;
 }
-/* Pearl always full-width */
-.fc-field-pearl {
-  grid-column: 1 / -1;
+.fc-field {
+  padding: 14px 0;
+  border-bottom: 1px solid var(--border2);
 }
+.fc-field:last-child { border-bottom: none; }
 .fc-field-lbl {
   font-size: 8px; font-weight: 700;
-  text-transform: uppercase; letter-spacing: 1px;
+  text-transform: uppercase; letter-spacing: 1.2px;
   color: var(--cat-color, var(--muted));
   margin-bottom: 5px;
 }
 .fc-field-val {
-  font-size: 12.5px; color: var(--ink2);
-  line-height: 1.65;
+  font-size: 13px; color: var(--ink2); line-height: 1.65;
 }
 .fc-field-val strong { color: var(--ink); font-weight: 600; }
-/* Pearl styling */
+/* Pearl field — highlighted, no top border */
 .fc-field-pearl {
-  background: color-mix(in srgb, var(--cat-color, var(--gold)) 7%, transparent);
-  border: 1px solid color-mix(in srgb, var(--cat-color, var(--gold)) 22%, transparent);
-  border-radius: 10px; padding: 13px 15px;
+  margin: 10px 0 4px;
+  padding: 13px 15px 13px;
+  border-bottom: none;
+  background: color-mix(in srgb, var(--cat-color, var(--sakura2)) 7%, transparent);
+  border: 1px solid color-mix(in srgb, var(--cat-color, var(--sakura2)) 20%, transparent);
+  border-radius: 10px;
 }
-.fc-field-pearl .fc-field-lbl {
-  color: var(--cat-color, var(--gold));
-}
-.fc-field-pearl .fc-field-val {
-  font-size: 12.5px;
-}
+.fc-field-pearl .fc-field-lbl { color: var(--cat-color, var(--sakura2)); }
+
 
 /* ── Rating buttons ─────────────────────────────────────── */
 .fc-rating-row {
@@ -1342,16 +1389,18 @@ mark.search-hl {
   cursor: pointer; transition: opacity .14s;
 }
 .quiz-restart-btn:hover { opacity: 0.87; }
+.quiz-restart-outline {
+  background: var(--surface); color: var(--ink2);
+  border-color: var(--border);
+}
+.quiz-restart-outline:hover { opacity: 1; border-color: var(--ink2); }
 
 /* ── Responsive ─────────────────────────────────────────── */
 @media (max-width: 600px) {
   .fc-front { padding: 32px 22px 28px; min-height: 200px; }
   .fc-back-header { padding: 16px 18px 14px; }
-  .fc-back-fields {
-    grid-template-columns: 1fr;
-    padding: 14px 18px 20px; gap: 14px;
-  }
-  .fc-field-pearl { grid-column: 1; }
+  .fc-back-fields { padding: 0 18px 18px; }
+  .fc-field-pearl { margin: 8px 0 4px; }
   .fc-rating-row { gap: 8px; }
   .fc-rate-btn { padding: 11px 6px 9px; }
   .quiz-complete-stats { gap: 20px; }
