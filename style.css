@@ -282,7 +282,7 @@ input, select, textarea { font-family: inherit; }
 .tool-card { padding: 20px 22px; display: block; }
 .tool-card:hover, .ref-card:hover {
   transform: var(--lift);
-  box-shadow: var(--shadow-md), inset 3px 0 0 0 var(--card-accent, var(--sakura2));
+  box-shadow: var(--shadow-md);
   border-color: var(--border);
 }
 .tool-card:focus-visible, .ref-card:focus-visible {
@@ -412,7 +412,7 @@ input, select, textarea { font-family: inherit; }
 .ref-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 14px; }
 .ref-card { border-radius: var(--r-lg); padding: 18px 20px; }
 .ref-card:hover {
-  box-shadow: var(--shadow-md), inset 3px 0 0 0 var(--rc-accent, var(--sakura2));
+  box-shadow: var(--shadow-md);
   border-color: var(--border);
 }
 .ref-card-top { display: flex; align-items: flex-start; justify-content: space-between; gap: 8px; margin-bottom: 8px; }

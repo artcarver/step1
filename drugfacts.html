@@ -10,7 +10,7 @@
 :root {
   --accent:       var(--sakura2);
   --accent-light: var(--sakura-light);
-  --accent-glow:  rgba(196,80,94,.12);
+  --accent-glow:  rgba(196,80,94,.10);
 
   --c-autonomic:  #c4505e;
   --c-cv:         #9e3a5a;
@@ -32,8 +32,9 @@
 }
 .ref-page-eyebrow {
   font-family: 'DM Mono', monospace;
-  font-size: 9px; font-weight: 400; letter-spacing: 3.5px;
-  text-transform: uppercase; color: var(--accent); margin-bottom: 8px;
+  font-size: 9px; letter-spacing: 3.5px;
+  text-transform: uppercase; color: var(--accent);
+  opacity: .75; margin-bottom: 8px;
 }
 .ref-page-title {
   font-family: 'Playfair Display', serif;
@@ -74,26 +75,24 @@
 }
 .ref-search-input::placeholder { color: var(--dim); }
 
-/* ── Category tabs — wrap layout so all fit ──────────────── */
-/* FIX #8: flex-wrap so tabs wrap to next line instead of scrolling */
+/* ── Category tabs ───────────────────────────────────────── */
 .cat-tab-bar {
   display: flex;
-  flex-wrap: wrap;          /* wrap instead of scroll */
+  flex-wrap: wrap;
   gap: 0;
   margin-top: 18px;
   border-bottom: 1px solid var(--border2);
 }
 .cat-tab {
-  padding: 9px 13px;
-  font-family: 'DM Mono', monospace; font-size: 9px;
+  padding: 9px 12px;
+  font-family: 'DM Mono', monospace; font-size: 8.5px;
   letter-spacing: 1.2px; text-transform: uppercase;
   color: var(--muted); border: none;
   border-bottom: 2px solid transparent;
   cursor: pointer; white-space: nowrap;
   background: transparent;
   transition: color .15s, border-color .15s;
-  display: flex; align-items: center; gap: 6px;
-  /* FIX #8: slightly tighter so all 10 tabs fit on one row at normal viewport */
+  display: flex; align-items: center; gap: 5px;
   flex-shrink: 0;
 }
 .cat-tab:hover { color: var(--ink2); }
@@ -101,23 +100,26 @@
 .tab-dot { width: 6px; height: 6px; border-radius: 50%; flex-shrink: 0; }
 
 /* ── Category intro ──────────────────────────────────────── */
+/* FIX #1: uniform warm surface background for all categories */
 .cat-intro {
-  border-radius: 14px; padding: 16px 20px;
-  margin: 18px 0 24px;
-  border: 1px solid;
-  background: transparent; /* tinted via inline style */
+  border-radius: 12px;
+  padding: 16px 20px;
+  margin: 18px 0 22px;
+  /* Single shared background — warm surface, not tinted per-cat */
+  background: var(--surface);
+  border: 1px solid var(--border);
 }
 .cat-intro-title {
   font-family: 'Playfair Display', serif;
-  font-size: 19px; font-weight: 600; margin-bottom: 4px; letter-spacing: -0.3px;
+  font-size: 18px; font-weight: 600; margin-bottom: 4px; letter-spacing: -0.3px;
 }
 .cat-intro-desc { font-size: 12.5px; color: var(--muted); line-height: 1.6; }
 
 /* ── Group row ───────────────────────────────────────────── */
-.group-section { margin-bottom: 30px; }
+.group-section { margin-bottom: 28px; }
 .class-group-header {
   display: flex; align-items: center; justify-content: space-between;
-  margin-bottom: 12px;
+  margin-bottom: 11px;
 }
 .class-label {
   font-family: 'DM Mono', monospace; font-size: 8.5px; letter-spacing: 2.5px;
@@ -138,33 +140,30 @@
 .group-expand-btn:hover { background: var(--surface2); color: var(--ink2); }
 
 /* ── Card grid ───────────────────────────────────────────── */
-/* FIX #3 & #4: align-items:start keeps cards their natural height (no stretch).
-   minmax(300px,1fr) gives consistent collapsed width so cards look uniform. */
 .cards-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
   gap: 10px;
-  align-items: start;   /* each card only as tall as its content */
+  align-items: start;
 }
 
 /* ── Drug card ───────────────────────────────────────────── */
-/* FIX #5: only box-shadow on hover, NO transform or border change */
+/* FIX #2: hover = shadow only. No transform, no inset border, no border mutation */
 .rcard {
   background: var(--surface);
   border: 1px solid var(--border);
   border-left: 3px solid var(--accent);
   border-radius: 12px; overflow: hidden;
   cursor: pointer;
-  /* FIX #5: transition only shadow */
   transition: box-shadow .18s ease;
-  box-shadow: 0 1px 3px rgba(42,31,26,.05);
+  box-shadow: 0 1px 3px rgba(42,31,26,.04);
 }
-/* FIX #5: glow only, no transform, no border mutation */
 .rcard:hover {
-  box-shadow: 0 4px 20px rgba(42,31,26,.11);
+  box-shadow: 0 4px 18px rgba(42,31,26,.10);
+  /* explicitly no border-color change, no inset border */
 }
 .rcard.expanded {
-  box-shadow: 0 4px 22px rgba(42,31,26,.13);
+  box-shadow: 0 4px 20px rgba(42,31,26,.12);
 }
 .rcard:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
 
@@ -180,28 +179,27 @@
 .rcard[data-cat="onco"]       { border-left-color: var(--c-onco); }
 .rcard[data-cat="toxicology"] { border-left-color: var(--c-toxicology); }
 
-/* ── Card header (always visible) ───────────────────────── */
+/* ── Card collapsed state ────────────────────────────────── */
 .rcard-header {
   padding: 13px 14px 0;
   display: flex; justify-content: space-between; align-items: flex-start; gap: 8px;
 }
 .rcard-header-left { flex: 1; min-width: 0; }
 
-/* FIX #6: Bigger, bolder name for easy scanning */
+/* Drug name — Playfair, prominent */
 .rcard-name {
   font-family: 'Playfair Display', serif;
-  font-size: 15.5px; font-weight: 700; line-height: 1.2;
+  font-size: 15px; font-weight: 700; line-height: 1.2;
   color: var(--ink); letter-spacing: -0.2px;
 }
 
-/* FIX #6: aka uses a clearly different style — smaller, italic, clearly secondary */
+/* Aka — mono, clearly subordinate, not italic */
 .rcard-aka {
   font-family: 'DM Mono', monospace;
-  font-size: 10px; color: var(--dim); font-style: normal;
-  line-height: 1.5; margin-top: 4px; word-break: break-word;
-  letter-spacing: 0.1px;
+  font-size: 9.5px; color: var(--dim); font-style: normal;
+  line-height: 1.5; margin-top: 5px; word-break: break-word;
 }
-.rcard-aka .dot-sep { color: var(--border2); margin: 0 3px; }
+.rcard-aka .dot-sep { margin: 0 3px; color: var(--border); }
 
 .rcard-toggle {
   flex-shrink: 0; background: none; border: none; cursor: pointer;
@@ -212,7 +210,7 @@
 }
 .rcard.expanded .rcard-toggle { transform: rotate(180deg); color: var(--accent); }
 
-/* FIX #6: Summary always visible — clearly readable, distinct weight/color */
+/* Summary — DM Sans, warm ink, clearly body copy */
 .rcard-summary {
   padding: 6px 14px 13px;
   font-size: 12px; font-weight: 400;
@@ -220,14 +218,11 @@
 }
 
 /* ── Expanded detail ─────────────────────────────────────── */
-/* FIX #2 & #3: card expands downward in-place (no grid-column span).
-   Remove all the competing border/background treatment.
-   Clean: just label pill + indented plain text. */
 .rcard-detail {
   display: none;
   padding: 0 14px 14px;
   border-top: 1px solid var(--border2);
-  margin-top: 2px;
+  margin-top: 1px;
 }
 .rcard.expanded .rcard-detail {
   display: block;
@@ -238,10 +233,7 @@
   to   { opacity: 1; transform: translateY(0); }
 }
 
-/* FIX #2: Each field is label + text. No extra box borders. Clean. */
-.rcard-field {
-  margin-top: 12px;
-}
+.rcard-field { margin-top: 13px; }
 
 .rcard-field-label {
   font-family: 'DM Mono', monospace;
@@ -249,7 +241,6 @@
   padding: 3px 8px; border-radius: 5px;
   display: inline-block; margin-bottom: 6px;
   border: 1px solid;
-  /* No background clash — each class provides its own subtle tint */
 }
 .lbl-moa { background: #f0f4fd; color: #3a5080; border-color: #c8d4f0; }
 .lbl-use { background: #edf7f1; color: #2e6845; border-color: #b8e0c8; }
@@ -257,37 +248,45 @@
 .lbl-ci  { background: #fdf4ee; color: #7a3e18; border-color: #e8c8a8; }
 .lbl-pk  { background: #f3f0fd; color: #4a3890; border-color: #c8bce8; }
 
-/* FIX #2: Plain text, no left-border rule, no dashed lines. Clean reading. */
 .rcard-field-text {
   font-size: 12px; color: var(--ink2); line-height: 1.65;
-  padding-left: 2px;
 }
 .rcard-field-text strong { color: var(--ink); font-weight: 600; }
 
-/* Individual sentence lines — just spacing, no dashes */
-.info-line {
-  padding: 1.5px 0;
-  line-height: 1.65; font-size: 12px; color: var(--ink2);
-}
-.info-line + .info-line { margin-top: 4px; }
+/* Sentence lines — just spacing, no dashes */
+.info-line { padding: 2px 0; line-height: 1.65; font-size: 12px; color: var(--ink2); }
+.info-line + .info-line { margin-top: 3px; }
 .info-line strong { color: var(--ink); font-weight: 600; }
 
 /* ── Pearl box ───────────────────────────────────────────── */
-/* FIX #2: Keep the color, remove border-on-border. Simple background tint. */
+/* FIX #3: diamond ◇ instead of star ★ */
 .rcard-pearl {
   display: flex; gap: 9px; align-items: flex-start;
   background: var(--accent-light);
   border-radius: 9px; padding: 10px 12px;
   margin-top: 14px;
 }
-.pearl-star { color: var(--accent); font-size: 12px; flex-shrink: 0; margin-top: 2px; }
+.pearl-diamond {
+  color: var(--accent); font-size: 12px; flex-shrink: 0; margin-top: 1px;
+  line-height: 1;
+}
 .pearl-body { flex: 1; min-width: 0; }
 .pearl-label {
   font-family: 'DM Mono', monospace; font-size: 7.5px; letter-spacing: 2px;
   text-transform: uppercase; color: var(--accent); display: block; margin-bottom: 4px;
 }
 .pearl-text { font-size: 12px; color: var(--ink2); line-height: 1.65; }
-.pearl-text strong { color: var(--c-autonomic); font-weight: 600; }
+.pearl-text strong { color: var(--c-cv); font-weight: 600; }
+
+/* ── Search results header ───────────────────────────────── */
+.search-cat-label {
+  font-family: 'DM Mono', monospace; font-size: 9px; letter-spacing: 2px;
+  text-transform: uppercase; margin: 20px 0 10px;
+  display: flex; align-items: center; gap: 8px;
+}
+.search-cat-label::after {
+  content: ''; flex: 1; height: 1px; background: var(--border);
+}
 
 /* ── Search highlight ────────────────────────────────────── */
 mark.search-hl {
@@ -307,7 +306,7 @@ mark.search-hl {
 @media (max-width: 600px) {
   .cards-grid { grid-template-columns: 1fr; }
   .ref-page-header { padding-top: 20px; }
-  .cat-tab { padding: 8px 10px; font-size: 8.5px; }
+  .cat-tab { padding: 8px 10px; font-size: 8px; }
 }
 </style>
 </head>
@@ -346,7 +345,6 @@ mark.search-hl {
     </div>
   </div>
 
-  <!-- FIX #1: No "All" tab rendered — default view shows first category -->
   <div class="cat-tab-bar" id="cat-tabs" role="tablist"></div>
   <div id="panels-container"></div>
 
@@ -368,7 +366,6 @@ const CAT_META = {
   toxicology: { label: 'Toxicology',     color: '#a63e3e', desc: 'Crucial reversal agents and toxidromes. Focus on the mechanism of toxicity and the logic of the chosen antidote. Know the classic overdose presentations cold.' },
 };
 
-// FIX #1: default to first category, not 'all'
 let allDrugs = [], activeTab = 'autonomic', searchQ = '';
 
 function buildDrugList() {
@@ -382,25 +379,14 @@ function buildDrugList() {
 }
 
 function getFiltered() {
-  return allDrugs.filter(d => {
-    if (d.category !== activeTab) return false;
-    if (searchQ) {
+  if (searchQ) {
+    return allDrugs.filter(d => {
       const blob = [d.name, d.aka, d.summary, d.moa, d.use, d.se, d.ci, d.pk, d.pearl]
         .filter(Boolean).join(' ').toLowerCase();
-      if (!blob.includes(searchQ)) return false;
-    }
-    return true;
-  });
-}
-
-// When searching, show across all categories
-function getAllFiltered() {
-  return allDrugs.filter(d => {
-    if (!searchQ) return false;
-    const blob = [d.name, d.aka, d.summary, d.moa, d.use, d.se, d.ci, d.pk, d.pearl]
-      .filter(Boolean).join(' ').toLowerCase();
-    return blob.includes(searchQ);
-  });
+      return blob.includes(searchQ);
+    });
+  }
+  return allDrugs.filter(d => d.category === activeTab);
 }
 
 function esc(s) {
@@ -421,8 +407,7 @@ function fmt(text, q) {
 function fmtLines(text, q) {
   if (!text) return '';
   let out = fmt(text, q);
-  // Split on sentence breaks before capital or special chars
-  const parts = out.split(/\.\s+(?=[A-Z↑↓(★<\[0-9])/);
+  const parts = out.split(/\.\s+(?=[A-Z↑↓(★◇<\[0-9])/);
   if (parts.length <= 1) return `<div class="info-line">${out}</div>`;
   return parts.map((p, i) => {
     let line = p.trim();
@@ -433,23 +418,22 @@ function fmtLines(text, q) {
 }
 
 function render() {
+  const filtered = getFiltered();
   const isSearch = searchQ.length > 0;
-  const display = isSearch ? getAllFiltered() : getFiltered();
 
-  // Update count
   document.getElementById('results-meta').innerHTML = isSearch
-    ? `<strong>${display.length}</strong> of ${allDrugs.length} drugs`
+    ? `<strong>${filtered.length}</strong> of ${allDrugs.length} drugs`
     : `<strong>${allDrugs.length}</strong> drugs`;
 
   renderTabs();
-  renderPanels(display, isSearch);
+  renderPanels(filtered, isSearch);
 }
 
-// FIX #1: No "All" tab
 function renderTabs() {
   let html = '';
   Object.entries(CAT_META).forEach(([cat, meta]) => {
-    html += `<button class="cat-tab${activeTab===cat && !searchQ ? ' active':''}"
+    const isActive = (activeTab === cat && !searchQ);
+    html += `<button class="cat-tab${isActive ? ' active' : ''}"
       onclick="switchTab('${cat}')" role="tab">
       <span class="tab-dot" style="background:${meta.color}"></span>${meta.label}
     </button>`;
@@ -457,12 +441,11 @@ function renderTabs() {
   document.getElementById('cat-tabs').innerHTML = html;
 }
 
-function renderPanels(display, isSearch) {
+function renderPanels(filtered, isSearch) {
   const container = document.getElementById('panels-container');
 
   if (isSearch) {
-    // Search: show matching drugs grouped by category
-    if (!display.length) {
+    if (!filtered.length) {
       container.innerHTML = `<div class="cards-grid" style="margin-top:16px;">
         <div class="ref-empty">
           <div class="ref-empty-title">No results</div>
@@ -470,20 +453,20 @@ function renderPanels(display, isSearch) {
         </div></div>`;
       return;
     }
-    const cats = Object.keys(CAT_META).filter(c => display.some(d => d.category === c));
+    const cats = Object.keys(CAT_META).filter(c => filtered.some(d => d.category === c));
     container.innerHTML = cats.map(cat => {
-      const catDrugs = display.filter(d => d.category === cat);
+      const catDrugs = filtered.filter(d => d.category === cat);
       if (!catDrugs.length) return '';
       const meta = CAT_META[cat];
-      return `<div class="ref-panel" id="panel-${cat}" style="margin-top:18px">
-        <div style="font-family:'DM Mono',monospace;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:${meta.color};margin-bottom:10px;">${meta.label}</div>
+      return `<div class="ref-panel" id="panel-${cat}">
+        <div class="search-cat-label" style="color:${meta.color}">${meta.label}</div>
         <div class="cards-grid">${catDrugs.map(d => renderCard(d)).join('')}</div>
       </div>`;
     }).join('');
     return;
   }
 
-  if (!display.length) {
+  if (!filtered.length) {
     container.innerHTML = `<div class="cards-grid" style="margin-top:16px;">
       <div class="ref-empty">
         <div class="ref-empty-title">Nothing here yet</div>
@@ -494,16 +477,16 @@ function renderPanels(display, isSearch) {
 
   const cat = activeTab;
   const meta = CAT_META[cat];
-  const groups = [...new Set(display.map(d => d.groupName))];
+  const groups = [...new Set(filtered.map(d => d.groupName))];
 
   const introHtml = `
-    <div class="cat-intro" style="border-color:${meta.color}30; background:${meta.color}09">
+    <div class="cat-intro">
       <div class="cat-intro-title" style="color:${meta.color}">${meta.label}</div>
       <div class="cat-intro-desc">${meta.desc}</div>
     </div>`;
 
   const groupsHtml = groups.map((grp, gi) => {
-    const grpDrugs = display.filter(d => d.groupName === grp);
+    const grpDrugs = filtered.filter(d => d.groupName === grp);
     const gid = `grp-${cat}-${gi}`;
     return `<div class="group-section">
       <div class="class-group-header">
@@ -529,7 +512,6 @@ function renderCard(d) {
     { label: 'Pharmacokinetics',  cls: 'lbl-pk',  val: d.pk  },
   ].filter(s => s.val);
 
-  // FIX #6: aka rendered differently for scannability
   const akaHtml = d.aka
     ? d.aka.replace(/·/g, '<span class="dot-sep">·</span>')
     : '';
@@ -553,7 +535,7 @@ function renderCard(d) {
         </div>`).join('')}
       ${d.pearl ? `
         <div class="rcard-pearl">
-          <span class="pearl-star">★</span>
+          <span class="pearl-diamond">◇</span>
           <div class="pearl-body">
             <span class="pearl-label">Clinical Pearl</span>
             <div class="pearl-text">${fmt(d.pearl, q)}</div>
@@ -603,6 +585,10 @@ document.addEventListener('keydown', e => {
   }
   if (e.key === 'Escape') {
     if (searchQ) { search.value = ''; onSearch(); }
+    else {
+      const open = document.querySelector('.rcard.expanded');
+      if (open) toggleCard(open);
+    }
   }
 });
 
