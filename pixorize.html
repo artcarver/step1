@@ -230,7 +230,7 @@
       <div class="filter-chip f-reviewed" onclick="setFilter('reviewed',this)">Reviewed</div>
     </div>
     <div class="toolbar-right">
-      <button class="toolbar-btn" onclick="openTIModal()" style="border-color:var(--accent);color:var(--accent);">&#11014; Import Progress</button>
+      <button class="toolbar-btn" onclick="openTIModal()" style="border-color:var(--accent);color:var(--accent);">Import Progress</button>
       <button class="toolbar-btn" id="toggle-expand-btn" onclick="toggleExpand()">Expand All</button>
     </div>
   </div>
@@ -278,28 +278,37 @@
 
       <!-- Step 1 -->
       <div id="ti-step1">
-        <div class="ti-step-row">
-          <div class="ti-step-num">1</div>
-          <div class="ti-step-text">Open your Pixorize tracking spreadsheet and <strong>upload the file directly to Claude or ChatGPT</strong> — no copying needed.</div>
+        <p style="font-size:13px;color:var(--ink2);margin:0 0 16px;">Use this to import progress you've already tracked elsewhere — in a spreadsheet, Notion, or another app.</p>
+        <div style="border:1px solid var(--border2);border-left:3px solid var(--accent);border-radius:10px;padding:16px 18px;font-size:13px;color:var(--ink2);line-height:1.8;">
+          <strong style="font-size:11px;font-weight:700;color:var(--ink);display:block;margin-bottom:12px;text-transform:uppercase;letter-spacing:.6px;">How to import your Pixorize progress</strong>
+          <div style="display:flex;flex-direction:column;gap:14px;">
+            <div class="ti-step-row" style="margin:0;">
+              <div class="ti-step-num">1</div>
+              <div class="ti-step-text">Open your existing tracking spreadsheet or doc. <strong>Upload the file directly to Claude or ChatGPT</strong> — no copying needed.</div>
+            </div>
+            <div class="ti-step-row" style="margin:0;">
+              <div class="ti-step-num">2</div>
+              <div class="ti-step-text">Copy the prompt below and send it along with your file:</div>
+            </div>
+          </div>
         </div>
-        <div class="ti-step-row">
-          <div class="ti-step-num">2</div>
-          <div class="ti-step-text">Add this prompt (copy it below):</div>
-        </div>
-        <div class="ti-prompt-card">
+
+        <div class="ti-prompt-card" style="margin-top:12px;">
           <div class="ti-prompt-card-head">
             <span class="ti-prompt-card-label">AI Prompt</span>
-            <button class="ti-copy-btn" id="ti-copy-btn" onclick="tiCopyPrompt()">&#128203; Copy</button>
+            <button class="ti-copy-btn" id="ti-copy-btn" onclick="tiCopyPrompt()">Copy</button>
           </div>
           <div class="ti-prompt-text" id="ti-prompt-text">Building&#8230;</div>
         </div>
-        <div class="ti-upload-hint" style="margin-top:12px;">
-          <span class="ti-upload-hint-icon">&#128161;</span>
-          <span>If your AI doesn&#39;t support file uploads, select all in your spreadsheet (Cmd+A), copy, and paste it before the prompt.</span>
+
+        <div class="ti-upload-hint" style="margin-top:10px;">
+          <span class="ti-upload-hint-icon"></span>
+          <span>No file to upload? Select all in your spreadsheet <strong>(Cmd+A → Copy)</strong> and paste the content before the prompt instead.</span>
         </div>
-        <div class="ti-step-row" style="margin-top:14px;">
+
+        <div class="ti-step-row" style="margin-top:16px;">
           <div class="ti-step-num">3</div>
-          <div class="ti-step-text">Copy the CSV output — then click <strong>Next</strong> to paste it.</div>
+          <div class="ti-step-text">Copy the CSV output the AI gives you — then click <strong>Next</strong> to paste and import it.</div>
         </div>
       </div>
 
@@ -309,7 +318,7 @@
           <div class="ti-step-num">3</div>
           <div class="ti-step-text"><strong>Paste the CSV output</strong> from the AI:</div>
         </div>
-        <textarea class="ti-paste-area" id="ti-paste" placeholder="au1,1,1&#10;au2,1,0&#10;cv1,0,0&#10;..."></textarea>
+        <textarea class="ti-paste-area" id="ti-paste" placeholder="px1,1,1&#10;px2,1,0&#10;px3,0,0&#10;..."></textarea>
         <div class="ti-result" id="ti-result"></div>
       </div>
 
@@ -319,13 +328,13 @@
       <button class="ti-back-link" id="ti-back-btn" style="display:none;" onclick="tiGotoStep1()">&#8592; Back</button>
       <button class="ti-btn-ghost" onclick="closeTIModal()">Cancel</button>
       <button class="ti-btn-primary" id="ti-next-btn" onclick="tiGotoStep2()">Next &#8594;</button>
-      <button class="ti-btn-primary" id="ti-import-btn" style="display:none;" onclick="runTIImport()">&#10022; Import</button>
+      <button class="ti-btn-primary" id="ti-import-btn" style="display:none;" onclick="runTIImport()">Import</button>
     </div>
 
   </div>
 </div>
 
-  <footer class="footer"><div>Step 1 Study Hub · 🌸</div><div id="footer-date"></div></footer>
+  <footer class="footer"><div>Step 1 Study Hub · ·</div><div id="footer-date"></div></footer>
 </div>
 <script src="pixorize_categories.js"></script>
 <script src="app.js"></script>
@@ -585,7 +594,7 @@ function tiCopyPrompt() {
     const btn = document.getElementById('ti-copy-btn');
     btn.textContent = '✓ Copied!';
     btn.classList.add('copied');
-    setTimeout(() => { btn.innerHTML = '&#128203; Copy'; btn.classList.remove('copied'); }, 2000);
+    setTimeout(() => { btn.innerHTML = 'Copy'; btn.classList.remove('copied'); }, 2000);
   });
 }
 
@@ -617,7 +626,7 @@ function runTIImport() {
     });
     save(); renderAll();
     const resultEl = document.getElementById('ti-result');
-    resultEl.innerHTML = `<strong style="color:var(--ink)">Import complete &#10022;</strong>
+    resultEl.innerHTML = `<strong style="color:var(--ink)">Import complete </strong>
       <div class="ti-result-nums">
         <div class="ti-result-num"><strong>${matched}</strong><span>Matched</span></div>
         <div class="ti-result-num"><strong>${newW}</strong><span>New Watched</span></div>
@@ -628,10 +637,10 @@ function runTIImport() {
       <p style="font-size:12px;color:var(--dim);margin-top:4px;">Existing progress preserved.</p>`;
     resultEl.classList.add('visible');
     btn.disabled = false;
-    btn.innerHTML = '&#10003; Done';
+    btn.innerHTML = 'Done';
   } catch(e) {
     btn.disabled = false;
-    btn.innerHTML = '&#10022; Import';
+    btn.innerHTML = 'Import';
     alert('Import failed: ' + e.message);
   }
 }

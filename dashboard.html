@@ -588,7 +588,7 @@ tr.editing-row td { background: var(--dash-light) !important; }
       <!-- Step 2: Upload -->
       <div id="import-s2" class="hidden-panel" style="margin-top:4px;">
         <div class="drop-zone" id="drop-zone" onclick="document.getElementById('csv-input').click()">
-          <div class="drop-zone-icon" style="font-size:28px;color:var(--lavender);">&#11014;</div>
+          <div class="drop-zone-icon" style="font-size:28px;color:var(--lavender);"></div>
           <div class="drop-zone-text" style="font-weight:600;color:var(--ink2);">Drop your CSV here or <span style="color:var(--lavender);text-decoration:underline;cursor:pointer;">click to browse</span></div>
           <div class="drop-zone-sub">Any CSV — Date, Questions, and Name columns</div>
           <input type="file" id="csv-input" accept=".csv,.txt" style="display:none;" onchange="handleFileSelect(this)"/>
@@ -608,7 +608,7 @@ tr.editing-row td { background: var(--dash-light) !important; }
       <!-- Success state -->
       <div id="import-success" class="hidden-panel" style="margin-top:16px;">
         <div class="success-box">
-          <div class="success-icon">&#10022;</div>
+          <div class="success-icon"></div>
           <div class="success-msg" id="import-success-msg"></div>
           <div class="success-sub">Stats, progress, and charts have been updated.</div>
         </div>
@@ -626,7 +626,7 @@ tr.editing-row td { background: var(--dash-light) !important; }
         </div>
         <button class="btn-cancel" onclick="closeModal('import-modal')" id="import-cancel-btn">Cancel</button>
         <button class="btn-save" id="import-next-btn" onclick="importGoNext()">Next &rarr;</button>
-        <button class="btn-save" id="import-do-btn" onclick="importCSV()" style="display:none;">Import &#10022;</button>
+        <button class="btn-save" id="import-do-btn" onclick="importCSV()" style="display:none;">Import </button>
       </div>
     </div>
 
@@ -1452,7 +1452,7 @@ function renderMapperUI() {
 
   const roleOf = i => i===dateIdx?'date':i===qsIdx?'qs':i===nameIdx?'name':'skip';
 
-  const roleLabel = { date: '📅 Date', qs: '🔢 Questions', name: '🏷 Name (optional)', skip: 'Skip column' };
+  const roleLabel = { date: 'Date', qs: 'Questions', name: 'Name (optional)', skip: 'Skip column' };
   const rows = csvHeaders.map((h, i) => {
     const role = roleOf(i);
     const rowClass = role !== 'skip' ? `role-${role}` : '';
@@ -1465,9 +1465,9 @@ function renderMapperUI() {
       <div class="mapper-arrow">→</div>
       <select class="mapper-select ${selClass}" onchange="setColRole(${i}, this.value)" data-col="${i}">
         <option value="skip" ${role==='skip'?'selected':''}>Skip column</option>
-        <option value="date" ${role==='date'?'selected':''}>📅 Date</option>
-        <option value="qs"   ${role==='qs'  ?'selected':''}>🔢 Questions</option>
-        <option value="name" ${role==='name'?'selected':''}>🏷 Name (optional)</option>
+        <option value="date" ${role==='date'?'selected':''}>Date</option>
+        <option value="qs"   ${role==='qs'  ?'selected':''}>Questions</option>
+        <option value="name" ${role==='name'?'selected':''}>Name (optional)</option>
       </select>
     </div>`;
   }).join('');
