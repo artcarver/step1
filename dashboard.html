@@ -185,6 +185,22 @@ tr.editing-row td { background: var(--dash-light) !important; }
 }
 .day-chip.active { background: var(--dash); color: #fff; border-color: var(--dash); }
 
+/* ── Session pagination ─────────────────────────────────── */
+.hist-pagination {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 10px 12px 4px;
+  font-size: 12px; color: var(--muted);
+}
+.hist-page-btns { display: flex; gap: 6px; }
+.hist-page-btn {
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: 6px; padding: 3px 10px; font-size: 11px;
+  font-weight: 600; cursor: pointer; color: var(--ink2);
+  transition: border-color var(--t), color var(--t);
+}
+.hist-page-btn:hover { border-color: var(--lavender); color: var(--lavender); }
+.hist-page-btn:disabled { opacity: 0.35; cursor: default; }
+
 /* ── Import ──────────────────────────────────────────────── */
 .drop-zone {
   border: 2px dashed var(--dash); border-radius: var(--r-lg);
@@ -548,6 +564,8 @@ const DEFAULT_SETTINGS = {
 };
 
 let entries    = [];
+let histPage   = 0;
+const HIST_PAGE_SIZE = 10;
 let exams      = [];
 let settings   = {};
 let uniqueDone = 0;
@@ -666,6 +684,7 @@ function logEntry() {
 
   entries.sort((a,b) => a.date.localeCompare(b.date));
   uniqueDone = entries.reduce((s,e) => s + e.qs, 0);
+  histPage = 0;
   saveAll();
   document.getElementById('log-qs').value = '';
   renderAll();
@@ -896,7 +915,7 @@ function renderChart() {
   });
 }
 
-// ── Render history ────────────────────────────────────────
+// ── Render history (paginated) ────────────────────────────
 function renderHistory() {
   const el    = document.getElementById('history-container');
   const count = document.getElementById('session-count');
@@ -904,18 +923,26 @@ function renderHistory() {
   if (!entries.length) {
     el.innerHTML = '<div class="hist-empty">No sessions logged yet.</div>';
     if (count) count.textContent = '';
+    histPage = 0;
     return;
   }
 
   const totalQs = entries.reduce((s,e) => s + e.qs, 0);
-  if (count) count.textContent = `${entries.length} sessions · ${totalQs.toLocaleString()} total`;
+  if (count) count.textContent = `${entries.length} sessions · ${totalQs.toLocaleString()} Qs`;
 
-  const rows = [...entries].reverse().slice(0, 50).map(e => {
+  const sorted  = [...entries].reverse();
+  const total   = sorted.length;
+  const pages   = Math.ceil(total / HIST_PAGE_SIZE);
+  histPage      = Math.min(histPage, pages - 1);
+  const start   = histPage * HIST_PAGE_SIZE;
+  const pageRows = sorted.slice(start, start + HIST_PAGE_SIZE);
+
+  const rows = pageRows.map(e => {
     const dateStr = new Date(e.date + 'T12:00:00').toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'});
     const isEditing = e.id === editingId;
     return `<tr id="row-${e.id}" class="${isEditing ? 'editing-row' : ''}">
       <td>${dateStr}</td>
-      <td style="font-weight:600;">${e.qs}</td>
+      <td style="font-weight:600;">${e.qs.toLocaleString()}</td>
       <td>
         <div class="row-actions">
           <button class="row-edit-btn" onclick="editEntry(${e.id})">${isEditing ? '✦ Editing…' : 'Edit'}</button>
@@ -925,11 +952,26 @@ function renderHistory() {
     </tr>`;
   }).join('');
 
+  const pagination = total > HIST_PAGE_SIZE ? `
+    <div class="hist-pagination">
+      <span>${start + 1}–${Math.min(start + HIST_PAGE_SIZE, total)} of ${total} sessions</span>
+      <div class="hist-page-btns">
+        <button class="hist-page-btn" onclick="histPageNav(-1)" ${histPage === 0 ? 'disabled' : ''}>← Prev</button>
+        <button class="hist-page-btn" onclick="histPageNav(1)" ${histPage >= pages - 1 ? 'disabled' : ''}>Next →</button>
+      </div>
+    </div>` : '';
+
   el.innerHTML = `<table class="hist-table">
     <thead><tr><th>Date</th><th>Questions</th><th></th></tr></thead>
     <tbody>${rows}</tbody>
-  </table>`;
-  if (entries.length > 50) el.innerHTML += `<div style="font-size:12px;color:var(--muted);padding:8px 12px;">Showing most recent 50 of ${entries.length} sessions.</div>`;
+  </table>${pagination}`;
+}
+
+function histPageNav(dir) {
+  const pages = Math.ceil(entries.length / HIST_PAGE_SIZE);
+  histPage = Math.max(0, Math.min(histPage + dir, pages - 1));
+  renderHistory();
+  document.getElementById('history-container').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
 }
 
 // Two-step delete: first click turns button red + says "Sure?", second click confirms
@@ -1226,6 +1268,7 @@ function importCSV() {
 
   entries.sort((a,b) => a.date.localeCompare(b.date));
   uniqueDone = entries.reduce((s,e) => s + e.qs, 0);
+  histPage = 0;
   saveAll();
 
   document.getElementById('import-success-msg').textContent =
