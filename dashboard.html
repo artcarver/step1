@@ -505,7 +505,7 @@ tr.editing-row td { background: var(--dash-light) !important; }
       <strong style="font-size:12px;color:var(--ink);display:block;margin-bottom:8px;">How to get your UWorld data:</strong>
       <ol style="padding-left:18px;margin:0;font-size:13px;line-height:1.9;color:var(--ink2);">
         <li>Go to <strong>Previous Tests</strong> in UWorld</li>
-        <li>Set Items/page to <strong>100</strong>, select just the table rows and copy</li>
+        <li>Set Items/page to <strong>100</strong>, select just the table rows and copy. <strong>Repeat for each page</strong> if you have &gt;100 sessions.</li>
         <li>Paste into Claude with this prompt:</li>
       </ol>
       <code class="prompt-code" style="margin-top:10px;background:var(--surface2);border:1px solid var(--border2);border-radius:6px;padding:10px 14px;font-size:12px;font-family:'DM Mono',monospace;display:block;line-height:1.7;color:var(--ink);">Convert this UWorld Previous Tests table into a CSV with 3 columns: Date, Questions, PercentCorrect. Date = the date column. Questions = # QS column. PercentCorrect = score as a number (60% → 60). One row per test, skip omitted/blank rows.</code>
