@@ -177,7 +177,6 @@ input, select, textarea { font-family: inherit; }
   position: relative; overflow: hidden;
   background: var(--cd-bg);
   border: 1px solid var(--cd-border);
-  border-left: 4px solid var(--sakura2);
   border-radius: var(--r-xl);
   padding: 32px 36px 28px;
   box-shadow: var(--cd-shadow);
@@ -189,9 +188,9 @@ input, select, textarea { font-family: inherit; }
 }
 .hero-countdown::after { display: none; }
 .cd-eyebrow {
-  font-size: 9px; font-weight: 700; letter-spacing: 2.5px;
-  text-transform: uppercase; color: var(--sakura2);
-  margin-bottom: 16px;
+  font-size: 8px; font-weight: 600; letter-spacing: 2px;
+  text-transform: uppercase; color: var(--dim);
+  margin-bottom: 14px;
 }
 .cd-number-row {
   display: flex; align-items: baseline; justify-content: center; gap: 7px;
@@ -199,16 +198,16 @@ input, select, textarea { font-family: inherit; }
 }
 .hero-countdown .cd-days {
   font-family: 'Playfair Display', serif;
-  font-size: 72px; font-weight: 700; line-height: 1;
-  color: var(--sakura2); letter-spacing: -3px;
+  font-size: 80px; font-weight: 700; line-height: 1;
+  color: var(--sakura2); letter-spacing: -4px;
 }
 .hero-countdown .cd-unit {
-  font-size: 13px; font-weight: 500;
-  color: var(--muted); padding-bottom: 4px;
+  font-size: 15px; font-weight: 500;
+  color: var(--ink2); padding-bottom: 6px;
 }
 .hero-countdown .cd-date {
-  font-size: 15px; font-weight: 600; color: var(--ink);
-  margin-bottom: 24px; letter-spacing: .1px;
+  font-size: 16px; font-weight: 700; color: var(--ink);
+  margin-bottom: 20px; letter-spacing: .1px;
 }
 .hero-countdown .cd-date-empty {
   font-size: 12px; color: var(--dim); font-style: italic; font-weight: 400;
@@ -227,16 +226,16 @@ input, select, textarea { font-family: inherit; }
   opacity: .9; transform: translateY(-1px);
   box-shadow: var(--cd-shadow-hover);
 }
-/* Edit state — compact ghost button shown after date is set */
+/* Edit state — near-invisible muted link */
 .hero-countdown .cd-edit.cd-edit-set {
-  background: transparent; color: var(--sakura2);
-  border: 1px solid var(--sakura); border-radius: 99px;
-  padding: 6px 16px; font-size: 10px; font-weight: 600;
-  letter-spacing: 1px; text-transform: uppercase;
-  box-shadow: none; width: auto;
+  background: transparent; color: var(--dim);
+  border: none; border-radius: 99px;
+  padding: 4px 8px; font-size: 9px; font-weight: 500;
+  letter-spacing: 0.5px; text-transform: uppercase;
+  box-shadow: none; width: auto; opacity: 0.6;
 }
 .hero-countdown .cd-edit.cd-edit-set:hover {
-  background: var(--sakura-light); transform: none; box-shadow: none; opacity: 1;
+  color: var(--ink2); background: transparent; transform: none; box-shadow: none; opacity: 1;
 }
 
 /* ── External card accent classes (no more inline --ea) ─── */
