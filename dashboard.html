@@ -558,22 +558,24 @@ tr.editing-row td { background: var(--dash-light) !important; }
       <!-- Step 1: Instructions -->
       <div id="import-s1">
         <p style="font-size:13px;color:var(--ink2);margin:0 0 14px;">Export your UWorld history as a CSV using AI, then upload it below.</p>
-        <div style="background:var(--surface2);border:1px solid var(--border);border-left:3px solid var(--lavender);border-radius:10px;padding:16px 18px;font-size:13px;color:var(--ink2);line-height:1.85;">
-          <strong style="font-size:12px;color:var(--ink);display:block;margin-bottom:10px;">How to get your UWorld data:</strong>
-          <div style="display:flex;flex-direction:column;gap:10px;">
+        <div style="border:1px solid var(--border2);border-left:3px solid var(--lavender);border-radius:10px;padding:16px 18px;font-size:13px;color:var(--ink2);line-height:1.8;">
+          <strong style="font-size:11.5px;font-weight:700;color:var(--ink);display:block;margin-bottom:12px;text-transform:uppercase;letter-spacing:.6px;">How to get your UWorld data</strong>
+          <div style="display:flex;flex-direction:column;gap:12px;">
             <div style="display:flex;gap:12px;align-items:flex-start;">
-              <span style="width:20px;height:20px;border-radius:50%;background:var(--lavender);color:#fff;font-size:10px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px;">1</span>
+              <span style="width:18px;height:18px;border-radius:50%;background:var(--lavender);color:#fff;font-size:9px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:2px;">1</span>
               <span>Go to <strong>Previous Tests</strong> in UWorld. Set Items/page to <strong>100</strong>, select the table rows and copy.</span>
             </div>
             <div style="display:flex;gap:12px;align-items:flex-start;">
-              <span style="width:20px;height:20px;border-radius:50%;background:var(--lavender);color:#fff;font-size:10px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px;">2</span>
-              <span>Paste into Claude or ChatGPT with this prompt:</span>
+              <span style="width:18px;height:18px;border-radius:50%;background:var(--lavender);color:#fff;font-size:9px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:2px;">2</span>
+              <div style="flex:1;">
+                <span>Paste into Claude or ChatGPT with this prompt:</span>
+                <code class="prompt-code">Convert this UWorld test history into a CSV with 3 columns: Date, Questions, Name. Date = date column. Questions = # QS. Name = test name/number (e.g. "Test 157"). One row per test, skip omitted/blank rows.</code>
+              </div>
             </div>
-          </div>
-          <div style="background:var(--bg);border:1px solid var(--border2);border-radius:8px;padding:12px 14px;font-size:11.5px;font-family:'DM Mono',monospace;line-height:1.75;color:var(--ink);margin-top:12px;user-select:all;cursor:text;">Convert this UWorld test history into a CSV with 3 columns: Date, Questions, Name. Date = date column. Questions = # QS. Name = test name/number (e.g. "Test 157"). One row per test, skip omitted/blank rows.</div>
-          <div style="display:flex;gap:12px;align-items:flex-start;margin-top:10px;">
-            <span style="width:20px;height:20px;border-radius:50%;background:var(--lavender);color:#fff;font-size:10px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px;">3</span>
-            <span>Download or copy the CSV output, then upload it below.</span>
+            <div style="display:flex;gap:12px;align-items:flex-start;">
+              <span style="width:18px;height:18px;border-radius:50%;background:var(--lavender);color:#fff;font-size:9px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:2px;">3</span>
+              <span>Save the CSV output and upload it below.</span>
+            </div>
           </div>
         </div>
       </div>
@@ -595,7 +597,7 @@ tr.editing-row td { background: var(--dash-light) !important; }
         <input type="hidden" id="map-date" value="0"/>
         <input type="hidden" id="map-qs" value="1"/>
         <input type="hidden" id="map-name" value="-1"/>
-        <div id="csv-preview" style="margin-top:12px;"></div>
+        <div id="csv-preview"></div>
       </div>
 
       <!-- Success state -->
@@ -1339,6 +1341,7 @@ function parseCSVFile(file) {
 
     const previewRows = csvRows.slice(0,5).map(r=>`<tr>${r.map(c=>`<td>${c}</td>`).join('')}</tr>`).join('');
     document.getElementById('csv-preview').innerHTML = `
+      <div class="csv-preview-wrap"><div class="csv-preview-label">Preview</div>
       <table class="csv-preview-table">
         <thead><tr>${csvHeaders.map(h=>`<th>${h}</th>`).join('')}</tr></thead>
         <tbody>${previewRows}</tbody>
@@ -1405,17 +1408,19 @@ function renderMapperUI() {
 
   const roleOf = i => i===dateIdx?'date':i===qsIdx?'qs':i===nameIdx?'name':'skip';
 
+  const roleLabel = { date: '📅 Date', qs: '🔢 Questions', name: '🏷 Name (optional)', skip: 'Skip column' };
   const rows = csvHeaders.map((h, i) => {
     const role = roleOf(i);
+    const rowClass = role !== 'skip' ? `role-${role}` : '';
     const selClass = role !== 'skip' ? `role-${role}` : '';
-    return `<div class="mapper-row">
-      <div class="mapper-col-name">
-        ${h}
+    return `<div class="mapper-row ${rowClass}">
+      <div class="mapper-col-info">
+        <span class="mapper-col-name">${h}</span>
         <span class="mapper-col-sample">${getSampleVal(i)}</span>
       </div>
       <div class="mapper-arrow">→</div>
       <select class="mapper-select ${selClass}" onchange="setColRole(${i}, this.value)" data-col="${i}">
-        <option value="skip" ${role==='skip'?'selected':''}>— skip</option>
+        <option value="skip" ${role==='skip'?'selected':''}>Skip column</option>
         <option value="date" ${role==='date'?'selected':''}>📅 Date</option>
         <option value="qs"   ${role==='qs'  ?'selected':''}>🔢 Questions</option>
         <option value="name" ${role==='name'?'selected':''}>🏷 Name (optional)</option>

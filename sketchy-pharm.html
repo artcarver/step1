@@ -7,7 +7,226 @@
 <link rel="stylesheet" href="style.css"/>
 <title>Sketchy Pharm · Step 1 Hub</title>
 <style>
-:root { --tracker-accent: var(--sakura2); --nav-active-color: var(--sakura2); }
+/* ── Tracker shared styles ─────────────────────────────── */
+.tracker-toolbar{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-bottom:20px;}
+.tracker-search{flex:1;min-width:160px;padding:7px 12px;border:1px solid var(--border2);border-radius:var(--r);font-size:13px;font-family:inherit;background:var(--bg);color:var(--ink2);outline:none;transition:border-color .15s;box-shadow:none;}
+.tracker-search:focus{border-color:var(--dim);}
+.filter-chips { display: flex; gap: 6px; flex-wrap: wrap; }
+.filter-chip {
+  padding: 6px 14px; border-radius: 99px; font-size: 12px; font-weight: 600;
+  border: 1px solid var(--border); background: var(--surface2); color: var(--muted);
+  cursor: pointer; transition: all .15s; white-space: nowrap;
+}
+.filter-chip.active { background: var(--ink); color: #fff; border-color: var(--ink); }
+.filter-chip.f-watched.active  { background: var(--sakura2); border-color: var(--sakura2); }
+.filter-chip.f-reviewed.active { background: var(--gold); border-color: var(--gold); color: #fff; }
+.toolbar-right { display: flex; gap: 8px; margin-left: auto; }
+.toolbar-btn {
+  padding: 7px 14px; border-radius: var(--r); font-size: 12px; font-weight: 600;
+  border: 1px solid var(--border); background: transparent; color: var(--ink2);
+  cursor: pointer; transition: all .15s; white-space: nowrap;
+}
+.toolbar-btn:hover { background: var(--surface2); }
+
+/* ── Overall progress card ─────────────────────────────── */
+.overall-card {
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: var(--r-lg); padding: 22px 26px; margin-bottom: 20px;
+}
+.overall-top { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; margin-bottom: 12px; }
+.overall-title { font-family: 'Playfair Display', serif; font-size: 19px; font-weight: 600; }
+.overall-stats { display: flex; gap: 18px; font-size: 13px; }
+.overall-stat { color: var(--muted); font-size: 12px; }
+.overall-stat strong { color: var(--ink2); font-size: 14px; }
+.overall-bar-bg { background: var(--border2); border-radius: 99px; height: 8px; overflow: hidden; }
+.overall-bar-fill { height: 100%; border-radius: 99px; background: linear-gradient(90deg, var(--sky), var(--fuji)); transition: width .5s ease; }
+.overall-sub { display: flex; justify-content: space-between; font-size: 11px; color: var(--muted); margin-top: 6px; }
+
+/* ── Category sections ─────────────────────────────────── */
+.cat-section {
+  border: 1px solid var(--border); border-radius: var(--r-lg);
+  margin-bottom: 10px; overflow: hidden;
+  background: var(--surface);
+}
+.cat-header {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 16px 20px; cursor: pointer;
+  gap: 12px; transition: background .12s;
+}
+.cat-header:hover { background: var(--surface2); }
+.cat-chevron:hover { background: var(--surface2); color: var(--ink2); }
+.cat-header-left { display: flex; align-items: center; gap: 12px; flex: 1; min-width: 0; }
+.cat-accent { width: 4px; height: 36px; border-radius: 99px; flex-shrink: 0; }
+.cat-name { font-family: 'Playfair Display', serif; font-size: 17px; font-weight: 600; }
+.cat-why { font-size: 12px; color: var(--muted); margin-top: 2px; }
+.cat-header-right { display: flex; align-items: center; gap: 14px; flex-shrink: 0; }
+.cat-count { font-size: 12px; color: var(--muted); font-weight: 600; white-space: nowrap; }
+.cat-mini-bar { width: 80px; height: 5px; background: var(--border2); border-radius: 99px; overflow: hidden; }
+.cat-mini-fill { height: 100%; border-radius: 99px; transition: width .4s; }
+.cat-chevron { font-size: 11px; color: var(--dim); transition: transform .2s; background:none; border:none; cursor:pointer; padding:4px 6px; border-radius:4px; line-height:1; }
+.cat-section.open .cat-chevron { transform: rotate(180deg); }
+
+/* ── Video rows ────────────────────────────────────────── */
+.cat-body { display: none; border-top: 1px solid var(--border2); }
+.cat-section.open .cat-body { display: block; }
+.video-header-row {
+  display: flex; align-items: center; padding: 8px 20px;
+  font-size: 10px; font-weight: 700; letter-spacing: 1.2px; text-transform: uppercase;
+  color: var(--muted); border-bottom: 1px solid var(--border2); background: var(--bg);
+}
+.video-row {
+  display: flex; align-items: center; padding: 11px 20px;
+  border-bottom: 1px solid var(--border2); gap: 12px; transition: background .1s;
+}
+.video-row:last-child { border-bottom: none; }
+.video-row:hover { background: var(--surface2); }
+.video-row.hidden-row { display: none; }
+.video-num { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--muted); min-width: 28px; }
+.video-name { flex: 1; font-size: 13.5px; color: var(--ink2); line-height: 1.4; }
+.video-row.is-reviewed .video-name{text-decoration:line-through;color:var(--dim);}
+.video-time { font-size: 11px; color: var(--dim); min-width: 52px; text-align: right; font-family: 'DM Mono', monospace; margin-right: 20px; }
+.check-btns { display: flex; gap: 6px; }
+
+/* ── Status icon buttons ───────────────────────────────── */
+.icon-btn {
+  width: 34px; height: 34px; border-radius: 8px;
+  border: 1.5px solid var(--border); background: var(--bg);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 16px; cursor: pointer; transition: all .15s;
+  line-height: 1; flex-shrink: 0; color: var(--dim);
+}
+.icon-btn:hover { transform: scale(1.1); }
+.icon-btn.active-w { background: var(--sage); border-color: var(--sage); color: #fff; }
+.icon-btn.active-r { background: var(--gold); border-color: var(--gold); color: #fff; }
+
+/* ── Legend ────────────────────────────────────────────── */
+.tracker-legend {
+  display: flex; gap: 16px; align-items: center; flex-wrap: wrap;
+  font-size: 12px; color: var(--muted); margin-bottom: 16px;
+}
+
+.no-results {
+  text-align: center; padding: 40px; color: var(--muted); font-size: 14px;
+}
+.tracker-sep{height:1px;background:var(--border2);margin:0 0 20px;border-radius:99px;}
+
+
+/* ── Accent colors ─────────────────────────────────────── */
+.accent-0 { background: var(--sakura2); }
+.accent-1 { background: var(--sky); }
+.accent-2 { background: var(--gold); }
+.accent-3 { background: var(--sage); }
+.accent-4 { background: var(--fuji); }
+.accent-5 { background: var(--peach); }
+.accent-6 { background: var(--lavender); }
+.accent-7 { background: #7ba8cf; }
+
+/* ── Tracker Import Modal ──────────────────────────────── */
+.ti-overlay { display:none; position:fixed; inset:0; z-index:1000; background:rgba(42,31,26,.45); backdrop-filter:blur(3px); align-items:center; justify-content:center; padding:16px; }
+.ti-overlay.open { display:flex; }
+.ti-modal {
+  background:var(--surface); border:1px solid var(--border); border-radius:20px;
+  width:min(520px,96vw); max-height:88vh;
+  box-shadow:0 24px 64px rgba(42,31,26,.18);
+  display:flex; flex-direction:column; overflow:hidden;
+}
+.ti-modal-head { padding:22px 24px 16px; flex-shrink:0; border-bottom:1px solid var(--border2); }
+.ti-modal-body { overflow-y:auto; flex:1; padding:20px 24px; }
+.ti-modal-foot { padding:14px 24px 20px; flex-shrink:0; border-top:1px solid var(--border2); display:flex; gap:10px; justify-content:flex-end; align-items:center; }
+.ti-header { display:flex; justify-content:space-between; align-items:center; margin-bottom:14px; }
+.ti-title { font-family:'Playfair Display',serif; font-size:20px; font-weight:700; color:var(--ink); }
+.ti-close { background:none; border:none; font-size:20px; cursor:pointer; color:var(--dim); line-height:1; padding:4px; }
+
+/* Step indicator */
+.ti-steps { display:flex; align-items:center; gap:0; }
+.ti-step { display:flex; align-items:center; gap:7px; font-size:12px; font-weight:600; color:var(--muted); transition:color .2s; }
+.ti-step.active { color:var(--accent); }
+.ti-step.done { color:var(--accent); opacity:.55; }
+.ti-step-dot {
+  width:22px; height:22px; border-radius:50%;
+  background:var(--border); color:var(--muted);
+  font-size:10px; font-weight:700;
+  display:flex; align-items:center; justify-content:center; flex-shrink:0;
+  transition:all .2s;
+}
+.ti-step.active .ti-step-dot { background:var(--accent); color:#fff; }
+.ti-step.done .ti-step-dot { background:var(--accent); color:#fff; opacity:.55; }
+.ti-step-line { flex:1; height:1px; background:var(--border2); margin:0 10px; }
+
+/* Instruction steps */
+.ti-step-row { display:flex; gap:12px; align-items:flex-start; margin-bottom:14px; }
+.ti-step-num {
+  width:22px; height:22px; border-radius:50%;
+  background:var(--accent); color:#fff;
+  font-size:10px; font-weight:700;
+  display:flex; align-items:center; justify-content:center; flex-shrink:0; margin-top:1px;
+}
+.ti-step-text { font-size:13px; color:var(--ink2); line-height:1.6; }
+.ti-step-text strong { color:var(--ink); }
+
+/* Prompt copy card */
+.ti-prompt-card {
+  background:var(--bg); border:1px solid var(--border2); border-radius:10px;
+  overflow:hidden; margin-top:4px;
+}
+.ti-prompt-card-head {
+  display:flex; justify-content:space-between; align-items:center;
+  padding:9px 14px; background:var(--surface2); border-bottom:1px solid var(--border2);
+}
+.ti-prompt-card-label { font-size:11px; font-weight:700; color:var(--muted); text-transform:uppercase; letter-spacing:.6px; }
+.ti-copy-btn {
+  padding:4px 12px; border-radius:99px;
+  border:1.5px solid var(--accent); background:transparent;
+  font-size:11.5px; font-weight:700; color:var(--accent);
+  cursor:pointer; transition:all .15s; display:flex; align-items:center; gap:5px;
+}
+.ti-copy-btn:hover { background:var(--accent); color:#fff; }
+.ti-copy-btn.copied { background:var(--accent); color:#fff; border-color:var(--accent); }
+.ti-prompt-text {
+  padding:12px 14px; font-size:11.5px; font-family:'DM Mono',monospace;
+  color:var(--ink); line-height:1.7; white-space:pre-wrap;
+  max-height:130px; overflow-y:auto;
+}
+
+/* File upload hint */
+.ti-upload-hint {
+  display:flex; align-items:center; gap:10px;
+  background:color-mix(in srgb,var(--accent) 6%,var(--surface));
+  border:1px solid color-mix(in srgb,var(--accent) 20%,var(--border2));
+  border-radius:10px; padding:11px 14px; margin-top:4px;
+  font-size:12.5px; color:var(--ink2); line-height:1.5;
+}
+.ti-upload-hint-icon { font-size:18px; flex-shrink:0; }
+
+/* Paste area */
+.ti-paste-area {
+  width:100%; min-height:110px; max-height:200px;
+  padding:10px 14px; border:1.5px solid var(--border); border-radius:10px;
+  background:var(--bg); font-size:12px; font-family:'DM Mono',monospace;
+  color:var(--ink); resize:vertical; outline:none; box-sizing:border-box;
+  transition:border-color .15s;
+}
+.ti-paste-area:focus { border-color:var(--accent); }
+.ti-paste-area::placeholder { color:var(--muted); font-family:'DM Sans',sans-serif; font-size:12px; }
+
+/* Buttons */
+.ti-btn-ghost { padding:8px 18px; border-radius:99px; border:1.5px solid var(--border); background:transparent; font-size:13px; font-weight:600; color:var(--ink2); cursor:pointer; transition:all .15s; }
+.ti-btn-ghost:hover { border-color:var(--dim); }
+.ti-btn-primary { padding:9px 22px; border-radius:99px; border:none; background:var(--accent); font-size:13px; font-weight:600; color:#fff; cursor:pointer; display:flex; align-items:center; gap:6px; transition:opacity .15s; }
+.ti-btn-primary:hover { opacity:.88; }
+.ti-btn-primary:disabled { opacity:.45; cursor:default; }
+.ti-back-link { margin-right:auto; padding:8px 14px; border-radius:99px; border:none; background:none; font-size:13px; font-weight:600; color:var(--muted); cursor:pointer; display:flex; align-items:center; gap:5px; }
+.ti-back-link:hover { color:var(--ink2); }
+
+/* Result */
+.ti-result { display:none; background:var(--surface2); border:1px solid var(--border); border-radius:10px; padding:14px 16px; font-size:13px; color:var(--ink2); line-height:1.7; margin-top:10px; }
+.ti-result.visible { display:block; }
+.ti-result-nums { display:flex; gap:20px; flex-wrap:wrap; margin-top:10px; }
+.ti-result-num { text-align:center; }
+.ti-result-num strong { display:block; font-size:22px; font-family:'Playfair Display',serif; color:var(--accent); }
+.ti-result-num span { font-size:10px; color:var(--muted); text-transform:uppercase; letter-spacing:.8px; }
+.ti-spinner { display:inline-block; width:13px; height:13px; border:2px solid rgba(255,255,255,.3); border-top-color:#fff; border-radius:50%; animation:ti-spin .7s linear infinite; }
+@keyframes ti-spin { to { transform:rotate(360deg); } }
 </style>
 </head>
 <body>
@@ -15,22 +234,22 @@
 
 <div class="wrap">
   <header class="hero" style="padding:36px 0 16px;">
-    <div class="tracker-hero-eyebrow">Progress Tracker</div>
-    <h1 class="hero-name">Sketchy <em>Pharm</em></h1>
+    <div class="hero-eyebrow" style="font-size:10px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--sakura2);margin-bottom:10px;">Progress Tracker</div>
+    <h1 class="hero-name" style="font-size:clamp(30px,4vw,46px);letter-spacing:-0.5px;font-weight:700;line-height:1.1;margin-bottom:6px;">Sketchy <em>Pharm</em></h1>
   </header>
 
   <div class="overall-card">
     <div class="overall-top">
       <span class="overall-title">Overall Progress</span>
       <div class="overall-stats">
-        <span class="overall-stat" style="display:inline-flex;align-items:center;gap:5px;"><span class="legend-badge legend-badge-w">✔</span><strong id="tot-w">0</strong> Watched</span>
-        <span class="overall-stat" style="display:inline-flex;align-items:center;gap:5px;"><span class="legend-badge legend-badge-r">✦</span><strong id="tot-r">0</strong> Reviewed</span>
+        <span class="overall-stat" style="display:inline-flex;align-items:center;gap:5px;"><span style="display:inline-flex;align-items:center;justify-content:center;width:18px;height:18px;border-radius:5px;background:var(--sage);color:#fff;font-size:10px;">✔</span><strong id="tot-w">0</strong> Watched</span>
+        <span class="overall-stat" style="display:inline-flex;align-items:center;gap:5px;"><span style="display:inline-flex;align-items:center;justify-content:center;width:18px;height:18px;border-radius:5px;background:var(--gold);color:#fff;font-size:10px;">✦</span><strong id="tot-r">0</strong> Reviewed</span>
       </div>
     </div>
-    <div class="overall-bar-bg"><div class="overall-bar-fill-w" id="overall-bar-w" style="width:0%;"></div><div class="overall-bar-fill-r" id="overall-bar-r" style="width:0%;"></div></div>
+    <div class="overall-bar-bg"><div class="overall-bar-fill" id="overall-bar" style="width:0%;"></div></div>
     <div class="overall-sub">
       <span id="overall-note">0% reviewed</span>
-      <span style="color:var(--dim);font-size:12px;"><span id="overall-time"></span> · <span id="tot-total"></span></span>
+      <span style="color:var(--dim);font-size:12px;"><span id="overall-time"></span> &middot; <span id="tot-total"></span></span>
     </div>
   </div>
 
@@ -43,6 +262,7 @@
       <div class="filter-chip f-reviewed" data-filter="reviewed" onclick="setFilter('reviewed',this)">Reviewed</div>
     </div>
     <div class="toolbar-right">
+      <button class="toolbar-btn" onclick="openTIModal()" style="border-color:var(--accent);color:var(--accent);">&#11014; Import Progress</button>
       <button class="toolbar-btn" id="toggle-expand-btn" onclick="toggleExpand()">Expand All</button>
     </div>
   </div>
@@ -50,6 +270,73 @@
   <div class="tracker-sep"></div>
   <div id="tracker-container"></div>
   <div class="no-results" id="no-results" style="display:none;">No videos match your search.</div>
+
+  <!-- ── Import Progress Modal ──────────────────────────── -->
+<div class="ti-overlay" id="ti-overlay" onclick="if(event.target===this)closeTIModal()">
+  <div class="ti-modal">
+
+    <div class="ti-modal-head">
+      <div class="ti-header">
+        <div class="ti-title">Import Sketchy Pharm Progress</div>
+        <button class="ti-close" onclick="closeTIModal()">&#215;</button>
+      </div>
+      <div class="ti-steps">
+        <div class="ti-step active" id="ti-ind1"><div class="ti-step-dot">1</div>Prepare</div>
+        <div class="ti-step-line"></div>
+        <div class="ti-step" id="ti-ind2"><div class="ti-step-dot">2</div>Paste CSV</div>
+      </div>
+    </div>
+
+    <div class="ti-modal-body">
+
+      <!-- Step 1 -->
+      <div id="ti-step1">
+        <div class="ti-step-row">
+          <div class="ti-step-num">1</div>
+          <div class="ti-step-text">Open your Sketchy Pharm tracking spreadsheet and <strong>upload the file directly to Claude or ChatGPT</strong> — no copying needed.</div>
+        </div>
+        <div class="ti-step-row">
+          <div class="ti-step-num">2</div>
+          <div class="ti-step-text">Add this prompt (copy it below):</div>
+        </div>
+        <div class="ti-prompt-card">
+          <div class="ti-prompt-card-head">
+            <span class="ti-prompt-card-label">AI Prompt</span>
+            <button class="ti-copy-btn" id="ti-copy-btn" onclick="tiCopyPrompt()">&#128203; Copy</button>
+          </div>
+          <div class="ti-prompt-text" id="ti-prompt-text">Building&#8230;</div>
+        </div>
+        <div class="ti-upload-hint" style="margin-top:12px;">
+          <span class="ti-upload-hint-icon">&#128161;</span>
+          <span>If your AI doesn&#39;t support file uploads, select all in your spreadsheet (Cmd+A), copy, and paste it before the prompt.</span>
+        </div>
+        <div class="ti-step-row" style="margin-top:14px;">
+          <div class="ti-step-num">3</div>
+          <div class="ti-step-text">Copy the CSV output — then click <strong>Next</strong> to paste it.</div>
+        </div>
+      </div>
+
+      <!-- Step 2 -->
+      <div id="ti-step2" style="display:none;flex-direction:column;gap:12px;">
+        <div class="ti-step-row" style="margin-bottom:4px;">
+          <div class="ti-step-num">3</div>
+          <div class="ti-step-text"><strong>Paste the CSV output</strong> from the AI:</div>
+        </div>
+        <textarea class="ti-paste-area" id="ti-paste" placeholder="au1,1,1&#10;au2,1,0&#10;cv1,0,0&#10;..."></textarea>
+        <div class="ti-result" id="ti-result"></div>
+      </div>
+
+    </div>
+
+    <div class="ti-modal-foot">
+      <button class="ti-back-link" id="ti-back-btn" style="display:none;" onclick="tiGotoStep1()">&#8592; Back</button>
+      <button class="ti-btn-ghost" onclick="closeTIModal()">Cancel</button>
+      <button class="ti-btn-primary" id="ti-next-btn" onclick="tiGotoStep2()">Next &#8594;</button>
+      <button class="ti-btn-primary" id="ti-import-btn" style="display:none;" onclick="runTIImport()">&#10022; Import</button>
+    </div>
+
+  </div>
+</div>
 
   <footer class="footer"><div>Step 1 Study Hub · 🌸</div><div id="footer-date"></div></footer>
 </div>
@@ -117,32 +404,6 @@ function setFilter(f, el) {
   applyFilters();
 }
 
-
-function parseMins(t) {
-  t = (t || '').trim().replace(/^~\s*/, '');
-  // MM:SS format (e.g. "7:20", "21:04")
-  const mmss = t.match(/^(\d+):(\d{2})$/);
-  if (mmss) return parseInt(mmss[1]) + parseInt(mmss[2]) / 60;
-  // HH:MM:SS format (e.g. "1:04:01")
-  const hhmmss = t.match(/^(\d+):(\d{2}):(\d{2})$/);
-  if (hhmmss) return parseInt(hhmmss[1]) * 60 + parseInt(hhmmss[2]) + parseInt(hhmmss[3]) / 60;
-  // "2.5 hrs", "1 hr"
-  const hr = t.match(/(\d+\.?\d*)\s*hr/);
-  if (hr) return parseFloat(hr[1]) * 60;
-  // "16min", "14.5min", "51 min"
-  const mn = t.match(/(\d+\.?\d*)\s*min/);
-  if (mn) return parseFloat(mn[1]);
-  return 0;
-}
-function fmtTime(mins) {
-  if (mins < 60) return mins + 'min';
-  const h = Math.floor(mins / 60), m = Math.round(mins % 60);
-  return m > 0 ? h + 'h ' + m + 'min' : h + 'h';
-}
-function totalContentTime() {
-  return CATEGORIES.reduce((sum, cat) => sum + cat.videos.reduce((s, v) => s + parseMins(v.time), 0), 0);
-}
-
 function applyFilters() {
   const q = document.getElementById('search-input').value.toLowerCase().trim();
   let anyVisible = false;
@@ -174,11 +435,8 @@ function updateCatHeaders() {
     const pct = total ? Math.round((r / total) * 100) : 0;
     const el = document.getElementById('cat-count-'+cat.id);
     if (el) el.textContent = `${r} / ${total} reviewed`;
-    const fillW = document.getElementById('cat-fill-w-'+cat.id);
-    const fillR = document.getElementById('cat-fill-r-'+cat.id);
-    const pctW = total ? Math.round((w / total) * 100) : 0;
-    if (fillW) fillW.style.width = pctW+'%';
-    if (fillR) fillR.style.width = pct+'%';
+    const fill = document.getElementById('cat-fill-'+cat.id);
+    if (fill) fill.style.width = pct+'%';
   });
 }
 
@@ -191,12 +449,13 @@ function updateSummary() {
   
   document.getElementById('tot-w').textContent = tw;
   document.getElementById('tot-r').textContent = tr;
-  document.getElementById('overall-bar-w').style.width = (total ? Math.round((tw / total) * 100) : 0) + '%';
-  document.getElementById('overall-bar-r').style.width = pct + '%';
+  document.getElementById('overall-bar').style.width = pct + '%';
   document.getElementById('overall-note').textContent = pct + '% reviewed';
-  const totMins = totalContentTime();
-  document.getElementById('overall-time').textContent = total + ' videos · ' + (totMins > 0 ? fmtTime(totMins) : '');
-  document.getElementById('tot-total').textContent = '';
+  const totMins=CATEGORIES.reduce((s,c)=>s+c.videos.reduce((vs,v)=>{const m=parseInt(v.time);return vs+(isNaN(m)?0:m);},0),0);
+  function fmtTime(m){const h=Math.floor(m/60),mn=m%60;return h?h+'h '+(mn?mn+'min':''):mn+'min';}
+  if(document.getElementById('overall-time'))document.getElementById('overall-time').textContent=pct+'% reviewed';
+  if(document.getElementById('tot-total'))document.getElementById('tot-total').textContent=total+' videos · '+fmtTime(totMins);
+  document.getElementById('overall-note').textContent=pct+'% reviewed';
   updateCatHeaders();
 }
 
@@ -235,21 +494,21 @@ function renderAll() {
           <div class="cat-accent ${accent}"></div>
           <div>
             <div class="cat-name">${cat.name}</div>
-            <div class="cat-why">${cat.why}</div>
+            <div class="cat-why">${cat.why} · ${cat.time}</div>
           </div>
         </div>
         <div class="cat-header-right">
-          <span class="cat-time-badge">${cat.time}</span><span class="cat-count" id="cat-count-${cat.id}">0 / ${cat.videos.length} reviewed</span>
-          <div class="cat-mini-bar"><div class="cat-mini-fill-w" id="cat-fill-w-${cat.id}" style="width:0%;"></div><div class="cat-mini-fill-r" id="cat-fill-r-${cat.id}" style="width:0%;"></div></div>
+          <span class="cat-count" id="cat-count-${cat.id}">0 / ${cat.videos.length} reviewed</span>
+          <div class="cat-mini-bar"><div class="cat-mini-fill ${accent}" id="cat-fill-${cat.id}" style="width:0%;"></div></div>
           <button class="cat-chevron" onclick="this.closest('.cat-section').classList.toggle('open');event.stopPropagation()">▼</button>
         </div>
       </div>
       <div class="cat-body">
         <div class="video-header-row">
-          <div class="video-num">No.</div>
-          <div class="video-name">Video</div>
-          <div class="video-time">Time</div>
-          <div class="check-btns" style="min-width:74px;justify-content:center;">Status</div>
+          <div style="min-width:28px;">No.</div>
+          <div style="flex:1;">Video</div>
+          <div style="min-width:52px;text-align:right;margin-right:20px;">Time</div>
+          <div style="min-width:74px;text-align:center;">Status</div>
         </div>
         ${rows}
       </div>
@@ -269,10 +528,126 @@ function showToast(msg) {
 }
 
 document.addEventListener('DOMContentLoaded', () => { load(); renderAll(); });
+
+// ── Tracker Import ────────────────────────────────────────
+function openTIModal() {
+  document.getElementById('ti-overlay').classList.add('open');
+  tiGotoStep1();
+  const ta = document.getElementById('ti-paste');
+  if (ta) ta.value = '';
+  const res = document.getElementById('ti-result');
+  if (res) { res.classList.remove('visible'); res.innerHTML = ''; }
+  buildTIPrompt();
+}
+function closeTIModal() {
+  document.getElementById('ti-overlay').classList.remove('open');
+}
+function tiGotoStep1() {
+  document.getElementById('ti-step1').style.display = 'block';
+  document.getElementById('ti-step2').style.display = 'none';
+  document.getElementById('ti-next-btn').style.display = 'flex';
+  document.getElementById('ti-import-btn').style.display = 'none';
+  document.getElementById('ti-back-btn').style.display = 'none';
+  document.getElementById('ti-ind1').className = 'ti-step active';
+  document.getElementById('ti-ind2').className = 'ti-step';
+}
+function tiGotoStep2() {
+  document.getElementById('ti-step1').style.display = 'none';
+  document.getElementById('ti-step2').style.display = 'flex';
+  document.getElementById('ti-next-btn').style.display = 'none';
+  document.getElementById('ti-import-btn').style.display = 'flex';
+  document.getElementById('ti-back-btn').style.display = 'flex';
+  document.getElementById('ti-ind1').className = 'ti-step done';
+  document.getElementById('ti-ind2').className = 'ti-step active';
+}
+
+function buildTIPrompt() {
+  const lines = [];
+  PHARM_CATEGORIES.forEach(cat => {
+    cat.videos.forEach(v => lines.push(v.id + ' | ' + v.name));
+  });
+  const videoList = lines.join('\n');
+  const prompt = `I have a Sketchy Pharm tracking spreadsheet (attached or pasted above). Convert it to a CSV with exactly 3 columns: VideoID, Watched, Reviewed.
+
+Match video names from my spreadsheet to this official list (use fuzzy matching — handle typos/abbreviations):
+${videoList}
+
+Rules:
+- VideoID = the id from the list above (e.g. au1, cv3)
+- Watched = 1 if watched/started, 0 if not
+- Reviewed = 1 if reviewed/second-pass/Anki done, 0 if not
+- One row per video in list order; no match → 0,0
+- No header. No extra columns. No markdown. Just CSV.`;
+  const el = document.getElementById('ti-prompt-text');
+  if (el) el.textContent = prompt;
+}
+
+function tiCopyPrompt() {
+  const text = document.getElementById('ti-prompt-text').textContent;
+  navigator.clipboard.writeText(text).then(() => {
+    const btn = document.getElementById('ti-copy-btn');
+    btn.textContent = '✓ Copied!';
+    btn.classList.add('copied');
+    setTimeout(() => { btn.innerHTML = '&#128203; Copy'; btn.classList.remove('copied'); }, 2000);
+  });
+}
+
+function runTIImport() {
+  const raw = document.getElementById('ti-paste').value.trim();
+  if (!raw) { alert('Please paste the CSV first.'); return; }
+  const btn = document.getElementById('ti-import-btn');
+  btn.disabled = true;
+  btn.innerHTML = '<span class="ti-spinner"></span> Importing…';
+  try {
+    const validIds = new Set();
+    PHARM_CATEGORIES.forEach(cat => cat.videos.forEach(v => validIds.add(v.id)));
+    const TRUTHY = new Set(['1','true','yes','✓','x']);
+    let matched=0, newW=0, newR=0, unmatched=[];
+    const lines = raw.split(/\r?\n/).filter(l => l.trim());
+    const dataLines = lines[0].toLowerCase().includes('videoid') ? lines.slice(1) : lines;
+    dataLines.forEach(line => {
+      const parts = line.split(',');
+      if (parts.length < 2) return;
+      const id = parts[0].trim().replace(/^"|"$/g,'');
+      if (!id) return;
+      const isW = TRUTHY.has((parts[1]||'').trim().toLowerCase());
+      const isR = TRUTHY.has((parts[2]||'').trim().toLowerCase());
+      if (!validIds.has(id)) { unmatched.push(id); return; }
+      matched++;
+      if (!progress[id]) progress[id] = {w:false,r:false};
+      if (isW && !progress[id].w) { progress[id].w = true; newW++; }
+      if (isR) { progress[id].w = true; if (!progress[id].r) { progress[id].r = true; newR++; } }
+    });
+    save(); renderAll();
+    const resultEl = document.getElementById('ti-result');
+    resultEl.innerHTML = `<strong style="color:var(--ink)">Import complete &#10022;</strong>
+      <div class="ti-result-nums">
+        <div class="ti-result-num"><strong>${matched}</strong><span>Matched</span></div>
+        <div class="ti-result-num"><strong>${newW}</strong><span>New Watched</span></div>
+        <div class="ti-result-num"><strong>${newR}</strong><span>New Reviewed</span></div>
+        ${unmatched.length ? `<div class="ti-result-num"><strong>${unmatched.length}</strong><span>Unrecognized</span></div>` : ''}
+      </div>
+      ${unmatched.length ? `<p style="font-size:12px;color:var(--dim);margin-top:8px;">&#9888; Unknown IDs: ${unmatched.slice(0,6).join(', ')}${unmatched.length>6?'…':''}</p>` : ''}
+      <p style="font-size:12px;color:var(--dim);margin-top:4px;">Existing progress preserved.</p>`;
+    resultEl.classList.add('visible');
+    btn.disabled = false;
+    btn.innerHTML = '&#10003; Done';
+  } catch(e) {
+    btn.disabled = false;
+    btn.innerHTML = '&#10022; Import';
+    alert('Import failed: ' + e.message);
+  }
+}
 </script>
 
 <style>
-:root { --tracker-accent: var(--sakura2); --nav-active-color: var(--sakura2); }
+.toast {
+  position:fixed;bottom:28px;left:50%;transform:translateX(-50%) translateY(80px);
+  background:var(--ink);color:#fff;padding:10px 22px;border-radius:99px;
+  font-size:13px;font-weight:600;z-index:9999;opacity:0;
+  transition:opacity .25s,transform .25s;pointer-events:none;
+}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0);}
 </style>
 </body>
 </html>
