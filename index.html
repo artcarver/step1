@@ -1,1518 +1,668 @@
-/* ============================================================
-   STEP 1 STUDY HUB — Global Stylesheet v2
-   Aesthetic: Clinical Warmth · Soft Academia · Sakura
-   ============================================================ */
-
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap');
-
-/* ── Root Tokens ──────────────────────────────────────────── */
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="style.css"/>
+<title>Step 1 Study Hub</title>
+<style>
+/* ═══════════════════════════════════════════════════════════
+   INDEX PAGE — local overrides only
+   ═══════════════════════════════════════════════════════════ */
 :root {
-  --bg:          #fdf8f5;
-  --surface:     #ffffff;
-  --surface2:    #fef3f0;
-  --border:      #e8ddd8;
-  --border2:     #f0e6e0;
-  --ink:         #2a1f1a;
-  --ink2:        #5c4a42;
-  --muted:       #7a6a64;   /* darkened for WCAG AA contrast */
-  --dim:         #b8a8a2;
-
-  --sakura:      #e8a0a8;
-  --sakura2:     #c4505e;
-  --sakura-light:#fce8ea;
-  --peach:       #f4a97b;
-  --peach-light: #fef0e6;
-  --sage:        #5e9a70;
-  --sage-light:  #e8f4ec;
-  --lavender:    #8b7eb8;
-  --lav-light:   #f0edf8;
-  --gold:        #b8863a;
-  --gold-light:  #fdf3e0;
-  --sky:         #5a9ec6;
-  --sky-light:   #e8f4fb;
-  --fuji:        #6a8caf;
-
-  --r:    10px;
-  --r-lg: 16px;
-  --r-xl: 22px;
-  --t:    .18s ease;
   --lift: translateY(-2px);
-
-  --shadow:    0 1px 8px rgba(42,31,26,.06), 0 2px 16px rgba(42,31,26,.04);
-  --shadow-md: 0 4px 20px rgba(42,31,26,.10), 0 1px 4px rgba(42,31,26,.06);
-  --shadow-lg: 0 8px 40px rgba(42,31,26,.14), 0 2px 8px rgba(42,31,26,.06);
-}
-
-/* ── Reset & Base ─────────────────────────────────────────── */
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-html { font-size: 16px; scroll-behavior: smooth; }
-body {
-  font-family: 'DM Sans', sans-serif;
-  background: var(--bg);
-  color: var(--ink);
-  line-height: 1.6;
-  min-height: 100vh;
-}
-a { color: inherit; text-decoration: none; }
-button { cursor: pointer; font-family: inherit; border: none; }
-input, select, textarea { font-family: inherit; }
-
-/* ── Scrollbar ────────────────────────────────────────────── */
-::-webkit-scrollbar { width: 5px; height: 5px; }
-::-webkit-scrollbar-track { background: transparent; }
-::-webkit-scrollbar-thumb { background: var(--dim); border-radius: 99px; }
-
-/* ── Focus Visible (Accessibility) ───────────────────────── */
-:focus-visible {
-  outline: 2px solid var(--sakura2);
-  outline-offset: 3px;
-  border-radius: 4px;
-}
-
-/* ── Layout ───────────────────────────────────────────────── */
-.wrap { max-width: 1100px; margin: 0 auto; padding: 0 24px 80px; }
-
-/* ── Nav ──────────────────────────────────────────────────── */
-.nav {
-  position: sticky; top: 0; z-index: 100;
-  background: rgba(253,248,245,.95);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border-bottom: 1px solid var(--border);
-  padding: 0 28px;
-}
-.nav-inner {
-  max-width: 1200px; margin: 0 auto;
-  display: flex; align-items: center; gap: 0;
-  height: 52px;
-}
-.nav-brand {
-  display: flex; align-items: center;
-  text-decoration: none;
-  padding-right: 20px;
-  border-right: 1px solid var(--border);
-  flex-shrink: 0;
-  margin-right: 16px;
-}
-.nav-brand-text {
-  font-family: 'Playfair Display', serif;
-  font-size: 16px; font-weight: 700;
-  color: var(--sakura2);
-  letter-spacing: -0.3px;
-  white-space: nowrap;
-}
-.nav-divider { display: none; }
-.nav-links { display: flex; gap: 0; flex: 1; flex-wrap: nowrap; min-width: 0; }
-.nav-link {
-  padding: 5px 10px; border-radius: 6px;
-  font-size: 12px; font-weight: 500;
-  color: var(--muted);
-  transition: background var(--t), color var(--t);
-  white-space: nowrap; letter-spacing: 0.1px;
-}
-.nav-link:hover { background: var(--surface2); color: var(--ink2); }
-.nav-link.active { background: var(--sakura-light); color: var(--sakura2); font-weight: 600; }
-.nav-right { margin-left: auto; display: flex; align-items: center; gap: 6px; flex-shrink: 0; padding-left: 16px; }
-
-.nav-exam-pill {
-  display: inline-flex; align-items: center; gap: 4px;
-  font-size: 11px; font-weight: 600;
-  background: transparent; color: var(--sakura2);
-  border: 1px solid var(--sakura);
-  padding: 4px 11px; border-radius: 99px;
-  cursor: pointer; transition: background var(--t); white-space: nowrap;
-}
-.nav-exam-pill:hover { background: var(--sakura-light); }
-.nav-exam-icon { font-size: 11px; line-height: 1; }
-
-.nav-auth-btn {
-  display: inline-flex; align-items: center; gap: 5px;
-  padding: 4px 12px; border-radius: 99px;
-  border: 1px solid var(--border);
-  background: transparent;
-  font-size: 11px; font-weight: 600; color: var(--ink2);
-  cursor: pointer; transition: all var(--t); white-space: nowrap;
-}
-.nav-auth-btn:hover { border-color: var(--sakura2); color: var(--sakura2); background: var(--sakura-light); }
-.nav-auth-btn.nav-auth-signed-in { border-color: var(--sage); color: var(--sage); }
-.nav-auth-btn.nav-auth-signed-in:hover { background: var(--sage-light); }
-
-/* ── Section Labels ───────────────────────────────────────── */
-.sec-label {
-  font-size: 11px; font-weight: 700; letter-spacing: 2px;
-  text-transform: uppercase; color: var(--muted);
-  margin: 36px 0 14px;
-  display: flex; align-items: center; gap: 10px;
-}
-.sec-label::after {
-  content: ''; flex: 1; height: 1px; background: var(--border2);
+  --t:    .18s ease;
 }
 
 /* ── Hero ─────────────────────────────────────────────────── */
-.hero { padding: 60px 0 44px; position: relative; }
+.hero {
+  padding: 52px 0 0;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 40px;
+  align-items: center;
+  border-bottom: 1px solid var(--border2);
+  margin-bottom: 0;
+}
 .hero-eyebrow {
-  font-size: 11px; font-weight: 600; letter-spacing: 2.5px;
-  text-transform: uppercase; color: var(--sakura2); margin-bottom: 14px;
-}
-.hero-name {
-  font-family: 'Playfair Display', serif;
-  font-size: clamp(36px, 5vw, 56px);
-  font-weight: 700; line-height: 1.15; color: var(--ink); margin-bottom: 28px;
-}
-.hero-name em { font-style: italic; color: var(--sakura2); }
-
-/* ── Countdown design tokens ──────────────────────────────── */
-:root {
-  --cd-bg:           #fef6f7;
-  --cd-bg-end:       #f9f0fb;
-  --cd-border:       var(--sakura);
-  --cd-shadow:       0 6px 28px rgba(196,80,94,.10), 0 1px 6px rgba(196,80,94,.06);
-  --cd-shadow-hover: 0 8px 36px rgba(196,80,94,.15), 0 2px 8px rgba(196,80,94,.08);
-  --cd-glow:         rgba(232,160,168,.20);
-  --ext-qotd:        var(--sakura2);
-  --ext-uworld:      var(--sky);
-  --ext-pathoma:     var(--sage);
-}
-
-/* ── Hero Countdown (index page) ─────────────────────────── */
-.hero-countdown {
-  position: relative; overflow: hidden;
-  background: linear-gradient(150deg, var(--cd-bg) 0%, var(--cd-bg-end) 100%);
-  border: 1.5px solid var(--cd-border);
-  border-radius: var(--r-xl);
-  padding: 32px 30px 26px;
-  box-shadow: var(--cd-shadow);
-  min-width: 230px; max-width: 270px;
-  display: flex; flex-direction: column; align-items: center;
-  text-align: center;
-  align-self: center;
-  gap: 0;
-}
-.hero-countdown::after {
-  content: '';
-  position: absolute; top: -50px; right: -50px;
-  width: 150px; height: 150px; border-radius: 50%;
-  background: radial-gradient(circle, var(--cd-glow) 0%, transparent 68%);
-  pointer-events: none;
-}
-.cd-eyebrow {
-  font-size: 9px; font-weight: 700; letter-spacing: 2.5px;
+  font-size: 10px; font-weight: 700; letter-spacing: 3px;
   text-transform: uppercase; color: var(--sakura2);
-  opacity: .7; margin-bottom: 14px;
+  margin-bottom: 12px;
 }
-.cd-number-row {
-  display: flex; align-items: baseline; justify-content: center; gap: 7px;
-  margin-bottom: 10px;
-}
-.hero-countdown .cd-days {
+.hero-title {
   font-family: 'Playfair Display', serif;
-  font-size: 60px; font-weight: 700; line-height: 1;
-  color: var(--sakura2); letter-spacing: -2px;
+  font-size: clamp(28px, 3.8vw, 44px);
+  font-weight: 700; line-height: 1.14; color: var(--ink);
+  margin-bottom: 14px;
 }
-.hero-countdown .cd-unit {
-  font-size: 13px; font-weight: 500;
-  color: var(--muted); padding-bottom: 4px;
-}
-.hero-countdown .cd-date {
-  font-size: 13px; font-weight: 600; color: var(--ink2);
-  margin-bottom: 24px; letter-spacing: .1px;
-}
-.hero-countdown .cd-date-empty {
-  font-size: 12px; color: var(--dim); font-style: italic; font-weight: 400;
-}
-/* Primary CTA — shown before date is set */
-.hero-countdown .cd-edit {
-  width: 100%; text-align: center;
-  background: var(--sakura2); color: #fff;
-  border: none; border-radius: 11px;
-  padding: 11px 16px;
-  font-size: 12px; font-weight: 700; letter-spacing: .3px;
-  box-shadow: 0 3px 12px var(--cd-glow);
-  transition: opacity var(--t), transform var(--t), box-shadow var(--t);
-}
-.hero-countdown .cd-edit:hover {
-  opacity: .9; transform: translateY(-1px);
-  box-shadow: var(--cd-shadow-hover);
-}
-/* Edit state — compact ghost button shown after date is set */
-.hero-countdown .cd-edit.cd-edit-set {
-  background: transparent; color: var(--sakura2);
-  border: 1px solid var(--sakura); border-radius: 99px;
-  padding: 6px 16px; font-size: 10px; font-weight: 600;
-  letter-spacing: 1px; text-transform: uppercase;
-  box-shadow: none; width: auto;
-}
-.hero-countdown .cd-edit.cd-edit-set:hover {
-  background: var(--sakura-light); transform: none; box-shadow: none; opacity: 1;
+.hero-title em { font-style: italic; color: var(--sakura2); }
+.hero-tagline {
+  font-size: 14px; color: var(--muted); line-height: 1.65;
+  max-width: 420px; margin-bottom: 36px;
 }
 
-/* ── External card accent classes (no more inline --ea) ─── */
-.ext-qotd    { --ea: var(--ext-qotd); }
-.ext-uworld  { --ea: var(--ext-uworld); }
-.ext-pathoma { --ea: var(--ext-pathoma); }
+/* ── Countdown — defined in style.css ────────────────────── */
 
-/* ── Countdown Wrap (other pages) — scoped to avoid cascade ─ */
-.countdown-wrap {
-  display: flex; align-items: center; gap: 24px;
-  background: var(--surface); border: 1px solid var(--border);
-  border-radius: var(--r-lg); padding: 20px 28px;
-  box-shadow: var(--shadow); flex-wrap: wrap;
+/* ── UWorld strip ─────────────────────────────────────────── */
+.uw-strip {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--r-lg);
+  padding: 16px 22px;
+  display: flex; align-items: center; gap: 20px; flex-wrap: wrap;
+  margin-top: 20px;
 }
-.countdown-wrap .cd-label { font-size: 11px; font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase; color: var(--muted); margin-bottom: 4px; }
-.countdown-wrap .cd-days  { font-family: 'Playfair Display', serif; font-size: 48px; font-weight: 700; line-height: 1; color: var(--sakura2); }
-.countdown-wrap .cd-unit  { font-size: 12px; color: var(--muted); margin-top: 2px; }
-.cd-divider { width: 1px; height: 60px; background: var(--border); }
-.countdown-wrap .cd-date-lbl { font-size: 11px; font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase; color: var(--muted); margin-bottom: 4px; }
-.countdown-wrap .cd-date { font-size: 18px; font-weight: 600; color: var(--ink); }
-.countdown-wrap .cd-edit {
-  margin-left: auto;
-  background: var(--sakura2); color: #fff;
-  border-radius: var(--r); padding: 10px 20px; font-size: 13px; font-weight: 600;
+/* Always show — empty state when no data */
+.uw-empty-hint {
+  font-size: 12px; color: var(--muted); font-style: italic;
+}
+.uw-prog { flex: 1; min-width: 160px; }
+.uw-lbl {
+  font-size: 10px; font-weight: 700; letter-spacing: 2px;
+  text-transform: uppercase; color: var(--muted); margin-bottom: 7px;
+}
+.uw-row { display: flex; align-items: center; gap: 10px; margin-bottom: 4px; }
+.uw-bg { flex: 1; height: 5px; background: var(--border2); border-radius: 99px; overflow: hidden; }
+.uw-fill { height: 100%; border-radius: 99px; background: linear-gradient(90deg, var(--sakura2), var(--gold)); transition: width .7s ease; }
+.uw-pct { font-family: 'DM Mono', monospace; font-size: 13px; font-weight: 500; color: var(--sakura2); min-width: 36px; text-align: right; }
+.uw-sub { font-size: 11px; color: var(--muted); }
+.uw-div { width: 1px; height: 32px; background: var(--border2); flex-shrink: 0; }
+.uw-qd { text-align: center; flex-shrink: 0; }
+.uw-qd-v { font-family: 'Playfair Display', serif; font-size: 28px; font-weight: 700; line-height: 1; color: var(--sakura2); }
+.uw-qd-l { font-size: 10px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: var(--muted); margin-top: 3px; }
+
+/* ── Daily high-yield cards ───────────────────────────────── */
+.daily-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+
+/* Skeleton loader — shows before JS hydrates cards */
+.feat-skeleton {
+  border-radius: var(--r-lg); border: 1px solid var(--border);
+  background: var(--surface); padding: 22px 24px;
+  display: flex; flex-direction: column; gap: 10px;
+  min-height: 160px;
+}
+.skel-line {
+  border-radius: 6px; background: var(--border2);
+  animation: shimmer 1.4s ease-in-out infinite;
+}
+/* Skeleton accent colors */
+.skel-accent-drug  { background: var(--sakura-light) !important; }
+.skel-accent-micro { background: var(--sage-light)   !important; }
+
+@keyframes shimmer {
+  0%, 100% { opacity: .6; }
+  50% { opacity: 1; }
+}
+
+.feat-card {
+  display: none; flex-direction: column; padding: 22px 24px; cursor: pointer;
+  border-radius: var(--r-lg); border: 1px solid var(--border);
+  background: var(--surface);
+  transition: transform var(--t), box-shadow var(--t), border-color var(--t);
+  position: relative; overflow: hidden;
+}
+.feat-card:hover {
+  transform: var(--lift);
+  box-shadow: var(--shadow-md), inset 3px 0 0 0 var(--card-accent, var(--sakura2));
+}
+.feat-card:focus-visible { outline: 2px solid var(--sakura2); outline-offset: 2px; }
+.feat-card:hover .feat-cta { opacity: 1; transform: translateX(2px); }
+
+.feat-eyebrow {
+  font-size: 10px; font-weight: 700; letter-spacing: 1.8px;
+  text-transform: uppercase; color: var(--card-accent, var(--sakura2)); margin-bottom: 10px;
+}
+.feat-name {
+  font-family: 'Playfair Display', serif; font-size: 18px; font-weight: 600;
+  line-height: 1.3; color: var(--ink); margin-bottom: 8px;
+}
+.feat-pearl {
+  font-size: 13px; font-style: italic; color: var(--ink2); line-height: 1.55; flex: 1;
+}
+.feat-cta {
+  margin-top: 16px; font-size: 12px; font-weight: 600;
+  color: var(--card-accent, var(--sakura2)); opacity: .65;
   transition: opacity var(--t), transform var(--t);
 }
-.countdown-wrap .cd-edit:hover { opacity: .88; transform: translateY(-1px); }
+.feat-drug  { --card-accent: var(--sakura2); }
+.feat-micro { --card-accent: var(--sage); }
 
-/* ── Unified card interaction base ───────────────────────── */
-.tool-card, .ref-card {
+/* ── Progress tracker cards ───────────────────────────────── */
+.tracker-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+.tracker-card {
+  padding: 20px 20px 16px; display: block;
+  border-radius: var(--r-lg); border: 1px solid var(--border);
+  background: var(--surface); position: relative; overflow: hidden;
+  transition: transform var(--t), box-shadow var(--t), border-color var(--t);
+  cursor: pointer;
+}
+.tracker-card:hover {
+  transform: var(--lift);
+  box-shadow: var(--shadow-md), inset 3px 0 0 0 var(--card-accent, var(--peach));
+}
+.tracker-card:focus-visible { outline: 2px solid var(--sakura2); outline-offset: 2px; }
+.tracker-card:hover .tc-arrow { color: var(--card-accent, var(--peach)); }
+
+.tc-arrow { position: absolute; top: 18px; right: 18px; font-size: 13px; color: var(--dim); transition: color var(--t); }
+.tc-lbl { font-size: 10px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: var(--muted); margin-bottom: 4px; }
+.tc-title { font-family: 'Playfair Display', serif; font-size: 15px; font-weight: 600; color: var(--ink); margin-bottom: 12px; }
+.tc-bg { height: 5px; background: var(--border2); border-radius: 99px; overflow: hidden; margin-bottom: 6px; }
+.tc-fill { height: 100%; border-radius: 99px; background: var(--card-accent, var(--peach)); transition: width .6s ease; }
+.tc-stats { display: flex; justify-content: space-between; font-size: 11px; color: var(--muted); }
+.tc-pct { font-weight: 700; color: var(--card-accent, var(--peach)); }
+
+/* ── Tracker card accent colors (--card-accent drives hover inset + fill) ── */
+.card-spharm { --card-accent: var(--peach); }
+.card-smicro { --card-accent: var(--sage); }
+.card-pix    { --card-accent: var(--lavender); }
+
+/* ── Reference cards — inherit --card-accent from style.css ─ */
+/* card-pharm / card-micro / card-dash are already defined in style.css */
+
+/* ── External resources ───────────────────────────────────── */
+.ext-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 12px;
+}
+.ext-card {
+  display: flex; flex-direction: column; gap: 8px;
   background: var(--surface); border: 1px solid var(--border);
-  border-radius: var(--r-lg);
+  border-radius: var(--r-lg); padding: 18px 20px;
+  text-decoration: none; color: inherit;
   transition: transform var(--t), box-shadow var(--t), border-color var(--t);
   position: relative; overflow: hidden; cursor: pointer;
 }
-.tool-card { padding: 20px 22px; display: block; }
-.tool-card:hover, .ref-card:hover {
+.ext-card:hover {
   transform: var(--lift);
-  box-shadow: var(--shadow-md);
-  border-color: var(--border);
+  box-shadow: var(--shadow-md), inset 3px 0 0 0 var(--ea, var(--gold));
 }
-.tool-card:focus-visible, .ref-card:focus-visible {
-  outline: 2px solid var(--sakura2); outline-offset: 2px;
+.ext-card:focus-visible { outline: 2px solid var(--sakura2); outline-offset: 2px; }
+.ext-card-top { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
+.ext-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; background: var(--ea, var(--gold)); }
+.ext-pill {
+  font-size: 10px; font-weight: 700; letter-spacing: .8px; text-transform: uppercase;
+  color: var(--muted); background: var(--surface2); border: 1px solid var(--border2);
+  padding: 2px 8px; border-radius: 99px; white-space: nowrap;
 }
-.tool-card:hover .card-arrow { color: var(--card-accent, var(--sakura2)); transform: translate(2px,-2px); }
+.ext-arrow { font-size: 13px; color: var(--dim); transition: color var(--t), transform var(--t); margin-left: auto; }
+.ext-card:hover .ext-arrow { color: var(--ea, var(--gold)); transform: translate(2px,-2px); }
+.ext-name { font-size: 14px; font-weight: 600; color: var(--ink); }
+.ext-desc { font-size: 12.5px; color: var(--muted); line-height: 1.55; }
 
-.card-top { display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: 12px; }
-.card-icon { font-size: 26px; }
-.card-hdr { display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px; }
-.card-tag { font-size: 10px; font-weight: 600; letter-spacing: 0.8px; text-transform: uppercase; color: var(--muted); background: var(--surface2); border: 1px solid var(--border2); padding: 3px 9px; border-radius: 99px; }
-.card-arrow { font-size: 16px; color: var(--dim); transition: color var(--t), transform var(--t); }
-.card-title { font-family: 'Playfair Display', serif; font-size: 17px; font-weight: 600; color: var(--ink); margin-bottom: 8px; }
-.card-desc { font-size: 13px; color: var(--ink2); line-height: 1.6; }
-.card-pills { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 12px; }
-.pill { font-size: 11px; font-weight: 500; background: var(--surface2); color: var(--muted); padding: 3px 10px; border-radius: 99px; }
-
-/* Card accent colors */
-.card-pharm  { --card-accent: var(--sakura2); }
-.card-micro  { --card-accent: var(--sage); }
-.card-spharm { --card-accent: var(--peach); }
-.card-smicro { --card-accent: var(--lavender); }
-.card-pix    { --card-accent: var(--peach); }
-.card-dash   { --card-accent: var(--sky); }
-.card-uworld { --card-accent: var(--lavender); }
-.card-ext    { --card-accent: var(--gold); }
-
-/* ── QOTD Banner ──────────────────────────────────────────── */
-.qotd-banner {
-  display: flex; align-items: center; justify-content: space-between;
-  background: var(--surface); border: 1px solid var(--border);
-  border-radius: var(--r-lg); padding: 20px 28px; margin-top: 16px;
-  transition: box-shadow var(--t), transform var(--t);
+/* ── Motivation band ──────────────────────────────────────── */
+.motive-band {
+  margin-top: 36px;
+  border-top: 1px solid var(--border2);
+  padding-top: 28px;
+  display: grid; grid-template-columns: 1fr 1px 1fr; gap: 28px; align-items: center;
 }
-.qotd-banner:hover { box-shadow: var(--shadow-md); transform: translateY(-2px); }
-.qotd-left { display: flex; align-items: center; gap: 16px; }
-.qotd-icon { font-size: 22px; }
-.qotd-label { font-size: 11px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: var(--muted); margin-bottom: 2px; }
-.qotd-title { font-family: 'Playfair Display', serif; font-size: 20px; font-weight: 600; }
-.qotd-sub { font-size: 13px; color: var(--ink2); }
-.qotd-cta { font-size: 13px; font-weight: 600; color: var(--sakura2); white-space: nowrap; }
-
-/* ── Quote Strip ──────────────────────────────────────────── */
-.quote-strip {
-  background: var(--surface); border: 1px solid var(--border);
-  border-radius: var(--r-lg); padding: 28px 32px; margin-top: 20px; text-align: center;
+.motive-sep { background: var(--border2); }
+.motive-txt { font-size: 14px; color: var(--ink2); line-height: 1.75; }
+.motive-txt strong { color: var(--ink); font-weight: 600; }
+.motive-q { text-align: center; }
+.motive-qt {
+  font-family: 'Playfair Display', serif; font-size: 15px;
+  font-style: italic; color: var(--ink2); line-height: 1.75;
 }
-.q-text { font-family: 'Playfair Display', serif; font-size: 18px; font-style: italic; color: var(--ink2); line-height: 1.7; }
-.q-attr { font-size: 12px; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; color: var(--muted); display: block; margin-top: 10px; }
-
-/* ── Callout ──────────────────────────────────────────────── */
-.callout {
-  background: linear-gradient(135deg, var(--sakura-light), var(--lav-light));
-  border: 1px solid var(--sakura); border-radius: var(--r-lg);
-  padding: 20px 24px; margin-top: 20px;
-  display: flex; align-items: center; gap: 14px;
-  font-size: 14px; color: var(--ink2);
+.motive-attr {
+  display: block; margin-top: 10px; font-size: 10px; font-weight: 700;
+  letter-spacing: 1.2px; text-transform: uppercase; color: var(--muted);
 }
-.callout strong { color: var(--ink); }
-
-/* ── Footer ───────────────────────────────────────────────── */
-.footer {
-  display: flex; justify-content: space-between; align-items: center;
-  padding: 24px 0; border-top: 1px solid var(--border);
-  margin-top: 60px; font-size: 12px; color: var(--muted);
-}
-
-/* ── Modal ────────────────────────────────────────────────── */
-.modal-overlay {
-  display: none; position: fixed; inset: 0;
-  background: rgba(42,31,26,.45); backdrop-filter: blur(6px);
-  z-index: 1000; align-items: center; justify-content: center; padding: 16px;
-}
-.modal-overlay.open { display: flex; }
-.modal {
-  background: var(--surface); border-radius: var(--r-xl);
-  padding: 32px; width: 100%; max-width: 420px;
-  box-shadow: var(--shadow-lg); animation: slideUp .2s ease;
-}
-@keyframes slideUp { from { opacity:0; transform:translateY(20px); } to { opacity:1; transform:translateY(0); } }
-.modal-header { display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: 20px; }
-.modal-title { font-family: 'Playfair Display', serif; font-size: 24px; font-weight: 700; margin-bottom: 4px; }
-.modal-sub { font-size: 13px; color: var(--muted); }
-.modal label { display: block; font-size: 11px; font-weight: 700; letter-spacing: 1.2px; text-transform: uppercase; color: var(--muted); margin: 20px 0 7px; }
-.modal input[type="date"], .modal input[type="text"], .modal select {
-  width: 100%; padding: 11px 14px; border: 1.5px solid var(--border);
-  border-radius: var(--r); font-size: 14px; color: var(--ink);
-  background: var(--bg); outline: none; transition: border-color var(--t), box-shadow var(--t);
-}
-.modal input:focus, .modal select:focus {
-  border-color: var(--sakura2); box-shadow: 0 0 0 3px rgba(196,80,94,.12);
-}
-.modal-btns { display: flex; gap: 10px; margin-top: 24px; justify-content: flex-end; }
-.btn-cancel {
-  padding: 10px 20px; border-radius: var(--r); border: 1.5px solid var(--border);
-  background: transparent; color: var(--ink2); font-size: 13px; font-weight: 600;
-  transition: background var(--t), border-color var(--t); cursor: pointer;
-}
-.btn-cancel:hover { background: var(--surface2); }
-.btn-save {
-  padding: 10px 20px; border-radius: var(--r); background: var(--sakura2); color: #fff;
-  font-size: 13px; font-weight: 600; transition: opacity var(--t), transform var(--t); cursor: pointer;
-}
-.btn-save:hover { opacity: .88; transform: translateY(-1px); }
-
-/* ── Search & Filter Bar ──────────────────────────────────── */
-.search-bar { display: flex; gap: 10px; align-items: center; margin-bottom: 20px; flex-wrap: wrap; }
-.search-input {
-  flex: 1; min-width: 200px; padding: 10px 16px; border: 1.5px solid var(--border);
-  border-radius: 99px; background: var(--surface); font-size: 14px; color: var(--ink);
-  outline: none; transition: border-color var(--t), box-shadow var(--t);
-}
-.search-input:focus { border-color: var(--sakura2); box-shadow: 0 0 0 3px rgba(196,80,94,.10); }
-.filter-btn {
-  padding: 10px 16px; border-radius: 99px; border: 1.5px solid var(--border);
-  background: var(--surface); font-size: 12px; font-weight: 600; color: var(--ink2);
-  transition: all var(--t); cursor: pointer;
-}
-.filter-btn:hover { border-color: var(--sakura2); background: var(--surface2); }
-.filter-btn.active { background: var(--sakura-light); border-color: var(--sakura2); color: var(--sakura2); }
-.filter-select {
-  padding: 10px 16px; border-radius: 99px; border: 1.5px solid var(--border);
-  background: var(--surface); font-size: 13px; color: var(--ink2); outline: none; cursor: pointer;
-}
-
-/* ── Drug/Micro Ref Card ──────────────────────────────────── */
-.ref-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 14px; }
-.ref-card { border-radius: var(--r-lg); padding: 18px 20px; }
-.ref-card:hover {
-  box-shadow: var(--shadow-md);
-  border-color: var(--border);
-}
-.ref-card-top { display: flex; align-items: flex-start; justify-content: space-between; gap: 8px; margin-bottom: 8px; }
-.ref-card-name { font-family: 'Playfair Display', serif; font-size: 17px; font-weight: 600; line-height: 1.3; }
-.ref-card-aka { font-size: 11.5px; color: var(--muted); font-style: italic; margin-bottom: 8px; }
-.ref-card-summary { font-size: 13px; color: var(--ink2); line-height: 1.55; }
-.ref-card-tags { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 10px; }
-.ref-tag { font-size: 10.5px; font-weight: 500; padding: 2px 8px; border-radius: 99px; background: var(--surface2); color: var(--ink2); border: 1px solid var(--border2); }
-.tier-badge { font-size: 9px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; padding: 3px 8px; border-radius: 99px; white-space: nowrap; flex-shrink: 0; }
-.tier-1 { background: var(--sakura-light); color: var(--sakura2); border: 1px solid var(--sakura); }
-.tier-2 { background: var(--gold-light); color: var(--gold); border: 1px solid #e8d4a0; }
-.tier-3 { background: var(--sage-light); color: var(--sage); border: 1px solid #b0d4bc; }
-.ref-card[data-tier="1"] { --rc-accent: var(--sakura2); }
-.ref-card[data-tier="2"] { --rc-accent: var(--gold); }
-.ref-card[data-tier="3"] { --rc-accent: var(--sage); }
-
-/* ── Detail Modal ─────────────────────────────────────────── */
-.detail-modal { max-width: 560px; }
-.drug-row { margin-bottom: 14px; }
-.drug-label { display: block; font-size: 10px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: var(--muted); margin-bottom: 4px; }
-.drug-text { font-size: 14px; color: var(--ink2); line-height: 1.65; }
-.drug-text strong { color: var(--ink); font-weight: 600; }
-.pearl-box { background: var(--sakura-light); border: 1px solid var(--sakura); border-radius: var(--r); padding: 14px; margin-top: 14px; }
-.pearl-box .drug-label { color: var(--sakura2); }
-
-.modal-system { font-size: 10px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: var(--sakura2); margin-bottom: 4px; }
-.modal-aka { font-size: 12px; color: var(--muted); font-style: italic; margin-top: 3px; }
-.modal-tags-row { display: flex; flex-wrap: wrap; gap: 5px; margin-bottom: 16px; padding-bottom: 14px; border-bottom: 1px solid var(--border2); }
-.modal-close-btn { background: none; border: none; font-size: 22px; cursor: pointer; color: var(--dim); line-height: 1; flex-shrink: 0; padding: 2px; transition: color var(--t); }
-.modal-close-btn:hover { color: var(--ink2); }
-
-/* ── Progress Tracker ─────────────────────────────────────── */
-.prog-section { margin-bottom: 32px; }
-.prog-section-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px; padding-bottom: 10px; border-bottom: 1px solid var(--border); flex-wrap: wrap; gap: 8px; }
-.prog-section-title { font-family: 'Playfair Display', serif; font-size: 20px; font-weight: 600; }
-.prog-bar-wrap { background: var(--border2); border-radius: 99px; height: 6px; overflow: hidden; margin-bottom: 12px; }
-.prog-bar-fill { height: 100%; border-radius: 99px; background: linear-gradient(90deg, var(--sakura2), var(--peach)); transition: width .4s ease; }
-.prog-count { font-size: 12px; color: var(--muted); font-weight: 600; }
-
-.tracker-table { width: 100%; border-collapse: collapse; }
-.tracker-table th { text-align: left; font-size: 10px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: var(--muted); padding: 8px 12px; border-bottom: 1px solid var(--border); }
-.tracker-table td { padding: 10px 12px; border-bottom: 1px solid var(--border2); font-size: 13.5px; vertical-align: middle; }
-.tracker-table tr:hover td { background: var(--surface2); }
-.tracker-table tr:last-child td { border-bottom: none; }
-
-.check-wrap { display: flex; gap: 8px; }
-.check-btn { width: 28px; height: 28px; border-radius: 8px; border: 1.5px solid var(--border); background: transparent; font-size: 13px; display: flex; align-items: center; justify-content: center; transition: all var(--t); flex-shrink: 0; cursor: pointer; }
-.check-btn:hover { border-color: var(--sakura2); }
-.check-btn.on { background: var(--sakura2); border-color: var(--sakura2); color: #fff; }
-.check-btn.on-sage { background: var(--sage); border-color: var(--sage); color: #fff; }
-.check-btn.on-gold { background: var(--gold); border-color: var(--gold); color: #fff; }
-.yield-dot { width: 8px; height: 8px; border-radius: 50%; display: inline-block; margin-right: 5px; }
-.yield-high  { background: var(--sakura2); }
-.yield-med   { background: var(--gold); }
-.yield-low   { background: var(--sage); }
-
-/* ── Dashboard ────────────────────────────────────────────── */
-.stats-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 14px; margin-bottom: 28px; }
-.stat-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--r); padding: 20px; }
-.stat-label { font-size: 11px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: var(--muted); margin-bottom: 6px; }
-.stat-value { font-family: 'Playfair Display', serif; font-size: 36px; font-weight: 700; line-height: 1; }
-.stat-sub { font-size: 12px; color: var(--muted); margin-top: 4px; }
-.stat-good { color: var(--sage); }
-.stat-warn { color: var(--gold); }
-.stat-bad  { color: var(--sakura2); }
-
-.score-table { width: 100%; border-collapse: collapse; }
-.score-table th { text-align: left; font-size: 11px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: var(--muted); padding: 8px 14px; border-bottom: 2px solid var(--border); }
-.score-table td { padding: 12px 14px; border-bottom: 1px solid var(--border2); font-size: 14px; vertical-align: middle; }
-.score-table tr:hover td { background: var(--surface2); }
-.score-badge { display: inline-block; font-size: 12px; font-weight: 700; padding: 3px 10px; border-radius: 99px; }
-.score-green { background: var(--sage-light); color: var(--sage); }
-.score-yellow { background: var(--gold-light); color: var(--gold); }
-.score-red { background: var(--sakura-light); color: var(--sakura2); }
-
-.weakness-item { background: var(--surface); border: 1px solid var(--border); border-left: 3px solid var(--sakura2); border-radius: var(--r); padding: 14px 18px; margin-bottom: 10px; display: flex; align-items: center; justify-content: space-between; gap: 12px; }
-.weakness-name { font-weight: 600; font-size: 14px; }
-.weakness-pct { font-size: 22px; font-weight: 700; color: var(--sakura2); font-family: 'Playfair Display', serif; }
-
-.uworld-subject-bar { margin-bottom: 12px; }
-.uworld-subject-label { display: flex; justify-content: space-between; font-size: 13px; margin-bottom: 4px; }
-.uworld-bar-outer { background: var(--border2); border-radius: 99px; height: 8px; overflow: hidden; }
-.uworld-bar-inner { height: 100%; border-radius: 99px; background: linear-gradient(90deg, var(--peach), var(--sakura2)); transition: width .6s ease; }
-
-/* ── Upload Zone ──────────────────────────────────────────── */
-.upload-zone { border: 2px dashed var(--border); border-radius: var(--r-lg); padding: 40px; text-align: center; cursor: pointer; transition: border-color var(--t), background var(--t); }
-.upload-zone:hover, .upload-zone.drag-over { border-color: var(--sakura2); background: var(--sakura-light); }
-.upload-icon { font-size: 36px; margin-bottom: 10px; }
-.upload-text { font-size: 14px; color: var(--ink2); }
-.upload-hint { font-size: 12px; color: var(--muted); margin-top: 4px; }
-
-/* ── Floating Petals ──────────────────────────────────────── */
-.petals { position: fixed; inset: 0; pointer-events: none; overflow: hidden; z-index: 0; }
-.petal { position: absolute; width: 8px; height: 12px; border-radius: 50% 50% 50% 0; background: var(--sakura); opacity: .14; animation: petalFall linear infinite; }
-@keyframes petalFall {
-  0%   { transform: translateY(-20px) rotate(0deg); opacity: .14; }
-  100% { transform: translateY(110vh) rotate(720deg); opacity: 0; }
-}
-.petal:nth-child(1)  { left:  5%; animation-duration: 14s; animation-delay:  0s; }
-.petal:nth-child(2)  { left: 12%; animation-duration: 18s; animation-delay:  3s; width:6px; height:9px; }
-.petal:nth-child(3)  { left: 22%; animation-duration: 12s; animation-delay:  6s; opacity:.10; }
-.petal:nth-child(4)  { left: 35%; animation-duration: 20s; animation-delay:  1s; width:10px; height:14px; }
-.petal:nth-child(5)  { left: 48%; animation-duration: 16s; animation-delay:  8s; }
-.petal:nth-child(6)  { left: 60%; animation-duration: 11s; animation-delay:  4s; opacity:.11; }
-.petal:nth-child(7)  { left: 72%; animation-duration: 19s; animation-delay:  9s; }
-.petal:nth-child(8)  { left: 82%; animation-duration: 13s; animation-delay:  2s; width:6px; height:9px; }
-.petal:nth-child(9)  { left: 90%; animation-duration: 17s; animation-delay:  7s; }
-.petal:nth-child(10) { left: 18%; animation-duration: 22s; animation-delay: 11s; opacity:.08; }
-
-/* ── Page header ──────────────────────────────────────────── */
-.page-header { padding: 40px 0 30px; border-bottom: 1px solid var(--border2); margin-bottom: 24px; }
-.page-eyebrow { font-size: 10px; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; color: var(--sakura2); opacity: .75; margin-bottom: 10px; }
-.page-title { font-family: 'Playfair Display', serif; font-size: clamp(28px, 4vw, 40px); font-weight: 700; line-height: 1.15; color: var(--ink); }
-.page-title em { font-style: italic; color: var(--sakura2); }
-
-/* ── Filter bar ───────────────────────────────────────────── */
-.filter-bar { background: var(--surface); border: 1px solid var(--border); border-radius: var(--r-lg); padding: 16px 18px; margin-bottom: 16px; display: flex; flex-direction: column; gap: 11px; }
-.filter-row { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
-.filter-row-label { font-size: 10px; font-weight: 700; letter-spacing: 1.8px; text-transform: uppercase; color: var(--muted); min-width: 44px; flex-shrink: 0; }
-
-/* ── Tier chips ───────────────────────────────────────────── */
-.tier-chip { padding: 5px 13px; border-radius: 99px; border: 1.5px solid var(--border); background: transparent; font-size: 11px; font-weight: 600; color: var(--muted); transition: all var(--t); cursor: pointer; white-space: nowrap; }
-.tier-chip:hover { border-color: var(--sakura2); color: var(--ink2); }
-.tier-chip.active { background: var(--sakura-light); border-color: var(--sakura2); color: var(--sakura2); }
-.tier-chip[data-tier="1"].active { background:var(--sakura-light); border-color:var(--sakura2); color:var(--sakura2); }
-.tier-chip[data-tier="2"].active { background:var(--gold-light);   border-color:var(--gold);    color:var(--gold); }
-.tier-chip[data-tier="3"].active { background:var(--sage-light);   border-color:var(--sage);    color:var(--sage); }
-
-/* ── Results meta & Empty state ──────────────────────────── */
-.results-meta { font-size: 11px; color: var(--muted); margin-bottom: 14px; }
-.results-meta strong { color: var(--ink2); font-weight: 600; }
-.empty-state { grid-column: 1 / -1; padding: 48px 24px; text-align: center; }
-.empty-state-title { font-family: 'Playfair Display', serif; font-size: 20px; font-weight: 600; color: var(--ink2); margin-bottom: 6px; }
-.empty-state-sub { font-size: 13px; color: var(--muted); }
-
-/* ── Utility ──────────────────────────────────────────────── */
-.hidden { display: none !important; }
-.tag-high { color: var(--sakura2); font-weight: 700; }
-.text-muted { color: var(--muted); }
-.mt-4 { margin-top: 4px; }
-.mt-8 { margin-top: 8px; }
 
 /* ── Responsive ───────────────────────────────────────────── */
-@media (max-width: 600px) {
-  .wrap { padding: 0 16px 60px; }
-  .nav-links .nav-link { font-size: 11px; padding: 4px 7px; }
-  .nav-auth-btn { padding: 5px 10px; }
-  .nav-divider { display: none; }
-  .countdown-wrap { gap: 16px; padding: 16px 20px; }
-  .cd-days { font-size: 36px; }
-  .tool-grid { grid-template-columns: 1fr; }
+@media (max-width: 860px) {
+  .hero { grid-template-columns: 1fr; }
+  .hero-countdown { min-width: unset; max-width: unset; }
+}
+@media (max-width: 720px) {
+  .daily-grid { grid-template-columns: 1fr; }
+  .tracker-grid { grid-template-columns: 1fr 1fr; }
+  .motive-band { grid-template-columns: 1fr; }
+  .motive-sep { display: none; }
+}
+@media (max-width: 480px) {
+  .tracker-grid { grid-template-columns: 1fr; }
+  .cd-days { font-size: 52px; }
 }
 
+/* ── Micro modal sage button ──────────────────────────────── */
+.btn-save-sage { background: var(--sage); }
+/* ── Micro pearl box — sage tint ─────────────────────────── */
+.pearl-box-sage { background: var(--sage-light); border-color: #b0d4bc; }
+.pearl-box-sage .drug-label { color: var(--sage); }
+</style>
+</head>
+<body>
 
-/* ═══════════════════════════════════════════════════════════
-   REFERENCE PAGE COMPONENT SYSTEM
-   Shared by drugfacts.html, microfacts.html, and future pages.
-   ═══════════════════════════════════════════════════════════ */
+<div class="petals" aria-hidden="true">
+  <div class="petal"></div><div class="petal"></div><div class="petal"></div>
+  <div class="petal"></div><div class="petal"></div><div class="petal"></div>
+  <div class="petal"></div><div class="petal"></div><div class="petal"></div>
+  <div class="petal"></div>
+</div>
 
-/* ── Page header ─────────────────────────────────────────── */
-.ref-page-header {
-  padding: 36px 0 20px;
-  display: flex; align-items: flex-end; justify-content: space-between;
-  gap: 20px; flex-wrap: wrap;
-}
-.ref-page-eyebrow {
-  font-family: 'DM Sans', sans-serif;
-  font-size: 10px; font-weight: 700; letter-spacing: 3px;
-  text-transform: uppercase; color: var(--accent, var(--sakura2));
-  opacity: .85; margin-bottom: 10px;
-}
-.ref-page-title {
-  font-family: 'Playfair Display', serif;
-  font-size: clamp(30px, 4vw, 46px); font-weight: 700;
-  line-height: 1.1; letter-spacing: -0.5px; color: var(--ink); margin-bottom: 0;
-}
-.ref-page-title em { font-style: italic; color: var(--accent, var(--sakura2)); }
-.ref-page-sub { display: none; }
-.ref-count { font-size: 12px; color: var(--muted); align-self: flex-end; padding-bottom: 4px; white-space: nowrap; }
-.ref-count strong { color: var(--ink2); font-weight: 600; }
+<script src="nav.js"></script>
 
-/* ── Search row ──────────────────────────────────────────── */
-.ref-search-row { padding: 18px 0 0; display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
-.ref-search-wrap { position: relative; max-width: 480px; flex: 1; min-width: 200px; }
-.ref-search-icon {
-  position: absolute; left: 13px; top: 50%; transform: translateY(-50%);
-  pointer-events: none; display: flex; align-items: center;
-}
-.ref-search-svg { width: 13px; height: 13px; stroke: var(--dim); fill: none; stroke-width: 2; stroke-linecap: round; }
-.ref-search-input {
-  width: 100%; padding: 9px 14px 9px 36px;
-  border: 1.5px solid var(--border); border-radius: 99px;
-  background: var(--surface); font-size: 13px; color: var(--ink);
-  font-family: 'DM Sans', sans-serif;
-  outline: none; transition: border-color .15s, box-shadow .15s;
-}
-.ref-search-input:focus {
-  border-color: var(--accent, var(--sakura2));
-  box-shadow: 0 0 0 3px var(--accent-glow, rgba(196,80,94,.10));
-}
-.ref-search-input::placeholder { color: var(--dim); }
+<div class="wrap">
 
-/* ── Category tab bar ────────────────────────────────────── */
-.cat-tab-bar {
-  display: flex; flex-wrap: nowrap; overflow-x: auto;
-  scrollbar-width: none; gap: 0; margin-top: 18px;
-  border-bottom: 1px solid var(--border2);
-  -webkit-overflow-scrolling: touch;
-}
-.cat-tab-bar::-webkit-scrollbar { display: none; }
-.cat-tab {
-  padding: 9px 7px;
-  font-family: 'DM Sans', sans-serif; font-size: 10px;
-  letter-spacing: 0px; text-transform: uppercase; font-weight: 600;
-  color: var(--muted); border: none; border-bottom: 2px solid transparent;
-  cursor: pointer; white-space: nowrap; background: transparent;
-  transition: color .15s, border-color .15s;
-  display: flex; align-items: center; gap: 4px; flex-shrink: 0;
-}
-.cat-tab:hover { color: var(--ink2); }
-.cat-tab.active { color: var(--ink); border-bottom-color: var(--accent, var(--sakura2)); }
-.tab-dot { width: 5px; height: 5px; border-radius: 50%; flex-shrink: 0; }
+  <!-- ── HERO + COUNTDOWN (integrated) ──────────────────── -->
+  <header class="hero">
+    <div class="hero-left">
+      <div class="hero-eyebrow">USMLE Step 1 Study Hub</div>
+      <h1 class="hero-title">Your <em>Study Resources,</em><br>All in One Place</h1>
+      <p class="hero-tagline">Everything you need for Step 1 — pharmacology, microbiology, progress tracking, and more.</p>
+    </div>
 
-/* ── Category intro banner ───────────────────────────────── */
-.cat-intro {
-  border-radius: 12px; padding: 16px 20px; margin: 18px 0 22px;
-  background: var(--surface); border: 1px solid var(--border);
-  border-left: 4px solid var(--cat-color, var(--accent, var(--sakura2)));
-}
-.cat-intro-title {
-  font-family: 'Playfair Display', serif;
-  font-size: 22px; font-weight: 700; margin-bottom: 5px; letter-spacing: -0.4px;
-}
-.cat-intro-desc { font-size: 12.5px; color: var(--muted); line-height: 1.6; }
+    <div class="hero-countdown" aria-label="Exam countdown">
+      <div class="cd-eyebrow">Days to Step 1</div>
+      <div class="cd-number-row">
+        <span class="cd-days" id="cd-days">—</span>
+        <span class="cd-unit">days</span>
+      </div>
+      <span class="cd-date" id="cd-date"><span class="cd-date-empty">No exam date set</span></span>
+      <button class="cd-edit" id="cd-edit-btn" onclick="openDateModal()">Set Exam Date ✦</button>
+    </div>
+  </header>
 
-/* ── Group section ───────────────────────────────────────── */
-.group-section { margin-bottom: 28px; }
-.class-group-header {
-  display: flex; align-items: center; justify-content: space-between; margin-bottom: 11px;
-}
-.class-label {
-  font-family: 'DM Sans', sans-serif; font-size: 10px; font-weight: 700;
-  letter-spacing: 0.3px; text-transform: uppercase; padding: 5px 14px;
-  display: inline-flex; align-items: center; gap: 6px;
-  border-radius: 99px; border: 1.5px solid currentColor; opacity: 0.9;
-}
-.group-expand-btn {
-  font-family: 'DM Mono', monospace; font-size: 8px; letter-spacing: 1px;
-  text-transform: uppercase; padding: 5px 12px; border-radius: 99px;
-  border: 1.5px solid var(--border); background: transparent;
-  color: var(--muted); cursor: pointer; white-space: nowrap; flex-shrink: 0;
-  transition: background .15s, color .15s, border-color .15s;
-}
-.group-expand-btn:hover {
-  background: color-mix(in srgb, var(--cat-color, var(--sakura2)) 10%, transparent);
-  color: var(--cat-color, var(--sakura2));
-  border-color: color-mix(in srgb, var(--cat-color, var(--sakura2)) 50%, transparent);
-}
+  <!-- ── UWORLD PROGRESS (always visible) ──────────────── -->
+  <div class="uw-strip" id="uw-strip" aria-label="UWorld progress">
+    <div class="uw-prog">
+      <div class="uw-lbl">UWorld Progress</div>
+      <div class="uw-row">
+        <div class="uw-bg" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" id="uw-bar-role">
+          <div class="uw-fill" id="uw-fill" style="width:0%"></div>
+        </div>
+        <div class="uw-pct" id="uw-pct">0%</div>
+      </div>
+      <div class="uw-sub" id="uw-sub">Set your exam date to see your daily goal</div>
+    </div>
+    <div class="uw-div"></div>
+    <div class="uw-qd">
+      <div class="uw-qd-v" id="uw-qday">—</div>
+      <div class="uw-qd-l">Q / Day Needed</div>
+    </div>
+  </div>
 
-/* ── Cards grid ──────────────────────────────────────────── */
-.cards-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  gap: 10px; align-items: stretch;
-}
+  <!-- ── TODAY'S HIGH YIELD ─────────────────────────────── -->
+  <div class="sec-label">Today's High Yield</div>
+  <div class="daily-grid">
 
-/* ── Drug card ───────────────────────────────────────────── */
-.rcard {
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-left: 3px solid var(--accent, var(--sakura2));
-  border-radius: 12px; overflow: hidden; cursor: pointer;
-  transition: box-shadow .18s ease, transform .12s ease;
-  box-shadow: 0 1px 3px rgba(42,31,26,.04);
-}
-.rcard:hover { box-shadow: 0 4px 18px rgba(42,31,26,.10); transform: translateY(-1px); }
-.rcard:focus-visible { outline: 2px solid var(--accent, var(--sakura2)); outline-offset: 2px; }
-.rcard-header {
-  padding: 13px 14px 0;
-  display: flex; justify-content: space-between; align-items: flex-start; gap: 8px;
-}
-.rcard-header-left { flex: 1; min-width: 0; width: 0; }
-.rcard-name {
-  font-family: 'Playfair Display', serif;
-  font-size: 16px; font-weight: 700; line-height: 1.2; color: var(--ink); letter-spacing: -0.3px;
-}
-.rcard-aka {
-  font-family: 'DM Sans', sans-serif;
-  font-size: 11px; line-height: 1.55; margin-top: 6px;
-  font-weight: 500;
-  color: var(--cat-color, var(--ink2));
-  display: flex; flex-wrap: wrap; align-items: baseline; gap: 0;
-  width: 100%;
-}
-/* Each drug name token stays on one line — breaks only happen at dot separators */
-.aka-token {
-  white-space: nowrap;
-  display: inline-block;
-}
-.dot-sep {
-  display: inline-block;
-  color: color-mix(in srgb, var(--cat-color, var(--border)) 40%, transparent);
-  margin: 0 3px; font-weight: 400; user-select: none; white-space: nowrap;
-}
-.rcard-toggle {
-  flex-shrink: 0; background: none; border: none; cursor: pointer;
-  font-size: 11px; line-height: 1; padding: 3px 0 0 4px; align-self: flex-start;
-  font-family: 'DM Mono', monospace; transition: color .14s; color: var(--dim);
-}
-.rcard-summary {
-  padding: 8px 14px 14px; font-size: 12px; color: var(--ink2); line-height: 1.62;
-  border-top: 1px solid var(--border2); margin-top: 8px;
-}
-.rcard-detail { display: none; }
+    <!-- Skeleton shown until JS fires -->
+    <div class="feat-skeleton" id="dotd-skeleton" aria-hidden="true">
+      <div class="skel-line skel-accent-drug" style="height:10px; width:40%;"></div>
+      <div class="skel-line" style="height:20px; width:70%;"></div>
+      <div class="skel-line" style="height:13px; width:90%;"></div>
+      <div class="skel-line" style="height:13px; width:80%;"></div>
+    </div>
+    <div class="feat-skeleton" id="ootd-skeleton" aria-hidden="true">
+      <div class="skel-line skel-accent-micro" style="height:10px; width:50%;"></div>
+      <div class="skel-line" style="height:20px; width:65%;"></div>
+      <div class="skel-line" style="height:13px; width:90%;"></div>
+      <div class="skel-line" style="height:13px; width:75%;"></div>
+    </div>
 
-/* ── Field pill labels ───────────────────────────────────── */
-.rcard-field {
-  padding: 10px 14px; border-bottom: 1px solid var(--border2);
-}
-.rcard-field:last-of-type { border-bottom: none; }
-.rcard-field-label {
-  font-family: 'DM Mono', monospace;
-  font-size: 8px; letter-spacing: 0.8px; text-transform: uppercase;
-  padding: 3px 9px; border-radius: 99px;
-  display: inline-block; margin-bottom: 7px; border: 1px solid; font-weight: 500;
-}
-.lbl-moa { background: #3a508014; color: #3a5080; border-color: #3a508045; }
-.lbl-use { background: #2e684514; color: #2e6845; border-color: #2e684545; }
-.lbl-se  { background: #8a284414; color: #8a2844; border-color: #8a284445; }
-.lbl-ci  { background: #7a3e1814; color: #7a3e18; border-color: #7a3e1845; }
-.lbl-pk  { background: #4a389014; color: #4a3890; border-color: #4a389045; }
-/* Micro Facts label classes */
-.lbl-vir { background: #2e684514; color: #2e6845; border-color: #2e684545; }
-.lbl-dis { background: #8a284414; color: #8a2844; border-color: #8a284445; }
-.lbl-dx  { background: #7a3e1814; color: #7a3e18; border-color: #7a3e1845; }
-.lbl-tx  { background: #3a508014; color: #3a5080; border-color: #3a508045; }
-.rcard-field-text { font-size: 12px; color: var(--ink2); line-height: 1.65; }
-.rcard-field-text strong { color: var(--ink); font-weight: 600; }
-.info-line { line-height: 1.65; font-size: 12px; color: var(--ink2); }
-.info-line + .info-line { margin-top: 4px; }
-.info-line strong { color: var(--ink); font-weight: 600; }
+    <!-- Real cards, hidden until hydrated -->
+    <div class="feat-card feat-drug" id="dotd-card" onclick="openDotdModal()" role="button" tabindex="0" aria-label="Drug of the Day — click to expand">
+      <div class="feat-eyebrow">Drug of the Day</div>
+      <div class="feat-name" id="dotd-name"></div>
+      <div class="feat-pearl" id="dotd-pearl"></div>
+      <div class="feat-cta">View full card ↗</div>
+    </div>
+    <div class="feat-card feat-micro" id="ootd-card" onclick="openOotdModal()" role="button" tabindex="0" aria-label="Organism of the Day — click to expand">
+      <div class="feat-eyebrow">Organism of the Day</div>
+      <div class="feat-name" id="ootd-name"></div>
+      <div class="feat-pearl" id="ootd-pearl"></div>
+      <div class="feat-cta">View full card ↗</div>
+    </div>
+  </div>
 
-/* ── Pearl ───────────────────────────────────────────────── */
-.rcard-pearl {
-  display: flex; gap: 12px; align-items: flex-start;
-  background: color-mix(in srgb, var(--cat-color, var(--sakura2)) 8%, var(--bg));
-  border-top: 1px solid color-mix(in srgb, var(--cat-color, var(--sakura2)) 20%, transparent);
-  border-left: 3px solid var(--cat-color, var(--sakura2));
-  padding: 14px 16px 15px;
-  margin-left: -1px; /* align with card border-left */
-}
-.pearl-diamond {
-  flex-shrink: 0; margin-top: 1px; line-height: 1;
-  font-size: 11px; opacity: 0.9;
-}
-.pearl-body { flex: 1; min-width: 0; }
-.pearl-label {
-  font-family: 'DM Sans', sans-serif;
-  font-size: 9px; letter-spacing: 1.5px;
-  text-transform: uppercase; display: block;
-  font-weight: 800; margin-bottom: 5px;
-  color: var(--cat-color, var(--sakura2));
-}
-.pearl-text {
-  font-family: 'DM Sans', sans-serif; font-size: 13px;
-  color: var(--ink); line-height: 1.62; display: block;
-  font-weight: 400;
-}
-.pearl-text strong { font-weight: 700; color: var(--ink); }
+  <!-- ── PROGRESS TRACKERS ──────────────────────────────── -->
+  <div class="sec-label">Progress Trackers</div>
+  <div class="tracker-grid">
+    <a class="tracker-card card-spharm" href="sketchy-pharm.html" aria-label="Sketchy Pharm tracker">
+      <span class="tc-arrow" aria-hidden="true">↗</span>
+      <div class="tc-lbl">Sketchy</div>
+      <div class="tc-title">Pharm</div>
+      <div class="tc-bg" role="progressbar" aria-valuemin="0" aria-valuemax="101">
+        <div class="tc-fill" id="tp-bar" style="width:0%"></div>
+      </div>
+      <div class="tc-stats">
+        <span id="tp-stats">0 / 101 reviewed</span>
+        <span class="tc-pct" id="tp-pct">0%</span>
+      </div>
+    </a>
+    <a class="tracker-card card-smicro" href="sketchy-micro.html" aria-label="Sketchy Micro tracker">
+      <span class="tc-arrow" aria-hidden="true">↗</span>
+      <div class="tc-lbl">Sketchy</div>
+      <div class="tc-title">Micro</div>
+      <div class="tc-bg" role="progressbar" aria-valuemin="0" aria-valuemax="104">
+        <div class="tc-fill" id="tm-bar" style="width:0%"></div>
+      </div>
+      <div class="tc-stats">
+        <span id="tm-stats">0 / 104 reviewed</span>
+        <span class="tc-pct" id="tm-pct">0%</span>
+      </div>
+    </a>
+    <a class="tracker-card card-pix" href="pixorize.html" aria-label="Pixorize tracker">
+      <span class="tc-arrow" aria-hidden="true">↗</span>
+      <div class="tc-lbl">Pixorize</div>
+      <div class="tc-title">Biochem &amp; Immuno</div>
+      <div class="tc-bg" role="progressbar" aria-valuemin="0" aria-valuemax="244">
+        <div class="tc-fill" id="tpx-bar" style="width:0%"></div>
+      </div>
+      <div class="tc-stats">
+        <span id="tpx-stats">0 / 244 reviewed</span>
+        <span class="tc-pct" id="tpx-pct">0%</span>
+      </div>
+    </a>
+  </div>
 
-/* ── Drug modal overlay ──────────────────────────────────── */
-.drug-modal-overlay {
-  display: none; position: fixed; inset: 0; z-index: 1000;
-  background: rgba(42,31,26,.48); backdrop-filter: blur(4px);
-  -webkit-backdrop-filter: blur(4px);
-  align-items: center; justify-content: center; padding: 20px;
-}
-.drug-modal-overlay.open { display: flex; }
+  <!-- ── REFERENCE ──────────────────────────────────────── -->
+  <div class="sec-label">Reference</div>
+  <div class="ref-grid" style="grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));">
+    <a class="tool-card card-pharm" href="drugfacts.html">
+      <div class="card-hdr">
+        <span class="card-arrow" aria-hidden="true">↗</span>
+      </div>
+      <div class="card-title">Drug Facts</div>
+      <p class="card-desc">Complete Step 1 pharmacology — mechanism, side effects, clinical pearls, and tier ratings across all systems.</p>
+    </a>
+    <a class="tool-card card-micro" href="microfacts.html">
+      <div class="card-hdr">
+        <span class="card-arrow" aria-hidden="true">↗</span>
+      </div>
+      <div class="card-title">Micro Facts</div>
+      <p class="card-desc">Bacteria, viruses, fungi, and parasites — virulence factors, diseases, treatments, and high-yield pearls.</p>
+    </a>
+    <a class="tool-card card-dash" href="dashboard.html">
+      <div class="card-hdr">
+        <span class="card-arrow" aria-hidden="true">↗</span>
+      </div>
+      <div class="card-title">Dashboard</div>
+      <p class="card-desc">Log UWorld sessions, track practice exam scores, find weak points, and calculate your daily question goal.</p>
+    </a>
+  </div>
 
-/* ── Drug modal shell ────────────────────────────────────── */
-.drug-modal {
-  background: var(--surface); border-radius: 20px;
-  width: 100%; max-width: 720px; max-height: 90vh;
-  display: flex; flex-direction: column;
-  box-shadow: 0 32px 80px rgba(42,31,26,.24), 0 4px 16px rgba(42,31,26,.10);
-  overflow: hidden;
-  animation: drugModalIn .22s cubic-bezier(.22,.68,0,1.2);
-}
-@keyframes drugModalIn {
-  from { opacity: 0; transform: translateY(16px) scale(.97); }
-  to   { opacity: 1; transform: none; }
-}
+  <!-- ── EXTERNAL RESOURCES ────────────────────────────── -->
+  <div class="sec-label">External Resources</div>
+  <div class="ext-grid">
+    <a class="ext-card ext-qotd" href="https://bootcamp.com/med-school/usmle-step-1-question-of-the-day" target="_blank" rel="noopener">
+      <div class="ext-card-top">
+        <div class="ext-dot"></div>
+        <span class="ext-arrow" aria-hidden="true">↗</span>
+      </div>
+      <div class="ext-name">Question of the Day</div>
+      <div class="ext-desc">Bootcamp's daily Step 1 question — keep your streak alive.</div>
+    </a>
+    <a class="ext-card ext-uworld" href="https://www.uworld.com" target="_blank" rel="noopener">
+      <div class="ext-card-top">
+        <div class="ext-dot"></div>
+        <span class="ext-arrow" aria-hidden="true">↗</span>
+      </div>
+      <div class="ext-name">UWorld</div>
+      <div class="ext-desc">The gold standard Step 1 question bank with detailed explanations.</div>
+    </a>
+    <a class="ext-card ext-pathoma" href="https://www.pathoma.com" target="_blank" rel="noopener">
+      <div class="ext-card-top">
+        <div class="ext-dot"></div>
+        <span class="ext-arrow" aria-hidden="true">↗</span>
+      </div>
+      <div class="ext-name">Pathoma</div>
+      <div class="ext-desc">Dr. Sattar's high-yield pathology videos — essential for Step 1 Path.</div>
+    </a>
+  </div>
 
-/* ── Top bar: breadcrumb + controls ─────────────────────── */
-.drug-modal-topbar {
-  display: flex; align-items: center; justify-content: space-between;
-  padding: 11px 20px 10px;
-  border-top: 3px solid var(--sakura2); /* overridden per-drug via JS */
-  border-bottom: 1px solid var(--border2);
-  flex-shrink: 0; gap: 12px;
-  background: var(--bg);
-}
-.drug-modal-breadcrumb {
-  display: flex; align-items: center; gap: 7px;
-  font-family: 'DM Sans', sans-serif; font-size: 10px;
-  font-weight: 700; text-transform: uppercase; letter-spacing: 0.4px;
-  min-width: 0; flex: 1;
-}
-.drug-modal-banner-cat {
-  padding: 3px 9px; border-radius: 99px;
-  border: 1.5px solid currentColor; opacity: 0.9;
-  white-space: nowrap;
-}
-.drug-modal-banner-sep { opacity: 0.35; font-size: 10px; flex-shrink: 0; }
-.drug-modal-banner-grp { opacity: 0.65; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-.drug-modal-topbar-right {
-  display: flex; align-items: center; gap: 6px; flex-shrink: 0;
-}
-.drug-modal-counter {
-  font-family: 'DM Mono', monospace; font-size: 9px;
-  color: var(--dim); letter-spacing: 0.5px; padding: 0 4px;
-}
-.drug-modal-nav-btn {
-  display: flex; align-items: center; gap: 4px;
-  background: none; border: 1.5px solid var(--border); border-radius: 99px;
-  padding: 5px 12px;
-  font-family: 'DM Mono', monospace; font-size: 9px; letter-spacing: 0.4px;
-  color: var(--muted); cursor: pointer;
-  transition: border-color .14s, color .14s, background .14s;
-}
-.drug-modal-nav-btn:hover:not(:disabled) {
-  color: var(--ink2); border-color: var(--ink2); background: var(--surface2);
-}
-.drug-modal-nav-btn:disabled { opacity: 0.28; cursor: default; }
-.drug-modal-close {
-  display: flex; align-items: center; justify-content: center;
-  background: none; border: none; cursor: pointer;
-  color: var(--dim); width: 30px; height: 30px; border-radius: 8px;
-  transition: color .14s, background .14s; flex-shrink: 0;
-}
-.drug-modal-close:hover { color: var(--ink); background: var(--surface2); }
+  <!-- ── MOTIVATION BAND ────────────────────────────────── -->
+  <div class="motive-band">
+    <div class="motive-txt">
+      <strong>Keep going —</strong> Every page you study now compounds. You're building the knowledge that will carry you through exam day and beyond.
+    </div>
+    <div class="motive-sep"></div>
+    <div class="motive-q">
+      <p class="motive-qt" id="daily-quote"></p>
+      <span class="motive-attr" id="quote-attr"></span>
+    </div>
+  </div>
 
-/* ── Drug identity header ────────────────────────────────── */
-.drug-modal-header {
-  padding: 20px 24px 0;
-  flex-shrink: 0;
-}
-.drug-modal-title {
-  font-family: 'Playfair Display', serif;
-  font-size: clamp(20px, 3vw, 26px); font-weight: 700;
-  color: var(--ink); letter-spacing: -0.5px; line-height: 1.2;
-}
-.drug-modal-aka {
-  font-family: 'DM Sans', sans-serif; font-size: 12px;
-  font-weight: 500; margin-top: 7px; line-height: 1.6;
-  color: var(--cat-color, var(--ink2));
-  display: flex; flex-wrap: wrap; align-items: baseline; gap: 0; overflow: visible;
+  <footer class="footer">
+    <div>Step 1 Study Hub</div>
+    <div id="footer-date"></div>
+  </footer>
+</div>
+
+<!-- ── DATE MODAL ──────────────────────────────────────────── -->
+<div class="modal-overlay" id="date-modal" role="dialog" aria-modal="true" aria-labelledby="date-modal-title">
+  <div class="modal">
+    <div class="modal-header">
+      <div>
+        <div class="modal-title" id="date-modal-title">Set Exam Date</div>
+        <div class="modal-sub">Your countdown starts here</div>
+      </div>
+      <button class="modal-close-btn" onclick="closeModal('date-modal')" aria-label="Close">&times;</button>
+    </div>
+    <label for="exam-date-input">Exam Date</label>
+    <input type="date" id="exam-date-input"/>
+    <div class="modal-btns">
+      <button class="btn-cancel" onclick="closeModal('date-modal')">Cancel</button>
+      <button class="btn-save" onclick="saveExamDate()">Save Date</button>
+    </div>
+  </div>
+</div>
+
+<!-- ── DRUG OF THE DAY MODAL ──────────────────────────────── -->
+<div class="modal-overlay" id="dotd-modal" role="dialog" aria-modal="true" aria-labelledby="dm-name">
+  <div class="modal detail-modal" style="max-width:560px;">
+    <div class="modal-header">
+      <div>
+        <div style="font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--sakura2);margin-bottom:4px;" id="dm-group"></div>
+        <div class="modal-title" id="dm-name"></div>
+        <div style="font-size:12px;color:var(--muted);font-style:italic;" id="dm-aka"></div>
+      </div>
+      <button onclick="closeModal('dotd-modal')" class="modal-close-btn" aria-label="Close">&times;</button>
+    </div>
+    <div id="dm-content" style="max-height:65vh;overflow-y:auto;padding-right:6px;"></div>
+    <div class="modal-btns" style="margin-top:20px;padding-top:16px;border-top:1px solid var(--border);">
+      <button class="btn-cancel" onclick="closeModal('dotd-modal')">Close</button>
+      <a href="drugfacts.html" class="btn-save" style="text-decoration:none;display:inline-block;">All Drug Facts ↗</a>
+    </div>
+  </div>
+</div>
+
+<!-- ── ORGANISM OF THE DAY MODAL ──────────────────────────── -->
+<div class="modal-overlay" id="ootd-modal" role="dialog" aria-modal="true" aria-labelledby="om-name">
+  <div class="modal detail-modal" style="max-width:560px;">
+    <div class="modal-header">
+      <div>
+        <div style="font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--sage);margin-bottom:4px;" id="om-group"></div>
+        <div class="modal-title" id="om-name"></div>
+        <div style="font-size:12px;color:var(--muted);font-style:italic;" id="om-aka"></div>
+      </div>
+      <button onclick="closeModal('ootd-modal')" class="modal-close-btn" aria-label="Close">&times;</button>
+    </div>
+    <div id="om-content" style="max-height:65vh;overflow-y:auto;padding-right:6px;"></div>
+    <div class="modal-btns" style="margin-top:20px;padding-top:16px;border-top:1px solid var(--border);">
+      <button class="btn-cancel" onclick="closeModal('ootd-modal')">Close</button>
+      <a href="microfacts.html" class="btn-save btn-save-sage" style="text-decoration:none;display:inline-block;">All Micro Facts ↗</a>
+    </div>
+  </div>
+</div>
+
+<script src="drug_data.js"></script>
+<script src="micro_data.js"></script>
+<script src="app.js"></script>
+<script>
+const fmt  = t => t ? t.replace(/\*\*(.*?)\*\*/g,'<strong>$1</strong>') : '—';
+const bare = t => t ? t.replace(/\*\*/g,'') : '';
+
+function seed() {
+  const d = new Date();
+  return d.getFullYear()*10000 + (d.getMonth()+1)*100 + d.getDate();
 }
 
-/* ── Summary strip ───────────────────────────────────────── */
-.drug-modal-summary {
-  padding: 13px 24px 14px;
-  margin-top: 14px;
-  font-size: 13px; color: var(--ink2); line-height: 1.65;
-  border-top: 1px solid var(--border2);
-  border-bottom: 1px solid var(--border2);
-  flex-shrink: 0;
-  background: var(--surface2);
+/* ── Drug of the Day ─────────────────────────────────────── */
+let dotdDrug = null;
+function initDotd() {
+  if (typeof DRUGS === 'undefined') return;
+  const all = [];
+  Object.values(DRUGS).forEach(cat => cat.forEach(grp =>
+    grp.drugs.filter(d => d.tier === 1).forEach(d => all.push({...d, groupName: grp.group}))
+  ));
+  if (!all.length) return;
+  dotdDrug = all[seed() % all.length];
+  document.getElementById('dotd-name').textContent = dotdDrug.name;
+  const p = bare(dotdDrug.pearl) || 'High-yield concept — tap to review.';
+  document.getElementById('dotd-pearl').textContent = p.length > 130 ? p.slice(0,130)+'…' : p;
+  // Swap skeleton → real card
+  document.getElementById('dotd-skeleton').style.display = 'none';
+  document.getElementById('dotd-card').style.display = 'flex';
 }
 
-/* ── Scrollable body ─────────────────────────────────────── */
-.drug-modal-body {
-  overflow-y: auto; padding: 4px 24px 28px; flex: 1;
-  scroll-behavior: smooth;
-}
-.drug-modal-body .rcard-field {
-  padding: 13px 0; border-bottom: 1px solid var(--border2);
-}
-.drug-modal-body .rcard-field:first-child { padding-top: 16px; }
-.drug-modal-body .rcard-field:last-of-type { border-bottom: none; }
-.drug-modal-body .rcard-pearl {
-  margin-top: 10px; border-radius: 12px;
-  border: 1px solid color-mix(in srgb, var(--cat-color, var(--sakura2)) 25%, transparent);
-  overflow: hidden;
-}
-
-/* ── Search results label ────────────────────────────────── */
-.search-cat-label {
-  font-family: 'DM Mono', monospace; font-size: 9px; letter-spacing: 2px;
-  text-transform: uppercase; margin: 20px 0 10px;
-  display: flex; align-items: center; gap: 8px; color: inherit;
-}
-.search-cat-label::after { content: ''; flex: 1; height: 1px; background: var(--border); }
-
-/* ── Search highlight ────────────────────────────────────── */
-mark.search-hl {
-  background: rgba(196,80,94,.14); color: var(--ink);
-  border-radius: 2px; padding: 0 2px; font-style: normal;
+function openDotdModal() {
+  if (!dotdDrug) return;
+  document.getElementById('dm-name').textContent = dotdDrug.name;
+  document.getElementById('dm-aka').textContent = dotdDrug.aka || '';
+  document.getElementById('dm-group').textContent = dotdDrug.groupName || 'Pharmacology';
+  document.getElementById('dm-content').innerHTML = `
+    <div class="drug-row"><span class="drug-label">Mechanism</span><div class="drug-text">${fmt(dotdDrug.moa)}</div></div>
+    <div class="drug-row"><span class="drug-label">Clinical Use</span><div class="drug-text">${fmt(dotdDrug.use)}</div></div>
+    <div class="drug-row"><span class="drug-label">Side Effects</span><div class="drug-text">${fmt(dotdDrug.se)}</div></div>
+    ${dotdDrug.ci ? `<div class="drug-row"><span class="drug-label">Contraindications</span><div class="drug-text">${fmt(dotdDrug.ci)}</div></div>` : ''}
+    ${dotdDrug.pearl ? `<div class="pearl-box"><span class="drug-label">Pearl</span><div class="drug-text">${fmt(dotdDrug.pearl)}</div></div>` : ''}
+  `;
+  openModal('dotd-modal');
 }
 
-/* ── Empty state ─────────────────────────────────────────── */
-.ref-empty { grid-column: 1/-1; padding: 52px 24px; text-align: center; }
-.ref-empty-title { font-family: 'Playfair Display', serif; font-size: 17px; font-weight: 600; color: var(--ink2); margin-bottom: 5px; }
-.ref-empty-sub { font-size: 13px; color: var(--muted); }
-
-/* ── Tab bar — horizontally scrollable, no wrapping ─────── */
-.ref-tab-bar {
-  display: flex; gap: 4px;
-  overflow-x: auto; flex-wrap: nowrap;
-  -webkit-overflow-scrolling: touch;
-  scrollbar-width: none;
-}
-.ref-tab-bar::-webkit-scrollbar { display: none; }
-
-/* ── Individual tab ──────────────────────────────────────── */
-.ref-tab {
-  padding: 6px 14px;
-  font-size: 11.5px; font-weight: 600; color: var(--muted);
-  border-radius: 99px; border: 1.5px solid transparent;
-  cursor: pointer; white-space: nowrap; flex-shrink: 0;
-  background: transparent; font-family: 'DM Sans', sans-serif;
-  transition: color .15s, background .15s, border-color .15s;
-  letter-spacing: 0.2px;
-}
-.ref-tab:hover { color: var(--ink2); background: var(--surface2); }
-.ref-tab.active {
-  color: var(--sakura2);
-  background: var(--sakura-light);
-  border-color: color-mix(in srgb, var(--sakura2) 30%, transparent);
-}
-.ref-tab.all-tab { font-weight: 700; }
-
-/* ── Expand / Collapse All ───────────────────────────────── */
-.group-actions { display: flex; gap: 6px; justify-content: flex-end; margin-bottom: 10px; }
-.expand-btn {
-  font-size: 10.5px; font-weight: 600; color: var(--muted);
-  background: transparent; border: 1.5px solid var(--border);
-  border-radius: 99px; padding: 4px 12px; cursor: pointer;
-  font-family: 'DM Sans', sans-serif;
-  transition: color .14s, border-color .14s, background .14s;
-}
-.expand-btn:hover {
-  color: var(--sakura2);
-  border-color: color-mix(in srgb, var(--sakura2) 40%, transparent);
-  background: var(--sakura-light);
+/* ── Organism of the Day ─────────────────────────────────── */
+let ootdOrg = null;
+function initOotd() {
+  if (typeof MICRO === 'undefined') return;
+  const all = [];
+  Object.values(MICRO).forEach(category => {
+    category.forEach(groupObj => {
+      if (groupObj.organisms && Array.isArray(groupObj.organisms)) {
+        groupObj.organisms.forEach(org => {
+          if (org.name) all.push({...org, groupName: groupObj.group});
+        });
+      }
+    });
+  });
+  if (!all.length) return;
+  ootdOrg = all[(seed() + 37) % all.length];
+  document.getElementById('ootd-name').textContent = ootdOrg.name;
+  const p = bare(ootdOrg.pearl) || (ootdOrg.tx ? 'Tx: ' + bare(ootdOrg.tx) : 'High-yield organism — tap to review.');
+  document.getElementById('ootd-pearl').textContent = p.length > 130 ? p.slice(0,130)+'…' : p;
+  // Swap skeleton → real card
+  document.getElementById('ootd-skeleton').style.display = 'none';
+  document.getElementById('ootd-card').style.display = 'flex';
 }
 
-/* ═══════════════════════════════════════════════════════════
-   MICRO FACTS — Page-specific components
-   ═══════════════════════════════════════════════════════════ */
-
-/* ── Group header (micro-style: title + rule + count) ────── */
-.group-header {
-  display: flex; align-items: center; gap: 12px;
-  margin: 28px 0 14px;
-}
-.group-header:first-child { margin-top: 20px; }
-.group-title {
-  font-family: 'DM Sans', sans-serif;
-  font-size: 10px; font-weight: 700; letter-spacing: 1.8px;
-  text-transform: uppercase; color: var(--muted); white-space: nowrap;
-}
-.group-line { flex: 1; height: 1px; background: var(--border2); }
-.group-badge {
-  font-family: 'DM Mono', monospace;
-  font-size: 10px; font-weight: 600; color: var(--dim); white-space: nowrap;
-}
-
-/* ── Micro card (category-colored left accent on hover) ──── */
-.rcard[data-cat]:hover { border-left-color: var(--cat-color); }
-
-.rcard-top { display: flex; align-items: flex-start; justify-content: space-between; gap: 8px; }
-.rcard-gram { font-size: 11px; font-weight: 600; color: var(--cat-color, var(--sage)); letter-spacing: 0.3px; }
-
-/* ── ref-panel ───────────────────────────────────────────── */
-.ref-panel { padding-top: 4px; }
-.ref-panel.hidden { display: none; }
-
-/* ── Empty state icon line ───────────────────────────────── */
-.ref-empty-icon { font-size: 32px; margin-bottom: 12px; }
-
-/* ── Mobile ──────────────────────────────────────────────── */
-@media (max-width: 640px) {
-  .cards-grid { grid-template-columns: 1fr; }
-  .ref-page-header { padding-top: 20px; }
-  .cat-tab { padding: 8px 8px; font-size: 9px; }
-  .drug-modal { border-radius: 14px; max-height: 94vh; }
-  .drug-modal-topbar { padding: 10px 16px; }
-  .drug-modal-header { padding: 16px 16px 0; }
-  .drug-modal-summary { padding: 11px 16px 12px; }
-  .drug-modal-body { padding: 4px 16px 24px; }
-  .drug-modal-counter { display: none; }
-  .rcard-field-text { font-size: 12px; }
+function openOotdModal() {
+  if (!ootdOrg) return;
+  document.getElementById('om-name').textContent = ootdOrg.name;
+  document.getElementById('om-aka').textContent = ootdOrg.aka || '';
+  document.getElementById('om-group').textContent = ootdOrg.groupName || 'Microbiology';
+  const fields = [
+    ['Gram Stain / Type', ootdOrg.gram],
+    ['Virulence',         ootdOrg.virulence],
+    ['Diseases',          ootdOrg.disease],
+    ['Lab Diagnosis',     ootdOrg.lab_diagnosis],
+    ['Treatment',         ootdOrg.tx],
+  ];
+  document.getElementById('om-content').innerHTML =
+    fields.filter(([,v]) => v)
+      .map(([l,v]) => `<div class="drug-row"><span class="drug-label">${l}</span><div class="drug-text">${fmt(v)}</div></div>`)
+      .join('') +
+    (ootdOrg.pearl ? `<div class="pearl-box pearl-box-sage"><span class="drug-label">Pearl</span><div class="drug-text">${fmt(ootdOrg.pearl)}</div></div>` : '');
+  openModal('ootd-modal');
 }
 
-/* ============================================================
-   DRUG FACTS ADDITIONS — Quiz Mode, Bookmarks, UX Fixes
-   ============================================================ */
+/* ── UWorld strip — always visible with empty state ─────── */
+function renderUWorld() {
+  const days = getDaysRemaining();
+  const uwSet = Store.get('uw-settings', {total: 3661});
+  const total = uwSet.total || 3661;
+  const done  = Store.get('uw-unique-done', 0);
+  const pct   = Math.min(100, Math.round(done / total * 100));
 
-/* ── Mode toggle bar ────────────────────────────────────── */
-.view-mode-bar {
-  display: flex; align-items: center; gap: 8px;
-  padding: 14px 0 2px; flex-wrap: wrap;
-}
-.mode-btn {
-  display: flex; align-items: center; gap: 6px;
-  background: var(--surface); border: 1.5px solid var(--border);
-  border-radius: 99px; padding: 7px 16px;
-  font-family: 'DM Sans', sans-serif; font-size: 11px; font-weight: 600;
-  color: var(--muted); cursor: pointer; letter-spacing: 0.2px;
-  transition: all .16s ease;
-}
-.mode-btn:hover { border-color: var(--ink2); color: var(--ink2); }
-.mode-btn.active {
-  background: var(--accent, var(--sakura2));
-  border-color: var(--accent, var(--sakura2));
-  color: #fff;
-}
-.mode-btn svg { width: 13px; height: 13px; flex-shrink: 0; }
-.mode-sep { width: 1px; height: 20px; background: var(--border); margin: 0 4px; }
+  document.getElementById('uw-fill').style.width = pct + '%';
+  document.getElementById('uw-pct').textContent  = pct + '%';
+  document.getElementById('uw-bar-role').setAttribute('aria-valuenow', pct);
 
-/* ── Bookmark star on cards ─────────────────────────────── */
-.rcard-star {
-  background: none; border: none; cursor: pointer;
-  font-size: 14px; line-height: 1; padding: 2px 4px;
-  color: var(--dim); transition: color .15s, transform .15s;
-  flex-shrink: 0; align-self: flex-start; margin-top: 1px;
-}
-.rcard-star:hover { color: var(--gold); transform: scale(1.2); }
-.rcard-star.starred { color: var(--gold); }
-.rcard-header { position: relative; }
+  if (done > 0) {
+    document.getElementById('uw-sub').textContent = `${done.toLocaleString()} / ${total.toLocaleString()} done`;
+  }
 
-/* ── Bookmarks filter pill ──────────────────────────────── */
-.bookmark-filter-btn {
-  display: flex; align-items: center; gap: 6px;
-  background: var(--surface); border: 1.5px solid var(--border);
-  border-radius: 99px; padding: 7px 14px;
-  font-family: 'DM Sans', sans-serif; font-size: 11px; font-weight: 600;
-  color: var(--muted); cursor: pointer; transition: all .16s;
-  margin-left: auto;
-}
-.bookmark-filter-btn:hover { border-color: var(--gold); color: var(--gold); }
-.bookmark-filter-btn.active { background: var(--gold); border-color: var(--gold); color: #fff; }
-.bookmark-filter-btn .bk-count {
-  background: rgba(255,255,255,.35); border-radius: 99px;
-  padding: 0 6px; font-size: 9px; min-width: 16px; text-align: center;
-}
-.bookmark-filter-btn:not(.active) .bk-count { background: var(--gold-light); color: var(--gold); }
-
-/* ── Search clear button ────────────────────────────────── */
-.ref-search-clear {
-  position: absolute; right: 10px; top: 50%; transform: translateY(-50%);
-  background: none; border: none; cursor: pointer;
-  color: var(--dim); font-size: 14px; line-height: 1;
-  padding: 3px; border-radius: 4px; display: none;
-  transition: color .14s;
-}
-.ref-search-clear:hover { color: var(--ink2); }
-.ref-search-clear.visible { display: block; }
-
-/* ══════════════════════════════════════════════════════════
-   QUIZ STRIP + SIDEBAR
-   ══════════════════════════════════════════════════════════ */
-
-/* Stat + kbd hint in the strip */
-.quiz-stat {
-  font-family: 'DM Mono', monospace; font-size: 10px;
-  color: var(--muted); white-space: nowrap;
-}
-.quiz-stat strong { color: var(--ink); }
-.quiz-kbd-hint {
-  font-family: 'DM Mono', monospace; font-size: 9px;
-  color: var(--dim); letter-spacing: 0.4px; white-space: nowrap; opacity: 0.65;
+  if (days && days > 0) {
+    const qpd = Math.ceil(Math.max(0, total - done) / days);
+    document.getElementById('uw-qday').textContent = qpd;
+  }
 }
 
-/* Strip: thin row above layout */
-.quiz-strip {
-  display: none; flex-direction: column; gap: 0;
-  margin: 6px 0 0;
-}
-.quiz-strip-row {
-  display: flex; align-items: center; gap: 8px;
-  padding: 7px 0 2px;
-}
-.quiz-settings-btn {
-  display: flex; align-items: center; gap: 5px;
-  background: none; border: 1.5px solid var(--border);
-  border-radius: 99px; padding: 5px 13px;
-  font-size: 10px; font-weight: 600; color: var(--muted);
-  cursor: pointer; font-family: 'DM Sans', sans-serif;
-  transition: all .15s; margin-left: auto;
-}
-.quiz-settings-btn:hover { border-color: var(--ink2); color: var(--ink); }
-.quiz-settings-btn.active {
-  background: var(--ink); border-color: var(--ink); color: #fff;
+/* ── Progress trackers ───────────────────────────────────── */
+function renderTrackers() {
+  loadTracker('sp-progress', 101,  'tp-bar',  'tp-stats',  'tp-pct');
+  loadTracker('sm-progress', 104,  'tm-bar',  'tm-stats',  'tm-pct');
+  loadTracker('px-progress', 244, 'tpx-bar', 'tpx-stats', 'tpx-pct');
 }
 
-/* Layout: sidebar + card side by side */
-.quiz-layout {
-  display: flex; align-items: flex-start; gap: 14px;
-  margin-top: 4px; padding-bottom: 48px;
+function loadTracker(key, total, bId, sId, pId) {
+  const data = Store.get(key, {});
+  let w = 0, r = 0;
+  Object.values(data).forEach(v => { if (v==='w'||v==='wr') w++; if (v==='r'||v==='wr') r++; });
+  const pct = total > 0 ? Math.round(r / total * 100) : 0;
+  document.getElementById(bId).style.width = pct + '%';
+  document.getElementById(pId).textContent = pct + '%';
+  document.getElementById(sId).textContent = w > 0 ? `${r} / ${total} reviewed · ${w} watched` : `${r} / ${total} reviewed`;
 }
 
-/* Sidebar outer — handles width animation only, no overflow:hidden */
-.quiz-sidebar {
-  flex-shrink: 0;
-  width: 0; min-width: 0; opacity: 0; pointer-events: none;
-  transition: width .22s cubic-bezier(.4,0,.2,1),
-              min-width .22s cubic-bezier(.4,0,.2,1),
-              opacity .18s;
-}
-.quiz-sidebar.open {
-  width: 188px; min-width: 188px;
-  opacity: 1; pointer-events: auto;
+/* ── Keyboard support for feat-cards ────────────────────── */
+document.addEventListener('keydown', e => {
+  if (e.key === 'Enter' || e.key === ' ') {
+    const t = e.target;
+    if (t.id === 'dotd-card') { e.preventDefault(); openDotdModal(); }
+    if (t.id === 'ootd-card') { e.preventDefault(); openOotdModal(); }
+  }
+});
+
+/* ── Countdown button state ──────────────────────────────
+   app.js owns Firebase and writes to #cd-days / #cd-date.
+   We just watch those elements and toggle the button style.
+   ──────────────────────────────────────────────────────── */
+function syncCountdownBtn() {
+  const daysEl = document.getElementById('cd-days');
+  const btn    = document.getElementById('cd-edit-btn');
+  if (!daysEl || !btn) return;
+  const hasDate = daysEl.textContent.trim() !== '—' && daysEl.textContent.trim() !== '';
+  if (hasDate) {
+    btn.textContent = 'Edit ✦';
+    btn.classList.add('cd-edit-set');
+  } else {
+    btn.textContent = 'Set Exam Date ✦';
+    btn.classList.remove('cd-edit-set');
+  }
 }
 
-/* Inner card — border, background, clip */
-.qsb-inner {
-  width: 188px;
-  background: var(--surface);
-  border: 1.5px solid var(--border);
-  border-radius: 14px;
-  overflow: hidden;
-}
+document.addEventListener('DOMContentLoaded', () => {
+  // Let app.js initialise first (it runs synchronously after DOMContentLoaded too)
+  requestAnimationFrame(() => {
+    syncCountdownBtn();
+    // Watch for app.js / Firebase async updates to cd-days
+    const daysEl = document.getElementById('cd-days');
+    if (daysEl) {
+      new MutationObserver(syncCountdownBtn).observe(daysEl, { childList: true, characterData: true, subtree: true });
+    }
+  });
+});
 
-/* Sections with divider borders */
-.qsb-section {
-  padding: 13px 13px 13px;
-  border-bottom: 1px solid var(--border2);
-}
-.qsb-section:last-of-type { border-bottom: none; }
-
-.qsb-label {
-  font-size: 8px; font-weight: 700; text-transform: uppercase;
-  letter-spacing: 1.5px; color: var(--dim);
-  margin-bottom: 8px; font-family: 'DM Sans', sans-serif;
-}
-
-/* Direction — iOS segmented control */
-.qsb-pill-group {
-  display: flex;
-  background: var(--surface2);
-  border: 1px solid var(--border);
-  border-radius: 8px; padding: 2px; gap: 2px;
-}
-.qsb-pill {
-  flex: 1; background: transparent; border: none;
-  border-radius: 6px; padding: 5px 2px;
-  font-size: 10px; font-weight: 600; color: var(--muted);
-  cursor: pointer; font-family: 'DM Sans', sans-serif;
-  text-align: center; transition: all .14s; line-height: 1.3;
-  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
-}
-.qsb-pill.active {
-  background: var(--surface); color: var(--ink);
-  box-shadow: 0 1px 4px rgba(42,31,26,.12);
-}
-.qsb-pill:not(.active):hover { color: var(--ink2); }
-
-/* Scope — radio rows */
-.qsb-scope-group { display: flex; flex-direction: column; gap: 2px; }
-.qsb-scope-btn {
-  display: flex; align-items: center; gap: 7px;
-  background: none; border: none;
-  border-radius: 6px; padding: 5px 6px;
-  font-size: 11px; font-weight: 500; color: var(--muted);
-  cursor: pointer; font-family: 'DM Sans', sans-serif;
-  text-align: left; transition: all .13s; width: 100%;
-}
-.qsb-scope-btn::before {
-  content: ''; display: block;
-  width: 12px; height: 12px; flex-shrink: 0;
-  border-radius: 50%;
-  border: 1.5px solid var(--border);
-  transition: all .13s;
-}
-.qsb-scope-btn.active { color: var(--ink); background: var(--surface2); }
-.qsb-scope-btn.active::before {
-  background: var(--sakura2); border-color: var(--sakura2);
-  box-shadow: inset 0 0 0 3px var(--surface2);
-}
-.qsb-scope-btn:not(.active):hover { color: var(--ink2); background: var(--surface2); }
-
-/* Field checkboxes */
-.qsb-checks { display: flex; flex-direction: column; gap: 0; }
-.qsb-check {
-  display: flex; align-items: center; gap: 8px;
-  cursor: pointer; padding: 4px 2px; border-radius: 6px;
-  transition: background .12s;
-}
-.qsb-check:hover { background: var(--surface2); }
-.qsb-check input[type=checkbox] {
-  width: 13px; height: 13px; cursor: pointer;
-  accent-color: var(--sakura2); flex-shrink: 0;
-}
-.qsb-check span {
-  font-size: 11px; font-weight: 500; color: var(--ink2);
-  font-family: 'DM Sans', sans-serif;
-}
-
-/* Shuffle + Reset */
-.qsb-actions { display: flex; gap: 6px; padding: 11px 13px 13px; }
-.qsb-action-btn {
-  flex: 1; display: flex; align-items: center;
-  justify-content: center; gap: 5px;
-  background: var(--surface2); border: 1px solid var(--border);
-  border-radius: 8px; padding: 7px 4px;
-  font-size: 10px; font-weight: 600; color: var(--muted);
-  cursor: pointer; font-family: 'DM Sans', sans-serif; transition: all .13s;
-}
-.qsb-action-btn:hover { background: var(--border); color: var(--ink); }
-
-/* Category chip picker */
-.quiz-cat-picker {
-  flex-wrap: wrap; gap: 4px; padding-top: 8px;
-}
-.quiz-cat-chip {
-  background: none;
-  border: 1.5px solid color-mix(in srgb, var(--chip-color) 30%, var(--border));
-  color: color-mix(in srgb, var(--chip-color) 65%, var(--muted));
-  border-radius: 99px; padding: 2px 9px;
-  font-size: 9.5px; font-weight: 600;
-  font-family: 'DM Sans', sans-serif;
-  cursor: pointer; transition: all .14s; white-space: nowrap;
-}
-.quiz-cat-chip:hover {
-  border-color: var(--chip-color); color: var(--chip-color);
-  background: color-mix(in srgb, var(--chip-color) 8%, transparent);
-}
-.quiz-cat-chip.active {
-  background: var(--chip-color); border-color: var(--chip-color); color: #fff;
-}
-
-/* Card takes remaining space */
-.quiz-main { flex: 1; min-width: 0; }
-
-/* Card stack */
-.quiz-single-wrap {
-  display: flex; flex-direction: column; gap: 12px;
-}
-
-
-/* ── Top nav row ────────────────────────────────────────── */
-.quiz-nav-row {
-  display: flex; align-items: center;
-  justify-content: space-between; gap: 8px;
-}
-.quiz-nav-center {
-  display: flex; align-items: center; gap: 10px;
-}
-.quiz-card-counter {
-  font-family: 'DM Mono', monospace;
-  font-size: 11px; color: var(--muted);
-  letter-spacing: 0.5px;
-}
-.quiz-nav-btn {
-  display: flex; align-items: center; gap: 5px;
-  background: transparent; border: 1.5px solid var(--border);
-  border-radius: 99px; padding: 6px 14px;
-  font-size: 11px; font-weight: 600; color: var(--muted);
-  cursor: pointer; font-family: 'DM Sans', sans-serif;
-  transition: border-color .14s, color .14s;
-}
-.quiz-nav-btn:hover:not(:disabled) { border-color: var(--ink2); color: var(--ink); }
-.quiz-nav-btn:disabled { opacity: 0.22; cursor: default; }
-.fc-star-btn {
-  background: none; border: none; cursor: pointer;
-  font-size: 18px; line-height: 1; padding: 2px 4px;
-  color: var(--dim); transition: color .14s; border-radius: 4px;
-}
-.fc-star-btn:hover { color: var(--gold); }
-.fc-star-btn.starred { color: var(--gold); }
-
-/* ── Shared card shell ──────────────────────────────────── */
-.fc-card {
-  border-radius: 18px;
-  background: var(--surface);
-  border: 1.5px solid var(--border);
-  box-shadow: 0 2px 8px rgba(42,31,26,.05), 0 1px 2px rgba(42,31,26,.04);
-}
-
-/* ── FRONT face ─────────────────────────────────────────── */
-.fc-front {
-  border-top: 4px solid var(--cat-color, var(--sakura2));
-  padding: 52px 36px 44px;
-  display: flex; flex-direction: column;
-  align-items: center; text-align: center;
-  cursor: pointer; min-height: 260px;
-  justify-content: center;
-  transition: box-shadow .18s, transform .12s;
-}
-.fc-front:hover {
-  box-shadow: 0 6px 28px rgba(42,31,26,.10);
-  transform: translateY(-1px);
-}
-.fc-front-eyebrow {
-  font-family: 'DM Mono', monospace;
-  font-size: 8px; text-transform: uppercase;
-  letter-spacing: 2.5px; margin-bottom: 18px;
-  color: var(--cat-color, var(--sakura2)); opacity: 0.75;
-}
-.fc-front-q {
-  font-family: 'Playfair Display', serif;
-  font-size: clamp(24px, 3.2vw, 32px);
-  font-weight: 700; color: var(--ink);
-  line-height: 1.2; margin-bottom: 10px;
-}
-.fc-front-hint {
-  font-size: 12px; color: var(--muted);
-  line-height: 1.5; margin-bottom: 28px;
-}
-.fc-reveal-btn {
-  background: var(--cat-color, var(--sakura2));
-  color: #fff; border: none; border-radius: 99px;
-  padding: 10px 28px; font-size: 12px; font-weight: 600;
-  font-family: 'DM Sans', sans-serif; cursor: pointer;
-  transition: opacity .14s, transform .12s; letter-spacing: 0.3px;
-}
-.fc-reveal-btn:hover { opacity: 0.86; transform: translateY(-1px); }
-
-/* ── BACK face ──────────────────────────────────────────── */
-.fc-back {
-  border-left: 4px solid var(--cat-color, var(--sakura2));
-  overflow: hidden;
-}
-.fc-back-header {
-  padding: 20px 26px 16px;
-  background: color-mix(in srgb, var(--cat-color, var(--sakura2)) 5%, var(--surface));
-  border-bottom: 1px solid color-mix(in srgb, var(--cat-color, var(--sakura2)) 14%, transparent);
-}
-.fc-back-eyebrow {
-  font-family: 'DM Mono', monospace; font-size: 8px;
-  text-transform: uppercase; letter-spacing: 2px;
-  margin-bottom: 6px; opacity: 0.75;
-}
-.fc-back-title {
-  font-family: 'Playfair Display', serif;
-  font-size: clamp(17px, 2.4vw, 21px);
-  font-weight: 700; color: var(--ink); line-height: 1.2;
-  margin-bottom: 8px;
-}
-/* AKA tokens on back */
-.fc-aka {
-  display: flex; flex-wrap: wrap;
-  align-items: baseline; gap: 0;
-}
-.fc-aka-token {
-  font-size: 11px; font-weight: 500;
-  white-space: nowrap; display: inline-block;
-  color: var(--cat-color, var(--ink2));
-}
-.fc-aka-dot {
-  display: inline-block; white-space: nowrap;
-  font-size: 11px; margin: 0 4px; user-select: none;
-  color: color-mix(in srgb, var(--cat-color, var(--border)) 45%, transparent);
-}
-
-/* Fields grid */
-.fc-back-fields {
-  padding: 6px 22px 20px;
-}
-/* 2-column grid for regular fields */
-.fc-fields-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 0;
-}
-.fc-fields-grid .fc-field {
-  padding: 14px 12px 14px 0;
-  border-bottom: 1px solid var(--border2);
-  padding-right: 20px;
-}
-/* Right column fields get a left border as divider */
-.fc-fields-grid .fc-field:nth-child(even) {
-  padding-left: 20px; padding-right: 0;
-  border-left: 1px solid var(--border2);
-}
-/* If odd number, last single item spans full width */
-.fc-fields-grid .fc-field:last-child:nth-child(odd) {
-  grid-column: 1 / -1;
-  border-right: none;
-}
-.fc-field-lbl {
-  font-size: 8px; font-weight: 700;
-  text-transform: uppercase; letter-spacing: 1.2px;
-  color: var(--cat-color, var(--muted));
-  margin-bottom: 5px;
-}
-.fc-field-val {
-  font-size: 13px; color: var(--ink2); line-height: 1.65;
-}
-.fc-field-val strong { color: var(--ink); font-weight: 600; }
-/* Pearl field — full width, below the grid */
-.fc-field-pearl {
-  margin: 10px 22px 14px;
-  padding: 13px 15px;
-  background: color-mix(in srgb, var(--cat-color, var(--sakura2)) 7%, transparent);
-  border: 1px solid color-mix(in srgb, var(--cat-color, var(--sakura2)) 20%, transparent);
-  border-radius: 10px;
-  border-bottom: none !important;
-}
-.fc-field-pearl .fc-field-lbl { color: var(--cat-color, var(--sakura2)); }
-
-
-
-/* ── Rating buttons ─────────────────────────────────────── */
-.fc-rating-row {
-  display: none; gap: 10px;
-}
-.fc-rate-btn {
-  flex: 1; border: none; border-radius: 12px;
-  padding: 13px 8px 11px;
-  cursor: pointer; font-family: 'DM Sans', sans-serif;
-  display: flex; flex-direction: column;
-  align-items: center; gap: 5px;
-  transition: filter .14s, transform .12s;
-}
-.fc-rate-btn:hover { filter: brightness(0.94); transform: translateY(-1px); }
-.fc-rate-btn:active { transform: translateY(0); }
-/* Key badge inside button */
-.fc-rate-key {
-  font-family: 'DM Mono', monospace;
-  font-size: 9px; font-weight: 700;
-  background: rgba(255,255,255,0.5);
-  border-radius: 4px; padding: 2px 7px;
-  letter-spacing: 0.3px; line-height: 1.5;
-}
-.fc-rate-label {
-  font-size: 12px; font-weight: 600; letter-spacing: 0.1px;
-}
-.fc-rate-again { background: var(--sakura-light); color: var(--sakura2); }
-.fc-rate-hard  { background: var(--gold-light);   color: var(--gold);    }
-.fc-rate-good  { background: var(--sage-light);   color: var(--sage);    }
-
-/* ── Progress bar ───────────────────────────────────────── */
-.quiz-progress-bar-wrap {
-  height: 3px; background: var(--border);
-  border-radius: 99px; margin: 6px 0 0; overflow: hidden;
-}
-.quiz-progress-bar-fill {
-  height: 100%; border-radius: 99px;
-  background: var(--accent, var(--sakura2));
-  transition: width .35s cubic-bezier(.4,0,.2,1);
-}
-
-/* ── Round complete screen ──────────────────────────────── */
-.quiz-complete {
-  display: none; flex-direction: column;
-  align-items: center; text-align: center;
-  padding: 64px 24px; gap: 12px;
-}
-.quiz-complete.visible { display: flex; }
-.quiz-complete-icon { font-size: 52px; margin-bottom: 4px; }
-.quiz-complete-title {
-  font-family: 'Playfair Display', serif;
-  font-size: 26px; font-weight: 700; color: var(--ink);
-}
-.quiz-complete-sub { font-size: 13px; color: var(--muted); }
-.quiz-complete-stats {
-  display: flex; gap: 32px; margin: 16px 0 8px;
-}
-.qc-stat { display: flex; flex-direction: column; align-items: center; gap: 4px; }
-.qc-stat-num {
-  font-family: 'DM Mono', monospace;
-  font-size: 32px; font-weight: 700; line-height: 1;
-}
-.qc-stat-lbl {
-  font-size: 10px; text-transform: uppercase;
-  letter-spacing: 0.8px; color: var(--muted);
-}
-.quiz-restart-btn {
-  background: var(--accent, var(--sakura2)); color: #fff;
-  border: 1.5px solid transparent; border-radius: 99px;
-  padding: 12px 30px; font-family: 'DM Sans', sans-serif;
-  font-size: 13px; font-weight: 600;
-  cursor: pointer; transition: opacity .14s;
-}
-.quiz-restart-btn:hover { opacity: 0.87; }
-.quiz-restart-outline {
-  background: var(--surface); color: var(--ink2);
-  border-color: var(--border);
-}
-.quiz-restart-outline:hover { opacity: 1; border-color: var(--ink2); }
-
-/* ── Responsive ─────────────────────────────────────────── */
-@media (max-width: 700px) {
-  .quiz-layout { flex-direction: column; }
-  .quiz-sidebar.open { width: 100%; min-width: 100%; }
-  .qsb-inner { width: 100%; }
-  .fc-fields-grid { grid-template-columns: 1fr; }
-  .fc-fields-grid .fc-field:nth-child(even) { padding-left: 0; border-left: none; }
-  .fc-front { padding: 32px 22px 28px; min-height: 200px; }
-  .fc-back-header { padding: 16px 18px 14px; }
-  .fc-back-fields { padding: 0 14px 16px; }
-  .fc-field-pearl { margin: 8px 14px 8px; }
-  .fc-rating-row { gap: 8px; }
-  .fc-rate-btn { padding: 11px 6px 9px; }
-  .quiz-complete-stats { gap: 20px; }
-  .quiz-kbd-hint { display: none; }
-  .view-mode-bar { gap: 6px; }
-  .mode-btn { padding: 6px 12px; font-size: 10px; }
-  .drug-modal-body { max-height: 55vh; overflow-y: auto; }
-}
+/* ── Init ────────────────────────────────────────────────── */
+document.addEventListener('DOMContentLoaded', () => {
+  initDotd();
+  initOotd();
+  renderUWorld();
+  renderTrackers();
+});
+</script>
+</body>
+</html>
