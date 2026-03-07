@@ -150,9 +150,6 @@
 .tc-arrow { position: absolute; top: 18px; right: 18px; font-size: 13px; color: var(--dim); transition: color var(--t); }
 .tc-lbl { font-size: 10px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: var(--muted); margin-bottom: 4px; }
 .tc-title { font-family: 'Playfair Display', serif; font-size: 15px; font-weight: 600; color: var(--ink); margin-bottom: 12px; }
-.tc-bg { height: 5px; background: var(--border2); border-radius: 99px; overflow: hidden; margin-bottom: 6px; position: relative; }
-.tc-fill-w { position: absolute; left:0; top:0; height: 100%; border-radius: 99px; background: var(--sage); opacity: 0.55; transition: width .6s ease; }
-.tc-fill-r { position: absolute; left:0; top:0; height: 100%; border-radius: 99px; background: var(--card-accent, var(--peach)); transition: width .6s ease; }
 .tc-stats { display: flex; justify-content: space-between; font-size: 11px; color: var(--muted); }
 .tc-pct { font-weight: 700; color: var(--card-accent, var(--peach)); }
 
@@ -610,15 +607,18 @@ function renderUWorld() {
 
 /* ── Progress trackers ───────────────────────────────────── */
 function renderTrackers() {
-  loadTracker('sp-progress', 101,  'tp-bar',  'tp-stats',  'tp-pct');
-  loadTracker('sm-progress', 104,  'tm-bar',  'tm-stats',  'tm-pct');
-  loadTracker('px-progress', 244, 'tpx-bar', 'tpx-stats', 'tpx-pct');
+  loadTracker('sketchy-pharm', 101,  'tp-bar',  'tp-stats',  'tp-pct');
+  loadTracker('sketchy-micro', 104,  'tm-bar',  'tm-stats',  'tm-pct');
+  loadTracker('pixorize',      244, 'tpx-bar', 'tpx-stats', 'tpx-pct');
 }
 
 function loadTracker(key, total, bId, sId, pId) {
   const data = Store.get(key, {});
   let w = 0, r = 0;
-  Object.values(data).forEach(v => { if (v==='w'||v==='wr') w++; if (v==='r'||v==='wr') r++; });
+  Object.values(data).forEach(v => {
+    if (v && typeof v === 'object') { if (v.w) w++; if (v.r) r++; }
+    else { if (v==='w'||v==='wr') w++; if (v==='r'||v==='wr') r++; }
+  });
   const pct  = total > 0 ? Math.round(r / total * 100) : 0;
   const pctW = total > 0 ? Math.round(w / total * 100) : 0;
   document.getElementById(bId+'-r').style.width = pct + '%';

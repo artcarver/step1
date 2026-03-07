@@ -7,88 +7,7 @@
 <link rel="stylesheet" href="style.css"/>
 <title>Pixorize · Step 1 Hub</title>
 <style>
-.tracker-toolbar{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-bottom:20px;}
-.tracker-search{flex:1;min-width:160px;padding:7px 12px;border:1px solid var(--border2);border-radius:var(--r);font-size:13px;font-family:inherit;background:var(--bg);color:var(--ink2);outline:none;transition:border-color .15s;box-shadow:none;}
-.tracker-search:focus{border-color:var(--dim);}
-.filter-chips{display:flex;gap:6px;flex-wrap:wrap;}
-.filter-chip{padding:6px 14px;border-radius:99px;font-size:12px;font-weight:600;border:1px solid var(--border);background:var(--surface2);color:var(--muted);cursor:pointer;transition:all .15s;white-space:nowrap;}
-.filter-chip.active{background:var(--sky);color:#fff;border-color:var(--sky);}
-.filter-chip.f-watched.active{background:var(--sakura2);border-color:var(--sakura2);}
-.filter-chip.f-reviewed.active{background:var(--gold);border-color:var(--gold);color:#fff;}
-.toolbar-right{display:flex;gap:8px;margin-left:auto;}
-.toolbar-btn{padding:7px 14px;border-radius:var(--r);font-size:12px;font-weight:600;border:1px solid var(--border);background:transparent;color:var(--ink2);cursor:pointer;transition:all .15s;white-space:nowrap;}
-.toolbar-btn:hover{background:var(--surface2);}
-.overall-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--r-lg);padding:22px 26px;margin-bottom:20px;}
-.overall-top{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;margin-bottom:12px;}
-.overall-title{font-family:'Playfair Display',serif;font-size:19px;font-weight:600;}
-.overall-stats{display:flex;gap:18px;font-size:13px;}
-.overall-stat{color:var(--muted);font-size:12px;}
-.overall-stat strong{color:var(--ink2);font-size:14px;}
-.overall-bar-bg{background:var(--border2);border-radius:99px;height:8px;overflow:hidden;}
-.overall-bar-fill{height:100%;border-radius:99px;background:linear-gradient(90deg,var(--sky),var(--fuji));transition:width .5s ease;}
-.overall-sub{display:flex;justify-content:space-between;font-size:11px;color:var(--muted);margin-top:6px;}
-.cat-section{border:1px solid var(--border);border-radius:var(--r-lg);margin-bottom:10px;overflow:hidden;background:var(--surface);}
-.cat-header{display:flex;align-items:center;justify-content:space-between;padding:16px 20px;cursor:pointer;gap:12px;transition:background .12s;}
-.cat-header:hover{background:var(--surface2);}
-.cat-chevron:hover{background:var(--surface2);color:var(--ink2);}
-.cat-header-left{display:flex;align-items:center;gap:12px;flex:1;min-width:0;}
-.cat-accent{width:4px;height:36px;border-radius:99px;flex-shrink:0;}
-.cat-name{font-family:'Playfair Display',serif;font-size:17px;font-weight:600;}
-.cat-why{font-size:12px;color:var(--muted);margin-top:2px;}
-.cat-header-right{display:flex;align-items:center;gap:14px;flex-shrink:0;}
-.cat-count{font-size:12px;color:var(--muted);font-weight:600;white-space:nowrap;}
-.cat-mini-bar{width:80px;height:5px;background:var(--border2);border-radius:99px;overflow:hidden;}
-.cat-mini-fill{height:100%;border-radius:99px;transition:width .4s;}
-.cat-chevron{font-size:11px;color:var(--dim);transition:transform .2s;background:none;border:none;cursor:pointer;padding:4px 6px;border-radius:4px;line-height:1;}
-.cat-section.open .cat-chevron{transform:rotate(180deg);}
-.cat-body{display:none;border-top:1px solid var(--border2);}
-.cat-section.open .cat-body{display:block;}
-.video-header-row{display:flex;align-items:center;padding:8px 20px;font-size:10px;font-weight:700;letter-spacing:1.2px;text-transform:uppercase;color:var(--muted);border-bottom:1px solid var(--border2);background:var(--bg);}
-.video-row{display:flex;align-items:center;padding:11px 20px;border-bottom:1px solid var(--border2);gap:12px;transition:background .1s;}
-.video-row:last-child{border-bottom:none;}
-.video-row:hover{background:var(--surface2);}
-.video-row.hidden-row{display:none;}
-.video-name{flex:1;font-size:13.5px;color:var(--ink2);line-height:1.4;}
-.video-row.is-reviewed .video-name{text-decoration:line-through;color:var(--dim);}
-.video-time{font-size:11px;color:var(--dim);min-width:52px;text-align:right;font-family:'DM Mono',monospace;margin-right:20px;}
-.check-btns{display:flex;gap:6px;}
-.icon-btn{width:34px;height:34px;border-radius:8px;border:1.5px solid var(--border);background:var(--bg);display:flex;align-items:center;justify-content:center;font-size:16px;cursor:pointer;transition:all .15s;line-height:1;flex-shrink:0;color:var(--dim);}
-.icon-btn:hover{transform:scale(1.1);}
-.icon-btn.active-w{background:var(--sage);border-color:var(--sage);color:#fff;}
-.icon-btn.active-r{background:var(--gold);border-color:var(--gold);color:#fff;}
-.tracker-legend{display:flex;gap:16px;align-items:center;flex-wrap:wrap;font-size:12px;color:var(--muted);margin-bottom:16px;}
-.no-results{text-align:center;padding:40px;color:var(--muted);font-size:14px;}
-.tracker-sep{height:1px;background:var(--border2);margin:0 0 20px;border-radius:99px;}
-
-/* ── Tabs ──────────────────────────────────────────────── */
-.tab-bar {
-  display: flex; gap: 4px; margin-bottom: 16px;
-  background: var(--surface); border: 1px solid var(--border);
-  border-radius: var(--r-lg); padding: 5px;
-}
-.tab-btn {
-  flex: 1; padding: 8px 10px; border-radius: 10px;
-  border: none; background: transparent;
-  font-size: 12px; font-weight: 600; color: var(--muted);
-  cursor: pointer; transition: all .15s; white-space: nowrap;
-  display: flex; flex-direction: column; align-items: center; gap: 2px;
-}
-.tab-btn:hover { background: var(--surface2); color: var(--ink2); }
-.tab-btn.active { background: var(--bg); color: var(--ink); box-shadow: 0 1px 4px rgba(42,31,26,.08); }
-.tab-btn .tab-label { font-size: 12px; font-weight: 600; }
-.tab-btn .tab-sub { font-size: 10px; color: var(--dim); font-weight: 400; }
-.tab-btn.active .tab-sub { color: var(--muted); }
-
-.accent-0{background:var(--sakura2);}
-.accent-1{background:var(--sky);}
-.accent-2{background:var(--gold);}
-.accent-3{background:var(--sage);}
-.accent-4{background:var(--fuji);}
-.accent-5{background:var(--peach);}
-.accent-6{background:var(--lavender);}
-.accent-7{background:#7ba8cf;}
-.toast{position:fixed;bottom:28px;left:50%;transform:translateX(-50%) translateY(80px);background:var(--ink);color:#fff;padding:10px 22px;border-radius:99px;font-size:13px;font-weight:600;z-index:9999;opacity:0;transition:opacity .25s,transform .25s;pointer-events:none;}
-.toast.show{opacity:1;transform:translateX(-50%) translateY(0);}
+.ref-page-title em { color: var(--sky); }
 </style>
 </head>
 <body>
@@ -103,8 +22,8 @@
     <div class="overall-top">
       <span class="overall-title">Overall Progress</span>
       <div class="overall-stats">
-        <span class="overall-stat" style="display:inline-flex;align-items:center;gap:5px;"><span style="display:inline-flex;align-items:center;justify-content:center;width:18px;height:18px;border-radius:5px;background:var(--sage);color:#fff;font-size:10px;">✔</span><strong id="tot-w">0</strong> Watched</span>
-        <span class="overall-stat" style="display:inline-flex;align-items:center;gap:5px;"><span style="display:inline-flex;align-items:center;justify-content:center;width:18px;height:18px;border-radius:5px;background:var(--gold);color:#fff;font-size:10px;">✦</span><strong id="tot-r">0</strong> Reviewed</span>
+        <span class="overall-stat" style="display:inline-flex;align-items:center;gap:5px;"><span style="display:inline-flex;align-items:center;justify-content:center;width:18px;height:18px;border-radius:5px;background:var(--sky);color:#fff;font-size:10px;">✔</span><strong id="tot-w">0</strong> Watched</span>
+        <span class="overall-stat" style="display:inline-flex;align-items:center;gap:5px;"><span style="display:inline-flex;align-items:center;justify-content:center;width:18px;height:18px;border-radius:5px;background:var(--fuji);color:#fff;font-size:10px;">✦</span><strong id="tot-r">0</strong> Reviewed</span>
       </div>
     </div>
     <div class="overall-bar-bg"><div class="overall-bar-fill-w" id="overall-bar-w" style="width:0%;"></div><div class="overall-bar-fill-r" id="overall-bar-r" style="width:0%;"></div></div>
