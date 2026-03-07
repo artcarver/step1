@@ -694,7 +694,7 @@ input, select, textarea { font-family: inherit; }
   padding: 13px 14px 0;
   display: flex; justify-content: space-between; align-items: flex-start; gap: 8px;
 }
-.rcard-header-left { flex: 1; min-width: 0; }
+.rcard-header-left { flex: 1; min-width: 0; width: 0; }
 .rcard-name {
   font-family: 'Playfair Display', serif;
   font-size: 16px; font-weight: 700; line-height: 1.2; color: var(--ink); letter-spacing: -0.3px;
@@ -704,8 +704,8 @@ input, select, textarea { font-family: inherit; }
   font-size: 11px; line-height: 1.55; margin-top: 6px;
   font-weight: 500;
   color: var(--cat-color, var(--ink2));
-  display: flex; flex-wrap: wrap; align-items: baseline;
-  gap: 0; overflow: visible;
+  display: flex; flex-wrap: wrap; align-items: baseline; gap: 0;
+  width: 100%;
 }
 /* Each drug name token stays on one line — breaks only happen at dot separators */
 .aka-token {
