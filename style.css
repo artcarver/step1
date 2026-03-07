@@ -561,12 +561,38 @@ input, select, textarea { font-family: inherit; }
 /* ── Responsive ───────────────────────────────────────────── */
 @media (max-width: 600px) {
   .wrap { padding: 0 16px 60px; }
-  .nav-links .nav-link { font-size: 11px; padding: 4px 7px; }
-  .nav-auth-btn { padding: 5px 10px; }
-  .nav-divider { display: none; }
   .countdown-wrap { gap: 16px; padding: 16px 20px; }
   .cd-days { font-size: 36px; }
   .tool-grid { grid-template-columns: 1fr; }
+}
+
+/* ── Nav mobile ────────────────────────────────────────────── */
+@media (max-width: 780px) {
+  /* Tighten inner height */
+  .nav-inner { height: 48px; gap: 0; }
+
+  /* Brand smaller */
+  .nav-brand { padding-right: 12px; margin-right: 10px; }
+  .nav-brand-text { font-size: 14px; }
+
+  /* Shrink links, allow wrap to second line */
+  .nav-links { flex-wrap: wrap; gap: 0; overflow: hidden; max-height: 24px; }
+  .nav-link { font-size: 11px; padding: 0 7px; }
+
+  /* Hide exam pill — redundant on mobile */
+  .nav-exam-pill { display: none; }
+
+  /* Collapse auth btn — shrink text, keep clickable */
+  .nav-auth-btn {
+    padding: 4px 10px; font-size: 10px;
+  }
+  .nav-right { padding-left: 8px; gap: 4px; }
+}
+
+@media (max-width: 520px) {
+  /* On very small screens, hide all nav links except active one */
+  .nav-link:not(.active) { display: none; }
+  .nav-links { max-height: none; }
 }
 
 
