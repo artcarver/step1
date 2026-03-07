@@ -12,9 +12,15 @@
   --accent:       var(--sage);
   --accent-light: var(--sage-light);
   --accent-glow:  rgba(94,154,112,.12);
+  --nav-active-color: var(--sage);
 }
 /* Modal topbar default border before JS sets --cat-color */
 .drug-modal-topbar { border-top-color: var(--sage); }
+.rcard-bk-dot { display:inline-block; font-size:10px; color:var(--gold); margin-left:5px; line-height:1; }
+.rcard-bk-dot::before { content:"★"; }
+.bk-tab .tab-dot { font-size:10px; display:inline-flex; align-items:center; justify-content:center; color:#fff; line-height:1; }
+.bk-count { display:inline-flex; align-items:center; justify-content:center; min-width:18px; height:18px; padding:0 5px; border-radius:99px; background:var(--gold); color:#fff; font-size:10px; font-weight:700; margin-left:4px; }
+.cat-tab.bk-tab.active { border-bottom-color: var(--gold); color: var(--gold); }
 /* Modal pearl border uses sage fallback */
 .drug-modal-body .rcard-pearl {
   border: 1px solid color-mix(in srgb, var(--cat-color, var(--sage)) 25%, transparent);
@@ -126,6 +132,7 @@ function getFiltered() {
       return blob.includes(searchQ);
     });
   }
+  if (activeTab === 'bookmarks') return allOrgs.filter(o => isBookmarked(o.name));
   return allOrgs.filter(o => o.category === activeTab);
 }
 
@@ -182,6 +189,12 @@ function renderTabs() {
       <span class="tab-dot" style="background:${meta.color}"></span>${meta.label}
     </button>`;
   });
+  const bkCount = getBookmarks().length;
+  const bkActive = activeTab === 'bookmarks' && !searchQ;
+  html += `<button class="cat-tab bk-tab${bkActive ? ' active' : ''}"
+    onclick="switchTab('bookmarks')" role="tab" title="Your bookmarked organisms">
+    <span class="tab-dot" style="background:var(--gold)">★</span>Saved${bkCount ? ` <span class="bk-count">${bkCount}</span>` : ''}
+  </button>`;
   document.getElementById('cat-tabs').innerHTML = html;
 }
 
@@ -251,6 +264,7 @@ function renderPanels(filtered, isSearch) {
 function renderCard(o, catColor) {
   const color = catColor || CAT_META[o.category]?.color || 'var(--accent)';
   const q = searchQ;
+  const bk = isBookmarked(o.name);
 
   return `<div class="rcard" data-cat="${o.category}" style="border-left-color:${color};--cat-color:${color}"
     tabindex="0" role="button" aria-label="${esc(o.name)}"
@@ -259,6 +273,7 @@ function renderCard(o, catColor) {
       <div class="rcard-header-left">
         <div class="rcard-name">${fmt(o.name, q)}</div>
         ${o.gram ? `<div class="rcard-aka" style="color:${color}">${esc(o.gram)}</div>` : ''}
+        ${bk ? '<span class="rcard-bk-dot"></span>' : ''}
       </div>
       <button class="rcard-toggle" style="color:${color}" tabindex="-1" aria-hidden="true">▼</button>
     </div>
@@ -330,7 +345,7 @@ function showModal() {
   document.getElementById('modal-next').disabled = modalIdx === modalOrgs.length - 1;
   document.getElementById('modal-body').scrollTop = 0;
   const starBtn = document.getElementById('modal-star-btn');
-  if (starBtn) { starBtn.textContent = '☆'; starBtn.style.color = ''; }
+  if (starBtn) { updateStarBtn(modalOrgs[modalIdx]?.name || ''); }
   document.getElementById('micro-modal-overlay').classList.add('open');
   document.body.style.overflow = 'hidden';
 }
@@ -340,11 +355,76 @@ function closeModal() {
   document.body.style.overflow = '';
 }
 
+// ── Bookmarks (localStorage + Firebase sync) ───────────────
+const BK_KEY = 'micro-bookmarks';
+let _bookmarks = null;
+
+function getBookmarks() {
+  if (_bookmarks) return _bookmarks;
+  try { _bookmarks = JSON.parse(localStorage.getItem(BK_KEY) || '[]'); }
+  catch { _bookmarks = []; }
+  return _bookmarks;
+}
+
+function saveBookmarks(arr) {
+  _bookmarks = arr;
+  localStorage.setItem(BK_KEY, JSON.stringify(arr));
+  // Push to Firestore if signed in
+  if (window.db && window.currentUser) {
+    window.db.collection('users').doc(window.currentUser.uid)
+      .collection('data').doc(BK_KEY)
+      .set({ payload: JSON.stringify(arr), updatedAt: Date.now() })
+      .catch(e => console.warn('Bookmark sync failed:', e));
+  }
+}
+
+function isBookmarked(name) { return getBookmarks().includes(name); }
+
+async function loadBookmarksFromCloud() {
+  if (!window.db || !window.currentUser) return;
+  try {
+    const doc = await window.db.collection('users').doc(window.currentUser.uid)
+      .collection('data').doc(BK_KEY).get();
+    if (doc.exists) {
+      const cloud = JSON.parse(doc.data().payload || '[]');
+      // Merge: union of local + cloud
+      const merged = [...new Set([...getBookmarks(), ...cloud])];
+      _bookmarks = merged;
+      localStorage.setItem(BK_KEY, JSON.stringify(merged));
+      renderTabs();
+      render();
+    }
+  } catch(e) { console.warn('Cloud bookmark load failed:', e); }
+}
+
 function toggleModalBookmark() {
+  const org = modalOrgs[modalIdx];
+  if (!org) return;
+  const bks = getBookmarks();
+  const idx = bks.indexOf(org.name);
+  if (idx >= 0) { bks.splice(idx, 1); } else { bks.push(org.name); }
+  saveBookmarks(bks);
+  updateStarBtn(org.name);
+  renderTabs(); // update count badge
+  // Refresh card star indicators
+  document.querySelectorAll('.rcard').forEach(c => {
+    const n = c.querySelector('.rcard-name')?.textContent;
+    if (n === org.name) {
+      let dot = c.querySelector('.rcard-bk-dot');
+      if (isBookmarked(n)) {
+        if (!dot) { dot = document.createElement('span'); dot.className = 'rcard-bk-dot'; c.querySelector('.rcard-header-left').appendChild(dot); }
+      } else { dot?.remove(); }
+    }
+  });
+  if (activeTab === 'bookmarks') render();
+}
+
+function updateStarBtn(name) {
   const btn = document.getElementById('modal-star-btn');
-  const starred = btn.textContent === '★';
-  btn.textContent = starred ? '☆' : '★';
-  btn.style.color = starred ? '' : 'var(--cat-color, var(--sage))';
+  if (!btn) return;
+  const bk = isBookmarked(name);
+  btn.textContent = bk ? '★' : '☆';
+  btn.style.color = bk ? 'var(--cat-color, var(--sage))' : '';
 }
 
 function modalNav(dir) {
@@ -395,7 +475,16 @@ document.addEventListener('keydown', e => {
   if (e.key === 'Escape' && searchQ) { search.value = ''; onSearch(); }
 });
 
-window.addEventListener('appAuthStateChanged', () => { if (allOrgs.length) render(); });
+window.addEventListener('appAuthStateChanged', (e) => {
+  if (e.detail?.user) {
+    loadBookmarksFromCloud().then(() => { if (allOrgs.length) { renderTabs(); render(); } });
+  } else {
+    // Signed out — clear local bookmarks
+    _bookmarks = [];
+    localStorage.removeItem(BK_KEY);
+    if (allOrgs.length) { renderTabs(); render(); }
+  }
+});
 document.addEventListener('DOMContentLoaded', () => {
   allOrgs = buildOrgList();
   activeTab = 'bacteria';

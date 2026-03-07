@@ -7,6 +7,7 @@
 <link rel="stylesheet" href="style.css"/>
 <title>Drug Facts · Step 1 Hub</title>
 <style>
+:root { --nav-active-color: var(--sakura2); }
 :root {
   --accent:       var(--sakura2);
   --accent-light: var(--sakura-light);
@@ -224,16 +225,44 @@ let bookmarks = new Set();
 // which back-of-card fields are visible; pearl is always shown if present
 let quizVisibleFields = new Set(['moa','use','se','ci','pk']);
 
-// ── Bookmarks ──────────────────────────────────────────────
+// ── Bookmarks (localStorage + Firebase sync) ──────────────
+const BK_LS_KEY = 'df-bookmarks';
+const BK_FS_KEY = 'df-bookmarks';
+
 function loadBookmarks() {
   try {
-    const saved = localStorage.getItem('df-bookmarks');
+    const saved = localStorage.getItem(BK_LS_KEY);
     bookmarks = saved ? new Set(JSON.parse(saved)) : new Set();
   } catch { bookmarks = new Set(); }
 }
+
 function saveBookmarks() {
-  localStorage.setItem('df-bookmarks', JSON.stringify([...bookmarks]));
+  const arr = [...bookmarks];
+  localStorage.setItem(BK_LS_KEY, JSON.stringify(arr));
   syncBookmarkCount();
+  // Push to Firestore if signed in
+  if (window.db && window.currentUser) {
+    window.db.collection('users').doc(window.currentUser.uid)
+      .collection('data').doc(BK_FS_KEY)
+      .set({ payload: JSON.stringify(arr), updatedAt: Date.now() })
+      .catch(e => console.warn('Bookmark sync failed:', e));
+  }
+}
+
+async function loadBookmarksFromCloud() {
+  if (!window.db || !window.currentUser) return;
+  try {
+    const doc = await window.db.collection('users').doc(window.currentUser.uid)
+      .collection('data').doc(BK_FS_KEY).get();
+    if (doc.exists) {
+      const cloud = JSON.parse(doc.data().payload || '[]');
+      // Merge: union of local + cloud
+      cloud.forEach(n => bookmarks.add(n));
+      localStorage.setItem(BK_LS_KEY, JSON.stringify([...bookmarks]));
+      syncBookmarkCount();
+      render();
+    }
+  } catch(e) { console.warn('Cloud bookmark load failed:', e); }
 }
 function syncBookmarkCount() {
   const cnt = document.getElementById('bk-count');
@@ -932,7 +961,17 @@ document.addEventListener('keydown', e => {
   if (e.key === 'Escape' && searchQ) clearSearch();
 });
 
-window.addEventListener('appAuthStateChanged', () => { if (allDrugs.length) render(); });
+window.addEventListener('appAuthStateChanged', (e) => {
+  if (e.detail?.user) {
+    loadBookmarksFromCloud().then(() => { if (allDrugs.length) render(); });
+  } else {
+    // Signed out — clear local bookmarks
+    bookmarks = new Set();
+    localStorage.removeItem(BK_LS_KEY);
+    syncBookmarkCount();
+    if (allDrugs.length) render();
+  }
+});
 
 document.addEventListener('DOMContentLoaded', () => {
   loadBookmarks();
