@@ -389,6 +389,7 @@ function renderCard(d, catColor) {
   const akaHtml = d.aka
     ? d.aka.replace(/\|/g,'·').replace(/·+/g,'·').split('·')
         .map(s => s.trim()).filter(Boolean)
+        .map(s => `<span class="aka-token">${s}</span>`)
         .join('<span class="dot-sep">·</span>')
     : '';
 
@@ -455,6 +456,7 @@ function showModal() {
   const akaHtml = d.aka
     ? d.aka.replace(/\|/g,'·').replace(/·+/g,'·').split('·')
         .map(s => s.trim()).filter(Boolean)
+        .map(s => `<span class="aka-token">${s}</span>`)
         .join('<span class="dot-sep">·</span>')
     : '';
   const akaEl = document.getElementById('modal-aka');
