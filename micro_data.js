@@ -7,83 +7,92 @@ bacteria: [
     organisms: [
       {
         name: "Staphylococcus aureus",
-        summary: "Catalase+, coagulase+ MRSA, toxic shock syndrome, scalded skin syndrome, food poisoning, endocarditis",
-        gram: "GP Cocci in clusters",
-        virulence: "**Protein A** (binds IgG Fc → evades opsonization) · **Coagulase** (converts fibrinogen → fibrin clot) · **PVL leukocidin** (destroys neutrophils) · **Exotoxins:** TSST-1 (superantigen → TSS), exfoliatin (cleaves desmoglein-1 → SSSS), enterotoxin (heat-stable, preformed → food poisoning)",
-        disease: "**Skin/soft tissue:** folliculitis, furuncles, carbuncles, impetigo (bullous and crusted). **Systemic:** bacteremia, endocarditis (IV drug users → tricuspid valve), osteomyelitis (most common cause overall), septic arthritis. **Toxin-mediated:** TSS (tampon, surgical wound), SSSS (neonates, immunocompromised), food poisoning (1-6h onset, N/V/D, no fever, preformed toxin).",
-        lab_diagnosis: "**Gram stain:** GP cocci in clusters ('grapes'). **Culture:** Blood agar (large, golden-yellow colonies, **β-hemolysis**, staphyloxanthin pigment), Mannitol salt agar (MSA yellow halo/ferments mannitol). **Tests:** Catalase positive, Coagulase positive (tube or latex agglutination). **MRSA:** PCR for mecA gene or chromogenic agar; nasal swab screening.",
-        tx: "**MSSA:** nafcillin or oxacillin. **MRSA:** vancomycin (hospital-acquired) or TMP-SMX/doxycycline (community-acquired). **Endocarditis:** add gentamicin for synergy. **SSSS:** supportive care + antistaphylococcal antibiotics.",
-        pearl: "MRSA trap: β-lactams and cephalosporins are useless against MRSA due to altered PBP2a. Food poisoning requires clinical diagnosis; do NOT culture stool for preformed toxins."
+        summary: "Catalase+ coagulase+ — MRSA, toxic shock, scalded skin, food poisoning, endocarditis",
+gram: "GP Cocci (clusters)",
+virulence: "**Protein A** (binds IgG Fc, evades opsonization)
+**Coagulase** (fibrin clot formation)
+**Leukocidin** (PVL — destroys WBCs)
+**Exotoxins:** TSST-1 (superantigen→TSS), exfoliatin (cleaves desmoglein-1 → SSSS), enterotoxin (heat-stable → food poisoning)",
+        disease: "Skin/soft tissue: folliculitis, furuncles, carbuncles, impetigo (crusted). Systemic: bacteremia, endocarditis (IV drug users → **tricuspid**), osteomyelitis (most common cause overall), septic arthritis. Toxin-mediated: TSS (tampon, wound), SSSS (neonates/immunocompromised), food poisoning (preformed toxin, 1–6h onset, N/V/D, no fever)",
+        tx: "MSSA: nafcillin/oxacillin. MRSA: **vancomycin** (hospital) or TMP-SMX/doxycycline (community). Endocarditis: add gentamicin. SSSS: supportive + antistaphylococcal abx.",
+        pearl: "**MRSA trap:** β-lactams and cephalosporins are useless against MRSA — altered PBP2a (mecA gene). The 'best initial test' for S. aureus food poisoning is clinical — don't culture stool, the toxin is preformed.
+**Novobiocin-sensitive** (distinguishes S. epidermidis from S. saprophyticus which is novobiocin-resistant)."
       },
       {
         name: "Staphylococcus epidermidis",
-        summary: "Catalase+, coagulase negative, novobiocin-sensitive infects prosthetic devices via biofilm; common blood culture contaminant",
-        gram: "GP Cocci in clusters",
-        virulence: "**Biofilm formation** on prosthetic material (polysaccharide slime layer) renders organism resistant to antibiotics and phagocytosis. Coagulase-negative.",
-        disease: "**Prosthetic valve endocarditis** (#1 cause within first year post-surgery). Infected joint prostheses, IV catheter infections, VP shunt infections. Common blood culture contaminant requires **2 positive cultures from separate sites** to be clinically significant.",
-        lab_diagnosis: "**Gram stain:** GP cocci in clusters. **Culture:** Blood agar (small, white-gray, non-hemolytic/γ-hemolysis, slow growing). **Tests:** Catalase positive, Coagulase negative, Novobiocin-sensitive, PYR negative. Blood cultures × 2 required for significance.",
-        tx: "**Vancomycin ± rifampin** (rifampin penetrates biofilm). Remove or replace prosthetic device when possible.",
-        pearl: "Device bug: Assume S. epidermidis for any prosthetic device or indwelling catheter infection. Multiple positive blood cultures in a prosthetic valve patient confirm true infection rather than contamination."
+        summary: "Coagulase-negative — infects prosthetic valves/joints/catheters via biofilm. Novobiocin-sensitive",
+gram: "GP Cocci (clusters)",
+virulence: "**Biofilm formation** on prosthetic material (polysaccharide slime layer) — resistant to antibiotics and phagocytosis",
+        disease: "Prosthetic valve endocarditis (#1 cause within 1st year), infected joint prostheses, IV catheter infections, VP shunt infections. A common blood culture contaminant — requires **2 positive cultures** to be significant.",
+        tx: "Vancomycin ± rifampin (rifampin penetrates biofilm). Remove device if possible.",
+        pearl: "**Device bug:** any infection of a prosthetic device or indwelling catheter → think S. epidermidis. Distinguished from S. saprophyticus by **novobiocin sensitivity** (epidermidis is sensitive). Multiple blood cultures growing S. epidermidis = NOT a contaminant."
       },
       {
         name: "Staphylococcus saprophyticus",
-        summary: "Catalase+, coagulase negative, novobiocin-resistant #2 cause of UTI in young sexually active women (after E. coli)",
-        gram: "GP Cocci in clusters",
-        virulence: "Urease production, surface adhesins for uroepithelium attachment, hemagglutinin.",
-        disease: "**Uncomplicated cystitis** in young sexually active women. Presents with dysuria, frequency, urgency, and pyuria. Urinalysis shows WBCs and GP cocci in clusters.",
-        lab_diagnosis: "**Gram stain (urine):** GP cocci in clusters. **Culture:** Blood agar (small, white-opaque, non-hemolytic). Urine culture >10⁵ CFU/mL. **Tests:** Catalase positive, Coagulase negative, Novobiocin-resistant, Urease positive.",
-        tx: "TMP-SMX or nitrofurantoin (same first-line agents as E. coli UTI). Fluoroquinolones are an acceptable alternative.",
-        pearl: "Classic vignette: young sexually active woman with UTI and GP cocci on urinalysis. Think 'Staph Saprophyticus -> Sexy young woman with UTI.'"
+        summary: "Novobiocin-resistant — #2 cause of UTI in young sexually active women (after E. coli)",
+gram: "GP Cocci (clusters)",
+virulence: "Urease production, surface adhesins for uroepithelium",
+        disease: "Uncomplicated cystitis in young sexually active women. Presents with dysuria, frequency, pyuria. Urinalysis: WBCs, GP cocci in clusters.",
+        tx: "TMP-SMX or nitrofurantoin (same as E. coli UTI). Fluoroquinolones are alternative.",
+        pearl: "**Classic vignette:** young woman, sexually active, UTI with GP cocci on urinalysis. The key distinguisher: **novobiocin-resistant** (S. epidermidis is sensitive). Think 'Sapphire → Sexy young woman with UTI.'"
       },
       {
         name: "Streptococcus pyogenes (Group A Strep)",
-        summary: "β-hemolytic, bacitracin-sensitive, PYR+ pharyngitis, impetigo, rheumatic fever, PSGN, necrotizing fasciitis",
-        gram: "GP Cocci in chains",
-        virulence: "**M protein** (antiphagocytic, anti-complement, molecular mimicry → rheumatic fever) · **Streptolysin O/S** (β-hemolysis; ASO titer measures antibody to SLO) · Streptokinase · Hyaluronidase ('spreading factor') · **Pyrogenic exotoxins A/B/C** (superantigens → scarlet fever, TSS)",
-        disease: "**Pharyngitis:** exudative, no cough, tonsillar exudates, fever, anterior cervical LAD. **Impetigo:** honey-crusted non-bullous lesions. **Scarlet fever:** sandpaper rash, strawberry tongue, Pastia lines. **Cellulitis/erysipelas.** **Necrotizing fasciitis** (surgical emergency). **Post-streptococcal sequelae:** rheumatic fever (Jones criteria) and PSGN (immune complex type III mesangial deposits).",
-        lab_diagnosis: "**Gram stain:** GP cocci in chains. **Culture:** Blood agar (small, translucent colonies, large zone of **β-hemolysis**). **Tests:** Rapid strep test (RADT) for antigen, Bacitracin-sensitive, PYR positive. **Serology:** ASO titer (elevated post-pharyngitis), Anti-DNase B (elevated post-pharyngitis and impetigo).",
-        tx: "**Penicillin** (drug of choice GAS has never developed resistance). Amoxicillin for pharyngitis. Clindamycin for invasive disease (inhibits toxin synthesis via ribosome inhibition). Treat pharyngitis to prevent rheumatic fever; antibiotics do NOT prevent PSGN.",
-        pearl: "ASO titer rises after pharyngitis but NOT after impetigo; use anti-DNase B for skin infections. Rheumatic fever follows pharyngitis only and is prevented by antibiotics. PSGN follows pharyngitis OR impetigo and is NOT prevented by antibiotics."
+        summary: "β-hemolytic, bacitracin-sensitive — pharyngitis, impetigo, rheumatic fever, PSGN, necrotizing fasciitis",
+gram: "GP Cocci (chains)",
+virulence: "**M protein** (antiphagocytic, anti-complement)
+Streptolysin O/S (β-hemolysis, ASO titer)
+Streptokinase
+Hyaluronidase ('spreading factor')
+Pyrogenic exotoxins A/B/C (superantigens → scarlet fever, TSS)",
+        disease: "Pharyngitis (exudative, no cough, tonsillar exudates, fever, cervical LAD). Impetigo (honey-crusted lesions — non-bullous). Scarlet fever (sandpaper rash, strawberry tongue, Pastia lines). Cellulitis/erysipelas. Necrotizing fasciitis ('flesh-eating bacteria' — surgical emergency). Post-streptococcal: **rheumatic fever** (Jones criteria — molecular mimicry of M protein → cardiac valves, esp. mitral) and
+**PSGN** (immune complex type III).",
+        tx: "**Penicillin** (drug of choice — never develops resistance). Amoxicillin for pharyngitis. Clindamycin for invasive disease (inhibits toxin synthesis). Treat pharyngitis to prevent rheumatic fever (NOT PSGN).",
+        pearl: "**ASO titer** rises after pharyngitis (strep O) but NOT after impetigo (strep S) — anti-DNase B better for impetigo.
+**Rheumatic fever vs PSGN:** RF → follows pharyngitis only, prevented by antibiotics. PSGN → follows pharyngitis OR impetigo, NOT prevented by antibiotics. Latency: PSGN 1–3 weeks post-pharyngitis, 3–6 weeks post-impetigo."
       },
       {
         name: "Streptococcus agalactiae (Group B Strep)",
-        summary: "β-hemolytic, bacitracin-resistant, CAMP test+, hippurate hydrolysis+ #1 cause of neonatal meningitis and sepsis; screen at 35-37 weeks",
-        gram: "GP Cocci in chains",
-        virulence: "**Polysaccharide capsule** (antiphagocytic). **CAMP factor** (synergistically enhances S. aureus β-hemolysis).",
-        disease: "**Neonates:** Early-onset (0-7 days) pneumonia, bacteremia, meningitis from maternal vaginal colonization during delivery. Late-onset (7 days-3 months) meningitis, bacteremia from environmental source. **Adults:** UTI in pregnant women, chorioamnionitis, postpartum endometritis, bacteremia in elderly/diabetics.",
-        lab_diagnosis: "**Gram stain:** GP cocci in chains. **Culture:** Blood agar (small, white-gray colonies, narrow zone of **β-hemolysis**). Vaginal/rectal swab at 35-37 weeks gestation. **Tests:** CAMP test positive (arrowhead hemolysis with S. aureus), Hippurate hydrolysis positive, Bacitracin-resistant.",
-        tx: "**Intrapartum ampicillin IV** (given to colonized mothers during labor). Penicillin G (drug of choice; ampicillin is alternative). Clindamycin if penicillin-allergic (based on susceptibility testing).",
-        pearl: "GBS is the #1 cause of neonatal meningitis overall, whereas Listeria monocytogenes is #1 in immunocompromised neonates."
+        summary: "β-hemolytic, CAMP test positive — #1 neonatal meningitis/sepsis, maternal UTI/chorioamnionitis",
+gram: "GP Cocci (chains)",
+virulence: "Polysaccharide capsule (antiphagocytic), CAMP factor (↑ beta-hemolysis of S. aureus)",
+        disease: "**Neonates:** Early-onset (0–7d): pneumonia, sepsis — from maternal colonization. Late-onset (7d–3mo): meningitis, bacteremia.
+**Adults:** UTI in pregnant women, chorioamnionitis, postpartum endometritis, bacteremia in elderly/diabetics.",
+        tx: "Ampicillin (drug of choice).
+**GBS screen at 35–37 weeks** — if positive, give intrapartum ampicillin IV.",
+        pearl: "**CAMP test:** GBS produces CAMP factor which enhances S. aureus hemolysis → arrowhead hemolysis on agar. #1 cause of neonatal meningitis overall (vs. L. monocytogenes which is #1 in immunocompromised neonates). Hippurate hydrolysis positive."
       },
       {
         name: "Streptococcus pneumoniae",
-        summary: "α-hemolytic, optochin-sensitive, bile-soluble, lancet-shaped diplococci #1 cause of CAP, bacterial meningitis (adults), otitis media, and sinusitis",
-        gram: "GP Diplococci (lancet-shaped)",
-        virulence: "**Polysaccharide capsule** (major virulence factor prevents phagocytosis; >90 serotypes; opsonization requires IgG or C3b). **IgA protease** (cleaves sIgA). **Pneumolysin** (binds cholesterol in cell membranes → pore formation).",
-        disease: "**Most common cause of:** community-acquired pneumonia (lobar consolidation), bacterial meningitis in adults >50 years, otitis media, and sinusitis. **Asplenic patients:** most feared encapsulated organism. Bacteremia in asplenic patients is rapidly fatal.",
-        lab_diagnosis: "**Gram stain:** Lancet-shaped GP diplococci. **Culture:** Blood agar (small, **α-hemolytic** green colonies, central depression/'checker piece' morphology). Mucoid if heavily encapsulated. **Tests:** Optochin-sensitive, Bile-soluble, Quellung reaction positive (capsule swells). Urine antigen test available.",
-        tx: "**Penicillin** (if susceptible). **Resistant strains:** ceftriaxone or vancomycin. **Meningitis:** ceftriaxone + vancomycin + dexamethasone (reduces hearing loss). **Vaccines:** PCV15/PCV20 (children and adults), PPSV23 (adults ≥65, asplenic, immunocompromised).",
-        pearl: "Asplenic patients are highly susceptible to encapsulated organisms ('SHiN': S. pneumoniae, H. influenzae, N. meningitidis). Dexamethasone in meningitis reduces hearing loss by dampening inflammation."
+        summary: "α-hemolytic, lancet-shaped diplococci, optochin-sensitive — #1 meningitis/pneumonia/otitis/sinusitis in adults",
+gram: "GP Diplococci (lancet-shaped)",
+virulence: "**Polysaccharide capsule** (major virulence — prevents phagocytosis; opsonization requires IgG or C3b). IgA protease. Pneumolysin.",
+        disease: "**Most common cause of:** community-acquired pneumonia (lobar), bacterial meningitis (adults >50), otitis media, sinusitis. Bacteremia in asplenic patients (most feared — also H. influenzae and N. meningitidis). Endocarditis is rare but can cause valvular destruction.",
+        tx: "Penicillin (if susceptible). Resistant strains: ceftriaxone or vancomycin. Meningitis: ceftriaxone + vancomycin + dexamethasone (↓ hearing loss).
+**Vaccines:** PCV13 (children), PPSV23 (adults >65, asplenic, immunocompromised).",
+        pearl: "**Optochin sensitivity** differentiates S. pneumoniae from S. viridans (viridans is resistant).
+**Quellung reaction:** capsule swells with type-specific antibody — used for identification. Asplenic patients are **most susceptible to encapsulated organisms:** S. pneumoniae > H. influenzae > N. meningitidis → 'SHiN'."
       },
       {
         name: "Streptococcus viridans",
-        summary: "α-hemolytic, optochin-resistant, bile-insoluble #1 cause of subacute bacterial endocarditis on previously damaged native valves",
-        gram: "GP Cocci in chains",
-        virulence: "**Dextran (glucan) production** adheres to fibrin-platelet thrombi on damaged heart valves. S. mutans: dextran promotes dental caries via fermentation of sucrose → lactic acid.",
-        disease: "**Subacute bacterial endocarditis** on previously damaged native valves (MVP, rheumatic heart disease) typically after dental procedures. Insidious onset over weeks to months: low-grade fever, weight loss, Osler nodes, Roth spots, Janeway lesions, splinter hemorrhages. **S. mutans:** dental caries.",
-        lab_diagnosis: "**Gram stain:** GP cocci in chains. **Culture:** Blood agar (small, **α-hemolytic** green colonies). **Tests:** Optochin-resistant, Bile-insoluble, PYR negative. Blood cultures × 3 from separate sites required.",
-        tx: "**Penicillin G + gentamicin** (synergistic bactericidal effect for endocarditis). Endocarditis prophylaxis for high-risk cardiac lesions: **amoxicillin 2g PO** 30-60 minutes before dental procedure.",
-        pearl: "S. bovis (Group D Strep) endocarditis is strongly associated with colorectal carcinoma; colonoscopy is mandatory upon diagnosis."
+        summary: "α-hemolytic, optochin-RESISTANT — #1 subacute bacterial endocarditis (native valve, prior damage)",
+gram: "GP Cocci (chains)",
+virulence: "**Dextran** (glucan) production — adheres to fibrin-platelet thrombi on damaged valves. S. mutans: dextran promotes dental caries.",
+        disease: "**Subacute endocarditis** on previously damaged valves (MVP, RHD) — after dental procedures. Symptoms insidious (weeks–months): fever, weight loss, Osler nodes, Roth spots, Janeway lesions, splinter hemorrhages. S. mutans: dental caries (ferments sucrose → lactic acid).",
+        tx: "Penicillin + gentamicin.
+**Endocarditis prophylaxis** for high-risk cardiac lesions: amoxicillin 1h before dental procedure.",
+        pearl: "**Viridans vs pneumoniae:** Both α-hemolytic, but viridans is optochin-resistant and bile-insoluble. S. bovis endocarditis (group D strep) → strongly associated with **colorectal carcinoma** — colonoscopy is mandatory."
       },
       {
-        name: "Enterococcus faecalis / faecium",
-        summary: "Group D, bile-tolerant, grows in 6.5% NaCl, PYR+ UTI, biliary infections, nosocomial endocarditis; VRE is multidrug-resistant",
-        gram: "GP Cocci in pairs or short chains",
-        virulence: "Intrinsic resistance to many antibiotics. Acquires **vancomycin resistance** via vanA/vanB genes on transferable plasmids (VRE). Biofilm formation. Tolerates harsh environments (bile, salt, extremes of pH).",
-        disease: "**UTI** (especially catheter-associated). Biliary tract infections. **Nosocomial bacteremia and endocarditis** (E. faecalis 90%, E. faecium increasingly). VRE: major nosocomial threat in ICUs and immunocompromised patients.",
-        lab_diagnosis: "**Gram stain:** GP cocci in pairs or short chains. **Culture:** Blood agar (small, gray-white, usually **γ-hemolytic**). **Tests:** PYR positive, Grows in 6.5% NaCl, Bile-esculin positive (black precipitate). Vancomycin susceptibility testing for VRE.",
-        tx: "**E. faecalis:** ampicillin ± gentamicin (synergistic bactericidal for endocarditis essential). **VRE (vancomycin-resistant Enterococcus):** linezolid or daptomycin. Intrinsically resistant to all cephalosporins and TMP-SMX.",
-        pearl: "Classic exam trap: Enterococcus is NOT killed by penicillin alone. Penicillin is only bacteriostatic; must add an aminoglycoside like gentamicin for bactericidal synergy in endocarditis."
+        name: "Enterococcus",
+        summary: "Group D, bile-tolerant, grows in 6.5% NaCl — UTI, biliary, nosocomial endocarditis; VRE is multi-drug resistant",
+gram: "GP Cocci (pairs/chains)",
+virulence: "Intrinsic resistance to many antibiotics; acquires vancomycin resistance (VRE — vanA/vanB genes)",
+        disease: "UTI (especially catheter-associated), biliary infections, nosocomial bacteremia and endocarditis. E. faecalis (90%) > E. faecium. VRE is major nosocomial threat in ICU/immunocompromised.",
+        tx: "**E. faecalis:** ampicillin (± gentamicin for endocarditis — synergy).
+**VRE:** linezolid or daptomycin. Enterococcus is intrinsically resistant to cephalosporins and TMP-SMX.",
+        pearl: "**Classic exam trap:** Enterococcus is
+**NOT killed by penicillin alone** — bacteriostatic only; need ampicillin + aminoglycoside for bactericidal effect (endocarditis). Distinguishable from S. bovis: Enterococcus grows in **6.5% NaCl** (S. bovis does not). PYR test positive."
       }
     ]
   },
@@ -93,83 +102,108 @@ bacteria: [
     organisms: [
       {
         name: "Bacillus anthracis",
-        summary: "Anthrax large aerobic spore-forming GP rod with poly-D-glutamate capsule; cutaneous, inhalation, and GI forms; Category A bioterrorism agent",
-        gram: "GP Bacillus, large, aerobic, spore-forming",
-        virulence: "**Poly-D-glutamate capsule** (antiphagocytic unique protein capsule, not polysaccharide). **Anthrax toxin** (3 components): Protective Antigen (PA forms pore), Edema Factor (EF adenylate cyclase → ↑cAMP → edema), Lethal Factor (LF metalloprotease cleaves MAPKK → cell death).",
-        disease: "**Cutaneous anthrax (95%):** painless papule → vesicle → **painless necrotic black eschar** with surrounding edema. **Inhalation anthrax:** flu-like prodrome → mediastinal widening on CXR (hemorrhagic mediastinitis) → septicemia. **GI anthrax:** from eating contaminated meat.",
-        lab_diagnosis: "**Gram stain:** Large GP rods in chains with central/subterminal spores. No capsule visible on standard stain (requires India ink or M'Fadyean stain). **Culture:** Blood agar (large, flat, gray-white, **non-hemolytic** colonies with irregular 'Medusa head' or 'ground glass' edges). **Tests:** PCR for toxin genes.",
-        tx: "**Ciprofloxacin or doxycycline** (first-line; 60 days for inhalation). Post-exposure prophylaxis: ciprofloxacin + anthrax vaccine. Antitoxin (raxibacumab) for severe systemic disease.",
-        pearl: "Mediastinal widening on CXR plus a flu-like prodrome in a healthy individual equals inhalation anthrax until proven otherwise. Cutaneous anthrax features a painless black eschar, unlike painful cellulitis from other causes."
+        summary: "Anthrax — spore-forming, large GP rod with antiphagocytic capsule; cutaneous, inhalation, GI forms",
+gram: "GP Bacillus (aerobic, spore-forming)",
+virulence: "**Poly-D-glutamate capsule** (antiphagocytic)
+**Anthrax toxin:** protective antigen (PA) + edema factor (EF = adenylate cyclase → ↑cAMP) + lethal factor (LF = metalloprotease → MAPK disruption → cell death)",
+        disease: "**Cutaneous anthrax** (95%): painless papule → necrotic black eschar (malignant pustule) — contact with infected animals/hides.
+**Inhalation anthrax** (woolsorter's disease): mediastinal widening on CXR, hemorrhagic mediastinitis, high mortality.
+**GI:** from contaminated meat.",
+        tx: "Ciprofloxacin or doxycycline. Post-exposure prophylaxis: ciprofloxacin + anthrax vaccine.
+**Bioterrorism agent** (Category A).",
+        pearl: "**Mediastinal widening** on CXR in an otherwise healthy person + flu-like prodrome = inhalation anthrax until proven otherwise. B. cereus causes **food poisoning** — two forms: emetic (rice, 1–6h, preformed toxin) and diarrheal (8–16h). Germinate in intestine."
       },
       {
         name: "Bacillus cereus",
-        summary: "Spore-forming aerobic GP rod two food poisoning syndromes: emetic (reheated rice, preformed toxin) and diarrheal (meats/vegetables, enterotoxin)",
-        gram: "GP Bacillus, large, aerobic, spore-forming",
-        virulence: "**Emetic toxin (cereulide):** heat-stable, preformed in food survives reheating at 100°C, acts on vagal afferents → N/V. **Enterotoxin (Hbl/Nhe):** heat-labile, produced in gut → disrupts intestinal epithelium → diarrhea. Spores survive initial cooking.",
-        disease: "**Emetic form (short incubation, 1-6h):** nausea and vomiting, cramping classic setting is leftover reheated fried rice. **Diarrheal form (8-16h):** watery diarrhea, abdominal cramping, no vomiting.",
-        lab_diagnosis: "**Gram stain:** GP rods with spores. **Culture:** Blood agar (large, flat, gray-white/cream colonies with **β-hemolysis**). Motile. Diagnosis is clinical; lab rarely confirms food poisoning unless an outbreak investigation is warranted.",
-        tx: "**Supportive care only** both syndromes are self-limited within 24 hours. Antibiotics not indicated for GI illness.",
-        pearl: "The fried rice bug: B. cereus emetic toxin causes fried rice syndrome. Spores survive boiling, germinate as rice cools, and the preformed heat-stable toxin survives reheating. The diarrheal form closely mimics C. perfringens."
+        summary: "Spore-forming GP rod — two distinct food poisoning syndromes: emetic (reheated rice, 1–6h) and diarrheal (meats/vegetables, 8–16h)",
+gram: "GP Bacillus (aerobic, spore-forming)",
+virulence: "**Emetic toxin (cereulide):** heat-stable, preformed in food — survives reheating.
+**Enterotoxin:** heat-labile, produced in gut → diarrheal syndrome. Both mediated by spores that survive cooking.",
+        disease: "**Emetic form (short incubation 1–6h):** N/V, cramping — classic: leftover **reheated fried rice** at restaurants. Resembles S. aureus food poisoning.
+**Diarrheal form (8–16h):** watery diarrhea, cramping, no vomiting — resembles C. perfringens. Rarely: ocular infections (post-traumatic), bacteremia in immunocompromised.",
+        tx: "Supportive — both syndromes self-limited (<24h). Antibiotics not indicated for GI illness.",
+        pearl: "**The rice bug:** fried rice syndrome = B. cereus emetic toxin. Spores survive boiling, germinate when rice cools, proliferate → reheating kills bacteria but NOT the preformed toxin.
+**Distinguish from S. aureus:** also has short incubation + preformed toxin but S. aureus is from meats/custards, not rice.
+**Diarrheal form mimics C. perfringens** (both ~8–16h, watery, no fever)."
       },
       {
         name: "Clostridium tetani",
-        summary: "Tetanospasmin (SNARE-cleaving neurotoxin) blocks inhibitory interneurons → spastic paralysis; trismus, risus sardonicus, opisthotonus; prevent with Td vaccine",
-        gram: "GP Bacillus, anaerobic, spore-forming (terminal spores)",
-        virulence: "**Tetanospasmin (tetanus toxin):** cleaves SNARE proteins (synaptobrevin/VAMP) at inhibitory interneurons in the spinal cord → blocks glycine and GABA release → **disinhibition of excitatory neurons** → spastic paralysis and autonomic instability.",
-        disease: "**Generalized tetanus:** trismus (lockjaw) → risus sardonicus (sardonic grin) → opisthotonus (arched back from extensor spasm) → autonomic instability. **Neonatal tetanus:** umbilical stump infection in infants of unvaccinated mothers.",
-        lab_diagnosis: "**Gram stain:** GP rods with large round **terminal spores** giving 'drumstick' or 'tennis racket' appearance. **Culture:** Anaerobic blood agar (gray, irregular, β-hemolytic). Diagnosis is clinical based on wound history and presentation.",
-        tx: "**Tetanus immunoglobulin (TIG)** (neutralizes unbound circulating toxin). **Metronidazole** (kills organism). **Benzodiazepines** (muscle relaxants). Wound debridement. Mechanical ventilation if needed. **Prophylaxis:** Td booster every 10 years.",
-        pearl: "Mechanism key: Tetanospasmin travels retrograde up motor neurons to the spinal cord, blocking inhibitory interneurons, causing spastic paralysis. Contrast with botulinum toxin, which blocks excitatory ACh release at the NMJ, causing flaccid paralysis."
+        summary: "Tetanospasmin — rusted nail/wound, opisthotonos, trismus, risus sardonicus; prevent with Td vaccine",
+gram: "GP Bacillus (anaerobic, spore-forming)",
+virulence: "**Tetanospasmin** (tetanus toxin) — cleaves SNARE proteins at inhibitory interneurons in spinal cord → blocks glycine/GABA release → **disinhibited excitatory** neurons → spastic paralysis",
+        disease: "**Generalized tetanus:** trismus (lockjaw) → risus sardonicus (sardonic smile) → opisthotonus (board-like back arching) → autonomic instability.
+**Neonatal tetanus:** umbilical stump infection in unvaccinated mothers.
+**Local tetanus:** localized rigidity near wound.
+**Cephalic tetanus:** cranial nerve involvement.",
+        tx: "**TIG (tetanus immunoglobulin)** — neutralizes unbound toxin. Metronidazole (kills organism). Muscle relaxants (benzodiazepines, baclofen).
+**Prophylaxis:** Td booster if wound + not vaccinated in 5 years (dirty) or 10 years (clean).",
+        pearl: "**MOA key:** tetanospasmin travels retrograde to spinal cord and blocks **inhibitory** interneurons (Renshaw cells) → spastic paralysis. Contrast with **botulinum toxin** which blocks **excitatory** (ACh release at NMJ) → flaccid paralysis. 'Tetanus = Tense; Botulism = Botulinum = Baggy (flaccid).'"
       },
       {
         name: "Clostridium botulinum",
-        summary: "Botulinum toxin blocks presynaptic ACh release at NMJ descending flaccid paralysis; infant botulism from honey; food-borne from canned foods; wound botulism in IV drug users",
-        gram: "GP Bacillus, anaerobic, spore-forming (subterminal spores)",
-        virulence: "**Botulinum toxin** cleaves SNARE proteins (SNAP-25 or synaptobrevin) at the NMJ → blocks **ACh release** → flaccid paralysis. Also blocks parasympathetic autonomic terminals → anticholinergic signs.",
-        disease: "**Food-borne botulism:** canned or home-preserved food (pre-formed toxin ingested) → descending symmetric flaccid paralysis, cranial nerve palsies → respiratory failure. Normal mental status. **Infant botulism:** honey ingested before age 1 → spore germination in immature gut → floppy baby, constipation. **Wound botulism:** puncture wounds or IV drug use (black tar heroin).",
-        lab_diagnosis: "**Gram stain:** GP rods with oval subterminal spores. **Culture:** Anaerobic blood agar (gray, irregular, β-hemolysis), Egg yolk agar (lipase-positive). **Tests:** Mouse bioassay (gold standard for toxin in serum/stool). EMG shows incremental response to repetitive nerve stimulation.",
-        tx: "**Heptavalent antitoxin (HBAT)** (neutralizes unbound toxin). **Supportive care** (mechanical ventilation is critical). **Infant botulism: BabyBIG** (botulism immune globulin IV). Do NOT give antibiotics in infant botulism.",
-        pearl: "Classic infant botulism vignette: Constipated floppy baby who cannot nurse after honey exposure before age 1. EMG key: Incremental response to repetitive stimulation equals botulism; decremental response equals myasthenia gravis. The descending 4 Ds: Diplopia, Dysarthria, Dysphagia, Descending paralysis."
+        summary: "Botulinum toxin blocks ACh release at NMJ — descending flaccid paralysis; honey for infants, canned food for adults",
+gram: "GP Bacillus (anaerobic, spore-forming)",
+virulence: "**Botulinum toxin** (most lethal known toxin) — cleaves SNARE proteins at NMJ → blocks **ACh release** → flaccid paralysis. Also blocks parasympathetic autonomic neurons.",
+        disease: "**Food-borne:** canned/preserved food (pre-formed toxin) — descending symmetric flaccid paralysis, cranial nerve palsies (diplopia, dysarthria, dysphagia) → respiratory failure. No fever, no sensory deficit.
+**Infant botulism:** honey before age 1 (germination in gut) — floppy baby, constipation, poor suck.
+**Wound botulism:** IV drug users.",
+        tx: "**Antitoxin** (heptavalent). Supportive care (mechanical ventilation if needed). For infant botulism:
+**BabyBIG** (botulism immunoglobulin IV).
+**NOT** antibiotics (releasing toxin can worsen).",
+        pearl: "**Classic infant botulism:** 'floppy baby' who can't nurse and is constipated — **honey exposure**. Normal EMG → repetitive nerve stimulation → **incremental response** (unlike MG which shows decremental). The 'DDD' presentation: Descending, Diplopia/Dysarthria/Dysphagia, Dilated pupils."
       },
       {
         name: "Clostridium difficile",
-        summary: "Pseudomembranous colitis antibiotic-disrupted flora; toxin A (enterotoxin) + toxin B (cytotoxin); treat with fidaxomicin or oral vancomycin",
-        gram: "GP Bacillus, anaerobic, spore-forming",
-        virulence: "**Toxin A (enterotoxin):** activates NF-κB → mucosal inflammation and fluid secretion. **Toxin B (cytotoxin):** depolymerizes actin → cell death (more clinically important). **Binary toxin (CDT):** in hypervirulent NAP1/BI/027 strain.",
-        disease: "**Antibiotic-associated diarrhea / pseudomembranous colitis:** watery diarrhea after antibiotics (clindamycin, fluoroquinolones, cephalosporins). **Severe:** fever, elevated WBC, abdominal pain. **Fulminant:** toxic megacolon → perforation risk. **Recurrent C. difficile** common.",
-        lab_diagnosis: "**Gram stain:** Large GP rods with subterminal spores. **Tests:** Stool PCR for toxin B gene (highest sensitivity), Stool toxin EIA (detects active toxin A/B), Glutamate dehydrogenase (GDH) antigen (screening). **Endoscopy:** Pseudomembranes. **Culture:** CCFA agar (yellow, ground-glass, horse-manure odor under anaerobic conditions).",
-        tx: "**First episode (non-severe):** fidaxomicin or oral vancomycin. **Severe:** oral vancomycin ± IV metronidazole. **Recurrence:** oral vancomycin taper/pulse or fidaxomicin; fecal microbiota transplant (FMT) for multiple recurrences. **Fulminant/toxic megacolon:** emergency colectomy.",
-        pearl: "IV vancomycin does NOT work for C. difficile because it is not secreted into the colon lumen; oral vancomycin is required. Spores survive alcohol-based hand sanitizers, requiring soap and water for contact precautions."
+        summary: "Pseudomembranous colitis — antibiotic-disrupted flora; toxin A (enterotoxin) + toxin B (cytotoxin); treat with fidaxomicin/vancomycin (PO)",
+gram: "GP Bacillus (anaerobic, spore-forming)",
+virulence: "**Toxin A** (enterotoxin): fluid secretion, mucosal damage.
+**Toxin B** (cytotoxin): actin depolymerization → cell death (more important clinically). Binary toxin in hypervirulent NAP1 strain.",
+        disease: "**AAD/PMC:** watery diarrhea (rarely bloody) after antibiotics (classically clindamycin, fluoroquinolones, cephalosporins). Colonoscopy: yellowish plaques (pseudomembranes).
+**Toxic megacolon:** fever, ↑WBC, abdominal distension — ileus → colonic dilation > 6cm → perforation risk.
+**Recurrent C. difficile** (15–35%): treat with fidaxomicin or fecal microbiota transplant.",
+        tx: "**First episode:** fidaxomicin (preferred) or oral vancomycin (NOT IV vancomycin). Metronidazole (if severe) is now second-line. Discontinue offending antibiotic.
+**Recurrence:** oral vancomycin taper or FMT.
+**Fulminant/toxic megacolon:** IV metronidazole + PO vancomycin, surgical consult.",
+        pearl: "**IV vancomycin does NOT work** for C. difficile — drug doesn't reach colon lumen. Oral vancomycin works because it's not absorbed. Spores survive alcohol-based hand sanitizer → use **soap and water** for C. difficile. Metronidazole now **second-line** due to inferior outcomes. Diagnosis: **toxin EIA** (fast, less sensitive) or
+**PCR** (more sensitive, may detect colonization)."
       },
       {
         name: "Clostridium perfringens",
-        summary: "Alpha toxin (lecithinase) gas gangrene (myonecrosis) after traumatic wounds; food poisoning (reheated meat); double-zone β-hemolysis on blood agar",
-        gram: "GP Bacillus, anaerobic, spore-forming (large, boxcar-shaped rods)",
-        virulence: "**Alpha toxin (lecithinase/phospholipase C):** cleaves phosphatidylcholine in cell membranes → RBC lysis, platelet destruction, myonecrosis, and gas production. **Enterotoxin:** disrupts intestinal tight junctions → food poisoning.",
-        disease: "**Gas gangrene (clostridial myonecrosis):** traumatic wounds contaminated with soil, surgery, or IVDUs. Severe pain, **crepitus** (gas in tissue), bronze/gray skin discoloration, shock. **Food poisoning:** reheated meat dishes watery diarrhea 8-24h onset, no fever, self-limited.",
-        lab_diagnosis: "**Gram stain (wound):** Large GP rods without visible spores in tissue. **Culture:** Anaerobic blood agar (**double-zone β-hemolysis** inner complete hemolysis, outer incomplete hemolysis). **Tests:** Egg yolk agar positive lecithinase reaction (Nagler reaction confirmatory). **Imaging:** Gas in tissue planes.",
-        tx: "**Gas gangrene:** emergent wide surgical debridement + **penicillin G** IV ± clindamycin. Hyperbaric oxygen adjunct. **Food poisoning:** supportive only.",
-        pearl: "Gas in tissue on imaging indicates gas gangrene until proven otherwise, requiring emergent surgical debridement. Food poisoning from C. perfringens occurs because spores survive initial cooking but not prolonged reheating."
+        summary: "Gas gangrene (myonecrosis) + food poisoning — double-zone β-hemolysis, lecithinase (alpha toxin)",
+gram: "GP Bacillus (anaerobic, spore-forming)",
+virulence: "**Alpha toxin (lecithinase/phospholipase C):** lyses cell membranes → gas gangrene.
+**Enterotoxin:** food poisoning (disrupts intestinal epithelium).",
+        disease: "**Gas gangrene (clostridial myonecrosis):** traumatic wounds, surgery, IVDUs. Severe pain, crepitus (gas), bronze/maroon discoloration, shock. Life-threatening — surgical emergency.
+**Food poisoning:** reheated meat (spores survive initial cooking, germinate) → 8–24h watery diarrhea, no fever, self-limited.",
+        tx: "Gas gangrene: **emergent surgical debridement** + penicillin G (± clindamycin to ↓ toxin synthesis) + hyperbaric oxygen.",
+        pearl: "**Crepitus (crackling under skin)** in a wound → gas gangrene → emergency surgical debridement. X-ray shows gas in soft tissues.
+**Nagler's reaction:** alpha toxin (lecithinase) causes opacity on egg yolk agar — inhibited by antitoxin on one side = double zone. Food poisoning: no fever, short incubation (8–12h) — distinguish from B. cereus (shorter) and Salmonella (fever)."
       },
       {
         name: "Corynebacterium diphtheriae",
-        summary: "Club-shaped GP rod, metachromatic granules diphtheria exotoxin halts protein synthesis; pseudomembrane on pharynx; myocarditis and neuropathy; prevent with DTaP",
-        gram: "GP Bacillus (club-shaped, pleomorphic 'Chinese letter' or palisade arrangement)",
-        virulence: "**Diphtheria toxin** (A-B toxin, encoded by β-phage): Fragment A **ADP-ribosylates EF-2 (elongation factor 2)** → halts protein synthesis → cell death in heart, nerves, and kidneys.",
-        disease: "**Pharyngeal diphtheria:** low-grade fever, sore throat → **tough gray pseudomembrane** on tonsils/pharynx (bleeds when removed). 'Bull neck' (cervical LAD + edema). **Complications:** myocarditis (heart block), **demyelinating neuropathy** (palatal palsy → peripheral neuropathy).",
-        lab_diagnosis: "**Gram stain:** Pleomorphic GP rods in 'Chinese letter' or palisade arrangements. **Culture:** Loeffler's medium (cream-colored colonies; Albert stain shows metachromatic blue/volutin granules at poles), Tellurite agar (grey-black colonies). **Tests:** Elek test (immunodiffusion) or PCR for toxin gene.",
-        tx: "**Diphtheria antitoxin** (DAT neutralizes unbound toxin) + **erythromycin or penicillin**. Strict respiratory isolation. **Prevention:** DTaP primary series + Td booster every 10 years.",
-        pearl: "The pseudomembrane bleeds when removed, distinguishing it from strep pharyngitis. Toxin mechanism: ADP-ribosylates EF-2, blocking protein translocation. Diphtheria rule of twos: Two complications (myocarditis, neuropathy); two treatments (antitoxin, antibiotics)."
+        summary: "Diphtheria — pseudomembrane (grayish), bull neck, ADP-ribosylation of EF-2 → exotoxin; treat with antitoxin + erythromycin",
+gram: "GP Bacillus (non-spore, club-shaped)",
+virulence: "**Diphtheria toxin** (phage-encoded): **ADP-ribosylates EF-2 (elongation factor 2)** → halts protein synthesis → cell death. A-B toxin: B binds, A is active.",
+        disease: "**Pharyngeal diphtheria:** gray, adherent pseudomembrane over tonsils/pharynx that bleeds when removed. Bull neck (massive LAD). Systemic effects: myocarditis (heart block, arrhythmias — weeks later), demyelinating neuropathy (cranial nerves — palatal palsy, eye muscle weakness; peripheral neuropathy).",
+        tx: "**Antitoxin first** (neutralizes free toxin — most important). Erythromycin or penicillin (kills organism). Prevention:
+**DTaP vaccine**.",
+        pearl: "**ADP-ribosylation of EF-2** = the classic mechanism — same as Pseudomonas exotoxin A. Diphtheria toxin: B binds→A is active (A-B toxin paradigm).
+**Lab:** Elek test (immunodiffusion for toxin) and Löffler medium (metachromatic granules on methylene blue). Tellurite agar: gray-black colonies."
       },
       {
         name: "Listeria monocytogenes",
-        summary: "Facultative intracellular GP rod tumbling motility at room temp; actin rockets; meningitis in neonates/elderly/immunocompromised and pregnant women; unpasteurized dairy, deli meats",
-        gram: "GP Bacillus (short rod, facultative intracellular)",
-        virulence: "**Listeriolysin O (LLO):** pore-forming toxin escapes phagosome into cytoplasm. **ActA:** nucleates host cell actin → **actin rocket propulsion** (cell-to-cell spread). Grows at **refrigerator temperatures (4°C)**. Tumbling motility at 25°C.",
-        disease: "**Neonatal meningitis:** early-onset (granulomatosis infantiseptica) and late-onset. #1 cause of bacterial meningitis in **immunocompromised patients** and elderly. **Pregnant women:** bacteremia → spontaneous abortion, premature birth. **Febrile gastroenteritis** in immunocompetent.",
-        lab_diagnosis: "**Gram stain:** Short GP rods or coccobacilli (easily confused with diphtheroids or Streptococcus). **Culture:** Blood agar at 4°C (cold enrichment) and 37°C (small colonies, narrow zone of **β-hemolysis**). **Tests:** Tumbling motility at 25°C (umbrella pattern in soft agar), CAMP test positive.",
-        tx: "**Ampicillin** (drug of choice) ± gentamicin. **TMP-SMX** (alternative for penicillin-allergic). **Cephalosporins are ineffective** Listeria has intrinsic resistance.",
-        pearl: "Empiric ceftriaxone and vancomycin cover most bacterial meningitis but completely miss Listeria, which is intrinsically cephalosporin-resistant. You must add ampicillin for neonates, the elderly, pregnant women, or immunocompromised patients."
+        summary: "Facultative intracellular, tumbling motility, grows at 4°C — meningitis in neonates/elderly/immunocompromised; raw dairy, deli meat",
+gram: "GP Bacillus (non-spore, facultative anaerobe)",
+virulence: "**Listeriolysin O (LLO):** pore-forming toxin → escapes phagosome.
+**ActA:** actin polymerization → intracellular motility (actin rockets). Cold enrichment (grows at 4°C — refrigerator).",
+        disease: "**Neonates** (via transplacental or birth canal): granulomatosis infantiseptica, meningitis, sepsis.
+**Pregnant women:** mild flu-like illness → premature labor, stillbirth, neonatal infection.
+**Elderly/immunocompromised (esp. T-cell deficient):** meningitis, bacteremia.
+**Gastroenteritis** (healthy hosts): deli meats, soft cheeses, raw sprouts.",
+        tx: "**Ampicillin** (drug of choice). Add gentamicin for synergy in severe cases.
+**Cephalosporins do NOT cover Listeria** — important for empiric meningitis coverage in neonates/elderly: add ampicillin to ceftriaxone.",
+        pearl: "**Empiric meningitis coverage:** neonates and elderly/immunocompromised must get **ampicillin added** because cephalosporins miss Listeria. Grows at **4°C** (cold enrichment) and shows **tumbling motility** at room temperature.
+**CAMP test positive.** β-hemolytic on blood agar."
       }
     ]
   },
@@ -179,279 +213,355 @@ bacteria: [
     organisms: [
       {
         name: "Actinomyces israelii",
-        summary: "Anaerobic non-acid-fast branching GP rod cervicofacial abscess with sulfur granules and sinus tracts after dental trauma; normal oral flora; IUD-associated pelvic actinomycosis",
-        gram: "GP branching filamentous rod (anaerobic, non-acid-fast)",
-        virulence: "Strict anaerobe thrives in devitalized tissue following trauma or disruption of mucosal barriers. Normal flora of the oral cavity, GI tract, and female genital tract.",
-        disease: "**Cervicofacial actinomycosis (lumpy jaw):** indurated woody swelling of jaw/neck with **draining sinus tracts to skin**, typically after dental extraction. **Thoracic actinomycosis:** aspiration of oral secretions → lung abscess, empyema (can mimic malignancy). **Abdominal/pelvic:** after bowel perforation; **IUD-associated pelvic actinomycosis**.",
-        lab_diagnosis: "**Gram stain:** GP branching filamentous rods, non-acid-fast. **Pathology:** Sulfur granules (macroscopic yellow bacterial aggregates) visible in pus; histology shows 'ray fungus' appearance. **Culture:** Anaerobic blood agar (rough 'molar tooth' or 'spider colony' morphology after 7-14 days).",
-        tx: "**Penicillin G IV** (prolonged course typically 2-6 weeks IV then oral amoxicillin for 6-12 months). Surgical drainage of abscesses. Remove IUD if pelvic actinomycosis is confirmed.",
-        pearl: "Actinomyces is part of normal oral flora; disease requires mucosal disruption. Thoracic actinomycosis can easily mimic lung cancer on CT, making biopsy essential for diagnosis."
+        summary: "Anaerobic branching GP rod — cervicofacial abscess with sulfur granules, sinus tracts; normal oral flora; responds to penicillin",
+gram: "GP Branching Rod (anaerobic, non-acid-fast)",
+virulence: "Branching filamentous growth, forms dense colonies (sulfur granules = macroscopic bacterial aggregates, NOT actual sulfur). Anaerobic — thrives in devitalized tissue post-trauma/surgery.",
+        disease: "**Cervicofacial (lumpy jaw):** most common form — indurated swelling of jaw/neck, sinus tracts draining to skin. Often follows dental extraction or trauma.
+**Thoracic:** aspiration → lung abscess, empyema, chest wall sinus tracts.
+**Abdominal/pelvic:** after bowel perforation/appendectomy;
+**IUD-associated pelvic actinomycosis** (classic).",
+        tx: "**Penicillin G** (IV, prolonged — weeks to months). Surgical drainage of abscess. Remove IUD if pelvic disease.",
+        pearl: "**Sulfur granules** = yellow granules in pus = pathognomonic. NOT acid-fast (distinguishes from Nocardia). Actinomyces = normal oral/GI flora → disease requires disruption (dental work, trauma, surgery).
+**IUD + pelvic mass + sinus tract = Actinomyces.** Thoracic actinomycosis can mimic malignancy on imaging."
       },
       {
         name: "Nocardia asteroides",
-        summary: "Aerobic weakly acid-fast branching GP rod pulmonary and CNS abscess in immunocompromised; cutaneous sporotrichoid spread in immunocompetent; treat with TMP-SMX",
-        gram: "GP branching filamentous rod (aerobic, weakly acid-fast)",
-        virulence: "**Aerobic**. Resists intracellular killing by **inhibiting phagosome-lysosome fusion** survives in macrophages. Catalase and superoxide dismutase protect against oxidative burst.",
-        disease: "**Pulmonary nocardiosis:** cavitary pneumonia and lung abscess in immunocompromised patients (prolonged corticosteroids, organ transplant, HIV/AIDS). **CNS nocardiosis:** brain abscess from hematogenous spread. **Cutaneous nocardiosis:** sporotrichoid spread (ascending nodules along lymphatics) from traumatic soil inoculation in immunocompetent individuals.",
-        lab_diagnosis: "**Gram stain:** GP branching filaments, beaded appearance. **Tests:** Weakly acid-fast positive on modified Ziehl-Neelsen stain. **Culture:** Aerobic culture on blood agar or Sabouraud agar (dry, chalky white to orange, waxy colonies). Requires prolonged incubation (days to weeks).",
-        tx: "**TMP-SMX** (drug of choice long course of 6-12 months). **Severe or CNS disease:** add imipenem or amikacin. Surgical drainage of CNS abscess if accessible.",
-        pearl: "Nocardia vs. Actinomyces: both form branching GP filaments, but Nocardia is aerobic and weakly acid-fast, whereas Actinomyces is anaerobic and NOT acid-fast. CNS abscess plus cavitary pneumonia in an immunocompromised patient points directly to Nocardia."
+        summary: "Aerobic, weakly acid-fast branching GP rod — lung/CNS abscess in immunocompromised; TMP-SMX is drug of choice",
+gram: "GP Branching Rod (aerobic, weakly acid-fast)",
+virulence: "Aerobic (unlike Actinomyces).
+**Weakly acid-fast** (modified Ziehl-Neelsen stain). Resists intracellular killing by inhibiting phagosome-lysosome fusion.",
+        disease: "**Pulmonary nocardiosis:** cavitary pneumonia, lung abscess in immunocompromised (steroids, transplant, HIV, CGD).
+**CNS:** brain abscess (hematogenous spread from lung).
+**Cutaneous:** sporotrichoid spread (nodules along lymphatics) from soil inoculation — in immunocompetent.",
+        tx: "**TMP-SMX** (drug of choice — long course 6–12 months). Severe/CNS disease: add imipenem or amikacin.",
+        pearl: "**Nocardia vs Actinomyces:** both branch, but Nocardia is **aerobic + weakly acid-fast**, Actinomyces is **anaerobic + NOT acid-fast**. 'No car drives (aerobic) through acid (acid-fast).' CNS abscess + immunocompromised + cavitary lung lesion = Nocardia.
+**TMP-SMX** treats both Nocardia and PCP — Step 1 high-yield."
       }
     ]
-  }
-]
-
-// Note: Output paused here to adhere to the "do one chunk at a time" instruction.
-};
-{
+  },
+  {
     group: "Gram-Negative Cocci",
     color: "bact",
     organisms: [
       {
+        name: "Neisseria — Overview",
+        summary: "GN diplococci, oxidase+, aerobic — two pathogens: N. meningitidis (meningitis/sepsis) and N. gonorrhoeae (STI). Both require chocolate agar; both have polysaccharide capsules (meningitidis only)",
+gram: "GN Diplococci",
+virulence: "**Pili:** attachment and immune evasion (phase variation).
+**Outer membrane proteins (Opa):** cell invasion.
+**IgA protease:** cleaves secretory IgA.
+**LOS (lipo-oligosaccharide):** endotoxin-like activity. N. meningitidis: **polysaccharide capsule** (major virulence; gonorrhoeae has NO capsule).",
+        disease: "See individual organism cards. Class concept: **complement deficiency (C5–C9, terminal complement)** → recurrent Neisseria infections. MAC (membrane attack complex) is critical for killing Neisseria.",
+        tx: "Both: **ceftriaxone** (first-line). Both: **penicillin** still works for meningitidis. Gonorrhoeae: increasingly resistant — ceftriaxone 500mg IM single dose now standard.",
+        pearl: "**Terminal complement (C5–C9) deficiency** = recurrent Neisseria infections (meningitidis AND gonorrhoeae).
+**Oxidase positive** = key lab characteristic. Both grow on
+**Thayer-Martin agar** (VCN: vancomycin, colistin, nystatin — selective). Gonorrhoeae ONLY grows on Thayer-Martin (not nutrient agar); meningitidis grows on blood or chocolate agar."
+      },
+      {
         name: "Neisseria meningitidis",
-        summary: "Encapsulated GN diplococcus, oxidase+ #1 bacterial meningitis in teens/young adults; petechial rash, Waterhouse-Friderichsen syndrome; rifampin prophylaxis for close contacts; vaccine-preventable",
-        gram: "GN Diplococci (kidney bean-shaped, encapsulated)",
-        virulence: "**Polysaccharide capsule** (serotypes A, B, C, W, Y, X antiphagocytic; serotype B capsule mimics human neural adhesion molecule → poor immunogenicity). **Endotoxin (LPS)** → massive inflammatory cascade → DIC and shock. **Pili** for nasopharyngeal attachment. **IgA protease.** **Oxidase positive.**",
-        disease: "**Bacterial meningitis:** teens and college students (dormitory outbreaks), asplenic patients. Classic triad: fever + nuchal rigidity + altered mental status. **Petechial/purpuric non-blanching rash** = meningococcemia, indicates DIC. **Waterhouse-Friderichsen syndrome:** bilateral adrenal hemorrhage → acute adrenal insufficiency → refractory shock → death within hours. Terminal complement deficiency (C5-C9) → recurrent meningococcal disease.",
-        lab_diagnosis: "**Gram stain (CSF):** GN kidney bean-shaped diplococci, often intracellular within PMNs. **Culture:** Blood/chocolate agar (small, gray, moist, smooth, **β-hemolytic** colonies; requires CO2). **Thayer-Martin VCN agar** for nasopharyngeal swabs (selective). **Tests:** Oxidase positive (purple/blue color with Kovac's reagent within 10 seconds). Latex agglutination or PCR for rapid antigen detection in CSF. Blood cultures (positive in meningococcemia).",
-        tx: "**Ceftriaxone IV** (start immediately do not wait for LP if clinical suspicion is high). **Dexamethasone** before or with first antibiotic dose. **Rifampin prophylaxis** for close contacts (or ciprofloxacin PO single dose, or ceftriaxone IM single dose). **Vaccines:** MenACWY (required for college entry) + MenB (recommended ages 16-23).",
-        pearl: "Non-blanching petechial rash plus meningitis is a medical emergency; treat before lumbar puncture if there is any delay risk. Waterhouse-Friderichsen syndrome presents with bilateral adrenal hemorrhage; do NOT delay steroids. Check terminal complement (C5-C9) levels in patients with recurrent Neisseria infections."
+        summary: "Encapsulated GN diplococcus — #1 bacterial meningitis in teens/young adults; petechial rash + Waterhouse-Friderichsen; vaccine-preventable; rifampin prophylaxis for contacts",
+gram: "GN Diplococci (encapsulated)",
+virulence: "**Polysaccharide capsule** (serotypes A, B, C, W, Y, X).
+**Endotoxin (LPS)** → massive inflammatory cascade → DIC, shock. Pili for nasopharyngeal attachment and spread.",
+        disease: "**Bacterial meningitis:** teens/college students (dorms), asplenic patients. Classic triad: fever, nuchal rigidity, altered mental status.
+**Petechial/purpuric rash** (non-blanching) = meningococcemia — sign of DIC.
+**Waterhouse-Friderichsen syndrome:** bilateral adrenal hemorrhage → acute adrenal insufficiency → refractory shock. Rapid death possible within hours.",
+        tx: "**Ceftriaxone** (IV, immediately). Dexamethasone before/with first dose.
+**Rifampin prophylaxis** for close contacts (or ciprofloxacin, ceftriaxone IM single dose).",
+        pearl: "**Non-blanching petechial rash + meningitis = medical emergency** — treat before LP if suspicion is high. Waterhouse-Friderichsen = adrenal hemorrhage → do NOT delay steroids.
+**Rifampin prophylaxis** for household contacts within 24h. Vaccine (MenACWY + MenB) required for college dorms. Carrier state = nasopharynx (asymptomatic)."
       },
       {
         name: "Neisseria gonorrhoeae",
-        summary: "GN diplococcus, oxidase+, NO capsule STI: urethritis/cervicitis, PID, DGI (migratory arthritis + skin lesions); Fitz-Hugh-Curtis syndrome; neonatal ophthalmia; treat with ceftriaxone + doxycycline",
-        gram: "GN Diplococci (NO capsule, intracellular within PMNs)",
-        virulence: "**Pili** (phase and antigenic variation evades adaptive immune response). **Opa proteins** (mediate cell invasion bind CEACAM receptors). **IgA protease.** **No capsule** (unlike N. meningitidis). **β-lactamase** plasmid (penicillin resistance). Increasing fluoroquinolone resistance.",
-        disease: "**Males:** urethritis (purulent discharge, dysuria). **Females:** cervicitis (often asymptomatic or minimal discharge) → PID (salpingitis → infertility, ectopic pregnancy risk). **DGI (1-3%):** hematogenous spread → **migratory polyarthritis** → septic arthritis (wrist, knee, ankle) + pustular/hemorrhagic skin lesions. **Fitz-Hugh-Curtis syndrome:** perihepatitis causing RUQ pain ('violin string' adhesions). **Neonates:** ophthalmia neonatorum (purulent eye discharge at birth).",
-        lab_diagnosis: "**Gram stain (urethral discharge, male):** GN intracellular diplococci within PMNs (highly sensitive and specific in symptomatic males; less reliable in females). **Culture:** Thayer-Martin VCN agar (small, gray, translucent, convex, **non-hemolytic** colonies; requires CO2). **Tests:** NAAT (nucleic acid amplification test) is preferred for diagnosis (highly sensitive for urine, vaginal, or endocervical swab). Oxidase positive.",
-        tx: "**Ceftriaxone 500mg IM single dose** (or 1g if weight >150 kg) + **doxycycline 100mg BID × 7 days** (for presumptive co-infection with Chlamydia). DGI: IV ceftriaxone until improved, then oral step-down. **Erythromycin ophthalmic ointment at birth** prevents ophthalmia neonatorum.",
-        pearl: "Always treat for both gonorrhea AND chlamydia due to high co-infection rates. DGI triad: pustular skin lesions + tenosynovitis + migratory polyarthritis. Joint fluid is often culture-negative in DGI because it is a bacteremia phase. Terminal complement deficiency predisposes to DGI."
+        summary: "GN diplococcus, no capsule — STI: urethritis/cervicitis, PID, DGI (disseminated gonococcal infection); Fitz-Hugh-Curtis; neonatal ophthalmia; treat with ceftriaxone",
+gram: "GN Diplococci (NO capsule)",
+virulence: "**Pili** (phase variation — evades immune response).
+**Opa proteins** (cell invasion).
+**IgA protease.** No capsule (unlike meningitidis). **β-lactamase** plasmid — increasing penicillin resistance.",
+        disease: "**Males:** urethritis (purulent discharge, dysuria).
+**Females:** cervicitis (often asymptomatic or mild discharge), PID (salpingitis → infertility, ectopic pregnancy).
+**DGI:** 1–3% — hematogenous spread → migratory polyarthritis → septic arthritis (wrist, knee) + skin lesions (pustular/hemorrhagic).
+**Fitz-Hugh-Curtis syndrome:** perihepatitis (RUQ pain, 'violin string' adhesions).
+**Neonates:** ophthalmia neonatorum (prevented by erythromycin eye drops at birth).",
+        tx: "**Ceftriaxone 500mg IM** (single dose) + **azithromycin or doxycycline** (treat presumptive chlamydia co-infection). DGI: IV ceftriaxone.",
+        pearl: "**Always treat for both gonorrhea AND chlamydia** (co-infection common).
+**Ceftriaxone** is now gold standard — fluoroquinolone resistance is widespread.
+**DGI triad:** pustular skin lesions + tenosynovitis + migratory polyarthritis (non-purulent). Culture requires Thayer-Martin; NAAT is preferred diagnostic. Neonatal prophylaxis = erythromycin ointment."
       }
     ]
   },
   {
-    group: "Gram-Negative Bacilli - Enteric",
+    group: "Gram-Negative Bacilli – Enteric",
     color: "bact",
     organisms: [
       {
         name: "Escherichia coli",
-        summary: "Lac+, indole+, oxidase negative 6 diarrheagenic pathotypes; #1 cause of UTI; K1 capsule → neonatal meningitis; EHEC O157:H7 → HUS (no antibiotics)",
-        gram: "GN Bacillus (lactose fermenter, facultative anaerobe)",
-        virulence: "**ETEC:** heat-labile toxin (LT ADP-ribosylates Gs → ↑cAMP) + heat-stable toxin (ST activates guanylyl cyclase → ↑cGMP). **EPEC:** attaching and effacing lesions (no toxin). **EHEC (O157:H7):** Shiga-like toxin (verotoxin) inhibits 60S ribosome (cleaves 28S rRNA) → endothelial cell death → HUS. **EIEC:** invades colonic mucosa. **K1 capsule** (neonatal meningitis).",
-        disease: "**UTI** (#1 cause overall). **Neonatal meningitis** (#1 cause, K1 capsule). **ETEC:** travelers diarrhea (watery, no blood, no fever). **EHEC O157:H7:** bloody diarrhea → HUS (microangiopathic hemolytic anemia + thrombocytopenia + acute kidney injury). **EPEC:** infant diarrhea.",
-        lab_diagnosis: "**Culture:** MacConkey agar (pink to red, flat, non-mucoid lactose-fermenting colonies). Blood agar (gray, some β-hemolytic). **SMAC (sorbitol MacConkey):** O157:H7 forms **colorless** colonies (sorbitol non-fermenter). **Tests:** Stool Shiga toxin EIA or PCR for EHEC. IMViC pattern: ++-- (Indole+, Methyl red+, Voges-Proskauer negative, Citrate negative). Urine culture >10⁵ CFU/mL.",
-        tx: "**UTI:** TMP-SMX or fluoroquinolone. **ETEC:** azithromycin or fluoroquinolone. **EHEC O157:H7: NO antibiotics** (increase Shiga toxin release and HUS risk). **Neonatal meningitis:** cefotaxime + ampicillin.",
-        pearl: "Treatment trap: Giving antibiotics for EHEC increases the risk of HUS. HUS triad: microangiopathic hemolytic anemia + thrombocytopenia + acute kidney injury. Shiga toxin inhibits the 60S ribosome, sharing the exact mechanism with Shigella toxin."
+        summary: "Lac+, indole+, IMViC: ++-− — 6 pathotypes; UTI (#1), neonatal meningitis (K1 capsule), EHEC → HUS",
+gram: "GN Bacillus (lactose fermenter)",
+virulence: "**ETEC:** heat-labile (LT, ↑cAMP like cholera) + heat-stable (ST, ↑cGMP like STa) toxins.
+**EPEC:** effacement, no toxin.
+**EHEC (O157:H7):** Shiga-like toxin (verotoxin) → HUS.
+**EIEC:** invades colonic mucosa (like Shigella).
+**EAEC:** aggregative, chronic diarrhea.",
+        disease: "**UTI** (#1 cause overall).
+**Neonatal meningitis** (K1 polysaccharide capsule — same as group B meningococcus).
+**Travelers diarrhea** (ETEC — watery).
+**HUS** (EHEC O157:H7 — **bloody diarrhea** → **no antibiotics** — ↑Shiga toxin release → microangiopathic hemolytic anemia, thrombocytopenia, acute renal failure).",
+        tx: "UTI: TMP-SMX or fluoroquinolone. Travelers diarrhea (ETEC): azithromycin or fluoroquinolone.
+**EHEC O157:H7: NO antibiotics** (↑HUS risk). Neonatal meningitis: cefotaxime + ampicillin.",
+        pearl: "**EHEC = NO antibiotics** — one of the classic Step 1 traps. Sorbitol-non-fermenting on MacConkey agar.
+**HUS triad:** microangiopathic hemolytic anemia + thrombocytopenia + acute kidney injury.
+**Shiga toxin** → inhibits 60S ribosome (cleaves 28S rRNA) → endothelial damage especially in kidney. ETEC = most common cause of travelers diarrhea."
       },
       {
         name: "Salmonella",
-        summary: "Non-lactose fermenter, H2S+, oxidase negative intracellular pathogen; S. typhi causes enteric fever; non-typhi causes food-borne diarrhea; osteomyelitis in sickle cell disease",
-        gram: "GN Bacillus (non-lactose fermenter, motile, H2S-producing)",
-        virulence: "Survives intracellularly in macrophages via **SPI-1 and SPI-2 pathogenicity islands** (type III secretion systems). **Vi antigen capsule** (S. typhi only antiphagocytic). Flagella (motile). Somatic LPS. Does NOT produce urease.",
-        disease: "**S. typhi (typhoid/enteric fever):** 'stepladder' fever, relative bradycardia, rose spots (faint blanching macules on trunk), hepatosplenomegaly, constipation early → diarrhea later. Chronic carrier state: gallbladder colonization. **Non-typhi Salmonella:** self-limited food-borne gastroenteritis. **Osteomyelitis in sickle cell disease**.",
-        lab_diagnosis: "**Culture:** MacConkey agar (**colorless/translucent** non-lactose fermenting). Blood agar (smooth, gray, non-hemolytic). **TSI agar:** H2S production (black precipitate), alkaline slant/acid butt (typhi: no gas; non-typhi: gas). **Tests:** Bone marrow culture is most sensitive for typhoid. Blood culture positive in week 1; stool/urine positive in weeks 2-3.",
-        tx: "**Typhoid fever:** ceftriaxone or fluoroquinolone. **Non-typhi gastroenteritis:** supportive; antibiotics only if bacteremic, immunocompromised, or sickle cell. **Osteomyelitis:** fluoroquinolone or ceftriaxone.",
-        pearl: "Sickle cell plus osteomyelitis equals Salmonella. Chronic typhoid carriers harbor the bacteria in the gallbladder ('Typhoid Mary'). Differentiate from Shigella on TSI agar: Salmonella produces H2S (black precipitate) and is motile; Shigella does neither."
+        summary: "H2S+, non-lactose fermenter — intracellular; typhi causes enteric fever (rose spots, Peyer's patches); non-typhi causes diarrhea from eggs/poultry",
+gram: "GN Bacillus (non-lactose fermenter)",
+virulence: "**Survives intracellularly** in macrophages (does not produce urease). Vi capsule in typhi. SPI-1/SPI-2 pathogenicity islands.",
+        disease: "**S. typhi (typhoid/enteric fever):** 'stepladder' fever, rose spots (trunk), hepatosplenomegaly, relative bradycardia, constipation early→ diarrhea. Transmitted fecal-oral (contaminated water). Chronic carrier: gallbladder (bacteremia → bile → feces).
+**Non-typhi Salmonella:** food poisoning — eggs, poultry, pet reptiles.
+**Osteomyelitis in sickle cell disease** (most common cause).",
+        tx: "Typhoid fever: **ceftriaxone or fluoroquinolone** (azithromycin if resistant). Non-typhi gastroenteritis: usually self-limited; antibiotics if bacteremia/immunocompromised.",
+        pearl: "**Sickle cell + osteomyelitis = Salmonella** (most common cause — due to bone infarcts and functional asplenia). Chronic typhoid carrier state: gallbladder colonization → 'Typhoid Mary.'
+**No lactose fermentation** (MacConkey clear);
+**H2S positive** (TSI agar black precipitate). Rose spots: blanching macules on trunk in week 2."
       },
       {
         name: "Shigella",
-        summary: "Non-lactose fermenter, non-motile, no H2S, oxidase negative invasive bloody dysentery; very low infectious dose; Shiga toxin in S. dysenteriae; antibiotics ARE indicated",
-        gram: "GN Bacillus (non-lactose fermenter, non-motile, no H2S)",
-        virulence: "**Invasin proteins** (type III secretion system) invades colonic epithelial cells via M cells in Peyer's patches → spreads cell-to-cell using **actin polymerization**. **Shiga toxin** (S. dysenteriae type 1): inhibits 60S ribosome. Non-motile. Very low infectious dose (10-100 organisms).",
-        disease: "**Bacillary dysentery:** abrupt fever, cramping, tenesmus, **bloody mucoid diarrhea**. Invades colonic epithelium → shallow ulcers. **Complications:** HUS (S. dysenteriae), reactive arthritis (HLA-B27), Shigella encephalopathy (children seizures). No animal reservoir.",
-        lab_diagnosis: "**Culture:** MacConkey agar (**colorless** non-lactose fermenter). **TSI agar:** no H2S, no gas, acid slant/acid butt. **Tests:** Stool smear shows abundant PMNs and RBCs. Non-motile on wet prep (distinguishes from Salmonella). PCR for Shiga toxin gene.",
-        tx: "**Azithromycin or fluoroquinolone** (shortens illness duration and reduces transmission). Antibiotics ARE indicated in Shigella.",
-        pearl: "Shigella = GIVE antibiotics; EHEC = NO antibiotics. Very low infectious inoculum makes it highly contagious in daycares. Shigella is non-motile and does not produce H2S, distinguishing it from Salmonella."
+        summary: "Non-motile, non-H2S, no lactose — invasive bloody dysentery, very low inoculum (10 organisms); Shiga toxin in S. dysenteriae",
+gram: "GN Bacillus (non-lactose fermenter)",
+virulence: "**Invasin** — invades colonic epithelium directly.
+**Shiga toxin** (S. dysenteriae only): inhibits 60S ribosome (same mechanism as EHEC's Shiga-like toxin). No H2S, non-motile, very low ID50 (~10 organisms).",
+        disease: "**Bacillary dysentery:** fever, cramping, tenesmus, bloody mucoid diarrhea. Invades M cells in Peyer's patches → spreads cell-to-cell (actin). Complications: HUS (S. dysenteriae), reactive arthritis (HLA-B27), seizures in children (Shigella encephalopathy).",
+        tx: "**Azithromycin or fluoroquinolone** (shortens duration, reduces spread). Antibiotics ARE indicated (unlike EHEC). Ciprofloxacin for adults.",
+        pearl: "**Key differentiator from EHEC:** Shigella = **give antibiotics**; EHEC = **no antibiotics**. Both cause bloody diarrhea. Shigella: RBCs and WBCs on stool smear. Very low inoculum → easily spread person-to-person (daycare centers, prisons). No animal reservoir (unlike Salmonella)."
       },
       {
         name: "Klebsiella pneumoniae",
-        summary: "Lactose fermenter, mucoid capsule, oxidase negative pneumonia in alcoholics/diabetics (currant jelly sputum, upper lobe); #2 GN UTI; ESBL and KPC resistance strains",
-        gram: "GN Bacillus (lactose fermenter, heavily encapsulated)",
-        virulence: "**Large polysaccharide capsule** (hypermucoviscous antiphagocytic). **ESBL** (extended-spectrum β-lactamase) and **KPC** (Klebsiella pneumoniae carbapenemase) in resistant strains.",
-        disease: "**Pneumonia:** alcoholics, diabetics, and COPD patients lobar or multilobar, tendency for **upper lobe cavitation**. Classic sputum: **'currant jelly' consistency**. **UTI:** #2 gram-negative UTI (catheter-associated). **Liver abscess:** hypervirulent strains (East Asian populations).",
-        lab_diagnosis: "**Culture:** MacConkey agar (large, **mucoid, pink** dome-shaped lactose-fermenting colonies). Blood agar (large, mucoid, gray-white). **Tests:** String test positive in hypervirulent strains (mucoviscous string >5mm when colony touched with loop). Oxidase negative. Gram stain: plump GN rods.",
-        tx: "**Susceptible:** cephalosporins or fluoroquinolones. **ESBL:** carbapenems. **KPC/CRKP:** ceftazidime-avibactam, polymyxin B/colistin.",
-        pearl: "Classic host: alcoholic male with upper lobe cavitary pneumonia and red-brown mucoid 'currant jelly' sputum. The 'string sign' identifies hypervirulent strains capable of causing liver abscesses in otherwise healthy individuals."
+        summary: "Mucoid capsule, currant jelly sputum — pneumonia in alcoholics/diabetics; UTI; #1 nosocomial GN pneumonia",
+gram: "GN Bacillus (lactose fermenter)",
+virulence: "**Large polysaccharide capsule** (mucoid, hyperviscous strains) → antiphagocytic. ESBL/KPC-producing strains (carbapenem-resistant).",
+        disease: "**Pneumonia:** alcoholics, diabetics, COPD — lobar or multilobar, upper lobe cavitation, 'currant jelly sputum' (necrotic mucosa + blood).
+**UTI:** #2 gram-negative UTI after E. coli.
+**Liver abscess** (Klebsiella hypermucoviscous strain — endogenous/hematogenous, esp. in East Asian populations). Nosocomial bloodstream infections.",
+        tx: "Cephalosporins (if susceptible). ESBL: carbapenems. Carbapenem-resistant Klebsiella (KPC): polymyxin B/colistin ± other agents.",
+        pearl: "**Currant jelly sputum** = Klebsiella or Moraxella (rarely). The 'mucoviscosity test' (string sign) for hypervirulent strains. Klebsiella has a **string sign > 5mm** (mucoviscous). UTI in hospitalized patients with urinary catheter: common Klebsiella habitat."
       },
       {
         name: "Enterobacter & Serratia",
-        summary: "Lactose-fermenting nosocomial GN rods UTI, HAP/VAP, bacteremia; AmpC β-lactamase causes resistance to 3rd-generation cephalosporins during treatment; SPACE organisms",
-        gram: "GN Bacillus (lactose fermenter, oxidase negative)",
-        virulence: "**AmpC β-lactamase** (chromosomally encoded, inducible de-repressed during 3rd-gen cephalosporin treatment → resistance emerges on therapy). **Serratia marcescens:** produces **prodigiosin** (red pigment at room temperature). Biofilm formation.",
-        disease: "**Enterobacter:** catheter-associated UTI, HAP/VAP, bacteremia in ICU, wound infections. **Serratia:** nosocomial pneumonia, UTI, right-sided endocarditis in IV drug users. Both dangerous in neonates/immunocompromised.",
-        lab_diagnosis: "**Culture:** MacConkey agar (pink lactose-fermenting colonies). Serratia produces **red/pink pigmentation** on blood agar at room temperature (25°C), but not at 37°C. **Tests:** Oxidase negative. Enterobacter: Voges-Proskauer positive. Serratia: DNase and lipase positive. AmpC disk diffusion testing.",
-        tx: "**Serious infections:** carbapenems or cefepime (4th-gen cephalosporin). **Avoid 3rd-generation cephalosporins** (ceftriaxone, cefotaxime) due to AmpC de-repression ('inoculum effect').",
-        pearl: "Never use 3rd-generation cephalosporins alone for SPACE organisms (Serratia, Pseudomonas, Acinetobacter, Citrobacter, Enterobacter) due to inducible AmpC resistance. Serratia red pigment is seen in lab contamination or room temperature conditions, not typically in patient specimens."
+        summary: "Nosocomial lactose-fermenting GN rods — UTI, pneumonia, bacteremia in hospitalized/immunocompromised; intrinsically resistant to ampicillin; AmpC β-lactamase → resistance emerges on 3rd-gen cephalosporins",
+gram: "GN Bacillus (lactose fermenter)",
+virulence: "**AmpC β-lactamase** (chromosomally encoded, inducible — de-repressed during treatment with 3rd-gen cephalosporins → treatment failure). Serratia: red pigment (prodigiosin) in some strains. Both form biofilms on catheters and ventilators.",
+        disease: "**Enterobacter cloacae/aerogenes:** nosocomial UTI (catheter-associated), hospital-acquired/ventilator-associated pneumonia, bacteremia in ICU patients, wound infections.
+**Serratia marcescens:** nosocomial pneumonia, UTI, endocarditis in IV drug users (right-sided), bacteremia. Red-pigmented colonies or secretions = classic Serratia exam clue. Both particularly dangerous in neonates and immunocompromised patients.",
+        tx: "**Carbapenems** (imipenem, meropenem) for serious infections. Piperacillin-tazobactam or **cefepime** (4th-gen — AmpC-stable) for less severe.
+**Avoid 3rd-gen cephalosporins** (ceftriaxone, cefotaxime) — AmpC derepression causes resistance emergence even if initially susceptible ('inoculum effect').",
+        pearl: "**SPACE** organisms = classic chromosomal AmpC producers: **S**erratia, **P**seudomonas, **A**cinetobacter, **C**itrobacter, **E**nterobacter.
+**Serratia red pigment** (prodigiosin) is produced at room temperature, not 37°C — so infections are rarely visibly red in vivo, but a classic board clue in lab/environmental contamination scenarios. Intrinsic ampicillin resistance = no role for penicillin G or ampicillin."
       },
       {
         name: "Helicobacter pylori",
-        summary: "Urease+, oxidase+, microaerophilic curved GN rod #1 cause of peptic ulcer disease and MALT lymphoma; associated with gastric adenocarcinoma; treat with triple or quadruple therapy",
-        gram: "GN Bacillus (curved, spiral, microaerophilic)",
-        virulence: "**Urease** (produces NH3 → neutralizes gastric acid). **CagA** (cytotoxin-associated antigen disrupts tight junctions, linked to cancer). **VacA** (vacuolating cytotoxin forms pores). Flagella (corkscrew motility in mucous layer).",
-        disease: "**Peptic ulcer disease:** antral gastritis → **duodenal ulcer** (most common); pangastritis → **gastric ulcer**. **Gastric adenocarcinoma** (intestinal type). **MALT lymphoma** (marginal zone B-cell lymphoma may completely regress with H. pylori eradication).",
-        lab_diagnosis: "**Tests:** Urea breath test (detects active infection; preferred for post-treatment confirmation). Stool antigen test. **Biopsy:** CLO test (rapid urease test on biopsy yellow-to-pink color change = positive). Histology: Giemsa or Warthin-Starry stain shows curved/seagull-shaped GN rods. **Culture:** microaerophilic at 37°C (slow-growing, rarely done).",
-        tx: "**Triple therapy (14 days):** PPI + clarithromycin + amoxicillin (or metronidazole). **Quadruple therapy:** PPI + bismuth + metronidazole + tetracycline. Confirm eradication ≥4 weeks after therapy.",
-        pearl: "Always confirm eradication with a urea breath test or stool antigen; IgG serology remains elevated for months and cannot confirm cure. Eradication alone cures the majority of localized gastric MALT lymphomas. Stop PPIs 2 weeks before testing to avoid false negatives."
+        summary: "Urease-positive, microaerophilic, curved rod — #1 cause of peptic ulcer disease and gastric cancer/MALT lymphoma",
+gram: "GN Bacillus (curved, microaerophilic)",
+virulence: "**Urease** (produces NH3 → alkalinizes microenvironment → survives gastric pH)
+**CagA** (cytotoxin-associated antigen — injected into cells, disrupts tight junctions, associated with malignancy)
+VacA (vacuolating cytotoxin)
+Flagella.",
+        disease: "**Peptic ulcer disease:** antral gastritis → duodenal ulcer; body gastritis → gastric ulcer.
+**Gastric adenocarcinoma** (intestinal type — most common).
+**MALT lymphoma** (marginal zone B-cell — may regress with H. pylori eradication). Achlorhydria in chronic/severe cases.",
+        tx: "**Triple therapy:** PPI + clarithromycin + amoxicillin × 14 days.
+**Quadruple therapy** if clarithromycin resistance suspected: PPI + bismuth + metronidazole + tetracycline. Confirm eradication: **urea breath test** or stool antigen test (not serology — IgG stays elevated).",
+        pearl: "**Diagnosis:** urea breath test (active infection, non-invasive), stool antigen (active), serology (not useful for eradication confirmation), endoscopic biopsy with rapid urease test (CLOtest).
+**Test of cure:** urea breath test or stool antigen — wait 4 weeks post-treatment, hold PPI.
+**MALT lymphoma** may regress completely with antibiotics — H. pylori eradication is first-line treatment."
       },
       {
         name: "Pseudomonas aeruginosa",
-        summary: "Oxidase+, non-lactose fermenter, blue-green pigment, fruity odor CF lung disease, burns, nosocomial pneumonia, hot tub folliculitis, malignant otitis externa",
-        gram: "GN Bacillus (non-lactose fermenter, oxidase positive, aerobic)",
-        virulence: "**Exotoxin A** (ADP-ribosylates EF-2 → halts protein synthesis). **Pyocyanin** (blue-green pigment generates ROS). **Alginate** (biofilm in CF lungs). **Phospholipase C.** **Elastase.** Type III secretion system.",
-        disease: "**CF patients:** chronic mucoid lung colonization → respiratory failure. **Burns:** wound infection → sepsis. **Malignant (necrotizing) otitis externa:** elderly diabetics (ear pain, granulation tissue at canal floor). **Hot tub folliculitis.** **Nosocomial:** VAP, UTI. **Ecthyma gangrenosum:** hemorrhagic skin lesions in bacteremic neutropenic patients.",
-        lab_diagnosis: "**Culture:** Blood/MacConkey agar (flat, spreading, **blue-green** colonies, **colorless** on MacConkey). Mucoid colonies in CF isolates. Cetrimide agar (selective). **Characteristics:** **Oxidase positive**, **fruity grape-like odor**, grows at **42°C**. Pigments: pyocyanin (blue-green) + pyoverdin (fluorescent yellow-green).",
-        tx: "**Antipseudomonal β-lactam** (piperacillin-tazobactam, cefepime, meropenem) ± aminoglycoside. **Ciprofloxacin** (oral antipseudomonal). Intrinsically resistant to ampicillin, first-gen cephalosporins, and TMP-SMX.",
-        pearl: "Malignant otitis externa (granulation tissue at the bony-cartilaginous junction in a diabetic) equals Pseudomonas until proven otherwise. Ecthyma gangrenosum presents as black necrotic skin lesions in neutropenic patients due to Pseudomonas vascular invasion. Exotoxin A shares the exact mechanism of Diphtheria toxin."
+        summary: "Oxidase+, non-fermenter, aerobic, grape-like odor, blue-green pigment — CF lungs, burns, nosocomial, hot tub folliculitis; intrinsically resistant",
+gram: "GN Bacillus (non-fermenter)",
+virulence: "**Exotoxin A** (ADP-ribosylates EF-2 — same mechanism as diphtheria toxin). Alginate biofilm (CF). Pyocyanin (blue-green pigment, generates ROS). Pyoverdine (siderophore). Elastase, proteases.",
+        disease: "**CF patients:** mucoid strains in lung (alginate biofilm) → progressive obstructive disease.
+**Burns:** #1 cause of death in burn patients.
+**Nosocomial:** ventilator-associated pneumonia, catheter-associated UTI.
+**Osteomyelitis:** puncture wounds through rubber-soled shoes (sneakers).
+**Hot tub folliculitis** (skin rash after hot tub exposure).
+**Ecthyma gangrenosum:** necrotic skin ulcer in neutropenic patients (pathognomonic).",
+        tx: "**Anti-pseudomonal penicillins** (pip-tazo), cefepime, ceftazidime, carbapenems (NOT ertapenem), fluoroquinolones, aztreonam, aminoglycosides. Often requires **combination therapy.** Intrinsic resistance to most β-lactams, narrow spectrum agents.",
+        pearl: "**Ecthyma gangrenosum** in neutropenic patient = pathognomonic for Pseudomonas bacteremia.
+**Exotoxin A = same as diphtheria toxin mechanism** (ADP-ribosylates EF-2). 'You need a specific anti-pseudomonal agent — cefazolin won't cut it.' Osteomyelitis after nail through sneaker = Pseudomonas (not Staph)."
       },
       {
         name: "Yersinia enterocolitica",
-        summary: "Non-lactose fermenter, cold-tolerant contaminated pork/milk; mesenteric adenitis mimics appendicitis; bloody diarrhea; reactive arthritis; grows at 4°C",
-        gram: "GN Bacillus (non-lactose fermenter, motile at 25°C, non-motile at 37°C)",
-        virulence: "**Ail and YadA** (invade M cells in Peyer's patches → mesenteric lymph nodes). **Yops:** type III secretion system, inhibit phagocytosis. Grows at **4°C** (cold enrichment). Urease positive.",
-        disease: "**Enterocolitis:** fever, abdominal pain, watery/bloody diarrhea (contaminated pork, chitterlings, unpasteurized milk). **Mesenteric adenitis:** RLQ pain + fever mimicking appendicitis. **Reactive arthritis:** HLA-B27-associated. **Bacteremia** in patients with iron overload (hemochromatosis).",
-        lab_diagnosis: "**Culture:** CIN agar (selective, 'bullseye' colonies with red center and translucent border). MacConkey (colorless). Cold enrichment (incubate at 4°C for 2-3 weeks to increase yield). **Tests:** Motile at 25°C, non-motile at 37°C. Urease positive.",
-        tx: "**Gastroenteritis:** usually supportive. **Severe/bacteremia:** TMP-SMX, ciprofloxacin, or ceftriaxone. Reactive arthritis: NSAIDs.",
-        pearl: "RLQ pain and fever mimicking appendicitis in a child with recent pork consumption or animal exposure suggests Yersinia mesenteric adenitis. Iron overload states (hemochromatosis, deferoxamine) drastically increase susceptibility to Yersinia bacteremia because the organism is siderophilic."
+        summary: "GN rod from undercooked pork/contaminated milk — bloody diarrhea mimicking Crohn's, pseudoappendicitis (mesenteric adenitis); cold-enrichment growth",
+gram: "GN Rod (facultative anaerobe)",
+virulence: "**Invasin** (enters Peyer's patches M cells).
+**Yersiniabactin** siderophore (iron acquisition). Resists complement. Grows at **4°C** (cold enrichment — like Listeria). Urease positive.",
+        disease: "**Enterocolitis:** fever, bloody diarrhea, RLQ pain — mimics Crohn's disease or appendicitis. Classic: **pseudoappendicitis** (mesenteric adenitis — RLQ pain with normal appendix). Infants: bacteremia.
+**Post-infectious:** reactive arthritis (HLA-B27 associated), erythema nodosum, thyroiditis.",
+        tx: "Mild: supportive. Severe/bacteremia: fluoroquinolones or TMP-SMX. Resistant to penicillins.",
+        pearl: "**Pseudoappendicitis:** child with RLQ pain, fever — operated on for presumed appendicitis, appendix is normal, mesenteric nodes are enlarged (mesenteric adenitis = Yersinia). Source: undercooked pork, contaminated milk/water, household pets.
+**Post-infectious sequelae:** reactive arthritis = classic triad (urethritis + conjunctivitis + arthritis, 'can't pee, can't see, can't climb a tree')."
       },
       {
         name: "Campylobacter jejuni",
-        summary: "Oxidase+, GN curved rod #1 bacterial gastroenteritis in US; undercooked poultry; associated with Guillain-Barré syndrome and reactive arthritis",
-        gram: "GN Bacillus (curved, comma-shaped or 'seagull' morphology, oxidase positive)",
-        virulence: "**Flagella** (corkscrew motility for epithelial invasion). **Cytolethal distending toxin (CDT)**. **LOS (lipooligosaccharide):** molecular mimicry with host ganglioside GM1 → Guillain-Barré syndrome. Invades colonic lamina propria.",
-        disease: "**Gastroenteritis** (#1 bacterial cause in US): watery diarrhea → bloody, mucoid, foul-smelling diarrhea + fever + cramping (undercooked poultry, puppies/kittens). **Guillain-Barré syndrome:** 2-4 weeks post-infection (ascending paralysis). **Reactive arthritis:** HLA-B27-associated.",
-        lab_diagnosis: "**Culture:** Campy-BAP or Skirrow medium at **42°C** (thermophilic, small, gray, spreading colonies). **Gram stain:** characteristic **comma-shaped or seagull** GN rods. **Tests:** Oxidase positive. Darting corkscrew motility on wet prep. Rapid antigen or PCR for stool.",
-        tx: "**Self-limited** mostly. **Antibiotics:** azithromycin (preferred due to rising fluoroquinolone resistance) for severe/prolonged cases.",
-        pearl: "Campylobacter is the most common infectious trigger for Guillain-Barré syndrome. Isolation requires incubation at 42°C (Campylobacter likes it hot). Undercooked poultry is the classic exposure."
+        summary: "Most common bacterial cause of diarrhea in the US — undercooked poultry, comma/S-shaped GN rod, oxidase+; associated with Guillain-Barré and reactive arthritis",
+gram: "GN Curved Rod (S-shaped or comma-shaped)",
+virulence: "**Flagella** (motility, colonization).
+**Cytolethal distending toxin** (CDT). Survives gastric acid. Grows at **42°C** (thermophilic — selective culture condition). Oxidase positive.",
+        disease: "**Acute gastroenteritis:** fever, bloody diarrhea, crampy abdominal pain (can mimic IBD or appendicitis).
+**Post-infectious:**
+**Guillain-Barré syndrome** (GBS) — molecular mimicry: C. jejuni lipooligosaccharide mimics gangliosides (GM1) → autoimmune demyelination 1–4 weeks post-infection.
+**Reactive arthritis** (HLA-B27).
+**Miller Fisher syndrome** (variant of GBS: ophthalmoplegia, ataxia, areflexia).",
+        tx: "Most self-limited (5–7 days). Severe/bacteremia: **azithromycin** (first-line) or fluoroquinolones (increasing resistance). Do NOT use fluoroquinolones empirically.",
+        pearl: "**#1 bacterial cause of diarrhea** in the US.
+**Guillain-Barré** is the critical Step 1 association — ascending flaccid paralysis 1–4 weeks after bloody diarrhea → think Campylobacter as trigger. Grows at 42°C on Skirrow's (selective) media.
+**Comma-shaped GN rod = Campylobacter** (and Vibrio cholerae). Poultry is the primary reservoir."
       },
       {
         name: "Vibrio cholerae",
-        summary: "Oxidase+, GN curved rod rice-water diarrhea via cholera toxin (↑cAMP); ORS is cornerstone of treatment; fecal-oral from contaminated water",
-        gram: "GN Bacillus (curved, comma-shaped, oxidase positive)",
-        virulence: "**Cholera toxin (CT):** A-B toxin ADP-ribosylates Gsα → permanently activates adenylyl cyclase → ↑↑cAMP → opens CFTR chloride channel → massive Cl- and water secretion. **TCP (toxin-coregulated pili):** colonization factor. Non-invasive.",
-        disease: "**Cholera:** profuse **rice-water diarrhea** (10-20 L/day) + vomiting → rapid severe dehydration, hypovolemic shock, metabolic acidosis, hypokalemia. No blood or WBCs in stool. Fecal-oral (contaminated water/shellfish).",
-        lab_diagnosis: "**Culture:** TCBS agar (large, **yellow, flat** colonies due to sucrose fermentation). Blood agar (flat, gray, β-hemolytic). **Gram stain:** curved GN rods with single polar flagellum. **Tests:** Oxidase positive. Darkfield microscopy shows 'shooting star' darting motility.",
-        tx: "**ORS (oral rehydration solution)** cornerstone (glucose cotransports Na+ via SGLT1 despite CFTR activation). IV fluids (Ringer's lactate) for severe hypovolemia. **Doxycycline** reduces shedding and duration.",
-        pearl: "Cholera toxin permanently activates Gsα (increases cAMP), while pertussis toxin permanently inactivates Giα (also increases cAMP). ORS is effective because the SGLT1 glucose-sodium cotransporter remains intact and bypasses the defective chloride channel. V. vulnificus causes severe wound infections and sepsis in patients with liver disease after raw oyster exposure."
+        summary: "Comma-shaped GN rod — rice-water diarrhea, massive secretory diarrhea without invasion; cholera toxin activates Gs → permanent ↑cAMP; treat with ORS + doxycycline",
+gram: "GN Curved Rod (comma-shaped)",
+virulence: "**Cholera toxin (CT):** A subunit ADP-ribosylates Gs → permanently activates adenylyl cyclase → ↑↑cAMP → CFTR chloride channel open → massive Cl⁻/water secretion into lumen. No mucosal invasion (non-invasive).",
+        disease: "**Cholera:** profuse **rice-water diarrhea** (10–20 L/day) + vomiting → rapid dehydration, hypovolemic shock, metabolic acidosis, hypokalemia. No blood, no WBCs (non-invasive). Endemic in developing countries; epidemic outbreaks (Haiti 2010). Fecal-oral (contaminated water/shellfish).",
+        tx: "**ORS (oral rehydration solution)** = cornerstone (WHO formula: glucose + NaCl + KCl + NaHCO₃). IV fluids for severe cases.
+**Doxycycline** (reduces duration and shedding). Vaccine available.",
+        pearl: "**Cholera toxin = permanently active Gs** (same mechanism as pertussis toxin is permanently active Gi — they are opposites). Rice-water diarrhea = massive, watery, NO blood, NO WBCs.
+**ORS works because** glucose co-transports Na⁺ via SGLT1 even when adenylyl cyclase is maximally active. V. vulnificus: different species — raw oysters → severe wound infection/sepsis in liver disease patients."
       },
       {
         name: "Proteus mirabilis",
-        summary: "Urease+, swarming motility, non-lactose fermenter UTI with struvite (staghorn) kidney stones from alkaline urine; intrinsically resistant to nitrofurantoin",
-        gram: "GN Bacillus (non-lactose fermenter, urease positive, highly motile)",
-        virulence: "**Urease** (hydrolyzes urea → NH3 → alkaline urine → struvite/magnesium ammonium phosphate crystal precipitation → kidney stones). **Swarming motility** (flagella).",
-        disease: "**UTI:** complicated UTIs in catheterized patients. Urine pH is consistently alkaline (>7.0). **Struvite kidney stones (staghorn calculi):** fill entire renal pelvis, radiopaque. Stones harbor bacteria leading to recurrent UTI.",
-        lab_diagnosis: "**Culture:** Blood agar shows **swarming growth** (concentric rings/waves spreading across plate). CLED agar inhibits swarming for colony counting. MacConkey agar (colorless non-fermenter). **Tests:** Urease positive (rapid). Indole negative. Urinalysis: Alkaline pH >7.",
-        tx: "**TMP-SMX or fluoroquinolones**. **Intrinsically resistant** to nitrofurantoin and tetracycline. Surgical removal or lithotripsy required for staghorn calculi.",
-        pearl: "Urease positive + alkaline urine + staghorn calculi = Proteus. Nitrofurantoin does NOT work against Proteus. The swarming motility on blood agar is highly distinctive."
+        summary: "Urease+, swarming motility — UTI with struvite kidney stones (staghorn calculi), alkaline urine; associated with long-term catheter use",
+gram: "GN Rod (lactose non-fermenter, urease+)",
+virulence: "**Urease** (splits urea → ammonia → alkaline urine → struvite precipitation).
+**Swarming motility** (concentric rings on agar plate). Fimbriae for uroepithelial attachment. Flagella.",
+        disease: "**UTI:** complicated UTIs in catheterized patients, hospital-acquired.
+**Struvite (magnesium ammonium phosphate) kidney stones = staghorn calculi** — fill renal pelvis; form because alkaline urine from urease activity causes precipitation. Rarely: wound infections, bacteremia.",
+        tx: "TMP-SMX or fluoroquinolones. Intrinsically resistant to tetracycline and nitrofurantoin. Surgical removal/lithotripsy for staghorn calculi.",
+        pearl: "**Urease + alkaline urine + struvite stones = Proteus** (also Klebsiella, Pseudomonas, Staph saprophyticus — but Proteus is the classic).
+**Staghorn calculi** fill the renal pelvis — visible on plain X-ray (radiopaque). Nitrofurantoin does NOT work against Proteus. 'Proteus = the shapeshifter (swarming motility) with stone-forming urine.'"
       }
     ]
   },
   {
-    group: "Gram-Negative Bacilli - Respiratory",
+    group: "Gram-Negative Bacilli – Respiratory",
     color: "bact",
     organisms: [
       {
         name: "Haemophilus influenzae",
-        summary: "GN coccobacillus requiring factors X (hemin) and V (NAD) grows on chocolate agar only; Hib causes epiglottitis, meningitis; non-typeable causes otitis media/COPD exacerbations",
-        gram: "GN Coccobacillus (pleomorphic, small)",
-        virulence: "**Polyribitol phosphate (PRP) capsule** (type b most virulent serotype; prevented by Hib conjugate vaccine). **IgA protease.** Requires **factor X (hemin)** and **factor V (NAD)** from lysed RBCs for growth.",
-        disease: "**Hib (type b, unvaccinated):** epiglottitis (drooling, stridor, tripod position, 'cherry-red epiglottis,' thumb sign on lateral neck X-ray), meningitis, bacteremia. **Non-typeable H. influenzae (NTHi):** otitis media (#1 cause in children along with S. pneumoniae), sinusitis, COPD exacerbations.",
-        lab_diagnosis: "**Culture:** **Chocolate agar** (grows small, gray, translucent colonies because X and V factors are provided). Does NOT grow on standard blood agar unless adjacent to S. aureus (**Satellite phenomenon** S. aureus releases NAD/V factor via β-hemolysis). **Gram stain:** tiny pleomorphic GN coccobacilli. Quelling reaction for capsule typing.",
-        tx: "**Epiglottitis:** secure airway first in OR, then **ceftriaxone** IV. **Otitis/sinusitis:** amoxicillin-clavulanate. **Rifampin prophylaxis** for household contacts of Hib invasive disease. **Vaccine:** Hib conjugate given at 2, 4, 6, 12-15 months.",
-        pearl: "Epiglottitis management trap: Do NOT examine the throat of a child with suspected epiglottitis, as it may trigger complete airway obstruction. Send directly to the OR. The satellite phenomenon around S. aureus streaks on blood agar is a classic lab identifier for H. influenzae."
+        summary: "Requires factors X + V (chocolate agar) — epiglottitis (type b, unvaccinated), otitis, meningitis; β-lactamase resistance common",
+gram: "GN Coccobacillus",
+virulence: "**Polyribitol phosphate (PRP) capsule** (type b — most virulent, prevented by Hib vaccine). IgA protease.",
+        disease: "**Hib (type b, unvaccinated):** epiglottitis ('cherry red epiglottis,' tripod position, thumb sign on lateral neck X-ray), meningitis, pneumonia, bacteremia, septic arthritis.
+**Unencapsulated (non-typeable):** otitis media (#1 bacterial cause in kids along with S. pneumoniae), sinusitis, COPD exacerbations.",
+        tx: "Epiglottitis: secure airway first (intubation in OR), then **ceftriaxone**. Meningitis: ceftriaxone. Otitis/sinusitis: amoxicillin-clavulanate.
+**Hib vaccine** (conjugate) dramatically reduced invasive disease.",
+        pearl: "**Chocolate agar** required (X factor = hemin, V factor = NAD — released by RBC lysis).
+**Satellite phenomenon:** H. influenzae grows around S. aureus colonies (which provide NAD). Epiglottitis: **do not examine throat** (may cause complete obstruction) → take to OR. Thumb sign on lateral neck XR."
       },
       {
         name: "Bordetella pertussis",
-        summary: "GN coccobacillus, obligate aerobe whooping cough; pertussis toxin (↑cAMP, lymphocytosis); grows on Bordet-Gengou agar; treat with azithromycin in catarrhal phase",
-        gram: "GN Coccobacillus (small, obligate aerobe, encapsulated)",
-        virulence: "**Pertussis toxin (PT):** ADP-ribosylates Giα → blocks Gi → ↑cAMP → impairs phagocyte killing + causes **lymphocytosis** (blocks lymphocyte migration from lymph nodes). **Filamentous hemagglutinin (FHA):** adherence. **Tracheal cytotoxin:** kills ciliated cells.",
-        disease: "**Catarrhal phase (1-2 weeks):** mild URI symptoms, highly infectious. **Paroxysmal phase (2-6 weeks):** severe paroxysmal cough → inspiratory 'whoop' → post-tussive emesis. **Convalescent phase:** gradually resolving. **Infants <6 months:** high risk of apnea (no classic whoop).",
-        lab_diagnosis: "**Tests:** CBC shows marked **lymphocytosis** (WBC 20k-50k with >80% lymphocytes). PCR of nasopharyngeal swab is most sensitive. **Culture:** Bordet-Gengou agar or Regan-Lowe charcoal agar (small, shiny, silver-gray 'mercury drop' or 'bisected pearl' colonies).",
-        tx: "**Azithromycin** (most effective in catarrhal phase to reduce transmission; does not shorten paroxysmal phase). **Prevention:** DTaP primary series + **Tdap booster** (including pregnant women at 27-36 weeks).",
-        pearl: "Absolute lymphocytosis in a patient with a paroxysmal cough is the hallmark of pertussis toxin activity blocking lymphocyte tissue entry. Infants under 6 months often present with life-threatening apnea rather than a 'whoop'. Azithromycin is given to prevent transmission, not to cure the cough once the paroxysmal phase begins."
+        summary: "Whooping cough — catarrhal/paroxysmal/convalescent; toxin ↑cAMP, ↑lymphocytes; treat with azithromycin in catarrhal phase",
+gram: "GN Coccobacillus (small, intracellular)",
+virulence: "**Pertussis toxin** (A-B, ADP-ribosylates Gi protein → ↑cAMP → impairs phagocyte killing, causes lymphocytosis).
+**Filamentous hemagglutinin (FHA):** adherence to cilia. Tracheal cytotoxin (kills ciliated cells).",
+        disease: "**3 stages:** (1)
+**Catarrhal** (1–2 weeks): most infectious, mild URI, low fever. (2)
+**Paroxysmal** (2–6 weeks): severe paroxysmal cough → inspiratory 'whoop' → post-tussive vomiting — **lymphocytosis** (pertussis toxin). (3)
+**Convalescent**: weeks of resolving cough. Complications: subconjunctival hemorrhage, pneumonia, apnea in infants (can be fatal — no whoop in infants).",
+        tx: "**Azithromycin** (or erythromycin, TMP-SMX) — effective in catarrhal phase; reduces infectivity in paroxysmal. Prevention:
+**DTaP** series +
+**Tdap** booster (pregnant women, healthcare workers).",
+        pearl: "**Lymphocytosis** (atypical lymphocytes, high WBC 20,000–50,000 with >80% lymphocytes) is a classic clue. Culture on
+**Bordet-Gengou (BG) agar** (charcoal-blood agar) — forms 'mercury drop' colonies. Pertussis toxin inhibits Gi → ↑cAMP."
       },
       {
         name: "Legionella pneumophila",
-        summary: "Weakly GN, oxidase+, aerobic atypical pneumonia with extrapulmonary features (hyponatremia, diarrhea, confusion); air conditioning/water source; grows on BCYE agar",
-        gram: "GN Bacillus (weakly staining; requires silver/Gimenez stain in tissue)",
-        virulence: "**Obligate intracellular** pathogen of alveolar macrophages. **Type IV secretion system** prevents phagosome-lysosome fusion. Lives in biofilms in water systems (cooling towers, hospital water, hot tubs). Requires **L-cysteine** for growth.",
-        disease: "**Legionnaires disease:** severe atypical pneumonia + **hyponatremia** (SIADH), watery diarrhea, confusion, elevated LFTs. Incubation 2-10 days. Source: cooling towers, decorative fountains. **No person-to-person transmission**. **Pontiac fever:** self-limited flu-like illness without pneumonia.",
-        lab_diagnosis: "**Tests:** **Urine antigen test** (rapid, highly sensitive for serogroup 1). **Culture:** **BCYE agar** (requires L-cysteine and iron; gray-white 'cut-glass' colonies). **Histology:** Silver stain (Dieterle) demonstrates brown-black GN rods in tissue invisible on routine Gram stain. Oxidase positive.",
-        tx: "**Azithromycin** or **fluoroquinolone** (levofloxacin/moxifloxacin). β-lactams are ineffective (intracellular organism).",
-        pearl: "Severe pneumonia plus hyponatremia and diarrhea in an older male after hotel stay or hospital exposure is Legionnaires disease. BCYE agar requires L-cysteine. No person-to-person transmission means clusters point to a common environmental source."
+        summary: "Atypical pneumonia — air conditioning/water towers, hyponatremia, no person-to-person spread; silver stain, BCYE agar",
+gram: "GN Bacillus (weakly, Dieterle silver stain)",
+virulence: "**Intracellular parasite** of alveolar macrophages. Dot/Icm type IV secretion system — prevents phagosome-lysosome fusion. Lives in biofilms in water systems.",
+        disease: "**Legionnaires' disease:** severe pneumonia with extrapulmonary features — **hyponatremia** (SIADH), diarrhea, confusion, elevated LFTs, hematuria. Incubation 2–10 days. Source: cooling towers, hot water systems, hospital water.
+**No person-to-person transmission.** Pontiac fever: mild flu-like illness without pneumonia.",
+        tx: "**Azithromycin** (drug of choice) or fluoroquinolone. β-lactams ineffective (intracellular organism).",
+        pearl: "**Classic triad:** pneumonia + hyponatremia + diarrhea in an elderly male hotel guest (or after hospital water exposure).
+**Diagnosis:** urine antigen test (serogroup 1 — most sensitive/specific for L. pneumophila sg 1). Culture:
+**BCYE agar** (buffered charcoal yeast extract — supplemented with L-cysteine and iron). Gram stain often negative — use **silver stain or DFA.** No person-to-person spread (clusters = common source outbreak)."
       }
     ]
   },
   {
-    group: "Gram-Negative Bacilli - Zoonotic",
+    group: "Gram-Negative Bacilli – Zoonotic",
     color: "bact",
     organisms: [
       {
         name: "Bartonella henselae",
-        summary: "GN intracellular rod cat scratch disease; bacillary angiomatosis in HIV (vascular skin lesions mimicking KS); Warthin-Starry stain",
-        gram: "GN Rod (small, intracellular, Warthin-Starry silver stain for tissue)",
-        virulence: "Intracellular pathogen of erythrocytes and endothelial cells. **Angiogenic factors** (VEGF upregulation → bacillary angiomatosis). Transmitted by **cat scratch/bite** or inoculation of cat flea feces.",
-        disease: "**Cat scratch disease (immunocompetent):** papule at scratch site → **tender regional lymphadenopathy** (axillary, cervical). **Bacillary angiomatosis (immunocompromised/HIV):** vascular proliferative skin lesions (red-purple papules/nodules). **Peliosis hepatis:** blood-filled hepatic cysts.",
-        lab_diagnosis: "**Histology/Biopsy:** **Warthin-Starry silver stain** reveals small, pleomorphic GN rods in clumps within endothelial cells and macrophages (invisible on routine Gram stain). Lymph node shows stellate granulomas. **Tests:** Serology (IFA IgG), PCR on tissue. Culture is rarely done (requires ≥4 weeks on blood agar).",
-        tx: "**Cat scratch disease:** azithromycin for moderate/severe LAD (mild is self-limited). **Bacillary angiomatosis/Peliosis hepatis:** doxycycline or erythromycin (prolonged course).",
-        pearl: "Bacillary angiomatosis mimics Kaposi's sarcoma in HIV patients but is bacterial and highly treatable with antibiotics. Warthin-Starry silver stain is required to visualize the organism in tissue."
+        summary: "Cat scratch disease — regional lymphadenopathy after cat scratch/bite; bacillary angiomatosis in HIV; treat mild cases conservatively",
+gram: "GN Rod (intracellular, Warthin-Starry silver stain)",
+virulence: "Intracellular — infects erythrocytes and endothelial cells. Angiogenic factors (bacillary angiomatosis). Transmitted by **cat scratch/bite** or cat flea feces inoculated into wound.",
+        disease: "**Cat scratch disease (immunocompetent):** papule at scratch site → **tender regional lymphadenopathy** (axillary, cervical) that may suppurate; self-limited 2–4 months; low-grade fever.
+**Bacillary angiomatosis (HIV/immunocompromised):** vascular proliferative skin lesions (resembling Kaposi's sarcoma — but bacteria-caused); can involve liver (peliosis hepatis), spleen, bone marrow.
+**Trench fever:** B. quintana (louse-borne).",
+        tx: "Cat scratch disease: usually **self-limited** (no antibiotics). Severe/lymphadenitis: azithromycin.
+**Bacillary angiomatosis:** **doxycycline or erythromycin** (long course in HIV).",
+        pearl: "**Cat scratch disease** = child + tender lymphadenopathy + history of cat contact. Warthin-Starry silver stain shows pleomorphic GN rods in tissue.
+**Bacillary angiomatosis** looks like Kaposi's sarcoma but is **bacterial** (treatable with antibiotics). Peliosis hepatis (blood-filled hepatic cysts) = B. henselae in HIV."
       },
       {
         name: "Brucella species",
-        summary: "GN coccobacillus, obligate intracellular undulant (relapsing) fever, arthralgia, hepatosplenomegaly; unpasteurized dairy, farm animals; BSL-3 lab hazard",
-        gram: "GN Coccobacillus (small, intracellular, aerobic)",
-        virulence: "Obligate intracellular pathogen survives in macrophages. **Smooth LPS** inhibits complement activation. B. melitensis (goats), B. abortus (cattle), B. suis (pigs). Routes: unpasteurized dairy, aerosolized bacteria (lab hazard), skin contact.",
-        disease: "**Brucellosis (undulant fever):** insidious onset **undulating (relapsing) fever**, profound malaise, arthralgia, night sweats, hepatosplenomegaly. **Complications:** sacroiliitis, osteomyelitis, epididymo-orchitis.",
-        lab_diagnosis: "**Tests:** Blood cultures (positive in 50-70%; **BSL-3 precautions required**). Bone marrow culture is most sensitive. Serology: standard tube agglutination test (SAT) titer ≥1:160 diagnostic. **Culture:** Blood agar (small, smooth, translucent colonies after 48-72h or longer). Gram stain: small, faint GN coccobacilli. Oxidase/urease positive.",
-        tx: "**Doxycycline + rifampin × 6 weeks** or **doxycycline + streptomycin** for severe/complicated cases.",
-        pearl: "Undulant (relapsing) fever with exposure to unpasteurized goat cheese or farm animals is the classic Brucella vignette. Always notify the lab when ordering culture, as aerosolization during processing poses a major BSL-3 risk."
+        summary: "Undulant fever — zoonosis from farm animals/unpasteurized dairy; intracellular, aerobic; classic undulating fever, arthralgia, hepatosplenomegaly; treat doxycycline + rifampin",
+gram: "GN Coccobacillus (intracellular)",
+virulence: "Intracellular pathogen — survives in macrophages. Smooth LPS (resists complement). Infects via mucous membranes, skin breaks, ingestion (unpasteurized), inhalation (lab hazard).",
+        disease: "**Brucellosis (undulant fever):** insidious onset — **undulating (relapsing) fever**, malaise, arthralgia, night sweats, hepatosplenomegaly, lymphadenopathy. Chronic complications: sacroiliitis, osteomyelitis, epididymo-orchitis, endocarditis, neurobrucellosis. Reservoirs: cattle (B. abortus), pigs (B. suis), goats/sheep (B. melitensis), dogs (B. canis).",
+        tx: "**Doxycycline + rifampin × 6 weeks** (adults). Doxycycline + streptomycin (severe). Long treatment required to prevent relapse.",
+        pearl: "**Undulant fever** = Brucella (the textbook buzzword). Exposure: farm workers, veterinarians, abattoir workers, consumption of unpasteurized cheese/milk.
+**Bioterrorism potential** agent (Category B). Lab workers at risk — culture generates aerosols → BSL-3 precautions. Rose spots and splenomegaly also seen in typhoid (Salmonella) — distinguish by exposure history."
       },
       {
         name: "Francisella tularensis",
-        summary: "GN coccobacillus tularemia; ultra-low infectious dose; tick/rabbit exposure; ulceroglandular form most common; pneumonic form severe; Category A bioterrorism agent",
-        gram: "GN Coccobacillus (very small, faint, obligate intracellular)",
-        virulence: "**Extremely low infectious dose** (10-50 organisms). Obligate intracellular survives in macrophages. Vector: Dermacentor/Amblyomma ticks, deer flies; direct contact with rabbits. BSL-3 pathogen.",
-        disease: "**Ulceroglandular (most common):** skin ulcer with raised edges at inoculation site + painful regional lymphadenopathy. **Pneumonic (most severe):** from inhalation, high mortality. **Typhoidal:** septicemic.",
-        lab_diagnosis: "**Tests:** Serology (microagglutination titer ≥1:160). PCR on tissue/ulcer swab. **Culture:** Requires **cysteine-glucose-blood agar** or chocolate agar (small, gray, opaque colonies under **BSL-3 conditions**). Generate infectious aerosols during lab processing. Gram stain shows faint GN coccobacilli.",
-        tx: "**Streptomycin or gentamicin** (first-line). Doxycycline or ciprofloxacin as alternatives.",
-        pearl: "A rabbit handler or individual with a tick bite presenting with a skin ulcer and profound regional lymphadenopathy has Tularemia. Tularemia has the lowest known infectious dose of any bacterium. Never send a culture without notifying the lab of a BSL-3 hazard."
+        summary: "Tularemia — tick/rabbit/deer fly exposure; ulceroglandular form most common; highly infectious, aerosol risk, bioterrorism agent; treat gentamicin or streptomycin",
+gram: "GN Coccobacillus (small, intracellular)",
+virulence: "Extremely **low infectious dose** (10 organisms can cause disease). Intracellular — survives in macrophages. Capsule. BSL-3 agent. Tick vector (Dermacentor), deer flies, direct contact with rabbits.",
+        disease: "**Ulceroglandular (most common 75–80%):** skin ulcer at inoculation site + regional lymphadenopathy.
+**Oculoglandular:** conjunctivitis + periauricular LAD.
+**Typhoidal:** septicemic — no skin lesion, high fever, possible pneumonia.
+**Pneumonic:** most severe — from inhalation (lab exposure, bioterrorism); high mortality if untreated.",
+        tx: "**Gentamicin or streptomycin** (aminoglycosides — first-line).
+**Doxycycline** (alternative, higher relapse rate).
+**Ciprofloxacin** (alternative). Prolonged treatment (14 days).",
+        pearl: "**Rabbit handler + skin ulcer + swollen lymph nodes = Tularemia.** Also: tick bite in endemic area (Midwest/South US).
+**Bioterrorism Category A agent** (along with anthrax, smallpox, plague, botulinum, viral hemorrhagic fevers). Lab culture = extreme hazard (aerosol-forming — notify lab). Doxycycline adequate for prophylaxis post-exposure."
       },
       {
         name: "Pasteurella multocida",
-        summary: "GN coccobacillus rapidly progressive cellulitis within 24h after cat/dog bite; normal animal oral flora; treat with amoxicillin-clavulanate",
-        gram: "GN Coccobacillus (small, bipolar staining 'safety pin' appearance)",
-        virulence: "**Polysaccharide capsule** (antiphagocytic). Normal oral flora of cats (up to 75%) and dogs. Direct inoculation via bite puncture or scratch.",
-        disease: "**Bite wound infection:** rapid onset cellulitis within **24-48 hours** erythema, swelling, intense localized pain. Cat bites cause deeper puncture wounds. Can progress to tenosynovitis, septic arthritis, osteomyelitis.",
-        lab_diagnosis: "**Gram stain:** small GN coccobacilli with characteristic **bipolar staining** ('safety pin' appearance with Wright or Giemsa stain). **Culture:** Blood and MacConkey agar (small, gray, smooth, **β-hemolytic** on blood; colorless on MacConkey). Grows in 24-48 hours. **Tests:** Oxidase, catalase, and indole positive.",
-        tx: "**Amoxicillin-clavulanate** (covers Pasteurella + oral anaerobes). Doxycycline if penicillin-allergic. **Do NOT use first-generation cephalosporins** (cefazolin, cephalexin) due to poor activity.",
-        pearl: "Rapidly progressive cellulitis within 24 hours of a cat bite is highly specific for Pasteurella. Cat bites pose a higher risk of deep tissue infection than dog bites. First-generation cephalosporins are a common prescribing error for these injuries."
+        summary: "Cat/dog bite or scratch → rapidly progressive cellulitis within 24h; GN coccobacillus; treat with amoxicillin-clavulanate",
+gram: "GN Coccobacillus",
+virulence: "Polysaccharide capsule. Endotoxin. Normal flora of animal oral cavity (cats and dogs). Inoculated directly into tissue via bite or scratch.",
+        disease: "**Bite wound infection:** rapid onset cellulitis within **24–48 hours** of cat or dog bite/scratch. Erythema, swelling, pain, purulent discharge at wound site. Can progress to tenosynovitis, septic arthritis, osteomyelitis (especially in immunocompromised). Bacteremia/meningitis in elderly/asplenic.",
+        tx: "**Amoxicillin-clavulanate** (first-line for animal bites — covers Pasteurella + anaerobes). Doxycycline if penicillin-allergic.
+**Do NOT use first-generation cephalosporins** (poor activity vs Pasteurella). Clean wound thoroughly.",
+        pearl: "**Cat bite > dog bite for Pasteurella** (cats have deeper puncture wounds). Rapid cellulitis within 24h after animal bite = Pasteurella.
+**Amoxicillin-clavulanate** is the go-to for any animal bite. Distinguish from Bartonella henselae (cat scratch → lymphadenopathy, not rapid cellulitis). Also consider Capnocytophaga (dog bite in asplenic patients → rapid fatal sepsis)."
       }
     ]
-  }
-
-// Note: Output paused here per "do one chunk at a time" instruction.
-{
+  },
+  {
     group: "Mycobacteria",
     color: "bact",
     organisms: [
       {
-        name: "Mycobacterium tuberculosis",
-        summary: "Acid-fast bacillus, strict aerobe TB; primary (Ghon complex), latent, and reactivation forms; cord factor (serpentine growth); treat with RIPE × 6 months",
-        gram: "Acid-fast bacillus (waxy mycolic acids resist Gram stain; Ziehl-Neelsen stain required)",
-        virulence: "**Cord factor (trehalose dimycolate):** serpentine growth in culture, inhibits phagosome-lysosome fusion, activates macrophages. **Sulfatides:** inhibit phagolysosome fusion. **Mycolic acids:** acid-fastness, resistance to killing. **Lipoarabinomannan (LAM):** inhibits IFN-γ signaling. Obligate aerobe → upper lobe tropism.",
-        disease: "**Primary TB:** Ghon focus + hilar LAD = Ghon complex. **Latent TB:** positive TST/IGRA, asymptomatic, not contagious. **Reactivation TB:** upper lobe cavitary lesion, productive cough, night sweats, weight loss, hemoptysis. **Miliary TB:** millet-seed lesions in lungs/liver/spleen/meninges. **Extrapulmonary:** Pott's disease (vertebral), scrofula (cervical LAD), adrenal destruction (Addison's).",
-        lab_diagnosis: "**Stains:** Ziehl-Neelsen (bright red AFB against blue counterstain), Auramine-rhodamine (yellow-green fluorescent rods). **Culture:** Löwenstein-Jensen agar (buff-colored, dry, granular, rough 'bread crumb' or 'cauliflower' colonies after 3-6 weeks), BACTEC 460 (liquid radiometric). Serpentine cording in liquid media. **Tests:** TST (Mantoux), IGRA (QuantiFERON-TB Gold).",
-        tx: "**RIPE × 2 months** (Rifampin, Isoniazid, Pyrazinamide, Ethambutol) then **RI × 4 months**. **Latent TB:** Isoniazid × 9 months. Always add pyridoxine (B6) with INH.",
-        pearl: "INH toxicities: hepatotoxicity, peripheral neuropathy (prevent with B6), drug-induced SLE. Rifampin: red/orange body fluids, potent CYP450 inducer. Pyrazinamide: hyperuricemia. Ethambutol: optic neuritis (check color vision). IGRA is preferred over TST in BCG-vaccinated patients due to lack of cross-reaction."
-      },
-      {
         name: "Mycobacterium leprae",
-        summary: "Acid-fast bacillus leprosy; cannot be cultured in vitro; invades Schwann cells; cool temperature tropism; tuberculoid vs lepromatous forms; treat with MDT",
-        gram: "Acid-fast bacillus (weakly acid-fast; grows only at cool temperatures)",
-        virulence: "Infects **Schwann cells** (peripheral nerve demyelination → sensory/motor deficits) and skin macrophages. Grows preferentially at **cool temperatures (27-30°C)** → skin, peripheral nerves, testes, anterior eye. Very long incubation period.",
-        disease: "**Tuberculoid leprosy (paucibacillary):** strong Th1 response → well-defined hypopigmented anesthetic skin plaques, visibly enlarged peripheral nerves. **Lepromatous leprosy (multibacillary):** weak Th1 response (anergy) → diffuse skin infiltration, leonine facies, saddle-nose deformity, bilateral glove-and-stocking neuropathy.",
-        lab_diagnosis: "**Slit-skin smear (Ziehl-Neelsen):** solid-staining AFB (numerous in lepromatous, absent/rare in tuberculoid). **Histology:** Tuberculoid shows well-formed granulomas with few AFB; lepromatous shows foamy macrophages ('Virchow cells') stuffed with AFB clumps ('globi'). **Tests:** Lepromin test (Mitsuda test) is positive in tuberculoid and negative in lepromatous. Cannot be cultured in vitro.",
-        tx: "**Tuberculoid:** dapsone + rifampin × 6 months. **Lepromatous:** dapsone + rifampin + clofazimine × 12 months. **Clofazimine:** causes reddish-brown skin discoloration.",
-        pearl: "Tuberculoid leprosy features high immunity and few bacilli; lepromatous features low immunity and many bacilli. The organism cannot be cultured on artificial media; armadillos are the natural reservoir and experimental host. Dapsone resistance is common, requiring multi-drug therapy."
+        summary: "Leprosy — cannot be cultured in vitro; armadillo reservoir; invades Schwann cells and skin macrophages; tuberculoid vs lepromatous forms; treat with dapsone + rifampin ± clofazimine",
+gram: "Acid-fast bacillus (weakly acid-fast — not Gram stained)",
+virulence: "**Cannot be cultured in vitro** (grown in armadillo footpads or mouse footpads). Infects **Schwann cells** (peripheral nerve demyelination) and skin macrophages. Grows at **cool temperatures** (prefers extremities, skin, peripheral nerves, testes — not core body temp). Long incubation (2–10 years).",
+        disease: "**Tuberculoid (paucibacillary):** strong Th1 response — few organisms, well-defined hypopigmented anesthetic skin plaques, enlarged peripheral nerve (auricular, ulnar), minimal deformity.
+**Lepromatous (multibacillary):** weak Th1 response (Th2/anergy) — many organisms, diffuse skin infiltration, **leonine facies** (lion face), saddle-nose deformity, bilateral symmetric peripheral neuropathy, testicular involvement (gynecomastia), iritis, nerve damage.
+**Borderline:** intermediate forms.",
+        tx: "**Multi-drug therapy (MDT):** Tuberculoid: **dapsone + rifampin × 6 months**. Lepromatous: **dapsone + rifampin + clofazimine × 12 months**. Dapsone resistance → always use combination. Clofazimine: reddish-brown skin discoloration.",
+        pearl: "**Cannot culture** (no artificial media) — diagnosis by clinical exam + biopsy + AFB smear of skin slit.
+**Armadillo** = US reservoir (nine-banded armadillo, Southern US). Lepromatous = low immunity = high bacillary load = more severe; Tuberculoid = high immunity = low bacillary load = milder.
+**Dapsone** causes hemolytic anemia in
+**G6PD deficiency** — screen before use. Loss of sensation → repeated trauma → secondary infection → deformity."
       }
     ]
   },
@@ -460,34 +570,18 @@ bacteria: [
     color: "bact",
     organisms: [
       {
-        name: "Treponema pallidum",
-        summary: "Spirochete, too thin to Gram stain syphilis; primary (chancre), secondary (diffuse rash), tertiary (gummas, aortitis, tabes dorsalis); treat with penicillin G",
-        gram: "Spirochete (darkfield microscopy or silver stain required)",
-        virulence: "**Outer membrane proteins:** antigenic variation. Survives intracellularly. Transmitted via sexual contact, transplacentally, or blood transfusion.",
-        disease: "**Primary:** painless indurated chancre + painless regional LAD. **Secondary:** flu-like illness + diffuse maculopapular rash (including palms and soles) + condylomata lata. **Tertiary:** gummas, cardiovascular syphilis (aortitis, aortic regurgitation), neurosyphilis (tabes dorsalis). **Congenital:** saddle-nose, Hutchinson teeth, saber shins, deafness.",
-        lab_diagnosis: "**Microscopy:** Darkfield microscopy of chancre shows thin, tightly coiled, corkscrew-shaped spirochetes with slow, rotating motility. Silver stain used for tissue. **Screening (Non-treponemal):** VDRL and RPR detect anti-cardiolipin antibodies; quantitative to monitor treatment. **Confirmatory (Treponemal):** FTA-ABS, TPPA detect anti-treponemal antibodies; remain positive for life. Cannot be cultured.",
-        tx: "**All stages:** Benzathine penicillin G. **Neurosyphilis:** aqueous crystalline penicillin G IV.",
-        pearl: "A painless chancre followed weeks later by a rash on the palms and soles is classic. Argyll Robertson pupil accommodates but does not react to light. The Jarisch-Herxheimer reaction is a systemic cytokine release from organism death, not a penicillin allergy; continue therapy and give antipyretics. False-positive VDRL causes: SLE, Leprosy, Antiphospholipid syndrome, Pregnancy (SLAP)."
-      },
-      {
-        name: "Borrelia burgdorferi",
-        summary: "Spirochete, Ixodes tick vector Lyme disease; erythema migrans, Bell's palsy, heart block, monoarthritis; treat with doxycycline",
-        gram: "Spirochete (visualized on Giemsa or Wright stain; Gram stain negative)",
-        virulence: "Transmitted by **Ixodes scapularis (deer tick)**. Tick must be attached **≥36-48 hours**. **OspC and VlsE:** surface proteins for immune evasion. Reservoir: white-footed mouse.",
-        disease: "**Stage 1 (Early localized):** erythema migrans (expanding bull's-eye rash). **Stage 2 (Early disseminated):** bilateral Bell's palsy, Lyme carditis (AV block). **Stage 3 (Late disseminated):** monoarthritis (large effusion, often knee), encephalopathy.",
-        lab_diagnosis: "**Diagnosis:** Clinical for erythema migrans. **Two-tier serology** for disseminated disease: ELISA (screening) followed by Western blot (confirmatory). PCR on synovial fluid for Lyme arthritis. **Microscopy:** Darkfield or Giemsa stain shows loose, irregular coiling. Silver stain for tissue. **Culture:** BSK medium (extremely slow, not used clinically).",
-        tx: "**Early localized:** doxycycline × 10-21 days (amoxicillin in children <8 or pregnant). **Lyme carditis/meningitis:** IV ceftriaxone for severe forms.",
-        pearl: "Bilateral Bell's palsy equals Lyme disease until proven otherwise. Two-tier testing is mandatory because ELISA has high false-positive rates; do not treat a positive ELISA without a confirmatory Western blot."
-      },
-      {
         name: "Leptospira interrogans",
-        summary: "Spirochete leptospirosis; contaminated animal urine (rats); Weil's disease (jaundice, renal failure, hemorrhage); treat with doxycycline or penicillin",
-        gram: "Spirochete (silver stain or darkfield for visualization)",
-        virulence: "Transmitted via skin/mucous membrane contact with water or soil contaminated by **infected animal urine** (rats, dogs). Penetrates intact mucous membranes.",
-        disease: "**Phase 1 (Leptospiremic):** high fever, severe headache, calf myalgia, conjunctival suffusion. **Phase 2 (Immune):** aseptic meningitis. **Weil's disease (severe):** jaundice + acute kidney injury + hemorrhage (pulmonary, GI).",
-        lab_diagnosis: "**Tests:** Microscopic agglutination test (MAT) is the gold standard serology. IgM ELISA and PCR. **Microscopy:** Darkfield shows highly motile, tightly coiled spirochetes with hooked ends ('question mark' or 'shepherd's crook'). Silver stain for tissue. **Culture:** EMJH medium (very slow).",
-        tx: "**Mild:** doxycycline or amoxicillin. **Severe (Weil's disease):** IV penicillin G or IV ceftriaxone.",
-        pearl: "Conjunctival suffusion (red eyes without exudate) plus severe calf myalgia and recent flood/water exposure suggests Leptospirosis. Weil's disease triad includes jaundice, acute renal failure, and hemorrhage. The jaundice stems from direct hepatocellular damage combined with hemolysis."
+        summary: "Leptospirosis — water/soil contaminated with animal urine; biphasic illness; Weil disease (icteric leptospirosis) = jaundice + renal failure + hemorrhage; treat doxycycline",
+gram: "Spirochete (not Gram stained — darkfield microscopy)",
+virulence: "Hooked-end spirochete — penetrates intact mucous membranes or abraded skin. Survives in water/soil for weeks. Zoonotic reservoir: rats, dogs, livestock, wildlife (urine-contaminated water/soil).",
+        disease: "**Biphasic illness. Phase 1 (leptospiremic, 5–7d):** fever, headache, myalgias (severe calf pain), conjunctival suffusion (red eyes without discharge), rash.
+**Phase 2 (immune, 1–3d later):** either resolves OR progresses to
+**Weil disease (icteric leptospirosis, 5–10%):** jaundice + acute kidney injury + hemorrhage (thrombocytopenia) + myocarditis. Uveitis can persist.",
+        tx: "Mild: **doxycycline** (also prophylaxis). Severe/Weil disease:
+**IV penicillin G** or ceftriaxone. Prophylaxis: doxycycline 200mg/week (military, flood workers).",
+        pearl: "**Weil disease** = severe leptospirosis = jaundice + renal failure + hemorrhage.
+**Conjunctival suffusion** (injected sclera without exudate) is a classic early sign. Exposure: flood water, sewage, rat-infested areas, swimming in contaminated water.
+**Darkfield microscopy** of blood/urine (early); serology (MAT) later. Calf muscle tenderness = characteristic myalgia. Common in tropics, rainy seasons."
       }
     ]
   },
@@ -496,741 +590,1050 @@ bacteria: [
     color: "bact",
     organisms: [
       {
-        name: "Chlamydia trachomatis",
-        summary: "Obligate intracellular, no cell wall STI: urethritis/cervicitis, PID; neonatal conjunctivitis and pneumonia; LGV; trachoma; treat with azithromycin or doxycycline",
-        gram: "Obligate intracellular (no cell wall, not Gram stained)",
-        virulence: "**Biphasic life cycle:** Elementary body (EB) is the infectious extracellular form; Reticulate body (RB) is the replicating intracellular form. No peptidoglycan cell wall.",
-        disease: "**Serovars A-C:** trachoma (blindness). **Serovars D-K:** urethritis, cervicitis, PID, neonatal conjunctivitis (2-5 days), infant pneumonia (staccato cough). **Serovars L1-L3:** lymphogranuloma venereum (LGV painless ulcer → tender inguinal buboes).",
-        lab_diagnosis: "**Tests:** NAAT (nucleic acid amplification test) is the gold standard for urogenital infections. **Microscopy:** Giemsa stain shows intracytoplasmic inclusions ('morulae') in epithelial cells. Cannot be Gram stained. No growth on standard bacteriologic media.",
-        tx: "**Uncomplicated:** azithromycin 1g PO × 1 dose or doxycycline 100mg BID × 7 days. **Neonatal:** oral erythromycin. Co-treat for gonorrhea.",
-        pearl: "Always co-treat for gonorrhea when treating chlamydia. Neonatal chlamydial conjunctivitis presents at 5-14 days (later than gonococcal). Neonatal pneumonia presents with an afebrile staccato cough and eosinophilia. LGV groove sign occurs when the inguinal ligament separates enlarged inguinal and femoral lymph nodes."
+        name: "Mycobacterium tuberculosis",
+        summary: "Acid-fast, aerobic, cord factor — primary/secondary TB; Ghon complex; classic upper lobe cavitation; treat RIPE",
+gram: "Acid-fast bacillus (not Gram stained)",
+virulence: "**Cord factor** (trehalose dimycolate — impairs phagosome-lysosome fusion, produces granulomas).
+**Sulfatides** (inhibit phagosome maturation).
+**Wax D** (mycoside — adjuvant, slows killing). Slow-growing (doubling time ~24h).",
+        disease: "**Primary TB:** asymptomatic, Ghon focus (lower/mid lung) + hilar LAD = Ghon complex → Ranke complex with calcification.
+**Secondary (reactivation) TB:** upper lobe cavitation, hemoptysis, night sweats, weight loss, low-grade fever.
+**Miliary TB:** hematogenous spread → millet seed lesions on CXR.
+**Extrapulmonary:** lymphadenitis (scrofula), Pott's disease (vertebral), renal TB (sterile pyuria), Addison's disease (adrenal), CNS (meningitis, tuberculoma).",
+        tx: "**RIPE** × 2 months (Rifampin + Isoniazid + Pyrazinamide + Ethambutol), then RI × 4 months.
+**Latent TB:** INH × 9 months (or rifampin × 4 months, or INH/rifapentine × 12 doses). Check TST or IGRA before TNF-α inhibitors.",
+        pearl: "**RIPE side effects:** Rifampin → red/orange body fluids, rifamycin interactions (CYP inducer). Isoniazid → **peripheral neuropathy** (give B6/pyridoxine), hepatotoxicity, SLE-like reaction. Pyrazinamide → **hyperuricemia**, hepatotoxicity. Ethambutol → **optic neuritis** (red-green color blindness). Streptomycin (old regimen) → ototoxicity."
       },
       {
-        name: "Chlamydophila pneumoniae",
-        summary: "Obligate intracellular atypical (walking) pneumonia; gradual onset, persistent sore throat; treat with azithromycin or doxycycline",
-        gram: "Obligate intracellular (no cell wall)",
-        virulence: "Obligate intracellular with EB/RB lifecycle. Pear-shaped EBs. Human-to-human spread; no animal reservoir.",
-        disease: "**Atypical pneumonia:** gradual onset over 1-3 weeks persistent sore throat, dry hacking cough. Clinically milder than radiographic appearance. Associated with asthma exacerbations.",
-        lab_diagnosis: "**Tests:** PCR of nasopharyngeal swab is most sensitive. Serology (microimmunofluorescence/MIF) shows 4-fold rise. **Microscopy:** Giemsa stain shows intracellular inclusions. Cannot be Gram stained.",
-        tx: "**Azithromycin** or **doxycycline**. β-lactams are ineffective.",
-        pearl: "Human-to-human transmission only; no bird reservoir. Pharyngitis often precedes the atypical pneumonia. β-lactams are useless because there is no peptidoglycan cell wall target."
-      },
-      {
-        name: "Chlamydophila psittaci",
-        summary: "Obligate intracellular psittacosis (parrot fever); exposure to birds; atypical pneumonia with splenomegaly; treat with doxycycline",
-        gram: "Obligate intracellular (no cell wall)",
-        virulence: "Transmitted by inhalation of aerosolized bird feces or secretions (parrots, pigeons). Systemic spread to liver, spleen, and CNS.",
-        disease: "**Psittacosis:** abrupt onset high fever, severe headache, dry cough, pneumonia with **splenomegaly**. Systemic features: hepatitis, encephalitis.",
-        lab_diagnosis: "**Tests:** PCR of respiratory sample is most specific. Serology shows 4-fold rise. Cannot be Gram stained. BSL-3 pathogen requiring lab notification before culture.",
-        tx: "**Doxycycline** (first-line).",
-        pearl: "Bird exposure (parrots, pigeons, poultry) plus atypical pneumonia and splenomegaly equals psittacosis. Splenomegaly is a key distinguishing feature from other atypical pneumonias."
+        name: "Chlamydia Species",
+        summary: "Obligate intracellular (EB/RB lifecycle, no cell wall) — C. trachomatis: STI/PID/trachoma/LGV; C. pneumoniae: atypical pneumonia in young adults; C. psittaci: psittacosis from bird exposure",
+gram: "Obligate intracellular (no cell wall — no Gram stain)",
+virulence: "**Elementary body (EB):** infectious, metabolically inactive — survives extracellularly, enters via endocytosis.
+**Reticulate body (RB):** replicates intracellularly in inclusion vacuole. Cannot synthesize ATP (obligate energy parasite). All species: no cell wall → β-lactams ineffective.",
+        disease: "**C. trachomatis — Serovars D–K:** most common bacterial STI in US. Urethritis/cervicitis (often asymptomatic), PID (→ ectopic pregnancy, infertility), epididymo-orchitis.
+**Neonatal:** conjunctivitis (5–14 days) + pneumonia ('staccato' cough, eosinophilia, 3–12 weeks).
+**Reactive arthritis** (Reiter: urethritis + arthritis + conjunctivitis).
+**Serovars A–C:** trachoma (repeated infection → scarring → entropion → blindness — #1 infectious cause of blindness worldwide).
+**Serovars L1–L3 (LGV):** painless genital ulcer → tender inguinal buboes → proctitis.
+**C. pneumoniae:** atypical ('walking') pneumonia in young adults — gradual onset, dry cough, low-grade fever, bilateral interstitial infiltrates. Seroprevalence ~50% by adulthood.
+**C. psittaci (psittacosis/ornithosis):** exposure to infected birds (parrots, parakeets, pigeons, poultry) → severe atypical pneumonia with systemic features (headache, myalgia, hepatosplenomegaly, relative bradycardia). Reportable disease.",
+        tx: "All species: **doxycycline** (first-line for most) or **azithromycin**. C. trachomatis STI: azithromycin 1g × 1 or doxycycline × 7 days. LGV: doxycycline × 21 days. Neonatal conjunctivitis: oral erythromycin. C. pneumoniae/psittaci: doxycycline or azithromycin. β-lactams: **no role** (no cell wall target).",
+        pearl: "**Neonatal conjunctivitis timeline:** chemical (within 24h) → gonorrhea (<5 days) →
+**Chlamydia (5–14 days)**. **β-lactams don't work** on any Chlamydia (no PBPs/cell wall).
+**Trachoma** (A–C) = leading infectious blindness cause — endemic in Africa/Middle East/Asia.
+**Psittacosis clue:** bird owner (parrot/parakeet), severe pneumonia with relative bradycardia (pulse-temperature dissociation), treat with doxycycline.
+**C. pneumoniae** = young, healthy adult, gradual-onset pneumonia, bilateral infiltrates on CXR — clinically similar to Mycoplasma."
       },
       {
         name: "Coxiella burnetii",
-        summary: "Q fever obligate intracellular; resistant spores; farm animal birth products; atypical pneumonia + hepatitis; endocarditis in chronic form; treat with doxycycline",
-        gram: "Obligate intracellular",
-        virulence: "**Highly resistant spore-like forms** (survive pasteurization). Transmitted via inhalation of aerosolized birth products (placenta, amniotic fluid) from infected farm animals. Not tick-borne.",
-        disease: "**Acute Q fever:** atypical pneumonia + granulomatous hepatitis. **Chronic Q fever:** culture-negative endocarditis (months to years later).",
-        lab_diagnosis: "**Tests:** Serology (IFA) is primary; Phase II antibodies indicate acute infection, while Phase I IgG (≥1:800) indicates chronic infection/endocarditis. PCR on blood/tissue. **Histology:** Liver biopsy shows 'doughnut' or 'fibrin ring' granulomas. Gimenez/Giemsa stains show intracellular red rods.",
-        tx: "**Acute:** doxycycline. **Chronic:** doxycycline + hydroxychloroquine (alkalinizes phagolysosome).",
-        pearl: "The only Rickettsia-like organism not transmitted by an arthropod bite; inhaled from farm animal birth products. Doughnut granulomas on liver biopsy are highly characteristic."
+        summary: "Q fever — atypical pneumonia + hepatitis from livestock/parturient animals; extremely infectious (1 organism); does NOT require arthropod bite for transmission; treat doxycycline",
+gram: "Obligate intracellular (gram-indeterminate — not reliably stained)",
+virulence: "**Spore-like forms** — extremely resistant to heat, desiccation, chemicals.
+**Obligate intracellular** (infects macrophages). Phase I antigen (virulent) vs Phase II (avirulent — used in Coxiella serology).
+**Infectious dose = 1 organism.**",
+        disease: "**Acute Q fever:** self-limited flu-like illness, **atypical pneumonia** (diffuse infiltrates), **granulomatous hepatitis** (elevated LFTs, granulomas on biopsy — 'doughnut granulomas'). NO rash (unlike Rickettsia).
+**Chronic Q fever (endocarditis):** most serious form — 1–20 years post-infection; culture-negative endocarditis in patient with valvular disease. Exposure: parturient (birthing) cattle/sheep/goats — placenta, amniotic fluid highly infectious.",
+        tx: "Acute: **doxycycline × 2 weeks**. Chronic endocarditis: **doxycycline + hydroxychloroquine × 18–36 months** (long course).",
+        pearl: "**No arthropod bite required** (unlike Rickettsia — spread by aerosol from infected animal products).
+**Doughnut (ring) granulomas** on liver biopsy = classic histology.
+**Culture-negative endocarditis** in farmer/veterinarian = Q fever endocarditis until proven otherwise (serology: Phase I IgG ≥1:800). Single most infectious organism known (1 organism = disease). Weil-Felix test **negative** (another distinction from Rickettsia)."
       },
       {
         name: "Gardnerella vaginalis",
-        summary: "Gram-variable rod bacterial vaginosis (BV); clue cells, positive whiff test, pH >4.5; treat with metronidazole",
-        gram: "Gram-variable to weakly GN rod",
-        virulence: "Disruption of normal Lactobacillus-dominant vaginal flora. Produces **biogenic amines** → fishy odor. Biofilm on vaginal epithelium.",
-        disease: "**Bacterial vaginosis (BV):** thin, homogeneous gray-white discharge with fishy odor. Minimal inflammation (few WBCs). Complications: PID risk, preterm labor.",
-        lab_diagnosis: "**Microscopy (Wet Mount):** Clue cells (vaginal epithelial cells with borders obscured by stippled bacteria); absence of Lactobacilli. **Tests:** Whiff test (10% KOH added to discharge produces fishy amine odor). Vaginal pH >4.5. **Gram stain (Nugent score):** Decreased large GP rods (Lactobacilli) and increased Gram-variable pleomorphic coccobacilli.",
-        tx: "**Metronidazole** or **clindamycin**. Treat symptomatic women and pregnant women.",
-        pearl: "Bacterial vaginosis is a dysbiosis presenting with fishy odor, gray discharge, clue cells, pH >4.5, and no inflammation (no WBCs). Clue cells are pathognomonic."
+        summary: "Bacterial vaginosis — overgrowth of Gardnerella + anaerobes replacing normal Lactobacillus; thin gray-white discharge, fishy odor, clue cells, pH >4.5; treat metronidazole",
+gram: "Gram-variable rod (Gardnerella — stains poorly)",
+virulence: "Biofilm formation on vaginal epithelium. Disrupts normal Lactobacillus dominance → polymicrobial overgrowth (Mobiluncus, Prevotella, Peptostreptococcus). NOT an STI per se — but associated with sexual activity.",
+        disease: "**Bacterial vaginosis (BV):** thin, homogeneous **gray-white discharge** with **fishy odor** (worse after sex — semen raises pH, volatilizes amines). Minimal inflammation (no WBCs).
+**Amsel criteria (3/4):** ① thin homogeneous discharge ② vaginal pH >4.5 ③ **clue cells** (epithelial cells studded with bacteria) ④ **positive whiff test** (KOH → fishy amine odor). Risk: PID, preterm birth.",
+        tx: "**Metronidazole** (oral or intravaginal gel).
+**Clindamycin** (alternative — cream or oral). Treat symptomatic women and pregnant women with BV (↓preterm labor risk).",
+        pearl: "**Clue cells** = vaginal epithelial cells covered with G. vaginalis bacteria (stippled appearance on wet mount) = pathognomonic for BV.
+**Whiff test** (KOH) = fishy odor from amines (trimethylamine, putrescine). BV vs Trichomonas vs Candida: BV = fishy, gray, no inflammation; Trichomonas = frothy yellow-green, mobile trichomonads; Candida = thick white 'cottage cheese,' no odor, pseudohyphae on KOH. pH: BV/Trich >4.5; Candida normal (4–4.5)."
       },
       {
         name: "Mycoplasma pneumoniae",
-        summary: "No cell wall walking pneumonia; cold agglutinins; CXR worse than clinical picture; treat with azithromycin or doxycycline",
-        gram: "No cell wall (pleomorphic, cannot be Gram stained)",
-        virulence: "**No cell wall** → resistant to all β-lactams. **P1 adhesin:** attaches to ciliated respiratory epithelial cells → ciliostasis.",
-        disease: "**Atypical (walking) pneumonia:** young adults/military. Gradual onset dry hacking cough, low-grade fever. **Extrapulmonary:** Stevens-Johnson syndrome, autoimmune hemolytic anemia.",
-        lab_diagnosis: "**Tests:** PCR of nasopharyngeal swab is most sensitive. Serology (IgM/IgG 4-fold rise). **Bedside Test:** Cold agglutinins (blood agglutinates at 4°C, clears at 37°C). **Culture:** Eaton agar or SP4 medium shows tiny 'fried egg' colonies (requires magnification). Cannot be Gram stained.",
-        tx: "**Azithromycin** or **doxycycline**. β-lactams are completely ineffective.",
-        pearl: "β-lactams are completely ineffective due to the lack of a cell wall. Cold agglutinins (IgM anti-I) can cause mild hemolytic anemia and Raynaud-like symptoms in the cold. Patients typically 'walk around' appearing much less ill than the diffuse bilateral infiltrates on CXR suggest."
+        summary: "No cell wall — walking pneumonia in young adults; cold agglutinins (IgM vs RBCs); not visible on Gram stain; treat macrolides or doxycycline (β-lactams useless)",
+gram: "No cell wall (not Gram stained)",
+virulence: "**No cell wall** (no peptidoglycan) → resistant to ALL β-lactams. P1 adhesin (attaches to respiratory epithelium ciliary proteins → ciliostasis). Smallest self-replicating organism.
+**Pleomorphic** (no fixed shape).",
+        disease: "**Atypical ('walking') pneumonia:** young adults (schools, military barracks), gradual onset — **mild symptoms despite radiographic infiltrates** (patient 'walks around'). Dry hacking cough, low-grade fever, headache, malaise. CXR: diffuse interstitial/patchy infiltrates (worse than clinical picture).
+**Cold agglutinins (IgM anti-I on RBCs):** agglutinate RBCs at 4°C → hemolytic anemia (Raynaud's in cold).
+**Extra-pulmonary:** Stevens-Johnson syndrome, myocarditis, hemolytic anemia, encephalitis.",
+        tx: "**Azithromycin or clarithromycin (macrolides)** — first-line.
+**Doxycycline** (alternative).
+**Fluoroquinolones** (respiratory quinolones). All β-lactams, vancomycin: **completely ineffective** (no cell wall target).",
+        pearl: "**β-lactams don't work** — no cell wall.
+**Cold agglutinins** (IgM anti-I): bedside test — tube of blood left at 4°C agglutinates, rewarms to 37°C → dissociates. Positive in 50–75% of M. pneumoniae (also EBV, CMV). **'Worse X-ray than exam'** = classic clue. Diagnosis: serology (IgM/IgG), PCR of nasopharyngeal swab. Cannot culture easily (specialized media). Treat whole household/barracks during outbreaks."
       },
       {
-        name: "Rickettsia rickettsii",
-        summary: "GN obligate intracellular rod Rocky Mountain Spotted Fever (RMSF); Dermacentor tick; rash begins on wrists/ankles → spreads centripetally, involves palms/soles; treat with doxycycline immediately",
-        gram: "GN Rod (obligate intracellular)",
-        virulence: "Transmitted by **Dermacentor tick**. Infects endothelial cells → vasculitis → rash, DIC. Actin-based motility for cell-to-cell spread.",
-        disease: "**RMSF:** sudden high fever, severe headache, myalgia. **Rash:** begins day 2-5 on **wrists and ankles** → spreads **centripetally** to trunk. Involves **palms and soles**. Labs: thrombocytopenia, hyponatremia.",
-        lab_diagnosis: "**Tests:** Clinical diagnosis is primary; treat immediately. Serology (IFA) shows 4-fold rise but is only positive after 7-10 days. PCR on blood/biopsy. **Histology:** Immunohistochemistry (IHC) of skin biopsy rash is the most specific rapid test. Gimenez or Giemsa stains show GN intracellular rods in endothelial cells.",
-        tx: "**Doxycycline** start immediately on clinical suspicion. Do NOT wait for serology.",
-        pearl: "A rash starting on the wrists and ankles that spreads inward (centripetal) and involves the palms and soles is RMSF until proven otherwise. Never delay doxycycline to wait for serology; mortality increases dramatically with each day of delay."
+        name: "Rickettsia — Overview",
+        summary: "Obligate intracellular GN rods — all transmitted by arthropod vectors (except Coxiella); triad: fever + headache + rash; all treat with doxycycline; spread via infected arthropod saliva",
+gram: "GN Rod (obligate intracellular — does not Gram stain in practice)",
+virulence: "**Obligate intracellular** — infects endothelial cells → vasculitis → rash, petechiae, multiorgan dysfunction. Actin-based motility (like Listeria). Cannot survive outside host cells. Membrane phospholipase A2.",
+        disease: "Fever + headache + rash (petechial/maculopapular) = Rickettsial disease until proven otherwise. Rash timing, distribution, and vector differ by species (see individual cards). Vasculitis → endothelial damage → thrombosis, edema, hemorrhage.",
+        tx: "**Doxycycline** (first-line for ALL rickettsial diseases, including in children — benefits outweigh dental staining risk).
+**Never delay treatment** for diagnostic confirmation — high mortality if untreated.",
+        pearl: "**Weil-Felix test:** Rickettsia cross-react with Proteus antigens (OX-2, OX-19, OX-K) — historical test, largely replaced by serology.
+**Doxycycline = treatment regardless of age** (AAP endorses for suspected Rickettsia — risk of death > risk of dental staining). All are intracellular: infect endothelial cells → rash is purpuric/petechial. Classic Step 1 trick: 'patient from wooded area + rash on palms/soles + tick exposure' = Rocky Mountain Spotted Fever."
       },
       {
         name: "Rickettsia prowazekii",
-        summary: "GN obligate intracellular rod epidemic typhus; body louse vector; rash spares palms/soles; Brill-Zinsser disease; treat with doxycycline",
-        gram: "GN Rod (obligate intracellular)",
-        virulence: "Transmitted by **human body louse**. Infects endothelial cells → systemic vasculitis. Can remain latent in lymph nodes for decades.",
-        disease: "**Epidemic typhus:** sudden high fever, headache, maculopapular rash starting on trunk → extremities, **spares palms and soles**. **Brill-Zinsser disease:** milder reactivation years later.",
-        lab_diagnosis: "**Tests:** Serology (IFA preferred) or PCR on blood/tissue. **Histology:** Gimenez or Giemsa stain shows intracellular GN rods in endothelial cells. Obligate intracellular, requires BSL-3 culture.",
-        tx: "**Doxycycline**.",
-        pearl: "Epidemic typhus rash spreads outward and classically spares the palms and soles (the opposite of RMSF). Transmitted by the human body louse, it is historically associated with war and overcrowding."
+        summary: "Epidemic (louse-borne) typhus — body louse vector; Brill-Zinsser disease (reactivation after years); severe illness; high mortality untreated; treat doxycycline",
+gram: "GN Rod (obligate intracellular)",
+virulence: "Transmitted by **body louse** (Pediculus humanus corporis) feces — scratched into skin (NOT the bite itself). Infects endothelial cells → systemic vasculitis. Can remain latent in lymph nodes for decades.",
+        disease: "**Epidemic typhus:** sudden high fever, severe headache, myalgia, maculopapular rash (trunk → extremities, **spares palms/soles**) → becomes petechial. Delirium, coma, multiorgan failure. High mortality (20–60%) untreated. Associated with **war, poverty, overcrowding** (louse infestation).
+**Brill-Zinsser disease:** reactivation of latent R. prowazekii years/decades later → milder illness.",
+        tx: "**Doxycycline** (single dose for uncomplicated; 3–7 days for severe). Chloramphenicol (alternative, historical).",
+        pearl: "**Body louse = R. prowazekii** (vs. body louse also carries Bartonella quintana [trench fever] and Borrelia recurrentis [relapsing fever]). Rash: **spares palms/soles** (opposite of RMSF).
+**Brill-Zinsser** = reactivation typhus in survivor — milder; Weil-Felix positive. Flying squirrels are reservoir in US. Weil-Felix: OX-19 positive."
+      },
+      {
+        name: "Rickettsia rickettsii",
+        summary: "Rocky Mountain Spotted Fever (RMSF) — Dermacentor tick; rash starts on wrists/ankles → spreads centripetally, involves palms/soles; most lethal rickettsial in US; treat doxycycline immediately",
+gram: "GN Rod (obligate intracellular)",
+virulence: "Transmitted by **Dermacentor tick** (dog tick, wood tick). Tick must be attached ≥4–6 hours. Infects endothelial cells → vasculitis, DIC, multiorgan failure.",
+        disease: "**RMSF:** sudden high fever, severe headache, myalgia.
+**Rash:** begins **day 2–5** — maculopapular on **wrists and ankles** → spreads **centripetally** to trunk → becomes **petechial**. Classically involves **palms and soles** (key distinguisher). Thrombocytopenia, elevated LFTs, hyponatremia. If untreated: DIC, neurological sequelae, death.
+**Paradox:** most cases NOT in Rocky Mountains — Southeast/South-Central US (North Carolina, Oklahoma, Arkansas have highest incidence).",
+        tx: "**Doxycycline** — start immediately on clinical suspicion (do NOT wait for labs). Children included. Mortality rises sharply with treatment delay.",
+        pearl: "**Rash on palms and soles + tick exposure = RMSF** until proven otherwise.
+**Triad:** fever + headache + rash (rash may be absent early — 'spotless RMSF'). Labs: **thrombocytopenia + hyponatremia** (vasculitis → SIADH). Serology (IFA) is confirmatory but retrospective.
+**Never wait for serology** — treat clinically. Most lethal tick-borne illness in US. 'Starts peripheral (wrists/ankles) → spreads central (trunk)' = centripetal spread."
       }
     ]
   }
-]
-// Output paused here. Let me know when you are ready for the viruses chunk!
-viruses: [
-    {
-      group: "DNA Viruses - Herpesviruses",
-      color: "vir",
-      organisms: [
-        {
-          name: "HSV-1 and HSV-2",
-          summary: "dsDNA, enveloped latent in sensory ganglia; HSV-1: oral herpes, keratoconjunctivitis, temporal lobe encephalitis; HSV-2: genital herpes, neonatal herpes; treat with acyclovir",
-          gram: "dsDNA, enveloped (Herpesviridae)",
-          virulence: "**Glycoproteins (gB, gC, gD)** mediate cell entry via heparan sulfate. **Viral thymidine kinase (TK):** phosphorylates acyclovir. **LAT (latency-associated transcripts):** maintain latency in neurons.",
-          disease: "**HSV-1:** primary gingivostomatitis, herpes labialis, keratoconjunctivitis (dendritic corneal ulcers), **herpes encephalitis** (temporal lobe). **HSV-2:** genital herpes, **neonatal herpes** (disseminated or CNS). **Both:** esophagitis, herpetic whitlow.",
-          lab_diagnosis: "**Tests:** PCR is the gold standard for encephalitis. DFA (direct fluorescent antibody) from vesicle swab. **Microscopy/Histology:** Tzanck smear shows multinucleated giant cells . Brain biopsy shows **Cowdry type A inclusions** (eosinophilic intranuclear inclusions with clear halo) .",
-          tx: "**Acyclovir**, valacyclovir, or famciclovir. **HSV encephalitis:** IV acyclovir empirically. **Acyclovir-resistant HSV:** foscarnet.",
-          pearl: "Temporal lobe encephalitis equals HSV-1 until proven otherwise. The Tzanck smear cannot distinguish HSV from VZV. Acyclovir resistance indicates a TK-deficient mutant, requiring foscarnet which bypasses the thymidine kinase activation step."
-        },
-        {
-          name: "VZV (HHV-3) - Varicella-Zoster Virus",
-          summary: "dsDNA, enveloped chickenpox (primary, airborne); latent in dorsal root ganglia; reactivates as shingles; Ramsay Hunt syndrome; treat with acyclovir; vaccine-preventable",
-          gram: "dsDNA, enveloped (Herpesviridae)",
-          virulence: "Highly contagious via **airborne and droplet contact**. Establishes **latency in dorsal root ganglia** (sensory).",
-          disease: "**Varicella (chickenpox):** pruritic rash (papules → vesicles → crusts) with **all stages simultaneously present**. **Herpes zoster (shingles):** reactivation in single dermatome, post-herpetic neuralgia. **Zoster ophthalmicus (V1):** Hutchinson's sign. **Ramsay Hunt syndrome:** reactivation in geniculate ganglion causing CN VII palsy.",
-          lab_diagnosis: "**Tests:** DFA or PCR from vesicle scraping (distinguishes from HSV). **Microscopy:** Tzanck smear shows multinucleated giant cells (identical to HSV). Histology shows Cowdry type A inclusions.",
-          tx: "**Varicella:** oral acyclovir for adults/immunocompromised; supportive for healthy children. **Shingles:** oral acyclovir/valacyclovir. **Vaccines:** Varivax (live, children), Shingrix (recombinant, adults ≥50).",
-          pearl: "Never give aspirin to children with varicella due to the risk of Reye syndrome (hepatic encephalopathy). Ramsay Hunt syndrome presents as a classic triad of facial palsy, ear vesicles, and hearing loss. Chickenpox lesions appear in multiple simultaneous stages, unlike smallpox lesions which develop synchronously."
-        },
-        {
-          name: "EBV (HHV-4) - Epstein-Barr Virus",
-          summary: "dsDNA, enveloped infectious mononucleosis; heterophile antibodies (Monospot); atypical lymphocytes; ampicillin rash; transforms B cells → lymphomas",
-          gram: "dsDNA, enveloped (Herpesviridae)",
-          virulence: "Infects **B cells via CD21**. **EBNA** and **LMP** immortalize B cells and drive lymphomagenesis. Infects oropharyngeal epithelium first, then B cells.",
-          disease: "**Infectious mononucleosis:** fever, **exudative pharyngitis**, **posterior cervical lymphadenopathy**, **splenomegaly**, profound fatigue. **EBV-associated malignancies:** Burkitt lymphoma (endemic African, jaw mass), CNS lymphoma (HIV CD4 <50), nasopharyngeal carcinoma, Hodgkin lymphoma (mixed cellularity).",
-          lab_diagnosis: "**Tests:** Monospot test detects heterophile IgM antibodies that agglutinate horse/sheep RBCs. EBV-specific serology (VCA IgM, EBNA). **Microscopy:** Peripheral blood smear shows **atypical lymphocytes** (Downey cells large, irregular with abundant pale cytoplasm indenting around RBCs) .",
-          tx: "**Supportive**. Avoid contact sports for 3-4 weeks to prevent splenic rupture. **Avoid ampicillin/amoxicillin**.",
-          pearl: "A patient prescribed ampicillin for suspected strep throat who develops a diffuse maculopapular rash has EBV mononucleosis. The atypical lymphocytes seen on the peripheral smear are reactive CD8+ T cells, not the infected B cells themselves."
-        },
-        {
-          name: "CMV (HHV-5) - Cytomegalovirus",
-          summary: "dsDNA, enveloped owl-eye intranuclear inclusions; congenital CMV; immunocompromised: retinitis, esophagitis, colitis; treat with ganciclovir",
-          gram: "dsDNA, enveloped (Herpesviridae largest herpesvirus)",
-          virulence: "Latent in **mononuclear cells (monocytes, CD34+ progenitors)**. Downregulates MHC class I.",
-          disease: "**Congenital CMV:** periventricular calcifications, sensorineural hearing loss, chorioretinitis, thrombocytopenic petechiae. **Immunocompromised (HIV/transplant):** **CMV retinitis** (CD4 <50, 'pizza pie fundus'), **esophagitis** (linear ulcers), colitis. **Healthy adults:** heterophile-negative mononucleosis.",
-          lab_diagnosis: "**Tests:** CMV quantitative PCR (blood/CSF). CMV antigenemia (pp65). **Microscopy/Histology:** Enlarged cells with **'owl-eye' inclusions** (large central eosinophilic intranuclear inclusion surrounded by a clear halo) .",
-          tx: "**Ganciclovir** or valganciclovir (requires phosphorylation by CMV UL97 kinase). **Resistance:** foscarnet or cidofovir.",
-          pearl: "Congenital CMV causes periventricular calcifications, differentiating it from congenital Toxoplasma which causes diffuse scattered calcifications. CMV esophagitis features linear ulcers, contrasting with the punched-out volcano ulcers of HSV. Ganciclovir resistance occurs via mutation of the UL97 viral kinase."
-        },
-        {
-          name: "HHV-6 - Roseola",
-          summary: "dsDNA, enveloped roseola infantum; high fever 3-5 days → sudden defervescence → rose-colored truncal rash; febrile seizures during fever phase; reactivates in transplant",
-          gram: "dsDNA, enveloped (Herpesviridae)",
-          virulence: "Infects **CD4+ T cells and monocytes** via CD46 receptor. Can integrate into host chromosomal telomeres. Reactivates with immunosuppression.",
-          disease: "**Roseola infantum:** high fever (39-40°C) for 3-5 days in an infant who appears remarkably well. Sudden fever break is followed by a rose-colored blanching macular rash on the trunk. **Febrile seizures** common during fever phase. **Transplant recipients:** limbic encephalitis, hepatitis.",
-          lab_diagnosis: "**Tests:** Clinical diagnosis in infants. HHV-6 PCR for transplant encephalitis. Chromosomally integrated HHV-6 can cause falsely elevated PCR results without active infection.",
-          tx: "**Supportive** (antipyretics). **Transplant encephalitis:** ganciclovir or foscarnet.",
-          pearl: "The clinical sequence is diagnostic: the child has a high fever for days, the fever breaks abruptly, and only then does the macular rash appear. Febrile seizures happen exclusively during the fever phase, not the rash phase."
-        },
-        {
-          name: "HHV-8 - Kaposi Sarcoma Herpesvirus",
-          summary: "dsDNA, enveloped Kaposi's sarcoma (violaceous vascular skin/mucosal lesions) in AIDS and transplant; primary effusion lymphoma; multicentric Castleman disease",
-          gram: "dsDNA, enveloped (Herpesviridae)",
-          virulence: "**Viral oncogenes:** v-cyclin, v-FLIP, vIL-6. **VEGF upregulation** causes abnormal vascular proliferation. Infects B cells and endothelial cells.",
-          disease: "**Kaposi's sarcoma (KS):** violaceous vascular skin lesions. **AIDS-KS:** widespread skin, **hard palate** (pathognomonic location), visceral involvement. **Primary effusion lymphoma (PEL):** B-cell lymphoma growing in body cavities without solid tumor mass. **Multicentric Castleman disease.**",
-          lab_diagnosis: "**Histology (Skin biopsy):** proliferating spindle cells, slit-like vascular spaces, extravasated RBCs, hemosiderin. **Tests:** IHC for **LANA-1** (nuclear dot staining in spindle cells confirms KS).",
-          tx: "**AIDS-KS:** **HAART** (immune reconstitution often causes complete regression). Localized: radiation, cryotherapy. Systemic: liposomal doxorubicin.",
-          pearl: "Must be distinguished from bacillary angiomatosis (Bartonella infection), which also causes purple vascular lesions in HIV patients but requires antibiotics instead of antiretrovirals or chemotherapy. KS on the hard palate is an AIDS-defining illness."
-        }
-      ]
-    },
-    {
-      group: "DNA Viruses - Other",
-      color: "vir",
-      organisms: [
-        {
-          name: "Polyomavirus (JC Virus & BK Virus)",
-          summary: "dsDNA, non-enveloped latent in kidneys; JC virus → PML in AIDS; BK virus → hemorrhagic cystitis and nephropathy in transplant",
-          gram: "dsDNA, non-enveloped (Polyomaviridae)",
-          virulence: "Latent in kidney tubular epithelium. JC virus is also latent in oligodendrocytes. Reactivation destroys host cells.",
-          disease: "**JC virus → PML (Progressive Multifocal Leukoencephalopathy):** AIDS (CD4 <100) or natalizumab therapy. Rapidly progressive multifocal neurological deficits, no fever. **BK virus:** renal transplant → hemorrhagic cystitis and BK nephropathy.",
-          lab_diagnosis: "**JC/PML:** CSF PCR for JC virus. **MRI brain:** multifocal asymmetric white matter lesions **without enhancement** and without mass effect. **Histology (PML):** demyelination, enlarged oligodendrocytes with ground-glass inclusions. **BK virus:** urine PCR, urine cytology shows **decoy cells**.",
-          tx: "**JC/PML:** HAART for immune reconstitution. Plasma exchange for natalizumab-associated PML. **BK virus:** reduce immunosuppression.",
-          pearl: "PML lesions do not ring-enhance and have no mass effect on MRI, distinguishing them from CNS lymphoma and cerebral toxoplasmosis. BK decoy cells on urine cytology closely mimic urothelial carcinoma cells. Natalizumab blocks lymphocyte entry into the CNS, explicitly enabling JC virus reactivation."
-        },
-        {
-          name: "HPV (Human Papillomavirus)",
-          summary: "dsDNA, non-enveloped low-risk (6, 11: warts); high-risk (16, 18: cervical/oropharyngeal cancer); E6 degrades p53, E7 inactivates Rb; koilocytes on Pap smear",
-          gram: "dsDNA, non-enveloped (Papillomaviridae)",
-          virulence: "**E6 oncoprotein:** targets **p53** for degradation. **E7 oncoprotein:** inactivates **Rb**. **Integration of HPV DNA** into the host genome disrupts the E2 repressor, driving unregulated E6/E7 expression.",
-          disease: "**Low-risk (6, 11):** condylomata acuminata (anogenital warts), recurrent respiratory papillomatosis. **High-risk (16, 18):** cervical carcinoma, oropharyngeal carcinoma (tonsils, base of tongue), anal carcinoma. **CIN:** precursor to invasive cervical cancer.",
-          lab_diagnosis: "**Cytology (Pap smear):** shows **koilocytes** (enlarged squamous cells with perinuclear clearing/halo and wrinkled 'raisinoid' nuclei) . **Tests:** HPV DNA PCR/hybrid capture. p16 IHC staining acts as a surrogate marker for high-risk HPV integration.",
-          tx: "**Warts:** cryotherapy, podophyllin, imiquimod. **High-grade CIN:** LEEP or cone biopsy. **Prevention:** Gardasil 9 vaccine.",
-          pearl: "E6 kills p53 and E7 kills Rb. Koilocytes on a Pap smear are pathognomonic for HPV infection. HPV-positive oropharyngeal cancer carries a significantly better prognosis and is more radiosensitive than HPV-negative squamous cell carcinoma."
-        },
-        {
-          name: "Parvovirus B19",
-          summary: "ssDNA, non-enveloped smallest DNA virus; erythema infectiosum in children; aplastic crisis in sickle cell; hydrops fetalis in pregnancy",
-          gram: "ssDNA, non-enveloped (Parvoviridae)",
-          virulence: "Infects **erythroid progenitor cells** via the **P antigen (globoside)** receptor. Cytopathic effect causes transient arrest of erythropoiesis.",
-          disease: "**Erythema infectiosum (Fifth disease):** 'slapped cheek' facial rash followed by a lacy reticular rash on the trunk. **Adults:** symmetric polyarthropathy mimicking rheumatoid arthritis. **Sickle cell/hemolytic anemia:** **aplastic crisis** (sudden severe drop in reticulocytes). **Pregnancy:** fetal anemia leading to **hydrops fetalis**.",
-          lab_diagnosis: "**Tests:** Serology (IgM for acute). PCR for immunocompromised or fetal diagnosis. **Histology:** Bone marrow biopsy in aplastic crisis shows **giant pronormoblasts** (enlarged erythroid precursors with large pale intranuclear inclusions and cytoplasmic pseudopods).",
-          tx: "**Immunocompetent:** supportive. **Aplastic crisis:** RBC transfusion. **Immunocompromised:** IVIG. **Hydrops fetalis:** intrauterine fetal blood transfusion.",
-          pearl: "An aplastic crisis in a sickle cell patient is Parvovirus B19 until proven otherwise. A child with Fifth disease is no longer infectious once the 'slapped cheek' rash appears, as the rash is immune-mediated."
-        },
-        {
-          name: "Adenovirus",
-          summary: "dsDNA, non-enveloped pharyngoconjunctival fever, epidemic keratoconjunctivitis, pneumonia in military recruits, hemorrhagic cystitis",
-          gram: "dsDNA, non-enveloped (Adenoviridae)",
-          virulence: "**Fiber protein** binds CAR receptor. **Penton base** mediates endosome escape. Non-enveloped structure makes it highly **resistant to lipid solvents, alcohol, and desiccation**.",
-          disease: "**Pharyngoconjunctival fever (PCF):** fever, pharyngitis, and follicular conjunctivitis linked to swimming pools. **Epidemic keratoconjunctivitis (EKC):** severe contagious conjunctivitis with corneal infiltrates. **Pneumonia:** severe atypical pneumonia in military recruits. **Hemorrhagic cystitis:** in immunocompromised transplant patients. **Intussusception:** in children (acts as a lead point).",
-          lab_diagnosis: "**Tests:** PCR, DFA, or rapid antigen testing. **Culture:** Cell rounding and grape-like clusters. **Histology:** Lung biopsy shows **smudge cells** (large, round basophilic intranuclear inclusions smearing the entire nucleus).",
-          tx: "**Supportive**. **Military recruits:** live oral vaccine (types 4 and 7) in an enteric-coated capsule. Strict contact precautions for EKC.",
-          pearl: "Because it lacks a lipid envelope, adenovirus is resistant to alcohol-based hand sanitizers, leading to massive nosocomial outbreaks in eye clinics. Smudge cells in a lung biopsy indicate adenovirus pneumonia."
-        },
-        {
-          name: "Poxvirus (Smallpox & Molluscum Contagiosum)",
-          summary: "dsDNA, enveloped largest and most complex virus; replicates in cytoplasm; smallpox (eradicated); molluscum contagiosum (umbilicated papules)",
-          gram: "dsDNA, enveloped (Poxviridae)",
-          virulence: "**Replicates entirely in host cell cytoplasm** because it carries its own DNA-dependent RNA polymerase and DNA polymerase. **Guarnieri bodies:** cytoplasmic inclusion factories.",
-          disease: "**Smallpox (variola):** synchronous pustular rash starting on the face and extremities and spreading to the trunk (centrifugal), involves palms and soles. **Molluscum contagiosum:** pearly, dome-shaped, **umbilicated papules** (central dimple). **Mpox (monkeypox):** zoonotic, rash similar to smallpox, prominent lymphadenopathy.",
-          lab_diagnosis: "**Microscopy/EM:** Electron microscopy shows unique **brick-shaped virions** with a dumbbell-shaped core . **Histology (Molluscum):** **Henderson-Paterson bodies** (large eosinophilic cytoplasmic inclusions in keratinocytes). PCR for definitive diagnosis.",
-          tx: "**Smallpox/Mpox:** tecovirimat (TPOXX). **Molluscum:** cryotherapy, curettage, or observation in immunocompetent children.",
-          pearl: "Poxvirus is the only DNA virus that replicates entirely in the cytoplasm. Smallpox lesions are completely synchronous, meaning all lesions are at the exact same stage of development, unlike the asynchronous crops of varicella."
-        },
-        {
-          name: "Hepatitis B (HBV) & Hepatitis D (HDV)",
-          summary: "HBV: partially dsDNA, reverse transcriptase chronic hepatitis, cirrhosis, HCC; HDV: defective ssRNA requires HBsAg",
-          gram: "HBV: partially dsDNA, enveloped (Hepadnaviridae). HDV: ssRNA (-), enveloped (requires HBV HBsAg)",
-          virulence: "**HBV reverse transcriptase:** replicates via RNA intermediate. **cccDNA (covalently closed circular DNA):** stable nuclear reservoir that prevents total cure. **HBxAg:** promotes host gene expression and hepatocellular carcinoma (HCC). **HDV:** cannot infect cells without utilizing HBV's surface antigen for its own envelope.",
-          disease: "**Acute HBV:** flu-like illness, jaundice, immune-complex arthralgias/rash. **Chronic HBV:** high risk in perinatally infected infants. **Complications:** cirrhosis, **HCC** (can develop without cirrhosis), polyarteritis nodosa (PAN), membranous nephropathy. **HDV superinfection:** chronic HBV carrier acquires HDV, leading to rapidly accelerated cirrhosis and fulminant hepatitis.",
-          lab_diagnosis: "**Serology:** HBsAg (active infection), Anti-HBs (immunity), Anti-HBc IgM (acute), Anti-HBc IgG (past/chronic). **Tests:** HBV DNA quantitative PCR. **Histology:** Liver biopsy shows **ground-glass hepatocytes** (smooth eosinophilic cytoplasm full of HBsAg).",
-          tx: "**Chronic HBV:** **tenofovir** or **entecavir** (nucleoside analogs that block reverse transcriptase but do not eliminate cccDNA). **Neonates:** HBIG + HBV vaccine within 12 hours. HDV is prevented entirely by HBV vaccination.",
-          pearl: "The window period features only anti-HBc IgM, as HBsAg has been cleared but anti-HBs has not yet appeared. Vaccination produces anti-HBs ONLY, with no anti-HBc. HBV can directly cause HCC through genomic integration without requiring prior cirrhosis, unlike HCV. HDV superinfection is much more destructive than simultaneous co-infection."
-        }
-      ]
-    }
+],
 
-// Note: Output paused here per "do one chunk at a time" instruction. Ready for RNA Viruses.
+viruses: [
   {
-    group: "RNA Viruses - Positive Sense",
+    group: "DNA Viruses — Herpesviruses",
     color: "vir",
     organisms: [
       {
-        name: "Picornaviruses - Overview (Enteroviruses)",
-        summary: "ssRNA(+), non-enveloped smallest RNA viruses; includes poliovirus, coxsackievirus, rhinovirus, HAV, echovirus; fecal-oral transmission (except rhinovirus); acid-stable",
-        gram: "ssRNA (+), non-enveloped (Picornaviridae)",
-        virulence: "**Non-enveloped:** acid-stable (survive stomach pH, enabling fecal-oral transmission and GI replication). **IRES (internal ribosome entry site):** cap-independent translation. Not killed by alcohol-based hand sanitizers.",
-        disease: "Family includes: **Enteroviruses** (poliovirus, coxsackievirus, echovirus), **Rhinovirus** (acid-labile, respiratory), **Hepatovirus** (HAV). Diseases range from aseptic meningitis, encephalitis, myocarditis, HFMD, polio, to hepatitis A.",
-        lab_diagnosis: "**Tests:** Stool culture and/or PCR for enteroviruses (multiplex PCR panels). CSF PCR for enteroviral meningitis. **Microscopy/Culture:** Cell culture shows rapid cell rounding and death. EM reveals small naked icosahedral particles.",
-        tx: "Mostly supportive. Pleconaril (experimental). IPV (Salk inactivated polio vaccine).",
-        pearl: "Picorna translates to small (pico) RNA. Because they are non-enveloped, they are not killed by alcohol hand sanitizers. Enterovirus is the most common cause of aseptic (viral) meningitis overall."
+        name: "HSV-1 and HSV-2",
+        summary: "Latent in sensory ganglia — HSV-1: oral/encephalitis (temporal); HSV-2: genital/neonatal; treat with acyclovir",
+gram: "dsDNA, enveloped",
+virulence: "Tegument proteins and glycoproteins (gB, gC, gD) for cell entry. Viral TK (thymidine kinase) — required for acyclovir activation. LAT (latency-associated transcripts) maintain latency in neurons.",
+        disease: "**HSV-1:** primary gingivostomatitis (painful vesicles/ulcers), recurrent herpes labialis ('cold sores'), keratoconjunctivitis (dendritic corneal ulcers — **fluorescein staining**), **herpes encephalitis** (temporal lobe → personality change, seizures, hemorrhagic necrosis —
+**MRI: temporal lobe signal, LP: RBCs + lymphocytes**).
+**HSV-2:** genital herpes (painful ulcers on genitals), **neonatal herpes** (from birth canal — disseminated → skin/eye/mouth or CNS → high mortality).
+**HSV** in immunocompromised: esophagitis, proctitis, encephalitis.
+**Whitlow:** finger infection from HSV.",
+        tx: "**Acyclovir** (or valacyclovir, famciclovir) — phosphorylated by viral TK → inhibits viral DNA polymerase. HSV encephalitis: IV acyclovir (empirically in suspected cases — don't wait).
+**Prophylaxis** for frequent recurrences: daily valacyclovir. Acyclovir-resistant (TK-deficient): foscarnet.",
+        pearl: "**Temporal lobe encephalitis** = HSV-1 until proven otherwise → start IV acyclovir immediately.
+**Tzanck smear:** multinucleated giant cells (not specific for HSV — also VZV).
+**Neonatal herpes triad:** skin vesicles + eye involvement + CNS/disseminated disease — C-section if active lesions at delivery. Acyclovir resistance → **foscarnet** (doesn't need TK for activation)."
       },
       {
-        name: "Poliovirus",
-        summary: "ssRNA(+), non-enveloped, fecal-oral infects anterior horn motor neurons → asymmetric flaccid paralysis; IPV (Salk) vs OPV (Sabin)",
-        gram: "ssRNA (+), non-enveloped (Enterovirus)",
-        virulence: "Fecal-oral transmission → replicates in oropharynx and GI mucosa → viremia → CNS spread → destroys **anterior horn motor neurons**.",
-        disease: "**Abortive polio:** fever, GI symptoms. **Non-paralytic aseptic meningitis:** headache, meningismus. **Paralytic polio:** asymmetric flaccid paralysis (areflexia, hypotonia, muscle atrophy, **NO sensory deficit**). **Post-polio syndrome:** progressive new muscle weakness decades later.",
-        lab_diagnosis: "**Tests:** Stool viral culture or PCR. CSF shows lymphocytic pleocytosis, normal glucose, mildly elevated protein (aseptic meningitis pattern). **Histology:** Autopsy shows neuronophagia and neuronal loss in the anterior gray matter.",
-        tx: "**Supportive**. Ventilatory support for respiratory failure. **Prevention:** IPV (Salk, inactivated, injected) or OPV (Sabin, live attenuated oral).",
-        pearl: "Asymmetric flaccid paralysis with fever and absolutely no sensory deficit indicates poliovirus. The anterior horn involvement means strictly lower motor neuron signs (flaccid, atrophic, areflexic)."
+        name: "VZV (HHV-3) — Varicella-Zoster",
+        summary: "Chickenpox (primary) → latent in dorsal root ganglia → zoster (shingles, dermatomal) — vaccine-preventable; treat with acyclovir",
+gram: "dsDNA, enveloped",
+virulence: "Highly contagious (airborne + droplet contact). Latency in dorsal root ganglia.",
+        disease: "**Varicella (chickenpox):** pruritic rash — papules → vesicles → pustules → crusts (all stages simultaneously). Fever, malaise. Complications: bacterial superinfection (GAS), pneumonia (adults, immunocompromised), encephalitis, Reye syndrome (if given aspirin → avoid ASA in children with varicella).
+**Herpes zoster (shingles):** reactivation in dermatomal distribution — painful, unilateral vesicles.
+**Zoster ophthalmicus** (V1 — risk of keratitis, blindness).
+**Ramsay Hunt syndrome:** VZV reactivation in geniculate ganglion → facial palsy (CN VII) + ear vesicles + sensorineural hearing loss.",
+        tx: "Acyclovir (IV for severe/immunocompromised, PO for uncomplicated shingles in <72h).
+**Zoster vaccine (Shingrix):** recombinant, recommended ≥50 yrs.
+**Varicella vaccine (Varivax):** live attenuated, 2-dose series.
+**VZIG** for post-exposure prophylaxis in immunocompromised/pregnant.",
+        pearl: "**Reye syndrome:** aspirin + varicella (or influenza) → hepatic encephalopathy in children → **never give aspirin to children with viral illness**.
+**Ramsay Hunt:** VZV in geniculate ganglion → Bell's palsy + ear vesicles + hearing loss. Zoster can affect
+**V1 (ophthalmic)**: Hutchinson's sign (vesicles on tip of nose → indicates nasociliary nerve involvement → corneal disease risk). Tzanck smear: multinucleated giant cells."
       },
       {
-        name: "Coxsackievirus",
-        summary: "ssRNA(+), non-enveloped Group A: hand-foot-mouth disease, herpangina; Group B: myocarditis, pericarditis, pleurodynia",
-        gram: "ssRNA (+), non-enveloped (Enterovirus)",
-        virulence: "**Group B:** uses **CAR (coxsackievirus-adenovirus receptor)**. Infects myocardial cells. **Group A:** tropism for skin and oral mucosa.",
-        disease: "**Group A:** Hand-foot-mouth disease (vesicles/ulcers in mouth + rash on palms, soles, buttocks). Herpangina (vesicles/ulcers on soft palate and uvula only). **Group B:** Myocarditis/pericarditis (pleuritic chest pain, elevated troponin, dilated cardiomyopathy). Pleurodynia (Bornholm disease, 'devil's grip').",
-        lab_diagnosis: "**Tests:** Stool/CSF/Vesicle PCR. Cardiac biomarkers (troponin, BNP) and ECG changes in myocarditis. **Histology:** Endomyocardial biopsy shows lymphocytic infiltration with myocyte necrosis (Dallas criteria) .",
-        tx: "Supportive. IVIG for severe neonatal sepsis. Avoid NSAIDs in the acute phase of myocarditis.",
-        pearl: "Coxsackie B is the most common cause of viral myocarditis. Differentiate herpangina from HFMD by location: herpangina involves the posterior oral cavity strictly, whereas HFMD involves the hands and feet as well."
+        name: "EBV (HHV-4) — Epstein-Barr Virus",
+        summary: "Infectious mononucleosis — heterophile antibodies (Monospot), atypical lymphocytes, splenomegaly, rash with ampicillin; transforms B cells → lymphomas",
+gram: "dsDNA, enveloped",
+virulence: "Infects **B cells via CD21 (CR2 complement receptor)**. Immortalizes B cells (EBNA, LMP oncoproteins). Monospot: heterophile antibodies agglutinate horse/sheep RBCs.",
+        disease: "**Infectious mononucleosis ('mono'):** fever + pharyngitis (exudative) + lymphadenopathy (posterior cervical) + splenomegaly.
+**Fatigue for weeks–months**. Rash if given **ampicillin/amoxicillin** (immune-mediated, maculopapular). Complications: splenic rupture (avoid contact sports for 3–4 weeks), airway obstruction (from tonsillar hypertrophy).
+**Malignancies:** Burkitt lymphoma (endemic African form c-myc:8;14 translocation, jaw mass in children, EBV-associated), primary CNS lymphoma (immunocompromised — HIV/transplant), nasopharyngeal carcinoma (Southeast Asian populations), Hodgkin lymphoma (mixed cellularity subtype), post-transplant lymphoproliferative disorder (PTLD).",
+        tx: "Supportive (rest, avoid contact sports). Steroids if airway compromise or severe. No specific antiviral. Avoid ampicillin/amoxicillin. PTLD: reduce immunosuppression ± rituximab.",
+        pearl: "**Ampicillin rash** in 'tonsillar pharyngitis' patient = classic EBV vignette (don't give ampicillin for sore throat without testing for mono).
+**CD21** is the receptor. Heterophile antibodies (Monospot) appear in 85% — may be falsely negative early.
+**Atypical lymphocytes** = CD8+ T cells (reactive) responding to EBV-infected B cells. Monospot false negative in first week."
       },
       {
-        name: "Rhinovirus",
-        summary: "ssRNA(+), non-enveloped, acid-labile most common cause of the common cold; ICAM-1 receptor; >100 serotypes; replicates at 33°C",
-        gram: "ssRNA (+), non-enveloped (Enterovirus genus)",
-        virulence: "Binds **ICAM-1**. **Acid-labile** (pH <6 destroys it, preventing fecal-oral transmission). Optimal replication at **33°C** (nasal cavity temperature).",
-        disease: "**Common cold:** rhinorrhea, nasal congestion, sore throat. Low-grade or no fever. **Complications:** secondary bacterial sinusitis or otitis media. Most common precipitant of asthma exacerbations.",
-        lab_diagnosis: "**Tests:** Multiplex PCR respiratory panel. **Culture:** Cytopathic effect on cell lines at 33°C. Clinical diagnosis is usually sufficient.",
-        tx: "Supportive. Antibiotics are NOT indicated. Zinc lozenges may slightly reduce duration if started early.",
-        pearl: "Unlike other picornaviruses, rhinovirus is acid-labile, meaning it causes no GI disease and cannot be transmitted via the fecal-oral route. Optimal replication at 33 degrees Celsius restricts it to the upper respiratory tract rather than the lungs."
+        name: "CMV (HHV-5) — Cytomegalovirus",
+        summary: "Owl-eye inclusions — congenital (calcifications, hearing loss) and immunocompromised (retinitis, esophagitis, colitis); treat with ganciclovir",
+gram: "dsDNA, enveloped (largest herpesvirus)",
+virulence: "Intranuclear inclusions ('owl eyes'). Infects many cell types. Latent in mononuclear cells. Can reactivate with immunosuppression.",
+        disease: "**Congenital CMV** (most common congenital infection): **periventricular calcifications**, hearing loss (most common cause of non-hereditary sensorineural), chorioretinitis, hepatosplenomegaly, petechiae ('blueberry muffin' baby), microcephaly.
+**Immunocompromised (HIV, transplant):** CMV retinitis (most common cause of blindness in AIDS — 'pizza pie' fundus), esophagitis (linear ulcers), colitis (bloody diarrhea), pneumonitis (bone marrow/lung transplant).
+**Mononucleosis-like:** heterophile-negative mono (common in healthy adults).",
+        tx: "**Ganciclovir** (or valganciclovir — prodrug). Ganciclovir resistance: **foscarnet** or cidofovir. Prophylaxis in transplant: valganciclovir.",
+        pearl: "**CMV vs Toxoplasma calcifications:** CMV = **periventricular** (central). Toxoplasma = **diffuse/scattered** (peripheral). Both cause congenital CNS disease.
+**Ganciclovir** = guanosine analog, requires phosphorylation by viral UL97 kinase (CMV kinase). Bone marrow toxicity (neutropenia, thrombocytopenia) = main side effect.
+**Retinitis in AIDS:** bushy hemorrhagic infiltrate following blood vessels — 'pizza pie fundus.' CD4 <50/µL."
       },
       {
-        name: "Hepatitis A Virus (HAV)",
-        summary: "ssRNA(+), non-enveloped, fecal-oral acute self-limited hepatitis; never causes chronic infection; shellfish/travel endemic; IgM = acute",
-        gram: "ssRNA (+), non-enveloped (Hepatovirus)",
-        virulence: "Non-enveloped, making it highly **acid-stable and environmentally stable**. Liver injury is primarily immune-mediated (CTL response). Shed in feces before symptoms appear.",
-        disease: "**Acute hepatitis:** nausea, vomiting, RUQ pain, jaundice, dark urine, clay-colored stools. Markedly elevated transaminases (ALT > AST). Self-limited in 4-8 weeks. **Never causes chronic hepatitis or HCC.**",
-        lab_diagnosis: "**Tests:** Anti-HAV IgM indicates acute infection. Anti-HAV IgG indicates past infection or vaccination. **Histology:** Lobular hepatitis with hepatocyte swelling, Councilman bodies, and portal infiltrate (non-specific for HAV).",
-        tx: "**Supportive**. **Prevention:** HAV vaccine (2-dose inactivated). Post-exposure prophylaxis with vaccine or IGIM.",
-        pearl: "HAV is strictly an acute, self-limited infection and never causes chronic disease or hepatocellular carcinoma. Patients are most infectious in the pre-icteric phase before jaundice even appears. Shellfish concentrate the virus 100-fold."
+        name: "HHV-6 (Roseola — Exanthem Subitum)",
+        summary: "Roseola infantum — high fever 3–5 days → sudden defervescence → rose-colored macular rash; febrile seizures; infants 6–24 months; HHV-6 also causes encephalitis in transplant patients",
+gram: "dsDNA, enveloped",
+virulence: "Infects CD4+ T cells and monocytes. Latency in monocytes/macrophages. Can reactivate with immunosuppression (especially stem cell transplant).",
+        disease: "**Roseola infantum (exanthem subitum):** most common exanthem in infants <2 years.
+**High fever (39–40°C) for 3–5 days** — child appears well despite fever.
+**Sudden defervescence → rose-colored blanching macular rash** (trunk → neck/extremities, spares face).
+**Febrile seizures** occur during fever phase (not during rash).
+**Immunocompromised (transplant):** HHV-6 reactivation → **encephalitis**, hepatitis, pneumonitis.",
+        tx: "Roseola: supportive (acetaminophen for fever). Transplant encephalitis: **ganciclovir or foscarnet** (off-label, limited data).",
+        pearl: "**Classic vignette:** 9-month-old infant with 4 days of high fever → fever breaks → rose-colored truncal rash.
+**Febrile seizures** are the main complication (occur during fever, not rash phase). HHV-6 uses CD46 as receptor. Reactivation in bone marrow transplant recipients → limbic encephalitis (amnesia, confusion)."
       },
       {
-        name: "Calicivirus (Norovirus)",
-        summary: "ssRNA(+), non-enveloped most common cause of epidemic gastroenteritis; cruise ships, nursing homes; ultra-low infectious dose; 24-48h duration; resistant to alcohol",
-        gram: "ssRNA (+), non-enveloped (Caliciviridae)",
-        virulence: "Extremely **low infectious dose** (~18 viral particles). **Alcohol-resistant**. Environmentally stable. Uses HBGA (histo-blood group antigens) as a receptor.",
-        disease: "**Acute epidemic gastroenteritis:** abrupt onset projectile vomiting, watery non-bloody diarrhea, cramping. Duration is characteristically brief (24-48 hours). Epidemic clusters on cruise ships, nursing homes, schools.",
-        lab_diagnosis: "**Tests:** Stool PCR is the most sensitive test for outbreak investigations. Stool antigen EIA. **Microscopy:** EM reveals round virions with characteristic cup-shaped surface depressions .",
-        tx: "**Supportive** (oral rehydration, anti-emetics). **Outbreak control:** 1:10 bleach solution disinfection is strictly required because alcohol-based products are ineffective.",
-        pearl: "Norovirus is the most common cause of foodborne illness outbreaks in the United States. Its resistance to alcohol means bleach is strictly required for environmental decontamination. The brief 24 to 48 hour duration distinguishes it from longer-lasting viral gastroenteritides."
-      },
-      {
-        name: "Flavivirus (Dengue, West Nile, Yellow Fever, Zika)",
-        summary: "ssRNA(+), enveloped mosquito-borne arboviruses; Dengue (breakbone fever); West Nile (encephalitis); Yellow Fever (hepatitis/jaundice); Zika (microcephaly)",
-        gram: "ssRNA (+), enveloped (Flaviviridae)",
-        virulence: "**Aedes mosquito** (Dengue, Yellow Fever, Zika). **Culex mosquito** (West Nile). **Antibody-dependent enhancement (ADE):** prior dengue infection enhances macrophage uptake during secondary infection, causing hemorrhagic fever.",
-        disease: "**Dengue ('breakbone fever'):** high fever, severe myalgia/arthralgia, retro-orbital pain, leukopenia, thrombocytopenia. **West Nile:** encephalitis/meningitis with flaccid paralysis in the elderly. **Yellow fever:** fever, jaundice, GI hemorrhage ('black vomit'). **Zika:** mild febrile illness, triggers Guillain-Barré, causes congenital microcephaly.",
-        lab_diagnosis: "**Tests:** Dengue NS1 antigen, IgM/IgG serology. West Nile CSF IgM. Zika RT-PCR (serum/urine). **Histology:** Yellow fever liver biopsy shows **Councilman bodies** (apoptotic hepatocytes) in the mid-zone.",
-        tx: "Supportive. **Yellow fever:** live attenuated vaccine (17D strain) required for travel. **Zika:** avoid travel to endemic areas during pregnancy.",
-        pearl: "Dengue uniquely presents with thrombocytopenia, leukopenia, and intense 'breakbone' pain. Antibody-dependent enhancement explains why a secondary dengue infection with a different serotype is far more dangerous than the primary infection. Zika exposure during pregnancy mandates screening for fetal microcephaly."
-      },
-      {
-        name: "Hepatitis C Virus (HCV)",
-        summary: "ssRNA(+), enveloped blood-borne; 80% chronic; leading cause of cirrhosis/liver transplant; no vaccine; treat with direct-acting antivirals (DAAs)",
-        gram: "ssRNA (+), enveloped (Flaviviridae)",
-        virulence: "**Hypervariable region on E2 glycoprotein** drives rapid antigenic mutation, evading the immune response. **NS3/4A protease, NS5A replication complex, NS5B RNA polymerase** serve as targets for DAAs.",
-        disease: "**Acute HCV:** usually asymptomatic. **Chronic HCV (80%):** asymptomatic for decades → progressive fibrosis → cirrhosis → HCC. **Extra-hepatic manifestations:** mixed cryoglobulinemia type II (palpable purpura, arthritis, glomerulonephritis), porphyria cutanea tarda, lichen planus.",
-        lab_diagnosis: "**Tests:** Anti-HCV antibody (screening). HCV RNA PCR (confirms active infection, monitors viral load). HCV genotype testing. **Histology:** Liver biopsy shows lymphocytic portal infiltrate, interface hepatitis, and steatosis.",
-        tx: "**Direct-acting antivirals (DAAs):** sofosbuvir (NS5B inhibitor) + ledipasvir (NS5A inhibitor). Achieves >95% sustained virologic response (SVR).",
-        pearl: "Sustained virologic response (SVR) equals a functional cure. Cryoglobulinemia presenting as purpura, arthritis, and glomerulonephritis is a classic extra-hepatic manifestation. Unlike HBV, Hepatitis C almost always requires the development of cirrhosis before progressing to hepatocellular carcinoma."
-      },
-      {
-        name: "Togavirus (Rubella)",
-        summary: "ssRNA(+), enveloped rubella (German measles): mild 3-day rash illness; teratogenic in 1st trimester (CRS: cataracts, deafness, PDA); MMR vaccine",
-        gram: "ssRNA (+), enveloped (Togaviridae)",
-        virulence: "Respiratory droplet transmission → viremia → rash (immune-mediated). Crosses the placenta during maternal viremia, becoming highly teratogenic during early fetal organogenesis.",
-        disease: "**Postnatal rubella:** mild low-grade fever, **posterior auricular and occipital lymphadenopathy**, maculopapular rash (face to trunk, resolves in 3 days). **Congenital rubella syndrome (CRS):** classic triad of cataracts, sensorineural deafness, and congenital heart disease (PDA, pulmonary artery stenosis). Also causes 'blueberry muffin' rash.",
-        lab_diagnosis: "**Tests:** Rubella IgM (acute) and IgG (immunity). RT-PCR (blood, throat, urine). Prenatal diagnosis via fetal blood sampling or amniocentesis PCR. **Histology:** Non-specific reactive lymphadenopathy.",
-        tx: "Supportive. **Prevention:** MMR vaccine (live attenuated). **Contraindicated in pregnancy.**",
-        pearl: "Prominent posterior auricular and occipital lymphadenopathy strongly differentiates rubella from measles. The CRS triad is cataracts, deafness, and a patent ductus arteriosus. The MMR vaccine is strictly contraindicated during pregnancy."
-      },
-      {
-        name: "Coronavirus (COVID-19 / SARS-CoV-2)",
-        summary: "ssRNA(+), enveloped spike protein binds ACE2; COVID-19: anosmia, respiratory failure, cytokine storm; largest RNA genome",
-        gram: "ssRNA (+), enveloped (Coronaviridae)",
-        virulence: "**Spike protein (S)** binds **ACE2 receptor**. Large 30 kb genome includes a **proofreading exonuclease (nsp14)**, granting a lower mutation rate than influenza. Triggers profound cytokine storm (IL-6, TNF-alpha).",
-        disease: "**COVID-19:** fever, cough, **anosmia/ageusia**, dyspnea. **Severe disease:** ARDS, cytokine storm, hypercoagulability (PE, stroke), myocarditis. **SARS-CoV-1 and MERS:** highly lethal respiratory syndromes. **Common cold coronaviruses:** cause 10-30% of standard common colds.",
-        lab_diagnosis: "**Tests:** RT-PCR (gold standard), Rapid antigen test. **Imaging:** CT chest shows bilateral peripheral ground-glass opacities. **Microscopy:** EM shows spherical enveloped virions with club-shaped spike projections resembling a solar corona .",
-        tx: "**Outpatient:** nirmatrelvir/ritonavir (Paxlovid). **Hospitalized:** remdesivir, dexamethasone, tocilizumab. **Prevention:** mRNA vaccines.",
-        pearl: "Anosmia and ageusia are unique, early diagnostic clues. Dexamethasone reduces mortality only in severe cases requiring supplemental oxygen; it is harmful if given too early. mRNA vaccines are translated in the cytoplasm and do not integrate into the host genome."
+        name: "HHV-8 (Kaposi Sarcoma Herpesvirus)",
+        summary: "Kaposi's sarcoma in AIDS (CD4 <200) — violaceous skin lesions, visceral involvement; also causes primary effusion lymphoma and Castleman disease; treat with ART restoration",
+gram: "dsDNA, enveloped",
+virulence: "Viral homologs of cellular oncogenes (v-cyclin, v-FLIP, vIL-6). Promotes angiogenesis (VEGF induction). Infects B cells and endothelial cells. Reactivates with immunosuppression.",
+        disease: "**Kaposi's sarcoma:** violaceous (purple-red) vascular skin lesions — flat → raised nodular plaques.
+**AIDS-associated KS (most common):** widespread cutaneous, mucosal (palate), visceral (GI, lung) involvement.
+**Classic KS (elderly Mediterranean men):** indolent, lower extremities, not immunocompromised.
+**Transplant-associated KS.**
+**Primary effusion lymphoma (PEL):** B-cell lymphoma in body cavities (pleural, pericardial) — no solid tumor mass.
+**Multicentric Castleman disease:** lymphadenopathy, hepatosplenomegaly, fever.",
+        tx: "AIDS-KS:
+**HAART** (immune reconstitution often leads to regression). Local: radiation, cryotherapy, intralesional vinblastine. Systemic: liposomal doxorubicin or paclitaxel for advanced disease. PEL: chemotherapy.",
+        pearl: "**Violaceous lesions on skin/palate in HIV patient = Kaposi's sarcoma = HHV-8.** Must distinguish from bacillary angiomatosis (Bartonella — similar appearance but bacterial, treats with antibiotics). KS on palate = AIDS-defining illness. HHV-8 + EBV co-infection → PEL (lymphoma without a solid mass — 'lymphoma floating in body cavities')."
       }
     ]
   },
   {
-    group: "RNA Viruses - Negative Sense",
+    group: "DNA Viruses — Other",
+    color: "vir",
+    organisms: [
+      {
+        name: "Polyomavirus (JC Virus & BK Virus)",
+        summary: "JC virus → PML (progressive multifocal leukoencephalopathy) in AIDS/immunocompromised; BK virus → hemorrhagic cystitis in transplant; both latent in kidneys; no effective treatment",
+gram: "dsDNA, non-enveloped (naked)",
+virulence: "Latent in kidney tubular cells and B cells (JC also in oligodendrocytes). Reactivate with immunosuppression. JC infects and destroys oligodendrocytes → demyelination.",
+        disease: "**JC virus → PML:** AIDS (CD4 <100), hematologic malignancies, natalizumab use (MS treatment). Demyelination of white matter → rapidly progressive neurological deficits (weakness, cognitive decline, visual loss), NO fever (immunocompromised can't mount inflammation). MRI: multifocal white matter lesions.
+**No mass effect, no enhancement** (unlike CNS lymphoma).
+**BK virus:** renal transplant → **hemorrhagic cystitis** and tubulointerstitial nephritis (BK nephropathy → graft loss).",
+        tx: "JC/PML: **immune reconstitution** (HAART for AIDS, reduce immunosuppression) — no specific antiviral. BK: reduce immunosuppression; cidofovir (limited benefit).
+**Natalizumab-associated PML:** plasma exchange to remove drug, may cause IRIS (inflammatory reconstitution syndrome).",
+        pearl: "**PML** = demyelinating disease in immunocompromised → white matter lesions on MRI without mass effect or ring enhancement (contrast with CNS lymphoma: ring-enhancing). JC virus: primary infection in childhood (asymptomatic), latency in kidneys/B cells, reactivation = PML.
+**BK virus = transplant bladder bug** (hemorrhagic cystitis 1–6 months post-transplant). Natalizumab (anti-VLA-4 for MS/Crohn's) → prevents T-cell surveillance → JC reactivation."
+      },
+      {
+        name: "HPV (Human Papillomavirus)",
+        summary: "dsDNA, non-enveloped — low-risk (6, 11 → condylomata acuminata/warts), high-risk (16, 18 → cervical/oropharyngeal/anal cancers); E6 inhibits p53, E7 inhibits Rb; Gardasil vaccine",
+gram: "dsDNA, non-enveloped (naked)",
+virulence: "**E6 oncoprotein:** binds and degrades **p53** (→ loss of apoptosis/cell cycle arrest).
+**E7 oncoprotein:** binds and inactivates **Rb** (→ unregulated E2F → cell proliferation). Integration of HPV DNA into host genome = key step in carcinogenesis.",
+        disease: "**Low-risk (HPV 6, 11):** condylomata acuminata (anogenital warts — cauliflower-like, soft, non-malignant), laryngeal papillomatosis (recurrent in children — maternal transmission).
+**High-risk (HPV 16, 18):** cervical carcinoma (squamous cell, junction of ecto/endocervix), oropharyngeal carcinoma (tonsils/base of tongue — HPV 16, p16 positive), anal carcinoma, vulvar/vaginal/penile carcinoma. CIN (cervical intraepithelial neoplasia) = precursor.",
+        tx: "Warts: cryotherapy, podophyllin, imiquimod, trichloroacetic acid. High-grade CIN: LEEP, cone biopsy. Cervical cancer: surgery ± chemoradiation.
+**No antiviral for HPV.**",
+        pearl: "**E6 = kills p53; E7 = kills Rb** — two oncoproteins, two tumor suppressors.
+**Koilocytes** = HPV-infected squamous cells with perinuclear clearing on Pap smear (pathognomonic).
+**Gardasil 9:** prevents HPV 6, 11, 16, 18, 31, 33, 45, 52, 58 — recommended ages 9–26.
+**HPV 16 > 18** for oropharyngeal cancer (HPV-positive oropharyngeal cancer has BETTER prognosis than HPV-negative). Pap smear: screening tool; HPV co-test from age 30."
+      },
+      {
+        name: "Parvovirus B19",
+        summary: "Smallest DNA virus — ssDNA, non-enveloped; erythema infectiosum (Fifth disease, 'slapped cheek') in children; aplastic crisis in sickle cell/hemolytic anemia; hydrops fetalis in pregnancy",
+gram: "ssDNA, non-enveloped (smallest DNA virus)",
+virulence: "Infects **erythroid progenitor cells** (via P antigen receptor = globoside) → transient arrest of erythropoiesis. In immunocompetent: brief → recovers. In hemolytic anemia (sickle cell, hereditary spherocytosis): reticulocyte count drops → acute aplastic crisis.",
+        disease: "**Erythema infectiosum (Fifth disease, children):** 'slapped cheek' facial rash → lacy reticular rash on arms/trunk. Mild fever/URI prodrome.
+**Adults:** polyarthropathy (symmetric small joints — mimics rheumatoid) — especially women.
+**Sickle cell/hemolytic anemia:** **aplastic crisis** (↓↓ reticulocytes → severe anemia requiring transfusion).
+**Pregnancy:** crosses placenta → fetal anemia → hydrops fetalis (high-output HF) → stillbirth.
+**Immunocompromised:** chronic pure red cell aplasia.",
+        tx: "Immunocompetent: supportive. Aplastic crisis: transfusion. Immunocompromised chronic infection:
+**IVIG**. Hydrops fetalis: intrauterine fetal transfusion.",
+        pearl: "**'Slapped cheek' + lacy rash = Parvovirus B19 = Fifth disease.** By the time rash appears, child is NO longer infectious (rash is immune-mediated).
+**Aplastic crisis in sickle cell patient** = Parvovirus B19 until proven otherwise.
+**Hydrops fetalis** risk in seronegative pregnant women exposed to B19 (highest risk 10–20 weeks gestation). P antigen is the receptor — rare P antigen-negative individuals are naturally resistant."
+      },
+      {
+        name: "Adenovirus",
+        summary: "Naked dsDNA — pharyngoconjunctival fever, epidemic keratoconjunctivitis, pneumonia (military recruits), hemorrhagic cystitis; no envelope (resists desiccation); no specific treatment",
+gram: "dsDNA, non-enveloped (naked icosahedral)",
+virulence: "**Fiber protein** (projects from capsid vertices) → binds CAR (coxsackievirus-adenovirus receptor) for host cell attachment.
+**Penton base** (RGD motif) → endosome escape. E1A/E1B proteins: inhibit p53 and Rb (similar to HPV E6/E7 — oncogenic in rodents, NOT in humans).",
+        disease: "**Upper respiratory:** pharyngitis, common cold (types 1, 2, 5).
+**Pharyngoconjunctival fever (PCF):** fever + pharyngitis + conjunctivitis — transmitted in swimming pools ('swimming pool conjunctivitis,' types 3, 7).
+**Epidemic keratoconjunctivitis (EKC):** severe follicular conjunctivitis + corneal infiltrates, highly contagious (types 8, 19, 37).
+**Pneumonia:** severe in military recruits (types 4, 7).
+**Hemorrhagic cystitis:** immunocompromised (types 11, 21).
+**Intussusception:** intestinal (types 40, 41) — second most common cause in children.",
+        tx: "Mostly supportive. Military: live oral vaccine (types 4 and 7). Immunocompromised severe: cidofovir. No approved antiviral.",
+        pearl: "**Adenovirus = naked (non-enveloped)** → stable on surfaces, resistant to alcohol — major cause of nosocomial outbreaks.
+**PCF** in swimmers or summer camps.
+**EKC** is highly contagious — contact precautions. Adenovirus is NOT treated with antivirals targeting envelope (contrast with influenza, HIV). Vectors in gene therapy. Unlike HPV, adenovirus does NOT integrate and does NOT cause cancer in humans."
+      },
+      {
+        name: "Poxvirus (Smallpox & Molluscum)",
+        summary: "Largest DNA virus — encodes its own DNA polymerase; smallpox (variola, eradicated) vs molluscum contagiosum (umbilicated papules, immunocompromised); vaccinia = vaccine strain",
+gram: "dsDNA, enveloped (largest, most complex virus)",
+virulence: "Replicates entirely in cytoplasm (does NOT use nucleus — encodes own machinery). Guarnieri bodies = cytoplasmic inclusion bodies. Variola: highly contagious via respiratory droplets.",
+        disease: "**Smallpox (variola — eradicated 1980):** deep, synchronous pustular rash (ALL lesions at same stage — vs. varicella where stages differ), starts on face/extremities → trunk, fever before rash, involves palms/soles.
+**Molluscum contagiosum:** umbilicated ('bellybutton') pearly papules — self-limited in immunocompetent children (skin-to-skin), extensive/giant in HIV/immunocompromised.
+**Vaccinia:** smallpox vaccine strain — used in lab workers/military; progressive vaccinia if immunocompromised.
+**Monkeypox:** zoonotic, rash similar to smallpox.",
+        tx: "Smallpox: **tecovirimat** (FDA-approved, inhibits VP37 protein).
+**Vaccinia immune globulin (VIG)** for complications. Molluscum: cryotherapy, curettage, topical agents (self-limited).",
+        pearl: "**Smallpox rash:** ALL lesions same stage ('synchronous') + deep + involves palms/soles — vs **varicella** (chickenpox): lesions at DIFFERENT stages ('crops') + superficial + spares palms/soles. Poxvirus = largest + most complex DNA virus + **only DNA virus that replicates in cytoplasm**.
+**Bioterrorism Category A** agent (variola). Molluscum: Henderson-Paterson bodies (cytoplasmic inclusions in keratinocytes) on biopsy."
+      },
+      {
+        name: "Hepatitis B (HBV) & Hepatitis D (HDV)",
+        summary: "HBV: partially dsDNA Hepadnavirus — chronic hepatitis, cirrhosis, HCC; serology-based diagnosis. HDV: defective RNA virus requiring HBsAg; co-infection vs superinfection; HBV vaccine prevents both",
+gram: "HBV: partially dsDNA, enveloped (Hepadnavirus); HDV: ssRNA (−), enveloped (virusoid — requires HBV)",
+virulence: "HBV: **reverse transcriptase** (RNA intermediate → DNA; target of antivirals). **cccDNA** (covalently closed circular DNA — nuclear reservoir, persists despite treatment).
+**HBxAg:** transactivator → promotes HCC. HDV: requires HBsAg envelope to infect cells.",
+        disease: "**Acute HBV:** flu-like illness, jaundice, arthralgias/rash (immune complex); 90–95% of adults clear.
+**Chronic HBV** (>6 months HBsAg): 10% adults, 90% perinatally infected. Complications: **cirrhosis, HCC** (HBV integrates into host genome even without cirrhosis),
+**PAN** (polyarteritis nodosa — immune complex vasculitis), **membranous nephropathy**.
+**HDV co-infection** (HBV + HDV simultaneously): severe acute hepatitis, usually clears.
+**HDV superinfection** (chronic HBV → HDV added): rapidly accelerated cirrhosis, fulminant hepatitis.",
+        tx: "**Tenofovir or entecavir** (nucleos(t)ide analogs — suppress viral replication, do not cure). Interferon-α (limited use). HBV vaccine → anti-HBs only.
+**Neonatal:** HBV immune globulin + vaccine within 12h of birth. HDV: prevented by HBV vaccination (no HBsAg = no HDV).",
+        pearl: "**HBV serology:** HBsAg = infected (acute or chronic). Anti-HBs = immune (vaccination or recovery). HBeAg = high replication/infectivity. Anti-HBc IgM = acute. Anti-HBc IgG = ever infected.
+**Window period:** HBsAg cleared, anti-HBs not yet — **only anti-HBc IgM positive**.
+**Vaccination → anti-HBs ONLY** (no anti-HBc).
+**HCC** can occur WITHOUT cirrhosis in HBV (vs. HCV which typically requires cirrhosis). cccDNA = why HBV is not curable with current antivirals."
+      }
+    ]
+  },
+  {
+    group: "RNA Viruses — Positive Sense",
+    color: "vir",
+    organisms: [
+      {
+        name: "Picornaviruses — Overview (Enteroviruses)",
+        summary: "Small naked ssRNA(+) — includes poliovirus, coxsackievirus, rhinovirus, HAV, echovirus; fecal-oral (except rhinovirus — respiratory); acid-stable (survive GI tract)",
+gram: "ssRNA (+), non-enveloped (naked) — smallest RNA viruses",
+virulence: "Non-enveloped → **acid-stable** (survive stomach, fecal-oral transmission).
+**IRES** (internal ribosome entry site) — cap-independent translation. VP1–4 proteins form icosahedral capsid.",
+        disease: "Class includes: Enteroviruses (poliovirus, coxsackievirus, echovirus, enterovirus 71), Rhinovirus, Hepatovirus (HAV). Fecal-oral route (enteroviruses) or respiratory (rhinovirus). Can cause: meningitis, encephalitis, myocarditis, herpangina, hand-foot-mouth disease, polio, hepatitis A.",
+        tx: "Mostly supportive. Pleconaril (experimental — capsid inhibitor). Inactivated polio vaccine (IPV) or live oral (OPV — not used in US).",
+        pearl: "**Picorna = small (pico) RNA.** Non-enveloped = **not killed by alcohol** (important for hand hygiene — need soap and water or bleach). Acid-stable = withstands GI tract.
+**IRES** allows ribosome to bind directly without 5' cap — exploited in gene therapy vectors. All can cause aseptic (viral) meningitis — enterovirus is most common overall cause."
+      },
+      {
+        name: "Poliovirus",
+        summary: "Fecal-oral, infects anterior horn motor neurons — flaccid asymmetric paralysis; Salk (IPV) vs Sabin (OPV); polio nearly eradicated globally",
+gram: "ssRNA (+), non-enveloped (Enterovirus)",
+virulence: "Fecal-oral → replicates in oropharynx and GI tract → viremia → CNS via hematogenous or retrograde axonal transport. Destroys **anterior horn motor neurons** (lower motor neuron).",
+        disease: "**Abortive polio (90–95%):** mild fever/GI illness, no neurological involvement.
+**Non-paralytic aseptic meningitis (4–8%).**
+**Paralytic polio (<1%):** **asymmetric flaccid paralysis** — fever, meningismus → motor paralysis (LMN: areflexia, hypotonia, muscle atrophy, NO sensory loss). Bulbar polio: brainstem → respiratory failure.
+**Post-polio syndrome:** decades later → progressive muscle weakness in previously affected muscles.",
+        tx: "Supportive (iron lung historically for respiratory failure).
+**Prevention:** IPV (Salk — inactivated, cannot cause disease, current US standard) or OPV (Sabin — live attenuated, oral, used globally, rare vaccine-associated paralytic polio [VAPP]).",
+        pearl: "**Asymmetric flaccid paralysis + fever + CSF pleocytosis + NO sensory deficit = poliovirus** (vs Guillain-Barré: ascending, symmetric, sensory changes, follows infection/vaccination).
+**Anterior horn cells = LMN** → flaccid, NOT spastic. OPV = oral, gives gut immunity, cheap, but risk of VAPP (~1/million). IPV = injected, no risk, US standard since 2000. Post-polio syndrome: new weakness 30–40 years later from neuronal dropout."
+      },
+      {
+        name: "Coxsackievirus",
+        summary: "Enterovirus — Group A: hand-foot-mouth disease, herpangina; Group B: myocarditis, pericarditis, pleurodnia ('devil's grip'), Bornholm disease; dilated cardiomyopathy",
+gram: "ssRNA (+), non-enveloped (Enterovirus)",
+virulence: "Group B coxsackievirus: **CAR receptor** (shared with adenovirus). Infects myocardial cells → inflammation → necrosis → dilated cardiomyopathy. Group A: tropism for skin and oral mucosa.",
+        disease: "**Group A:** Hand-foot-mouth disease (HFMD): vesicles/ulcers in mouth + maculovesicular rash on palms, soles, buttocks (type A16; enterovirus 71 more severe). Herpangina: small vesicles/ulcers on soft palate/uvula only, high fever.
+**Group B:**
+**Myocarditis/pericarditis** (young adults, type B3, B5 — most common viral cause of myocarditis).
+**Pleurodynia (Bornholm disease):** paroxysmal severe pleuritic chest pain/epigastric pain.
+**Neonatal enteroviral sepsis:** severe, multi-organ failure.",
+        tx: "Supportive. IVIG for neonatal sepsis or severe disease. No specific antiviral.",
+        pearl: "**Coxsackie B = myocarditis** (most common viral cause of myocarditis and dilated cardiomyopathy). Young athlete with chest pain + ST changes + elevated troponin + recent URI = viral myocarditis =
+**Coxsackie B.** HFMD: painful oral ulcers + rash on palms/soles — most common in children under 5, summertime.
+**Herpangina:** posterior oral cavity ONLY (soft palate) — vs HFMD which also has hand/foot lesions."
+      },
+      {
+        name: "Rhinovirus",
+        summary: "Most common cause of the common cold — ssRNA(+), non-enveloped, acid-labile (destroyed by stomach acid); 100+ serotypes; ICAM-1 receptor; no vaccine possible",
+gram: "ssRNA (+), non-enveloped (Enterovirus genus)",
+virulence: "**ICAM-1 receptor** (intracellular adhesion molecule — binds in nasopharynx).
+**Acid-labile** (destroyed by stomach acid — unlike other enteroviruses). Grows optimally at **33°C** (nasal temperature — cannot replicate in warmer lung temperatures = no pneumonia).",
+        disease: "**Common cold:** rhinorrhea, nasal congestion, sore throat, mild cough, sneezing. Low-grade fever or no fever. Duration 7–10 days. Complications: secondary bacterial sinusitis or otitis media (Strep pneumoniae, H. influenzae). Most common precipitant of asthma exacerbations.",
+        tx: "Supportive (decongestants, antihistamines, analgesics). Antibiotics NOT indicated. No vaccine (>100 serotypes → impractical).",
+        pearl: "**Most common URI pathogen** (>50% of colds). Unlike other picornaviruses: **acid-labile** (can't survive stomach) → no fecal-oral transmission. Optimal replication at 33°C = nasopharynx.
+**Hand-to-eye/nose** is the most important transmission route (not droplets — wash hands!). No vaccine possible due to extreme antigenic diversity (>100 serotypes)."
+      },
+      {
+        name: "Hepatitis A Virus (HAV)",
+        summary: "Fecal-oral ssRNA(+) picornavirus — acute hepatitis, NO chronic disease, shellfish/travel; self-limited; HAV IgM = acute; HAV IgG = immunity; vaccine available",
+gram: "ssRNA (+), non-enveloped (Hepatovirus genus)",
+virulence: "Non-enveloped → survives in environment, acid-stable. Replicates in hepatocytes. Cytopathic effect + immune-mediated liver injury. Shed in feces before symptoms appear.",
+        disease: "**Acute hepatitis:** nausea, vomiting, malaise, jaundice, RUQ pain, dark urine, clay-colored stools. Self-limited (most recover in 4–8 weeks).
+**NO chronic infection** (never causes chronic hepatitis or cirrhosis). Risk of **fulminant hepatitis** in adults (rare), especially with underlying liver disease. Fecal-oral: contaminated water, shellfish (filter-feeders concentrate virus), travel to endemic areas, food handlers.",
+        tx: "**Supportive** (no antiviral).
+**HAV vaccine** (highly effective — 2-dose series).
+**Post-exposure prophylaxis:** HAV vaccine (preferred if <40yo) or
+**IGIM** within 2 weeks of exposure.",
+        pearl: "**HAV = self-limited, NEVER chronic.** IgM anti-HAV = acute infection. IgG anti-HAV = past infection OR vaccination (lifelong immunity).
+**Highest risk:** travel to endemic countries, MSM, daycare workers, food handlers, injection drug users. Shellfish (especially raw oysters, clams, mussels) concentrate HAV 100-fold. HAV does NOT integrate and does NOT cause HCC."
+      },
+      {
+        name: "Calicivirus (Norovirus)",
+        summary: "Most common cause of epidemic gastroenteritis — cruise ships, schools, military; 24–48h N/V/D; fecal-oral/vomitus; very low infectious dose; self-limited",
+gram: "ssRNA (+), non-enveloped (Caliciviridae)",
+virulence: "Extremely **low infectious dose** (18 viral particles). Stable on surfaces.
+**Not killed by alcohol-based hand sanitizers** (non-enveloped). Rapidly mutates (no lasting immunity). Uses HBGA (histo-blood group antigens) as receptor.",
+        disease: "**Acute gastroenteritis:** sudden onset nausea, vomiting (prominent), watery non-bloody diarrhea, cramping, low-grade fever. Duration **24–48 hours** (self-limited). Dehydration is main risk (elderly, infants).
+**Epidemic clusters:** nursing homes, hospitals, cruise ships, schools, military barracks.
+**No chronic disease.**",
+        tx: "**Supportive** — ORS, anti-emetics. No specific antiviral. No vaccine approved. Outbreak control: bleach disinfection (alcohol-resistant), contact + enteric precautions.",
+        pearl: "**Most common cause of foodborne illness outbreaks in the US** (surpasses Salmonella). Low infectious dose + highly contagious + alcohol-resistant = perfect storm for outbreaks. **'Cruise ship' gastroenteritis** = Norovirus. Surfaces remain contaminated for weeks. Outbreaks in healthcare settings require aggressive **bleach cleaning** (10:1 dilution) and cohorting. Herd immunity is short-lived (<6 months)."
+      },
+      {
+        name: "Flavivirus (Dengue, West Nile, Yellow Fever, Zika)",
+        summary: "Enveloped ssRNA(+) — mosquito-borne; dengue (breakbone fever, hemorrhagic fever, shock), West Nile (encephalitis in elderly), Yellow Fever (hepatitis + jaundice), Zika (microcephaly)",
+gram: "ssRNA (+), enveloped (Flaviviridae)",
+virulence: "Transmitted by **Aedes** mosquito (Dengue, Yellow Fever, Zika — day-biting) or **Culex** (West Nile — night-biting). NS1 protein (diagnostic marker). Immune enhancement: prior dengue infection → antibodies enhance uptake by macrophages (antibody-dependent enhancement → DHF).",
+        disease: "**Dengue ('breakbone fever'):** high fever, severe myalgia/arthralgia, retro-orbital pain, maculopapular rash, leukopenia/thrombocytopenia.
+**DHF:** plasma leakage, hemorrhage, shock.
+**West Nile:** most asymptomatic; elderly → encephalitis/meningitis, flaccid paralysis; bird → mosquito → human (dead-end host).
+**Yellow fever:** hepatitis + jaundice + GI hemorrhage ('black vomit'), Faget's sign (bradycardia with fever).
+**Zika:** mild febrile illness → **microcephaly/congenital Zika syndrome** (1st trimester most dangerous); also Guillain-Barré; sexual transmission possible.",
+        tx: "Supportive for all. No specific antivirals. Dengue: avoid NSAIDs/aspirin (↑ bleeding). Yellow fever: **live attenuated vaccine** (required for travel to endemic areas). West Nile: no vaccine. Zika: pregnancy precautions, avoid travel to endemic areas if pregnant.",
+        pearl: "**Dengue + thrombocytopenia + leukopenia + 'breakbone' pain = classic.** DHF/DSS: secondary infection with different dengue serotype → antibody-dependent enhancement.
+**Zika in pregnancy → microcephaly** — screen pregnant women with exposure. Yellow fever vaccine: live attenuated, **contraindicated in pregnancy and immunocompromised.** West Nile encephalitis in elderly in late summer (Culex peak)."
+      },
+      {
+        name: "Hepatitis C Virus (HCV)",
+        summary: "Blood-borne Flavivirus ssRNA(+) — 80% chronic, leading cause of cirrhosis and liver transplant in US; no vaccine; treat with direct-acting antivirals (>95% cure)",
+gram: "ssRNA (+), enveloped (Flaviviridae)",
+virulence: "Hypervariable region on E2 glycoprotein → **rapid mutation → immune evasion → chronic infection**. NS3/4A protease, NS5A, NS5B RNA polymerase = drug targets. 6 genotypes (1a/1b most common in US).",
+        disease: "**Acute HCV:** usually asymptomatic (80%) or mild jaundice.
+**Chronic (80%):** most asymptomatic for decades → cirrhosis → HCC.
+**Extra-hepatic:** **mixed cryoglobulinemia** (type II — IgM with RF activity → vasculitis, purpura, glomerulonephritis), membranoproliferative GN, porphyria cutanea tarda, non-Hodgkin B-cell lymphoma, lichen planus. Most common indication for liver transplantation in the US (historically).",
+        tx: "**Direct-acting antivirals (DAAs):** NS5B polymerase inhibitor (sofosbuvir) + NS5A inhibitor (ledipasvir/velpatasvir) ± NS3/4A protease inhibitor — **>95% sustained virologic response (SVR = cure)**. 8–12 week courses. No vaccine (high mutation rate prevents). Ribavirin/interferon: largely replaced by DAAs.",
+        pearl: "**HCV = most common blood-borne infection in US** (historically; HIV now potentially higher).
+**Cryoglobulinemia** (purpura + arthritis + GN) = classic HCV extra-hepatic manifestation.
+**Unlike HBV, HCV cannot cause HCC without cirrhosis (usually).** DAAs have revolutionized treatment — SVR after 12 weeks = functionally cured. Genotype 1 = most common (responds well to DAAs). Screen all adults 18–79 at least once (USPSTF)."
+      },
+      {
+        name: "Togavirus (Rubella)",
+        summary: "Rubella — mild rash illness in children; teratogenic in 1st trimester (congenital rubella syndrome: cataracts, deafness, cardiac defects); MMR vaccine prevents",
+gram: "ssRNA (+), enveloped (Togaviridae — Alphavirus/Rubivirus)",
+virulence: "**Respiratory droplets** → viremia → rash (immune-mediated). Crosses placenta → teratogenic (especially weeks 1–16). Maternal viremia → fetal infection → organ development disruption.",
+        disease: "**Postnatal rubella (acquired):** mild — low-grade fever, posterior auricular/occipital lymphadenopathy (characteristic), maculopapular rash (face → trunk, 3 days), polyarthralgia.
+**Congenital rubella syndrome (1st trimester):** classic triad: **cataracts** (or glaucoma), sensorineural **deafness**, **congenital heart disease** (PDA, pulmonary artery stenosis). Also: 'blueberry muffin' rash, microcephaly, hepatosplenomegaly, intellectual disability. Risk of CRS: 85% if infected in first 12 weeks → decreases as pregnancy progresses.",
+        tx: "Supportive.
+**MMR vaccine** (live attenuated, 2 doses) — highly effective.
+**Contraindicated in pregnancy** — vaccinate post-partum if non-immune. Check rubella IgG in all pregnant women (rubella titer).",
+        pearl: "**Posterior auricular lymphadenopathy** = classic rubella sign (vs EBV: posterior cervical).
+**CRS triad = PDA + cataracts + deafness.** 'Blueberry muffin baby' = extramedullary hematopoiesis in skin (also congenital CMV).
+**MMR is live — do NOT give in pregnancy.** Give post-partum instead. Non-immune pregnant woman exposed to rubella: IGIM (passive immunization — does NOT reliably prevent CRS, use only if vaccine declined). Confirm immunity with IgG titer at first prenatal visit."
+      },
+      {
+        name: "Coronavirus (COVID-19 & SARS)",
+        summary: "Large enveloped ssRNA(+) — spike protein binds ACE2; COVID-19 (SARS-CoV-2), SARS, MERS; respiratory spread; cytokine storm in severe disease; RNA vaccines (mRNA) for COVID-19",
+gram: "ssRNA (+), enveloped (Coronaviridae — largest RNA genome)",
+virulence: "**Spike protein (S)** binds **ACE2** receptor (type II pneumocytes, GI, endothelium).
+**TMPRSS2** serine protease required for S protein priming. Large genome (30 kb — largest RNA virus). Cytokine storm (IL-6, TNF-α) → ARDS, multiorgan failure in severe disease.",
+        disease: "**COVID-19 (SARS-CoV-2):** wide spectrum — asymptomatic → ARDS. Fever, cough, **anosmia/ageusia** (characteristic), dyspnea. Severe: ARDS, cytokine storm, coagulopathy (hypercoagulable — PE/DVT), myocarditis.
+**SARS (2003):** severe atypical pneumonia, 10% mortality.
+**MERS (Middle East):** camels → humans, 35% mortality.
+**Common cold coronaviruses** (OC43, HKU1, 229E, NL63): 10–30% of common colds.",
+        tx: "COVID-19: **remdesivir** (RNA polymerase inhibitor), **nirmatrelvir/ritonavir (Paxlovid)** (protease inhibitor, high-risk early treatment), **dexamethasone** (reduces mortality in patients requiring O₂/ventilation), **baricitinib** (JAK inhibitor). mRNA vaccines (Pfizer BNT162b2, Moderna mRNA-1273).",
+        pearl: "**ACE2 = entry receptor** for SARS-CoV-2. Anosmia/ageusia early in infection = characteristic clue.
+**Dexamethasone reduces mortality** in severe COVID-19 (RECOVERY trial) — but harm if given when no respiratory support needed. mRNA vaccines deliver spike protein mRNA → host cells make spike → immune response — **mRNA does NOT integrate into genome.** Coronaviruses have largest RNA genome (~30kb) and proofreading exonuclease (less mutation rate than influenza but still evolves)."
+      }
+    ]
+  },
+  {
+    group: "RNA Viruses — Negative Sense",
     color: "vir",
     organisms: [
       {
         name: "Rhabdovirus (Rabies)",
-        summary: "ssRNA(-), enveloped, bullet-shaped animal bite → retrograde axonal transport to CNS; encephalitis with hydrophobia; Negri bodies; near-universally fatal once symptomatic",
-        gram: "ssRNA (-), enveloped (bullet-shaped virion - Rhabdoviridae)",
-        virulence: "**G protein** binds the acetylcholine receptor at the neuromuscular junction → entry into peripheral nerves → **retrograde axonal transport** to the CNS. Incubation is inversely proportional to the distance from the brain.",
-        disease: "**Prodrome:** fever, headache, paresthesia at the wound site (pathognomonic). **Furious rabies (80%):** agitation, **hydrophobia** (painful pharyngeal spasms triggered by swallowing), **aerophobia**, autonomic instability. **Paralytic rabies (20%):** ascending flaccid paralysis. Coma and death follow rapidly.",
-        lab_diagnosis: "**Tests:** DFA on skin biopsy (nape of neck is most sensitive ante-mortem). Saliva or CSF PCR. **Histology:** Autopsy shows **Negri bodies** (eosinophilic cytoplasmic inclusions in hippocampal neurons and cerebellar Purkinje cells) . **EM:** bullet-shaped virion.",
-        tx: "**Post-exposure prophylaxis (PEP):** immediate wound washing, rabies immune globulin (RIG) infiltrated into the wound, and inactivated rabies vaccine series. Near-universally fatal once symptomatic.",
-        pearl: "Hydrophobia and aerophobia are pathognomonic clinical signs. Negri bodies in the hippocampus confirm the diagnosis post-mortem. A facial bite carries a much shorter incubation period than a bite on the extremity. Bat exposure in a sleeping room requires immediate PEP, even if a bite mark is not visible."
+        summary: "Bullet-shaped ssRNA(−) — animal bite, travels retrograde along nerves; encephalitis, hydrophobia, aerophobia; Negri bodies; almost universally fatal once symptomatic; PEP is critical",
+gram: "ssRNA (−), enveloped (bullet-shaped)",
+virulence: "**P protein (nucleoprotein)** — pathognomonic Negri body.
+**G protein (glycoprotein)** — binds nicotinic ACh receptors and NCAM at neuromuscular junction.
+**Retrograde axonal transport** up peripheral nerves → CNS. Incubation: weeks to months (depends on distance from CNS).",
+        disease: "**Prodrome:** fever, paresthesia at bite site (tingling, pruritus).
+**Furious rabies (80%):** agitation, hyperexcitability, **hydrophobia** (laryngeal spasm when drinking), **aerophobia** (spasm triggered by air), autonomic instability.
+**Paralytic ('dumb') rabies (20%):** ascending flaccid paralysis, mimics GBS.
+**Coma and death** — virtually 100% fatal once symptoms begin.
+**Negri bodies:** eosinophilic cytoplasmic inclusions in hippocampal Purkinje cells (Ammon's horn) — pathognomonic.",
+        tx: "Once symptomatic: almost universally fatal.
+**Post-exposure prophylaxis (PEP):** wash wound immediately (soap + water, 15 min) + **rabies immune globulin** (RIG) at wound site + **rabies vaccine** (days 0, 3, 7, 14). Pre-exposure: vaccination for high-risk (vets, wildlife workers, travelers). Bats: most common US source of human rabies (painless bite may go unnoticed).",
+        pearl: "**Hydrophobia + aerophobia = rabies.** Negri bodies in hippocampus (Ammon's horn) = pathognomonic on autopsy.
+**PEP is near 100% effective if given promptly.** Bat exposure (even if bite not noticed — sleeping person, child) → treat as exposure. Incubation proportional to distance from CNS (bite on face = shorter). 'Milwaukee protocol' (induced coma) has not been reliably reproduced."
       },
       {
         name: "Filovirus (Ebola & Marburg)",
-        summary: "ssRNA(-), enveloped, long filamentous viral hemorrhagic fever; high case fatality; fruit bat reservoir; person-to-person via direct contact; BSL-4",
-        gram: "ssRNA (-), enveloped (Filoviridae longest human pathogenic virion)",
-        virulence: "**NPC1 receptor** mediates endosomal entry. **GP (glycoprotein)** mediates cell attachment. Causes a massive cytokine storm and direct endothelial damage, leading to extreme vascular permeability and DIC.",
-        disease: "**Viral hemorrhagic fever:** sudden fever, severe headache, myalgia → nausea/vomiting, maculopapular rash → hemorrhagic phase (bleeding from mucous membranes, GI tract, injection sites). High case fatality rate. Transmitted strictly via direct contact with infected blood or body fluids.",
-        lab_diagnosis: "**Tests:** RT-PCR on blood is the gold standard. Antigen detection RDTs for field use. **Microscopy:** EM reveals dramatically long, filamentous particles forming a 'shepherd's crook' or U-shape. Handled exclusively under strict BSL-4 precautions.",
-        tx: "**Ebola Zaire:** Monoclonal antibodies (REGEN-EB3 or mAb114) significantly reduce mortality. Aggressive supportive care. **Prevention:** rVSV-ZEBOV (Ervebo) vaccine.",
-        pearl: "Ebola is not airborne; it requires direct contact with infectious body fluids, necessitating strict contact and droplet precautions. The virus can persist in immunologically privileged sites, such as semen, for months after apparent clinical recovery."
+        summary: "Filamentous enveloped ssRNA(−) — hemorrhagic fever, >50% mortality, bat/primate reservoir; person-to-person via direct contact with body fluids; BSL-4; treat with mAb (Ebola)",
+gram: "ssRNA (−), enveloped (long filamentous)",
+virulence: "**NPC1 (Niemann-Pick C1) receptor** — intracellular entry.
+**GP glycoprotein** — cell attachment/fusion.
+**VP35** — IFN antagonist (innate immune evasion). Massive cytokine storm → multiorgan failure, hemorrhage.",
+        disease: "**Viral hemorrhagic fever (VHF):** incubation 2–21 days. Sudden fever, severe headache, myalgia → N/V/D, rash → hemorrhagic phase (bleeding from multiple sites, DIC, petechiae) → multiorgan failure.
+**Case fatality 25–90%** (varies by outbreak/species).
+**Transmission:** direct contact with infected blood/body fluids, NOT airborne.
+**Reservoir:** fruit bats (asymptomatic). West Africa outbreaks (2014–2016 = largest ever).
+**Marburg:** similar syndrome, related virus.",
+        tx: "**Ebola:**
+**REGEN-EB3** or **mAb114** (monoclonal antibodies — FDA approved, significantly reduce mortality).
+**Supportive:** aggressive fluid/electrolyte management. Strict **contact and droplet precautions** (PPE). Vaccine: rVSV-ZEBOV (Ervebo — FDA approved for Ebola Zaire). No treatment for Marburg.",
+        pearl: "**Not airborne** — transmission requires direct contact with body fluids (blood, stool, vomit, semen). PPE = gowns, gloves, face shield, N95.
+**BSL-4 organism** (highest biosafety level). Bioterrorism Category A. Clinical rule: high fever + hemorrhage + epidemiological link (travel to endemic area, contact with infected) = VHF protocol. Ebola can persist in semen for months (sexual transmission post-recovery)."
       },
       {
-        name: "Bunyavirus (La Crosse Encephalitis & Hantavirus)",
-        summary: "ssRNA(-), enveloped, segmented La Crosse: Aedes mosquito → encephalitis in children; Hantavirus: deer mouse droppings → pulmonary syndrome (HCPS); no person-to-person transmission",
-        gram: "ssRNA (-), enveloped, segmented (tripartite genome - Bunyaviridae/Hantaviridae)",
-        virulence: "Segmented genome allows reassortment. **La Crosse virus:** Aedes triseriatus (treehole mosquito) vector. **Hantavirus:** inhaled aerosolized deer mouse urine, feces, and saliva. Neither disease spreads person-to-person.",
-        disease: "**La Crosse encephalitis:** most common arboviral encephalitis in children in the US Midwest. **Hantavirus Pulmonary Syndrome (HCPS):** abrupt ARDS and cardiogenic shock after a flu-like prodrome. Exposure often involves cleaning sheds or cabins in the American Southwest.",
-        lab_diagnosis: "**Tests:** Serology and PCR. **Microscopy/Histology:** HCPS peripheral blood smear shows a classic triad of thrombocytopenia, hemoconcentration, and **immunoblasts** (expanded CD8+ T cells) . Lung biopsy shows interstitial pneumonitis without specific viral inclusions.",
-        tx: "**Supportive**. HCPS requires ICU care, mechanical ventilation, and potentially ECMO for cardiogenic shock. Ribavirin is ineffective for HCPS.",
-        pearl: "A patient developing severe respiratory failure and thrombocytopenia after cleaning an abandoned cabin in the Southwest has Hantavirus. Thrombocytopenia is an early warning sign that precedes respiratory failure. La Crosse classically presents as encephalitis in a child living in the Midwest."
+        name: "Bunyavirus (California Encephalitis & Hantavirus)",
+        summary: "Segmented ssRNA(−) — California encephalitis (La Crosse, Aedes mosquito, children), Hantavirus (rodent droppings, HCPS — hemorrhagic pulmonary syndrome)",
+gram: "ssRNA (−), enveloped, segmented (3 segments)",
+virulence: "Segmented genome (3 segments: S, M, L).
+**Hantavirus:** inhaled rodent urine/feces aerosols.
+**California encephalitis (La Crosse):** Aedes triseriatus mosquito → treehole mosquito in Midwest/Southeast.",
+        disease: "**La Crosse encephalitis (California serogroup):** most common arboviral encephalitis in children (under 16); Midwest US, summertime. Fever, headache, seizures — usually benign/self-limited.
+**Hantavirus Pulmonary Syndrome (HCPS — Sin Nombre virus):** deer mouse reservoir in American Southwest. Inhalation of rodent droppings. Prodrome (fever, myalgia) → rapid
+**ARDS** and cardiogenic shock (high mortality ~35%).
+**Hantavirus hemorrhagic fever with renal syndrome (HFRS):** Old World hantaviruses → AKI, hemorrhage (not pulmonary).",
+        tx: "Supportive (no specific antiviral). HCPS: ICU, mechanical ventilation, ECMO for severe cases. Ribavirin: ineffective for HCPS. No vaccine available in US.",
+        pearl: "**Hantavirus** = respiratory illness (not encephalitis) + **deer mouse exposure** (Southwest US, cleaning abandoned buildings/sheds). HCPS = severe ARDS + thrombocytopenia.
+**No person-to-person transmission** (vs Ebola).
+**La Crosse encephalitis** = children + treehole mosquito + Midwest. Bunyavirus has 3-segment genome (can reassort but less dramatic than influenza's 8 segments)."
       },
       {
         name: "Arenavirus (LCMV & Lassa Fever)",
-        summary: "ssRNA(-), enveloped, bisegmented LCMV: house mouse → aseptic meningitis, teratogenic; Lassa fever: Mastomys rat → hemorrhagic fever + hearing loss; treat with ribavirin",
-        gram: "ssRNA (-), enveloped, bisegmented (Arenaviridae)",
-        virulence: "Bisegmented genome with ambisense coding. Binds the alpha-dystroglycan receptor. Transmitted via rodent urine, feces, and saliva.",
-        disease: "**LCMV:** aseptic meningitis in young adults. Highly teratogenic in pregnancy (hydrocephalus, chorioretinitis). **Lassa fever:** West African hemorrhagic fever featuring facial edema, hemorrhage, and **sensorineural hearing loss** in a high percentage of survivors.",
-        lab_diagnosis: "**Tests:** RT-PCR, Serology. **Microscopy:** EM reveals spherical particles with electron-dense ribosome-like granules, giving a characteristic 'sandy' appearance inside the virion.",
-        tx: "**LCMV:** supportive. **Lassa fever:** IV ribavirin significantly reduces mortality if given early.",
-        pearl: "Congenital LCMV perfectly mimics congenital Toxoplasma (hydrocephalus, chorioretinitis); always ask about pet rodent or hamster exposure. Lassa fever is unique among hemorrhagic fevers for causing permanent sensorineural hearing loss as a post-infectious complication. The 'sandy' appearance on EM is due to incorporated host ribosomes."
+        summary: "Enveloped ssRNA(−) bisegmented — LCMV from mice (aseptic meningitis, teratogenic), Lassa fever (rodent droppings, hemorrhagic fever, West Africa); treat severe Lassa with ribavirin",
+gram: "ssRNA (−), enveloped, bisegmented (2 segments)",
+virulence: "Sandy (arenose) granules in virion = ribosomes from host cells (non-functional).
+**Bisegmented** genome. **α-dystroglycan** receptor. Transmitted via rodent urine/feces. Person-to-person for Lassa (healthcare workers at risk).",
+        disease: "**LCMV (Lymphocytic choriomeningitis virus):** house mouse reservoir.
+**Aseptic meningitis** (fever, headache, neck stiffness, CSF: lymphocytes + low glucose) in adults.
+**Teratogenic** (congenital LCMV: hydrocephalus, chorioretinitis — similar to Toxoplasma but acquired from mouse exposure). Pet hamsters/mice are reservoir.
+**Lassa fever:** rodent (Mastomys rat) reservoir in West Africa. Hemorrhagic fever + deafness (sensorineural — 30% of survivors). High mortality (1–15% overall; 15–20% hospitalized).",
+        tx: "LCMV: supportive.
+**Lassa fever: ribavirin** (early treatment — reduces mortality). Strict isolation (contact + droplet). No approved vaccine.",
+        pearl: "**LCMV:** asymptomatic exposure in adults but teratogenic in pregnancy → congenital infection resembling Toxoplasma (hydrocephalus, chorioretinitis). Ask about pet rodent exposure in pregnant women with TORCH-like syndrome.
+**Lassa fever:** sensorineural hearing loss is the classic post-infectious complication. Arena = sand (sandy granules). Bisegmented genome with ambisense coding."
       },
       {
         name: "Reovirus (Rotavirus)",
-        summary: "dsRNA, non-enveloped #1 cause of severe viral gastroenteritis in infants worldwide; watery diarrhea; NSP4 enterotoxin; ORS cornerstone; rotavirus vaccine highly effective",
-        gram: "dsRNA, non-enveloped (Reoviridae - Rotavirus genus)",
-        virulence: "**Double-layered icosahedral capsid** provides environmental stability. **NSP4** acts as a viral enterotoxin, causing cAMP-independent chloride secretion.",
-        disease: "**Acute gastroenteritis:** fever and vomiting followed by profuse watery, non-bloody diarrhea. Leading cause of diarrhea-related death in children under 5 globally. Peaks in winter months.",
-        lab_diagnosis: "**Tests:** Stool EIA detects rotavirus antigen. Stool PCR. **Microscopy:** EM shows a pathognomonic **wheel-shaped** double-layered icosahedral particle .",
-        tx: "**Oral rehydration solution (ORS)** is the cornerstone. **Prevention:** Rotavirus vaccine (oral, live attenuated) given in early infancy.",
-        pearl: "Rotavirus is the number one cause of viral gastroenteritis requiring hospitalization in young children globally. The NSP4 protein functions as a direct viral enterotoxin. The wheel-like appearance on electron microscopy defines the virus's name."
+        summary: "dsRNA, naked — #1 cause of severe gastroenteritis in infants/children worldwide; oral-fecal; watery diarrhea + vomiting; treat with ORS; rotavirus vaccine dramatically reduces childhood mortality",
+gram: "dsRNA, non-enveloped (Reoviridae — Rotavirus genus)",
+virulence: "**Double-layered icosahedral capsid** (looks like wheel — Latin: 'rota').
+**VP4 (P antigen)** + **VP7 (G antigen)** → outer capsid proteins → cell attachment + neutralization targets → vaccine antigens. NSP4: viral enterotoxin → secretory diarrhea.",
+        disease: "**Acute gastroenteritis:** fever + vomiting (1–2 days) → profuse watery diarrhea (3–8 days) — **non-bloody, non-mucoid**. Severe dehydration → main cause of death. Peak: 6 months – 2 years; wintertime (Northern latitudes — 'winter vomiting disease' applied more to Norovirus but rotavirus has winter peak too).
+**Worldwide:** leading cause of diarrhea deaths in children <5 in developing countries (>200,000 deaths/year).",
+        tx: "**Oral rehydration solution (ORS)** — cornerstone. IV fluids for severe dehydration.
+**Zinc** supplementation in developing world.
+**Rotavirus vaccine:** oral (RotaTeq or Rotarix — live attenuated), given at 2 and 4 months (RotaTeq: 2, 4, 6 months) — dramatically reduces hospitalizations.",
+        pearl: "**#1 cause of viral gastroenteritis requiring hospitalization in children under 5** (globally). Watery, non-bloody (vs Shigella/EHEC = bloody).
+**Rotavirus vaccine** is one of the most impactful pediatric vaccines in global health. Wheel-shaped on electron microscopy = pathognomonic. NSP4 = the viral enterotoxin (acts like cholera toxin via cAMP). Reovirus = respiratory enteric orphan virus (infects respiratory/GI tract)."
+      }
+    ]
+  },
+  {
+    group: "RNA Viruses — Retrovirus & Other",
+    color: "vir",
+    organisms: [
+      {
+        name: "HIV",
+        summary: "SS (+) RNA retrovirus — CD4+ T-cell depletion; AIDS < 200 CD4; HAART; opportunistic infections by CD4 count",
+gram: "ssRNA (+), retrovirus, enveloped",
+virulence: "**Reverse transcriptase** (RNA→DNA, error-prone → mutations).
+**Integrase** (integrates provirus).
+**Protease** (cleaves polyproteins). **gp120/gp41** (cell entry via CD4 + CCR5/CXCR4). **tat, rev, nef** (transcription/immune evasion).",
+        disease: "**Acute HIV:** mononucleosis-like syndrome (2–4 wks post-exposure).
+**Latent period:** asymptomatic, CD4 slowly declines.
+**AIDS (CD4 < 200):** opportunistic infections by CD4 level — **>500:** recurrent oral candidiasis, constitutional; **<200:** PCP, Toxoplasma, Cryptococcus, histoplasmosis; **<100:** CNS lymphoma, CMV, MAC; **<50:** CMV retinitis, disseminated MAC.
+**AIDS-defining conditions:** PCP, MAC, CMV retinitis, CNS lymphoma, Kaposi's sarcoma, cryptococcal meningitis, cerebral toxoplasmosis, wasting syndrome.",
+        tx: "**HAART** (highly active antiretroviral therapy): 2 NRTIs + PI or INSTI or NNRTI (integrase inhibitor preferred).
+**PrEP**: TDF/FTC.
+**Opportunistic infection prophylaxis:** CD4 <200 → TMP-SMX (PCP); <100 → add fluconazole (Cryptococcus) or azithromycin (MAC).",
+        pearl: "**Opportunistic infection CD4 thresholds to memorize:** >500=candidiasis; <500=TB; <200=PCP (TMP-SMX prophylaxis), Toxo (if seropositive); <100=MAC (azithromycin prophylaxis); <50=CMV retinitis, disseminated MAC.
+**Western blot** confirms ELISA screening.
+**NNRTI**: inhibits reverse transcriptase non-competitively.
+**Protease inhibitors:** -navir suffix, MetS, fat redistribution, hyperglycemia."
+      },
+      {
+        name: "Influenza",
+        summary: "Orthomyxovirus — segmented ssRNA (reassortment → pandemics), hemagglutinin/neuraminidase; treat with oseltamivir/zanamivir within 48h",
+gram: "ssRNA (−), segmented, enveloped",
+virulence: "**Hemagglutinin (HA):** binds sialic acid receptors on host cells (attachment).
+**Neuraminidase (NA):** cleaves sialic acid (release of virions). **8 segments** → reassortment between human + animal influenza → **antigenic shift** → pandemic.
+**Antigenic drift** (point mutations in HA/NA) → seasonal epidemics.",
+        disease: "Abrupt fever, headache, myalgias, malaise, non-productive cough (distinguishes from common cold). Complications: primary influenza pneumonia, secondary bacterial pneumonia (S. aureus, S. pneumoniae, H. influenzae), myocarditis, Reye syndrome (children + aspirin). Influenza B: more neuraminidase variation, mainly in children.",
+        tx: "**Oseltamivir** (Tamiflu) or zanamivir (inhaled) — neuraminidase inhibitors, effective if started within 48h.
+**Annual flu vaccine** (trivalent or quadrivalent inactivated).
+**Live attenuated vaccine (FluMist):** nasal spray, ages 2–49, not in pregnancy or immunocompromised. Amantadine/rimantadine: M2 inhibitors (influenza A only — most strains now resistant).",
+        pearl: "**Antigenic drift** (minor mutations, annual seasonal flu) vs **antigenic shift** (major reassortment of 8 segments, pandemic potential).
+**Reye syndrome:** children + aspirin + influenza or VZV → hepatic failure + encephalopathy. Primary influenza pneumonia: diffuse bilateral infiltrates, severe. Oseltamivir not recommended for uncomplicated flu in healthy young patients."
       },
       {
         name: "Measles (Rubeola)",
-        summary: "ssRNA(-), enveloped Paramyxovirus 4 Cs prodrome → Koplik spots → cephalocaudal maculopapular rash; SSPE complication; MMR vaccine",
-        gram: "ssRNA (-), non-segmented, enveloped (Paramyxoviridae)",
-        virulence: "**Fusion protein** forms syncytia. **H protein** binds CD150 (SLAM receptor) on lymphocytes, causing profound immune suppression ('immune amnesia'). Highly contagious via respiratory droplets.",
-        disease: "**Prodrome:** Cough, Coryza, Conjunctivitis, and fever. **Koplik spots** appear on the buccal mucosa. **Rash:** Maculopapular rash starts at the hairline and spreads head-to-toe, sparing the palms and soles. **Complications:** pneumonia, encephalitis, **SSPE** (subacute sclerosing panencephalitis).",
-        lab_diagnosis: "**Tests:** Serology (IgM) and RT-PCR. **Histology:** Lung biopsy or lymphoid tissue shows **Warthin-Finkeldey giant cells** (multinucleated giant cells with intranuclear and intracytoplasmic inclusions) .",
-        tx: "**Supportive**. **Vitamin A** significantly reduces morbidity and mortality in deficient children. **Prevention:** MMR vaccine.",
-        pearl: "Koplik spots are pathognomonic and always appear 1 to 2 days before the skin rash begins. SSPE is a fatal neurodegenerative complication that strikes 7 to 10 years after the initial infection. Measles induces 'immune amnesia', stripping away previously acquired immunity to other pathogens."
+        summary: "Koplik spots → maculopapular rash cephalocaudal; SSPE complication; MMR vaccine; paramyxovirus",
+gram: "ssRNA (−), non-segmented, enveloped (Paramyxovirus)",
+virulence: "Fusion protein (syncytia formation → multinucleated giant cells). Infects via respiratory tract. Immunosuppression during acute infection.",
+        disease: "**4 Cs:** Cough, Coryza, Conjunctivitis + fever (prodrome) →
+**Koplik spots** (blue-white on buccal mucosa — pathognomonic, 1–2 days before rash) → maculopapular rash spreads head-to-toe. Complications: pneumonia (Warthin-Finkeldey giant cells), encephalitis (acute — 1/1000),
+**SSPE** (subacute sclerosing panencephalitis — slow virus, 7–10 years post-infection → progressive neurodegeneration, high antibody titers in CSF).",
+        tx: "Supportive.
+**Vitamin A** reduces mortality in children.
+**MMR vaccine** (live attenuated) — 2 doses, 12–15 months and 4–6 years.
+**IGIV** for post-exposure prophylaxis in immunocompromised.",
+        pearl: "**Koplik spots** are pathognomonic and appear 1–2 days BEFORE the rash — classic Step 1 question.
+**SSPE** occurs years after measles → inclusion bodies in neurons + astrocytes → dementia, seizures, death. Measles is the most common vaccine-preventable cause of death in children worldwide. Rash spares palms/soles (unlike syphilis/RMSF)."
       },
       {
         name: "Mumps",
-        summary: "ssRNA(-), enveloped Paramyxovirus parotitis, orchitis (post-pubertal males → infertility risk), aseptic meningitis; MMR vaccine",
-        gram: "ssRNA (-), non-segmented, enveloped (Paramyxoviridae)",
-        virulence: "**HN protein (hemagglutinin-neuraminidase)** and **Fusion protein**. Strong tropism for salivary glands, testes, meninges, and the cochlea.",
-        disease: "**Parotitis:** painful bilateral or unilateral swelling. **Orchitis:** occurs in post-pubertal males, carrying a significant risk of infertility if bilateral. **Aseptic meningitis:** the most common complication overall. **Sensorineural deafness:** usually unilateral and abrupt.",
-        lab_diagnosis: "**Tests:** Serology (IgM) and RT-PCR. Elevated serum amylase. CSF shows an aseptic meningitis pattern. **Histology:** Interstitial edema and lymphocytic infiltrate in affected glands.",
-        tx: "**Supportive**. Scrotal support for orchitis. **Prevention:** MMR vaccine.",
-        pearl: "Orchitis in a post-pubertal male presenting with parotid swelling is diagnostic for mumps. Mumps is the leading cause of acquired sensorineural hearing loss in unvaccinated children. Elevated amylase can stem from either the parotid gland or the pancreas; checking lipase helps differentiate."
+        summary: "Paramyxovirus — parotitis, orchitis (post-pubertal males → sterility), meningitis; MMR vaccine",
+gram: "ssRNA (−), non-segmented, enveloped (Paramyxovirus)",
+virulence: "Hemagglutinin-neuraminidase (HN) and fusion protein.",
+        disease: "**Parotitis** (bilateral or unilateral parotid swelling) — painful.
+**Orchitis** (post-pubertal males, unilateral > bilateral) — can cause infertility if bilateral.
+**Aseptic meningitis** (most common complication overall). Pancreatitis (↑ amylase + lipase). Sensorineural deafness (unilateral, major complication).",
+        tx: "Supportive.
+**MMR vaccine** (highly effective). Scrotal support for orchitis.",
+        pearl: "**Orchitis** in post-pubertal male with parotitis = mumps. Bilateral orchitis → risk of sterility. Mumps is most common cause of **acquired sensorineural hearing loss** in unvaccinated children. CSF in mumps meningitis: lymphocytic pleocytosis, ↑ protein, normal glucose (aseptic)."
       },
       {
         name: "Hepatitis E Virus (HEV)",
-        summary: "ssRNA(+), non-enveloped, fecal-oral self-limited acute hepatitis in immunocompetent; 15-25% mortality in pregnant women; zoonotic reservoir; treat with ribavirin in immunocompromised",
-        gram: "ssRNA (+), non-enveloped (Hepeviridae)",
-        virulence: "Environmentally stable. Genotypes 3 and 4 are zoonotic (pigs, deer) and acquired from undercooked meat. Genotypes 1 and 2 are restricted to humans and spread via contaminated water.",
-        disease: "**Acute hepatitis:** indistinguishable from HAV in the immunocompetent; entirely self-limited. **Pregnant women:** 15-25 percent mortality in the third trimester due to fulminant hepatic failure. **Immunocompromised:** can develop chronic HEV leading to cirrhosis.",
-        lab_diagnosis: "**Tests:** Anti-HEV IgM for acute infection. HEV RNA PCR is most sensitive early. Liver enzymes are markedly elevated. **Histology:** Non-specific lobular hepatitis.",
-        tx: "**Supportive** for the immunocompetent. **Ribavirin** is used to treat chronic HEV in transplant recipients.",
-        pearl: "HEV is infamous for causing fulminant hepatic failure and high mortality in pregnant women, a unique feature among the hepatitis viruses. While it behaves exactly like HAV in healthy individuals (acute, fecal-oral, no chronicity), it can cause chronic cirrhosis in immunocompromised patients."
+        summary: "Fecal-oral ssRNA(+) — self-limited acute hepatitis; unique: 20% maternal mortality in 3rd trimester; Southeast Asia/Africa endemic; no chronic disease in immunocompetent; treat with ribavirin in immunocompromised",
+gram: "ssRNA (+), non-enveloped (Hepeviridae)",
+virulence: "Non-enveloped (similar to HAV — fecal-oral, waterborne). Swine/deer/rabbit reservoir (zoonotic). Genotype 1/2: humans only; Genotype 3/4: zoonotic (undercooked pork in developed countries).",
+        disease: "**Acute hepatitis:** self-limited (similar to HAV — jaundice, malaise, nausea).
+**No chronic disease in immunocompetent** (like HAV).
+**Pregnant women (3rd trimester): 15–25% mortality** — fulminant hepatic failure (unique high fatality). Endemic in Southeast Asia, Africa, Mexico.
+**Immunocompromised (transplant):** chronic HEV → cirrhosis.",
+        tx: "Supportive for immunocompetent (self-limited).
+**Ribavirin** for immunocompromised chronic HEV. Reduce immunosuppression. Vaccine available in China (not in US).",
+        pearl: "**HEV = the hepatitis that kills pregnant women** (20% mortality in 3rd trimester — dramatic Step 1 pearl). Like HAV: fecal-oral, no chronic disease in immunocompetent. Unlike HAV: high pregnancy mortality, zoonotic reservoir (pig), immunocompromised can develop chronic disease. HEV + pregnancy + jaundice = very high-yield vignette."
       }
     ]
   }
+],
 
-// Note: Output paused here. Let me know when you are ready for the Retroviruses and Parasites.
-{
-      group: "RNA Viruses - Retrovirus & Other",
-      color: "vir",
-      organisms: [
-        {
-          name: "HIV (Human Immunodeficiency Virus)",
-          summary: "ssRNA(+) retrovirus, enveloped gp120/gp41 binds CD4+CCR5/CXCR4; reverse transcriptase integrates provirus; AIDS defined as CD4 <200; HAART = 2 NRTIs + integrase inhibitor",
-          gram: "ssRNA (+), retrovirus, enveloped (Retroviridae)",
-          virulence: "**gp120:** binds **CD4** (primary receptor) and **CCR5** (macrophage-tropic, early strains) or **CXCR4** (T-tropic, late strains). **gp41:** mediates membrane fusion. **Reverse transcriptase:** error-prone RNA to DNA synthesis leading to rapid mutation. **Integrase:** integrates provirus into host genome.",
-          disease: "**Acute HIV:** mononucleosis-like syndrome (fever, LAD, pharyngitis, rash). **AIDS (CD4 <200):** opportunistic infections. **<500:** TB reactivation. **<200:** PCP, Toxoplasma encephalitis, Cryptococcal meningitis. **<100:** CNS lymphoma, MAC. **<50:** CMV retinitis.",
-          lab_diagnosis: "**Tests:** 4th-generation combined Ag/Ab test (ELISA) detects antibodies and p24 antigen. Confirmatory: HIV-1/2 differentiation immunoassay. HIV RNA PCR confirms acute infection. CD4 count stages disease. Genotype testing for resistance. **Microscopy:** EM shows a spherical enveloped virion with a distinctive cone-shaped (conical) capsid. ",
-          tx: "**HAART:** 2 NRTIs plus an integrase strand transfer inhibitor (preferred) or PI or NNRTI. **PrEP:** daily TDF/FTC or TAF/FTC. **Opportunistic prophylaxis:** CD4 <200 requires TMP-SMX; CD4 <50 requires azithromycin.",
-          pearl: "CCR5 antagonists (maraviroc) only work for R5-tropic virus, requiring tropism testing before use. NNRTIs are non-competitive RT inhibitors (efavirenz causes vivid dreams and is teratogenic). Protease inhibitors classically cause metabolic syndrome, fat redistribution, and hyperglycemia. Western blot is obsolete for confirmation, completely replaced by the differentiation immunoassay."
-        }
-      ]
-    }
-  ],
+fungi: [
+  {
+    group: "Systemic Mycoses",
+    color: "fung",
+    organisms: [
+      {
+        name: "Histoplasma capsulatum",
+        summary: "Ohio/Mississippi River valleys, caves/bird droppings, dimorphic — intracellular in macrophages (yeast form); treat with itraconazole/amphotericin B",
+gram: "Dimorphic fungus (mold at 20°C → yeast at 37°C)",
+virulence: "Yeast form survives intracellularly in macrophages (like TB). Soil contamination from bird/bat droppings.",
+        disease: "**Pulmonary histoplasmosis:** usually asymptomatic (self-limited flu-like illness, hilar lymphadenopathy on CXR). Resembles TB (upper lobe, cavitation, calcifications) in immunocompetent.
+**Disseminated (immunocompromised, HIV with CD4 <150):** fever, weight loss, hepatosplenomegaly, oral ulcers, adrenal insufficiency.
+**Mediastinal/pericardial complications** in chronic forms.",
+        tx: "Mild/moderate: **itraconazole**. Severe/disseminated: **amphotericin B** then step-down to itraconazole.
+**Urine Histoplasma antigen** (most sensitive for disseminated disease).",
+        pearl: "**Intracellular** yeast found in macrophages on silver stain (GMS stain) — differentiate from other fungi (note small oval yeasts within macrophage cytoplasm).
+**Ohio/Mississippi River Valley** exposure.
+**Urine antigen** is the test of choice for disseminated histoplasmosis.
+**Adrenal involvement** is characteristic (bilateral adrenal enlargement → Addison's disease)."
+      },
+      {
+        name: "Coccidioides immitis",
+        summary: "Southwestern US/California (San Joaquin Valley fever), dimorphic — spherules with endospores in tissue; eosinophilia, erythema nodosum",
+gram: "Dimorphic fungus (arthroconidia in soil → spherules in tissue)",
+virulence: "Arthroconidia highly infectious (inhalation). Spherules in tissue contain multiple endospores (200–300) → rupture → spread.",
+        disease: "**Primary (Valley fever):** flu-like illness, 60% asymptomatic. Eosinophilia (classic). Erythema nodosum (immune complex reaction — tender red nodules on shins — 'desert rheumatism').
+**Disseminated (immunocompromised, Black/Filipino patients at highest risk):** meningitis (most serious — CSF eosinophilia), bone/skin/lymph node involvement.",
+        tx: "Mild/pulmonary: **fluconazole** or itraconazole. Severe/disseminated: **amphotericin B**. Meningitis: fluconazole (lifelong suppression). Amphotericin for severe.",
+        pearl: "**Spherules with endospores** in tissue biopsy = pathognomonic for Coccidioides (no other organism forms spherules).
+**CSF eosinophilia** is a clue for coccidioidal meningitis (also consider in parasitic meningitis).
+**Risk factors for dissemination:** HIV, pregnancy (3rd trimester), immunosuppression, Black/Filipino ancestry. Do NOT give live fungal cultures to others — highly infectious arthroconidia."
+      },
+      {
+        name: "Blastomyces dermatitidis",
+        summary: "North America (Ohio/Mississippi + Great Lakes), broad-based budding yeast — verrucous skin lesions, pulmonary, osteomyelitis; no reliable serology",
+gram: "Dimorphic fungus (mold in environment, yeast in tissue)",
+virulence: "Soil (decaying wood, near water). Inhalation of conidia.",
+        disease: "**Pulmonary blastomycosis:** flu-like, often mistaken for bacterial pneumonia or cancer. Upper lobe infiltrates.
+**Skin (most distinctive):** verrucous (warty), ulcerating, crusted skin lesions — face, extremities.
+**Bone:** osteolytic lesions.
+**Genitourinary:** prostatitis, epididymo-orchitis.
+**CNS:** meningitis, abscess (rare).",
+        tx: "Mild-moderate: **itraconazole**. Severe/CNS: **amphotericin B** then itraconazole.",
+        pearl: "**Broad-based budding** (wide base between mother and daughter yeast cell) = Blastomyces. Contrast with
+**Cryptococcus** (narrow-based budding, thick capsule) and
+**Histoplasma** (intracellular, tiny). Urine antigen cross-reacts with Histoplasma antigen — not specific.
+**Skin lesions** are distinctive: verrucous, non-tender, crusted — can mimic squamous cell carcinoma."
+      },
+      {
+        name: "Paracoccidioides brasiliensis",
+        summary: "Dimorphic fungus — South/Central America (Brazil), rural/agricultural workers; 'captain's wheel' appearance (multiple budding), chronic granulomatous lung + mucocutaneous lesions; treat itraconazole",
+gram: "Dimorphic fungus (mold in environment, yeast in tissue)",
+virulence: "Dimorphic: mold in environment (conidia inhaled) → yeast in body.
+**Multiple budding ('captain's wheel' or 'pilot's wheel')** — the hallmark: large yeast with multiple daughter cells attached around periphery.",
+        disease: "**Endemic to South/Central America** (Brazil, Colombia, Venezuela). Agricultural/rural workers (male-dominated due to hormonal influence — estrogens inhibit mycelium→yeast conversion, protecting women pre-menopause).
+**Pulmonary:** chronic granulomatous disease, fibrosis.
+**Mucocutaneous:** painful ulcerating lesions of lips, gums, oral mucosa, larynx.
+**Lymphatic:** generalized LAD. Adrenal involvement (Addison's disease-like).",
+        tx: "Mild-moderate: **itraconazole** (12–18 months). Severe: **amphotericin B** → step-down to itraconazole. Sulfonamides (TMP-SMX) — historical, still used in low-resource settings.",
+        pearl: "**Captain's wheel yeast** = Paracoccidioides (multiple buds in a circle around large central cell). Geographic clue:
+**South/Latin America**. Estrogen protective effect: women rarely get progressive disease pre-menopause (estrogen prevents the mycelium→yeast conversion). Compare with
+**Coccidioides** (also mold in environment → spherules in tissue, Southwest USA). Often confused with Blasto or Histo — key: location (South America) + captain's wheel morphology."
+      }
+    ]
+  },
+  {
+    group: "Cutaneous Mycoses",
+    color: "fung",
+    organisms: [
+      {
+        name: "Malassezia furfur",
+        summary: "Lipophilic yeast — tinea versicolor (hypo/hyperpigmented macules, 'spaghetti and meatballs' on KOH), seborrheic dermatitis; requires lipid supplementation for culture; treat topical antifungals",
+gram: "Yeast (lipophilic, part of normal skin flora)",
+virulence: "**Obligate lipophile** (requires exogenous lipids for growth — cannot be cultured on standard media without olive oil overlay). Produces azelaic acid → inhibits melanin synthesis → hypopigmented macules. Part of normal skin flora — disease with overgrowth.",
+        disease: "**Tinea versicolor (pityriasis versicolor):** hypo- or hyperpigmented (on dark skin), or pink/salmon-colored (on light skin) macules on trunk/shoulders.
+**Non-itchy or mildly pruritic.** Fluoresces yellow-green under Wood's lamp.
+**KOH scraping:** 'spaghetti and meatballs' pattern (hyphae + yeast clusters). Worsens in humid/hot weather, sunlight.
+**Seborrheic dermatitis/dandruff:** contributes to scalp/face flaking.
+**Neonatal sepsis:** IV lipid-infused neonates in NICU (Malassezia contaminates lipid lines).",
+        tx: "**Topical selenium sulfide** or **ketoconazole shampoo** (applied to skin).
+**Topical azoles** (clotrimazole, miconazole). Oral fluconazole or itraconazole for severe/recurrent. Warn patients: **pigmentation changes persist for months** even after successful treatment (while melanocytes recover).",
+        pearl: "**'Spaghetti and meatballs'** on KOH = pathognomonic for Malassezia furfur. Tinea versicolor is the MOST COMMON superficial fungal infection worldwide.
+**Wood's lamp:** yellow-green fluorescence. Lipid supplementation needed for culture (olive oil overlay). NICU context: premature infant on IV lipids + fungal sepsis = Malassezia. Pigmentation takes months to normalize after treatment — explain to patients."
+      },
+      {
+        name: "Dermatophytes (Tinea)",
+        summary: "Keratinophilic molds — tinea capitis (scalp), corporis (ringworm), pedis (athlete's foot), cruris (jock itch), unguium (onychomycosis); KOH shows hyphae; treat topical azoles or oral terbinafine/griseofulvin",
+gram: "Mold (hyphae only — no yeast form; not truly dimorphic)",
+virulence: "Three genera: **Trichophyton, Microsporum, Epidermophyton.** Keratinophilic — digest keratin in skin/hair/nails.
+**Dermatophytes NEVER invade dermis** (unlike systemic fungi). Spread by direct contact (person, animal, fomites, soil).",
+        disease: "**Tinea capitis:** scalp ringworm — scaly patches, alopecia; mainly children.
+**Tinea corporis:** 'ringworm' — annular scaly plaque with raised border, central clearing.
+**Tinea pedis (athlete's foot):** macerated interdigital spaces, scaling, fissures.
+**Tinea cruris (jock itch):** groin — annular scaly plaque, spares scrotum.
+**Tinea unguium (onychomycosis):** nail — yellow/brown, thickened, crumbly.
+**Tinea manuum:** hand.
+**Majocchi granuloma:** dermatophyte with deep follicular involvement (immunocompromised).",
+        tx: "**Topical azoles** (clotrimazole, miconazole, terbinafine) for most tinea.
+**Oral terbinafine** for onychomycosis (best nail penetration).
+**Oral griseofulvin** for tinea capitis (children — need oral; topical doesn't penetrate hair shaft). Oral fluconazole/itraconazole: alternatives.",
+        pearl: "**KOH prep** of skin scraping: branching septate hyphae (no buds).
+**Tinea capitis** must be treated orally (griseofulvin is classic) — topical agents can't penetrate the hair follicle.
+**Griseofulvin mechanism:** disrupts microtubule polymerization, deposits in keratin → kills dermatophytes as new keratin forms.
+**Terbinafine:** inhibits ergosterol synthesis (squalene epoxidase — different from azoles which inhibit lanosterol demethylase). Onychomycosis: oral treatment for 3 months for nails. Wood's lamp: Microsporum fluoresces, Trichophyton does NOT."
+      },
+      {
+        name: "Sporothrix schenckii",
+        summary: "Rose gardener's fungus — thorn prick → nodules along lymphatics (sporotrichoid spread); dimorphic; treat with itraconazole (or SSKI for lymphocutaneous)",
+gram: "Dimorphic fungus (mold in environment, cigar-shaped yeast in tissue)",
+virulence: "Dimorphic: **mold in soil/plants** (particularly rose thorns, sphagnum moss, decaying wood) → **cigar-shaped yeast in tissue**. Thermally dimorphic (mold at room temp, yeast at 37°C). Traumatic inoculation via thorn/splinter.",
+        disease: "**Lymphocutaneous sporotrichosis (most common):** papule/nodule at inoculation site (finger/hand) → **ascending nodules along lymphatic channels** ('sporotrichoid pattern' of spread — also seen in Nocardia, Leishmania, NTM). Secondary nodules ulcerate.
+**Fixed cutaneous:** single lesion only.
+**Pulmonary:** inhalation → chronic cavitary disease (rare, immunocompromised, alcoholics).
+**Disseminated:** immunocompromised → joints, CNS, viscera.",
+        tx: "Lymphocutaneous: **itraconazole × 3–6 months** (drug of choice).
+**SSKI (saturated solution of potassium iodide):** older alternative, cheap. Pulmonary/disseminated: **itraconazole or amphotericin B** (severe).",
+        pearl: "**Rose thorn + ascending lymphangitic nodules = Sporothrix** ('rose gardener's disease'). Cigar-shaped yeast in tissue (asteroid body: yeast + eosinophilic spikes — pathognomonic in tissue).
+**Sporotrichoid spread pattern** (nodules tracking up arm along lymphatics) = Step 1 favorite. Also consider Nocardia (weakly acid-fast), fish tank granuloma (M. marinum), and cutaneous leishmaniasis in differential.
+**SSKI** is unique treatment modality (mechanism unknown — iodide may have direct fungicidal effect)."
+      }
+    ]
+  },
+  {
+    group: "Opportunistic Fungal Infections",
+    color: "fung",
+    organisms: [
+      {
+        name: "Candida albicans",
+        summary: "Dimorphic yeast with germ tubes — pseudohyphae, germ tube test positive; thrush/esophagitis/UTI/bloodstream in immunocompromised",
+gram: "Dimorphic yeast (budding yeast + pseudohyphae + hyphae)",
+virulence: "**Germ tube formation** (true hyphae in serum — germ tube test positive, distinguishes C. albicans from other Candida).
+**Biofilm** on prosthetics. Transition between yeast/hyphae (phenotypic switching). Phospholipase B.",
+        disease: "**Oral thrush:** white plaques on erythematous base, scrape off (distinguish from leukoplakia which doesn't scrape off).
+**Esophageal candidiasis:** dysphagia + odynophagia (AIDS-defining if severe), white plaques on endoscopy.
+**Vulvovaginitis:** cottage-cheese discharge, pruritus.
+**Diaper rash:** satellite lesions.
+**Invasive/bloodstream (candidemia):** IV catheters, broad-spectrum antibiotics, TPN, neutropenia → disseminated to retina, liver, spleen (retinal fluffy white lesions).",
+        tx: "Mucocutaneous: **fluconazole** or nystatin (topical). Esophageal: fluconazole (systemic). Candidemia: **echinocandins** (caspofungin, micafungin) — first-line for severe/ICU. Azoles for stable non-critically ill. Remove catheters.",
+        pearl: "**Germ tube test positive** = C. albicans (forms true hyphae in serum at 37°C within 2–3h — no other common Candida does this).
+**Nystatin is topical only** (too toxic for systemic use).
+**Echinocandins** (caspofungin, micafungin, anidulafungin): inhibit β-1,3-glucan synthase → cell wall → less fungal toxicity than amphotericin. C. krusei and C. glabrata: intrinsically resistant to fluconazole."
+      },
+      {
+        name: "Aspergillus fumigatus",
+        summary: "Septate hyphae at 45° (acute angle) — allergic bronchopulmonary (ABPA), aspergilloma, invasive aspergillosis in neutropenia",
+gram: "Mold (septate hyphae with dichotomous branching at 45°)",
+virulence: "Small conidia easily inhaled. Thermotolerance (grows at 37°C–50°C). Produces gliotoxins, elastases, protease.",
+        disease: "**ABPA (allergic bronchopulmonary aspergillosis):** asthma/CF patient, eosinophilia, elevated IgE, mucus plugs, central bronchiectasis — type I/III hypersensitivity.
+**Aspergilloma ('fungus ball'):** colonization of pre-existing lung cavity (prior TB) — hemoptysis, 'crescent sign' (Monod sign) on CXR.
+**Invasive pulmonary aspergillosis:** neutropenic/immunocompromised patients (transplant, prolonged steroids) — angioinvasion → hemorrhagic infarcts, halo sign (CT — ground-glass halo around nodule), air crescent sign late.
+**Sinusitis** (invasive in immunocompromised).",
+        tx: "ABPA: steroids + itraconazole. Aspergilloma: observation (surgical if hemoptysis).
+**Invasive:** **voriconazole** (drug of choice). Alternative: amphotericin B or isavuconazole. Echinocandins: second-line.",
+        pearl: "**Voriconazole** is now the DOC for invasive aspergillosis (superior to amphotericin B in trials).
+**CT halo sign** (ground-glass density surrounding pulmonary nodule) = early invasive aspergillosis in neutropenic patient. **45° branching** (acute angle, septate) = Aspergillus; **90° (right angle, non-septate)** = Mucor/Rhizopus. Galactomannan assay: Aspergillus antigen in serum/BAL — useful for diagnosis in high-risk patients."
+      },
+      {
+        name: "Cryptococcus neoformans",
+        summary: "Narrow-based budding, thick polysaccharide capsule (India ink halo), urease+ — meningitis in HIV (CD4 <100); pigeon droppings; treat with amphotericin B + 5-FC",
+gram: "Encapsulated yeast (thick polysaccharide capsule)",
+virulence: "**Polysaccharide capsule** (massive, inhibits phagocytosis and T-cell activation; capsular material detected by cryptococcal antigen test — extremely sensitive). Melanin production (protects against oxidative killing). Urease positive.",
+        disease: "**Cryptococcal meningitis** (AIDS-defining, CD4 <100): insidious onset — headache, fever, meningismus (may be absent), altered mental status. CSF: lymphocytic pleocytosis, ↑ protein, ↓ glucose, India ink positive (50–80%), cryptococcal antigen (>90%).
+**Serum CrAg:** highly sensitive. High intracranial pressure is a major complication.",
+        tx: "**Induction:** amphotericin B + **flucytosine (5-FC)** × 2 weeks.
+**Consolidation:** fluconazole × 8 weeks.
+**Maintenance (suppression):** fluconazole (lifelong or until immune reconstitution).
+**Elevated ICP:** serial therapeutic LPs to lower pressure (no steroids for ICP in cryptococcal meningitis).",
+        pearl: "**India ink** shows negative staining — capsule excludes ink creating a clear halo around yeast cell.
+**Cryptococcal antigen** > India ink for sensitivity. **5-FC (flucytosine)** inhibits fungal thymidylate synthase → pyrimidine synthesis. Side effects: bone marrow toxicity, GI.
+**Immune reconstitution inflammatory syndrome (IRIS)** can paradoxically worsen cryptococcal meningitis after starting ART — manage with steroids."
+      },
+      {
+        name: "Mucormycosis (Rhizopus/Mucor)",
+        summary: "Non-septate hyphae at 90° — rhinocerebral in diabetic ketoacidosis (DKA), black eschar, rapidly fatal; treat with amphotericin B + surgery",
+gram: "Mold (non-septate/aseptate ribbon-like hyphae, wide, irregular, 90° branching)",
+virulence: "Iron as essential nutrient. High glucose + acidosis + ↑ free iron (DKA) creates ideal environment. Angioinvasion.",
+        disease: "**Rhinocerebral mucormycosis:** DKA, uncontrolled diabetes, deferoxamine therapy (releases iron). Starts in nasal cavity → spreads to sinuses → orbits → brain.
+**Black eschar** on nasal mucosa/palate (necrotic — angioinvasive). Facial pain, proptosis, CN deficits, headache.
+**Pulmonary:** immunocompromised (similar to Aspergillus but more angioinvasive). Rapidly fatal if untreated.",
+        tx: "**Liposomal amphotericin B** (drug of choice).
+**Surgical debridement** (aggressive). Correct DKA/hyperglycemia. Isavuconazole (alternative). Posaconazole for step-down.",
+        pearl: "**90° branching + non-septate** = Mucormycosis (Mucor, Rhizopus, Absidia). **45° branching + septate** = Aspergillus.
+**DKA patient with black eschar on nasal mucosa** = rhinocerebral mucormycosis — surgical emergency.
+**Deferoxamine therapy** (iron chelator for iron overload) paradoxically predisposes to mucormycosis by providing usable iron via siderophore mechanism."
+      },
+      {
+        name: "Pneumocystis jirovecii (PCP)",
+        summary: "Atypical fungus — PCP pneumonia in HIV (CD4 <200), diffuse bilateral infiltrates (ground-glass), elevated LDH; treat with TMP-SMX",
+gram: "Atypical fungus (no ergosterol — not culturable; fungal rRNA)",
+virulence: "Cysts (ascospores containing 8 intracystic bodies) + trophic forms attach to type I pneumocytes. Formerly called P. carinii (classified as fungus by rRNA, but acts like protozoan).",
+        disease: "**PCP pneumonia** (Pneumocystis pneumonia): AIDS-defining (CD4 <200). Insidious onset — progressive dyspnea, non-productive cough, fever. CXR: bilateral **perihilar/diffuse ground-glass** infiltrates (may be normal early). Elevated
+**LDH** (non-specific but sensitive). Exercise-induced hypoxia.
+**BAL (bronchoalveolar lavage)** with GMS (Gomori methenamine silver stain) or toluidine blue stain shows cysts. Spontaneous pneumothorax: complication in PCP.",
+        tx: "**TMP-SMX** (drug of choice, IV/PO). Alternative: dapsone + trimethoprim, atovaquone (mild), clindamycin + primaquine (IV), IV pentamidine (severe).
+**Steroids** (prednisone) if PaO2 <70 or A-a gradient >35 (↓ inflammatory damage).
+**Prophylaxis:** TMP-SMX when CD4 <200 (also active against Toxoplasma).",
+        pearl: "**CD4 <200 → start TMP-SMX prophylaxis** (covers both PCP and Toxoplasma).
+**LDH elevation** is non-specific but a clue.
+**BAL + GMS stain** (cysts appear as black round structures). NOT treated with azoles or echinocandins (no ergosterol target).
+**Steroids** improve outcomes in moderate-severe PCP (reduce mortality 50%). Pneumothorax in HIV patient → think PCP."
+      }
+    ]
+  }
+],
 
-  fungi: [
-    {
-      group: "Systemic Mycoses",
-      color: "fung",
-      organisms: [
-        {
-          name: "Histoplasma capsulatum",
-          summary: "Ohio/Mississippi River valleys, caves/bird droppings, dimorphic intracellular in macrophages (yeast form); treat with itraconazole/amphotericin B",
-          gram: "Dimorphic fungus (mold at 20°C → yeast at 37°C)",
-          virulence: "Yeast form survives intracellularly in macrophages. Soil contamination from bird and bat droppings.",
-          disease: "**Pulmonary histoplasmosis:** usually asymptomatic. Resembles TB in immunocompetent. **Disseminated (HIV with CD4 <150):** fever, weight loss, hepatosplenomegaly, oral ulcers, adrenal insufficiency. **Mediastinal/pericardial complications** in chronic forms.",
-          lab_diagnosis: "**Tests:** Urine and serum Histoplasma antigen (highly sensitive for disseminated disease). **Microscopy/Histology:** GMS or PAS stain shows small, oval, narrow-based budding yeasts packed intracellularly within macrophages . **Culture:** Grows as mold at 20°C with pathognomonic tuberculate (thick-walled, spiny) macroconidia.",
-          tx: "Mild/moderate: **itraconazole**. Severe/disseminated: **amphotericin B** then step-down to itraconazole.",
-          pearl: "Adrenal involvement (bilateral adrenal enlargement causing Addison's disease) in a patient from the Ohio or Mississippi River Valley strongly suggests disseminated Histoplasma. The intracellular location within macrophages on silver stain distinguishes it from other dimorphic fungi."
-        },
-        {
-          name: "Coccidioides immitis",
-          summary: "Southwestern US/California (San Joaquin Valley fever), dimorphic spherules with endospores in tissue; eosinophilia, erythema nodosum",
-          gram: "Dimorphic fungus (arthroconidia in soil → spherules in tissue)",
-          virulence: "Arthroconidia are highly infectious upon inhalation. Spherules in tissue contain multiple endospores (200-300) which rupture and spread.",
-          disease: "**Primary (Valley fever):** flu-like illness. Eosinophilia. Erythema nodosum (tender red nodules on shins). **Disseminated (immunocompromised, Black/Filipino patients at highest risk):** meningitis (most serious), bone/skin/lymph node involvement.",
-          lab_diagnosis: "**Tests:** Serology (IgM and IgG CF titers). **Microscopy/Histology:** KOH or silver stain of tissue shows large spherules (much larger than RBCs) packed with hundreds of endospores . **Culture:** Highly infectious lab hazard; grows as mold at 20°C with barrel-shaped arthroconidia.",
-          tx: "Mild/pulmonary: **fluconazole** or itraconazole. Severe/disseminated: **amphotericin B**. Meningitis: fluconazole (lifelong suppression).",
-          pearl: "Spherules with endospores in tissue are pathognomonic for Coccidioides; no other organism forms these structures. CSF eosinophilia is a highly specific clue for coccidioidal meningitis. Erythema nodosum signals a robust immune response and generally predicts a good prognosis."
-        },
-        {
-          name: "Blastomyces dermatitidis",
-          summary: "North America (Ohio/Mississippi + Great Lakes), broad-based budding yeast verrucous skin lesions, pulmonary, osteomyelitis; no reliable serology",
-          gram: "Dimorphic fungus (mold in environment, yeast in tissue)",
-          virulence: "Soil exposure near decaying wood and water. Inhalation of conidia.",
-          disease: "**Pulmonary blastomycosis:** flu-like, often mistaken for bacterial pneumonia or cancer. **Skin (most distinctive):** verrucous (warty), ulcerating, crusted skin lesions on face and extremities. **Bone:** osteolytic lesions. **Genitourinary:** prostatitis, epididymo-orchitis.",
-          lab_diagnosis: "**Tests:** Urine antigen available but heavily cross-reacts with Histoplasma. **Microscopy/Histology:** KOH or silver stain shows large, broad-based budding yeast with a double refractive cell wall (same size as RBCs) . **Culture:** Branching hyphae at 20°C.",
-          tx: "Mild-moderate: **itraconazole**. Severe/CNS: **amphotericin B** then itraconazole.",
-          pearl: "Broad-based budding (the neck between the mother and daughter cell is as wide as the bud) is the definitive visual identifier. Verrucous, non-tender, crusted skin lesions can easily mimic squamous cell carcinoma."
-        },
-        {
-          name: "Paracoccidioides brasiliensis",
-          summary: "Dimorphic fungus South/Central America (Brazil), rural/agricultural workers; 'captain's wheel' appearance; chronic granulomatous lung + mucocutaneous lesions; treat itraconazole",
-          gram: "Dimorphic fungus (mold in environment, yeast in tissue)",
-          virulence: "Dimorphic mold in environment converts to yeast in body. **Multiple budding** from a single central cell.",
-          disease: "**Endemic to South/Central America.** Affects agricultural workers. **Pulmonary:** chronic granulomatous disease, fibrosis. **Mucocutaneous:** painful ulcerating lesions of lips, gums, oral mucosa, larynx. **Lymphatic:** generalized LAD.",
-          lab_diagnosis: "**Tests:** Immunodiffusion serology. **Microscopy/Histology:** KOH or silver stain of mucosal ulcers or sputum shows a large yeast with multiple buds attached in a 'captain's wheel' or 'pilot's wheel' formation . **Culture:** Mold at 20°C.",
-          tx: "Mild-moderate: **itraconazole** (12-18 months). Severe: **amphotericin B** step-down to itraconazole.",
-          pearl: "The 'captain's wheel' morphology is pathognomonic. Estrogen inhibits the mycelium to yeast conversion, providing pre-menopausal women with significant protection from progressive disease compared to men in the same endemic agricultural regions."
-        }
-      ]
-    },
-    {
-      group: "Cutaneous Mycoses",
-      color: "fung",
-      organisms: [
-        {
-          name: "Malassezia furfur",
-          summary: "Lipophilic yeast tinea versicolor (hypo/hyperpigmented macules), seborrheic dermatitis; requires lipid supplementation for culture; treat topical antifungals",
-          gram: "Yeast (lipophilic, part of normal skin flora)",
-          virulence: "**Obligate lipophile** (requires exogenous lipids for growth). Produces azelaic acid which inhibits melanin synthesis, leading to hypopigmented macules.",
-          disease: "**Tinea versicolor:** hypo- or hyperpigmented macules on trunk/shoulders. Non-itchy or mildly pruritic. **Seborrheic dermatitis/dandruff:** scalp/face flaking. **Neonatal sepsis:** affects infants receiving IV lipid emulsions.",
-          lab_diagnosis: "**Tests:** Wood's lamp reveals yellow-green fluorescence. **Microscopy:** KOH prep of skin scrapings shows short, cigar-shaped hyphae intermixed with clusters of spherical budding yeast ('spaghetti and meatballs' appearance) . **Culture:** Requires lipid supplementation (olive oil overlay) to grow.",
-          tx: "**Topical selenium sulfide** or **ketoconazole shampoo**. **Topical azoles**.",
-          pearl: "Premature infants in the NICU receiving IV lipid infusions are uniquely at risk for Malassezia fungemia because the organism feeds directly on the lipid lines. Pigmentation changes persist for months after successful eradication, so reassure patients that this is normal."
-        },
-        {
-          name: "Dermatophytes (Tinea)",
-          summary: "Keratinophilic molds tinea capitis, corporis, pedis, cruris, unguium; KOH shows hyphae; treat topical azoles or oral terbinafine/griseofulvin",
-          gram: "Mold (hyphae only no yeast form)",
-          virulence: "Three genera: Trichophyton, Microsporum, Epidermophyton. Keratinophilic: digest keratin in skin/hair/nails. Spread by direct contact.",
-          disease: "**Tinea capitis:** scalp ringworm. **Tinea corporis:** 'ringworm' annular scaly plaque. **Tinea pedis:** athlete's foot. **Tinea cruris:** jock itch. **Tinea unguium:** onychomycosis. **Majocchi granuloma:** deep follicular involvement.",
-          lab_diagnosis: "**Tests:** Wood's lamp (Microsporum fluoresces green; Trichophyton does not). **Microscopy:** KOH prep of scrapings shows branching, septate hyphae visible among squamous epithelial cells without any yeast forms. **Culture:** Sabouraud agar grows mold.",
-          tx: "**Topical azoles** for most tinea. **Oral terbinafine** for onychomycosis. **Oral griseofulvin** for tinea capitis.",
-          pearl: "Tinea capitis requires oral antifungal therapy like griseofulvin because topical agents cannot penetrate the hair shaft. Dermatophytes never invade the dermis in immunocompetent hosts, distinguishing them from deep fungal infections."
-        },
-        {
-          name: "Sporothrix schenckii",
-          summary: "Rose gardener's fungus thorn prick → nodules along lymphatics (sporotrichoid spread); dimorphic; treat with itraconazole",
-          gram: "Dimorphic fungus (mold in environment, cigar-shaped yeast in tissue)",
-          virulence: "Dimorphic mold in soil/plants (rose thorns, sphagnum moss). Traumatic inoculation via thorn or splinter.",
-          disease: "**Lymphocutaneous sporotrichosis:** papule/nodule at inoculation site leads to **ascending nodules along lymphatic channels** (sporotrichoid spread). **Pulmonary:** chronic cavitary disease. **Disseminated:** joints, CNS in immunocompromised.",
-          lab_diagnosis: "**Microscopy/Histology:** Tissue biopsy shows sparse cigar-shaped budding yeast. Asteroid bodies (yeast surrounded by radiating eosinophilic material) may be present . **Culture:** Gold standard; grows mold at room temperature with rosette-like clusters of conidia, and converts to yeast at 37°C.",
-          tx: "Lymphocutaneous: **itraconazole** (drug of choice). **SSKI (saturated solution of potassium iodide):** older alternative. Pulmonary/disseminated: **amphotericin B**.",
-          pearl: "A sporotrichoid spread pattern (nodules tracking proximally along lymphatic channels from a distal inoculation site) is a classic exam finding. Think of Sporothrix when a patient presents with a thorn prick from gardening."
-        }
-      ]
-    },
-    {
-      group: "Opportunistic Fungal Infections",
-      color: "fung",
-      organisms: [
-        {
-          name: "Candida albicans",
-          summary: "Dimorphic yeast with germ tubes thrush/esophagitis/UTI/bloodstream in immunocompromised",
-          gram: "Dimorphic yeast (budding yeast + pseudohyphae + hyphae)",
-          virulence: "**Germ tube formation**. **Biofilm** on prosthetics and catheters. Transition between yeast and hyphae facilitates tissue invasion.",
-          disease: "**Oral thrush:** white plaques that scrape off. **Esophageal candidiasis:** dysphagia + odynophagia (AIDS-defining). **Vulvovaginitis:** cottage-cheese discharge. **Diaper rash:** beefy red with satellite lesions. **Candidemia:** IV catheters, TPN, neutropenia leading to dissemination.",
-          lab_diagnosis: "**Tests:** Germ tube test is positive (forms true hyphae in serum at 37°C within 2 to 3 hours). Blood cultures for candidemia. **Microscopy:** KOH or Gram stain shows budding yeast with pseudohyphae 
+parasites: [
+  {
+    group: "Protozoa — Intestinal & Blood",
+    color: "para",
+    organisms: [
+      {
+        name: "Plasmodium species (Malaria)",
+        summary: "RBC parasite — cyclic fever, splenomegaly; P. falciparum (severe) vs P. vivax/ovale (relapse/hypnozoites); treat by species",
+gram: "Protozoa (intracellular RBC parasite, Giemsa stain)",
+virulence: "**Anopheles mosquito** (female) vector. Sporozoites → liver (hepatocytes, exoerythrocytic phase) → merozoites → RBCs (erythrocytic phase) → ring forms → schizonts (burst → fever) → gametocytes (mosquito ingestion).
+**P. falciparum:** no hypnozoites, knob proteins on RBCs → cytoadherence, rosetting → **severe disease**. P. vivax/P. ovale: dormant liver forms (hypnozoites) → relapse.",
+        disease: "**Cyclic fever:** P. vivax/ovale (48h — tertian), P. malariae (72h — quartan), P. falciparum (irregular).
+**P. falciparum complications:** cerebral malaria (altered consciousness, seizures), severe anemia, hypoglycemia, ARDS, acute tubular necrosis, **blackwater fever** (massive hemolysis + hemoglobinuria). P. vivax/ovale: relapse from hypnozoites months-years later. All: splenomegaly, thrombocytopenia.",
+        tx: "**P. falciparum:** artemether-lumefantrine or atovaquone-proguanil (uncomplicated); IV **artesunate** (severe).
+**P. vivax/ovale:** chloroquine + **primaquine** (kills hypnozoites). Check G6PD before primaquine. Chloroquine-resistant falciparum: artesunate combination.
+**Prophylaxis:** atovaquone-proguanil or doxycycline (malaria-endemic areas).",
+        pearl: "**Primaquine** kills hypnozoites in P. vivax/ovale — prevents relapse.
+**G6PD deficiency** → primaquine causes hemolysis → test G6PD first.
+**Sickle cell trait** is protective against falciparum malaria (infected RBCs sickle → cleared faster).
+**Schüffner's dots** (P. vivax/ovale) vs
+**Maurer's clefts** (P. falciparum). P. malariae: infected RBCs normal size; P. vivax/ovale: enlarged; P. falciparum: normal size (multiple rings per RBC, banana-shaped gametocytes)."
+      },
+      {
+        name: "Toxoplasma gondii",
+        summary: "Definitive host: cats; congenital (calcifications + chorioretinitis + hydrocephalus) and CNS toxoplasmosis in HIV (CD4 <100); treat with pyrimethamine + sulfadiazine",
+gram: "Obligate intracellular protozoan",
+virulence: "Oocysts in cat feces, bradyzoites in undercooked meat.
+**Obligate intracellular** (infects almost any nucleated cell). Tachyzoites (acute) → bradyzoites in tissue cysts (latency). Disrupts T-cell immunity triggers reactivation.",
+        disease: "**Congenital toxoplasmosis** (TORCH): classic triad — **chorioretinitis + hydrocephalus + intracranial calcifications (diffuse periventricular)**. Plus seizures, jaundice, hepatosplenomegaly.
+**CNS toxoplasmosis (HIV, CD4 <100):** multiple **ring-enhancing lesions** on MRI (basal ganglia/cortex), headache, fever, focal neurological deficits. Distinguish from primary CNS lymphoma (single ring-enhancing, periventricular).
+**Ocular toxoplasmosis:** reactivation in adults → chorioretinitis, scotoma.",
+        tx: "**Pyrimethamine + sulfadiazine + leucovorin** (folinic acid prevents bone marrow suppression from pyrimethamine).
+**Alternative:** pyrimethamine + clindamycin.
+**TMP-SMX prophylaxis** if CD4 <100 and Toxoplasma IgG positive.
+**Empiric treatment:** if HIV patient has multiple ring-enhancing lesions → treat for Toxo empirically (if no improvement in 2 weeks → biopsy for CNS lymphoma).",
+        pearl: "**Toxo vs CNS lymphoma:** Toxoplasma = multiple lesions, basal ganglia (bilateral), responds to empiric treatment. CNS lymphoma = single periventricular lesion, EBV associated, positive CSF EBV PCR, thallium SPECT (increased uptake in lymphoma).
+**Congenital calcifications:** Toxoplasma = diffuse/scattered. CMV = **periventricular**. Both can cause chorioretinitis. Pyrimethamine: dihydrofolate reductase inhibitor → give leucovorin."
+      },
+      {
+        name: "Giardia lamblia",
+        summary: "Pear-shaped trophozoite + cyst — #1 parasitic diarrhea (hikers/contaminated water), malabsorption, floating stools; treat with metronidazole",
+gram: "Protozoa — Flagellate",
+virulence: "Trophozoites (pear-shaped, 2 nuclei 'owl-eye' appearance) attach to duodenal/jejunal epithelium with sucking disc → disrupts brush border → malabsorption. Cysts are infectious form (resistant to chlorine).",
+        disease: "**Acute:** watery diarrhea (no blood, no fever), abdominal cramps, bloating, flatulence.
+**Chronic:** steatorrhea, malabsorption (fat + fat-soluble vitamins A, D, E, K), weight loss.
+**IgA deficiency:** increased susceptibility. Source: mountain streams, contaminated water, daycare centers.",
+        tx: "**Metronidazole** (drug of choice). Alternative: tinidazole (single dose), nitazoxanide.",
+        pearl: "**'Foul-smelling, greasy, floating stools' + hiker/camper + no blood** = Giardia. Flotation/stool O&P: cysts (oval, 4 nuclei). Trophozoites: sucking disc, 2 nuclei, 4 pairs flagella ('looks like a face'). IgA deficiency → recurrent Giardia. Distinguish from Cryptosporidium: Cryptosporidium is acid-fast, more severe in immunocompromised."
+      },
+      {
+        name: "Entamoeba histolytica",
+        summary: "Amebic dysentery + liver abscess — ingested cysts, trophozoites invade mucosa, RBCs in cytoplasm; treat with metronidazole + luminal agent",
+gram: "Protozoa — Ameba",
+virulence: "**Trophozoites** ingest RBCs (pathognomonic: RBCs within trophozoite cytoplasm on smear). Cysteine protease dissolves epithelial layer. Flask-shaped ulcers in colon.",
+        disease: "**Amebic colitis (dysentery):** gradual onset bloody diarrhea, lower abdominal cramps, tenesmus. Flask-shaped ulcers on colonoscopy.
+**Amebic liver abscess:** right lobe (most common), 'anchovy paste' pus (necrotic, sterile — few organisms). Fever, RUQ pain, elevated LFTs. Rupture risk into pleural/peritoneal space.
+**Asymptomatic cyst passage:** common.",
+        tx: "**Metronidazole** (tissue amebicide) + **luminal agent** (paromomycin or diloxanide furoate — kills cysts in intestine). Both required to eliminate cysts and tissue infection.",
+        pearl: "**Liver abscess pus = 'anchovy paste'** (chocolate sauce) — yellow-brown necrotic material. CT: hypodense, right lobe, single lesion.
+**Serology (anti-amoeba IgG)** — useful. Key histology: trophozoites with **ingested RBCs** in cytoplasm. Distinguish from pyogenic liver abscess (bacteria — polymicrobial, multiple lesions often). Metronidazole alone = inadequate (leaves cysts in gut → relapse)."
+      },
+      {
+        name: "Cryptosporidium parvum",
+        summary: "Acid-fast oocysts — watery diarrhea in immunocompetent (self-limited) vs life-threatening profuse diarrhea in HIV (CD4 <100); no effective treatment in AIDS",
+gram: "Protozoa — Coccidian (acid-fast oocysts)",
+virulence: "**Acid-fast oocysts** (survive chlorination). Infects intestinal epithelial cells (intracellular but extracytoplasmic — in brush border). Sexual and asexual reproduction in intestine.",
+        disease: "**Immunocompetent:** self-limited watery diarrhea (1–3 weeks), nausea, cramps. Common in daycare workers, recreational water.
+**HIV/AIDS (CD4 <100):** profuse watery diarrhea (3–15 L/day), wasting, biliary cryptosporidiosis (cholangiopathy — sclerosing cholangitis-like).",
+        tx: "Immunocompetent: supportive.
+**AIDS:** nitazoxanide (modest benefit) + **immune reconstitution with HAART** (only cure). No reliable anti-cryptosporidial drug.",
+        pearl: "**Acid-fast** staining = key diagnostic feature (along with Cyclospora and Isospora). Oocysts are **4–6 µm** (smaller than RBCs). 'Cryptosporidium parvum = small (parvo) + hidden (crypto).' In AIDS, massive secretory diarrhea leads to wasting. Biliary involvement = AIDS cholangiopathy. Resistant to chlorination of water supplies — common in recreational water outbreaks."
+      }
+    ]
+  },
+  {
+    group: "Protozoa — Blood & Tissue",
+    color: "para",
+    organisms: [
+      {
+        name: "Trypanosoma cruzi (Chagas Disease)",
+        summary: "Reduviid (kissing) bug vector — Chagas disease; South/Central America; trypomastigotes in blood, amastigotes in tissue; dilated cardiomyopathy, megaesophagus, megacolon; treat benznidazole",
+gram: "Protozoa (Kinetoplastida — kinetoplast visible on Giemsa)",
+virulence: "**Reduviid bug (Triatoma — kissing bug)** bites near mouth/eyes, defecates on skin → trypomastigotes enter through bite wound or mucous membranes. Amastigotes infect cardiac/smooth muscle cells.",
+        disease: "**Acute Chagas:** fever, malaise,
+**Romaña's sign** (painless periorbital swelling — unilateral, from conjunctival inoculation) or chagoma (skin lesion at bite site). Mild, self-limited or asymptomatic.
+**Chronic Chagas (years later, 20–30%):** **dilated cardiomyopathy** (ventricular aneurysm at apex, arrhythmias, heart block, sudden death), **megaesophagus** (dysphagia, mimics achalasia), **megacolon** (constipation, obstruction). Chronic disease mediated by autoimmune mechanisms.",
+        tx: "**Acute:** benznidazole or nifurtimox (only effective in acute phase).
+**Chronic:** supportive (cardiac: ICD, transplant; GI: dilation). Early treatment with benznidazole slows progression.",
+        pearl: "**Romaña's sign** (periorbital edema) = pathognomonic of acute Chagas.
+**Chagas cardiomyopathy** = dilated + apical aneurysm + arrhythmias (right bundle branch block is classic ECG finding). Megaesophagus mimics achalasia (both show bird-beak esophagus on barium) — differentiate by serology.
+**Blood transfusion and vertical transmission** are also routes. Endemic in Latin America — important for immigrants presenting with cardiomyopathy."
+      },
+      {
+        name: "Trypanosoma brucei (Sleeping Sickness)",
+        summary: "Tsetse fly vector — African sleeping sickness; T. b. rhodesiense (East Africa, acute) vs T. b. gambiense (West Africa, chronic); CNS invasion → altered sleep-wake cycle; treat suramin/melarsoprol",
+gram: "Protozoa (Kinetoplastida — trypomastigotes in blood)",
+virulence: "**Tsetse fly** (Glossina) vector — transmits metacyclic trypomastigotes.
+**Antigenic variation of VSG (variable surface glycoprotein)** — switches surface coat → evades immune response → waves of parasitemia. Crosses blood-brain barrier → CNS invasion.",
+        disease: "**Stage 1 (hemolymphatic):** chancre at bite site → fever, headache, lymphadenopathy.
+**Winterbottom's sign:** posterior cervical LAD (T. b. gambiense).
+**Stage 2 (CNS):** encephalitis → personality change, **disrupted circadian rhythm** (sleeping during day, awake at night), progressive neurological deterioration, coma, death.
+**T. b. rhodesiense** (East Africa): faster, more acute, severe.
+**T. b. gambiense** (West Africa): slower, chronic, years.",
+        tx: "Stage 1: **suramin** (T.b. rhodesiense) or pentamidine (T.b. gambiense). Stage 2 (CNS): **melarsoprol** (arsenic derivative — very toxic, causes fatal encephalopathy 5–10%) or eflornithine (T.b. gambiense).",
+        pearl: "**Sleep disorder** (day sleeping, night waking) = classic clue for Stage 2 CNS African sleeping sickness.
+**Winterbottom's sign** (posterior cervical LAD) = T.b. gambiense.
+**VSG switching** = why antibodies don't clear the parasite (waves of antigenically different parasitemia).
+**Melarsoprol** is arsenical — toxic but historically the only option for CNS disease. Distinguish from Chagas (T. cruzi): Latin America, kissing bug, heart/GI disease vs Africa, tsetse fly, CNS disease."
+      },
+      {
+        name: "Babesia",
+        summary: "Ixodes tick vector — RBC parasite, resembles malaria; tetrad 'Maltese cross' form; Northeast US; hemolytic anemia; asplenic patients at risk for severe disease; treat atovaquone + azithromycin",
+gram: "Protozoa (intraerythrocytic — Giemsa stain)",
+virulence: "**Ixodes scapularis tick** (same tick as Lyme disease).
+**Babesia microti** (most common in US). Infects RBCs like malaria — but **NO exoerythrocytic liver stage** (no hypnozoites).
+**Tetrad form ('Maltese cross' or Merozoite tetrad)** — pathognomonic on blood smear.",
+        disease: "**Asymptomatic** in healthy adults.
+**Symptomatic:** flu-like illness — fever, chills, sweating, malaise, myalgia, hemolytic anemia, thrombocytopenia, elevated LFTs.
+**Severe disease** in: **asplenic patients** (overwhelming, life-threatening), elderly, HIV, B-cell immunodeficiency. Hemoglobinuria, jaundice. Can be co-transmitted with Lyme disease (same Ixodes tick).",
+        tx: "Mild-moderate: **atovaquone + azithromycin** × 7–10 days. Severe: **clindamycin + quinine** ± exchange transfusion (for high parasitemia or severe hemolysis).",
+        pearl: "**Maltese cross (tetrad)** on blood smear = pathognomonic for Babesia (no other intraerythrocytic parasite forms tetrads).
+**Ixodes tick = transmits Lyme + Babesia + Anaplasmosis** — co-infection possible. NO exoerythrocytic phase → no hypnozoites → no relapse (unlike P. vivax/ovale). Asplenia = highest risk for severe/fatal babesiosis. Northeast US (especially New England, upper Midwest). Blood bank screening now required (transfusion-transmitted babesiosis)."
+      },
+      {
+        name: "Naegleria fowleri",
+        summary: "Free-living ameba — warm freshwater (lakes/rivers/hot springs); enters via cribriform plate → primary amebic meningoencephalitis (PAM); rapidly fatal; treat amphotericin B (rarely successful)",
+gram: "Protozoa — Free-living ameba (trophozoite in tissue)",
+virulence: "**Thermophilic** (grows at body temperature). Trophozoite form in host tissue.
+**Flagellate form** in cool water. Enters via olfactory epithelium → **cribriform plate** → olfactory bulbs → brain.",
+        disease: "**Primary Amebic Meningoencephalitis (PAM):** healthy young swimmers in warm freshwater lakes, rivers, hot springs (summer). Incubation 1–7 days.
+**Rapid onset:** severe headache, fever, nausea → altered mental status, seizures, coma.
+**Death within 3–7 days in >97% of cases.** CSF: hemorrhagic, elevated WBC (neutrophilic), elevated protein, low glucose, **motile trophozoites on wet mount** (pathognomonic).",
+        tx: "**Amphotericin B** (IV + intrathecal) + miltefosine — rarely successful. Occasional survival with combination including fluconazole, rifampin, dexamethasone. Most die despite treatment.",
+        pearl: "**Healthy child who swam in warm lake → died in 7 days from meningoencephalitis = Naegleria.** 'Brain-eating ameba.' CSF: neutrophilic pleocytosis + motile ameba = PAM.
+**NOT associated with drinking contaminated water** (stomach acid kills it) — must enter via olfactory route. Contrast with
+**Acanthamoeba** (granulomatous amebic encephalitis in immunocompromised, slower course) and
+**Entamoeba histolytica** (fecal-oral, liver abscess, NOT CNS in immunocompetent)."
+      },
+      {
+        name: "Leishmania",
+        summary: "Sandfly vector — three clinical forms: cutaneous (skin ulcer, 'chiclero ulcer'), mucocutaneous (tissue destruction), visceral (kala-azar, splenomegaly, pancytopenia, fever); treat liposomal amphotericin B",
+gram: "Protozoa (intracellular macrophage parasite — amastigotes; Giemsa stain)",
+virulence: "**Phlebotomus sandfly** (Old World) or Lutzomyia (New World) vector.
+**Promastigotes** (extracellular, flagellated) in sandfly → inoculated into host → **amastigotes** (intracellular, no flagella) infect macrophages. Survive in macrophage phagolysosomes by inhibiting acidification.",
+        disease: "**Cutaneous leishmaniasis (most common):** painless papule → slowly enlarging ulcer ('chiclero ulcer' in Central America — eats ear cartilage; 'oriental sore' in Old World). Self-healing over months-years.
+**Mucocutaneous (espundia):** L. braziliensis — skin ulcer heals then reactivates in nasopharyngeal mucosa years later → tissue destruction of nose/palate/pharynx.
+**Visceral (kala-azar, 'black fever'):** L. donovani — disseminated macrophage infection → massive **hepatosplenomegaly**, fever, **pancytopenia**, hypergammaglobulinemia, wasting.
+**Hyperpigmentation** of skin (kala-azar = 'black fever' in Hindi). Untreated visceral = fatal.",
+        tx: "**Visceral/severe:** **liposomal amphotericin B** (drug of choice in US). Miltefosine (oral). Meglumine antimoniate or sodium stibogluconate (pentavalent antimony — used in developing world). Cutaneous: often self-healing; treat if persistent (miltefosine, amphotericin).",
+        pearl: "**Kala-azar** = visceral leishmaniasis = massive splenomegaly + pancytopenia + fever + hypergammaglobulinemia (IgG) + hyperpigmentation. Diagnose: bone marrow/spleen biopsy shows amastigotes (Leishman-Donovan bodies) in macrophages.
+**Immunocompromised** (HIV + L. donovani = visceral leishmaniasis is AIDS-defining in endemic regions).
+**Sandfly vector** — no person-to-person transmission. Dogs are important reservoir (Old World)."
+      },
+      {
+        name: "Trichomonas vaginalis",
+        summary: "Pear-shaped flagellated protozoan STI — malodorous yellow-green frothy vaginal discharge, strawberry cervix; no cyst form; sexual transmission only; treat both partners with metronidazole",
+gram: "Protozoa — Flagellate (no cyst form)",
+virulence: "**No cyst form** — trophozoite only (fragile outside host → sexual transmission only, not fecal-oral). Pear-shaped, 4 anterior flagella + 1 recurrent flagellum, undulating membrane. Adheres to vaginal/urethral epithelium.",
+        disease: "**Females (symptomatic 50%):** malodorous yellow-green **frothy vaginal discharge**, pruritus, dysuria.
+**Strawberry cervix** (punctate hemorrhages — colposcopy). Vaginal pH >4.5.
+**Males:** usually asymptomatic; urethritis (mild), prostatitis.
+**Neonates:** acquired during delivery → respiratory infection.
+**Complications:** increased risk of HIV acquisition, preterm labor in pregnancy.",
+        tx: "**Metronidazole 2g PO single dose** (or tinidazole).
+**Treat both partners simultaneously** (reinfection is the most common cause of treatment failure). Avoid alcohol with metronidazole (disulfiram-like reaction).",
+        pearl: "**Wet mount:** motile trophozoites with jerky movement = diagnostic (sensitivity 60–70%). NAAT is more sensitive (preferred).
+**No cyst form** = cannot survive environmental exposure (transmitted only sexually).
+**Strawberry cervix** on colposcopy. **pH >4.5** (like BV but unlike Candida). Compare: BV = Gardnerella + anaerobes, fishy odor, clue cells, NO inflammation; Trich = motile organisms, frothy discharge, WITH inflammation (WBCs on wet mount)."
+      }
+    ]
+  },
+  {
+    group: "Helminths & Other Parasites",
+    color: "para",
+    organisms: [
+      {
+        name: "Intestinal Nematodes",
+        summary: "Pinworms (Enterobius), ascaris (giant roundworm), hookworms (Ancylostoma/Necator), strongyloides, whipworm — most via fecal-oral or skin penetration",
+gram: "Helminths — Nematodes (roundworms)",
+virulence: "Varies: larva migrans patterns, tissue invasion, intestinal attachment, autoinfection (Strongyloides).",
+        disease: "**Enterobius (pinworm):** perianal pruritus at night — scotch tape test.
+**Ascaris lumbricoides:** Löffler pneumonia (larval migration), intestinal obstruction, malnutrition.
+**Hookworm (Ancylostoma/Necator):** skin penetration (cutaneous larva migrans — creeping eruption), iron-deficiency anemia (blood-sucking adults in duodenum).
+**Trichuris (whipworm):** bloody diarrhea, rectal prolapse.
+**Strongyloides:** autoinfection — can survive for decades; hyperinfection syndrome in immunocompromised (larvae disseminate everywhere, gram-negative sepsis from gut flora carried).",
+        tx: "**Albendazole or mebendazole** (most intestinal nematodes). Pinworm: pyrantel pamoate or albendazole + treat whole family. Strongyloides: **ivermectin** (drug of choice).",
+        pearl: "**Strongyloides hyperinfection** in immunocompromised (steroids, HIV, HTLV-1) → larvae disseminate carrying enteric bacteria → gram-negative sepsis/meningitis → **screen before starting steroids in endemic area**.
+**Eosinophilia** = clue to parasitic infection (especially helminths with tissue migration).
+**Löffler syndrome** (transient pulmonary eosinophilia) in Ascaris, hookworm, Strongyloides."
+      },
+      {
+        name: "Tissue Nematodes & Trematodes",
+        summary: "Trichinella (undercooked pork, periorbital edema), filariasis (lymphedema), schistosoma (bladder cancer/portal HTN), Clonorchis (cholangiocarcinoma)",
+gram: "Helminths — Trematodes/Nematodes (tissue)",
+virulence: "Tissue invasion, larval encystment, immunopathology.",
+        disease: "**Trichinella spiralis:** undercooked pork/bear — periorbital edema, myalgias, eosinophilia, facial edema.
+**Wuchereria bancrofti (filariasis):** mosquito vector → lymphatic obstruction → elephantiasis.
+**Onchocerca volvulus (river blindness):** blackfly vector, subcutaneous nodules, ocular involvement (keratitis → blindness — 'river blindness').
+**Schistosoma:** freshwater snail → cercariae penetrate skin: S. mansoni/japonicum (portal HTN → esophageal varices, Symmers' pipe-stem fibrosis); S. haematobium (bladder — hematuria, squamous cell carcinoma of bladder).
+**Clonorchis/Opisthorchis (liver flukes):** undercooked fish → biliary obstruction + **cholangiocarcinoma**.",
+        tx: "Trichinella: albendazole + steroids. Filariasis: diethylcarbamazine (DEC). Onchocerca: **ivermectin** (single annual dose). Schistosoma: **praziquantel** (drug of choice for all flukes and cestodes). Clonorchis: praziquantel.",
+        pearl: "**Schistosoma haematobium = squamous cell carcinoma of the bladder** (painless hematuria).
+**Clonorchis = cholangiocarcinoma** (biliary obstruction, RUQ pain, jaundice).
+**Praziquantel** = treat all flatworms (flukes + tapeworms).
+**Ivermectin** = treat Onchocerca, Strongyloides.
+**Periorbital edema** + eosinophilia + exposure to raw meat = Trichinella."
+      },
+      {
+        name: "Cestodes (Tapeworms)",
+        summary: "Taenia (pork/beef), Echinococcus (cysts in liver/lung), Diphyllobothrium (B12 deficiency, raw fish); cysticercosis = neurocysticercosis",
+gram: "Helminths — Cestodes (tapeworms)",
+virulence: "Larval forms most pathogenic. Echinococcus: cysts slowly expand (hydatid cysts — do NOT aspirate — anaphylaxis risk). T. solium: humans can be intermediate host (ingests eggs) → larvae in tissues.",
+        disease: "**Taenia solium (pork tapeworm):** intestinal tapeworm (eating undercooked pork with cysticerci).
+**Cysticercosis/neurocysticercosis:** eating T. solium eggs (fecal-oral) → larvae encyst in brain → seizures (most common cause of adult-onset seizures in Central/South America), calcified cysts on CT.
+**Taenia saginata (beef tapeworm):** intestinal only, no cysticercosis.
+**Echinococcus granulosus:** dog/livestock exposure → hydatid cysts in liver/lung (fluid-filled, slow-growing), daughter cysts.
+**Diphyllobothrium latum (fish tapeworm):** raw freshwater fish →
+**B12 deficiency** (tapeworm competes for B12 in terminal ileum) → megaloblastic anemia.",
+        tx: "Intestinal tapeworms: **praziquantel** or niclosamide. Neurocysticercosis: **albendazole** + dexamethasone + anti-seizure meds. Echinococcus:
+**PAIR** (Puncture-Aspiration-Injection-Reaspiration) or surgery + albendazole. Do NOT aspirate blindly (anaphylaxis risk from cyst rupture).",
+        pearl: "**Neurocysticercosis** = most common cause of epilepsy in developing countries + most common CNS parasitic infection.
+**Diphyllobothrium + B12 deficiency** = classic association.
+**Echinococcus** liver cyst: do NOT needle biopsy (anaphylaxis from daughter cysts). CT shows 'daughter cysts within mother cyst' = pathognomonic. Eosinophilia may be absent with intraluminal cestode infections (no tissue migration)."
+      }
+    ]
+  }
+]
 
-[Image of Candida pseudohyphae]
-.",
-          tx: "Mucocutaneous: **fluconazole** or nystatin (topical). Esophageal: fluconazole. Candidemia: **echinocandins** (caspofungin, micafungin) for severe cases. Remove catheters.",
-          pearl: "A positive germ tube test differentiates C. albicans from other Candida species. Candida glabrata and Candida krusei are intrinsically resistant to fluconazole, requiring echinocandins for invasive disease."
-        },
-        {
-          name: "Aspergillus fumigatus",
-          summary: "Septate hyphae at 45° (acute angle) allergic bronchopulmonary (ABPA), aspergilloma, invasive aspergillosis in neutropenia",
-          gram: "Mold (septate hyphae with dichotomous branching at 45°)",
-          virulence: "Small conidia easily inhaled. Thermotolerance (grows at 37°C-50°C). Produces gliotoxins and elastases.",
-          disease: "**ABPA:** asthma/CF patient, eosinophilia, elevated IgE, mucus plugs. **Aspergilloma ('fungus ball'):** colonization of pre-existing lung cavity, presents with hemoptysis. **Invasive pulmonary aspergillosis:** neutropenic patients (transplant), features angioinvasion.",
-          lab_diagnosis: "**Tests:** Galactomannan antigen assay (serum or BAL). Beta-D-glucan assay. **Imaging:** CT chest shows 'halo sign' or 'crescent sign'. **Microscopy/Histology:** Tissue or smear reveals branching septate hyphae at acute 45-degree angles . **Culture:** Mold with conidiophores featuring a radiating 'sunburst' appearance.",
-          tx: "ABPA: steroids + itraconazole. Aspergilloma: observation or surgery. **Invasive:** **voriconazole** (drug of choice).",
-          pearl: "Acute 45-degree angle branching with septations defines Aspergillus, whereas 90-degree wide non-septate branching defines Mucor and Rhizopus. Voriconazole is the primary drug of choice for invasive disease, superseding amphotericin B."
-        },
-        {
-          name: "Cryptococcus neoformans",
-          summary: "Narrow-based budding, thick polysaccharide capsule (India ink halo), urease+ meningitis in HIV (CD4 <100); pigeon droppings",
-          gram: "Encapsulated yeast (thick polysaccharide capsule)",
-          virulence: "**Polysaccharide capsule** (massive, inhibits phagocytosis). Melanin production. Urease positive.",
-          disease: "**Cryptococcal meningitis** (AIDS-defining, CD4 <100): insidious onset headache, fever, meningismus, altered mental status. High intracranial pressure is a major complication.",
-          lab_diagnosis: "**Tests:** Cryptococcal antigen (CrAg) in CSF or serum is highly sensitive and specific. **Microscopy:** India ink stain of CSF reveals round yeast with a wide, clear halo (thick polysaccharide capsule) and narrow-based budding . Mucicarmine stain of tissue highlights the capsule in red. **Culture:** Sabouraud agar yields mucoid colonies.",
-          tx: "**Induction:** amphotericin B + **flucytosine (5-FC)**. **Consolidation/Maintenance:** fluconazole.",
-          pearl: "A negative stain like India ink is required because the massive polysaccharide capsule repels standard stains. Elevated intracranial pressure is a major cause of mortality in cryptococcal meningitis and requires serial therapeutic lumbar punctures, not steroids."
-        },
-        {
-          name: "Mucormycosis (Rhizopus/Mucor)",
-          summary: "Non-septate hyphae at 90° rhinocerebral in diabetic ketoacidosis (DKA), black eschar, rapidly fatal; treat with amphotericin B + surgery",
-          gram: "Mold (non-septate ribbon-like hyphae, 90° branching)",
-          virulence: "Iron as essential nutrient. High glucose + acidosis + elevated free iron (DKA) creates ideal environment. Angioinvasion.",
-          disease: "**Rhinocerebral mucormycosis:** DKA, uncontrolled diabetes, deferoxamine therapy. Starts in nasal cavity and spreads to sinuses, orbits, and brain. **Black eschar** on nasal mucosa/palate. Rapidly fatal if untreated.",
-          lab_diagnosis: "**Tests:** Fungal culture (often difficult to grow). **Microscopy/Histology:** Biopsy is essential and shows broad, non-septate (aseptate) ribbon-like hyphae with right-angle (90-degree) branching and extensive angioinvasion .",
-          tx: "**Liposomal amphotericin B** + **Surgical debridement** (aggressive). Correct DKA.",
-          pearl: "A diabetic ketoacidosis patient presenting with a black necrotic eschar on the nasal mucosa or palate is a surgical emergency. Deferoxamine therapy paradoxically increases the risk of mucormycosis by acting as a siderophore, supplying free iron to the fungus."
-        },
-        {
-          name: "Pneumocystis jirovecii (PCP)",
-          summary: "Atypical fungus PCP pneumonia in HIV (CD4 <200), diffuse bilateral infiltrates (ground-glass), elevated LDH; treat with TMP-SMX",
-          gram: "Atypical fungus (no ergosterol, not culturable)",
-          virulence: "Cysts (ascospores) and trophic forms attach to type I pneumocytes.",
-          disease: "**PCP pneumonia:** AIDS-defining (CD4 <200). Insidious onset progressive dyspnea, non-productive cough. CXR shows bilateral perihilar/diffuse ground-glass infiltrates. **Spontaneous pneumothorax** is a known complication.",
-          lab_diagnosis: "**Tests:** Beta-D-glucan assay. PCR is highly sensitive. Cannot be cultured. **Microscopy:** BAL or induced sputum stained with GMS (silver) or Toluidine blue shows cyst forms appearing as crushed ping-pong balls (black round or cup-shaped structures) .",
-          tx: "**TMP-SMX** (drug of choice). **Steroids** if PaO2 <70 or A-a gradient >35. **Prophylaxis:** TMP-SMX when CD4 <200.",
-          pearl: "PCP lacks ergosterol in its cell membrane, making all azoles and echinocandins completely useless. Adding steroids improves survival in patients with a PaO2 under 70 mmHg. A spontaneous pneumothorax in an HIV patient is a classic complication."
-        }
-      ]
-    }
-  ],
-
-  parasites: [
-    {
-      group: "Protozoa - Intestinal & Blood",
-      color: "para",
-      organisms: [
-        {
-          name: "Plasmodium species (Malaria)",
-          summary: "RBC parasite cyclic fever, splenomegaly; P. falciparum (severe) vs P. vivax/ovale (relapse/hypnozoites); treat by species",
-          gram: "Protozoa (intracellular RBC parasite)",
-          virulence: "**Anopheles mosquito** (female) vector. **P. falciparum:** knob proteins on RBCs cause cytoadherence and rosetting, leading to severe disease. P. vivax/P. ovale form dormant liver hypnozoites.",
-          disease: "**Cyclic fever:** P. vivax/ovale (48h), P. malariae (72h), P. falciparum (irregular). **P. falciparum complications:** cerebral malaria, severe anemia, hypoglycemia, ARDS, **blackwater fever** (massive hemolysis). P. vivax/ovale cause relapse from liver hypnozoites.",
-          lab_diagnosis: "**Tests:** Rapid diagnostic tests (RDTs) for specific antigens. PCR. **Microscopy:** Thick and thin blood smears (Giemsa stain) show intracellular rings, schizonts, or gametocytes. P. falciparum features multiple small rings per RBC and banana-shaped gametocytes . P. vivax and ovale feature enlarged RBCs and Schüffner's dots.",
-          tx: "**P. falciparum:** artemether-lumefantrine or atovaquone-proguanil; IV **artesunate** (severe). **P. vivax/ovale:** chloroquine + **primaquine**. **Prophylaxis:** atovaquone-proguanil or doxycycline.",
-          pearl: "Always test for G6PD deficiency before giving primaquine, or massive hemolysis will occur. Primaquine is uniquely required to kill the dormant liver hypnozoites of P. vivax and P. ovale to prevent relapse."
-        },
-        {
-          name: "Toxoplasma gondii",
-          summary: "Definitive host: cats; congenital (calcifications + chorioretinitis + hydrocephalus) and CNS toxoplasmosis in HIV (CD4 <100); treat with pyrimethamine + sulfadiazine",
-          gram: "Obligate intracellular protozoan",
-          virulence: "Oocysts in cat feces, bradyzoites in undercooked meat. Obligate intracellular parasite.",
-          disease: "**Congenital toxoplasmosis** (TORCH): chorioretinitis + hydrocephalus + intracranial calcifications. **CNS toxoplasmosis (HIV, CD4 <100):** headache, fever, focal neurological deficits. **Ocular toxoplasmosis:** chorioretinitis in adults.",
-          lab_diagnosis: "**Tests:** Serology (IgM/IgG). PCR of amniotic fluid for congenital cases. **Imaging:** MRI brain shows multiple ring-enhancing lesions. **Microscopy/Histology:** Biopsy shows crescent-shaped tachyzoites or tissue cysts containing bradyzoites.",
-          tx: "**Pyrimethamine + sulfadiazine + leucovorin**. **TMP-SMX prophylaxis** if CD4 <100 and Toxoplasma IgG positive.",
-          pearl: "Multiple ring-enhancing lesions in the basal ganglia of an HIV patient favor Toxoplasma, whereas a single periventricular lesion favors primary CNS lymphoma. Congenital toxoplasmosis causes diffuse, scattered intracranial calcifications, differentiating it from the periventricular calcifications of CMV."
-        },
-        {
-          name: "Giardia lamblia",
-          summary: "Pear-shaped trophozoite + cyst #1 parasitic diarrhea (hikers/contaminated water), malabsorption, floating stools; treat with metronidazole",
-          gram: "Protozoa - Flagellate",
-          virulence: "Trophozoites attach to duodenal/jejunal epithelium with a sucking disc, disrupting the brush border. Cysts are the infectious form and resist chlorine.",
-          disease: "**Acute:** watery diarrhea, abdominal cramps, bloating, flatulence. **Chronic:** steatorrhea, malabsorption of fat and fat-soluble vitamins, weight loss. **IgA deficiency** increases susceptibility.",
-          lab_diagnosis: "**Tests:** Stool antigen (EIA) is the test of choice. **Microscopy:** Stool O&P shows pear-shaped trophozoites with two nuclei ('owl-eye' or 'old man face' appearance) and four pairs of flagella, or oval cysts with four nuclei 
-
-[Image of Giardia trophozoite]
-.",
-          tx: "**Metronidazole**, tinidazole, or nitazoxanide.",
-          pearl: "Patients with IgA deficiency are highly susceptible to severe, recurrent Giardia infections. The lack of blood and fever distinguishes this malabsorptive diarrhea from invasive pathogens."
-        },
-        {
-          name: "Entamoeba histolytica",
-          summary: "Amebic dysentery + liver abscess ingested cysts, trophozoites invade mucosa, RBCs in cytoplasm; treat with metronidazole + luminal agent",
-          gram: "Protozoa - Ameba",
-          virulence: "**Trophozoites** ingest RBCs. Cysteine protease dissolves epithelial layer. Flask-shaped ulcers in colon.",
-          disease: "**Amebic colitis (dysentery):** bloody diarrhea, lower abdominal cramps. **Amebic liver abscess:** right lobe, 'anchovy paste' pus (necrotic, sterile). Fever, RUQ pain. Rupture risk.",
-          lab_diagnosis: "**Tests:** Stool antigen. Serology (IgG) useful for extraintestinal liver abscess. **Imaging:** Ultrasound or CT for right lobe liver abscess. **Microscopy/Histology:** Trophozoites feature a single nucleus and pathognomonic ingested RBCs in the cytoplasm . Cysts have up to 4 nuclei. Tissue biopsy shows flask-shaped ulcers.",
-          tx: "**Metronidazole** (tissue amebicide) + **luminal agent** (paromomycin or diloxanide furoate).",
-          pearl: "RBCs inside the trophozoite cytoplasm confirm E. histolytica rather than non-pathogenic intestinal amebae. Metronidazole alone is inadequate; a luminal agent like paromomycin must follow to eradicate intestinal cysts and prevent relapse."
-        },
-        {
-          name: "Cryptosporidium parvum",
-          summary: "Acid-fast oocysts watery diarrhea in immunocompetent vs life-threatening profuse diarrhea in HIV (CD4 <100); no effective treatment in AIDS",
-          gram: "Protozoa - Coccidian",
-          virulence: "**Acid-fast oocysts** survive chlorination. Infects intestinal epithelial cells (intracellular but extracytoplasmic in brush border).",
-          disease: "**Immunocompetent:** self-limited watery diarrhea. Common in daycare workers, recreational water. **HIV/AIDS (CD4 <100):** profuse watery diarrhea, wasting, biliary cryptosporidiosis (cholangiopathy).",
-          lab_diagnosis: "**Tests:** Stool antigen (EIA). PCR is most sensitive. **Microscopy:** Modified acid-fast stain of stool shows bright red, spherical oocysts (4 to 6 micrometers, smaller than RBCs) against a blue background .",
-          tx: "Immunocompetent: supportive. **AIDS:** nitazoxanide (modest benefit) + **immune reconstitution with HAART**.",
-          pearl: "Cryptosporidium oocysts are highly resistant to chlorination, leading to massive municipal and recreational water outbreaks. There is no reliable antiparasitic cure for AIDS patients; immune reconstitution with HAART is the only effective intervention."
-        }
-      ]
-    },
-    {
-      group: "Protozoa - Blood & Tissue",
-      color: "para",
-      organisms: [
-        {
-          name: "Trypanosoma cruzi (Chagas Disease)",
-          summary: "Reduviid (kissing) bug vector South/Central America; trypomastigotes in blood, amastigotes in tissue; dilated cardiomyopathy, megaesophagus, megacolon; treat benznidazole",
-          gram: "Protozoa (Kinetoplastida)",
-          virulence: "**Reduviid bug** bites near mouth/eyes, defecates on skin, and trypomastigotes enter the wound. Amastigotes infect cardiac and smooth muscle cells.",
-          disease: "**Acute Chagas:** fever, malaise, **Romaña's sign** (painless periorbital swelling). **Chronic Chagas (years later):** **dilated cardiomyopathy** (ventricular aneurysm at apex, arrhythmias), **megaesophagus**, **megacolon**.",
-          lab_diagnosis: "**Tests:** PCR in acute phase. Serology (IgG) in chronic phase. ECG shows right bundle branch block. Echo shows dilated cardiomyopathy with apical aneurysm. **Microscopy:** Blood smear shows C-shaped or U-shaped flagellated trypomastigotes with a prominent kinetoplast. Tissue biopsy shows intracellular amastigotes in cardiac or muscle tissue.",
-          tx: "**Acute:** benznidazole or nifurtimox. **Chronic:** supportive.",
-          pearl: "Unilateral painless periorbital swelling (Romaña's sign) is the classic marker of acute inoculation. Megaesophagus can perfectly mimic achalasia (bird-beak sign on barium swallow); serology helps differentiate."
-        },
-        {
-          name: "Trypanosoma brucei (Sleeping Sickness)",
-          summary: "Tsetse fly vector African sleeping sickness; CNS invasion → altered sleep-wake cycle; treat suramin/melarsoprol",
-          gram: "Protozoa (Kinetoplastida)",
-          virulence: "**Tsetse fly** vector. **Antigenic variation of VSG** switches surface coat to evade the immune response, causing waves of parasitemia. Crosses the blood-brain barrier.",
-          disease: "**Stage 1 (hemolymphatic):** chancre at bite site, fever, lymphadenopathy. **Winterbottom's sign:** posterior cervical LAD. **Stage 2 (CNS):** encephalitis, personality change, **disrupted circadian rhythm** (sleeping during day, awake at night), coma.",
-          lab_diagnosis: "**Tests:** CSF analysis for Stage 2 CNS involvement. **Microscopy:** Blood or CSF smear shows extracellular, highly motile, elongated trypomastigotes with a single flagellum and undulating membrane.",
-          tx: "Stage 1: **suramin** or pentamidine. Stage 2 (CNS): **melarsoprol** or eflornithine.",
-          pearl: "Continuous antigenic variation of the variable surface glycoprotein (VSG) prevents the host from clearing the infection, causing undulating waves of parasitemia. Reversal of the sleep-wake cycle is the hallmark of CNS invasion."
-        },
-        {
-          name: "Babesia",
-          summary: "Ixodes tick vector RBC parasite, resembles malaria; tetrad 'Maltese cross' form; Northeast US; hemolytic anemia; asplenic patients at high risk; treat atovaquone + azithromycin",
-          gram: "Protozoa (intraerythrocytic)",
-          virulence: "**Ixodes scapularis tick** vector. Infects RBCs like malaria but has **NO exoerythrocytic liver stage**.",
-          disease: "**Symptomatic:** flu-like illness, hemolytic anemia, thrombocytopenia. **Severe disease** occurs in **asplenic patients**, the elderly, and immunocompromised patients.",
-          lab_diagnosis: "**Tests:** PCR is most sensitive. Serology. **Microscopy:** Giemsa-stained blood smear shows intraerythrocytic ring forms (mimicking malaria) and pathognomonic tetrads ('Maltese cross') without hemozoin pigment .",
-          tx: "Mild-moderate: **atovaquone + azithromycin**. Severe: clindamycin + quinine.",
-          pearl: "The Maltese cross formation inside an RBC is definitive for Babesia. Because it shares the Ixodes tick vector with Borrelia burgdorferi, always consider co-infection with Lyme disease. Asplenic patients face a massive risk for overwhelming, fatal parasitemia."
-        },
-        {
-          name: "Naegleria fowleri",
-          summary: "Free-living ameba warm freshwater; enters via cribriform plate → primary amebic meningoencephalitis (PAM); rapidly fatal; treat amphotericin B",
-          gram: "Protozoa - Free-living ameba",
-          virulence: "**Thermophilic**. Enters via olfactory epithelium through the **cribriform plate** directly into the brain.",
-          disease: "**Primary Amebic Meningoencephalitis (PAM):** healthy young swimmers in warm freshwater lakes or hot springs. Rapid onset severe headache, fever, altered mental status, coma. **Death within 3-7 days**.",
-          lab_diagnosis: "**Tests:** PCR. CSF analysis shows high neutrophils, high protein, and low glucose. **Microscopy:** Wet mount of fresh CSF shows actively motile trophozoites . Brain tissue autopsy shows amebic trophozoites without cysts.",
-          tx: "**Amphotericin B** (IV + intrathecal) + miltefosine. Survival is exceedingly rare.",
-          pearl: "Swimming in warm freshwater lakes followed rapidly by fulminant meningoencephalitis strongly points to Naegleria. The organism must travel through the cribriform plate via the olfactory nerve; it cannot be acquired by swallowing contaminated water."
-        },
-        {
-          name: "Leishmania",
-          summary: "Sandfly vector cutaneous (skin ulcer), mucocutaneous (tissue destruction), visceral (kala-azar, splenomegaly, pancytopenia); treat liposomal amphotericin B",
-          gram: "Protozoa",
-          virulence: "**Phlebotomus sandfly** vector. Promastigotes are inoculated, and **amastigotes** infect and survive inside macrophages.",
-          disease: "**Cutaneous:** painless slowly enlarging ulcer. **Mucocutaneous:** tissue destruction of nose/palate. **Visceral (kala-azar):** massive hepatosplenomegaly, fever, pancytopenia, hypergammaglobulinemia, hyperpigmentation.",
-          lab_diagnosis: "**Tests:** PCR. Serology (rk39 rapid test for visceral). **Microscopy/Histology:** Biopsy of bone marrow, spleen, or ulcer margin shows non-flagellated amastigotes (Leishman-Donovan bodies) packed intracellularly within macrophages, featuring a rod-shaped kinetoplast next to the nucleus .",
-          tx: "**Visceral/severe:** **liposomal amphotericin B**. Cutaneous: miltefosine, amphotericin.",
-          pearl: "Massive hepatosplenomegaly, pancytopenia, fever, and hyperpigmentation form the classic presentation of kala-azar (visceral leishmaniasis). Cutaneous lesions caused by L. braziliensis must be treated aggressively to prevent devastating mucocutaneous tissue destruction years later."
-        },
-        {
-          name: "Trichomonas vaginalis",
-          summary: "Flagellated protozoan STI malodorous yellow-green frothy vaginal discharge, strawberry cervix; no cyst form; sexual transmission only; treat both partners",
-          gram: "Protozoa - Flagellate (no cyst form)",
-          virulence: "**No cyst form** exists, meaning the trophozoite cannot survive outside the host, leading to strict sexual transmission.",
-          disease: "**Females:** malodorous yellow-green frothy vaginal discharge, pruritus, dysuria. **Strawberry cervix** (punctate hemorrhages). **Males:** usually asymptomatic urethritis.",
-          lab_diagnosis: "**Tests:** NAAT (PCR) is the gold standard. Vaginal pH is greater than 4.5. **Microscopy:** Wet mount shows actively motile (jerky or twitching), pear-shaped flagellated trophozoites slightly larger than WBCs.",
-          tx: "**Metronidazole** or tinidazole. **Treat both partners simultaneously**.",
-          pearl: "Because there is no environmentally resilient cyst form, transmission is exclusively sexual. Treating both partners simultaneously is mandatory, as reinfection from an untreated partner is the most common cause of treatment failure."
-        }
-      ]
-    },
-    {
-      group: "Helminths & Other Parasites",
-      color: "para",
-      organisms: [
-        {
-          name: "Intestinal Nematodes",
-          summary: "Pinworms (Enterobius), ascaris (giant roundworm), hookworms (Ancylostoma/Necator), strongyloides, whipworm",
-          gram: "Helminths - Nematodes (roundworms)",
-          virulence: "Varies by species. Features larval migrans patterns, tissue invasion, and autoinfection (Strongyloides).",
-          disease: "**Enterobius (pinworm):** perianal pruritus at night. **Ascaris:** Löffler pneumonia (larval migration), intestinal obstruction. **Hookworm:** skin penetration (cutaneous larva migrans), iron-deficiency anemia. **Trichuris (whipworm):** bloody diarrhea, rectal prolapse. **Strongyloides:** autoinfection; hyperinfection syndrome in immunocompromised patients causes gram-negative sepsis.",
-          lab_diagnosis: "**Tests:** Scotch tape test for Enterobius (oval, asymmetrically flattened eggs). Serology or agar plate culture for Strongyloides. **Microscopy:** Stool O&P shows characteristic eggs (Ascaris: large, thick-shelled, mammillated; Hookworm: thin-shelled, oval; Trichuris: barrel-shaped with bipolar plugs). Strongyloides shows rhabditiform larvae in stool rather than eggs.",
-          tx: "**Albendazole or mebendazole**. Strongyloides requires **ivermectin**.",
-          pearl: "Administering corticosteroids to a patient latently infected with Strongyloides can trigger a catastrophic autoinfection hyperinfection syndrome, disseminating gut flora and causing gram-negative sepsis. Löffler syndrome (transient pulmonary eosinophilia) marks the lung migration phase of Ascaris, hookworms, and Strongyloides."
-        },
-        {
-          name: "Tissue Nematodes & Trematodes",
-          summary: "Trichinella (undercooked pork), filariasis (lymphedema), schistosoma (bladder cancer/portal HTN), Clonorchis (cholangiocarcinoma)",
-          gram: "Helminths - Trematodes/Nematodes (tissue)",
-          virulence: "Tissue invasion, larval encystment, and severe immunopathology.",
-          disease: "**Trichinella spiralis:** undercooked pork/bear causes periorbital edema, myalgias, and eosinophilia. **Wuchereria bancrofti:** mosquito vector causes lymphatic obstruction (elephantiasis). **Onchocerca volvulus:** blackfly vector causes river blindness. **Schistosoma:** cercariae penetrate skin. S. mansoni/japonicum causes portal HTN and Symmers' pipe-stem fibrosis. S. haematobium causes squamous cell carcinoma of bladder. **Clonorchis:** undercooked fish causes cholangiocarcinoma.",
-          lab_diagnosis: "**Tests:** Muscle biopsy for Trichinella. Thick blood smear drawn at midnight for Wuchereria bancrofti (filariasis). Skin snip for Onchocerca. **Microscopy:** Stool or urine O&P for Schistosoma eggs (S. mansoni: lateral spine; S. haematobium: terminal spine). Stool O&P for Clonorchis eggs.",
-          tx: "Trichinella: albendazole. Filariasis: DEC. Onchocerca: **ivermectin**. Schistosoma and Clonorchis: **praziquantel**.",
-          pearl: "Schistosoma haematobium uniquely infects the venous plexus of the bladder, causing painless hematuria and greatly increasing the risk of squamous cell carcinoma of the bladder. Clonorchis sinensis infection is a major risk factor for cholangiocarcinoma."
-        },
-        {
-          name: "Cestodes (Tapeworms)",
-          summary: "Taenia (pork/beef), Echinococcus (cysts in liver/lung), Diphyllobothrium (B12 deficiency); neurocysticercosis causes seizures",
-          gram: "Helminths - Cestodes (tapeworms)",
-          virulence: "Larval forms are the most pathogenic in human intermediate hosts. Echinococcus forms slowly expanding hydatid cysts.",
-          disease: "**Taenia solium (pork tapeworm):** intestinal tapeworm from eating cysticerci. **Neurocysticercosis:** eating T. solium eggs causes larvae to encyst in the brain, leading to seizures. **Taenia saginata (beef):** intestinal only. **Echinococcus granulosus:** hydatid cysts in liver/lung. **Diphyllobothrium latum (fish tapeworm):** B12 deficiency leading to megaloblastic anemia.",
-          lab_diagnosis: "**Tests:** CT or MRI of the head for neurocysticercosis (calcified cysts, 'hole-in-one' sign). Ultrasound or CT for Echinococcus (large hydatid cyst with daughter cysts). **Microscopy:** Stool O&P shows proglottids or eggs (Taenia: thick, radially striated shell; Diphyllobothrium: oval, operculated).",
-          tx: "Intestinal tapeworms: **praziquantel**. Neurocysticercosis: **albendazole** + dexamethasone. Echinococcus: **PAIR** or surgery. Do NOT aspirate Echinococcus blindly.",
-          pearl: "Neurocysticercosis, the leading cause of adult-onset seizures in developing nations, is acquired by ingesting Taenia solium eggs via human feces, not by eating undercooked pork. Never aspirate an Echinococcus hydatid cyst blindly, as spilling the cyst fluid can trigger lethal anaphylaxis."
-        }
-      ]
-    }
-  ]
 };
