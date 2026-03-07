@@ -26,34 +26,34 @@
 
 /* ── Page header ─────────────────────────────────────────── */
 .ref-page-header {
-  padding: 24px 0 0;
+  padding: 36px 0 0;
   display: flex; align-items: flex-end; justify-content: space-between;
-  gap: 16px; flex-wrap: wrap;
+  gap: 20px; flex-wrap: wrap;
 }
 .ref-page-eyebrow {
   font-family: 'DM Mono', monospace;
-  font-size: 8.5px; letter-spacing: 3px;
+  font-size: 9px; letter-spacing: 3.5px;
   text-transform: uppercase; color: var(--accent);
-  opacity: .75; margin-bottom: 6px;
+  opacity: .75; margin-bottom: 8px;
 }
 .ref-page-title {
   font-family: 'Playfair Display', serif;
-  font-size: clamp(26px, 3.5vw, 40px); font-weight: 700;
+  font-size: clamp(30px, 4vw, 46px); font-weight: 700;
   line-height: 1.05; letter-spacing: -0.5px; color: var(--ink);
 }
 .ref-page-title em { font-style: italic; color: var(--accent); }
 .ref-page-sub {
-  font-size: 11.5px; color: var(--muted); letter-spacing: .3px; margin-top: 5px;
+  font-size: 12px; color: var(--muted); letter-spacing: .4px; margin-top: 7px;
 }
 .ref-count {
-  font-size: 11.5px; color: var(--muted);
-  align-self: flex-end; padding-bottom: 3px; white-space: nowrap;
+  font-size: 12px; color: var(--muted);
+  align-self: flex-end; padding-bottom: 4px; white-space: nowrap;
 }
 .ref-count strong { color: var(--ink2); font-weight: 600; }
 
 /* ── Search ──────────────────────────────────────────────── */
-.ref-search-row { padding: 12px 0 0; }
-.ref-search-wrap { position: relative; max-width: 440px; }
+.ref-search-row { padding: 18px 0 0; }
+.ref-search-wrap { position: relative; max-width: 480px; }
 .ref-search-icon {
   position: absolute; left: 13px; top: 50%; transform: translateY(-50%);
   pointer-events: none; display: flex; align-items: center;
@@ -80,13 +80,13 @@
   display: flex;
   flex-wrap: wrap;
   gap: 0;
-  margin-top: 12px;
+  margin-top: 18px;
   border-bottom: 1px solid var(--border2);
 }
 .cat-tab {
-  padding: 7px 10px;
-  font-family: 'DM Mono', monospace; font-size: 8px;
-  letter-spacing: 1px; text-transform: uppercase;
+  padding: 9px 12px;
+  font-family: 'DM Mono', monospace; font-size: 8.5px;
+  letter-spacing: 1.2px; text-transform: uppercase;
   color: var(--muted); border: none;
   border-bottom: 2px solid transparent;
   cursor: pointer; white-space: nowrap;
@@ -97,40 +97,42 @@
 }
 .cat-tab:hover { color: var(--ink2); }
 .cat-tab.active { color: var(--ink); border-bottom-color: var(--accent); }
-.tab-dot { width: 5px; height: 5px; border-radius: 50%; flex-shrink: 0; }
+.tab-dot { width: 6px; height: 6px; border-radius: 50%; flex-shrink: 0; }
 
 /* ── Category intro ──────────────────────────────────────── */
+/* FIX #1: uniform warm surface background for all categories */
 .cat-intro {
-  border-radius: 10px;
-  padding: 12px 16px;
-  margin: 12px 0 16px;
+  border-radius: 12px;
+  padding: 16px 20px;
+  margin: 18px 0 22px;
+  /* Single shared background — warm surface, not tinted per-cat */
   background: var(--surface);
   border: 1px solid var(--border);
 }
 .cat-intro-title {
   font-family: 'Playfair Display', serif;
-  font-size: 16px; font-weight: 600; margin-bottom: 3px; letter-spacing: -0.2px;
+  font-size: 18px; font-weight: 600; margin-bottom: 4px; letter-spacing: -0.3px;
 }
-.cat-intro-desc { font-size: 11.5px; color: var(--muted); line-height: 1.55; }
+.cat-intro-desc { font-size: 12.5px; color: var(--muted); line-height: 1.6; }
 
 /* ── Group row ───────────────────────────────────────────── */
-.group-section { margin-bottom: 20px; }
+.group-section { margin-bottom: 28px; }
 .class-group-header {
   display: flex; align-items: center; justify-content: space-between;
-  margin-bottom: 8px;
+  margin-bottom: 11px;
 }
 .class-label {
-  font-family: 'DM Mono', monospace; font-size: 8px; letter-spacing: 2px;
-  text-transform: uppercase; padding: 3px 10px;
-  display: inline-flex; align-items: center; gap: 5px;
+  font-family: 'DM Mono', monospace; font-size: 8.5px; letter-spacing: 2.5px;
+  text-transform: uppercase; padding: 4px 12px;
+  display: inline-flex; align-items: center; gap: 6px;
   border-radius: 20px; color: var(--ink2);
   background: var(--surface2); border: 1px solid var(--border);
 }
-.class-label::before { content: '◆'; font-size: 5px; color: var(--accent); }
+.class-label::before { content: '◆'; font-size: 5.5px; color: var(--accent); }
 
 .group-expand-btn {
-  font-family: 'DM Mono', monospace; font-size: 7.5px; letter-spacing: 1px;
-  text-transform: uppercase; padding: 3px 9px; border-radius: 10px;
+  font-family: 'DM Mono', monospace; font-size: 8px; letter-spacing: 1px;
+  text-transform: uppercase; padding: 4px 11px; border-radius: 12px;
   border: 1px solid var(--border); background: transparent;
   color: var(--muted); cursor: pointer; white-space: nowrap; flex-shrink: 0;
   transition: background .15s, color .15s;
@@ -140,26 +142,29 @@
 /* ── Card grid ───────────────────────────────────────────── */
 .cards-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-  gap: 8px;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 10px;
   align-items: start;
 }
 
-/* Expanded card stays in its column — never spans full width */
-.rcard { grid-column: span 1; }
-
 /* ── Drug card ───────────────────────────────────────────── */
+/* FIX #2: hover = shadow only. No transform, no inset border, no border mutation */
 .rcard {
   background: var(--surface);
   border: 1px solid var(--border);
   border-left: 3px solid var(--accent);
-  border-radius: 10px; overflow: hidden;
+  border-radius: 12px; overflow: hidden;
   cursor: pointer;
   transition: box-shadow .18s ease;
   box-shadow: 0 1px 3px rgba(42,31,26,.04);
 }
-.rcard:hover { box-shadow: 0 4px 16px rgba(42,31,26,.09); }
-.rcard.expanded { box-shadow: 0 4px 18px rgba(42,31,26,.11); }
+.rcard:hover {
+  box-shadow: 0 4px 18px rgba(42,31,26,.10);
+  /* explicitly no border-color change, no inset border */
+}
+.rcard.expanded {
+  box-shadow: 0 4px 20px rgba(42,31,26,.12);
+}
 .rcard:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
 
 /* Per-category left borders */
@@ -176,7 +181,7 @@
 
 /* ── Card collapsed state ────────────────────────────────── */
 .rcard-header {
-  padding: 10px 12px 0;
+  padding: 13px 14px 0;
   display: flex; justify-content: space-between; align-items: flex-start; gap: 8px;
 }
 .rcard-header-left { flex: 1; min-width: 0; }
@@ -184,57 +189,57 @@
 /* Drug name — Playfair, prominent */
 .rcard-name {
   font-family: 'Playfair Display', serif;
-  font-size: 14px; font-weight: 700; line-height: 1.2;
-  color: var(--ink); letter-spacing: -0.1px;
+  font-size: 15px; font-weight: 700; line-height: 1.2;
+  color: var(--ink); letter-spacing: -0.2px;
 }
 
-/* Aka — mono, clearly subordinate */
+/* Aka — mono, clearly subordinate, not italic */
 .rcard-aka {
   font-family: 'DM Mono', monospace;
-  font-size: 9px; color: var(--dim); font-style: normal;
-  line-height: 1.45; margin-top: 3px; word-break: break-word;
+  font-size: 9.5px; color: var(--dim); font-style: normal;
+  line-height: 1.5; margin-top: 5px; word-break: break-word;
 }
-.rcard-aka .dot-sep { margin: 0 2px; color: var(--border); }
+.rcard-aka .dot-sep { margin: 0 3px; color: var(--border); }
 
 .rcard-toggle {
   flex-shrink: 0; background: none; border: none; cursor: pointer;
   color: var(--dim); font-size: 9px; line-height: 1;
-  padding: 2px 0 0 4px; align-self: flex-start;
+  padding: 3px 0 0 4px; align-self: flex-start;
   font-family: 'DM Mono', monospace;
   transition: color .14s, transform .2s ease;
 }
 .rcard.expanded .rcard-toggle { transform: rotate(180deg); color: var(--accent); }
 
-/* Summary */
+/* Summary — DM Sans, warm ink, clearly body copy */
 .rcard-summary {
-  padding: 5px 12px 10px;
-  font-size: 11.5px; font-weight: 400;
-  color: var(--ink2); line-height: 1.55;
+  padding: 6px 14px 13px;
+  font-size: 12px; font-weight: 400;
+  color: var(--ink2); line-height: 1.58;
 }
 
-/* ── Expanded detail — flat, no section boxes ────────────── */
+/* ── Expanded detail ─────────────────────────────────────── */
 .rcard-detail {
   display: none;
-  padding: 0 12px 12px;
+  padding: 0 14px 14px;
   border-top: 1px solid var(--border2);
+  margin-top: 1px;
 }
 .rcard.expanded .rcard-detail {
   display: block;
-  animation: fadeSlide .15s ease;
+  animation: fadeSlide .18s ease;
 }
 @keyframes fadeSlide {
-  from { opacity: 0; transform: translateY(-2px); }
+  from { opacity: 0; transform: translateY(-3px); }
   to   { opacity: 1; transform: translateY(0); }
 }
 
-/* Label + text stacked directly, no wrapper box */
-.rcard-field { margin-top: 9px; }
+.rcard-field { margin-top: 13px; }
 
 .rcard-field-label {
   font-family: 'DM Mono', monospace;
-  font-size: 7px; letter-spacing: 2px; text-transform: uppercase;
-  padding: 2px 6px; border-radius: 4px;
-  display: inline-block; margin-bottom: 3px;
+  font-size: 7.5px; letter-spacing: 2px; text-transform: uppercase;
+  padding: 3px 8px; border-radius: 5px;
+  display: inline-block; margin-bottom: 6px;
   border: 1px solid;
 }
 .lbl-moa { background: #f0f4fd; color: #3a5080; border-color: #c8d4f0; }
@@ -243,35 +248,35 @@
 .lbl-ci  { background: #fdf4ee; color: #7a3e18; border-color: #e8c8a8; }
 .lbl-pk  { background: #f3f0fd; color: #4a3890; border-color: #c8bce8; }
 
-/* Plain text — no border, no box, compact */
 .rcard-field-text {
-  font-size: 11.5px; color: var(--ink2); line-height: 1.55;
+  font-size: 12px; color: var(--ink2); line-height: 1.65;
 }
 .rcard-field-text strong { color: var(--ink); font-weight: 600; }
 
-/* Sentence lines — no dashes, no padding */
-.info-line { line-height: 1.55; font-size: 11.5px; color: var(--ink2); }
-.info-line + .info-line { margin-top: 1px; }
+/* Sentence lines — just spacing, no dashes */
+.info-line { padding: 2px 0; line-height: 1.65; font-size: 12px; color: var(--ink2); }
+.info-line + .info-line { margin-top: 3px; }
 .info-line strong { color: var(--ink); font-weight: 600; }
 
 /* ── Pearl box ───────────────────────────────────────────── */
+/* FIX #3: diamond ◇ instead of star ★ */
 .rcard-pearl {
-  display: flex; gap: 7px; align-items: flex-start;
+  display: flex; gap: 9px; align-items: flex-start;
   background: var(--accent-light);
-  border-radius: 7px; padding: 8px 10px;
-  margin-top: 10px;
+  border-radius: 9px; padding: 10px 12px;
+  margin-top: 14px;
 }
 .pearl-diamond {
-  color: var(--accent); font-size: 11px; flex-shrink: 0; margin-top: 1px;
+  color: var(--accent); font-size: 12px; flex-shrink: 0; margin-top: 1px;
   line-height: 1;
 }
 .pearl-body { flex: 1; min-width: 0; }
 .pearl-label {
-  font-family: 'DM Mono', monospace; font-size: 7px; letter-spacing: 2px;
-  text-transform: uppercase; color: var(--accent); display: block; margin-bottom: 3px;
+  font-family: 'DM Mono', monospace; font-size: 7.5px; letter-spacing: 2px;
+  text-transform: uppercase; color: var(--accent); display: block; margin-bottom: 4px;
 }
-.pearl-text { font-size: 11.5px; color: var(--ink2); line-height: 1.55; }
-.pearl-text strong { color: var(--c-autonomic); font-weight: 600; }
+.pearl-text { font-size: 12px; color: var(--ink2); line-height: 1.65; }
+.pearl-text strong { color: var(--c-cv); font-weight: 600; }
 
 /* ── Search results header ───────────────────────────────── */
 .search-cat-label {
