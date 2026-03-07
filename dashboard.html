@@ -223,10 +223,12 @@ tr.editing-row td { background: var(--dash-light) !important; }
 }
 .mapper-row:last-child { border-bottom: none; }
 .mapper-row:hover { background: var(--surface2); }
+.mapper-col-info {
+  padding: 10px 14px; display: flex; flex-direction: column; gap: 2px;
+}
 .mapper-col-name {
-  padding: 10px 14px; font-size: 12.5px; font-weight: 600;
+  font-size: 12.5px; font-weight: 600;
   font-family: 'DM Mono', monospace; color: var(--ink);
-  display: flex; flex-direction: column; gap: 2px;
 }
 .mapper-col-sample { font-size: 10.5px; font-weight: 400; color: var(--muted); font-family: 'DM Sans', sans-serif; }
 .mapper-arrow { font-size: 11px; color: var(--muted); text-align: center; }
@@ -569,7 +571,10 @@ tr.editing-row td { background: var(--dash-light) !important; }
               <span style="width:18px;height:18px;border-radius:50%;background:var(--lavender);color:#fff;font-size:9px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:2px;">2</span>
               <div style="flex:1;">
                 <span>Paste into Claude or ChatGPT with this prompt:</span>
-                <code class="prompt-code">Convert this UWorld test history into a CSV with 3 columns: Date, Questions, Name. Date = date column. Questions = # QS. Name = test name/number (e.g. "Test 157"). One row per test, skip omitted/blank rows.</code>
+                <div style="position:relative;margin-top:6px;">
+                  <code class="prompt-code" id="import-prompt-code">Convert this UWorld test history into a CSV with 3 columns: Date, Questions, Name. Date = date column. Questions = # QS. Name = test name/number (e.g. "Test 157"). One row per test, skip omitted/blank rows.</code>
+                  <button onclick="copyImportPrompt()" style="position:absolute;top:6px;right:8px;background:var(--lavender);color:#fff;border:none;border-radius:5px;padding:3px 9px;font-size:10px;font-weight:700;cursor:pointer;" id="copy-prompt-btn">Copy</button>
+                </div>
               </div>
             </div>
             <div style="display:flex;gap:12px;align-items:flex-start;">
@@ -592,7 +597,7 @@ tr.editing-row td { background: var(--dash-light) !important; }
 
       <!-- Step 3: Column mapper (hidden until file loaded) -->
       <div id="col-mapper" class="hidden-panel">
-        <div style="font-size:12px;color:var(--muted);margin:14px 0 4px;" id="csv-file-info"></div>
+        <div style="font-size:12px;color:var(--muted);margin:0 0 4px;" id="csv-file-info"></div>
         <div class="mapper-grid" id="mapper-grid"></div>
         <input type="hidden" id="map-date" value="0"/>
         <input type="hidden" id="map-qs" value="1"/>
@@ -1284,6 +1289,14 @@ let csvRows = [], csvHeaders = [];
 
 function openImportModal() { openModal('import-modal'); }
 
+function copyImportPrompt() {
+  const text = document.getElementById('import-prompt-code').textContent;
+  navigator.clipboard.writeText(text).then(() => {
+    const btn = document.getElementById('copy-prompt-btn');
+    if (btn) { btn.textContent = '✓ Copied'; setTimeout(() => btn.textContent = 'Copy', 1800); }
+  }).catch(() => showToast('Copy failed — please copy manually'));
+}
+
 function handleFileSelect(input) {
   if (input.files[0]) parseCSVFile(input.files[0]);
 }
@@ -1339,24 +1352,14 @@ function parseCSVFile(file) {
 
     renderMapperUI();
 
-    const previewRows = csvRows.slice(0,5).map(r=>`<tr>${r.map(c=>`<td>${c}</td>`).join('')}</tr>`).join('');
-    document.getElementById('csv-preview').innerHTML = `
-      <div class="csv-preview-wrap"><div class="csv-preview-label">Preview</div>
-      <table class="csv-preview-table">
-        <thead><tr>${csvHeaders.map(h=>`<th>${h}</th>`).join('')}</tr></thead>
-        <tbody>${previewRows}</tbody>
-      </table>
-      <p style="font-size:11px;color:var(--muted);margin-top:4px;">Showing first 5 rows</p>`;
-
     document.getElementById('drop-zone').classList.add('hidden-panel');
     document.getElementById('col-mapper').classList.remove('hidden-panel');
-    // Update step indicator
-    document.getElementById('ind-dot2').style.background = 'var(--lavender)';
-    document.getElementById('ind-dot2').style.color = '#fff';
-    document.getElementById('ind-step2').style.color = 'var(--lavender)';
-    document.getElementById('ind-dot3').style.background = 'var(--lavender)';
-    document.getElementById('ind-dot3').style.color = '#fff';
-    document.getElementById('ind-step3').style.color = 'var(--lavender)';
+    // Update step indicator — all active
+    ['2','3'].forEach(n => {
+      document.getElementById('ind-dot'+n).style.background = 'var(--lavender)';
+      document.getElementById('ind-dot'+n).style.color = '#fff';
+      document.getElementById('ind-step'+n).style.color = 'var(--lavender)';
+    });
     // Show import button + back button
     document.getElementById('import-do-btn').style.display = 'block';
     document.getElementById('import-back-btn').style.display = 'block';
@@ -1429,6 +1432,28 @@ function renderMapperUI() {
   }).join('');
 
   document.getElementById('mapper-grid').innerHTML = rows;
+
+  // Build preview using only mapped columns
+  const colMap = [
+    { idx: dateIdx, label: 'Date' },
+    { idx: qsIdx,   label: 'Questions' },
+    ...(nameIdx >= 0 ? [{ idx: nameIdx, label: 'Name' }] : [])
+  ].filter(c => c.idx >= 0);
+
+  if (colMap.length > 0) {
+    const previewRows = csvRows.slice(0, 5).map(r =>
+      `<tr>${colMap.map(c => `<td>${r[c.idx] ?? ''}</td>`).join('')}</tr>`
+    ).join('');
+    document.getElementById('csv-preview').innerHTML = `
+      <div style="font-size:12px;font-weight:700;color:var(--ink2);margin:14px 0 6px;">Preview</div>
+      <table class="csv-preview-table">
+        <thead><tr>${colMap.map(c=>`<th>${c.label}</th>`).join('')}</tr></thead>
+        <tbody>${previewRows}</tbody>
+      </table>
+      <p style="font-size:11px;color:var(--muted);margin-top:6px;">Showing first 5 rows</p>`;
+  } else {
+    document.getElementById('csv-preview').innerHTML = '';
+  }
 }
 
 function getSampleVal(colIdx) {
@@ -1454,24 +1479,29 @@ function importCSV() {
   const qsCol   = parseInt(document.getElementById('map-qs').value);
   const nameCol = parseInt(document.getElementById('map-name').value);
 
+  if (dateCol < 0 || qsCol < 0) {
+    showToast('Please map Date and Questions columns first');
+    return;
+  }
+
   let imported = 0, skipped = 0;
-  const existing = new Set(entries.map(e => e.date + '|' + e.qs));
+  // Dedup by date+name (if name present) or date+qs — avoids blocking same-day multi-session
+  const existing = new Set(entries.map(e => e.date + '|' + (e.name || '') + '|' + e.qs));
 
   csvRows.forEach(row => {
     const rawDate = row[dateCol];
     const rawQs   = row[qsCol];
     if (!rawDate || !rawQs) { skipped++; return; }
 
-    // Robust date parser — handles: "Mar 06, 2026", "2026-03-06", "3/6/2026", "Mar 6 2026"
     const date = parseFlexDate(rawDate);
     if (!date) { skipped++; return; }
     const qs   = parseInt(rawQs);
     if (!qs || qs < 1) { skipped++; return; }
 
-    const key = date + '|' + qs;
+    const entryName = nameCol >= 0 ? (row[nameCol] || '').trim() : '';
+    const key = date + '|' + entryName + '|' + qs;
     if (existing.has(key)) { skipped++; return; }
 
-    const entryName = nameCol >= 0 ? (row[nameCol] || '').trim() : '';
     entries.push({ id: Date.now() + imported, date, qs, name: entryName });
     existing.add(key);
     imported++;
@@ -1483,7 +1513,7 @@ function importCSV() {
   saveAll();
 
   document.getElementById('import-success-msg').textContent =
-    `Imported ${imported} session${imported !== 1 ? 's' : ''}${skipped ? ` (${skipped} skipped)` : ''}`;
+    `Imported ${imported} session${imported !== 1 ? 's' : ''}${skipped ? ` (${skipped} skipped as duplicates)` : ''}`;
   document.getElementById('col-mapper').classList.add('hidden-panel');
   document.getElementById('import-success').classList.remove('hidden-panel');
   document.getElementById('import-do-btn').style.display = 'none';
@@ -1499,6 +1529,20 @@ function resetImport() {
   document.getElementById('col-mapper').classList.add('hidden-panel');
   document.getElementById('import-success').classList.add('hidden-panel');
   document.getElementById('csv-input').value = '';
+  document.getElementById('csv-preview').innerHTML = '';
+  document.getElementById('csv-file-info').textContent = '';
+  document.getElementById('mapper-grid').innerHTML = '';
+  // Reset step indicators
+  ['2','3'].forEach(n => {
+    document.getElementById('ind-dot'+n).style.background = 'var(--border)';
+    document.getElementById('ind-dot'+n).style.color = 'var(--muted)';
+    document.getElementById('ind-step'+n).style.color = 'var(--muted)';
+  });
+  // Reset footer
+  document.getElementById('import-back-btn').style.display = 'none';
+  document.getElementById('import-do-btn').style.display = 'none';
+  document.getElementById('import-cancel-btn').style.display = 'block';
+  document.getElementById('import-success-btns').style.display = 'none';
 }
 
 // ── Master render ─────────────────────────────────────────
