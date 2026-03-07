@@ -7,159 +7,11 @@
 <link rel="stylesheet" href="style.css"/>
 <title>Micro Facts · Step 1 Hub</title>
 <style>
-/* ═══════ SHARED REFERENCE PAGE STYLES ═══════════════════ */
-
-.ref-page-header {
-  padding: 40px 0 0;
-  display: flex; align-items: flex-end; justify-content: space-between;
-  gap: 20px; flex-wrap: wrap;
-}
-/* page-eyebrow/title are in style.css; these aliases apply the sage --accent */
-.ref-page-eyebrow { font-size: 10px; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; color: var(--accent); opacity: .8; margin-bottom: 10px; }
-.ref-page-title { font-family: 'Playfair Display', serif; font-size: clamp(28px, 3.8vw, 44px); font-weight: 700; line-height: 1.1; letter-spacing: -0.4px; color: var(--ink); margin-bottom: 6px; }
-.ref-page-title em { font-style: italic; color: var(--accent); }
-.ref-count {
-  font-size: 12px; color: var(--muted);
-  align-self: flex-end; padding-bottom: 6px; white-space: nowrap;
-}
-.ref-count strong { color: var(--ink2); font-weight: 600; }
-
-.ref-search-row {
-  display: flex; align-items: center; gap: 10px;
-  padding: 16px 0 0; flex-wrap: wrap;
-}
-.ref-search-wrap { flex: 1; position: relative; max-width: 540px; min-width: 200px; }
-.ref-search-icon {
-  position: absolute; left: 14px; top: 50%; transform: translateY(-50%);
-  font-size: 14px; color: var(--dim); pointer-events: none;
-}
-.ref-search-input {
-  width: 100%; padding: 10px 14px 10px 38px;
-  border: 1.5px solid var(--border); border-radius: 99px;
-  background: var(--surface); font-size: 13.5px; color: var(--ink);
-  font-family: 'DM Sans', sans-serif;
-  outline: none; transition: border-color .15s, box-shadow .15s;
-}
-.ref-search-input:focus {
-  border-color: var(--accent); box-shadow: 0 0 0 3px var(--accent-glow);
-}
-.ref-search-input::placeholder { color: var(--dim); }
-
-.tier-filter-row { display: flex; align-items: center; gap: 6px; flex-shrink: 0; flex-wrap: wrap; }
-.tier-pip-btn {
-  display: flex; align-items: center; gap: 5px;
-  padding: 7px 13px; border-radius: 99px;
-  border: 1.5px solid var(--border);
-  background: transparent; cursor: pointer;
-  font-family: 'DM Sans', sans-serif;
-  font-size: 11.5px; font-weight: 600; color: var(--muted);
-  transition: all .15s;
-}
-.tier-pip-btn .pip { width: 7px; height: 7px; border-radius: 50%; background: var(--pip-color, var(--dim)); flex-shrink: 0; }
-.tier-pip-btn:hover { border-color: var(--ink2); color: var(--ink2); }
-.tier-pip-btn.active { background: var(--surface2); border-color: var(--pip-color, var(--ink2)); color: var(--ink); }
-
-.cat-tab-bar {
-  display: flex; gap: 0;
-  border-bottom: 2px solid var(--border);
-  margin-top: 20px;
-  overflow-x: auto; scrollbar-width: none;
-}
-.cat-tab-bar::-webkit-scrollbar { display: none; }
-.cat-tab {
-  padding: 10px 16px; font-size: 12px; font-weight: 600; color: var(--muted);
-  border-bottom: 2px solid transparent; margin-bottom: -2px;
-  cursor: pointer; white-space: nowrap;
-  background: transparent; border-top: none; border-left: none; border-right: none;
-  font-family: 'DM Sans', sans-serif;
-  transition: color .15s, border-color .15s; letter-spacing: 0.2px;
-}
-.cat-tab:hover { color: var(--ink2); }
-.cat-tab.active { color: var(--accent); border-bottom-color: var(--accent); }
-.cat-tab .tab-count {
-  display: inline-block; margin-left: 5px; font-size: 10px; font-weight: 700;
-  color: var(--dim); background: var(--border2); border-radius: 99px;
-  padding: 1px 6px; vertical-align: middle;
-}
-.cat-tab.active .tab-count { background: var(--accent-light); color: var(--accent); }
-
-.ref-panel { padding-top: 4px; }
-.ref-panel.hidden { display: none; }
-
-.group-header {
-  display: flex; align-items: center; gap: 12px;
-  margin: 28px 0 14px;
-}
-.group-header:first-child { margin-top: 20px; }
-.group-title {
-  font-size: 11px; font-weight: 700; letter-spacing: 1.8px;
-  text-transform: uppercase; color: var(--muted); white-space: nowrap;
-}
-.group-line { flex: 1; height: 1px; background: var(--border2); }
-.group-badge { font-size: 10px; font-weight: 600; color: var(--dim); white-space: nowrap; }
-
-.cards-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  gap: 10px; margin-bottom: 4px;
-}
-
-/* ── Micro card ──────────────────────────────────────────── */
-.rcard {
-  background: var(--surface); border: 1px solid var(--border);
-  border-radius: 12px; padding: 16px 18px; cursor: pointer;
-  transition: transform .16s ease, box-shadow .16s ease, border-color .16s ease;
-  position: relative; display: flex; flex-direction: column; gap: 5px;
-  overflow: hidden;
-}
-.rcard::before {
-  content: ''; position: absolute; left: 0; top: 0; bottom: 0;
-  width: 3px; border-radius: 12px 0 0 12px;
-  background: var(--tier-color, var(--border)); opacity: 0; transition: opacity .16s;
-}
-.rcard:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 4px 20px rgba(42,31,26,.10), 0 1px 4px rgba(42,31,26,.06);
-  border-color: color-mix(in srgb, var(--tier-color, var(--border)) 40%, var(--border));
-}
-.rcard:hover::before { opacity: 1; }
-.rcard:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
-.rcard[data-tier="1"] { --tier-color: var(--sakura2); }
-.rcard[data-tier="2"] { --tier-color: var(--gold); }
-.rcard[data-tier="3"] { --tier-color: var(--sage); }
-
-.rcard-top { display: flex; align-items: flex-start; justify-content: space-between; gap: 8px; }
-.rcard-name { font-family: 'Playfair Display', serif; font-size: 15px; font-weight: 600; line-height: 1.3; color: var(--ink); }
-.rcard-tier { display: flex; align-items: center; gap: 4px; flex-shrink: 0; padding-top: 3px; }
-.rcard-pip { width: 6px; height: 6px; border-radius: 50%; background: var(--tier-color, var(--dim)); flex-shrink: 0; }
-.rcard-tier-label { font-size: 9px; font-weight: 700; letter-spacing: 0.8px; text-transform: uppercase; color: var(--dim); }
-
-.rcard-gram { font-size: 11px; font-weight: 600; color: var(--accent); letter-spacing: 0.3px; }
-.rcard-aka { font-size: 11.5px; color: var(--muted); font-style: italic; line-height: 1.4; }
-.rcard-summary { font-size: 12.5px; color: var(--ink2); line-height: 1.55; margin-top: 2px; }
-.rcard-tags { display: flex; flex-wrap: wrap; gap: 4px; margin-top: 4px; }
-.rcard-tag { font-size: 10px; font-weight: 500; background: var(--surface2); border: 1px solid var(--border2); color: var(--ink2); padding: 2px 7px; border-radius: 99px; }
-.rcard-tag.group-tag { background: var(--accent-light); border-color: transparent; color: var(--accent); font-weight: 600; }
-
-.ref-empty { grid-column: 1 / -1; padding: 56px 24px; text-align: center; }
-.ref-empty-icon { font-size: 32px; margin-bottom: 12px; }
-.ref-empty-title { font-family: 'Playfair Display', serif; font-size: 18px; font-weight: 600; color: var(--ink2); margin-bottom: 6px; }
-.ref-empty-sub { font-size: 13px; color: var(--muted); }
-
-/* Modal fields */
-.modal-group-label { font-size: 10px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 4px; }
-.modal-name { font-family: 'Playfair Display', serif; font-size: 22px; font-weight: 700; line-height: 1.2; margin-bottom: 3px; }
-.modal-sub-line { font-size: 12px; color: var(--muted); font-style: italic; }
-.modal-tier-strip { display: flex; align-items: center; gap: 6px; margin-bottom: 14px; padding-bottom: 14px; border-bottom: 1px solid var(--border2); }
-.modal-tier-pip { width: 8px; height: 8px; border-radius: 50%; background: var(--tier-color, var(--dim)); }
-.modal-tier-text { font-size: 11px; font-weight: 700; color: var(--muted); letter-spacing: 0.5px; }
-.modal-tags-wrap { display: flex; flex-wrap: wrap; gap: 5px; margin-bottom: 16px; }
-
 /* ── Micro-specific accent (sage green) ──────────────────── */
 :root {
-  --accent: var(--sage);
+  --accent:       var(--sage);
   --accent-light: var(--sage-light);
-  --accent-glow: rgba(94,154,112,.12);
+  --accent-glow:  rgba(94,154,112,.12);
 }
 </style>
 </head>
@@ -178,24 +30,17 @@
     <div class="ref-count" id="results-meta"></div>
   </div>
 
-  <!-- ── Search + Tier filter ────────────────────────────── -->
+  <!-- ── Search ──────────────────────────────────────────── -->
   <div class="ref-search-row">
     <div class="ref-search-wrap">
-      <span class="ref-search-icon">🔍</span>
+      <span class="ref-search-icon">
+        <svg class="ref-search-svg" viewBox="0 0 24 24" aria-hidden="true">
+          <circle cx="11" cy="11" r="7"/><line x1="16.5" y1="16.5" x2="22" y2="22"/>
+        </svg>
+      </span>
       <input class="ref-search-input" type="text" id="micro-search"
              placeholder="Organism, disease, treatment, pearl…"
              oninput="onSearch()" autocomplete="off"/>
-    </div>
-    <div class="tier-filter-row">
-      <button class="tier-pip-btn active" data-tier="" onclick="setTier(this,'')">
-        <span class="pip" style="background:var(--ink2)"></span> All
-      </button>
-      <button class="tier-pip-btn" data-tier="1" onclick="setTier(this,'1')" style="--pip-color:var(--sakura2)">
-        <span class="pip"></span> Tier 1
-      </button>
-      <button class="tier-pip-btn" data-tier="2" onclick="setTier(this,'2')" style="--pip-color:var(--gold)">
-        <span class="pip"></span> Tier 2
-      </button>
     </div>
   </div>
 
@@ -208,25 +53,33 @@
 </div>
 
 <!-- ── Detail Modal ──────────────────────────────────────── -->
-<div class="modal-overlay" id="micro-detail-modal" role="dialog" aria-modal="true" aria-labelledby="mdm-name">
-  <div class="modal detail-modal" style="max-width:600px;">
-    <div class="modal-header">
-      <div style="flex:1;min-width:0;">
-        <div class="modal-group-label" id="mdm-cat" style="color:var(--accent);"></div>
-        <div class="modal-name" id="mdm-name"></div>
-        <div class="modal-sub-line" id="mdm-gram"></div>
+<div class="drug-modal-overlay" id="micro-detail-modal" role="dialog" aria-modal="true" aria-labelledby="mdm-name" onclick="handleMicroOverlayClick(event)">
+  <div class="drug-modal" id="micro-modal">
+
+    <!-- Top bar: breadcrumb + close -->
+    <div class="drug-modal-topbar" id="mdm-topbar">
+      <div class="drug-modal-breadcrumb" id="mdm-cat"></div>
+      <div class="drug-modal-topbar-right">
+        <button class="drug-modal-close" onclick="document.getElementById('micro-detail-modal').classList.remove('open');document.body.style.overflow=''" title="Close (Esc)">
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M2 2l10 10M12 2L2 12"/></svg>
+        </button>
       </div>
-      <button class="modal-close-btn" onclick="closeModal('micro-detail-modal')" aria-label="Close">&times;</button>
     </div>
-    <div class="modal-tier-strip" id="mdm-tier-strip">
-      <div class="modal-tier-pip" id="mdm-tier-pip"></div>
-      <div class="modal-tier-text" id="mdm-tier-text"></div>
+
+    <!-- Identity -->
+    <div class="drug-modal-header">
+      <div class="drug-modal-title" id="mdm-name"></div>
+      <div class="drug-modal-aka" id="mdm-gram"></div>
     </div>
-    <div class="modal-tags-wrap" id="mdm-tags"></div>
-    <div id="mdm-content" style="max-height:65vh;overflow-y:auto;padding-right:6px;"></div>
-    <div class="modal-btns" style="margin-top:20px;padding-top:16px;border-top:1px solid var(--border);">
-      <button class="btn-cancel" onclick="closeModal('micro-detail-modal')">Close</button>
+
+    <!-- Tags as summary area -->
+    <div class="drug-modal-summary" id="mdm-meta">
+      <div class="micro-modal-tags" id="mdm-tags"></div>
     </div>
+
+    <!-- Scrollable body -->
+    <div class="drug-modal-body" id="mdm-content"></div>
+
   </div>
 </div>
 
@@ -235,19 +88,29 @@
 <script>
 /* ── Config ─────────────────────────────────────────────── */
 const CAT_META = {
-  bacteria:  { label: 'Bacteria',   icon: '🦠' },
-  viruses:   { label: 'Viruses',    icon: '🧬' },
-  fungi:     { label: 'Fungi',      icon: '🍄' },
-  parasites: { label: 'Parasites',  icon: '🪱' },
+  bacteria:  {
+    label: 'Bacteria',
+    color: '#3a7a5a',
+    desc: 'Organized by Gram stain and morphology — the same way boards will test you. Master the GP/GN divide first, then nail the atypicals. Virulence factors and toxin mechanisms are the highest-yield details; memorize one unique fact per organism.'
+  },
+  viruses:   {
+    label: 'Viruses',
+    color: '#5a4490',
+    desc: 'DNA viruses are mostly double-stranded and replicate in the nucleus. RNA viruses are mostly single-stranded. Know your herpesvirus reactivation patterns cold — they are perennial vignettes. HIV lifecycle and antiretroviral mechanisms are guaranteed questions.'
+  },
+  fungi:     {
+    label: 'Fungi',
+    color: '#9e6a3d',
+    desc: 'Systemic mycoses are tested by geography and exposure history. Opportunistic fungi appear almost exclusively in immunocompromised (HIV, transplant) vignettes. Know the dimorphic rule: mold in the cold, yeast in the heat.'
+  },
+  parasites: {
+    label: 'Parasites',
+    color: '#3d6e8a',
+    desc: 'Transmission route is the single highest-yield fact for every parasite. Plasmodium (malaria) is the most tested parasite on Step 1 — know all four species. Toxoplasma and Cryptosporidium are classic HIV vignettes.'
+  },
 };
 
-const TIER_COLORS = { 1: 'var(--sakura2)', 2: 'var(--gold)', 3: 'var(--sage)' };
-const TIER_LABELS = { 1: 'Tier 1 — High Yield', 2: 'Tier 2 — Important', 3: 'Tier 3 — Know It' };
-
-let allOrgs = [];
-let activeTier = '';
-let activeTab = '';
-let searchQ = '';
+let allOrgs = [], activeTab = 'bacteria', searchQ = '';
 
 /* ── Build flat list ─────────────────────────────────────── */
 function buildOrgList() {
@@ -262,129 +125,124 @@ function buildOrgList() {
 
 /* ── Filtering ───────────────────────────────────────────── */
 function getFiltered() {
-  return allOrgs.filter(o => {
-    if (activeTier && o.tier !== parseInt(activeTier)) return false;
-    if (activeTab && o.category !== activeTab) return false;
-    if (searchQ) {
+  if (searchQ) {
+    return allOrgs.filter(o => {
       const blob = [o.name, o.gram, o.summary, o.disease, o.tx,
                     (o.tags || []).join(' '), o.pearl, o.virulence].join(' ').toLowerCase();
-      if (!blob.includes(searchQ)) return false;
-    }
-    return true;
-  });
+      return blob.includes(searchQ);
+    });
+  }
+  return allOrgs.filter(o => o.category === activeTab);
 }
 
 /* ── Render ──────────────────────────────────────────────── */
 function render() {
   const filtered = getFiltered();
+  const isSearch = searchQ.length > 0;
 
-  const meta = document.getElementById('results-meta');
-  meta.innerHTML = filtered.length === allOrgs.length
-    ? `<strong>${allOrgs.length}</strong> organisms`
-    : `<strong>${filtered.length}</strong> of ${allOrgs.length} organisms`;
+  document.getElementById('results-meta').innerHTML = isSearch
+    ? `<strong>${filtered.length}</strong> of ${allOrgs.length} organisms`
+    : `<strong>${allOrgs.length}</strong> organisms`;
 
-  renderTabs(filtered);
-  renderPanels(filtered);
+  renderTabs();
+  renderPanels(filtered, isSearch);
 }
 
-function renderTabs(filtered) {
-  const tabBar = document.getElementById('cat-tabs');
-  const cats = Object.keys(CAT_META);
-  const showAll = searchQ || activeTier;
+function renderTabs() {
   let html = '';
-
-  if (showAll) {
-    html += `<button class="cat-tab${activeTab === '' ? ' active' : ''}"
-               onclick="switchTab('')" role="tab" data-cat="">
-               All <span class="tab-count">${filtered.length}</span>
-             </button>`;
-  }
-
-  cats.forEach(cat => {
-    const count = filtered.filter(o => o.category === cat).length;
-    if (count === 0 && (searchQ || activeTier)) return;
-    const isActive = activeTab === cat;
+  Object.entries(CAT_META).forEach(([cat, meta]) => {
+    const isActive = activeTab === cat && !searchQ;
     html += `<button class="cat-tab${isActive ? ' active' : ''}"
-               onclick="switchTab('${cat}')" role="tab" data-cat="${cat}">
-               ${CAT_META[cat].label}
-               <span class="tab-count">${count}</span>
-             </button>`;
+      onclick="switchTab('${cat}')" role="tab">
+      <span class="tab-dot" style="background:${meta.color}"></span>${meta.label}
+    </button>`;
   });
-
-  tabBar.innerHTML = html;
-
-  if (!showAll && activeTab === '') {
-    const firstCat = cats.find(c => filtered.some(o => o.category === c));
-    if (firstCat) switchTab(firstCat, false);
-  }
+  document.getElementById('cat-tabs').innerHTML = html;
 }
 
-function renderPanels(filtered) {
+function renderPanels(filtered, isSearch) {
   const container = document.getElementById('panels-container');
-  const cats = activeTab ? [activeTab] : Object.keys(CAT_META);
 
-  if (filtered.length === 0) {
-    container.innerHTML = `
-      <div class="cards-grid" style="margin-top:16px;">
-        <div class="ref-empty">
-          <div class="ref-empty-icon">🔍</div>
-          <div class="ref-empty-title">No results</div>
-          <div class="ref-empty-sub">Try a different search term or clear your filters.</div>
-        </div>
-      </div>`;
+  if (!filtered.length) {
+    container.innerHTML = `<div class="cards-grid" style="margin-top:16px;">
+      <div class="ref-empty">
+        <div class="ref-empty-title">No results</div>
+        <div class="ref-empty-sub">Try a different search term.</div>
+      </div></div>`;
     return;
   }
 
-  container.innerHTML = cats.map(cat => {
-    const catOrgs = filtered.filter(o => o.category === cat);
-    if (!catOrgs.length) return '';
-    const groups = [...new Set(catOrgs.map(o => o.groupName))];
+  if (isSearch) {
+    const cats = Object.keys(CAT_META).filter(c => filtered.some(o => o.category === c));
+    container.innerHTML = cats.map(cat => {
+      const catOrgs = filtered.filter(o => o.category === cat);
+      if (!catOrgs.length) return '';
+      const meta = CAT_META[cat];
+      return `<div class="ref-panel" id="panel-${cat}">
+        <div class="search-cat-label" style="color:${meta.color}">${meta.label}</div>
+        <div class="cards-grid">${catOrgs.map(o => renderCard(o, meta.color)).join('')}</div>
+      </div>`;
+    }).join('');
+    return;
+  }
 
-    return `<div class="ref-panel" id="panel-${cat}">
-      ${groups.map(grp => {
-        const grpOrgs = catOrgs.filter(o => o.groupName === grp);
-        return `
-          <div class="group-header">
-            <span class="group-title">${grp}</span>
-            <div class="group-line"></div>
-            <span class="group-badge">${grpOrgs.length}</span>
-          </div>
-          <div class="cards-grid">
-            ${grpOrgs.map(o => renderCard(o)).join('')}
-          </div>`;
-      }).join('')}
+  const cat = activeTab;
+  const meta = CAT_META[cat];
+  const groups = [...new Set(filtered.map(o => o.groupName))];
+
+  const introHtml = `
+    <div class="cat-intro" style="--cat-color:${meta.color}">
+      <div class="cat-intro-title" style="color:${meta.color}">${meta.label}</div>
+      <div class="cat-intro-desc">${meta.desc}</div>
+    </div>`;
+
+  const groupsHtml = groups.map((grp, gi) => {
+    const grpOrgs = filtered.filter(o => o.groupName === grp);
+    const gid = `grp-${cat}-${gi}`;
+    return `<div class="group-section">
+      <div class="class-group-header">
+        <span class="class-label" style="color:${meta.color};border-color:${meta.color}40;background:${meta.color}12;">
+          <span style="font-size:7px;">◆</span> ${grp}
+        </span>
+        <button class="group-expand-btn" style="--cat-color:${meta.color}" onclick="toggleGroup('${gid}',this)">▼ Expand</button>
+      </div>
+      <div class="cards-grid" id="${gid}">
+        ${grpOrgs.map(o => renderCard(o, meta.color)).join('')}
+      </div>
     </div>`;
   }).join('');
+
+  container.innerHTML = `<div class="ref-panel" id="panel-${cat}">${introHtml}${groupsHtml}</div>`;
 }
 
-function renderCard(o) {
+function renderCard(o, catColor) {
+  const color = catColor || CAT_META[o.category]?.color || 'var(--accent)';
   const tags = (o.tags || []).slice(0, 3).map(t => `<span class="rcard-tag">${t}</span>`).join('');
-  return `<div class="rcard" data-tier="${o.tier}"
-               onclick='openMicroDetail(${JSON.stringify(o).replace(/'/g,"&#39;")})'
-               tabindex="0" role="button" aria-label="${o.name}">
-    <div class="rcard-top">
-      <div class="rcard-name">${o.name}</div>
-      <div class="rcard-tier">
-        <div class="rcard-pip"></div>
-        <span class="rcard-tier-label">T${o.tier}</span>
+  return `<div class="rcard" data-cat="${o.category}" style="--cat-color:${color};border-left-color:${color}"
+    tabindex="0" role="button" aria-label="${o.name}"
+    onclick='openMicroDetail(${JSON.stringify(o).replace(/'/g,"&#39;")})'>
+    <div class="rcard-header">
+      <div class="rcard-header-left">
+        <div class="rcard-name">${o.name}</div>
+        ${o.gram ? `<div class="rcard-aka">${o.gram}</div>` : ''}
       </div>
     </div>
-    ${o.gram ? `<div class="rcard-gram">${o.gram}</div>` : ''}
     <div class="rcard-summary">${o.summary || ''}</div>
     ${tags ? `<div class="rcard-tags">${tags}</div>` : ''}
   </div>`;
 }
 
-/* ── Tab switching ───────────────────────────────────────── */
-function switchTab(cat, doRender = true) {
-  activeTab = cat;
-  if (doRender) render();
+function toggleGroup(gid, btn) {
+  const grid = document.getElementById(gid);
+  const hidden = grid.style.display === 'none';
+  grid.style.display = hidden ? '' : 'none';
+  btn.textContent = hidden ? '▲ Collapse' : '▼ Expand';
 }
 
-function setTier(btn, tier) {
-  activeTier = tier;
-  document.querySelectorAll('.tier-pip-btn').forEach(b => b.classList.remove('active'));
-  btn.classList.add('active');
+function switchTab(cat) {
+  activeTab = cat;
+  searchQ = '';
+  document.getElementById('micro-search').value = '';
   render();
 }
 
@@ -396,46 +254,74 @@ function onSearch() {
 /* ── Detail modal ────────────────────────────────────────── */
 function openMicroDetail(o) {
   const fmt = t => t ? t.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>') : '';
-  const tierColor = TIER_COLORS[o.tier] || 'var(--dim)';
-  const tierLabel = TIER_LABELS[o.tier] || '';
+  const color = CAT_META[o.category]?.color || 'var(--sage)';
+  const catLabel = CAT_META[o.category]?.label || o.category;
 
-  document.getElementById('mdm-cat').textContent =
-    (CAT_META[o.category]?.label || o.category).toUpperCase() +
-    (o.groupName ? ' · ' + o.groupName : '');
+  document.getElementById('micro-modal').style.setProperty('--cat-color', color);
+
+  document.getElementById('mdm-cat').innerHTML = `
+    <span class="drug-modal-banner-cat" style="color:${color};border-color:${color}50;background:${color}12;">${catLabel.toUpperCase()}</span>
+    ${o.groupName ? `<span class="drug-modal-banner-sep">›</span><span class="drug-modal-banner-grp">${o.groupName}</span>` : ''}
+  `;
+  const topbar = document.getElementById('mdm-topbar');
+  topbar.style.borderTop = `3px solid ${color}`;
+  topbar.style.borderBottom = `1px solid ${color}20`;
+
   document.getElementById('mdm-name').textContent = o.name;
-  document.getElementById('mdm-gram').textContent = o.gram || '';
-  document.getElementById('mdm-tier-pip').style.background = tierColor;
-  document.getElementById('mdm-tier-text').textContent = tierLabel;
+  const gramEl = document.getElementById('mdm-gram');
+  gramEl.textContent = o.gram || '';
+  gramEl.style.display = o.gram ? '' : 'none';
+
   document.getElementById('mdm-tags').innerHTML =
     (o.tags || []).map(t => `<span class="rcard-tag">${t}</span>`).join('');
 
   const rows = [
-    ['Virulence Factors', o.virulence],
-    ['Diseases',          o.disease],
-    ['Treatment',         o.tx],
-  ].filter(([, v]) => v);
+    { label: 'Virulence Factors', cls: 'lbl-moa', val: o.virulence },
+    { label: 'Diseases',          cls: 'lbl-use', val: o.disease   },
+    { label: 'Treatment',         cls: 'lbl-se',  val: o.tx        },
+  ].filter(r => r.val);
 
   document.getElementById('mdm-content').innerHTML =
-    rows.map(([label, val]) =>
-      `<div class="drug-row">
-         <span class="drug-label">${label}</span>
-         <div class="drug-text">${fmt(val)}</div>
-       </div>`
+    rows.map(r => `
+      <div class="rcard-field">
+        <span class="rcard-field-label ${r.cls}">${r.label}</span>
+        <div class="rcard-field-text">${fmt(r.val)}</div>
+      </div>`
     ).join('') +
-    (o.pearl ? `<div class="pearl-box" style="background:var(--sage-light);border-color:var(--sage);">
-       <span class="drug-label" style="color:var(--sage);">💎 Pearl</span>
-       <div class="drug-text">${fmt(o.pearl)}</div>
-     </div>` : '');
+    (o.pearl ? `
+      <div class="rcard-pearl">
+        <span class="pearl-diamond" style="color:${color}">◆</span>
+        <div class="pearl-body">
+          <span class="pearl-label" style="color:${color}">Step 1 Pearl</span>
+          <span class="pearl-text">${fmt(o.pearl)}</span>
+        </div>
+      </div>` : '');
 
-  openModal('micro-detail-modal');
+  document.getElementById('mdm-content').scrollTop = 0;
+  document.getElementById('micro-detail-modal').classList.add('open');
+  document.body.style.overflow = 'hidden';
 }
 
-/* ── Keyboard support ────────────────────────────────────── */
+function handleMicroOverlayClick(e) {
+  if (e.target === document.getElementById('micro-detail-modal')) {
+    document.getElementById('micro-detail-modal').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+}
+
+/* ── Keyboard ────────────────────────────────────────────── */
 document.addEventListener('keydown', e => {
   if ((e.key === 'Enter' || e.key === ' ') && e.target.classList.contains('rcard')) {
     e.preventDefault(); e.target.click();
   }
-  if (e.key === 'Escape') closeModal('micro-detail-modal');
+  if (e.key === 'Escape') {
+    document.getElementById('micro-detail-modal').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+  if (e.key === '/' && document.activeElement !== document.getElementById('micro-search')) {
+    e.preventDefault();
+    document.getElementById('micro-search').focus();
+  }
 });
 
 /* ── Init ────────────────────────────────────────────────── */
