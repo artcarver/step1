@@ -288,20 +288,29 @@
 
   <!-- ── UWORLD PROGRESS (always visible) ──────────────── -->
   <a class="uw-strip" id="uw-strip" href="dashboard.html" aria-label="UWorld progress — click to open dashboard">
-    <div class="uw-prog">
-      <div class="uw-lbl">UWorld Progress</div>
-      <div class="uw-row">
-        <div class="uw-bg" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" id="uw-bar-role">
-          <div class="uw-fill" id="uw-fill" style="width:0%"></div>
-        </div>
-        <div class="uw-pct" id="uw-pct">0%</div>
+    <div class="uw-top-row">
+      <div class="uw-left">
+        <div class="uw-eyebrow">UWorld Progress</div>
+        <div class="uw-big-pct" id="uw-pct">0%</div>
+        <div class="uw-sub" id="uw-sub">0 / 3,661 done</div>
       </div>
-      <div class="uw-sub" id="uw-sub">Set your exam date to see your daily goal</div>
+      <div class="uw-stats">
+        <div class="uw-stat">
+          <div class="uw-stat-v" id="uw-qday">—</div>
+          <div class="uw-stat-l">Q / Day</div>
+        </div>
+        <div class="uw-stat-div"></div>
+        <div class="uw-stat">
+          <div class="uw-stat-v" id="uw-remaining">—</div>
+          <div class="uw-stat-l">Remaining</div>
+        </div>
+      </div>
+      <div class="uw-cta-badge">Open Dashboard ↗</div>
     </div>
-    <div class="uw-div"></div>
-    <div class="uw-qd">
-      <div class="uw-qd-v" id="uw-qday">—</div>
-      <div class="uw-qd-l">Q / Day Needed</div>
+    <div class="uw-bar-wrap">
+      <div class="uw-bg" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" id="uw-bar-role">
+        <div class="uw-fill" id="uw-fill" style="width:0%"></div>
+      </div>
     </div>
   </a>
 
@@ -628,6 +637,8 @@ function renderUWorld() {
 
   document.getElementById('uw-fill').style.width = pct + '%';
   document.getElementById('uw-pct').textContent  = pct + '%';
+  const remEl = document.getElementById('uw-remaining');
+  if (remEl) remEl.textContent = (total - done).toLocaleString();
   document.getElementById('uw-bar-role').setAttribute('aria-valuenow', pct);
   document.getElementById('uw-sub').textContent  = done > 0
     ? `${done.toLocaleString()} / ${total.toLocaleString()} done`
