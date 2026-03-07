@@ -1565,7 +1565,7 @@ mark.search-hl {
 /* ── Video rows ────────────────────────────────────────────── */
 .cat-body { display:none; border-top:1px solid var(--border2); }
 .cat-section.open .cat-body { display:block; }
-.video-header-row { display:flex; align-items:center; padding:8px 20px; font-size:10px; font-weight:700; letter-spacing:1.2px; text-transform:uppercase; color:var(--muted); border-bottom:1px solid var(--border2); background:var(--bg); }
+.video-header-row { display:flex; align-items:center; padding:8px 20px; gap:12px; font-size:10px; font-weight:700; letter-spacing:1.2px; text-transform:uppercase; color:var(--muted); border-bottom:1px solid var(--border2); background:var(--bg); }
 .video-row { display:flex; align-items:center; padding:11px 20px; border-bottom:1px solid var(--border2); gap:12px; transition:background .1s; }
 .video-row:last-child { border-bottom:none; }
 .video-row:hover { background:var(--surface2); }
