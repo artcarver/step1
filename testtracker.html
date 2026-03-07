@@ -124,19 +124,19 @@
 /* ── Tracker Import Modal ──────────────────────────────── */
 .ti-overlay { display:none; position:fixed; inset:0; z-index:1000; background:rgba(42,31,26,.45); backdrop-filter:blur(3px); align-items:center; justify-content:center; }
 .ti-overlay.open { display:flex; }
-.ti-modal { background:var(--surface); border:1px solid var(--border); border-radius:16px; padding:28px 28px 24px; width:min(540px,92vw); max-height:85vh; overflow-y:auto; box-shadow:0 20px 60px rgba(42,31,26,.18); display:flex; flex-direction:column; gap:16px; }
+.ti-modal { background:var(--surface); border:1px solid var(--border); border-radius:16px; padding:28px 28px 24px; width:min(560px,92vw); max-height:88vh; overflow-y:auto; box-shadow:0 20px 60px rgba(42,31,26,.18); display:flex; flex-direction:column; gap:16px; }
 .ti-header { display:flex; justify-content:space-between; align-items:flex-start; }
 .ti-title { font-family:'Playfair Display',serif; font-size:20px; font-weight:700; color:var(--ink); }
 .ti-close { background:none; border:none; font-size:22px; cursor:pointer; color:var(--dim); line-height:1; padding:0; }
 .ti-desc { font-size:13px; color:var(--ink2); line-height:1.6; margin:0; }
 .ti-instruction { background:var(--surface); border:1px solid var(--border); border-left:3px solid var(--accent); border-radius:8px; padding:14px 16px; font-size:13px; color:var(--ink2); line-height:1.85; }
 .ti-instruction strong { color:var(--ink); }
-.ti-prompt-box { background:var(--surface2); border:1px solid var(--border2); border-radius:6px; padding:10px 14px; font-size:12px; font-family:'DM Mono',monospace; color:var(--ink); line-height:1.7; margin-top:10px; white-space:pre-wrap; user-select:all; }
-.ti-paste-area { width:100%; min-height:110px; padding:10px 14px; border:1.5px solid var(--border); border-radius:10px; background:var(--bg); font-size:13px; font-family:'DM Sans',sans-serif; color:var(--ink); resize:vertical; outline:none; transition:border-color .15s; box-sizing:border-box; }
+.ti-prompt-box { background:var(--surface2); border:1px solid var(--border2); border-radius:6px; padding:10px 14px; font-size:11.5px; font-family:'DM Mono',monospace; color:var(--ink); line-height:1.65; margin-top:10px; white-space:pre-wrap; user-select:all; max-height:220px; overflow-y:auto; }
+.ti-paste-area { width:100%; min-height:100px; padding:10px 14px; border:1.5px solid var(--border); border-radius:10px; background:var(--bg); font-size:12.5px; font-family:'DM Mono',monospace; color:var(--ink); resize:vertical; outline:none; transition:border-color .15s; box-sizing:border-box; }
 .ti-paste-area:focus { border-color:var(--accent); }
-.ti-paste-area::placeholder { color:var(--muted); }
+.ti-paste-area::placeholder { color:var(--muted); font-family:'DM Sans',sans-serif; font-size:12px; }
 .ti-actions { display:flex; gap:10px; justify-content:flex-end; align-items:center; }
-.ti-btn-cancel { padding:8px 18px; border-radius:99px; border:1.5px solid var(--border); background:transparent; font-size:13px; font-weight:600; color:var(--ink2); cursor:pointer; }
+.ti-btn-cancel { padding:8px 18px; border-radius:99px; border:1.5px solid var(--border); background:transparent; font-size:13px; font-weight:600; color:var(--ink2); cursor:pointer; transition:all .15s; }
 .ti-btn-cancel:hover { border-color:var(--dim); }
 .ti-btn-primary { padding:8px 20px; border-radius:99px; border:none; background:var(--accent); font-size:13px; font-weight:600; color:#fff; cursor:pointer; display:flex; align-items:center; gap:6px; transition:opacity .15s; }
 .ti-btn-primary:hover { opacity:.88; }
@@ -200,27 +200,31 @@
       <div class="ti-title">Import Sketchy Pharm Progress</div>
       <button class="ti-close" onclick="closeTIModal()">&#215;</button>
     </div>
+
+    <!-- Step 1: Copy + prompt -->
     <div id="ti-step1">
-      <p class="ti-desc">Copy your tracking spreadsheet, clean it with AI, then paste the output here to sync your progress.</p>
+      <p class="ti-desc">Copy your tracking spreadsheet and use AI to convert it — then paste the result in Step 2.</p>
       <div class="ti-instruction">
         <strong>Step 1 — Prepare your data:</strong><br>
         1. Open your Sketchy Pharm tracking spreadsheet<br>
         2. Select all &amp; copy (Cmd+A, Cmd+C)<br>
-        3. Paste into Claude or ChatGPT with this prompt:
-        <div class="ti-prompt-box">I have a Sketchy Pharm tracking spreadsheet. Convert it to a CSV with exactly 3 columns: VideoName, Watched, Reviewed. VideoName = the video or topic name. Watched = 1 if watched/started, 0 if not. Reviewed = 1 if reviewed/second pass done, 0 if not. One row per video. No extra columns. No markdown.</div>
-        <p style="font-size:12px;color:var(--dim);margin:8px 0 0;">Then copy the CSV output and paste it in Step 2.</p>
+        3. Open Claude or ChatGPT, paste your data, then add this prompt:
+        <div class="ti-prompt-box" id="ti-prompt-text">Loading video list&#8230;</div>
+        <p style="font-size:12px;color:var(--dim);margin:8px 0 0;">The AI will match your video names even if they're slightly different. Copy the CSV output and paste it in Step 2.</p>
       </div>
       <div class="ti-actions" style="margin-top:4px;">
         <button class="ti-btn-cancel" onclick="closeTIModal()">Cancel</button>
-        <button class="ti-btn-primary" onclick="document.getElementById('ti-step1').style.display='none';document.getElementById('ti-step2').style.display='flex';">Next &#8594; Paste CSV</button>
+        <button class="ti-btn-primary" onclick="tiGotoStep2()">Next &#8594; Paste CSV</button>
       </div>
     </div>
+
+    <!-- Step 2: Paste + import -->
     <div id="ti-step2" style="display:none;flex-direction:column;gap:14px;">
       <p class="ti-desc"><strong>Step 2 &#8212; Paste the CSV output:</strong></p>
-      <textarea class="ti-paste-area" id="ti-paste" placeholder="VideoName,Watched,Reviewed&#10;Cholinomimetics,1,1&#10;Cholinesterase Inhibitors,1,0&#10;..."></textarea>
+      <textarea class="ti-paste-area" id="ti-paste" placeholder="VideoID,Watched,Reviewed&#10;au1,1,1&#10;au2,1,0&#10;cv1,0,0&#10;..."></textarea>
       <div class="ti-result" id="ti-result"></div>
       <div class="ti-actions">
-        <button class="ti-btn-cancel" onclick="document.getElementById('ti-step2').style.display='none';document.getElementById('ti-step1').style.display='block';">&#8592; Back</button>
+        <button class="ti-btn-cancel" onclick="tiGotoStep1()">&#8592; Back</button>
         <button class="ti-btn-cancel" onclick="closeTIModal()">Cancel</button>
         <button class="ti-btn-primary" id="ti-import-btn" onclick="runTIImport()">&#10022; Import</button>
       </div>
@@ -341,17 +345,11 @@ function updateSummary() {
   document.getElementById('tot-r').textContent = tr;
   document.getElementById('overall-bar').style.width = pct + '%';
   document.getElementById('overall-note').textContent = pct + '% reviewed';
-  // Time calculation
-  const totMins = CATEGORIES.reduce((s,c)=>s+c.videos.reduce((vs,v)=>{
-    const m = parseInt(v.time); return vs + (isNaN(m)?0:m);
-  },0),0);
-  function fmtTime(m) { const h=Math.floor(m/60),mn=m%60; return h?h+'h '+(mn?mn+'min':''):mn+'min'; }
-  const timeEl = document.getElementById('overall-time');
-  const totEl  = document.getElementById('tot-total');
-  if (timeEl) timeEl.textContent = pct + '% reviewed';
-  if (totEl)  totEl.textContent  = total + ' videos · ' + fmtTime(totMins);
-  // keep overall-note too
-  document.getElementById('overall-note').textContent = pct + '% reviewed';
+  const totMins=CATEGORIES.reduce((s,c)=>s+c.videos.reduce((vs,v)=>{const m=parseInt(v.time);return vs+(isNaN(m)?0:m);},0),0);
+  function fmtTime(m){const h=Math.floor(m/60),mn=m%60;return h?h+'h '+(mn?mn+'min':''):mn+'min';}
+  if(document.getElementById('overall-time'))document.getElementById('overall-time').textContent=pct+'% reviewed';
+  if(document.getElementById('tot-total'))document.getElementById('tot-total').textContent=total+' videos · '+fmtTime(totMins);
+  document.getElementById('overall-note').textContent=pct+'% reviewed';
   updateCatHeaders();
 }
 
@@ -428,79 +426,111 @@ document.addEventListener('DOMContentLoaded', () => { load(); renderAll(); });
 // ── Tracker Import ────────────────────────────────────────
 function openTIModal() {
   document.getElementById('ti-overlay').classList.add('open');
-  document.getElementById('ti-paste').value = '';
-  document.getElementById('ti-result').classList.remove('visible');
-  document.getElementById('ti-result').innerHTML = '';
-  document.getElementById('ti-import-btn').disabled = false;
-  document.getElementById('ti-import-btn').innerHTML = '&#10022; Import';
-  document.getElementById('ti-step1').style.display = 'block';
-  document.getElementById('ti-step2').style.display = 'none';
+  tiGotoStep1();
+  const ta = document.getElementById('ti-paste');
+  if (ta) ta.value = '';
+  const res = document.getElementById('ti-result');
+  if (res) { res.classList.remove('visible'); res.innerHTML = ''; }
+  const btn = document.getElementById('ti-import-btn');
+  if (btn) { btn.disabled = false; btn.innerHTML = '&#10022; Import'; }
+  // Build prompt with full video list
+  buildTIPrompt();
 }
 function closeTIModal() {
   document.getElementById('ti-overlay').classList.remove('open');
 }
+function tiGotoStep1() {
+  document.getElementById('ti-step1').style.display = 'block';
+  document.getElementById('ti-step2').style.display = 'none';
+}
+function tiGotoStep2() {
+  document.getElementById('ti-step1').style.display = 'none';
+  document.getElementById('ti-step2').style.display = 'flex';
+}
+
+function buildTIPrompt() {
+  // Build the full numbered video list from categories
+  const lines = [];
+  PHARM_CATEGORIES.forEach(cat => {
+    cat.videos.forEach(v => {
+      lines.push(v.id + ' | ' + v.name);
+    });
+  });
+  const videoList = lines.join('\n');
+
+  const prompt = `I have a Sketchy Pharm tracking spreadsheet. Convert it to a CSV with exactly 3 columns: VideoID, Watched, Reviewed.
+
+Use the following official video list to match names — use fuzzy matching to handle typos, abbreviations, or slightly different names:
+
+${videoList}
+
+Rules:
+- VideoID = the id from the list above (e.g. au1, cv3) — match the video name from my spreadsheet to the closest entry
+- Watched = 1 if the video has been watched/started, 0 if not
+- Reviewed = 1 if the video has been reviewed/second-passed/Anki done, 0 if not
+- One row per video from the list above, in the same order
+- If a video from the list has no match in my spreadsheet, output 0,0
+- No header row. No extra columns. No markdown. Just the CSV.`;
+
+  const el = document.getElementById('ti-prompt-text');
+  if (el) el.textContent = prompt;
+}
+
 function runTIImport() {
   const raw = document.getElementById('ti-paste').value.trim();
   if (!raw) { alert('Please paste the CSV first.'); return; }
   const btn = document.getElementById('ti-import-btn');
   btn.disabled = true;
   btn.innerHTML = '<span class="ti-spinner"></span> Importing…';
+
   try {
-    const lines = raw.split(/\r?\n/).filter(l => l.trim());
-    const dataLines = lines[0].toLowerCase().replace(/\s/g,'').startsWith('videoname') ? lines.slice(1) : lines;
-    const lookup = {};
-    PHARM_CATEGORIES.forEach(cat => {
-      cat.videos.forEach(v => {
-        lookup[v.name.toLowerCase()] = v.id;
-        lookup[v.name.toLowerCase().replace(/[^a-z0-9 ]/g,'')] = v.id;
-      });
-    });
-    function fuzzyFind(name) {
-      const n = name.toLowerCase().trim().replace(/^"|"$/g,'');
-      if (lookup[n]) return lookup[n];
-      const nClean = n.replace(/[^a-z0-9 ]/g,'');
-      if (lookup[nClean]) return lookup[nClean];
-      for (const [k,id] of Object.entries(lookup)) {
-        if (k.length > 4 && (k.includes(n) || n.includes(k))) return id;
-      }
-      return null;
-    }
+    // Build id lookup for validation
+    const validIds = new Set();
+    PHARM_CATEGORIES.forEach(cat => cat.videos.forEach(v => validIds.add(v.id)));
+
     const TRUTHY = new Set(['1','true','yes','✓','x','done','watched','reviewed','w','r']);
     let matched=0, newW=0, newR=0, unmatched=[];
+    const lines = raw.split(/\r?\n/).filter(l => l.trim());
+    // Skip header if present
+    const dataLines = lines[0].toLowerCase().includes('videoid') ? lines.slice(1) : lines;
+
     dataLines.forEach(line => {
       const parts = line.split(',');
       if (parts.length < 2) return;
-      const videoName = parts[0].trim().replace(/^"|"$/g,'');
-      if (!videoName) return;
+      const id = parts[0].trim().replace(/^"|"$/g,'');
+      if (!id) return;
       const isW = TRUTHY.has((parts[1]||'').trim().toLowerCase());
       const isR = TRUTHY.has((parts[2]||'').trim().toLowerCase());
-      const id = fuzzyFind(videoName);
-      if (!id) { unmatched.push(videoName); return; }
+
+      if (!validIds.has(id)) { unmatched.push(id); return; }
       matched++;
       if (!progress[id]) progress[id] = {w:false,r:false};
       if (isW && !progress[id].w) { progress[id].w = true; newW++; }
       if (isR) { progress[id].w = true; if (!progress[id].r) { progress[id].r = true; newR++; } }
     });
+
     save();
     renderAll();
+
     const resultEl = document.getElementById('ti-result');
     resultEl.innerHTML = `<strong style="color:var(--ink)">Import complete &#10022;</strong>
       <div class="ti-result-nums">
         <div class="ti-result-num"><strong>${matched}</strong><span>Matched</span></div>
         <div class="ti-result-num"><strong>${newW}</strong><span>New Watched</span></div>
         <div class="ti-result-num"><strong>${newR}</strong><span>New Reviewed</span></div>
-        ${unmatched.length ? `<div class="ti-result-num"><strong>${unmatched.length}</strong><span>Unmatched</span></div>` : ''}
+        ${unmatched.length ? `<div class="ti-result-num"><strong>${unmatched.length}</strong><span>Invalid IDs</span></div>` : ''}
       </div>
-      ${unmatched.length ? `<p style="margin-top:10px;font-size:12px;color:var(--dim);">&#9888; Unmatched: ${unmatched.slice(0,6).join(', ')}${unmatched.length>6?'…':''}</p>` : ''}
+      ${unmatched.length ? `<p style="margin-top:10px;font-size:12px;color:var(--dim);">&#9888; Unrecognized IDs: ${unmatched.slice(0,8).join(', ')}${unmatched.length>8?'…':''}</p>` : ''}
       <p style="margin-top:6px;font-size:12px;color:var(--dim);">Existing progress was preserved.</p>`;
     resultEl.classList.add('visible');
     btn.disabled = false;
     btn.innerHTML = '&#10003; Done';
+
   } catch(e) {
-    console.error('Import error:',e);
+    console.error('Import error:', e);
     btn.disabled = false;
     btn.innerHTML = '&#10022; Import';
-    alert('Import failed: '+e.message);
+    alert('Import failed: ' + e.message);
   }
 }
 </script>
