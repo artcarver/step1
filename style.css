@@ -573,91 +573,85 @@ input, select, textarea { font-family: inherit; }
    All rules are additive — zero deletions from original file.
    ═══════════════════════════════════════════════════════════ */
 
-/* ── Expandable reference card ───────────────────────────── */
-/* Note: drugfacts.html has its own inline overrides for rcard */
+
+/* ── Drug cards (drugfacts.html) ─────────────────────────── */
+/* Base styles — drugfacts.html inline <style> takes precedence for color/border */
 .rcard {
   background: var(--surface);
   border: 1px solid var(--border);
+  border-left: 3px solid var(--sakura2);
   border-radius: 12px;
   cursor: pointer;
-  transition: box-shadow .18s ease;
-  position: relative;
+  transition: box-shadow .18s ease, transform .12s ease;
   overflow: hidden;
 }
 .rcard:hover {
   box-shadow: 0 4px 18px rgba(42,31,26,.10);
-}
-.rcard.expanded {
-  box-shadow: 0 6px 28px rgba(42,31,26,.12);
+  transform: translateY(-1px);
 }
 .rcard:focus-visible { outline: 2px solid var(--sakura2); outline-offset: 2px; }
-
-/* ── Card header ─────────────────────────────────────────── */
 .rcard-header {
-  display: flex; align-items: flex-start; justify-content: space-between;
-  gap: 10px;
+  padding: 13px 14px 0;
+  display: flex; align-items: flex-start; justify-content: space-between; gap: 8px;
 }
 .rcard-header-left { flex: 1; min-width: 0; }
 .rcard-name {
   font-family: 'Playfair Display', serif;
-  font-size: 16px; font-weight: 700; line-height: 1.2; color: var(--ink);
-  letter-spacing: -0.3px;
+  font-size: 16px; font-weight: 700; line-height: 1.2; color: var(--ink); letter-spacing: -0.3px;
 }
 .rcard-aka {
   font-family: 'DM Mono', monospace;
-  font-size: 9px; color: var(--sakura2); font-style: normal;
-  line-height: 1.7; margin-top: 5px; word-break: break-word;
-  font-weight: 400; opacity: 0.75;
+  font-size: 9px; font-style: normal; line-height: 1.7; margin-top: 5px;
+  word-break: break-word; font-weight: 400; opacity: 0.85;
 }
-.rcard-summary {
-  font-size: 12px; color: var(--ink2); line-height: 1.62;
-  border-top: 1px solid var(--border2); margin-top: 8px;
-  padding: 8px 14px 14px;
-}
-
-/* ── Chevron toggle button ───────────────────────────────── */
 .rcard-toggle {
-  flex-shrink: 0;
-  background: none; border: none; cursor: pointer;
-  color: var(--dim); padding: 2px 0 0 4px;
-  font-size: 13px; line-height: 1;
-  transition: color .14s, transform .22s ease;
-  align-self: flex-start;
+  flex-shrink: 0; background: none; border: none; cursor: pointer;
+  color: var(--dim); padding: 3px 0 0 4px; font-size: 11px; line-height: 1;
+  font-family: 'DM Mono', monospace; transition: color .14s; align-self: flex-start;
 }
-.rcard-toggle:hover { color: var(--sakura2); }
-.rcard.expanded .rcard-toggle { transform: rotate(180deg); color: var(--sakura2); }
+.rcard:hover .rcard-toggle { color: var(--sakura2); }
+.rcard-summary {
+  padding: 8px 14px 14px; font-size: 12px; color: var(--ink2); line-height: 1.62;
+  border-top: 1px solid var(--border2); margin-top: 8px;
+}
+.rcard-detail { display: none; }
 
-/* ── Expandable detail panel ─────────────────────────────── */
-/* drugfacts.html uses display:none/block with fadeSlide animation */
-.rcard-detail { overflow: hidden; }
-.rcard.expanded .rcard-detail { display: block; }
-
-/* ── Detail field rows ───────────────────────────────────── */
+/* ── Field rows (modal) ──────────────────────────────────── */
 .rcard-field {
-  padding: 10px 13px;
-  background: transparent;
-  border: none;
-  border-radius: 0;
+  padding: 10px 0; background: transparent; border: none;
+  border-bottom: 1px solid var(--border2);
 }
+.rcard-field:last-of-type { border-bottom: none; }
 .rcard-field-label {
-  display: inline-block;
-  font-size: 7.5px; font-weight: 500; letter-spacing: 0.8px;
-  text-transform: uppercase;
-  margin-bottom: 4px;
+  display: inline-block; font-family: 'DM Mono', monospace;
+  font-size: 8px; font-weight: 500; letter-spacing: 0.8px; text-transform: uppercase;
+  padding: 3px 9px; border-radius: 99px; border: 1px solid; margin-bottom: 7px;
 }
-.rcard-field-text {
-  font-size: 12px; color: var(--ink2); line-height: 1.65;
-}
+.lbl-moa { background: #3a508014; color: #3a5080; border-color: #3a508045; }
+.lbl-use { background: #2e684514; color: #2e6845; border-color: #2e684545; }
+.lbl-se  { background: #8a284414; color: #8a2844; border-color: #8a284445; }
+.lbl-ci  { background: #7a3e1814; color: #7a3e18; border-color: #7a3e1845; }
+.lbl-pk  { background: #4a389014; color: #4a3890; border-color: #4a389045; }
+.rcard-field-text { font-size: 12px; color: var(--ink2); line-height: 1.65; }
 .rcard-field-text strong { color: var(--ink); font-weight: 600; }
+.info-line { font-size: 12px; color: var(--ink2); line-height: 1.65; }
+.info-line + .info-line { margin-top: 4px; }
+.info-line strong { color: var(--ink); font-weight: 600; }
 
-/* ── Pearl block ─────────────────────────────────────────── */
+/* ── Pearl ───────────────────────────────────────────────── */
 .rcard-pearl {
-  padding: 10px 13px;
-  border-radius: 9px;
-  background: var(--sakura-light);
-  border: 1px solid color-mix(in srgb, var(--sakura2) 25%, transparent);
+  display: flex; gap: 10px; align-items: flex-start;
+  background: var(--sakura-light); border-top: 1px solid rgba(196,80,94,.15);
+  padding: 14px 16px; margin: 0;
 }
-.rcard-pearl .rcard-field-label { opacity: 1; }
+.pearl-diamond { flex-shrink: 0; margin-top: 2px; line-height: 1; font-size: 12px; }
+.pearl-body { flex: 1; min-width: 0; }
+.pearl-label {
+  font-family: 'DM Sans', sans-serif; font-size: 10px; font-weight: 700;
+  letter-spacing: 0.2px; text-transform: uppercase; display: inline; margin-right: 5px;
+}
+.pearl-text { font-family: 'DM Sans', sans-serif; font-size: 13px; color: var(--ink2); line-height: 1.65; display: inline; }
+.pearl-text strong { font-weight: 700; }
 
 /* ── Tab bar — horizontally scrollable, no wrapping ─────── */
 .ref-tab-bar {
@@ -720,7 +714,6 @@ mark.search-hl {
 /* ── Mobile overrides ────────────────────────────────────── */
 @media (max-width: 640px) {
   .cards-grid { grid-template-columns: 1fr; }
-  .rcard.expanded { grid-column: 1; }
   .rcard-field-text { font-size: 12px; }
   .ref-tab-bar { -webkit-overflow-scrolling: touch; }
 }
