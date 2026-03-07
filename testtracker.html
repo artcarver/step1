@@ -67,85 +67,77 @@
 </head>
 <body>
 <script src="nav.js">
-// ── Tracker Import (AI-powered) ───────────────────────────
+
+// ── Tracker Import ────────────────────────────────────────
 function openTIModal() {
   document.getElementById('ti-overlay').classList.add('open');
   document.getElementById('ti-paste').value = '';
   document.getElementById('ti-result').classList.remove('visible');
   document.getElementById('ti-result').innerHTML = '';
   document.getElementById('ti-import-btn').disabled = false;
-  document.getElementById('ti-import-btn').innerHTML = '✦ Import with AI';
+  document.getElementById('ti-import-btn').innerHTML = '✦ Import';
+  document.getElementById('ti-step1').style.display = 'block';
+  document.getElementById('ti-step2').style.display = 'none';
 }
 function closeTIModal() {
   document.getElementById('ti-overlay').classList.remove('open');
 }
 
-async function runTIImport() {
-  const pasteText = document.getElementById('ti-paste').value.trim();
-  if (!pasteText) { alert('Please paste your spreadsheet data first.'); return; }
+function runTIImport() {
+  const raw = document.getElementById('ti-paste').value.trim();
+  if (!raw) { alert('Please paste the CSV first.'); return; }
 
   const btn = document.getElementById('ti-import-btn');
   btn.disabled = true;
-  btn.innerHTML = '<span class="ti-spinner"></span> Parsing…';
-
-  // Build video list for the AI to match against
-  const videoList = [];
-  PHARM_CATEGORIES.forEach(cat => {
-    cat.videos.forEach(v => {
-      videoList.push({ id: v.id, name: v.name, category: cat.name });
-    });
-  });
-
-  const systemPrompt = `You are a data parser. Given spreadsheet data tracking video progress and a list of videos, return ONLY valid JSON — no explanation, no markdown.
-
-Output format:
-{"watched": ["id1","id2",...], "reviewed": ["id1","id2",...]}
-
-Rules:
-- "watched" includes ALL videos marked as watched (even if also reviewed)
-- "reviewed" includes ALL videos marked as reviewed/done (subset of watched)
-- Match video names fuzzy — partial matches are fine
-- Ignore videos with no match
-- If you see columns like "watched", "W", "✓", "1", "done", "yes" → watched
-- If you see columns like "reviewed", "R", "✦", "done", "2" → reviewed
-- If there's only one status column, treat it as watched
-- Return empty arrays if nothing matches`;
-
-  const userMsg = `Video list (id → name):
-${videoList.map(v => v.id + ': ' + v.name).join('\n')}
-
-Spreadsheet data:
-${pasteText.substring(0, 8000)}`;
+  btn.innerHTML = '<span class="ti-spinner"></span> Importing…';
 
   try {
-    const res = await fetch('https://api.anthropic.com/v1/messages', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        model: 'claude-sonnet-4-20250514',
-        max_tokens: 1000,
-        system: systemPrompt,
-        messages: [{ role: 'user', content: userMsg }]
-      })
-    });
-    const data = await res.json();
-    const raw = data.content?.[0]?.text || '';
-    const clean = raw.replace(/```json|```/g, '').trim();
-    const parsed = JSON.parse(clean);
+    // Parse the CSV (simple — no quoted commas expected in video names)
+    const lines = raw.split(/\r?\n/).filter(l => l.trim());
+    // Skip header row if present
+    const dataLines = lines[0].toLowerCase().includes('videoname') ? lines.slice(1) : lines;
 
-    const watched  = new Set(parsed.watched  || []);
-    const reviewed = new Set(parsed.reviewed || []);
-
-    // Merge into progress — never remove existing progress
-    let newW = 0, newR = 0;
-    watched.forEach(id => {
-      if (!progress[id]) progress[id] = {w:false,r:false};
-      if (!progress[id].w) { progress[id].w = true; newW++; }
+    // Build a lookup: lowercase video name → id
+    const lookup = {};
+    PHARM_CATEGORIES.forEach(cat => {
+      cat.videos.forEach(v => {
+        lookup[v.name.toLowerCase()] = v.id;
+        // Also index key words for fuzzy match
+        lookup[v.name.toLowerCase().replace(/[^a-z0-9 ]/g,'')] = v.id;
+      });
     });
-    reviewed.forEach(id => {
+
+    function fuzzyFind(name) {
+      const n = name.toLowerCase().trim();
+      if (lookup[n]) return lookup[n];
+      // Try contains match
+      for (const [k, id] of Object.entries(lookup)) {
+        if (k.includes(n) || n.includes(k)) return id;
+      }
+      return null;
+    }
+
+    let matched = 0, newW = 0, newR = 0, unmatched = [];
+
+    dataLines.forEach(line => {
+      const parts = line.split(',');
+      if (parts.length < 2) return;
+      const videoName = parts[0].trim().replace(/^"|"$/g,'');
+      const watched   = parts[1]?.trim();
+      const reviewed  = parts[2]?.trim();
+      const isW = ['1','true','yes','✓','x','done','watched'].includes(watched?.toLowerCase());
+      const isR = ['1','true','yes','✓','x','done','reviewed'].includes(reviewed?.toLowerCase());
+
+      const id = fuzzyFind(videoName);
+      if (!id) { unmatched.push(videoName); return; }
+
+      matched++;
       if (!progress[id]) progress[id] = {w:false,r:false};
-      progress[id].w = true;
-      if (!progress[id].r) { progress[id].r = true; newR++; }
+      if (isW && !progress[id].w) { progress[id].w = true; newW++; }
+      if (isR) {
+        progress[id].w = true;
+        if (!progress[id].r) { progress[id].r = true; newR++; }
+      }
     });
 
     save();
@@ -155,308 +147,23 @@ ${pasteText.substring(0, 8000)}`;
     resultEl.innerHTML = `
       <strong style="color:var(--ink)">Import complete ✦</strong>
       <div class="ti-result-nums">
-        <div class="ti-result-num"><strong>${watched.size}</strong><span>Watched</span></div>
-        <div class="ti-result-num"><strong>${reviewed.size}</strong><span>Reviewed</span></div>
-        <div class="ti-result-num"><strong>${newW + newR}</strong><span>New updates</span></div>
+        <div class="ti-result-num"><strong>${matched}</strong><span>Matched</span></div>
+        <div class="ti-result-num"><strong>${newW}</strong><span>New watched</span></div>
+        <div class="ti-result-num"><strong>${newR}</strong><span>New reviewed</span></div>
       </div>
-      <p style="margin-top:10px;font-size:12px;color:var(--dim);">Existing progress was preserved. Reload the page to see all changes.</p>`;
+      ${unmatched.length ? `<p style="margin-top:8px;font-size:11.5px;color:var(--dim);">⚠ ${unmatched.length} unmatched: ${unmatched.slice(0,5).join(', ')}${unmatched.length>5?'…':''}</p>` : ''}
+      <p style="margin-top:6px;font-size:11.5px;color:var(--dim);">Existing progress was preserved.</p>`;
     resultEl.classList.add('visible');
     btn.innerHTML = '✓ Done';
 
   } catch(e) {
     console.error('Import error:', e);
     btn.disabled = false;
-    btn.innerHTML = '✦ Import with AI';
-    alert('Import failed: ' + e.message + '\nCheck the console for details.');
+    btn.innerHTML = '✦ Import';
+    alert('Import failed: ' + e.message);
   }
 }
 
-</script>
-
-<div class="wrap">
-  <header class="hero" style="padding:36px 0 16px;">
-    <div class="tracker-hero-eyebrow">Progress Tracker</div>
-    <h1 class="hero-name">Sketchy <em>Pharm</em></h1>
-  </header>
-
-  <div class="overall-card">
-    <div class="overall-top">
-      <span class="overall-title">Overall Progress</span>
-      <div class="overall-stats">
-        <span class="overall-stat" style="display:inline-flex;align-items:center;gap:5px;"><span class="legend-badge legend-badge-w">✔</span><strong id="tot-w">0</strong> Watched</span>
-        <span class="overall-stat" style="display:inline-flex;align-items:center;gap:5px;"><span class="legend-badge legend-badge-r">✦</span><strong id="tot-r">0</strong> Reviewed</span>
-      </div>
-    </div>
-    <div class="overall-bar-bg"><div class="overall-bar-fill-w" id="overall-bar-w" style="width:0%;"></div><div class="overall-bar-fill-r" id="overall-bar-r" style="width:0%;"></div></div>
-    <div class="overall-sub">
-      <span id="overall-note">0% reviewed</span>
-      <span style="color:var(--dim);font-size:12px;"><span id="overall-time"></span> · <span id="tot-total"></span></span>
-    </div>
-  </div>
-
-  <div class="tracker-toolbar">
-    <input class="tracker-search" id="search-input" type="text" placeholder="Search videos…" oninput="applyFilters()"/>
-    <div class="filter-chips">
-      <div class="filter-chip active" data-filter="all" onclick="setFilter('all',this)">All</div>
-      <div class="filter-chip f-watched" data-filter="unwatched" onclick="setFilter('unwatched',this)">Not Watched</div>
-      <div class="filter-chip f-watched" data-filter="watched" onclick="setFilter('watched',this)">Watched</div>
-      <div class="filter-chip f-reviewed" data-filter="reviewed" onclick="setFilter('reviewed',this)">Reviewed</div>
-    </div>
-    <div class="toolbar-right">
-      <button class="toolbar-btn" onclick="openTIModal()" style="border-color:var(--accent);color:var(--accent);">⬆ Import Progress</button>
-      <button class="toolbar-btn" id="toggle-expand-btn" onclick="toggleExpand()">Expand All</button>
-    </div>
-  </div>
-
-  <div class="tracker-sep"></div>
-  <div id="tracker-container"></div>
-  <div class="no-results" id="no-results" style="display:none;">No videos match your search.</div>
-
-  
-<!-- ── Import Progress Modal ─────────────────────────── -->
-<div class="ti-overlay" id="ti-overlay" onclick="if(event.target===this)closeTIModal()">
-  <div class="ti-modal">
-    <div class="ti-header">
-      <div class="ti-title">Import Sketchy Pharm Progress</div>
-      <button class="ti-close" onclick="closeTIModal()">×</button>
-    </div>
-    <p class="ti-desc">Paste your spreadsheet data below — Claude AI will match your video names to the tracker and update your watched/reviewed status.</p>
-    <div class="ti-instruction">
-      <strong>How to use:</strong><br>
-      1. Copy your tracking spreadsheet (Cmd+A, Cmd+C)<br>
-      2. Paste it below — any format works (Excel, Google Sheets, CSV)<br>
-      3. AI will match video names and import watched/reviewed status
-      <div class="ti-prompt-box">Your spreadsheet should have video names and columns indicating watched and/or reviewed status (e.g. ✓, x, yes, 1, done, watched, reviewed). Column headers help but aren't required.</div>
-    </div>
-    <textarea class="ti-paste-area" id="ti-paste" placeholder="Paste your spreadsheet data here…"></textarea>
-    <div class="ti-result" id="ti-result"></div>
-    <div class="ti-actions">
-      <button class="ti-btn-cancel" onclick="closeTIModal()">Cancel</button>
-      <button class="ti-btn-import" id="ti-import-btn" onclick="runTIImport()">
-        ✦ Import with AI
-      </button>
-    </div>
-  </div>
-</div>
-
-  <footer class="footer"><div>Step 1 Study Hub · 🌸</div><div id="footer-date"></div></footer>
-</div>
-
-<script src="pharm_categories.js"></script>
-<script src="app.js"></script>
-<script>
-const STORE_KEY = 'sketchy-pharm';
-
-const CATEGORIES = PHARM_CATEGORIES; // loaded from pharm_categories.js
-
-const ACCENTS = ['accent-0','accent-1','accent-2','accent-3','accent-4','accent-5','accent-6','accent-7'];
-let progress = {};
-let activeFilter = 'all';
-
-// load: reads from localStorage (already synced from Firestore on sign-in via app.js)
-function load() { progress = Store.get(STORE_KEY, {}); }
-
-// save: writes to localStorage immediately, then pushes to Firestore in background
-function save() { CloudSync.save(STORE_KEY, progress); }
-
-// Called by app.js after Firebase sync completes — reload progress and re-render
-window.onCloudSyncComplete = function() { load(); renderAll(); };
-function getState(id) { return progress[id] || {w:false,r:false}; }
-
-function toggle(id, field) {
-  const s = getState(id);
-  if (field === 'w') {
-    s.w = !s.w;
-    if (!s.w) s.r = false;
-  } else {
-    s.r = !s.r;
-    if (s.r) s.w = true;
-  }
-  progress[id] = s;
-  save();
-  updateVideoRow(id);
-  updateSummary();
-}
-
-function updateVideoRow(id) {
-  const s = getState(id);
-  const wb = document.getElementById('btn-w-'+id);
-  const rb = document.getElementById('btn-r-'+id);
-  if (wb) wb.className = `icon-btn${s.w?' active-w':''}`;
-  if (rb) rb.className = `icon-btn${s.r?' active-r':''}`;
-  const row = document.getElementById('row-'+id);
-  if (row) row.classList.toggle('hidden-row', !rowVisible(id));
-  if (row) row.classList.toggle('is-reviewed', s.r);
-}
-
-function rowVisible(id) {
-  const s = getState(id);
-  if (activeFilter === 'all') return true;
-  if (activeFilter === 'unwatched') return !s.w;
-  if (activeFilter === 'watched') return s.w;
-  if (activeFilter === 'reviewed') return s.r;
-  return true;
-}
-
-function setFilter(f, el) {
-  activeFilter = f;
-  document.querySelectorAll('.filter-chip').forEach(c => c.classList.remove('active'));
-  el.classList.add('active');
-  applyFilters();
-}
-
-
-function parseMins(t) {
-  t = (t || '').trim().replace(/^~\s*/, '');
-  // MM:SS format (e.g. "7:20", "21:04")
-  const mmss = t.match(/^(\d+):(\d{2})$/);
-  if (mmss) return parseInt(mmss[1]) + parseInt(mmss[2]) / 60;
-  // HH:MM:SS format (e.g. "1:04:01")
-  const hhmmss = t.match(/^(\d+):(\d{2}):(\d{2})$/);
-  if (hhmmss) return parseInt(hhmmss[1]) * 60 + parseInt(hhmmss[2]) + parseInt(hhmmss[3]) / 60;
-  // "2.5 hrs", "1 hr"
-  const hr = t.match(/(\d+\.?\d*)\s*hr/);
-  if (hr) return parseFloat(hr[1]) * 60;
-  // "16min", "14.5min", "51 min"
-  const mn = t.match(/(\d+\.?\d*)\s*min/);
-  if (mn) return parseFloat(mn[1]);
-  return 0;
-}
-function fmtTime(mins) {
-  if (mins < 60) return mins + 'min';
-  const h = Math.floor(mins / 60), m = Math.round(mins % 60);
-  return m > 0 ? h + 'h ' + m + 'min' : h + 'h';
-}
-function totalContentTime() {
-  return CATEGORIES.reduce((sum, cat) => sum + cat.videos.reduce((s, v) => s + parseMins(v.time), 0), 0);
-}
-
-function applyFilters() {
-  const q = document.getElementById('search-input').value.toLowerCase().trim();
-  let anyVisible = false;
-  CATEGORIES.forEach(cat => {
-    let catHasVisible = false;
-    cat.videos.forEach(v => {
-      const matchesSearch = !q || v.name.toLowerCase().includes(q) || v.num.toLowerCase().includes(q);
-      const matchesFilter = rowVisible(v.id);
-      const visible = matchesSearch && matchesFilter;
-      const row = document.getElementById('row-'+v.id);
-      if (row) row.classList.toggle('hidden-row', !visible);
-      if (visible) { catHasVisible = true; anyVisible = true; }
-    });
-    const sec = document.getElementById('sec-'+cat.id);
-    if (sec) sec.style.display = catHasVisible ? '' : 'none';
-    if (catHasVisible && q) {
-      sec.classList.add('open');
-    }
-  });
-  document.getElementById('no-results').style.display = anyVisible ? 'none' : 'block';
-  updateCatHeaders();
-}
-
-function updateCatHeaders() {
-  CATEGORIES.forEach(cat => {
-    const w = cat.videos.filter(v => getState(v.id).w).length;
-    const r = cat.videos.filter(v => getState(v.id).r).length;
-    const total = cat.videos.length;
-    const pct = total ? Math.round((r / total) * 100) : 0;
-    const el = document.getElementById('cat-count-'+cat.id);
-    if (el) el.textContent = `${r} / ${total} reviewed`;
-    const fillW = document.getElementById('cat-fill-w-'+cat.id);
-    const fillR = document.getElementById('cat-fill-r-'+cat.id);
-    const pctW = total ? Math.round((w / total) * 100) : 0;
-    if (fillW) fillW.style.width = pctW+'%';
-    if (fillR) fillR.style.width = pct+'%';
-  });
-}
-
-function updateSummary() {
-  const all = CATEGORIES.flatMap(c=>c.videos);
-  const tw = all.filter(v=>getState(v.id).w).length;
-  const tr = all.filter(v=>getState(v.id).r).length;
-  const total = all.length;
-  const pct = total ? Math.round((tr / total) * 100) : 0;
-  
-  document.getElementById('tot-w').textContent = tw;
-  document.getElementById('tot-r').textContent = tr;
-  document.getElementById('overall-bar-w').style.width = (total ? Math.round((tw / total) * 100) : 0) + '%';
-  document.getElementById('overall-bar-r').style.width = pct + '%';
-  document.getElementById('overall-note').textContent = pct + '% reviewed';
-  const totMins = totalContentTime();
-  document.getElementById('overall-time').textContent = total + ' videos · ' + (totMins > 0 ? fmtTime(totMins) : '');
-  document.getElementById('tot-total').textContent = '';
-  updateCatHeaders();
-}
-
-function toggleExpand() {
-  const sections = document.querySelectorAll('.cat-section');
-  const anyClosed = Array.from(sections).some(s => !s.classList.contains('open'));
-  sections.forEach(s => s.classList.toggle('open', anyClosed));
-  document.getElementById('toggle-expand-btn').textContent = anyClosed ? 'Collapse All' : 'Expand All';
-}
-
-function resetAll() {
-  if (!confirm('Reset ALL progress?')) return;
-  progress = {}; save(); renderAll(); showToast('Progress reset');
-}
-
-function renderAll() {
-  const container = document.getElementById('tracker-container');
-  container.innerHTML = CATEGORIES.map((cat, idx) => {
-    const accent = ACCENTS[idx % ACCENTS.length];
-    const rows = cat.videos.map(v => {
-      const s = getState(v.id);
-      return `<div class="video-row${s.r ? ' is-reviewed' : ''}" id="row-${v.id}">
-        <div class="video-num">${v.num}</div>
-        <div class="video-name">${v.name}</div>
-        <div class="video-time">${v.time}</div>
-        <div class="check-btns">
-          <button id="btn-w-${v.id}" class="icon-btn${s.w?' active-w':''}" onclick="toggle('${v.id}','w')" title="Watched">✔</button>
-          <button id="btn-r-${v.id}" class="icon-btn${s.r?' active-r':''}" onclick="toggle('${v.id}','r')" title="Reviewed">✦</button>
-        </div>
-      </div>`;
-    }).join('');
-
-    return `<div class="cat-section" id="sec-${cat.id}">
-      <div class="cat-header" onclick="this.closest('.cat-section').classList.toggle('open')">
-        <div class="cat-header-left">
-          <div class="cat-accent ${accent}"></div>
-          <div>
-            <div class="cat-name">${cat.name}</div>
-            <div class="cat-why">${cat.why}</div>
-          </div>
-        </div>
-        <div class="cat-header-right">
-          <span class="cat-time-badge">${cat.time}</span><span class="cat-count" id="cat-count-${cat.id}">0 / ${cat.videos.length} reviewed</span>
-          <div class="cat-mini-bar"><div class="cat-mini-fill-w" id="cat-fill-w-${cat.id}" style="width:0%;"></div><div class="cat-mini-fill-r" id="cat-fill-r-${cat.id}" style="width:0%;"></div></div>
-          <button class="cat-chevron" onclick="this.closest('.cat-section').classList.toggle('open');event.stopPropagation()">▼</button>
-        </div>
-      </div>
-      <div class="cat-body">
-        <div class="video-header-row">
-          <div class="video-num">No.</div>
-          <div class="video-name">Video</div>
-          <div class="video-time">Time</div>
-          <div class="check-btns" style="min-width:74px;justify-content:center;">Status</div>
-        </div>
-        ${rows}
-      </div>
-    </div>`;
-  }).join('');
-  updateSummary();
-  applyFilters();
-}
-
-function showToast(msg) {
-  const t = document.getElementById('toast') || (() => {
-    const el = document.createElement('div');
-    el.id='toast'; el.className='toast'; document.body.appendChild(el); return el;
-  })();
-  t.textContent = msg; t.classList.add('show');
-  setTimeout(()=>t.classList.remove('show'), 2000);
-}
-
-document.addEventListener('DOMContentLoaded', () => { load(); renderAll(); });
 </script>
 
 <style>
