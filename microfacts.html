@@ -102,7 +102,11 @@
   color: var(--muted); cursor: pointer; white-space: nowrap; flex-shrink: 0;
   transition: background .15s, color .15s, border-color .15s;
 }
-.group-expand-btn:hover { background: var(--sage-light); color: var(--sage); border-color: var(--sage); }
+.group-expand-btn:hover {
+  background: color-mix(in srgb, var(--cat-color, var(--sage)) 10%, transparent);
+  color: var(--cat-color, var(--sage));
+  border-color: color-mix(in srgb, var(--cat-color, var(--sage)) 50%, transparent);
+}
 
 /* ── Card grid ───────────────────────────────────────────── */
 .cards-grid {
@@ -523,9 +527,9 @@ function renderPanels(filtered, isSearch) {
         <span class="class-label" style="color:${meta.color};border-color:${meta.color}40;background:${meta.color}12;">
           <span style="font-size:7px;">◆</span> ${grp}
         </span>
-        <button class="group-expand-btn" onclick="toggleGroup('${gid}',this)">▼ Expand</button>
+        <button class="group-expand-btn" style="--cat-color:${meta.color}" onclick="toggleGroup('${gid}',this)">▲ Collapse</button>
       </div>
-      <div class="cards-grid" id="${gid}">
+      <div class="cards-grid" id="${gid}" style="display:grid;">
         ${grpOrgs.map(o => renderCard(o, meta.color)).join('')}
       </div>
     </div>`;
