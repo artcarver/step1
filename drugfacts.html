@@ -14,6 +14,48 @@
   --accent-glow:  rgba(196,80,94,.10);
 }
 </style>
+
+<style>
+/* ── SR deck pills ──────────────────────────────────────── */
+.quiz-strip-top {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 10px 16px 0; gap: 12px;
+}
+.quiz-strip-right { display: flex; align-items: center; gap: 10px; flex-shrink: 0; }
+.sr-deck-pills { display: flex; gap: 6px; align-items: center; }
+.sr-deck-pill {
+  display: inline-flex; align-items: center; gap: 5px;
+  padding: 4px 12px; border-radius: 99px;
+  border: 1.5px solid var(--border); background: var(--surface);
+  font-size: 11px; font-weight: 600; color: var(--dim);
+  cursor: pointer; transition: all .15s; white-space: nowrap;
+}
+.sr-deck-pill:hover { border-color: var(--sakura2); color: var(--ink2); }
+.sr-deck-pill.active { background: var(--sakura-light); border-color: var(--sakura2); color: var(--sakura2); }
+.sr-deck-pill.sr-pill-due.active { background: var(--sakura-light); border-color: var(--sakura2); color: var(--sakura2); }
+.sr-deck-pill.sr-pill-new.active { background: var(--gold-light); border-color: var(--gold); color: var(--gold); }
+.sr-deck-pill.sr-pill-all.active { background: var(--surface2); border-color: var(--border2); color: var(--ink2); }
+.sr-pill-num { font-family: 'DM Mono', monospace; font-size: 12px; font-weight: 700; }
+
+/* ── Interval preview on rating buttons ─────────────────── */
+.fc-rate-interval {
+  font-family: 'DM Mono', monospace;
+  font-size: 9px; font-weight: 500;
+  opacity: 0.6; margin-top: 1px; display: block;
+  letter-spacing: 0.3px;
+}
+
+/* ── Easy button ────────────────────────────────────────── */
+.fc-rate-easy {
+  border-color: color-mix(in srgb, var(--sky) 40%, transparent);
+  color: var(--sky);
+}
+.fc-rate-easy:hover { background: color-mix(in srgb, var(--sky) 8%, transparent); border-color: var(--sky); }
+
+/* ── Danger action button ───────────────────────────────── */
+.qsb-action-danger { color: var(--sakura2) !important; opacity: 0.7; }
+.qsb-action-danger:hover { opacity: 1; border-color: var(--sakura2) !important; }
+</style>
 </head>
 <body>
 
@@ -1206,44 +1248,4 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 </script>
 </body>
-</html>/* ── SR deck pills ──────────────────────────────────────── */
-.quiz-strip-top {
-  display: flex; align-items: center; justify-content: space-between;
-  padding: 10px 16px 0; gap: 12px;
-}
-.quiz-strip-right { display: flex; align-items: center; gap: 10px; flex-shrink: 0; }
-.sr-deck-pills { display: flex; gap: 6px; align-items: center; }
-.sr-deck-pill {
-  display: inline-flex; align-items: center; gap: 5px;
-  padding: 4px 12px; border-radius: 99px;
-  border: 1.5px solid var(--border); background: var(--surface);
-  font-size: 11px; font-weight: 600; color: var(--dim);
-  cursor: pointer; transition: all .15s; white-space: nowrap;
-}
-.sr-deck-pill:hover { border-color: var(--sakura2); color: var(--ink2); }
-.sr-deck-pill.active { background: var(--sakura-light); border-color: var(--sakura2); color: var(--sakura2); }
-.sr-deck-pill.sr-pill-due.active { background: var(--sakura-light); border-color: var(--sakura2); color: var(--sakura2); }
-.sr-deck-pill.sr-pill-new.active { background: var(--gold-light); border-color: var(--gold); color: var(--gold); }
-.sr-deck-pill.sr-pill-all.active { background: var(--surface2); border-color: var(--border2); color: var(--ink2); }
-.sr-pill-num { font-family: 'DM Mono', monospace; font-size: 12px; font-weight: 700; }
-
-/* ── Interval preview on rating buttons ─────────────────── */
-.fc-rate-interval {
-  font-family: 'DM Mono', monospace;
-  font-size: 9px; font-weight: 500;
-  opacity: 0.6; margin-top: 1px; display: block;
-  letter-spacing: 0.3px;
-}
-
-/* ── Easy button ────────────────────────────────────────── */
-.fc-rate-easy {
-  border-color: color-mix(in srgb, var(--sky) 40%, transparent);
-  color: var(--sky);
-}
-.fc-rate-easy:hover { background: color-mix(in srgb, var(--sky) 8%, transparent); border-color: var(--sky); }
-
-/* ── Danger action button ───────────────────────────────── */
-.qsb-action-danger { color: var(--sakura2) !important; opacity: 0.7; }
-.qsb-action-danger:hover { opacity: 1; border-color: var(--sakura2) !important; }
-
-
+</html>
