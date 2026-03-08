@@ -32,7 +32,10 @@ function renderCountdown() {
   const days = getDaysRemaining();
   const s = getExamDate();
   if (days === null) {
-    daysEl.textContent = '—'; if (dateEl) dateEl.textContent = 'Not set'; return;
+    daysEl.textContent = '—';
+    if (dateEl) dateEl.innerHTML = '<span class="cd-date-empty">No exam date set</span>';
+    updateNavPill();
+    return;
   }
   daysEl.textContent = days;
   if (dateEl) {

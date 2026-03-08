@@ -155,7 +155,7 @@
     <button onclick="resetAll()" style="background:none;border:none;font-size:11px;color:var(--dim);cursor:pointer;text-decoration:underline;text-underline-offset:2px;padding:4px 8px;" onmouseover="this.style.color='var(--sakura2)'" onmouseout="this.style.color='var(--dim)'">Reset all progress</button>
   </div>
 
-  <footer class="footer"><div>Step 1 Study Hub · ·</div><div id="footer-date"></div></footer>
+  <footer class="footer"><div>Step 1 Study Hub</div><div id="footer-date"></div></footer>
 </div>
 
 <script src="pharm_categories.js"></script>
@@ -277,7 +277,8 @@ function updateSummary() {
   if (barW) barW.style.width = pctW + '%';
   if (barR) barR.style.width = pctR + '%';
   document.getElementById('overall-note').textContent = pctR + '% reviewed';
-  if(document.getElementById('overall-time'))document.getElementById('overall-time').textContent=pctR+'% reviewed';
+  const remMins = Math.round(totMins * (1 - tw/total));
+  if(document.getElementById('overall-time'))document.getElementById('overall-time').textContent = tw > 0 ? fmtTime(Math.round(totMins * tw / total)) + ' watched' : '';
   if(document.getElementById('tot-total'))document.getElementById('tot-total').textContent=total+' videos · '+fmtTime(totMins);
   updateCatHeaders();
 }
@@ -449,12 +450,12 @@ function tiCopyPrompt() {
     btn.textContent = '✓ Copied!';
     btn.classList.add('copied');
     setTimeout(() => { btn.innerHTML = 'Copy'; btn.classList.remove('copied'); }, 2000);
-  });
+  }).catch(() => showToast('Copy failed — please copy manually'));
 }
 
 function runTIImport() {
   const raw = document.getElementById('ti-paste').value.trim();
-  if (!raw) { alert('Please paste the CSV first.'); return; }
+  if (!raw) { showToast('Please paste the CSV first'); return; }
   const btn = document.getElementById('ti-import-btn');
   btn.disabled = true;
   btn.innerHTML = '<span class="ti-spinner"></span> Importing…';

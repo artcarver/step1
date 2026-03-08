@@ -6,7 +6,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet"/>
 <link rel="stylesheet" href="style.css"/>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
-<title>Dashboard · Step 1 Hub</title>
+<title>UWorld · Step 1 Hub</title>
 <style>
 /* ── Dashboard accent ────────────────────────────────────── */
 :root {
@@ -466,7 +466,7 @@ tr.editing-row td { background: var(--dash-light) !important; }
   <!-- ── PAGE HEADER ── -->
   <header class="dash-header">
     <div class="dash-eyebrow">Question Bank · Practice Exams</div>
-    <h1 class="dash-title">Study <em>Dashboard</em></h1>
+    <h1 class="dash-title">UWorld <em>Dashboard</em></h1>
   </header>
 
   <!-- ── SETTINGS MODAL ── -->
@@ -969,6 +969,7 @@ function logEntry() {
   histPage = 0;
   saveAll();
   document.getElementById('log-qs').value = '';
+  document.getElementById('log-name').value = '';
   renderAll();
   showToast('Session logged ✦');
 }
@@ -978,6 +979,7 @@ function cancelEdit() {
   document.getElementById('btn-log-qs').textContent = 'Log ✦';
   document.getElementById('cancel-edit').classList.add('hidden-panel');
   document.getElementById('log-qs').value = '';
+  document.getElementById('log-name').value = '';
 }
 
 function editEntry(id) {
@@ -1020,6 +1022,7 @@ function logExam() {
   saveAll();
   document.getElementById('exam-epc').value = '';
   document.getElementById('exam-epp').value = '';
+  document.getElementById('exam-name').value = '';
   renderAll();
   showToast('Exam logged ✦');
 }
@@ -1081,7 +1084,7 @@ function renderStats() {
   document.getElementById('prog-pct').textContent     = pct + '%';
   document.getElementById('prog-fill').style.width    = pct + '%';
   document.getElementById('prog-sub-left').textContent  = `${done.toLocaleString()} of ${total.toLocaleString()} questions`;
-  document.getElementById('prog-sub-right').textContent = remaining > 0 ? `${remaining.toLocaleString()} remaining` : '🎉 Complete!';
+  document.getElementById('prog-sub-right').textContent = remaining > 0 ? remaining.toLocaleString() + ' remaining' : 'Complete ✦';
 }
 
 function setChartView(view, btn) {
@@ -1200,7 +1203,7 @@ function confirmDelete(id) {
   pendingDeletes.add(id);
   const btn = document.getElementById('del-' + id);
   if (btn) {
-    btn.textContent = 'Sure?'; btn.style.background = 'var(--lavender)'; btn.style.borderColor = 'var(--lavender)'; btn.style.color = '#fff';
+    btn.textContent = 'Sure?'; btn.style.background = 'var(--sakura2)'; btn.style.borderColor = 'var(--sakura2)'; btn.style.color = '#fff';
     setTimeout(() => { pendingDeletes.delete(id); if (btn?.isConnected) { btn.textContent = 'Delete'; btn.style.background = ''; btn.style.borderColor = ''; btn.style.color = ''; } }, 3000);
   }
 }
@@ -1229,7 +1232,7 @@ function confirmDeleteExam(id) {
   pendingExamDeletes.add(id);
   const btn = document.getElementById('exam-del-' + id);
   if (btn) {
-    btn.textContent = 'Sure?'; btn.style.background = 'var(--lavender)'; btn.style.borderColor = 'var(--lavender)'; btn.style.color = '#fff';
+    btn.textContent = 'Sure?'; btn.style.background = 'var(--sakura2)'; btn.style.borderColor = 'var(--sakura2)'; btn.style.color = '#fff';
     setTimeout(() => { pendingExamDeletes.delete(id); if (btn?.isConnected) { btn.textContent = 'Delete'; btn.style.background = ''; btn.style.borderColor = ''; btn.style.color = ''; } }, 3000);
   }
 }
@@ -1287,10 +1290,27 @@ function saveWeak() {
   saveAll(); closeModal('weak-modal'); renderWeak(); showToast('Saved ✦');
 }
 
+const pendingWeakDeletes = new Set();
 function deleteWeak(id) {
-  if (!confirm('Delete this weak point?')) return;
-  weaknesses = weaknesses.filter(w => w.id !== id);
-  saveAll(); renderWeak();
+  if (pendingWeakDeletes.has(id)) {
+    pendingWeakDeletes.delete(id);
+    weaknesses = weaknesses.filter(w => w.id !== id);
+    saveAll(); renderWeak();
+    return;
+  }
+  pendingWeakDeletes.add(id);
+  // Find the delete button and give visual feedback
+  const items = document.querySelectorAll('#weak-list .row-act-btn');
+  items.forEach(btn => {
+    if (btn.getAttribute('onclick') === 'deleteWeak(' + id + ')') {
+      btn.textContent = '?'; btn.style.background = 'var(--sakura2)';
+      btn.style.color = '#fff'; btn.style.borderColor = 'var(--sakura2)';
+      setTimeout(() => {
+        pendingWeakDeletes.delete(id);
+        if (btn?.isConnected) { btn.textContent = '×'; btn.style.background = ''; btn.style.color = ''; btn.style.borderColor = ''; }
+      }, 3000);
+    }
+  });
 }
 
 function showPaceModal() {

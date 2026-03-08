@@ -12,11 +12,7 @@
   --gap: 12px;
 }
 
-/* ══════════════════════════════════════════════════════════
-   SHARED CARD DNA — every card on this page uses this base.
-   Accent color, hover inset, arrow, and lift all derive from
-   --card-accent so every section feels like one system.
-   ══════════════════════════════════════════════════════════ */
+/* ── Shared card base ── */
 .i-card {
   background: var(--surface);
   border: 1px solid var(--border2);
@@ -31,19 +27,19 @@
 }
 .i-card:focus-visible { outline: 2px solid var(--sakura2); outline-offset: 2px; }
 
-/* ── Section label — one style throughout ── */
+/* ── Section label ── */
 .sec-label {
   font-size: 10px; font-weight: 700; letter-spacing: 2.5px;
   text-transform: uppercase; color: var(--muted);
   display: flex; align-items: center; gap: 12px;
-  padding: 28px 0 12px;
+  padding: 20px 0 10px;
 }
-.sec-label:first-of-type { padding-top: 16px; }
+.sec-label:first-of-type { padding-top: 14px; }
 .sec-label::after { content: ''; flex: 1; height: 1px; background: var(--border2); }
 
 /* ── Hero ── */
 .hero {
-  padding: 48px 0 24px;
+  padding: 40px 0 22px;
   display: grid; grid-template-columns: 1fr auto;
   gap: 32px; align-items: center;
 }
@@ -53,29 +49,18 @@
 }
 .hero-title {
   font-family: 'Playfair Display', serif;
-  font-size: clamp(30px, 4vw, 50px);
-  font-weight: 700; line-height: 1.1; color: var(--ink); margin-bottom: 14px;
+  font-size: clamp(28px, 3.6vw, 46px);
+  font-weight: 700; line-height: 1.1; color: var(--ink);
 }
 .hero-title em { font-style: italic; color: var(--sakura2); }
-.hero-tagline { font-size: 15px; color: var(--muted); line-height: 1.65; max-width: 460px; }
 
-/* ── UWorld strip ── */
-.uw-strip {
-  margin-top: 20px;
-  border-color: var(--border2);
-}
-.uw-strip:hover {
-  box-shadow: var(--shadow-md), inset 3px 0 0 0 var(--lavender);
-  border-color: color-mix(in srgb, var(--lavender) 25%, var(--border2));
-}
-
-/* ── Today's High Yield — feat cards ── */
+/* ── Today's High Yield ── */
 .daily-grid { display: grid; grid-template-columns: 1fr 1fr; gap: var(--gap); }
 
 .feat-skeleton {
   border-radius: var(--r-lg); border: 1px solid var(--border2);
   background: var(--surface); padding: 22px 24px;
-  display: flex; flex-direction: column; gap: 10px; min-height: 156px;
+  display: flex; flex-direction: column; gap: 10px; min-height: 150px;
 }
 .skel-line { border-radius: 6px; background: var(--border2); animation: shimmer 1.4s ease-in-out infinite; }
 .skel-accent-drug  { background: var(--sakura-light) !important; }
@@ -104,119 +89,105 @@
 .feat-drug  { --card-accent: var(--sakura2); }
 .feat-micro { --card-accent: var(--sage); }
 
-/* ── Progress Trackers ── */
-.tracker-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--gap); }
-.tracker-card { display: block; padding: 18px 20px 14px; cursor: pointer; }
-.tracker-card:hover .tc-arrow { color: var(--card-accent, var(--sakura2)); }
-.tc-arrow { position: absolute; top: 16px; right: 16px; font-size: 13px; color: var(--dim); transition: color var(--t); }
-.tc-lbl   { font-size: 10px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: var(--muted); margin-bottom: 3px; }
-.tc-title { font-family: 'Playfair Display', serif; font-size: 15px; font-weight: 600; color: var(--ink); margin-bottom: 11px; }
-.tc-stats { display: flex; justify-content: space-between; font-size: 11px; color: var(--muted); margin-top: 8px; }
-.tc-pct   { font-weight: 700; color: var(--card-accent, var(--sakura2)); }
-.card-spharm { --card-accent: var(--sakura2); }
-.card-smicro { --card-accent: var(--sage); }
-.card-pix    { --card-accent: var(--sky); }
+/* ── Tracker bar — 4 clickable segments separated by 1px lines ── */
+.tracker-bar {
+  display: flex;
+  background: var(--surface);
+  border: 1px solid var(--border2);
+  border-radius: var(--r-lg);
+  overflow: hidden;
+  transition: box-shadow var(--t);
+}
+.tracker-bar:hover { box-shadow: var(--shadow-md); }
 
-/* ── Reference cards ── */
-.ref-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: var(--gap); }
+.tr-seg {
+  flex: 1; min-width: 0;
+  padding: 16px 20px 15px;
+  display: flex; flex-direction: column;
+  text-decoration: none; color: inherit;
+  transition: background var(--t);
+}
+.tr-seg:hover {
+  background: color-mix(in srgb, var(--tr-color, var(--lavender)) 5%, var(--surface));
+}
+.tr-seg-uw { flex: 1.25; }
+
+.tr-sep {
+  width: 1px; background: var(--border2);
+  flex-shrink: 0; margin: 10px 0;
+}
+
+.tr-label {
+  font-size: 9px; font-weight: 700; letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--tr-color, var(--lavender));
+  margin-bottom: 10px;
+}
+
+.tr-bar-bg {
+  width: 100%; height: 4px;
+  background: var(--border2); border-radius: 99px;
+  overflow: hidden; position: relative;
+  margin-bottom: 9px;
+}
+.tr-bar-w {
+  position: absolute; height: 100%; border-radius: 99px;
+  background: color-mix(in srgb, var(--tr-color, var(--lavender)) 28%, transparent);
+  transition: width .8s ease;
+}
+.tr-bar-r {
+  position: absolute; height: 100%; border-radius: 99px;
+  background: var(--tr-color, var(--lavender)); opacity: .72;
+  transition: width .8s ease;
+}
+
+.tr-pct {
+  font-family: 'Playfair Display', serif;
+  font-size: 22px; font-weight: 700; line-height: 1;
+  color: var(--ink); margin-bottom: 4px;
+}
+.tr-sub {
+  font-size: 10px; color: var(--muted); line-height: 1.55;
+}
+
+/* ── Reference & Resources ── */
+.ref-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: var(--gap); }
 .tool-card { padding: 20px 22px; display: block; position: relative; }
 .tool-card:hover .card-arrow { color: var(--card-accent, var(--sakura2)); transform: translate(2px,-2px); }
-.card-hdr   { display: none; }
 .card-arrow { position: absolute; top: 16px; right: 16px; font-size: 15px; color: var(--dim); transition: color var(--t), transform var(--t); }
 .card-title { font-family: 'Playfair Display', serif; font-size: 16px; font-weight: 600; color: var(--ink); margin-bottom: 6px; margin-top: 2px; }
 .card-desc  { font-size: 13px; color: var(--ink2); line-height: 1.55; }
 .card-pharm { --card-accent: var(--sakura2); }
 .card-micro { --card-accent: var(--sage); }
-.card-dash  { --card-accent: var(--lavender); }
 
 /* ── Quote ── */
 .motive-band {
-  margin-top: 32px; border-top: 1px solid var(--border2); padding: 28px 0 4px;
-  text-align: center;
+  margin-top: 28px; border-top: 1px solid var(--border2);
+  padding: 24px 0 4px; text-align: center;
 }
 .motive-qt { font-family: 'Playfair Display', serif; font-size: 15px; font-style: italic; color: var(--ink2); line-height: 1.75; }
-.motive-attr { display: block; margin-top: 10px; font-size: 10px; font-weight: 700; letter-spacing: 1.2px; text-transform: uppercase; color: var(--muted); }
+.motive-attr { display: block; margin-top: 8px; font-size: 10px; font-weight: 700; letter-spacing: 1.2px; text-transform: uppercase; color: var(--muted); }
 
 /* ── Responsive ── */
 @media (max-width: 860px) {
-  .hero { grid-template-columns: 1fr; padding: 28px 0 30px; gap: 20px; }
-  .hero-countdown { min-width: unset; max-width: 100%; width: 100%; padding: 22px 24px 18px; text-align: center; align-items: center; }
+  .hero { grid-template-columns: 1fr; padding: 28px 0 18px; gap: 16px; }
+  .hero-countdown { min-width: unset; width: 100%; text-align: center; align-items: center; }
+  .tr-seg { padding: 14px 14px 13px; }
 }
-@media (max-width: 720px) {
+@media (max-width: 640px) {
   .daily-grid { grid-template-columns: 1fr; }
-  .tracker-grid { grid-template-columns: 1fr 1fr; }
-  .motive-band { grid-template-columns: 1fr; }
-  .motive-sep { display: none; }
-}
-@media (max-width: 480px) {
-  .tracker-grid { grid-template-columns: 1fr; }
+  .tracker-bar { flex-wrap: wrap; }
+  .tr-sep { display: none; }
+  .tr-seg { flex: 0 0 50%; border-bottom: 1px solid var(--border2); }
+  .tr-seg:nth-child(odd) { border-right: 1px solid var(--border2); }
+  .tr-seg:nth-last-child(-n+2) { border-bottom: none; }
+  .tr-seg-uw { flex: 0 0 50%; }
 }
 
 /* ── Modal helpers ── */
 .btn-save-sage { background: var(--sage); }
 .pearl-box-sage { background: var(--sage-light); border-color: #b0d4bc; }
 .pearl-box-sage .drug-label { color: var(--sage); }
-
-/* ── Combined Progress Banner ── */
-.progress-banner {
-  display: grid;
-  grid-template-columns: 180px 1px 1fr auto;
-  align-items: center;
-  gap: 0;
-  padding: 18px 20px;
-  text-decoration: none; color: inherit;
-  cursor: pointer;
-}
-.progress-banner:hover { transform: var(--lift); box-shadow: var(--shadow-md); }
-.progress-banner:hover .pb-cta-badge { opacity: 1; color: var(--lavender); }
-
-.pb-uw { display: flex; flex-direction: column; gap: 2px; padding-right: 20px; }
-.pb-uw-eyebrow { font-size: 9px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--muted); margin-bottom: 1px; }
-.pb-uw-pct { font-family: 'Playfair Display', serif; font-size: 32px; font-weight: 700; line-height: 1; color: var(--lavender); }
-.pb-uw-sub { font-size: 10px; color: var(--dim); margin-bottom: 4px; }
-.pb-uw-stats { display: flex; align-items: center; gap: 0; margin-bottom: 7px; }
-.pb-stat { text-align: left; padding: 0 8px 0 0; }
-.pb-stat:last-child { padding-left: 8px; padding-right: 0; }
-.pb-stat-v { font-family: 'Playfair Display', serif; font-size: 14px; font-weight: 700; line-height: 1; color: var(--ink2); }
-.pb-stat-l { font-size: 8px; font-weight: 700; letter-spacing: 1.2px; text-transform: uppercase; color: var(--muted); margin-top: 1px; }
-.pb-stat-div { width: 1px; height: 20px; background: var(--border2); margin: 0 4px; }
-.pb-bar-bg { width: 100%; height: 4px; background: var(--border2); border-radius: 99px; overflow: hidden; }
-.pb-bar-fill { height: 100%; border-radius: 99px; transition: width .9s cubic-bezier(.4,0,.2,1); }
-.pb-fill-uw { background: var(--lavender); opacity: 0.75; }
-
-.pb-divider { width: 1px; background: var(--border2); align-self: stretch; margin: 0 18px; }
-
-.pb-trackers { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
-.pb-tracker {
-  padding: 10px 12px; border-radius: var(--r);
-  border: 1px solid var(--border2);
-  background: var(--bg);
-  transition: border-color var(--t), background var(--t);
-  cursor: pointer;
-}
-.pb-tracker:hover { border-color: color-mix(in srgb, var(--card-accent, var(--sakura2)) 40%, var(--border2)); background: var(--surface); }
-.pb-tr-top { display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: 6px; }
-.pb-tr-labels { display: flex; flex-direction: column; gap: 1px; }
-.pb-tr-sub { font-size: 9px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: var(--muted); }
-.pb-tr-name { font-family: 'Playfair Display', serif; font-size: 13px; font-weight: 600; color: var(--ink); line-height: 1.2; }
-.pb-tr-pct { font-size: 11px; font-weight: 700; color: var(--card-accent, var(--sakura2)); }
-.pb-tr-bar-bg { width: 100%; height: 3px; background: var(--border2); border-radius: 99px; overflow: hidden; position: relative; margin-bottom: 5px; }
-.pb-tr-bar-w { position: absolute; height: 100%; border-radius: 99px; background: color-mix(in srgb, var(--card-accent, var(--sakura2)) 35%, transparent); transition: width .7s ease; }
-.pb-tr-bar-r { position: absolute; height: 100%; border-radius: 99px; background: var(--card-accent, var(--sakura2)); opacity: 0.7; transition: width .7s ease; }
-.pb-tr-stat { font-size: 9px; color: var(--muted); }
-
-.pb-cta-badge {
-  font-size: 9px; font-weight: 700; letter-spacing: 0.8px; text-transform: uppercase;
-  color: var(--muted); white-space: nowrap; padding-left: 16px;
-  opacity: 0; transition: opacity var(--t), color var(--t);
-}
-
-@media (max-width: 860px) {
-  .progress-banner { grid-template-columns: 1fr; gap: 14px; }
-  .pb-divider { display: none; }
-  .pb-cta-badge { display: none; }
-  .pb-uw { padding-right: 0; }
-}
 </style>
 </head>
 <body>
@@ -279,87 +250,61 @@
     </div>
   </div>
 
-  <!-- ── PROGRESS BANNER (UWorld + Trackers combined) ──────── -->
+  <!-- ── PROGRESS ────────────────────────────────────────── -->
   <div class="sec-label">Progress</div>
-  <a class="progress-banner i-card" href="dashboard.html" aria-label="Progress overview — click to open dashboard">
+  <div class="tracker-bar">
 
-    <!-- UWorld left column -->
-    <div class="pb-uw">
-      <div class="pb-uw-eyebrow">UWorld</div>
-      <div class="pb-uw-pct" id="uw-pct">0%</div>
-      <div class="pb-uw-sub" id="uw-sub">Set up in Dashboard</div>
-      <div class="pb-uw-stats">
-        <div class="pb-stat">
-          <div class="pb-stat-v" id="uw-qday">—</div>
-          <div class="pb-stat-l">Q / Day</div>
-        </div>
-        <div class="pb-stat-div"></div>
-        <div class="pb-stat">
-          <div class="pb-stat-v" id="uw-remaining">—</div>
-          <div class="pb-stat-l">Left</div>
-        </div>
+    <!-- UWorld -->
+    <a class="tr-seg tr-seg-uw" href="dashboard.html" style="--tr-color:var(--lavender);" aria-label="UWorld progress — open dashboard">
+      <div class="tr-label">UWorld</div>
+      <div class="tr-bar-bg" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" id="uw-bar-role">
+        <div class="tr-bar-r" id="uw-fill" style="width:0%"></div>
       </div>
-      <div class="pb-bar-wrap">
-        <div class="pb-bar-bg" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" id="uw-bar-role">
-          <div class="pb-bar-fill pb-fill-uw" id="uw-fill" style="width:0%"></div>
-        </div>
+      <div class="tr-pct" id="uw-pct">0%</div>
+      <div class="tr-sub" id="uw-sub">Set up in UWorld Dashboard</div>
+      <div class="tr-sub"><span id="uw-qday">—</span> q/day &middot; <span id="uw-remaining">—</span> left</div>
+    </a>
+
+    <div class="tr-sep"></div>
+
+    <!-- Sketchy Pharm -->
+    <a class="tr-seg" href="sketchy-pharm.html" style="--tr-color:var(--sakura2);" aria-label="Sketchy Pharm progress">
+      <div class="tr-label">Sk. Pharm</div>
+      <div class="tr-bar-bg">
+        <div class="tr-bar-w" id="tp-bar-w" style="width:0%"></div>
+        <div class="tr-bar-r" id="tp-bar-r" style="width:0%"></div>
       </div>
-    </div>
+      <div class="tr-pct" id="tp-pct">0%</div>
+      <div class="tr-sub" id="tp-stats">0 / 101 reviewed</div>
+    </a>
 
-    <div class="pb-divider"></div>
+    <div class="tr-sep"></div>
 
-    <!-- Trackers right column -->
-    <div class="pb-trackers">
-
-      <div class="pb-tracker card-spharm" onclick="event.preventDefault(); window.location='sketchy-pharm.html'">
-        <div class="pb-tr-top">
-          <div class="pb-tr-labels">
-            <span class="pb-tr-sub">Sketchy</span>
-            <span class="pb-tr-name">Pharm</span>
-          </div>
-          <span class="pb-tr-pct" id="tp-pct">0%</span>
-        </div>
-        <div class="pb-tr-bar-bg">
-          <div class="pb-tr-bar-w" id="tp-bar-w" style="width:0%"></div>
-          <div class="pb-tr-bar-r" id="tp-bar-r" style="width:0%"></div>
-        </div>
-        <div class="pb-tr-stat" id="tp-stats">0 / 101 reviewed</div>
+    <!-- Sketchy Micro -->
+    <a class="tr-seg" href="sketchy-micro.html" style="--tr-color:var(--sage);" aria-label="Sketchy Micro progress">
+      <div class="tr-label">Sk. Micro</div>
+      <div class="tr-bar-bg">
+        <div class="tr-bar-w" id="tm-bar-w" style="width:0%"></div>
+        <div class="tr-bar-r" id="tm-bar-r" style="width:0%"></div>
       </div>
+      <div class="tr-pct" id="tm-pct">0%</div>
+      <div class="tr-sub" id="tm-stats">0 / 104 reviewed</div>
+    </a>
 
-      <div class="pb-tracker card-smicro" onclick="event.preventDefault(); window.location='sketchy-micro.html'">
-        <div class="pb-tr-top">
-          <div class="pb-tr-labels">
-            <span class="pb-tr-sub">Sketchy</span>
-            <span class="pb-tr-name">Micro</span>
-          </div>
-          <span class="pb-tr-pct" id="tm-pct">0%</span>
-        </div>
-        <div class="pb-tr-bar-bg">
-          <div class="pb-tr-bar-w" id="tm-bar-w" style="width:0%"></div>
-          <div class="pb-tr-bar-r" id="tm-bar-r" style="width:0%"></div>
-        </div>
-        <div class="pb-tr-stat" id="tm-stats">0 / 104 reviewed</div>
+    <div class="tr-sep"></div>
+
+    <!-- Pixorize -->
+    <a class="tr-seg" href="pixorize.html" style="--tr-color:var(--sky);" aria-label="Pixorize progress">
+      <div class="tr-label">Pixorize</div>
+      <div class="tr-bar-bg">
+        <div class="tr-bar-w" id="tpx-bar-w" style="width:0%"></div>
+        <div class="tr-bar-r" id="tpx-bar-r" style="width:0%"></div>
       </div>
+      <div class="tr-pct" id="tpx-pct">0%</div>
+      <div class="tr-sub" id="tpx-stats">0 / 244 reviewed</div>
+    </a>
 
-      <div class="pb-tracker card-pix" onclick="event.preventDefault(); window.location='pixorize.html'">
-        <div class="pb-tr-top">
-          <div class="pb-tr-labels">
-            <span class="pb-tr-sub">Pixorize</span>
-            <span class="pb-tr-name">Biochem &amp; Immuno</span>
-          </div>
-          <span class="pb-tr-pct" id="tpx-pct">0%</span>
-        </div>
-        <div class="pb-tr-bar-bg">
-          <div class="pb-tr-bar-w" id="tpx-bar-w" style="width:0%"></div>
-          <div class="pb-tr-bar-r" id="tpx-bar-r" style="width:0%"></div>
-        </div>
-        <div class="pb-tr-stat" id="tpx-stats">0 / 244 reviewed</div>
-      </div>
-
-    </div>
-
-    <div class="pb-cta-badge">View Dashboard</div>
-  </a>
+  </div>
 
   <!-- ── REFERENCE ──────────────────────────────────────── -->
   <div class="sec-label">Reference & Resources</div>
@@ -398,24 +343,6 @@
   </footer>
 </div>
 
-<!-- ── DATE MODAL ──────────────────────────────────────────── -->
-<div class="modal-overlay" id="date-modal" role="dialog" aria-modal="true" aria-labelledby="date-modal-title">
-  <div class="modal">
-    <div class="modal-header">
-      <div>
-        <div class="modal-title" id="date-modal-title">Set Exam Date</div>
-        <div class="modal-sub">Your countdown starts here</div>
-      </div>
-      <button class="modal-close-btn" onclick="closeModal('date-modal')" aria-label="Close">&times;</button>
-    </div>
-    <label for="exam-date-input">Exam Date</label>
-    <input type="date" id="exam-date-input"/>
-    <div class="modal-btns">
-      <button class="btn-cancel" onclick="closeModal('date-modal')">Cancel</button>
-      <button class="btn-save" onclick="saveExamDate()">Save Date</button>
-    </div>
-  </div>
-</div>
 
 <!-- ── DRUG OF THE DAY MODAL ──────────────────────────────── -->
 <div class="modal-overlay" id="dotd-modal" role="dialog" aria-modal="true" aria-labelledby="dm-name">
@@ -556,14 +483,18 @@ function renderUWorld() {
   const pct       = Math.min(100, Math.round(done / total * 100));
   const remaining = Math.max(0, total - done);
 
-  document.getElementById('uw-fill').style.width = pct + '%';
-  document.getElementById('uw-pct').textContent  = pct + '%';
-  const remEl = document.getElementById('uw-remaining');
-  if (remEl) remEl.textContent = (total - done).toLocaleString();
-  document.getElementById('uw-bar-role').setAttribute('aria-valuenow', pct);
-  document.getElementById('uw-sub').textContent  = done > 0
-    ? `${done.toLocaleString()} / ${total.toLocaleString()} done`
-    : 'Set up your qbank in Dashboard to track progress';
+  const fillEl = document.getElementById('uw-fill');
+  if (fillEl) fillEl.style.width = pct + '%';
+  const pctEl  = document.getElementById('uw-pct');
+  if (pctEl)  pctEl.textContent  = pct + '%';
+  const remEl  = document.getElementById('uw-remaining');
+  if (remEl)  remEl.textContent  = remaining.toLocaleString();
+  const barRole = document.getElementById('uw-bar-role');
+  if (barRole) barRole.setAttribute('aria-valuenow', pct);
+  const subEl  = document.getElementById('uw-sub');
+  if (subEl)  subEl.textContent  = done > 0
+    ? done.toLocaleString() + ' / ' + total.toLocaleString() + ' done'
+    : 'Set up in UWorld Dashboard';
 
   let needed = null;
   if (uwSet.finishBy) {
@@ -576,7 +507,8 @@ function renderUWorld() {
     const days = getDaysRemaining();
     if (days && days > 0) needed = Math.ceil(remaining / days);
   }
-  document.getElementById('uw-qday').textContent = needed !== null ? needed : '—';
+  const qDayEl = document.getElementById('uw-qday');
+  if (qDayEl) qDayEl.textContent = needed !== null ? needed : '—';
 }
 
 window.onCloudSyncComplete = function() {

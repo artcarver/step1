@@ -154,7 +154,7 @@
     <button onclick="resetAll()" style="background:none;border:none;font-size:11px;color:var(--dim);cursor:pointer;text-decoration:underline;text-underline-offset:2px;padding:4px 8px;" onmouseover="this.style.color='var(--sakura2)'" onmouseout="this.style.color='var(--dim)'">Reset all progress</button>
   </div>
 
-  <footer class="footer"><div>Step 1 Study Hub · ·</div><div id="footer-date"></div></footer>
+  <footer class="footer"><div>Step 1 Study Hub</div><div id="footer-date"></div></footer>
 </div>
 <script src="micro_categories.js"></script>
 <script src="app.js"></script>
@@ -245,7 +245,6 @@ function updateCatHeaders() {
     const w = cat.videos.filter(v => getState(v.id).w).length;
     const r = cat.videos.filter(v => getState(v.id).r).length;
     const total = cat.videos.length;
-    const pct = total ? Math.round((r / total) * 100) : 0;
     const el = document.getElementById('cat-count-'+cat.id);
     if(el) el.textContent = `${r} / ${total} reviewed`;
     const fillW = document.getElementById('cat-fill-w-'+cat.id);
@@ -262,8 +261,6 @@ function updateSummary() {
   const tw = all.filter(v => getState(v.id).w).length;
   const tr = all.filter(v => getState(v.id).r).length;
   const total = all.length;
-  const pct = total ? Math.round((tr / total) * 100) : 0;
-  
   document.getElementById('tot-w').textContent = tw;
   document.getElementById('tot-r').textContent = tr;
   const pctW = total ? Math.round((tw / total) * 100) : 0;
@@ -275,7 +272,7 @@ function updateSummary() {
   document.getElementById('overall-note').textContent = pctR + '% reviewed';
   const totMins=CATEGORIES.reduce((s,c)=>s+c.videos.reduce((vs,v)=>{const m=parseInt(v.time);return vs+(isNaN(m)?0:m);},0),0);
   function fmtTime(m){const h=Math.floor(m/60),mn=m%60;return h?h+'h '+(mn?mn+'min':''):mn+'min';}
-  if(document.getElementById('overall-time'))document.getElementById('overall-time').textContent=pctR+'% reviewed';
+  if(document.getElementById('overall-time'))document.getElementById('overall-time').textContent = tw > 0 ? fmtTime(Math.round(totMins * tw / total)) + ' watched' : '';
   if(document.getElementById('tot-total'))document.getElementById('tot-total').textContent=total+' videos · '+fmtTime(totMins);
   updateCatHeaders();
 }
@@ -291,9 +288,6 @@ function resetAll() { if(!confirm('Reset ALL progress?')) return; progress={}; s
 
 
 function markCat(catId, type) {
-  const CATEGORIES = typeof PHARM_CATEGORIES !== 'undefined' ? PHARM_CATEGORIES
-                   : typeof MICRO_CATEGORIES !== 'undefined' ? MICRO_CATEGORIES
-                   : PIXORIZE_CATEGORIES;
   const cat = CATEGORIES.find(c => c.id === catId);
   if (!cat) return;
   const ids = cat.videos.map(v => v.id);
@@ -442,12 +436,12 @@ function tiCopyPrompt() {
     btn.textContent = '✓ Copied!';
     btn.classList.add('copied');
     setTimeout(() => { btn.innerHTML = 'Copy'; btn.classList.remove('copied'); }, 2000);
-  });
+  }).catch(() => showToast('Copy failed — please copy manually'));
 }
 
 function runTIImport() {
   const raw = document.getElementById('ti-paste').value.trim();
-  if (!raw) { alert('Please paste the CSV first.'); return; }
+  if (!raw) { showToast('Please paste the CSV first'); return; }
   const btn = document.getElementById('ti-import-btn');
   btn.disabled = true;
   btn.innerHTML = '<span class="ti-spinner"></span> Importing…';

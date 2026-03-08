@@ -60,7 +60,7 @@
         ${navLink('sketchy-pharm.html', 'Sk. Pharm')}
         ${navLink('sketchy-micro.html', 'Sk. Micro')}
         ${navLink('pixorize.html', 'Pixorize')}
-        ${navLink('dashboard.html', 'Dashboard')}
+        ${navLink('dashboard.html', 'UWorld')}
       </div>
 
       <div class="nav-right">
@@ -103,24 +103,13 @@
     const label = document.getElementById('auth-btn-label');
     if (!btn) return;
     if (user) {
-      label.textContent = '✔ Signed In';
-      btn.title = 'Sign out';
+      label.textContent = 'Signed In';
+      btn.title = 'Click to sign out';
       btn.classList.add('nav-auth-signed-in');
     } else {
       label.textContent = 'Sign In';
       btn.title = '';
       btn.classList.remove('nav-auth-signed-in');
-    }
-  };
-
-  // Update exam pill countdown
-  window.updateNavPill = function (daysLeft) {
-    const lbl = document.getElementById('nav-exam-label');
-    if (!lbl) return;
-    if (daysLeft !== null && daysLeft !== undefined) {
-      lbl.textContent = daysLeft + 'd remaining';
-    } else {
-      lbl.textContent = 'Set Exam Date';
     }
   };
 })();
