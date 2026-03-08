@@ -162,7 +162,8 @@ const CloudSync = {
     if (!window.db || !window.currentUser) return;
     const keys = [
       'uw-entries', 'uw-exams', 'uw-settings', 'uw-unique-done', 'uw-weaknesses',
-      'sketchy-pharm', 'sketchy-micro', 'pixorize'
+      'sketchy-pharm', 'sketchy-micro', 'pixorize',
+      'df-bookmarks', 'df-sr-data', 'micro-bookmarks', 'goals-state'
     ];
     const uid = currentUser.uid;
 
@@ -233,7 +234,8 @@ window.addEventListener('appAuthStateChanged', async (e) => {
     localStorage.removeItem('step1-exam-date');
     [
       'uw-entries', 'uw-exams', 'uw-settings', 'uw-unique-done', 'uw-weaknesses',
-      'sketchy-pharm', 'sketchy-micro', 'pixorize'
+      'sketchy-pharm', 'sketchy-micro', 'pixorize',
+      'df-bookmarks', 'df-sr-data', 'micro-bookmarks', 'goals-state'
     ].forEach(k => localStorage.removeItem(k));
     renderCountdown();
 
