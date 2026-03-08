@@ -1733,3 +1733,207 @@ mark.search-hl {
   color: var(--dim); font-family: 'DM Mono', monospace;
   margin-right: 8px;
 }
+
+/* ── Tracker Import Modal (ti-*) ───────────────────────────── */
+.ti-overlay {
+  position: fixed; inset: 0; z-index: 300;
+  background: rgba(42,31,26,.45);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  display: none; align-items: center; justify-content: center;
+  padding: 20px;
+}
+.ti-overlay.open { display: flex; }
+
+.ti-modal {
+  background: var(--surface);
+  border-radius: var(--r-xl);
+  width: 100%; max-width: 560px;
+  max-height: 90vh;
+  display: flex; flex-direction: column;
+  box-shadow: var(--shadow-lg);
+  overflow: hidden;
+  animation: tiModalIn .2s ease;
+}
+@keyframes tiModalIn {
+  from { transform: translateY(16px) scale(.97); opacity: 0; }
+  to   { transform: none; opacity: 1; }
+}
+
+.ti-modal-head {
+  padding: 22px 24px 16px;
+  border-bottom: 1px solid var(--border2);
+  flex-shrink: 0;
+}
+.ti-header {
+  display: flex; align-items: center;
+  justify-content: space-between; gap: 12px;
+  margin-bottom: 16px;
+}
+.ti-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 18px; font-weight: 600; color: var(--ink);
+}
+.ti-close {
+  background: none; border: none;
+  font-size: 20px; color: var(--dim);
+  cursor: pointer; line-height: 1;
+  padding: 2px 6px; border-radius: 6px;
+  transition: color var(--t), background var(--t);
+}
+.ti-close:hover { color: var(--ink2); background: var(--surface2); }
+
+/* Step indicator pills */
+.ti-steps {
+  display: flex; align-items: center; gap: 0;
+}
+.ti-step {
+  display: flex; align-items: center; gap: 7px;
+  font-size: 12px; font-weight: 600; color: var(--dim);
+  transition: color .2s;
+}
+.ti-step-dot {
+  width: 22px; height: 22px; border-radius: 50%;
+  border: 2px solid var(--border);
+  background: var(--bg);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 11px; font-weight: 700; color: var(--dim);
+  flex-shrink: 0; transition: all .2s;
+}
+.ti-step-line {
+  flex: 1; height: 2px;
+  background: var(--border2);
+  margin: 0 10px; min-width: 24px;
+}
+
+/* Body & footer */
+.ti-modal-body {
+  padding: 22px 24px;
+  overflow-y: auto; flex: 1;
+}
+.ti-modal-foot {
+  padding: 14px 24px;
+  border-top: 1px solid var(--border2);
+  display: flex; align-items: center;
+  justify-content: space-between;
+  flex-shrink: 0; gap: 8px;
+}
+.ti-foot-right {
+  display: flex; align-items: center; gap: 8px; margin-left: auto;
+}
+
+/* Instruction card */
+.ti-instr-card {
+  background: var(--bg);
+  border: 1px solid var(--border2);
+  border-left: 3px solid var(--tracker-accent, var(--sakura2));
+  border-radius: var(--r);
+  padding: 16px 18px;
+}
+.ti-instr-title {
+  display: block;
+  font-size: 13px; font-weight: 700; color: var(--ink2);
+  margin-bottom: 14px;
+}
+.ti-step-row {
+  display: flex; align-items: flex-start; gap: 12px;
+}
+.ti-step-num {
+  width: 22px; height: 22px; border-radius: 50%;
+  background: var(--tracker-accent, var(--sakura2));
+  color: #fff; font-size: 11px; font-weight: 700;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0; margin-top: 1px;
+}
+.ti-step-text {
+  font-size: 13px; color: var(--ink2); line-height: 1.55; flex: 1;
+}
+
+/* Prompt code block */
+.ti-prompt-wrap {
+  margin-top: 10px; position: relative;
+  background: var(--ink);
+  border-radius: var(--r);
+  overflow: hidden;
+}
+.ti-prompt-code {
+  display: block;
+  font-family: 'DM Mono', monospace;
+  font-size: 11px; line-height: 1.6;
+  color: #e8ddd8;
+  padding: 12px 14px;
+  padding-right: 72px;
+  white-space: pre-wrap; word-break: break-word;
+  max-height: 160px; overflow-y: auto;
+}
+.ti-copy-btn {
+  position: absolute; top: 8px; right: 8px;
+  background: var(--tracker-accent, var(--sakura2));
+  color: #fff; border: none;
+  font-size: 11px; font-weight: 700;
+  padding: 5px 11px; border-radius: 6px;
+  cursor: pointer; transition: opacity .15s;
+}
+.ti-copy-btn:hover { opacity: .85; }
+.ti-copy-btn.copied { background: var(--sage); }
+
+/* Paste area */
+.ti-paste-area {
+  width: 100%; min-height: 130px;
+  padding: 12px 14px;
+  border: 1.5px solid var(--border);
+  border-radius: var(--r);
+  font-family: 'DM Mono', monospace;
+  font-size: 12px; line-height: 1.6;
+  color: var(--ink); background: var(--bg);
+  resize: vertical; outline: none;
+  transition: border-color .15s;
+}
+.ti-paste-area:focus { border-color: var(--tracker-accent, var(--sakura2)); }
+.ti-paste-area::placeholder { color: var(--dim); }
+
+/* Result block */
+.ti-result {
+  background: var(--bg);
+  border: 1px solid var(--border2);
+  border-radius: var(--r);
+  padding: 14px 16px;
+  font-size: 13px; color: var(--ink2);
+  display: none;
+}
+.ti-result.visible { display: block; }
+.ti-result-nums {
+  display: flex; gap: 10px; flex-wrap: wrap;
+  margin-top: 10px;
+}
+.ti-result-num {
+  background: var(--surface);
+  border: 1px solid var(--border2);
+  border-radius: var(--r);
+  padding: 8px 14px; text-align: center;
+  min-width: 72px;
+}
+.ti-result-num strong {
+  display: block;
+  font-family: 'Playfair Display', serif;
+  font-size: 22px; font-weight: 700; line-height: 1;
+  color: var(--tracker-accent, var(--sakura2));
+}
+.ti-result-num span {
+  display: block;
+  font-size: 10px; font-weight: 600; letter-spacing: .8px;
+  text-transform: uppercase; color: var(--muted);
+  margin-top: 3px;
+}
+
+/* Spinner */
+.ti-spinner {
+  display: inline-block;
+  width: 12px; height: 12px;
+  border: 2px solid rgba(255,255,255,.4);
+  border-top-color: #fff;
+  border-radius: 50%;
+  animation: tiSpin .7s linear infinite;
+  vertical-align: middle; margin-right: 6px;
+}
+@keyframes tiSpin { to { transform: rotate(360deg); } }
