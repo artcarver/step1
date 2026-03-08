@@ -296,9 +296,6 @@ function resetAll() {
 
 
 function markCat(catId, type) {
-  const CATEGORIES = typeof PHARM_CATEGORIES !== 'undefined' ? PHARM_CATEGORIES
-                   : typeof MICRO_CATEGORIES !== 'undefined' ? MICRO_CATEGORIES
-                   : PIXORIZE_CATEGORIES;
   const cat = CATEGORIES.find(c => c.id === catId);
   if (!cat) return;
   const ids = cat.videos.map(v => v.id);
@@ -396,7 +393,11 @@ function tiGotoStep1() {
   document.getElementById('ti-step1').style.display = 'block';
   document.getElementById('ti-step2').style.display = 'none';
   document.getElementById('ti-next-btn').style.display = 'block';
-  document.getElementById('ti-import-btn').style.display = 'none';
+  const importBtn = document.getElementById('ti-import-btn');
+  importBtn.style.display = 'none';
+  importBtn.disabled = false;
+  importBtn.innerHTML = 'Import';
+  importBtn.onclick = runTIImport;
   document.getElementById('ti-back-btn').style.display = 'none';
   document.getElementById('ti-ind1').className = 'ti-step active';
   document.getElementById('ti-ind2').className = 'ti-step';
@@ -423,7 +424,7 @@ Match video names from my spreadsheet to this official list (use fuzzy matching 
 ${videoList}
 
 Rules:
-- VideoID = the id from the list above (e.g. au1, cv3)
+- VideoID = the id from the list above (e.g. au1, cv3, bl1)
 - Watched = 1 if watched/started, 0 if not
 - Reviewed = 1 if reviewed/second-pass/Anki done, 0 if not
 - One row per video in list order; no match → 0,0
@@ -447,7 +448,7 @@ function runTIImport() {
   if (!raw) { alert('Please paste the CSV first.'); return; }
   const btn = document.getElementById('ti-import-btn');
   btn.disabled = true;
-  btn.innerHTML = '<span class="ti-spinner"></span> Importing…'; btn.style.display='block';;
+  btn.innerHTML = '<span class="ti-spinner"></span> Importing…';
   try {
     const validIds = new Set();
     PHARM_CATEGORIES.forEach(cat => cat.videos.forEach(v => validIds.add(v.id)));
@@ -481,8 +482,8 @@ function runTIImport() {
       <p style="font-size:12px;color:var(--dim);margin-top:4px;">Existing progress preserved.</p>`;
     resultEl.classList.add('visible');
     btn.disabled = false;
-    btn.innerHTML = 'Done';
-    btn.onclick = closeTIModal;
+    btn.innerHTML = 'Done ✓';
+    btn.onclick = () => { closeTIModal(); btn.onclick = runTIImport; };
     document.getElementById('ti-back-btn').style.display = 'none';
     // Update the import link in the overall card to a quiet "Imported" label
     const lnk = document.getElementById('import-link-btn');
