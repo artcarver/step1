@@ -685,6 +685,7 @@ const DEFAULT_SETTINGS = {
   total: 3661,
   finishBy: '',
   studyDays: [1,2,3,4,5],
+  manualUnique: false,   // true = user has manually overridden uniqueDone
 };
 
 let entries    = [];
@@ -718,6 +719,13 @@ function loadAll() {
     return e;
   });
   if (migrated) CloudSync.save(K.entries, entries);
+}
+
+// Recalculate uniqueDone from entries — but only if user hasn't manually overridden it
+function recalcUniqueDone() {
+  if (!settings.manualUnique) {
+    uniqueDone = entries.reduce((s,e) => s + e.qs, 0);
+  }
 }
 
 // saveAll: writes to localStorage immediately, then syncs each
@@ -802,7 +810,7 @@ function logEntry() {
   }
 
   entries.sort((a,b) => a.date.localeCompare(b.date));
-  uniqueDone = entries.reduce((s,e) => s + e.qs, 0);
+  recalcUniqueDone();
   histPage = 0;
   saveAll();
   document.getElementById('log-qs').value = '';
@@ -832,7 +840,7 @@ function editEntry(id) {
 
 function deleteEntry(id) {
   entries = entries.filter(e => e.id !== id);
-  uniqueDone = entries.reduce((s,e) => s + e.qs, 0);
+  recalcUniqueDone();
   saveAll(); renderAll();
   showToast('Entry deleted');
 }
@@ -1335,7 +1343,9 @@ function saveEditProgress() {
   const val = parseInt(document.getElementById('edit-unique-input').value);
   if (!isNaN(val) && val >= 0) {
     uniqueDone = val;
+    settings.manualUnique = true;  // prevent auto-recalc from overwriting this
     CloudSync.save(K.unique, uniqueDone);
+    CloudSync.save(K.settings, settings);
     renderStats();
     showToast('Progress updated');
   }
@@ -1469,7 +1479,9 @@ function importCSV() {
   });
 
   entries.sort((a,b) => a.date.localeCompare(b.date));
-  uniqueDone = entries.reduce((s,e) => s + e.qs, 0);
+  // Import gives us a fresh complete dataset — reset manual override and recalc
+  settings.manualUnique = false;
+  recalcUniqueDone();
   histPage = 0;
   saveAll();
   renderAll();
