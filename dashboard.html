@@ -170,19 +170,33 @@ tr.editing-row td { background: var(--dash-light) !important; }
 .pace-row:last-child { border: none; }
 .pace-row strong { color: var(--dash); font-family: 'Playfair Display', serif; font-size: 18px; }
 
-/* ── Settings panel ──────────────────────────────────────── */
-.settings-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 12px; margin-bottom: 14px; }
-.settings-field label { display: block; font-size: 10px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: var(--muted); margin-bottom: 5px; }
-.settings-field input, .settings-field select {
-  width: 100%; padding: 9px 12px; border: 1px solid var(--border); border-radius: var(--r);
-  font-size: 14px; background: var(--bg); color: var(--ink); outline: none; font-family: inherit;
+/* ── Settings modal ──────────────────────────────────────── */
+.settings-modal { max-width: 460px; }
+.settings-fields { display: flex; flex-direction: column; gap: 18px; margin-bottom: 6px; }
+.settings-field-full { display: flex; flex-direction: column; gap: 6px; }
+.settings-field-full label {
+  font-size: 10px; font-weight: 700; letter-spacing: 1.2px;
+  text-transform: uppercase; color: var(--muted);
 }
-.day-chips { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 8px; }
+.settings-field-full input[type="number"],
+.settings-field-full input[type="date"] {
+  width: 100%; padding: 11px 14px;
+  border: 1.5px solid var(--border); border-radius: var(--r);
+  font-size: 14px; font-family: inherit;
+  background: var(--surface); color: var(--ink);
+  outline: none; transition: border-color var(--t), box-shadow var(--t);
+}
+.settings-field-full input:focus {
+  border-color: var(--dash);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--dash) 15%, transparent);
+}
+.day-chips { display: flex; gap: 8px; flex-wrap: wrap; }
 .day-chip {
-  padding: 5px 12px; border-radius: 99px; font-size: 12px; font-weight: 600;
-  border: 1px solid var(--border); background: var(--surface2); color: var(--muted);
+  padding: 7px 16px; border-radius: 99px; font-size: 13px; font-weight: 600;
+  border: 1.5px solid var(--border); background: var(--surface); color: var(--muted);
   cursor: pointer; transition: all .15s; user-select: none;
 }
+.day-chip:hover { border-color: var(--dash); color: var(--dash); background: var(--dash-light); }
 .day-chip.active { background: var(--dash); color: #fff; border-color: var(--dash); }
 
 /* ── Session pagination ─────────────────────────────────── */
@@ -280,26 +294,29 @@ tr.editing-row td { background: var(--dash-light) !important; }
   <!-- ── SETTINGS ── -->
 <!-- ── SETTINGS MODAL ── -->
 <div class="modal-overlay" id="settings-modal">
-  <div class="modal" style="max-width:420px;">
+  <div class="modal settings-modal">
     <div class="modal-header">
-      <div class="modal-title">Settings</div>
-      <button onclick="closeModal('settings-modal')" style="background:none;border:none;font-size:22px;cursor:pointer;color:var(--dim);">&times;</button>
-    </div>
-    <div class="settings-grid">
-      <div class="settings-field">
-        <label>Total QBank Size</label>
-        <input type="number" id="setup-total" value="3661" min="1"/>
+      <div>
+        <div class="modal-title">Settings</div>
+        <div class="modal-sub">Configure your QBank goals and study schedule</div>
       </div>
-      <div class="settings-field">
+      <button onclick="closeModal('settings-modal')" style="background:none;border:none;font-size:20px;cursor:pointer;color:var(--dim);line-height:1;padding:4px 6px;border-radius:6px;" onmouseover="this.style.background='var(--surface2)'" onmouseout="this.style.background='none'">&times;</button>
+    </div>
+    <div class="settings-fields">
+      <div class="settings-field-full">
+        <label>Total QBank Size</label>
+        <input type="number" id="setup-total" value="3661" min="1" placeholder="3661"/>
+      </div>
+      <div class="settings-field-full">
         <label>Finish QBank By</label>
         <input type="date" id="setup-finish"/>
       </div>
+      <div class="settings-field-full">
+        <label>Study Days Per Week</label>
+        <div class="day-chips" id="day-chips"></div>
+      </div>
     </div>
-    <div class="settings-field" style="margin-bottom:4px;">
-      <label style="display:block;font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--muted);margin-bottom:8px;">Study Days Per Week</label>
-      <div class="day-chips" id="day-chips"></div>
-    </div>
-    <div class="modal-btns" style="margin-top:20px;">
+    <div class="modal-btns">
       <button class="btn-cancel" onclick="closeModal('settings-modal')">Cancel</button>
       <button class="btn-save" onclick="saveSettings()">Save Settings ✦</button>
     </div>
