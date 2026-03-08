@@ -589,6 +589,7 @@ tr.editing-row td { background: var(--dash-light) !important; }
       <span class="prog-bar-label">QBank Completion</span>
       <div class="prog-bar-actions">
         <button class="btn-ghost" style="padding:5px 14px;font-size:12px;" onclick="openImportModal()">Import history</button>
+        <button class="btn-ghost" id="clear-data-btn" style="padding:5px 14px;font-size:12px;color:var(--sakura2);border-color:var(--sakura2);" onclick="confirmClearData()">Clear data</button>
         <span class="prog-bar-pct" id="prog-pct">0%</span>
       </div>
     </div>
@@ -1468,6 +1469,34 @@ function resetImport() {
   document.getElementById('import-do-btn').onclick = importCSV;
   document.getElementById('import-do-btn').textContent = 'Import';
   document.getElementById('import-cancel-btn').style.display = 'block';
+}
+
+function confirmClearData() {
+  const btn = document.getElementById('clear-data-btn');
+  if (!btn) return;
+  if (btn.dataset.confirm !== '1') {
+    btn.textContent = 'Tap again to confirm';
+    btn.dataset.confirm = '1';
+    setTimeout(() => { btn.textContent = 'Clear data'; delete btn.dataset.confirm; }, 3000);
+    return;
+  }
+  // Clear all UWorld data
+  entries = []; exams = []; uniqueDone = 0;
+  settings.manualUnique = false;
+  Store.set(K.entries,  []);
+  Store.set(K.exams,    []);
+  Store.set(K.unique,   0);
+  Store.set(K.weak,     []);
+  if (typeof CloudSync !== 'undefined') {
+    CloudSync.save(K.entries,  []);
+    CloudSync.save(K.exams,    []);
+    CloudSync.save(K.unique,   0);
+    CloudSync.save(K.weak,     []);
+  }
+  btn.textContent = 'Clear data';
+  delete btn.dataset.confirm;
+  renderAll();
+  showToast('All UWorld data cleared');
 }
 
 function renderAll() { renderStats(); renderChart(); renderHistory(); renderExams(); renderWeak(); }

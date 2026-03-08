@@ -439,6 +439,7 @@ function tiGotoStep1() {
   document.getElementById('ti-ind2').className = 'ti-step';
 }
 function tiGotoStep2() {
+  tiSwitchTab('paste');
   document.getElementById('ti-step1').style.display = 'none';
   document.getElementById('ti-step2').style.display = 'flex';
   document.getElementById('ti-next-btn').style.display = 'none';
@@ -477,6 +478,36 @@ function tiCopyPrompt() {
     btn.classList.add('copied');
     setTimeout(() => { btn.innerHTML = 'Copy'; btn.classList.remove('copied'); }, 2000);
   }).catch(() => showToast('Copy failed — please copy manually'));
+}
+
+function tiSwitchTab(tab) {
+  const pastePanel = document.getElementById('ti-panel-paste');
+  const filePanel  = document.getElementById('ti-panel-file');
+  const pasteTab   = document.getElementById('ti-tab-paste');
+  const fileTab    = document.getElementById('ti-tab-file');
+  if (tab === 'paste') {
+    pastePanel.style.display = 'flex'; filePanel.style.display = 'none';
+    pasteTab.style.background = 'color-mix(in srgb, var(--accent) 12%, var(--surface))';
+    pasteTab.style.borderColor = 'var(--accent)';
+    fileTab.style.background = 'var(--surface)'; fileTab.style.borderColor = 'var(--border2)';
+  } else {
+    pastePanel.style.display = 'none'; filePanel.style.display = 'flex';
+    fileTab.style.background = 'color-mix(in srgb, var(--accent) 12%, var(--surface))';
+    fileTab.style.borderColor = 'var(--accent)';
+    pasteTab.style.background = 'var(--surface)'; pasteTab.style.borderColor = 'var(--border2)';
+  }
+}
+
+function tiLoadFile(input) {
+  const file = input.files[0];
+  if (!file) return;
+  const nameEl = document.getElementById('ti-file-name');
+  nameEl.textContent = file.name; nameEl.style.display = 'block';
+  const reader = new FileReader();
+  reader.onload = e => {
+    document.getElementById('ti-paste').value = e.target.result;
+  };
+  reader.readAsText(file);
 }
 
 function runTIImport() {

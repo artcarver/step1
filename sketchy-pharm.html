@@ -126,11 +126,30 @@
 
       <!-- Step 2 -->
       <div id="ti-step2" style="display:none;flex-direction:column;gap:12px;">
-        <div class="ti-step-row" style="margin-bottom:4px;">
-          <div class="ti-step-num">3</div>
-          <div class="ti-step-text"><strong>Paste the CSV output</strong> from the AI here:</div>
+        <div style="display:flex;gap:8px;margin-bottom:2px;">
+          <button class="ti-tab active" id="ti-tab-paste" onclick="tiSwitchTab('paste')" style="flex:1;padding:8px;font-size:12px;font-weight:600;border:1px solid var(--border2);border-radius:8px;background:var(--accent-light,var(--surface));cursor:pointer;transition:all .15s;">Paste CSV</button>
+          <button class="ti-tab" id="ti-tab-file" onclick="tiSwitchTab('file')" style="flex:1;padding:8px;font-size:12px;font-weight:600;border:1px solid var(--border2);border-radius:8px;background:var(--surface);cursor:pointer;transition:all .15s;">Upload File</button>
         </div>
-        <textarea class="ti-paste-area" id="ti-paste" placeholder="au1,1,1&#10;au2,1,0&#10;cv1,0,0&#10;..."></textarea>
+        <div id="ti-panel-paste">
+          <div class="ti-step-row" style="margin-bottom:8px;">
+            <div class="ti-step-num">3</div>
+            <div class="ti-step-text"><strong>Paste the CSV output</strong> from the AI here:</div>
+          </div>
+          <textarea class="ti-paste-area" id="ti-paste" placeholder="au1,1,1&#10;au2,1,0&#10;cv1,0,0&#10;..."></textarea>
+        </div>
+        <div id="ti-panel-file" style="display:none;flex-direction:column;gap:10px;">
+          <div class="ti-step-row" style="margin-bottom:4px;">
+            <div class="ti-step-num">3</div>
+            <div class="ti-step-text"><strong>Upload a CSV file</strong> directly — no AI needed if your spreadsheet is already in the right format.</div>
+          </div>
+          <label id="ti-file-label" style="display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;border:2px dashed var(--border2);border-radius:10px;padding:28px 16px;cursor:pointer;transition:border-color .15s;" onmouseover="this.style.borderColor='var(--accent)'" onmouseout="this.style.borderColor='var(--border2)'">
+            <span style="font-size:22px;">📄</span>
+            <span style="font-size:13px;font-weight:600;color:var(--ink);">Click to choose a CSV file</span>
+            <span style="font-size:11px;color:var(--muted);">Must be a .csv file with columns: id, watched, reviewed</span>
+            <input type="file" accept=".csv,.txt" id="ti-file-input" style="display:none;" onchange="tiLoadFile(this)">
+          </label>
+          <div id="ti-file-name" style="font-size:12px;color:var(--muted);text-align:center;display:none;"></div>
+        </div>
         <div class="ti-result" id="ti-result"></div>
       </div>
 
@@ -413,6 +432,7 @@ function tiGotoStep1() {
   document.getElementById('ti-ind2').className = 'ti-step';
 }
 function tiGotoStep2() {
+  tiSwitchTab('paste');
   document.getElementById('ti-step1').style.display = 'none';
   document.getElementById('ti-step2').style.display = 'flex';
   document.getElementById('ti-next-btn').style.display = 'none';
@@ -451,6 +471,36 @@ function tiCopyPrompt() {
     btn.classList.add('copied');
     setTimeout(() => { btn.innerHTML = 'Copy'; btn.classList.remove('copied'); }, 2000);
   }).catch(() => showToast('Copy failed — please copy manually'));
+}
+
+function tiSwitchTab(tab) {
+  const pastePanel = document.getElementById('ti-panel-paste');
+  const filePanel  = document.getElementById('ti-panel-file');
+  const pasteTab   = document.getElementById('ti-tab-paste');
+  const fileTab    = document.getElementById('ti-tab-file');
+  if (tab === 'paste') {
+    pastePanel.style.display = 'flex'; filePanel.style.display = 'none';
+    pasteTab.style.background = 'color-mix(in srgb, var(--accent) 12%, var(--surface))';
+    pasteTab.style.borderColor = 'var(--accent)';
+    fileTab.style.background = 'var(--surface)'; fileTab.style.borderColor = 'var(--border2)';
+  } else {
+    pastePanel.style.display = 'none'; filePanel.style.display = 'flex';
+    fileTab.style.background = 'color-mix(in srgb, var(--accent) 12%, var(--surface))';
+    fileTab.style.borderColor = 'var(--accent)';
+    pasteTab.style.background = 'var(--surface)'; pasteTab.style.borderColor = 'var(--border2)';
+  }
+}
+
+function tiLoadFile(input) {
+  const file = input.files[0];
+  if (!file) return;
+  const nameEl = document.getElementById('ti-file-name');
+  nameEl.textContent = file.name; nameEl.style.display = 'block';
+  const reader = new FileReader();
+  reader.onload = e => {
+    document.getElementById('ti-paste').value = e.target.result;
+  };
+  reader.readAsText(file);
 }
 
 function runTIImport() {
