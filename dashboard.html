@@ -278,10 +278,12 @@ tr.editing-row td { background: var(--dash-light) !important; }
   </header>
 
   <!-- ── SETTINGS ── -->
-  <div class="dash-section" id="settings-section" style="display:none;">
-    <div class="dash-section-title">
-      Settings
-      <button class="btn-ghost" onclick="toggleSettings()">Close</button>
+<!-- ── SETTINGS MODAL ── -->
+<div class="modal-overlay" id="settings-modal">
+  <div class="modal" style="max-width:420px;">
+    <div class="modal-header">
+      <div class="modal-title">Settings</div>
+      <button onclick="closeModal('settings-modal')" style="background:none;border:none;font-size:22px;cursor:pointer;color:var(--dim);">&times;</button>
     </div>
     <div class="settings-grid">
       <div class="settings-field">
@@ -293,12 +295,16 @@ tr.editing-row td { background: var(--dash-light) !important; }
         <input type="date" id="setup-finish"/>
       </div>
     </div>
-    <div class="settings-field" style="margin-bottom:14px;">
-      <label style="display:block;font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--muted);margin-bottom:4px;">Study Days Per Week</label>
+    <div class="settings-field" style="margin-bottom:4px;">
+      <label style="display:block;font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--muted);margin-bottom:8px;">Study Days Per Week</label>
       <div class="day-chips" id="day-chips"></div>
     </div>
-    <button class="log-btn" onclick="saveSettings()">Save Settings ✦</button>
+    <div class="modal-btns" style="margin-top:20px;">
+      <button class="btn-cancel" onclick="closeModal('settings-modal')">Cancel</button>
+      <button class="btn-save" onclick="saveSettings()">Save Settings ✦</button>
+    </div>
   </div>
+</div>
 
   <!-- ── LOG ENTRY ── -->
   <div class="dash-section">
@@ -365,12 +371,7 @@ tr.editing-row td { background: var(--dash-light) !important; }
       <div class="prog-stat-num" id="stat-done">0</div>
       <div class="prog-stat-lbl">Questions Done</div>
       <button class="edit-prog-btn" onclick="promptEditProgress()" style="margin-top:5px;font-size:10px;display:block;">✎ Edit</button>
-      <button id="qdone-info-btn" onclick="toggleQDoneInfo()" title="Why doesn't this match UWorld?" style="position:absolute;top:8px;right:10px;width:16px;height:16px;border-radius:50%;background:var(--border2);border:none;cursor:pointer;font-size:10px;font-weight:700;color:var(--muted);line-height:1;display:flex;align-items:center;justify-content:center;" onmouseover="this.style.background='var(--dash-light)';this.style.color='var(--dash)'" onmouseout="this.style.background='var(--border2)';this.style.color='var(--muted)'">?</button>
-      <div id="qdone-info-popover" style="display:none;position:absolute;top:100%;left:50%;transform:translateX(-50%);margin-top:8px;width:240px;background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:12px 14px;font-size:12px;color:var(--ink2);line-height:1.6;box-shadow:var(--shadow-md);z-index:100;text-align:left;">
-        <strong style="display:block;margin-bottom:4px;color:var(--ink);font-size:12px;">Unique vs. total questions</strong>
-        This counts total questions logged across all sessions — not unique. If you redo a block, those count again. Use <button onclick="toggleQDoneInfo();promptEditProgress()" style="background:none;border:none;padding:0;color:var(--dash);font-size:12px;font-weight:600;cursor:pointer;text-decoration:underline;">Edit</button> to set the exact unique count.
-        <button onclick="toggleQDoneInfo()" style="display:block;margin-top:8px;background:none;border:none;font-size:11px;color:var(--dash);cursor:pointer;padding:0;font-weight:600;">Got it</button>
-      </div>
+      <button onclick="openModal('qdone-info-modal')" title="Why doesn't this match UWorld?" style="position:absolute;top:8px;right:10px;width:16px;height:16px;border-radius:50%;background:var(--border2);border:none;cursor:pointer;font-size:10px;font-weight:700;color:var(--muted);line-height:1;display:flex;align-items:center;justify-content:center;" onmouseover="this.style.background='var(--dash-light)';this.style.color='var(--dash)'" onmouseout="this.style.background='var(--border2)';this.style.color='var(--muted)'">?</button>
     </div>
     <div class="prog-stat">
       <div class="prog-stat-num" id="stat-remain" style="color:var(--muted);">0</div>
@@ -383,8 +384,8 @@ tr.editing-row td { background: var(--dash-light) !important; }
     <div class="prog-stat" style="position:relative;">
       <div class="prog-stat-num" id="stat-needed" style="color:var(--dash);">—</div>
       <div class="prog-stat-lbl">Q / Day Needed</div>
-      <button class="edit-prog-btn" onclick="showPaceModal()" style="margin-top:5px;font-size:10px;display:block;">✎ Calc</button>
-      <button onclick="toggleSettings()" id="settings-gear-btn" title="Settings" style="position:absolute;top:8px;right:10px;background:none;border:none;cursor:pointer;font-size:14px;color:var(--muted);line-height:1;padding:2px;" onmouseover="this.style.color='var(--dash)'" onmouseout="this.style.color='var(--muted)'">⚙</button>
+      <button class="edit-prog-btn" onclick="toggleSettings()" style="margin-top:5px;font-size:10px;display:block;">⚙ Settings</button>
+      <button onclick="openModal('pace-modal');showPaceModal()" title="See pace breakdown" style="position:absolute;top:8px;right:10px;width:16px;height:16px;border-radius:50%;background:var(--border2);border:none;cursor:pointer;font-size:10px;font-weight:700;color:var(--muted);line-height:1;display:flex;align-items:center;justify-content:center;" onmouseover="this.style.background='var(--dash-light)';this.style.color='var(--dash)'" onmouseout="this.style.background='var(--border2)';this.style.color='var(--muted)'">?</button>
     </div>
   </div>
 
@@ -404,27 +405,6 @@ tr.editing-row td { background: var(--dash-light) !important; }
     </div>
   </div>
 
-  <div class="dash-section" id="settings-section" style="display:none;">
-    <div class="dash-section-title">
-      Settings
-      <button class="btn-ghost" onclick="toggleSettings()">Close</button>
-    </div>
-    <div class="settings-grid">
-      <div class="settings-field">
-        <label>Total QBank Size</label>
-        <input type="number" id="setup-total" value="3661" min="1"/>
-      </div>
-      <div class="settings-field">
-        <label>Finish QBank By</label>
-        <input type="date" id="setup-finish"/>
-      </div>
-    </div>
-    <div class="settings-field" style="margin-bottom:14px;">
-      <label style="display:block;font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--muted);margin-bottom:4px;">Study Days Per Week</label>
-      <div class="day-chips" id="day-chips"></div>
-    </div>
-    <button class="log-btn" onclick="saveSettings()">Save Settings ✦</button>
-  </div>
 
   <!-- ── CHARTS ── -->
   <div class="dash-section">
@@ -472,6 +452,23 @@ tr.editing-row td { background: var(--dash-light) !important; }
   </div>
 
   <footer class="footer"><div>Step 1 Study Hub</div><div id="footer-date"></div></footer>
+</div>
+
+<!-- ── QDONE INFO MODAL ── -->
+<div class="modal-overlay" id="qdone-info-modal">
+  <div class="modal" style="max-width:360px;">
+    <div class="modal-header">
+      <div class="modal-title">About This Number</div>
+      <button onclick="closeModal('qdone-info-modal')" style="background:none;border:none;font-size:22px;cursor:pointer;color:var(--dim);">&times;</button>
+    </div>
+    <div class="modal-sub" style="margin-bottom:16px;">Why doesn't this match your UWorld total?</div>
+    <p style="font-size:13px;color:var(--ink2);line-height:1.7;margin:0 0 14px;">This counts <strong>total questions logged</strong> across all sessions — not unique questions. If you redo a block, those questions count again each time.</p>
+    <p style="font-size:13px;color:var(--ink2);line-height:1.7;margin:0 0 20px;">To show your true unique question count, use <strong>Edit</strong> to manually enter the exact number from UWorld.</p>
+    <div class="modal-btns">
+      <button class="btn-cancel" onclick="closeModal('qdone-info-modal')">Got it</button>
+      <button class="btn-save" onclick="closeModal('qdone-info-modal');promptEditProgress()">✎ Edit Progress</button>
+    </div>
+  </div>
 </div>
 
 <!-- ── PACE MODAL ── -->
@@ -709,16 +706,10 @@ window.onCloudSyncComplete = function() {
 
 // ── Settings ──────────────────────────────────────────────
 function toggleSettings() {
-  const s = document.getElementById('settings-section');
-  const isHidden = s.style.display === 'none' || !s.style.display;
-  if (isHidden) {
-    document.getElementById('setup-total').value = settings.total;
-    document.getElementById('setup-finish').value = settings.finishBy;
-    renderDayChips();
-    s.style.display = 'block';
-  } else {
-    s.style.display = 'none';
-  }
+  document.getElementById('setup-total').value = settings.total;
+  document.getElementById('setup-finish').value = settings.finishBy;
+  renderDayChips();
+  openModal('settings-modal');
 }
 
 function renderDayChips() {
@@ -742,7 +733,7 @@ function saveSettings() {
   settings.total    = parseInt(document.getElementById('setup-total').value) || 3661;
   settings.finishBy = document.getElementById('setup-finish').value;
   CloudSync.save(K.settings, settings);
-  document.getElementById('settings-section').style.display = 'none';
+  closeModal('settings-modal');
   renderAll();
   showToast('Settings saved ✦');
 }
@@ -1289,7 +1280,7 @@ function showPaceModal() {
 
   html += '</div>';
   document.getElementById('pace-content').innerHTML = html;
-  openModal('pace-modal');
+  // modal opened via onclick
 }
 
 function paceRow(label, val, color = 'var(--ink)') {
@@ -1486,18 +1477,7 @@ function resetImport() {
 }
 
 
-function toggleQDoneInfo() {
-  const p = document.getElementById('qdone-info-popover');
-  if (p) p.style.display = p.style.display === 'none' ? 'block' : 'none';
-}
-// Close popover on outside click
-document.addEventListener('click', function(e) {
-  const pop = document.getElementById('qdone-info-popover');
-  const btn = document.getElementById('qdone-info-btn');
-  if (pop && pop.style.display !== 'none' && !pop.contains(e.target) && e.target !== btn) {
-    pop.style.display = 'none';
-  }
-});
+
 // ── Master render ─────────────────────────────────────────
 function renderAll() {
   renderStats();
