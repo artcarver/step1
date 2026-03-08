@@ -38,9 +38,7 @@
   display: flex; align-items: center; gap: 12px;
   padding: 28px 0 12px;
 }
-.sec-label:first-of-type {
-  padding-top: 16px;
-}
+.sec-label:first-of-type { padding-top: 16px; }
 .sec-label::after { content: ''; flex: 1; height: 1px; background: var(--border2); }
 
 /* ── Hero ── */
@@ -121,12 +119,15 @@
 
 /* ── Reference cards ── */
 .ref-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: var(--gap); }
-.tool-card { padding: 20px 22px; display: block; }
+.tool-card { padding: 20px 22px; display: block; position: relative; }
 .tool-card:hover .card-arrow { color: var(--card-accent, var(--sakura2)); transform: translate(2px,-2px); }
-.card-hdr   { display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px; }
-.card-arrow { font-size: 15px; color: var(--dim); transition: color var(--t), transform var(--t); }
-.card-title { font-family: 'Playfair Display', serif; font-size: 16px; font-weight: 600; color: var(--ink); margin-bottom: 6px; }
+.card-hdr   { display: none; }
+.card-arrow { position: absolute; top: 16px; right: 16px; font-size: 15px; color: var(--dim); transition: color var(--t), transform var(--t); }
+.card-title { font-family: 'Playfair Display', serif; font-size: 16px; font-weight: 600; color: var(--ink); margin-bottom: 6px; margin-top: 2px; }
 .card-desc  { font-size: 13px; color: var(--ink2); line-height: 1.55; }
+.card-pharm { --card-accent: var(--sakura2); }
+.card-micro { --card-accent: var(--sage); }
+.card-dash  { --card-accent: var(--lavender); }
 
 /* ── Dashboard hover preview ── */
 .dash-preview-card { position: relative; }
@@ -221,34 +222,6 @@
     </div>
   </header>
 
-  <!-- ── UWORLD PROGRESS (always visible) ──────────────── -->
-  <a class="uw-strip i-card" id="uw-strip" href="dashboard.html" aria-label="UWorld progress — click to open dashboard">
-    <div class="uw-top-row">
-      <div class="uw-left">
-        <div class="uw-eyebrow">UWorld Progress</div>
-        <div class="uw-big-pct" id="uw-pct">0%</div>
-        <div class="uw-sub" id="uw-sub">0 / 3,661 done</div>
-      </div>
-      <div class="uw-stats">
-        <div class="uw-stat">
-          <div class="uw-stat-v" id="uw-qday">—</div>
-          <div class="uw-stat-l">Q / Day</div>
-        </div>
-        <div class="uw-stat-div"></div>
-        <div class="uw-stat">
-          <div class="uw-stat-v" id="uw-remaining">—</div>
-          <div class="uw-stat-l">Remaining</div>
-        </div>
-      </div>
-      <div class="uw-cta-badge">View Dashboard</div>
-    </div>
-    <div class="uw-bar-wrap">
-      <div class="uw-bg" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" id="uw-bar-role">
-        <div class="uw-fill" id="uw-fill" style="width:0%"></div>
-      </div>
-    </div>
-  </a>
-
   <!-- ── TODAY'S HIGH YIELD ─────────────────────────────── -->
   <div class="sec-label">Today's High Yield</div>
   <div class="daily-grid">
@@ -281,6 +254,34 @@
       <div class="feat-cta">View full card ↗</div>
     </div>
   </div>
+
+  <!-- ── UWORLD PROGRESS (always visible) ──────────────── -->
+  <a class="uw-strip i-card" id="uw-strip" href="dashboard.html" aria-label="UWorld progress — click to open dashboard">
+    <div class="uw-top-row">
+      <div class="uw-left">
+        <div class="uw-eyebrow">UWorld Progress</div>
+        <div class="uw-big-pct" id="uw-pct">0%</div>
+        <div class="uw-sub" id="uw-sub">0 / 3,661 done</div>
+      </div>
+      <div class="uw-stats">
+        <div class="uw-stat">
+          <div class="uw-stat-v" id="uw-qday">—</div>
+          <div class="uw-stat-l">Q / Day</div>
+        </div>
+        <div class="uw-stat-div"></div>
+        <div class="uw-stat">
+          <div class="uw-stat-v" id="uw-remaining">—</div>
+          <div class="uw-stat-l">Remaining</div>
+        </div>
+      </div>
+      <div class="uw-cta-badge">View Dashboard</div>
+    </div>
+    <div class="uw-bar-wrap">
+      <div class="uw-bg" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" id="uw-bar-role">
+        <div class="uw-fill" id="uw-fill" style="width:0%"></div>
+      </div>
+    </div>
+  </a>
 
   <!-- ── PROGRESS TRACKERS ──────────────────────────────── -->
   <div class="sec-label">Progress Trackers</div>
@@ -327,23 +328,17 @@
   <div class="sec-label">Reference</div>
   <div class="ref-grid" style="grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));">
     <a class="tool-card i-card card-pharm" href="drugfacts.html">
-      <div class="card-hdr">
-        <span class="card-arrow" aria-hidden="true">↗</span>
-      </div>
+      <span class="card-arrow" aria-hidden="true">↗</span>
       <div class="card-title">Drug Facts</div>
       <p class="card-desc">Complete Step 1 pharmacology — mechanism, side effects, clinical pearls, and tier ratings across all systems.</p>
     </a>
     <a class="tool-card i-card card-micro" href="microfacts.html">
-      <div class="card-hdr">
-        <span class="card-arrow" aria-hidden="true">↗</span>
-      </div>
+      <span class="card-arrow" aria-hidden="true">↗</span>
       <div class="card-title">Micro Facts</div>
       <p class="card-desc">Bacteria, viruses, fungi, and parasites — virulence factors, diseases, treatments, and high-yield pearls.</p>
     </a>
     <a class="tool-card i-card card-dash dash-preview-card" href="dashboard.html" id="dash-preview-card">
-      <div class="card-hdr">
-        <span class="card-arrow" aria-hidden="true">↗</span>
-      </div>
+      <span class="card-arrow" aria-hidden="true">↗</span>
       <div class="card-title">Dashboard</div>
       <p class="card-desc">Log UWorld sessions, track practice exam scores, find weak points, and calculate your daily question goal.</p>
       <div class="dash-hover-preview" id="dash-hover-preview">
