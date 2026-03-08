@@ -361,9 +361,15 @@ tr.editing-row td { background: var(--dash-light) !important; }
 
   <!-- ── PROGRESS STATS ── -->
   <div class="prog-strip">
-    <div class="prog-stat">
+    <div class="prog-stat" style="position:relative;">
       <div class="prog-stat-num" id="stat-done">0</div>
       <div class="prog-stat-lbl">Questions Done</div>
+      <button id="qdone-info-btn" onclick="toggleQDoneInfo()" title="Why doesn't this match UWorld?" style="position:absolute;top:8px;right:10px;width:16px;height:16px;border-radius:50%;background:var(--border2);border:none;cursor:pointer;font-size:10px;font-weight:700;color:var(--muted);line-height:1;display:flex;align-items:center;justify-content:center;" onmouseover="this.style.background='var(--dash-light)';this.style.color='var(--dash)'" onmouseout="this.style.background='var(--border2)';this.style.color='var(--muted)'">?</button>
+      <div id="qdone-info-popover" style="display:none;position:absolute;top:100%;left:50%;transform:translateX(-50%);margin-top:8px;width:240px;background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:12px 14px;font-size:12px;color:var(--ink2);line-height:1.6;box-shadow:var(--shadow-md);z-index:100;text-align:left;">
+        <strong style="display:block;margin-bottom:4px;color:var(--ink);font-size:12px;">Unique vs. total questions</strong>
+        This counts the total questions logged across all sessions — not unique questions. If you redid a test block, those count again. To track unique questions completed, use <em>Edit Progress</em> to set the exact number.
+        <button onclick="toggleQDoneInfo()" style="display:block;margin-top:8px;background:none;border:none;font-size:11px;color:var(--dash);cursor:pointer;padding:0;font-weight:600;">Got it</button>
+      </div>
     </div>
     <div class="prog-stat">
       <div class="prog-stat-num" id="stat-remain" style="color:var(--muted);">0</div>
@@ -373,9 +379,12 @@ tr.editing-row td { background: var(--dash-light) !important; }
       <div class="prog-stat-num" id="stat-streak" style="color:var(--dash);">0</div>
       <div class="prog-stat-lbl">Day Streak</div>
     </div>
-    <div class="prog-stat clickable" onclick="showPaceModal()" title="Click for pace calculator">
-      <div class="prog-stat-num" id="stat-needed" style="color:var(--dash);">—</div>
-      <div class="prog-stat-lbl">Q / Day Needed <span style="font-size:9px;display:block;color:var(--dim);">tap for calc</span></div>
+    <div class="prog-stat" style="position:relative;">
+      <button onclick="showPaceModal()" title="Pace calculator" style="background:none;border:none;padding:0;cursor:pointer;width:100%;text-align:center;">
+        <div class="prog-stat-num" id="stat-needed" style="color:var(--dash);">—</div>
+        <div class="prog-stat-lbl">Q / Day Needed <span style="font-size:9px;display:block;color:var(--dim);">tap for calc</span></div>
+      </button>
+      <button onclick="toggleSettings()" id="settings-gear-btn" title="Settings" style="position:absolute;top:8px;right:10px;background:none;border:none;cursor:pointer;font-size:14px;color:var(--muted);line-height:1;padding:2px;" onmouseover="this.style.color='var(--dash)'" onmouseout="this.style.color='var(--muted)'">⚙</button>
     </div>
   </div>
 
@@ -387,8 +396,7 @@ tr.editing-row td { background: var(--dash-light) !important; }
         <button class="edit-prog-btn" onclick="promptEditProgress()" style="margin-left:10px;">✎ Edit Progress</button>
       </span>
       <span style="display:flex;align-items:center;gap:10px;">
-        <button class="btn-ghost" style="padding:5px 12px;font-size:12px;" onclick="toggleSettings()">Settings</button>
-        <button class="btn-ghost" style="padding:5px 12px;font-size:12px;" onclick="openImportModal()">Import CSV</button>
+        <button class="btn-ghost" style="padding:5px 12px;font-size:12px;" onclick="openImportModal()">Import history</button>
         <span class="prog-bar-pct" id="prog-pct">0%</span>
       </span>
     </div>
@@ -526,31 +534,26 @@ tr.editing-row td { background: var(--dash-light) !important; }
 
 <!-- ── IMPORT MODAL ── -->
 <div class="modal-overlay" id="import-modal">
-  <div class="modal" style="max-width:580px;padding:0;overflow:hidden;display:flex;flex-direction:column;max-height:90vh;">
+  <div class="modal" style="max-width:560px;padding:0;overflow:hidden;display:flex;flex-direction:column;max-height:90vh;">
 
     <!-- Fixed header -->
     <div style="padding:24px 28px 0;flex-shrink:0;">
       <div class="modal-header" style="margin-bottom:0;">
-        <div class="modal-title">Import Past Data</div>
+        <div class="modal-title">Import Past Sessions</div>
         <button onclick="closeModal('import-modal')" style="background:none;border:none;font-size:22px;cursor:pointer;color:var(--dim);">&times;</button>
       </div>
     </div>
 
     <!-- Step indicator -->
-    <div id="import-step-indicator" style="display:flex;gap:0;padding:16px 28px 0;flex-shrink:0;">
-      <div id="ind-step1" style="display:flex;align-items:center;gap:6px;font-size:11px;font-weight:700;color:var(--lavender);">
-        <span style="width:20px;height:20px;border-radius:50%;background:var(--lavender);color:#fff;display:flex;align-items:center;justify-content:center;font-size:10px;">1</span>
-        Get Data
+    <div style="display:flex;align-items:center;padding:16px 28px 0;flex-shrink:0;">
+      <div id="dash-ind1" style="display:flex;align-items:center;gap:6px;font-size:11px;font-weight:700;color:var(--lavender);">
+        <span id="dash-dot1" style="width:20px;height:20px;border-radius:50%;background:var(--lavender);color:#fff;display:flex;align-items:center;justify-content:center;font-size:10px;">1</span>
+        Prepare
       </div>
-      <div style="flex:1;height:1px;background:var(--border2);margin:10px 8px;"></div>
-      <div id="ind-step2" style="display:flex;align-items:center;gap:6px;font-size:11px;font-weight:700;color:var(--muted);">
-        <span id="ind-dot2" style="width:20px;height:20px;border-radius:50%;background:var(--border);color:var(--muted);display:flex;align-items:center;justify-content:center;font-size:10px;">2</span>
-        Upload
-      </div>
-      <div style="flex:1;height:1px;background:var(--border2);margin:10px 8px;"></div>
-      <div id="ind-step3" style="display:flex;align-items:center;gap:6px;font-size:11px;font-weight:700;color:var(--muted);">
-        <span id="ind-dot3" style="width:20px;height:20px;border-radius:50%;background:var(--border);color:var(--muted);display:flex;align-items:center;justify-content:center;font-size:10px;">3</span>
-        Map Columns
+      <div style="flex:1;height:1px;background:var(--border2);margin:0 8px;"></div>
+      <div id="dash-ind2" style="display:flex;align-items:center;gap:6px;font-size:11px;font-weight:700;color:var(--muted);">
+        <span id="dash-dot2" style="width:20px;height:20px;border-radius:50%;background:var(--border);color:var(--muted);display:flex;align-items:center;justify-content:center;font-size:10px;">2</span>
+        Paste CSV
       </div>
     </div>
 
@@ -559,74 +562,51 @@ tr.editing-row td { background: var(--dash-light) !important; }
 
       <!-- Step 1: Instructions -->
       <div id="import-s1">
-        <p style="font-size:13px;color:var(--ink2);margin:0 0 14px;">Export your UWorld history as a CSV using AI, then upload it below.</p>
+        <p style="font-size:13px;color:var(--ink2);margin:0 0 14px;">Copy your UWorld session table, then use AI to convert it — no file saving needed.</p>
         <div style="border:1px solid var(--border2);border-left:3px solid var(--lavender);border-radius:10px;padding:16px 18px;font-size:13px;color:var(--ink2);line-height:1.8;">
-          <strong style="font-size:11.5px;font-weight:700;color:var(--ink);display:block;margin-bottom:12px;text-transform:uppercase;letter-spacing:.6px;">How to get your UWorld data</strong>
+          <strong style="font-size:11px;font-weight:700;color:var(--ink);display:block;margin-bottom:12px;text-transform:uppercase;letter-spacing:.6px;">How to get your UWorld data</strong>
           <div style="display:flex;flex-direction:column;gap:12px;">
             <div style="display:flex;gap:12px;align-items:flex-start;">
               <span style="width:18px;height:18px;border-radius:50%;background:var(--lavender);color:#fff;font-size:9px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:2px;">1</span>
-              <span>Go to <strong>Previous Tests</strong> in UWorld. Set Items/page to <strong>100</strong>, select the table rows and copy.</span>
+              <span>Go to <strong>Previous Tests</strong> in UWorld. Set Items/page to <strong>100</strong>, select all table rows and copy.</span>
             </div>
             <div style="display:flex;gap:12px;align-items:flex-start;">
               <span style="width:18px;height:18px;border-radius:50%;background:var(--lavender);color:#fff;font-size:9px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:2px;">2</span>
               <div style="flex:1;">
-                <span>Paste into Claude or ChatGPT with this prompt:</span>
+                Paste into Claude or ChatGPT with this prompt:
                 <div style="position:relative;margin-top:6px;">
-                  <code class="prompt-code" id="import-prompt-code">Convert this UWorld test history into a CSV with 3 columns: Date, Questions, Name. Date = date column. Questions = # QS. Name = test name/number (e.g. "Test 157"). One row per test, skip omitted/blank rows.</code>
-                  <button onclick="copyImportPrompt()" style="position:absolute;top:6px;right:8px;background:var(--lavender);color:#fff;border:none;border-radius:5px;padding:3px 9px;font-size:10px;font-weight:700;cursor:pointer;" id="copy-prompt-btn">Copy</button>
+                  <code class="prompt-code" id="import-prompt-code">Convert this UWorld test history into a CSV with exactly 3 columns: Date, Questions, Name. Date = date column. Questions = # QS. Name = test name/number (e.g. "Test 157"). One row per test, skip omitted/blank rows. No header row. No markdown.</code>
+                  <button onclick="copyImportPrompt()" id="copy-prompt-btn" style="position:absolute;top:6px;right:8px;background:var(--lavender);color:#fff;border:none;border-radius:5px;padding:3px 9px;font-size:10px;font-weight:700;cursor:pointer;">Copy</button>
                 </div>
               </div>
             </div>
             <div style="display:flex;gap:12px;align-items:flex-start;">
               <span style="width:18px;height:18px;border-radius:50%;background:var(--lavender);color:#fff;font-size:9px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:2px;">3</span>
-              <span>Save the CSV output and upload it below.</span>
+              <span>Copy the CSV output and click <strong>Next</strong> to paste it in.</span>
             </div>
           </div>
         </div>
       </div>
 
-      <!-- Step 2: Upload -->
-      <div id="import-s2" class="hidden-panel" style="margin-top:4px;">
-        <div class="drop-zone" id="drop-zone" onclick="document.getElementById('csv-input').click()">
-          <div class="drop-zone-icon" style="font-size:28px;color:var(--lavender);"></div>
-          <div class="drop-zone-text" style="font-weight:600;color:var(--ink2);">Drop your CSV here or <span style="color:var(--lavender);text-decoration:underline;cursor:pointer;">click to browse</span></div>
-          <div class="drop-zone-sub">Any CSV — Date, Questions, and Name columns</div>
-          <input type="file" id="csv-input" accept=".csv,.txt" style="display:none;" onchange="handleFileSelect(this)"/>
+      <!-- Step 2: Paste -->
+      <div id="import-s2" style="display:none;flex-direction:column;gap:12px;">
+        <div style="display:flex;gap:12px;align-items:flex-start;margin-bottom:4px;">
+          <span style="width:18px;height:18px;border-radius:50%;background:var(--lavender);color:#fff;font-size:9px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:2px;">3</span>
+          <span style="font-size:13px;color:var(--ink2);"><strong>Paste the CSV output</strong> from the AI here:</span>
         </div>
-      </div>
-
-      <!-- Step 3: Column mapper (hidden until file loaded) -->
-      <div id="col-mapper" class="hidden-panel">
-        <div style="font-size:12px;color:var(--muted);margin:0 0 4px;" id="csv-file-info"></div>
-        <div class="mapper-grid" id="mapper-grid"></div>
-        <input type="hidden" id="map-date" value="0"/>
-        <input type="hidden" id="map-qs" value="1"/>
-        <input type="hidden" id="map-name" value="-1"/>
-        <div id="csv-preview"></div>
-      </div>
-
-      <!-- Success state -->
-      <div id="import-success" class="hidden-panel" style="margin-top:16px;">
-        <div class="success-box">
-          <div class="success-icon"></div>
-          <div class="success-msg" id="import-success-msg"></div>
-          <div class="success-sub">Stats, progress, and charts have been updated.</div>
-        </div>
+        <textarea id="import-paste" style="width:100%;height:160px;padding:12px 14px;border:1.5px solid var(--border);border-radius:var(--r);font-size:12.5px;font-family:'DM Mono',monospace;background:var(--bg);color:var(--ink);resize:vertical;outline:none;line-height:1.7;box-sizing:border-box;" placeholder="03/01/2026,44,Test 201&#10;02/28/2026,40,Test 200&#10;..."></textarea>
+        <div id="import-paste-result" style="display:none;"></div>
       </div>
 
     </div><!-- end scrollable body -->
 
-    <!-- Fixed footer buttons -->
-    <div id="import-footer" style="padding:16px 28px 24px;flex-shrink:0;border-top:1px solid var(--border2);margin-top:16px;display:flex;justify-content:space-between;align-items:center;gap:10px;">
+    <!-- Fixed footer -->
+    <div style="padding:16px 28px 24px;flex-shrink:0;border-top:1px solid var(--border2);margin-top:16px;display:flex;justify-content:space-between;align-items:center;gap:10px;">
       <button class="btn-cancel" id="import-back-btn" style="display:none;" onclick="importGoBack()">&#8592; Back</button>
       <div style="display:flex;gap:10px;margin-left:auto;">
-        <div id="import-success-btns" style="display:none;gap:10px;">
-          <button class="btn-save" onclick="closeModal('import-modal')">Done</button>
-          <button class="btn-cancel" onclick="resetImport()">Re-import</button>
-        </div>
-        <button class="btn-cancel" onclick="closeModal('import-modal')" id="import-cancel-btn">Cancel</button>
+        <button class="btn-cancel" id="import-cancel-btn" onclick="closeModal('import-modal')">Cancel</button>
         <button class="btn-save" id="import-next-btn" onclick="importGoNext()">Next &rarr;</button>
-        <button class="btn-save" id="import-do-btn" onclick="importCSV()" style="display:none;">Import </button>
+        <button class="btn-save" id="import-do-btn" style="display:none;" onclick="importCSV()">Import</button>
       </div>
     </div>
 
@@ -1324,43 +1304,28 @@ function openImportModal() { resetImport(); openModal('import-modal'); }
 
 function importGoNext() {
   // Step 1 → Step 2
-  document.getElementById('import-s1').classList.add('hidden-panel');
-  document.getElementById('import-s2').classList.remove('hidden-panel');
+  document.getElementById('import-s1').style.display = 'none';
+  document.getElementById('import-s2').style.display = 'flex';
   // Activate step 2 indicator
-  document.getElementById('ind-dot2').style.background = 'var(--lavender)';
-  document.getElementById('ind-dot2').style.color = '#fff';
-  document.getElementById('ind-step2').style.color = 'var(--lavender)';
-  // Swap buttons: hide Next, show Back
+  document.getElementById('dash-dot2').style.background = 'var(--lavender)';
+  document.getElementById('dash-dot2').style.color = '#fff';
+  document.getElementById('dash-ind2').style.color = 'var(--lavender)';
+  // Swap buttons
   document.getElementById('import-next-btn').style.display = 'none';
+  document.getElementById('import-do-btn').style.display = 'block';
   document.getElementById('import-back-btn').style.display = 'block';
 }
 
 function importGoBack() {
-  // If on step 3 (mapper visible), go back to step 2
-  const mapper = document.getElementById('col-mapper');
-  if (!mapper.classList.contains('hidden-panel')) {
-    mapper.classList.add('hidden-panel');
-    document.getElementById('drop-zone').classList.remove('hidden-panel');
-    document.getElementById('csv-input').value = '';
-    document.getElementById('csv-preview').innerHTML = '';
-    document.getElementById('csv-file-info').textContent = '';
-    document.getElementById('import-do-btn').style.display = 'none';
-    // Reset step 3 indicator
-    document.getElementById('ind-dot3').style.background = 'var(--border)';
-    document.getElementById('ind-dot3').style.color = 'var(--muted)';
-    document.getElementById('ind-step3').style.color = 'var(--muted)';
-    return;
-  }
-  // Step 2 → Step 1
-  document.getElementById('import-s2').classList.add('hidden-panel');
-  document.getElementById('import-s1').classList.remove('hidden-panel');
-  // Reset step 2 indicator
-  document.getElementById('ind-dot2').style.background = 'var(--border)';
-  document.getElementById('ind-dot2').style.color = 'var(--muted)';
-  document.getElementById('ind-step2').style.color = 'var(--muted)';
-  // Swap buttons back
+  document.getElementById('import-s2').style.display = 'none';
+  document.getElementById('import-s1').style.display = 'block';
+  document.getElementById('dash-dot2').style.background = 'var(--border)';
+  document.getElementById('dash-dot2').style.color = 'var(--muted)';
+  document.getElementById('dash-ind2').style.color = 'var(--muted)';
   document.getElementById('import-next-btn').style.display = 'block';
+  document.getElementById('import-do-btn').style.display = 'none';
   document.getElementById('import-back-btn').style.display = 'none';
+  document.getElementById('import-paste-result').style.display = 'none';
 }
 
 function copyImportPrompt() {
@@ -1371,25 +1336,14 @@ function copyImportPrompt() {
   }).catch(() => showToast('Copy failed — please copy manually'));
 }
 
-function handleFileSelect(input) {
-  if (input.files[0]) parseCSVFile(input.files[0]);
-}
-
-function handleDrop(e) {
-  e.preventDefault();
-  document.getElementById('drop-zone').classList.remove('drag-over');
-  const file = e.dataTransfer.files[0];
-  if (file) parseCSVFile(file);
-}
-
-// Proper RFC-4180 CSV parser — handles quoted fields with commas inside
+// RFC-4180 CSV parser — handles quoted fields with commas inside
 function parseCSVLine(line) {
   const result = [];
   let cur = '', inQuote = false;
   for (let i = 0; i < line.length; i++) {
     const ch = line[i];
     if (ch === '"') {
-      if (inQuote && line[i+1] === '"') { cur += '"'; i++; } // escaped quote
+      if (inQuote && line[i+1] === '"') { cur += '"'; i++; }
       else inQuote = !inQuote;
     } else if (ch === ',' && !inQuote) {
       result.push(cur.trim());
@@ -1400,44 +1354,6 @@ function parseCSVLine(line) {
   }
   result.push(cur.trim());
   return result;
-}
-
-function parseCSVFile(file) {
-  const reader = new FileReader();
-  reader.onload = ev => {
-    const lines = ev.target.result.trim().split(/\r?\n/);
-    csvHeaders = parseCSVLine(lines[0]);
-    csvRows    = lines.slice(1).filter(l => l.trim()).map(l => parseCSVLine(l));
-
-    document.getElementById('csv-file-info').textContent = `${file.name} — ${csvRows.length} rows detected`;
-
-    const guess = (...kws) => {
-      const i = csvHeaders.findIndex(h => kws.some(k => h.toLowerCase().includes(k)));
-      return i >= 0 ? i : -1;
-    };
-    const di = guess('date','day');
-    const qi = guess('question','qs','#','num','count','items');
-    const ni = guess('name','title','label','test','session','block');
-
-    // Set initial hidden values
-    document.getElementById('map-date').value = di >= 0 ? di : 0;
-    document.getElementById('map-qs').value   = qi >= 0 ? qi : (di === 0 ? 1 : 0);
-    document.getElementById('map-name').value = ni >= 0 ? ni : -1;
-
-    renderMapperUI();
-
-    document.getElementById('drop-zone').classList.add('hidden-panel');
-    document.getElementById('col-mapper').classList.remove('hidden-panel');
-    // Activate step 3 indicator
-    document.getElementById('ind-dot3').style.background = 'var(--lavender)';
-    document.getElementById('ind-dot3').style.color = '#fff';
-    document.getElementById('ind-step3').style.color = 'var(--lavender)';
-    // Show Import button, keep Back visible, hide Next
-    document.getElementById('import-do-btn').style.display = 'block';
-    document.getElementById('import-next-btn').style.display = 'none';
-    document.getElementById('import-back-btn').style.display = 'block';
-  };
-  reader.readAsText(file);
 }
 
 
@@ -1477,104 +1393,31 @@ function parseFlexDate(str) {
 }
 
 
-function renderMapperUI() {
-  const dateIdx = parseInt(document.getElementById('map-date').value);
-  const qsIdx   = parseInt(document.getElementById('map-qs').value);
-  const nameIdx = parseInt(document.getElementById('map-name').value);
-
-  const roleOf = i => i===dateIdx?'date':i===qsIdx?'qs':i===nameIdx?'name':'skip';
-
-  const roleLabel = { date: 'Date', qs: 'Questions', name: 'Name (optional)', skip: 'Skip column' };
-  const rows = csvHeaders.map((h, i) => {
-    const role = roleOf(i);
-    const rowClass = role !== 'skip' ? `role-${role}` : '';
-    const selClass = role !== 'skip' ? `role-${role}` : '';
-    return `<div class="mapper-row ${rowClass}">
-      <div class="mapper-col-info">
-        <span class="mapper-col-name">${h}</span>
-        <span class="mapper-col-sample">${getSampleVal(i)}</span>
-      </div>
-      <div class="mapper-arrow">→</div>
-      <select class="mapper-select ${selClass}" onchange="setColRole(${i}, this.value)" data-col="${i}">
-        <option value="skip" ${role==='skip'?'selected':''}>Skip column</option>
-        <option value="date" ${role==='date'?'selected':''}>Date</option>
-        <option value="qs"   ${role==='qs'  ?'selected':''}>Questions</option>
-        <option value="name" ${role==='name'?'selected':''}>Name (optional)</option>
-      </select>
-    </div>`;
-  }).join('');
-
-  document.getElementById('mapper-grid').innerHTML = rows;
-
-  // Build preview using only mapped columns
-  const colMap = [
-    { idx: dateIdx, label: 'Date' },
-    { idx: qsIdx,   label: 'Questions' },
-    ...(nameIdx >= 0 ? [{ idx: nameIdx, label: 'Name' }] : [])
-  ].filter(c => c.idx >= 0);
-
-  if (colMap.length > 0) {
-    const previewRows = csvRows.slice(0, 5).map(r =>
-      `<tr>${colMap.map(c => `<td>${r[c.idx] ?? ''}</td>`).join('')}</tr>`
-    ).join('');
-    document.getElementById('csv-preview').innerHTML = `
-      <div style="font-size:12px;font-weight:700;color:var(--ink2);margin:14px 0 6px;">Preview</div>
-      <table class="csv-preview-table">
-        <thead><tr>${colMap.map(c=>`<th>${c.label}</th>`).join('')}</tr></thead>
-        <tbody>${previewRows}</tbody>
-      </table>
-      <p style="font-size:11px;color:var(--muted);margin-top:6px;">Showing first 5 rows</p>`;
-  } else {
-    document.getElementById('csv-preview').innerHTML = '';
-  }
-}
-
-function getSampleVal(colIdx) {
-  const sample = csvRows.slice(0,2).map(r => r[colIdx]).filter(Boolean).join(', ');
-  return sample ? sample.substring(0,28) : '—';
-}
-
-function setColRole(colIdx, role) {
-  // Clear this column from any existing slot
-  ['date','qs','name'].forEach(r => {
-    if (parseInt(document.getElementById('map-'+r).value) === colIdx)
-      document.getElementById('map-'+r).value = -1;
-  });
-  // If a role was chosen, evict any other col already in that slot, then assign
-  if (role !== 'skip') {
-    document.getElementById('map-'+role).value = colIdx;
-  }
-  renderMapperUI();
-}
-
 function importCSV() {
-  const dateCol = parseInt(document.getElementById('map-date').value);
-  const qsCol   = parseInt(document.getElementById('map-qs').value);
-  const nameCol = parseInt(document.getElementById('map-name').value);
+  const raw = document.getElementById('import-paste').value.trim();
+  if (!raw) { showToast('Please paste the CSV first'); return; }
 
-  if (dateCol < 0 || qsCol < 0) {
-    showToast('Please map Date and Questions columns first');
-    return;
-  }
+  const btn = document.getElementById('import-do-btn');
+  btn.disabled = true;
+  btn.textContent = 'Importing…';
+
+  const lines = raw.split(/\r?\n/).filter(l => l.trim());
+  // Skip header row if present
+  const dataLines = lines[0].toLowerCase().includes('date') ? lines.slice(1) : lines;
 
   let imported = 0, skipped = 0;
-  // Dedup by date+name (if name present) or date+qs — avoids blocking same-day multi-session
   const existing = new Set(entries.map(e => e.date + '|' + (e.name || '') + '|' + e.qs));
 
-  csvRows.forEach(row => {
-    const rawDate = row[dateCol];
-    const rawQs   = row[qsCol];
-    if (!rawDate || !rawQs) { skipped++; return; }
-
-    const date = parseFlexDate(rawDate);
+  dataLines.forEach(line => {
+    const row = parseCSVLine(line);
+    if (row.length < 2) { skipped++; return; }
+    const date = parseFlexDate(row[0]);
     if (!date) { skipped++; return; }
-    const qs   = parseInt(rawQs);
+    const qs = parseInt(row[1]);
     if (!qs || qs < 1) { skipped++; return; }
-
-    const entryName = nameCol >= 0 ? (row[nameCol] || '').trim() : '';
+    const entryName = (row[2] || '').trim();
     const key = date + '|' + entryName + '|' + qs;
     if (existing.has(key)) { skipped++; return; }
-
     entries.push({ id: Date.now() + imported, date, qs, name: entryName });
     existing.add(key);
     imported++;
@@ -1584,44 +1427,58 @@ function importCSV() {
   uniqueDone = entries.reduce((s,e) => s + e.qs, 0);
   histPage = 0;
   saveAll();
-
-  document.getElementById('import-success-msg').textContent =
-    `Imported ${imported} session${imported !== 1 ? 's' : ''}${skipped ? ` (${skipped} skipped as duplicates)` : ''}`;
-  document.getElementById('col-mapper').classList.add('hidden-panel');
-  document.getElementById('import-success').classList.remove('hidden-panel');
-  document.getElementById('import-do-btn').style.display = 'none';
-  document.getElementById('import-back-btn').style.display = 'none';
-  document.getElementById('import-cancel-btn').style.display = 'none';
-  document.getElementById('import-success-btns').style.display = 'flex';
   renderAll();
+
+  // Show inline result, swap footer to Done
+  const resultEl = document.getElementById('import-paste-result');
+  resultEl.innerHTML = `<div style="background:color-mix(in srgb,var(--lavender) 8%,var(--surface));border:1px solid color-mix(in srgb,var(--lavender) 20%,var(--border2));border-radius:10px;padding:16px 18px;margin-top:12px;">
+    <strong style="display:block;font-size:13px;color:var(--ink);margin-bottom:10px;">Import complete</strong>
+    <div style="display:flex;gap:20px;">
+      <div style="text-align:center;"><div style="font-family:'Playfair Display',serif;font-size:28px;font-weight:700;color:var(--lavender);">${imported}</div><div style="font-size:10px;font-weight:700;letter-spacing:1px;color:var(--muted);text-transform:uppercase;margin-top:2px;">Imported</div></div>
+      ${skipped ? `<div style="text-align:center;"><div style="font-family:'Playfair Display',serif;font-size:28px;font-weight:700;color:var(--muted);">${skipped}</div><div style="font-size:10px;font-weight:700;letter-spacing:1px;color:var(--muted);text-transform:uppercase;margin-top:2px;">Skipped</div></div>` : ''}
+    </div>
+    <p style="font-size:12px;color:var(--muted);margin:8px 0 0;">Stats, charts, and history have been updated.</p>
+  </div>`;
+  resultEl.style.display = 'block';
+
+  btn.disabled = false;
+  btn.textContent = 'Done';
+  btn.onclick = () => closeModal('import-modal');
+  document.getElementById('import-back-btn').style.display = 'none';
 }
 
 function resetImport() {
-  csvRows = []; csvHeaders = [];
-  // Show step 1, hide everything else
-  document.getElementById('import-s1').classList.remove('hidden-panel');
-  document.getElementById('import-s2').classList.add('hidden-panel');
-  document.getElementById('drop-zone').classList.remove('hidden-panel');
-  document.getElementById('col-mapper').classList.add('hidden-panel');
-  document.getElementById('import-success').classList.add('hidden-panel');
-  if (document.getElementById('csv-input')) document.getElementById('csv-input').value = '';
-  document.getElementById('csv-preview').innerHTML = '';
-  document.getElementById('csv-file-info').textContent = '';
-  document.getElementById('mapper-grid').innerHTML = '';
-  // Reset all step indicators
-  ['2','3'].forEach(n => {
-    document.getElementById('ind-dot'+n).style.background = 'var(--border)';
-    document.getElementById('ind-dot'+n).style.color = 'var(--muted)';
-    document.getElementById('ind-step'+n).style.color = 'var(--muted)';
-  });
-  // Reset footer — show Next + Cancel only
+  // Reset step indicators
+  document.getElementById('dash-dot2').style.background = 'var(--border)';
+  document.getElementById('dash-dot2').style.color = 'var(--muted)';
+  document.getElementById('dash-ind2').style.color = 'var(--muted)';
+  // Show step 1
+  document.getElementById('import-s1').style.display = 'block';
+  document.getElementById('import-s2').style.display = 'none';
+  if (document.getElementById('import-paste')) document.getElementById('import-paste').value = '';
+  document.getElementById('import-paste-result').style.display = 'none';
+  // Reset footer
   document.getElementById('import-back-btn').style.display = 'none';
   document.getElementById('import-next-btn').style.display = 'block';
   document.getElementById('import-do-btn').style.display = 'none';
+  document.getElementById('import-do-btn').onclick = importCSV;
+  document.getElementById('import-do-btn').textContent = 'Import';
   document.getElementById('import-cancel-btn').style.display = 'block';
-  document.getElementById('import-success-btns').style.display = 'none';
 }
 
+
+function toggleQDoneInfo() {
+  const p = document.getElementById('qdone-info-popover');
+  if (p) p.style.display = p.style.display === 'none' ? 'block' : 'none';
+}
+// Close popover on outside click
+document.addEventListener('click', function(e) {
+  const pop = document.getElementById('qdone-info-popover');
+  const btn = document.getElementById('qdone-info-btn');
+  if (pop && pop.style.display !== 'none' && !pop.contains(e.target) && e.target !== btn) {
+    pop.style.display = 'none';
+  }
+});
 // ── Master render ─────────────────────────────────────────
 function renderAll() {
   renderStats();
@@ -1648,12 +1505,6 @@ document.addEventListener('DOMContentLoaded', () => {
   document.getElementById('exam-date').value = today;
 
   // Drag-and-drop on import zone
-  const dz = document.getElementById('drop-zone');
-  dz.addEventListener('dragover',  e => { e.preventDefault(); dz.classList.add('drag-over'); });
-  dz.addEventListener('dragleave', ()  => dz.classList.remove('drag-over'));
-  dz.addEventListener('drop',      e  => handleDrop(e));
-
-  renderAll();
 });
 </script>
 </body>
