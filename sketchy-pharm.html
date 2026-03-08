@@ -241,6 +241,7 @@
         <span class="overall-stat" style="display:inline-flex;align-items:center;gap:5px;"><span style="display:inline-flex;align-items:center;justify-content:center;width:18px;height:18px;border-radius:5px;background:var(--sage);color:#fff;font-size:10px;">✔</span><strong id="tot-w">0</strong> Watched</span>
         <span class="overall-stat" style="display:inline-flex;align-items:center;gap:5px;"><span style="display:inline-flex;align-items:center;justify-content:center;width:18px;height:18px;border-radius:5px;background:var(--gold);color:#fff;font-size:10px;">✦</span><strong id="tot-r">0</strong> Reviewed</span>
       </div>
+      <button id="import-link-btn" onclick="openTIModal()" style="background:none;border:none;font-size:12px;font-weight:600;color:var(--muted);cursor:pointer;padding:0;white-space:nowrap;transition:color .15s;" onmouseover="this.style.color='var(--accent)'" onmouseout="this.style.color='var(--muted)'">Import progress</button>
     </div>
     <div class="overall-bar-bg"><div class="overall-bar-fill" id="overall-bar" style="width:0%;"></div></div>
     <div class="overall-sub">
@@ -258,7 +259,6 @@
       <div class="filter-chip f-reviewed" data-filter="reviewed" onclick="setFilter('reviewed',this)">Reviewed</div>
     </div>
     <div class="toolbar-right">
-      <button class="toolbar-btn" onclick="openTIModal()" style="border-color:var(--accent);color:var(--accent);">Import Progress</button>
       <button class="toolbar-btn" id="toggle-expand-btn" onclick="toggleExpand()">Expand All</button>
     </div>
   </div>
@@ -644,6 +644,16 @@ function runTIImport() {
     btn.innerHTML = 'Done';
     btn.onclick = closeTIModal;
     document.getElementById('ti-back-btn').style.display = 'none';
+    // Update the import link in the overall card to a quiet "Imported" label
+    const lnk = document.getElementById('import-link-btn');
+    if (lnk) {
+      lnk.textContent = 'Imported ✓';
+      lnk.style.color = 'var(--sage)';
+      lnk.style.cursor = 'default';
+      lnk.onclick = null;
+      lnk.onmouseover = null;
+      lnk.onmouseout = null;
+    }
   } catch(e) {
     btn.disabled = false;
     btn.innerHTML = 'Import';
