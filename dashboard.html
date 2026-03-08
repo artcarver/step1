@@ -1460,6 +1460,7 @@ function showToast(msg) {
 
 document.addEventListener('DOMContentLoaded', () => {
   loadAll();
+  renderAll();
   const today = new Date().toISOString().split('T')[0];
   document.getElementById('log-date').value  = today;
   document.getElementById('exam-date').value = today;
