@@ -316,6 +316,10 @@ function markCat(catId, type) {
 }
 function renderAll() {
   const container = document.getElementById('tracker-container');
+  // Preserve open/closed state before re-render
+  const openCats = new Set(
+    [...document.querySelectorAll('.cat-section.open')].map(el => el.id)
+  );
   container.innerHTML = CATEGORIES.map((cat, idx) => {
     const accent = ACCENTS[idx % ACCENTS.length];
     const rows = cat.videos.map(v => {
@@ -363,6 +367,11 @@ function renderAll() {
   }).join('');
   updateSummary();
   applyFilters();
+  // Restore which categories were open before the re-render
+  openCats.forEach(id => {
+    const el = document.getElementById(id);
+    if (el) el.classList.add('open');
+  });
 }
 
 function showToast(msg) {
