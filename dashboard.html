@@ -978,7 +978,7 @@ function groupEntries(view) {
 
   return [...map.entries()]
     .sort((a,b) => a[0].localeCompare(b[0]))
-    .slice(-60)
+    .slice(-30)
     .map(([key, val]) => ({
       label: formatChartLabel(key, view),
       qs:  val.qs,
