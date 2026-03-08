@@ -122,28 +122,6 @@ autonomic: [
         pk: "**Succinylcholine:** t½ ~10 min (plasma pseudocholinesterase hydrolysis); onset ~60 sec\n**Rocuronium:** hepatic elimination, reversed by sugammadex (encapsulates drug)\n**Atracurium/Cisatracurium:** Hofmann elimination (spontaneous at physiologic pH/temperature) — organ-independent\n**Vecuronium:** hepatic/renal",
         pearl: "**Succinylcholine causes hyperkalemia by opening all NMJ channels simultaneously** — K⁺ efflux from depolarized muscle. Safe on Day 0 of a burn but dangerous after Day 1. **Malignant hyperthermia** (ryanodine receptor mutation): treat with **dantrolene** (blocks SR Ca²⁺ release) + cooling."
       },
-      {
-        name: "Barbiturates",
-        aka: "Phenobarbital · Thiopental · Methohexital · Pentobarbital · Secobarbital · Primidone",
-        summary: "Potentiate GABA-A by increasing chloride channel open duration. Used for seizures, anesthesia induction, and elevated ICP. Narrow therapeutic window with high addiction potential.",
-        moa: "Bind **GABA-A receptor** at the barbiturate site → ↑ **duration** of Cl⁻ channel opening (vs. benzodiazepines which ↑ frequency) → membrane hyperpolarization → CNS depression",
-        use: "**Phenobarbital:** status epilepticus (IV), chronic seizure prophylaxis (especially neonatal), alcohol/benzo withdrawal\n**Thiopental/Methohexital:** IV anesthesia induction (largely replaced)\n**Pentobarbital:** refractory elevated ICP (barbiturate coma)\n**Primidone:** essential tremor, seizures",
-        se: "**Respiratory depression** (dose-dependent, dangerous — no reversal agent), excessive sedation, ataxia, tolerance, physical dependence, **P450 induction** (↑ metabolism of many drugs including OCPs, warfarin, antivirals); paradoxical excitation in children/elderly; cardiovascular depression at high doses",
-        ci: "Porphyria (↑ heme synthesis enzymes → precipitate attacks — key CI); severe respiratory depression without airway protection; active alcohol intoxication",
-        pk: "**Phenobarbital:** oral/IV, t½ ~4 days (longest of common drugs), hepatic (CYP2C9/3A4), significant inducer\n**Thiopental:** IV only, ultra-short action due to redistribution to fat (not metabolism), then slow hepatic elimination\n**Primidone:** metabolized to phenobarbital",
-        pearl: "**Barbiturates increase Cl⁻ channel DURATION; benzodiazepines increase FREQUENCY.** Benzodiazepines require GABA to be present — barbiturates can open channels directly at high doses, explaining their lethality in overdose. Always remember the **porphyria contraindication** (classic Step 1 trap)."
-      },
-      {
-        name: "Amphetamines & Methylphenidate",
-        aka: "Amphetamine (Adderall) · Dextroamphetamine · Methamphetamine · Methylphenidate (Ritalin, Concerta) · Lisdexamfetamine (Vyvanse)",
-        summary: "Indirect sympathomimetics that increase synaptic monoamine concentrations. Used for ADHD and narcolepsy; high abuse potential with Schedule II classification.",
-        moa: "**Reverse monoamine transporters (DAT, NET, SERT)** → force release of **dopamine, norepinephrine, serotonin** from presynaptic terminals into the synapse; also inhibit MAO; methylphenidate primarily blocks DAT/NET reuptake (does not reverse transporter)",
-        use: "ADHD (first-line pharmacotherapy); narcolepsy; obesity (short-term, amphetamines); binge eating disorder (lisdexamfetamine)",
-        se: "↑ BP, ↑ HR, **insomnia**, **anorexia/weight loss**, headache, anxiety, psychosis at high doses; growth suppression in children (monitor height); **high abuse/dependence potential**; withdrawal: fatigue, hypersomnia, hyperphagia, dysphoria",
-        ci: "MAO inhibitor use within 14 days (serotonin syndrome / hypertensive crisis); cardiovascular disease / structural heart abnormality; uncontrolled hypertension; history of psychosis; glaucoma (↑ sympathetic tone → ↑ IOP)",
-        pk: "**Amphetamines:** oral, t½ ~10–12 hr (pH-dependent renal elimination — alkaline urine ↑ reabsorption → ↑ t½); hepatic (CYP2D6)\n**Methylphenidate:** oral, t½ ~3–4 hr (IR) or 6–8 hr (ER); ester hydrolysis to ritalinic acid\n**Lisdexamfetamine:** prodrug — cleaved by red blood cells to d-amphetamine",
-        pearl: "**Amphetamines reverse the dopamine transporter** — they actively push DA into the synapse rather than just blocking reuptake. This massive dopamine surge is why addiction potential is high. In overdose: hyperthermia + HTN + psychosis + seizures — treat with **cooling, benzodiazepines, and phentolamine** for BP."
-      },
     ]
   },
 ],
@@ -533,6 +511,22 @@ blood: [
       },
     ]
   },
+  {
+    group: "Antianginals",
+    drugs: [
+      {
+        name: "Nitrates",
+        aka: "Nitroglycerin (NTG, Nitrostat, Nitro-Bid) · Isosorbide Dinitrate (ISDN) · Isosorbide Mononitrate (ISMN) · Sodium Nitroprusside",
+        summary: "Nitric oxide donors that relax vascular smooth muscle to reduce cardiac preload and afterload. Used for acute angina, ACS, decompensated HF, and hypertensive emergencies.",
+        moa: "Release **nitric oxide (NO)** → activate **guanylyl cyclase** → ↑ cGMP → activate protein kinase G → dephosphorylate myosin light chain → **vascular smooth muscle relaxation**; venous > arterial at low doses (↓ preload dominant); arterial at high doses (↓ afterload + ↓ coronary vasospasm); coronary vasodilation (Prinzmetal angina)",
+        use: "**Sublingual NTG:** acute angina attack (onset 1–3 min)\n**Long-acting nitrates (ISDN/ISMN):** stable angina prophylaxis\n**IV NTG:** ACS (ongoing chest pain, HTN, pulmonary edema), acute decompensated HF (↓ preload/afterload), hypertensive emergency with pulmonary edema\n**Sodium nitroprusside:** most potent — hypertensive emergency, aortic dissection\nEsophageal spasm (relaxes smooth muscle)",
+        se: "**Headache** (cerebral vasodilation — most common; tolerance develops)\n**Orthostatic hypotension + reflex tachycardia** (↓ preload → ↓ CO)\n**Tachyphylaxis/tolerance** (continuous use — require 8–12 hr nitrate-free interval daily)\n**Nitroprusside:** cyanide toxicity (give hydroxocobalamin or thiosulfate); methemoglobinemia",
+        ci: "**Concurrent PDE5 inhibitors** (sildenafil/tadalafil/vardenafil — ↑↑ cGMP → severe hypotension — absolute CI within 24–48 hr)\nSevere hypotension (SBP <90 mmHg); hypovolemia\n**RV infarction** (preload-dependent — nitrates → cardiovascular collapse; exclude in inferior MI before SL NTG)\nSevere AS (preload reduction → ↓ CO across fixed stenosis)",
+        pk: "**Sublingual NTG:** onset 1–3 min, duration 30 min; extensive hepatic first-pass (avoid oral NTG)\n**IV NTG:** titrated infusion, immediate onset\n**ISMN:** t½ ~5 hr, renal (no first-pass — mononitrate, no hepatic conversion needed)\n**Nitroprusside:** IV only, onset seconds; metabolized to cyanide → thiocyanate (renal); limit dose >2 µg/kg/min and duration",
+        pearl: "**Nitrate tolerance** is a major clinical problem with continuous nitrate use — occurs within 24 hours via multiple mechanisms (↓ NO bioavailability, neurohormonal counterregulation). The solution is a **nitrate-free interval** (usually 8–12 hours, often overnight). **Nitroprusside cyanide toxicity** risk increases with high doses (>2 µg/kg/min) or prolonged infusion — monitor thiocyanate levels and limit to shortest necessary duration."
+      },
+    ]
+  },
 ],
 
 neuro: [
@@ -582,6 +576,17 @@ neuro: [
         ci: "History of malignant hyperthermia or susceptible family history (use total IV anesthesia — propofol + opioid + non-depolarizing NMB instead); halothane re-exposure (hepatotoxicity); N₂O: bowel obstruction, pneumothorax, middle ear surgery, B12 deficiency",
         pk: "Elimination via exhalation (reverse induction: low blood-gas solubility = fast onset/offset). Blood-gas partition coefficient: desflurane < nitrous oxide < sevoflurane < isoflurane < halothane. MAC = potency measure (1 MAC = 1 atm prevents movement in 50% of patients). Halothane: high solubility → slow onset, significant hepatic metabolism (20%) → hepatotoxic metabolites. Sevoflurane: low solubility → fast onset/offset, safe in children.",
         pearl: "**MAC inversely correlates with potency and lipid solubility.** Low MAC = high potency (e.g., halothane MAC 0.75%). **Malignant hyperthermia** is triggered by volatile agents + succinylcholine → uncontrolled skeletal muscle calcium release (ryanodine receptor mutation) → hyperthermia, rigidity, acidosis, rhabdomyolysis. Treatment: **dantrolene** (blocks RyR1) + cooling + NaHCO₃."
+      },
+      {
+        name: "Barbiturates",
+        aka: "Phenobarbital · Thiopental · Methohexital · Pentobarbital · Secobarbital · Primidone",
+        summary: "Potentiate GABA-A by increasing chloride channel open duration. Used for seizures, anesthesia induction, and elevated ICP. Narrow therapeutic window with high addiction potential.",
+        moa: "Bind **GABA-A receptor** at the barbiturate site → ↑ **duration** of Cl⁻ channel opening (vs. benzodiazepines which ↑ frequency) → membrane hyperpolarization → CNS depression",
+        use: "**Phenobarbital:** status epilepticus (IV), chronic seizure prophylaxis (especially neonatal), alcohol/benzo withdrawal\n**Thiopental/Methohexital:** IV anesthesia induction (largely replaced)\n**Pentobarbital:** refractory elevated ICP (barbiturate coma)\n**Primidone:** essential tremor, seizures",
+        se: "**Respiratory depression** (dose-dependent, dangerous — no reversal agent), excessive sedation, ataxia, tolerance, physical dependence, **P450 induction** (↑ metabolism of many drugs including OCPs, warfarin, antivirals); paradoxical excitation in children/elderly; cardiovascular depression at high doses",
+        ci: "Porphyria (↑ heme synthesis enzymes → precipitate attacks — key CI); severe respiratory depression without airway protection; active alcohol intoxication",
+        pk: "**Phenobarbital:** oral/IV, t½ ~4 days (longest of common drugs), hepatic (CYP2C9/3A4), significant inducer\n**Thiopental:** IV only, ultra-short action due to redistribution to fat (not metabolism), then slow hepatic elimination\n**Primidone:** metabolized to phenobarbital",
+        pearl: "**Barbiturates increase Cl⁻ channel DURATION; benzodiazepines increase FREQUENCY.** Benzodiazepines require GABA to be present — barbiturates can open channels directly at high doses, explaining their lethality in overdose. Always remember the **porphyria contraindication** (classic Step 1 trap)."
       },
     ]
   },
@@ -843,6 +848,38 @@ neuro: [
         ci: "Tolcapone: hepatic disease (hepatotoxicity), concurrent use with non-selective MAOIs (both inhibit catecholamine degradation → hypertensive crisis); Entacapone: concurrent use with non-selective MAOIs",
         pk: "Both: oral, hepatic glucuronidation, poor CNS penetration (peripheral COMT inhibition). Entacapone: t½ ~2 hr, must be taken with each levodopa dose (3–4×/day). Tolcapone: t½ ~2–3 hr, also 3× daily; inhibits both peripheral and central COMT (crosses BBB — ↑ efficacy but ↑ hepatic risk). Available as Stalevo (levodopa + carbidopa + entacapone in one tablet).",
         pearl: "**Entacapone is preferred over tolcapone** because tolcapone has caused fatal hepatic necrosis (monitoring required, restricted use in Europe). Both need to be given with each levodopa dose — they have no anti-Parkinson effect without levodopa. The orange urine is a harmless side effect of entacapone that patients must be warned about upfront to avoid alarm."
+      },
+    ]
+  },
+  {
+    group: "CNS Stimulants",
+    drugs: [
+      {
+        name: "Amphetamines & Methylphenidate",
+        aka: "Amphetamine (Adderall) · Dextroamphetamine · Methamphetamine · Methylphenidate (Ritalin, Concerta) · Lisdexamfetamine (Vyvanse)",
+        summary: "Indirect sympathomimetics that increase synaptic monoamine concentrations. Used for ADHD and narcolepsy; high abuse potential with Schedule II classification.",
+        moa: "**Reverse monoamine transporters (DAT, NET, SERT)** → force release of **dopamine, norepinephrine, serotonin** from presynaptic terminals into the synapse; also inhibit MAO; methylphenidate primarily blocks DAT/NET reuptake (does not reverse transporter)",
+        use: "ADHD (first-line pharmacotherapy); narcolepsy; obesity (short-term, amphetamines); binge eating disorder (lisdexamfetamine)",
+        se: "↑ BP, ↑ HR, **insomnia**, **anorexia/weight loss**, headache, anxiety, psychosis at high doses; growth suppression in children (monitor height); **high abuse/dependence potential**; withdrawal: fatigue, hypersomnia, hyperphagia, dysphoria",
+        ci: "MAO inhibitor use within 14 days (serotonin syndrome / hypertensive crisis); cardiovascular disease / structural heart abnormality; uncontrolled hypertension; history of psychosis; glaucoma (↑ sympathetic tone → ↑ IOP)",
+        pk: "**Amphetamines:** oral, t½ ~10–12 hr (pH-dependent renal elimination — alkaline urine ↑ reabsorption → ↑ t½); hepatic (CYP2D6)\n**Methylphenidate:** oral, t½ ~3–4 hr (IR) or 6–8 hr (ER); ester hydrolysis to ritalinic acid\n**Lisdexamfetamine:** prodrug — cleaved by red blood cells to d-amphetamine",
+        pearl: "**Amphetamines reverse the dopamine transporter** — they actively push DA into the synapse rather than just blocking reuptake. This massive dopamine surge is why addiction potential is high. In overdose: hyperthermia + HTN + psychosis + seizures — treat with **cooling, benzodiazepines, and phentolamine** for BP."
+      },
+    ]
+  },
+  {
+    group: "Headache / Migraine",
+    drugs: [
+      {
+        name: "Sumatriptan (Triptans)",
+        aka: "Sumatriptan (Imitrex) · Rizatriptan · Almotriptan · Eletriptan · Frovatriptan · Naratriptan · Zolmitriptan",
+        summary: "Selective 5-HT1B/1D receptor agonists that abort migraine attacks by causing cranial vasoconstriction and inhibiting trigeminal nociceptive signaling. First-line acute treatment for moderate-to-severe migraine.",
+        moa: "Selective agonists at **5-HT1B receptors** (intracranial blood vessels → vasoconstriction → ↓ neurogenic inflammation and meningeal vasodilation) and **5-HT1D receptors** (presynaptic on trigeminal sensory neurons → ↓ CGRP and substance P release → ↓ trigeminal nociceptive transmission) → abort migraine",
+        use: "Acute moderate-to-severe migraine (first-line abortive — especially when analgesics fail)\nCluster headache (sumatriptan SC — only agent approved for cluster)\nMenstrual migraine (frovatriptan — long t½ → mini-prophylaxis over menstrual period)",
+        se: "**Chest tightness/pressure** ('triptan sensations' — 5-HT1B coronary vasoconstriction — usually benign; rarely true coronary vasospasm)\nFlushing, tingling, warmth, paresthesias; nausea; dizziness\n**Serotonin syndrome** (with MAOIs, SSRIs — use with caution)\n**Medication overuse headache** (>10–15 uses/month → paradoxical ↑ frequency)",
+        ci: "**CAD, angina, prior MI** (coronary vasoconstriction)\n**Uncontrolled hypertension** (further ↑ BP)\n**Cerebrovascular disease / TIA / stroke**; Prinzmetal angina\n**Hemiplegic or basilar migraine** (ischemic complications)\nConcurrent MAOIs (serotonin syndrome); concurrent ergotamine (separate by 24 hr)",
+        pk: "**Sumatriptan:** oral (t½ ~2 hr), SC (fastest — onset 10–20 min), nasal spray, patch\n**Eletriptan/rizatriptan:** oral, rapid onset, t½ ~2–3 hr (best for quick relief)\n**Frovatriptan:** t½ ~26 hr (slowest onset — best for prolonged/menstrual migraine)\nAll: hepatic CYP3A4 (most); SC provides fastest plasma peak",
+        pearl: "**Triptans are contraindicated in coronary artery disease** because 5-HT1B receptors cause coronary vasoconstriction — potentially dangerous in patients with coronary stenosis. The 'chest tightness' experienced by many migraine patients after triptans is usually benign and non-cardiac (5-HT1B in esophagus/chest muscles), but do cardiac workup if features are concerning. **Medication overuse headache** (MOH) occurs with >10–15 triptan uses/month — regular use paradoxically worsens headache frequency."
       },
     ]
   },
@@ -1169,6 +1206,14 @@ micro: [
         pk: "**Ribavirin:** oral or inhaled; plasma t½ ~12 hr, **RBC t½ ~40 days** (accumulates in erythrocytes — prolonged hemolysis after stopping)\n**Peginterferon:** SC weekly injection; PEGylation ↑ t½ from ~8 hr to ~60–80 hr → weekly dosing",
         pearl: "**Ribavirin hemolytic anemia** is predictable and dose-dependent — erythrocytes lack the mechanisms to clear ribavirin triphosphate once it accumulates. Monitor hemoglobin weekly in the first 8 weeks. **Pegylation of interferons** was a major advance: attaching PEG polymers reduces renal clearance and proteolysis, extending t½ from ~8 hours to ~60–80 hours → once-weekly instead of thrice-weekly injections with similar or better antiviral efficacy."
       },
+    ]
+  },
+],
+
+antiparasitics: [
+  {
+    group: "Antiparasitics",
+    drugs: [
       {
         name: "Antimalarials",
         aka: "Chloroquine · Hydroxychloroquine (Plaquenil) · Mefloquine · Primaquine · Artemether-Lumefantrine (Coartem) · Artesunate · Quinine · Atovaquone-Proguanil (Malarone) · Doxycycline",
@@ -1256,6 +1301,22 @@ gi: [
       },
     ]
   },
+  {
+    group: "GI / Hepatic",
+    drugs: [
+      {
+        name: "Osmotic Laxatives",
+        aka: "Polyethylene Glycol (MiraLAX, GoLYTELY) · Lactulose · Magnesium Hydroxide (Milk of Magnesia) · Magnesium Citrate · Sodium Phosphate · Sorbitol · Glycerin (suppository)",
+        summary: "Draw water into the intestinal lumen via osmotic pressure to soften stool and stimulate defecation. Used for constipation, bowel prep, hepatic encephalopathy (lactulose), and opioid-induced constipation.",
+        moa: "**PEG:** non-absorbable, non-metabolized polymer → retains water in lumen via osmosis → softens stool + stimulates peristalsis. **Lactulose:** non-absorbable disaccharide → colonic bacteria metabolize to short-chain fatty acids and lactic acid → acidify colon → trap NH₄⁺ (ionized, non-absorbable) → ↓ systemic ammonia absorption (hepatic encephalopathy) + osmotic effect. **Magnesium salts:** osmotic + ↑ CCK release → ↑ motility. **Sodium phosphate:** osmotic — risk of phosphate nephropathy in CKD",
+        use: "**PEG (MiraLAX):** constipation (first-line — safe, effective, tasteless)\n**PEG (GoLYTELY):** colonoscopy bowel preparation (large-volume isotonic solution — safe in renal failure)\n**Lactulose:** hepatic encephalopathy (↓ ammonia — first-line; titrate to 2–3 soft stools/day); chronic constipation\n**Magnesium hydroxide:** acute constipation, antacid\n**Magnesium citrate:** bowel prep; acute constipation\n**Sodium phosphate:** bowel prep (avoid in CKD — nephrotoxic)",
+        se: "**PEG:** bloating, flatulence, nausea (large volumes); minimal systemic effects (not absorbed)\n**Lactulose:** flatulence, bloating, diarrhea (sweet taste → poor adherence); rarely hypernatremia\n**Magnesium salts:** hypermagnesemia (renal failure — avoid); diarrhea; dehydration\n**Sodium phosphate:** hyperphosphatemia, hypocalcemia, acute phosphate nephropathy (CKD — contraindicated)",
+        ci: "Magnesium-containing agents: renal failure (↑ Mg accumulation → hypermagnesemia → cardiac arrest)\nSodium phosphate: CKD, elderly, heart failure, medications altering renal perfusion (ACEi, diuretics — ↑ phosphate nephropathy risk)\nLactulose: galactosemia",
+        pk: "**PEG:** not absorbed, not metabolized, excreted intact in stool; isotonic solutions (GoLYTELY) do not alter fluid/electrolyte balance significantly\n**Lactulose:** not absorbed by small intestine; metabolized by colonic bacteria; onset 24–48 hr\n**Magnesium salts:** 15–20% absorbed (renally excreted — toxic in CKD); onset 0.5–6 hr\n**Sodium phosphate:** 2–9% absorbed; onset 0.5–6 hr; risk of electrolyte shifts and nephropathy",
+        pearl: "**Lactulose for hepatic encephalopathy** works by trapping ammonia as NH₄⁺ in an acidic colon — reducing systemic ammonia levels. The target is 2–3 soft stools per day (not diarrhea). **PEG (MiraLAX) is the safest osmotic laxative** — not absorbed, no electrolyte effects, and tasteless (dissolves in any liquid). GoLYTELY (high-volume PEG) is isotonic and safe even in renal failure for bowel prep, unlike sodium phosphate which causes phosphate nephropathy in CKD."
+      },
+    ]
+  },
 ],
 
 endo: [
@@ -1305,6 +1366,17 @@ endo: [
         ci: "Type 1 DM (high euglycemic DKA risk)\neGFR <20–30 mL/min (↓ glucose-lowering efficacy; dapagliflozin approved for lower eGFR for HF/CKD benefit)\nDialysis; recurrent UTIs/genital infections; pregnancy",
         pk: "All oral, once daily; hepatic glucuronidation\nEmpagliflozin/dapagliflozin: t½ ~13 hr; canagliflozin t½ ~11–13 hr\nGlucose-lowering efficacy ↓ with eGFR; cardio/renal benefits persist at lower GFR",
         pearl: "**Euglycemic DKA** is the most dangerous and underappreciated SGLT2 inhibitor complication — glucose appears near-normal so DKA is not suspected. SGLT2 inhibitors cause glucosuria → ↓ insulin stimulus → ↑ ketogenesis in fasted/surgical/ill state. **Always hold SGLT2 inhibitors ≥3 days before elective surgery or major procedures.** The cardioprotective benefits (↓ HF hospitalizations + ↓ CV mortality) are independent of glucose lowering and represent a paradigm shift."
+      },
+      {
+        name: "Pramlintide",
+        aka: "Pramlintide (Symlin) — Amylin analog",
+        summary: "Synthetic analog of amylin (co-secreted with insulin from pancreatic beta cells) that suppresses glucagon, slows gastric emptying, and promotes satiety. Used as adjunct to mealtime insulin in Type 1 and Type 2 DM.",
+        moa: "Mimics **amylin** (polypeptide normally co-secreted with insulin from beta cells) → (1) suppresses postprandial **glucagon** secretion from α-cells → ↓ hepatic glucose output; (2) **slows gastric emptying** → blunts postprandial glucose spike; (3) promotes **satiety** (central hypothalamic pathways) → ↓ caloric intake → weight loss",
+        use: "Adjunct to mealtime insulin in **Type 1 DM** or **Type 2 DM** patients on insulin who cannot achieve glycemic control\nPostprandial glucose reduction; weight loss (modest)",
+        se: "**Nausea** (most common — dose-limiting; occurs at initiation, usually improves)\nVomiting, anorexia\n**Severe hypoglycemia** (when combined with insulin — must reduce insulin dose 50% at initiation); injection site reactions",
+        ci: "Hypoglycemia unawareness (↑ risk of severe hypoglycemia)\nGastroparesis (slows gastric emptying → worse gastroparesis)\nConcomitant use of drugs that alter GI motility (anticholinergics, opioids)",
+        pk: "SC injection only (separate from insulin — separate syringe and site; do NOT mix)\nt½ ~48 min; renal elimination\nTake immediately before each major meal",
+        pearl: "**Pramlintide requires a 50% insulin dose reduction** at initiation because its glucose-lowering effect is additive with insulin — failure to reduce insulin causes severe hypoglycemia. It is the only amylin analog available and is rarely used in practice due to the inconvenience of a third injection and frequent GI side effects. The concept of amylin deficiency in Type 1 DM (beta cell destruction eliminates both insulin and amylin) is the pharmacological rationale."
       },
       {
         name: "Thiazolidinediones (TZDs)",
@@ -1381,28 +1453,6 @@ endo: [
         ci: "Somatropin: active malignancy; closed epiphyses; Prader-Willi + severe obesity/sleep apnea (respiratory failure)\nOctreotide: relative CI in poorly controlled diabetes\nPegvisomant: hepatic disease",
         pk: "**Somatropin:** SC daily, t½ ~2–3 hr, hepatic/renal\n**Octreotide:** SC 3× daily (immediate release) or IM monthly (Sandostatin LAR); t½ ~1.5 hr (SC)\n**Pasireotide:** SC twice daily or IM monthly\n**Pegvisomant:** SC daily, t½ ~6 days (pegylation prolongs)",
         pearl: "**Octreotide for variceal bleeding** — reduces portal pressure by decreasing splanchnic blood flow via somatostatin receptors on mesenteric vessels. Used as adjunct to endoscopic band ligation; start before endoscopy to improve visibility. **Octreotide causes cholelithiasis** via inhibition of gallbladder-stimulating CCK — gallstone surveillance recommended with long-term use."
-      },
-      {
-        name: "Pramlintide",
-        aka: "Pramlintide (Symlin) — Amylin analog",
-        summary: "Synthetic analog of amylin, a pancreatic beta-cell co-secreted peptide. Reduces postprandial glucose by slowing gastric emptying and suppressing glucagon. Used as adjunct to mealtime insulin in Type 1 and Type 2 DM.",
-        moa: "Analog of **amylin** (co-secreted with insulin from beta cells) → activates amylin receptors in area postrema → ↓ gastric emptying rate → ↓ postprandial glucose excursion; ↓ glucagon secretion; ↑ satiety → modest weight loss",
-        use: "Type 1 DM (adjunct to mealtime insulin — reduces postprandial spikes + allows insulin dose reduction)\nType 2 DM on mealtime insulin; modest weight loss",
-        se: "**Nausea** (most common — dose-limiting; improves with titration)\n**Hypoglycemia** (additive with mealtime insulin — must reduce insulin dose by 50% at initiation)\nVomiting, anorexia",
-        ci: "Hypoglycemia unawareness (cannot recognize hypoglycemia)\nGastroparesis (↓ gastric emptying worsens pre-existing condition)\nPoor compliance with self-monitoring",
-        pk: "SC injection only (separate from insulin — separate syringe and site; do NOT mix)\nt½ ~48 min; renal elimination\nTake immediately before each major meal",
-        pearl: "**Pramlintide requires a 50% insulin dose reduction** at initiation because its glucose-lowering effect is additive with insulin — failure to reduce insulin causes severe hypoglycemia. It is the only amylin analog available and is rarely used in practice due to the inconvenience of a third injection and frequent GI side effects. The concept of amylin deficiency in Type 1 DM (beta cell destruction eliminates both insulin and amylin) is the pharmacological rationale."
-      },
-      {
-        name: "Osmotic Laxatives",
-        aka: "Polyethylene Glycol (MiraLAX) · Lactulose · Magnesium Hydroxide (Milk of Magnesia) · Sodium Phosphate · Glycerin (suppository)",
-        summary: "Retain water in the intestinal lumen by osmotic pressure to soften stool and promote defecation. Lactulose has the additional benefit of lowering ammonia in hepatic encephalopathy.",
-        moa: "**PEG:** non-absorbable, non-metabolized polymer → osmotically retains water in intestinal lumen → softer, more frequent stools. **Lactulose:** synthetic disaccharide → colonic bacteria ferment to organic acids (lactate, acetate) → ↓ intraluminal pH → ↓ colonic ammonia absorption (NH₃ → NH₄⁺, not absorbed) → ↓ portal ammonia → improves hepatic encephalopathy; also osmotic laxative. **Mg(OH)₂:** Mg²⁺ poorly absorbed → osmotic water retention + direct intestinal stimulation",
-        use: "**PEG (MiraLAX):** chronic constipation (first-line — electrolyte-neutral, safe in elderly/CKD), fecal impaction, bowel prep (high-dose)\n**Lactulose:** hepatic encephalopathy (first-line — ↓ ammonia; titrate to 2–3 soft stools/day), chronic constipation\n**Mg(OH)₂:** acute constipation (OTC, rapid onset)\n**Sodium phosphate:** bowel prep (↓ use due to nephrotoxicity)\n**Glycerin:** pediatric/rectal, rapid onset",
-        se: "**PEG:** bloating, cramping (mild); electrolyte-neutral\n**Lactulose:** bloating, flatulence, diarrhea (fermentation gas — compliance issue); electrolyte disturbances with excess diarrhea\n**Mg(OH)₂:** hypermagnesemia (renal failure — accumulates), diarrhea\n**Sodium phosphate:** hyperphosphatemia, hypocalcemia, renal failure (phosphate nephropathy — avoid CKD/elderly/dehydrated)",
-        ci: "Mg(OH)₂: renal failure\nSodium phosphate bowel prep: CKD, HF, elderly, hypovolemia\nLactulose: galactosemia; bowel obstruction (all laxatives)",
-        pk: "**PEG:** not absorbed, not metabolized — local effect only\n**Lactulose:** not absorbed (colonic bacteria ferment); dose titrated to bowel frequency\n**Mg(OH)₂:** ~15–20% Mg²⁺ absorbed; rest in stool",
-        pearl: "**Lactulose in hepatic encephalopathy** works by two mechanisms: (1) osmotic laxative → ↑ transit → less time for ammonia absorption; (2) acidification → converts NH₃ (absorbable) to NH₄⁺ (not absorbable) → ↓ portal ammonia. Target 2–3 soft stools per day. **PEG (MiraLAX) is electrolyte-neutral** — it neither absorbs nor loses electrolytes (unlike lactulose or saline laxatives), making it the safest for chronic use in elderly/CKD."
       },
       {
         name: "Levothyroxine (T4)",
@@ -1555,6 +1605,11 @@ pulm: [
         pk: "Inhaled MDI or nebulizer; oral capsule for GI indications\nOral bioavailability <1% (essentially no systemic absorption)\nPulmonary deposition ~8% of inhaled dose; t½ ~80 min\nMust dose 3–4× daily (frequent dosing → adherence barrier → largely replaced by ICS in adults)",
         pearl: "**Cromolyn is one of the safest drugs in pharmacology** — essentially no systemic absorption and no serious adverse effects. However, its clinical efficacy is modest compared to ICS, and its 3–4 times/day dosing makes adherence difficult. It is rarely used in adults today but remains an option for mild asthma in **children** (minimal steroid exposure) and for **exercise-induced bronchospasm prophylaxis**."
       },
+    ]
+  },
+  {
+    group: "Pulmonary Other",
+    drugs: [
       {
         name: "Antihistamines",
         aka: "1st Generation: Diphenhydramine (Benadryl) · Chlorpheniramine · Hydroxyzine · Promethazine · Meclizine | 2nd Generation: Loratadine (Claritin) · Cetirizine (Zyrtec) · Fexofenadine (Allegra) · Levocetirizine · Desloratadine",
@@ -1567,17 +1622,6 @@ pulm: [
         pearl: "**First-generation antihistamines are on the Beers criteria** for elderly patients — they cause cognitive impairment, falls, delirium, and urinary retention. Always use second-generation for chronic allergic conditions. **Diphenhydramine is NOT adequate treatment for anaphylaxis** — epinephrine is the only life-saving drug; diphenhydramine is adjunctive therapy only. Terfenadine and astemizole were withdrawn for fatal QTc-related arrhythmias — the lesson that drove development of safer 2nd-gen agents."
       },
       {
-        name: "Nitrates",
-        aka: "Nitroglycerin (NTG, Nitrostat, Nitro-Bid) · Isosorbide Dinitrate (ISDN) · Isosorbide Mononitrate (ISMN) · Sodium Nitroprusside",
-        summary: "Nitric oxide donors that relax vascular smooth muscle to reduce cardiac preload and afterload. Used for acute angina, ACS, decompensated HF, and hypertensive emergencies.",
-        moa: "Release **nitric oxide (NO)** → activate **guanylyl cyclase** → ↑ cGMP → activate protein kinase G → dephosphorylate myosin light chain → **vascular smooth muscle relaxation**; venous > arterial at low doses (↓ preload dominant); arterial at high doses (↓ afterload + ↓ coronary vasospasm); coronary vasodilation (Prinzmetal angina)",
-        use: "**Sublingual NTG:** acute angina attack (onset 1–3 min)\n**Long-acting nitrates (ISDN/ISMN):** stable angina prophylaxis\n**IV NTG:** ACS (ongoing chest pain, HTN, pulmonary edema), acute decompensated HF (↓ preload/afterload), hypertensive emergency with pulmonary edema\n**Sodium nitroprusside:** most potent — hypertensive emergency, aortic dissection\nEsophageal spasm (relaxes smooth muscle)",
-        se: "**Headache** (cerebral vasodilation — most common; tolerance develops)\n**Orthostatic hypotension + reflex tachycardia** (↓ preload → ↓ CO)\n**Tachyphylaxis/tolerance** (continuous use — require 8–12 hr nitrate-free interval daily)\n**Nitroprusside:** cyanide toxicity (give hydroxocobalamin or thiosulfate); methemoglobinemia",
-        ci: "**Concurrent PDE5 inhibitors** (sildenafil/tadalafil/vardenafil — ↑↑ cGMP → severe hypotension — absolute CI within 24–48 hr)\nSevere hypotension (SBP <90 mmHg); hypovolemia\n**RV infarction** (preload-dependent — nitrates → cardiovascular collapse; exclude in inferior MI before SL NTG)\nSevere AS (preload reduction → ↓ CO across fixed stenosis)",
-        pk: "**Sublingual NTG:** onset 1–3 min, duration 30 min; extensive hepatic first-pass (avoid oral NTG)\n**IV NTG:** titrated infusion, immediate onset\n**ISMN:** t½ ~5 hr, renal (no first-pass — mononitrate, no hepatic conversion needed)\n**Nitroprusside:** IV only, onset seconds; metabolized to cyanide → thiocyanate (renal); limit dose >2 µg/kg/min and duration",
-        pearl: "**Nitrate tolerance** is a major clinical problem with continuous nitrate use — occurs within 24 hours via multiple mechanisms (↓ NO bioavailability, neurohormonal counterregulation). The solution is a **nitrate-free interval** (usually 8–12 hours, often overnight). **Nitroprusside cyanide toxicity** risk increases with high doses (>2 µg/kg/min) or prolonged infusion — monitor thiocyanate levels and limit to shortest necessary duration."
-      },
-      {
         name: "Prostaglandins, Prostacyclin, Bosentan & PDE5 Inhibitors",
         aka: "Epoprostenol (Flolan) · Treprostinil · Iloprost — Prostacyclin analogs | Bosentan (Tracleer) · Ambrisentan · Macitentan — Endothelin receptor antagonists | Sildenafil (Revatio) · Tadalafil — PDE5 inhibitors for PAH | Riociguat — sGC stimulator",
         summary: "Pulmonary arterial hypertension (PAH)-specific therapies that vasodilate and remodel the pulmonary vasculature. Prostacyclins, endothelin antagonists, and PDE5 inhibitors target distinct pathways and are often used in combination.",
@@ -1587,17 +1631,6 @@ pulm: [
         ci: "Bosentan: pregnancy (Category X); severe hepatic impairment\nSildenafil/tadalafil: concurrent nitrates (severe hypotension); severe hypotension\nRiociguat: concurrent PDE5 inhibitors (absolute CI — severe hypotension); pregnancy\nEpoprostenol: severe pulmonary veno-occlusive disease (↑ pulmonary edema)",
         pk: "**Epoprostenol:** IV only, t½ ~3–6 min (continuous infusion required — interruption → rapid PAH rebound)\n**Treprostinil:** IV/SC/inhaled, t½ ~4 hr\n**Bosentan:** oral, t½ ~5 hr, CYP2C9/3A4 substrate and inducer (↓ OCP, ↓ cyclosporine)\n**Sildenafil (Revatio):** oral 3× daily (PAH); t½ ~4 hr; CYP3A4\n**Riociguat:** oral 3× daily; CYP1A2/3A4",
         pearl: "**Epoprostenol IV must NEVER be abruptly discontinued** — the half-life of ~3 minutes means the pump cannot be stopped without causing immediate severe rebound PAH and potentially fatal right heart failure. These patients require special alert bracelets and emergency protocols. **Riociguat + PDE5 inhibitors is an absolute contraindication** (both ↑ cGMP → catastrophic hypotension) — switch completely, never combine."
-      },
-      {
-        name: "Sumatriptan (Triptans)",
-        aka: "Sumatriptan (Imitrex) · Rizatriptan · Almotriptan · Eletriptan · Frovatriptan · Naratriptan · Zolmitriptan",
-        summary: "Selective 5-HT1B/1D receptor agonists that abort migraine attacks by causing cranial vasoconstriction and inhibiting trigeminal nociceptive signaling. First-line acute treatment for moderate-to-severe migraine.",
-        moa: "Selective agonists at **5-HT1B receptors** (intracranial blood vessels → vasoconstriction → ↓ neurogenic inflammation and meningeal vasodilation) and **5-HT1D receptors** (presynaptic on trigeminal sensory neurons → ↓ CGRP and substance P release → ↓ trigeminal nociceptive transmission) → abort migraine",
-        use: "Acute moderate-to-severe migraine (first-line abortive — especially when analgesics fail)\nCluster headache (sumatriptan SC — only agent approved for cluster)\nMenstrual migraine (frovatriptan — long t½ → mini-prophylaxis over menstrual period)",
-        se: "**Chest tightness/pressure** ('triptan sensations' — 5-HT1B coronary vasoconstriction — usually benign; rarely true coronary vasospasm)\nFlushing, tingling, warmth, paresthesias; nausea; dizziness\n**Serotonin syndrome** (with MAOIs, SSRIs — use with caution)\n**Medication overuse headache** (>10–15 uses/month → paradoxical ↑ frequency)",
-        ci: "**CAD, angina, prior MI** (coronary vasoconstriction)\n**Uncontrolled hypertension** (further ↑ BP)\n**Cerebrovascular disease / TIA / stroke**; Prinzmetal angina\n**Hemiplegic or basilar migraine** (ischemic complications)\nConcurrent MAOIs (serotonin syndrome); concurrent ergotamine (separate by 24 hr)",
-        pk: "**Sumatriptan:** oral (t½ ~2 hr), SC (fastest — onset 10–20 min), nasal spray, patch\n**Eletriptan/rizatriptan:** oral, rapid onset, t½ ~2–3 hr (best for quick relief)\n**Frovatriptan:** t½ ~26 hr (slowest onset — best for prolonged/menstrual migraine)\nAll: hepatic CYP3A4 (most); SC provides fastest plasma peak",
-        pearl: "**Triptans are contraindicated in coronary artery disease** because 5-HT1B receptors cause coronary vasoconstriction — potentially dangerous in patients with coronary stenosis. The 'chest tightness' experienced by many migraine patients after triptans is usually benign and non-cardiac (5-HT1B in esophagus/chest muscles), but do cardiac workup if features are concerning. **Medication overuse headache** (MOH) occurs with >10–15 triptan uses/month — regular use paradoxically worsens headache frequency."
       },
     ]
   },
@@ -1717,6 +1750,11 @@ onco: [
         pk: "All oral (small molecule advantage over IV mAbs)\n**Imatinib:** t½ ~18 hr; CYP3A4 substrate and inhibitor\n**Erlotinib/gefitinib:** CYP3A4; erlotinib requires acid for absorption (PPIs ↓ absorption)\n**Osimertinib:** t½ ~48 hr (once daily); CYP3A4\n**Ibrutinib:** t½ ~4–6 hr; CYP3A4 (major interaction with azole antifungals in CLL)",
         pearl: "**Imatinib and CML** — one of medicine's greatest success stories: BCR-ABL TKI converted CML from a disease with 5-year survival of ~30% to one with near-normal life expectancy. The mechanism: Philadelphia chromosome t(9;22) → BCR-ABL fusion protein constitutively active kinase → blocks apoptosis → CML. Imatinib blocks the ATP-binding site. **T315I 'gatekeeper' mutation** causes resistance to all TKIs except ponatinib (3rd generation) — rebiopsy at progression to detect resistance mutations."
       },
+    ]
+  },
+  {
+    group: "Immunosuppressants",
+    drugs: [
       {
         name: "Azathioprine",
         aka: "Azathioprine (Imuran, Azasan)",
