@@ -818,11 +818,30 @@ Here is my data:
 
       <!-- Step 2 -->
       <div id="import-s2" style="display:none;flex-direction:column;gap:12px;">
-        <div class="import-paste-label">
-          <span class="import-paste-label-num">3</span>
-          <span><strong>Paste the CSV output</strong> from the AI here:</span>
+        <div style="display:flex;gap:8px;margin-bottom:2px;">
+          <button id="uw-tab-paste" onclick="uwSwitchTab('paste')" style="flex:1;padding:8px;font-size:12px;font-weight:600;border:1px solid var(--dash);border-radius:8px;background:color-mix(in srgb,var(--dash) 10%,var(--surface));cursor:pointer;">Paste CSV</button>
+          <button id="uw-tab-file" onclick="uwSwitchTab('file')" style="flex:1;padding:8px;font-size:12px;font-weight:600;border:1px solid var(--border2);border-radius:8px;background:var(--surface);cursor:pointer;">Upload File</button>
         </div>
-        <textarea id="import-paste" placeholder="03/01/2026,44,Test 201&#10;02/28/2026,40,Test 200&#10;..."></textarea>
+        <div id="uw-panel-paste" style="display:flex;flex-direction:column;gap:8px;">
+          <div class="import-paste-label">
+            <span class="import-paste-label-num">3</span>
+            <span><strong>Paste the CSV output</strong> from the AI here:</span>
+          </div>
+          <textarea id="import-paste" placeholder="03/01/2026,44,Test 201&#10;02/28/2026,40,Test 200&#10;..."></textarea>
+        </div>
+        <div id="uw-panel-file" style="display:none;flex-direction:column;gap:10px;">
+          <div class="import-paste-label">
+            <span class="import-paste-label-num">3</span>
+            <span><strong>Upload a CSV file</strong> directly — skip the AI if your data is already formatted.</span>
+          </div>
+          <label style="display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;border:2px dashed var(--border2);border-radius:10px;padding:28px 16px;cursor:pointer;transition:border-color .15s;" onmouseover="this.style.borderColor='var(--dash)'" onmouseout="this.style.borderColor='var(--border2)'">
+            <span style="font-size:22px;">📄</span>
+            <span style="font-size:13px;font-weight:600;color:var(--ink);">Click to choose a CSV file</span>
+            <span style="font-size:11px;color:var(--muted);">Date, Questions, Name (optional)</span>
+            <input type="file" accept=".csv,.txt" id="uw-file-input" style="display:none;" onchange="uwLoadFile(this)">
+          </label>
+          <div id="uw-file-name" style="font-size:12px;color:var(--muted);text-align:center;display:none;"></div>
+        </div>
         <div id="import-paste-result" style="display:none;"></div>
       </div>
     </div>
@@ -1418,6 +1437,30 @@ function parseFlexDate(str) {
   return null;
 }
 
+function uwSwitchTab(tab) {
+  const pp = document.getElementById('uw-panel-paste');
+  const fp = document.getElementById('uw-panel-file');
+  const pt = document.getElementById('uw-tab-paste');
+  const ft = document.getElementById('uw-tab-file');
+  if (tab === 'paste') {
+    pp.style.display = 'flex'; fp.style.display = 'none';
+    pt.style.borderColor = 'var(--dash)'; pt.style.background = 'color-mix(in srgb,var(--dash) 10%,var(--surface))';
+    ft.style.borderColor = 'var(--border2)'; ft.style.background = 'var(--surface)';
+  } else {
+    pp.style.display = 'none'; fp.style.display = 'flex';
+    ft.style.borderColor = 'var(--dash)'; ft.style.background = 'color-mix(in srgb,var(--dash) 10%,var(--surface))';
+    pt.style.borderColor = 'var(--border2)'; pt.style.background = 'var(--surface)';
+  }
+}
+function uwLoadFile(input) {
+  const file = input.files[0]; if (!file) return;
+  const n = document.getElementById('uw-file-name');
+  n.textContent = file.name; n.style.display = 'block';
+  const r = new FileReader();
+  r.onload = e => { document.getElementById('import-paste').value = e.target.result; };
+  r.readAsText(file);
+}
+
 function importCSV() {
   const raw = document.getElementById('import-paste').value.trim();
   if (!raw) { showToast('Please paste the CSV first'); return; }
@@ -1457,6 +1500,7 @@ function importCSV() {
 }
 
 function resetImport() {
+  uwSwitchTab('paste');
   document.getElementById('dash-dot2').className = 'import-step-dot inactive';
   document.getElementById('dash-ind2').className = 'import-step inactive';
   document.getElementById('import-s1').style.display = 'block';
