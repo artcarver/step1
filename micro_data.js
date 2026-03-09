@@ -1074,53 +1074,53 @@ parasites: [
       organisms: [
         {
           name: "Plasmodium species (Malaria)",
-          summary: "RBC parasite cyclic fever, splenomegaly; P. falciparum (severe) vs P. vivax/ovale (relapse/hypnozoites); treat by species",
-          gram: "Protozoa (intracellular RBC parasite)",
-          virulence: "**Anopheles mosquito** (female) vector. **P. falciparum:** knob proteins on RBCs cause cytoadherence and rosetting, leading to severe disease. P. vivax/P. ovale form dormant liver hypnozoites.",
-          disease: "**Cyclic fever:** P. vivax/ovale (48h), P. malariae (72h), P. falciparum (irregular). **P. falciparum complications:** cerebral malaria, severe anemia, hypoglycemia, ARDS, **blackwater fever** (massive hemolysis). P. vivax/ovale cause relapse from liver hypnozoites.",
-          lab_diagnosis: "**Tests:** Rapid diagnostic tests (RDTs) for specific antigens. PCR. **Microscopy:** Thick and thin blood smears (Giemsa stain) show intracellular rings, schizonts, or gametocytes. P. falciparum features multiple small rings per RBC and banana-shaped gametocytes . P. vivax and ovale feature enlarged RBCs and Schüffner's dots.",
-          tx: "**P. falciparum:** artemether-lumefantrine or atovaquone-proguanil; IV **artesunate** (severe). **P. vivax/ovale:** chloroquine + **primaquine**. **Prophylaxis:** atovaquone-proguanil or doxycycline.",
-          pearl: "Always test for G6PD deficiency before giving primaquine, or massive hemolysis will occur. Primaquine is uniquely required to kill the dormant liver hypnozoites of P. vivax and P. ovale to prevent relapse."
+          summary: "Anopheles mosquito vector; cyclic fever, splenomegaly; 4 species differ by fever cycle, severity, and relapse potential; treat by species",
+          gram: "Protozoa (intraerythrocytic parasite)",
+          virulence: "**Anopheles mosquito** (female only) vector. Sporozoites → hepatocytes (exoerythrocytic stage) → merozoites → RBCs.\n**P. falciparum:** knob proteins cause RBC cytoadherence and rosetting → microvascular obstruction → severe/cerebral malaria.\n**P. vivax / P. ovale:** form dormant **hypnozoites** in the liver → late relapse weeks–months after initial infection.",
+          disease: "**Fever cycles:** P. vivax/ovale = 48h (tertian); P. malariae = 72h (quartan); P. falciparum = irregular/continuous.\n**P. falciparum complications** (sub-Saharan Africa, Papua New Guinea): cerebral malaria, severe anemia, hypoglycemia, ARDS, acute kidney injury, **blackwater fever** (massive intravascular hemolysis → hemoglobinuria → dark urine).\n**P. vivax** (South/Southeast Asia, Latin America, East Africa): mildest, but largest global burden outside sub-Saharan Africa; causes **relapse** from hypnozoites.\n**P. ovale** (West Africa): similar to vivax; also relapses.\n**P. malariae** (worldwide, low density): nephrotic syndrome from immune complex deposition.",
+          lab_diagnosis: "**Tests:** Rapid diagnostic test (RDT) for HRP-2 antigen (P. falciparum) or pLDH (all species). PCR for species confirmation and drug resistance.\n**Microscopy:** Thick smear (sensitive) + thin smear (speciation) with Giemsa stain.\n— P. falciparum: multiple small rings per RBC ('appliqué/accolé forms'), banana-shaped gametocytes, no Schüffner's dots.\n— P. vivax/ovale: enlarged RBCs with **Schüffner's dots**, ameboid trophozoites.\n— P. malariae: band-form trophozoites, 'rosette' schizonts.",
+          tx: "**P. falciparum (uncomplicated):** artemether-lumefantrine or atovaquone-proguanil.\n**P. falciparum (severe):** IV **artesunate** (superior to quinine).\n**P. vivax/ovale:** chloroquine (blood stage) + **primaquine** (liver hypnozoites; check G6PD first).\n**Chloroquine-resistant P. vivax:** atovaquone-proguanil or mefloquine.\n**Prophylaxis:** atovaquone-proguanil or doxycycline (high-resistance areas); chloroquine (limited areas).",
+          pearl: "Always test for **G6PD deficiency** before giving primaquine — it triggers massive hemolysis in G6PD-deficient patients. Primaquine is the only agent that kills liver hypnozoites and prevents relapse. Sickle cell trait and HbC confer partial protection against P. falciparum by reducing parasitemia."
         },
         {
           name: "Toxoplasma gondii",
           summary: "Definitive host: cats; congenital (calcifications + chorioretinitis + hydrocephalus) and CNS toxoplasmosis in HIV (CD4 <100); treat with pyrimethamine + sulfadiazine",
-          gram: "Obligate intracellular protozoan",
-          virulence: "Oocysts in cat feces, bradyzoites in undercooked meat. Obligate intracellular parasite.",
-          disease: "**Congenital toxoplasmosis** (TORCH): chorioretinitis + hydrocephalus + intracranial calcifications. **CNS toxoplasmosis (HIV, CD4 <100):** headache, fever, focal neurological deficits. **Ocular toxoplasmosis:** chorioretinitis in adults.",
-          lab_diagnosis: "**Tests:** Serology (IgM/IgG). PCR of amniotic fluid for congenital cases. **Imaging:** MRI brain shows multiple ring-enhancing lesions. **Microscopy/Histology:** Biopsy shows crescent-shaped tachyzoites or tissue cysts containing bradyzoites.",
-          tx: "**Pyrimethamine + sulfadiazine + leucovorin**. **TMP-SMX prophylaxis** if CD4 <100 and Toxoplasma IgG positive.",
-          pearl: "Multiple ring-enhancing lesions in the basal ganglia of an HIV patient favor Toxoplasma, whereas a single periventricular lesion favors primary CNS lymphoma. Congenital toxoplasmosis causes diffuse, scattered intracranial calcifications, differentiating it from the periventricular calcifications of CMV."
+          gram: "Protozoa — Obligate intracellular coccidian",
+          virulence: "**Definitive host:** cats (sexual reproduction → oocysts in feces).\n**Human infection:** ingestion of oocysts (cat litter, soil) or **bradyzoites** in undercooked meat (pork, lamb). Reactivation occurs with T-cell immunosuppression.",
+          disease: "**Congenital toxoplasmosis** (TORCH): classic triad = **chorioretinitis + hydrocephalus + diffuse intracranial calcifications**. Sensorineural hearing loss, seizures.\n**CNS toxoplasmosis (HIV, CD4 <100):** headache, fever, focal neurological deficits, altered mental status. MRI: multiple ring-enhancing lesions, classically in the **basal ganglia**.\n**Ocular toxoplasmosis** (immunocompetent adults): recurrent chorioretinitis from reactivation of congenital cysts.",
+          lab_diagnosis: "**Tests:** Serology (IgM acute / IgG past/chronic). PCR of amniotic fluid (congenital), CSF (CNS toxo).\n**Imaging:** MRI brain shows multiple ring-enhancing lesions at gray-white junction or basal ganglia.\n**Microscopy/Histology:** Biopsy shows crescent-shaped **tachyzoites** (active) or **tissue cysts** containing bradyzoites.",
+          tx: "**Pyrimethamine + sulfadiazine + leucovorin** (leucovorin prevents bone marrow suppression from pyrimethamine).\n**Prophylaxis (HIV):** TMP-SMX if CD4 <100 and Toxoplasma IgG positive.",
+          pearl: "Multiple ring-enhancing lesions in the **basal ganglia** of an HIV patient = Toxoplasma until proven otherwise (treat empirically). A single **periventricular** lesion favors CNS lymphoma. Congenital Toxoplasma → diffuse scattered calcifications; CMV → periventricular calcifications."
         },
         {
           name: "Giardia lamblia",
-          summary: "Pear-shaped trophozoite + cyst #1 parasitic diarrhea (hikers/contaminated water), malabsorption, floating stools; treat with metronidazole",
-          gram: "Protozoa - Flagellate",
-          virulence: "Trophozoites attach to duodenal/jejunal epithelium with a sucking disc, disrupting the brush border. Cysts are the infectious form and resist chlorine.",
-          disease: "**Acute:** watery diarrhea, abdominal cramps, bloating, flatulence. **Chronic:** steatorrhea, malabsorption of fat and fat-soluble vitamins, weight loss. **IgA deficiency** increases susceptibility.",
-          lab_diagnosis: "**Tests:** Stool antigen (EIA) is the test of choice. **Microscopy:** Stool O&P shows pear-shaped trophozoites with two nuclei ('owl-eye' or 'old man face' appearance) and four pairs of flagella, or oval cysts with four nuclei\n.",
-          tx: "**Metronidazole**, tinidazole, or nitazoxanide.",
-          pearl: "Patients with IgA deficiency are highly susceptible to severe, recurrent Giardia infections. The lack of blood and fever distinguishes this malabsorptive diarrhea from invasive pathogens."
+          summary: "Pear-shaped flagellate; contaminated water/fecal-oral; malabsorption, bloating, floating stools; no invasion, no blood; treat with metronidazole",
+          gram: "Protozoa — Flagellate",
+          virulence: "Trophozoites attach to duodenal/jejunal epithelium via a **ventral sucking disc**, disrupting the brush border and causing malabsorption. Cysts are the hardy infectious form — resist chlorination.",
+          disease: "**Acute:** watery, non-bloody diarrhea, abdominal cramps, bloating, flatulence, sulfurous ('rotten egg') belching.\n**Chronic:** steatorrhea, malabsorption of fat and fat-soluble vitamins (A, D, E, K), weight loss, failure to thrive in children.\n**Risk groups:** hikers ('beaver fever'), travelers, daycare workers, IgA-deficient patients.",
+          lab_diagnosis: "**Tests:** Stool antigen EIA (test of choice — highly sensitive and specific). PCR available.\n**Microscopy:** Stool O&P shows pear-shaped trophozoites with 2 nuclei ('owl-eye' appearance) and 4 pairs of flagella, or oval cysts with 4 nuclei.",
+          tx: "**Metronidazole**, tinidazole (single dose), or nitazoxanide.",
+          pearl: "IgA deficiency markedly increases susceptibility to severe recurrent Giardia — this is a classic association. No blood or fever distinguishes it from invasive pathogens. Giardia does NOT invade the mucosa."
         },
         {
           name: "Entamoeba histolytica",
-          summary: "Amebic dysentery + liver abscess ingested cysts, trophozoites invade mucosa, RBCs in cytoplasm; treat with metronidazole + luminal agent",
-          gram: "Protozoa - Ameba",
-          virulence: "**Trophozoites** ingest RBCs. Cysteine protease dissolves epithelial layer. Flask-shaped ulcers in colon.",
-          disease: "**Amebic colitis (dysentery):** bloody diarrhea, lower abdominal cramps. **Amebic liver abscess:** right lobe, 'anchovy paste' pus (necrotic, sterile). Fever, RUQ pain. Rupture risk.",
-          lab_diagnosis: "**Tests:** Stool antigen. Serology (IgG) useful for extraintestinal liver abscess. **Imaging:** Ultrasound or CT for right lobe liver abscess. **Microscopy/Histology:** Trophozoites feature a single nucleus and pathognomonic ingested RBCs in the cytoplasm . Cysts have up to 4 nuclei. Tissue biopsy shows flask-shaped ulcers.",
-          tx: "**Metronidazole** (tissue amebicide) + **luminal agent** (paromomycin or diloxanide furoate).",
-          pearl: "RBCs inside the trophozoite cytoplasm confirm E. histolytica rather than non-pathogenic intestinal amebae. Metronidazole alone is inadequate; a luminal agent like paromomycin must follow to eradicate intestinal cysts and prevent relapse."
+          summary: "Amebic dysentery + liver abscess; ingested cysts, trophozoites invade mucosa and contain RBCs; treat with metronidazole + luminal agent",
+          gram: "Protozoa — Ameba",
+          virulence: "**Trophozoites** ingest RBCs (pathognomonic). Cysteine protease dissolves epithelial layer. Flask-shaped ulcers form in the colon. Can disseminate hematogenously to the liver.",
+          disease: "**Amebic colitis:** bloody mucoid diarrhea, lower abdominal cramps. Ulcers may perforate → peritonitis.\n**Amebic liver abscess:** right lobe, 'anchovy paste' appearance (sterile, necrotic debris), fever, RUQ pain, hepatomegaly. Rupture into pleural or pericardial space is a complication.",
+          lab_diagnosis: "**Tests:** Stool antigen EIA (distinguishes from non-pathogenic E. dispar). Serology (IgG) for extraintestinal/liver abscess.\n**Imaging:** Ultrasound or CT — right-lobe hypoechoic lesion; no fluid-fluid level.\n**Microscopy/Histology:** Trophozoites with single nucleus and **ingested RBCs in cytoplasm**. Cysts have up to 4 nuclei. Tissue biopsy shows flask-shaped ulcers with undermined edges.",
+          tx: "**Metronidazole** (tissue amebicide) followed by **luminal agent** (paromomycin or diloxanide furoate) to eradicate intestinal cysts.",
+          pearl: "RBCs inside the trophozoite cytoplasm = E. histolytica confirmed. Metronidazole alone is inadequate — always follow with a luminal agent, or intestinal cysts persist and cause relapse. Unlike pyogenic liver abscess, amebic abscess rarely yields organisms on aspiration."
         },
         {
           name: "Cryptosporidium parvum",
-          summary: "Acid-fast oocysts watery diarrhea in immunocompetent vs life-threatening profuse diarrhea in HIV (CD4 <100); no effective treatment in AIDS",
-          gram: "Protozoa - Coccidian",
-          virulence: "**Acid-fast oocysts** survive chlorination. Infects intestinal epithelial cells (intracellular but extracytoplasmic in brush border).",
-          disease: "**Immunocompetent:** self-limited watery diarrhea. Common in daycare workers, recreational water. **HIV/AIDS (CD4 <100):** profuse watery diarrhea, wasting, biliary cryptosporidiosis (cholangiopathy).",
-          lab_diagnosis: "**Tests:** Stool antigen (EIA). PCR is most sensitive. **Microscopy:** Modified acid-fast stain of stool shows bright red, spherical oocysts (4 to 6 micrometers, smaller than RBCs) against a blue background .",
-          tx: "Immunocompetent: supportive. **AIDS:** nitazoxanide (modest benefit) + **immune reconstitution with HAART**.",
-          pearl: "Cryptosporidium oocysts are highly resistant to chlorination, leading to massive municipal and recreational water outbreaks. There is no reliable antiparasitic cure for AIDS patients; immune reconstitution with HAART is the only effective intervention."
+          summary: "Acid-fast oocysts; chlorine-resistant; self-limited in immunocompetent vs. profuse life-threatening diarrhea in AIDS (CD4 <100); no reliable cure in immunocompromised",
+          gram: "Protozoa — Coccidian",
+          virulence: "Acid-fast oocysts survive chlorination and standard water treatment. Infects intestinal epithelial cells — **intracellular but extracytoplasmic** (within the brush border, not inside the cytoplasm).",
+          disease: "**Immunocompetent:** self-limited watery diarrhea, common in daycare, recreational water (swimming pools), and travelers.\n**HIV/AIDS (CD4 <100):** profuse watery diarrhea (up to 10L/day), wasting, dehydration. **Biliary cryptosporidiosis** (sclerosing cholangitis-like picture, RUQ pain, elevated ALP).",
+          lab_diagnosis: "**Tests:** Stool antigen EIA (test of choice). PCR is most sensitive.\n**Microscopy:** Modified acid-fast stain — bright **red spherical oocysts** (4–6 µm, smaller than RBCs) against a blue background.",
+          tx: "**Immunocompetent:** supportive (self-limited).\n**HIV/AIDS:** nitazoxanide (modest benefit) + **immune reconstitution with HAART** (only truly effective intervention).",
+          pearl: "Cryptosporidium oocysts resist chlorination — the source of large municipal and swimming pool outbreaks. In AIDS, there is no reliable antiparasitic cure; restoring CD4 count with HAART is the treatment. Biliary involvement mimicking primary sclerosing cholangitis is a high-yield HIV complication."
         }
       ]
     },
@@ -1130,63 +1130,63 @@ parasites: [
       organisms: [
         {
           name: "Trypanosoma cruzi (Chagas Disease)",
-          summary: "Reduviid (kissing) bug vector South/Central America; trypomastigotes in blood, amastigotes in tissue; dilated cardiomyopathy, megaesophagus, megacolon; treat benznidazole",
-          gram: "Protozoa (Kinetoplastida)",
-          virulence: "**Reduviid bug** bites near mouth/eyes, defecates on skin, and trypomastigotes enter the wound. Amastigotes infect cardiac and smooth muscle cells.",
-          disease: "**Acute Chagas:** fever, malaise, **Romaña's sign** (painless periorbital swelling). **Chronic Chagas (years later):** **dilated cardiomyopathy** (ventricular aneurysm at apex, arrhythmias), **megaesophagus**, **megacolon**.",
-          lab_diagnosis: "**Tests:** PCR in acute phase. Serology (IgG) in chronic phase. ECG shows right bundle branch block. Echo shows dilated cardiomyopathy with apical aneurysm. **Microscopy:** Blood smear shows C-shaped or U-shaped flagellated trypomastigotes with a prominent kinetoplast. Tissue biopsy shows intracellular amastigotes in cardiac or muscle tissue.",
-          tx: "**Acute:** benznidazole or nifurtimox. **Chronic:** supportive.",
-          pearl: "Unilateral painless periorbital swelling (Romaña's sign) is the classic marker of acute inoculation. Megaesophagus can perfectly mimic achalasia (bird-beak sign on barium swallow); serology helps differentiate."
+          summary: "Reduviid (kissing) bug vector; South/Central America; trypomastigotes in blood, amastigotes in heart/smooth muscle; dilated cardiomyopathy, megaesophagus, megacolon",
+          gram: "Protozoa — Kinetoplastida",
+          virulence: "**Reduviid (triatomine/kissing) bug** bites near mouth or eyes, defecates on skin, and trypomastigotes enter through the wound or conjunctiva. **Amastigotes** infect cardiac myocytes and smooth muscle cells, causing inflammation and fibrosis.",
+          disease: "**Acute Chagas:** fever, malaise, lymphadenopathy. **Romaña's sign** (painless unilateral periorbital swelling at inoculation site near eye) is the classic marker.\n**Chronic Chagas (years to decades later):**\n— **Dilated cardiomyopathy** with apical ventricular aneurysm, heart block, arrhythmias, sudden death.\n— **Megaesophagus** (dysphagia, regurgitation — mimics achalasia).\n— **Megacolon** (constipation, obstruction).",
+          lab_diagnosis: "**Tests:** PCR (acute phase). Serology IgG (chronic phase — two different tests required to confirm).\n**ECG:** right bundle branch block + left anterior fascicular block is classic.\n**Echocardiogram:** dilated cardiomyopathy with pathognomonic apical aneurysm.\n**Microscopy:** Blood smear shows C-shaped or U-shaped flagellated trypomastigotes with a prominent kinetoplast. Biopsy shows intracellular amastigotes in cardiac or smooth muscle.",
+          tx: "**Acute:** benznidazole or nifurtimox (both must be given early for maximum benefit).\n**Chronic:** supportive (antitrypanosomal drugs provide limited benefit in established organ damage).",
+          pearl: "Unilateral painless periorbital swelling (Romaña's sign) = acute Chagas until proven otherwise. Megaesophagus perfectly mimics achalasia (bird-beak on barium swallow) — serology differentiates. Chagas cardiomyopathy with an **apical aneurysm** on echo is the highest-yield distinguishing feature from other cardiomyopathies."
         },
         {
           name: "Trypanosoma brucei (Sleeping Sickness)",
-          summary: "Tsetse fly vector African sleeping sickness; CNS invasion → altered sleep-wake cycle; treat suramin/melarsoprol",
-          gram: "Protozoa (Kinetoplastida)",
-          virulence: "**Tsetse fly** vector. **Antigenic variation of VSG** switches surface coat to evade the immune response, causing waves of parasitemia. Crosses the blood-brain barrier.",
-          disease: "**Stage 1 (hemolymphatic):** chancre at bite site, fever, lymphadenopathy. **Winterbottom's sign:** posterior cervical LAD. **Stage 2 (CNS):** encephalitis, personality change, **disrupted circadian rhythm** (sleeping during day, awake at night), coma.",
-          lab_diagnosis: "**Tests:** CSF analysis for Stage 2 CNS involvement. **Microscopy:** Blood or CSF smear shows extracellular, highly motile, elongated trypomastigotes with a single flagellum and undulating membrane.",
-          tx: "Stage 1: **suramin** or pentamidine. Stage 2 (CNS): **melarsoprol** or eflornithine.",
-          pearl: "Continuous antigenic variation of the variable surface glycoprotein (VSG) prevents the host from clearing the infection, causing undulating waves of parasitemia. Reversal of the sleep-wake cycle is the hallmark of CNS invasion."
+          summary: "Tsetse fly vector; sub-Saharan Africa; Stage 1 = hemolymphatic; Stage 2 = CNS invasion with disrupted sleep-wake cycle; treat suramin (Stage 1) or melarsoprol/eflornithine (Stage 2)",
+          gram: "Protozoa — Kinetoplastida",
+          virulence: "**Tsetse fly** (*Glossina* sp.) vector, exclusively in **sub-Saharan Africa**. **Antigenic variation of VSG** (variable surface glycoprotein) — the parasite continuously switches its surface coat, causing waves of parasitemia and preventing immune clearance.",
+          disease: "**Stage 1 — Hemolymphatic:** painful chancre at bite site, undulating fever, lymphadenopathy. **Winterbottom's sign** (posterior cervical LAD) is characteristic.\n**Stage 2 — CNS invasion:** encephalitis, personality change, confusion, daytime somnolence with nighttime insomnia (**disrupted circadian rhythm**), coma, death if untreated.\n**T. b. rhodesiense** (East Africa): acute, more severe. **T. b. gambiense** (West/Central Africa): chronic, more common.",
+          lab_diagnosis: "**Tests:** CSF analysis required to stage — Stage 2 if CSF shows trypomastigotes, >5 WBCs, or elevated protein.\n**Microscopy:** Blood or lymph node aspirate (Stage 1) or CSF (Stage 2) smear shows extracellular, elongated flagellated trypomastigotes with an undulating membrane.",
+          tx: "**Stage 1:** suramin (T. b. rhodesiense) or pentamidine (T. b. gambiense).\n**Stage 2:** melarsoprol (T. b. rhodesiense; highly toxic) or eflornithine ± nifurtimox (T. b. gambiense).",
+          pearl: "Continuous antigenic variation of VSG is why the host cannot clear the infection — producing characteristic **undulating waves of parasitemia**. Sleep-wake cycle reversal is the hallmark of CNS invasion. Melarsoprol is an arsenic compound; it can cause fatal reactive encephalopathy in ~5% of patients."
         },
         {
           name: "Babesia",
-          summary: "Ixodes tick vector RBC parasite, resembles malaria; tetrad 'Maltese cross' form; Northeast US; hemolytic anemia; asplenic patients at high risk; treat atovaquone + azithromycin",
-          gram: "Protozoa (intraerythrocytic)",
-          virulence: "**Ixodes scapularis tick** vector. Infects RBCs like malaria but has **NO exoerythrocytic liver stage**.",
-          disease: "**Symptomatic:** flu-like illness, hemolytic anemia, thrombocytopenia. **Severe disease** occurs in **asplenic patients**, the elderly, and immunocompromised patients.",
-          lab_diagnosis: "**Tests:** PCR is most sensitive. Serology. **Microscopy:** Giemsa-stained blood smear shows intraerythrocytic ring forms (mimicking malaria) and pathognomonic tetrads ('Maltese cross') without hemozoin pigment .",
-          tx: "Mild-moderate: **atovaquone + azithromycin**. Severe: clindamycin + quinine.",
-          pearl: "The Maltese cross formation inside an RBC is definitive for Babesia. Because it shares the Ixodes tick vector with Borrelia burgdorferi, always consider co-infection with Lyme disease. Asplenic patients face a massive risk for overwhelming, fatal parasitemia."
+          summary: "Ixodes tick vector; Northeast/Midwest US; intraerythrocytic parasite resembling malaria; Maltese cross tetrad; severe in asplenic patients; treat atovaquone + azithromycin",
+          gram: "Protozoa — Intraerythrocytic",
+          virulence: "**Ixodes scapularis tick** (same as Lyme disease and Anaplasmosis). Infects RBCs directly — **no exoerythrocytic liver stage**, distinguishing it from malaria. Sporadic in **Northeast and upper Midwest US** (especially Nantucket, Martha's Vineyard, Long Island).",
+          disease: "**Symptomatic:** flu-like illness, fever, chills, myalgias, hemolytic anemia, thrombocytopenia, elevated LDH.\n**Severe/life-threatening disease:** **asplenic patients**, the elderly, immunocompromised, and HIV patients are at highest risk for overwhelming, potentially fatal parasitemia.",
+          lab_diagnosis: "**Tests:** PCR (most sensitive). Serology (IgG/IgM).\n**Microscopy:** Giemsa-stained blood smear shows intraerythrocytic ring forms (mimicking P. falciparum) without hemozoin pigment. Pathognomonic: **tetrad rings ('Maltese cross')** inside a single RBC.",
+          tx: "**Mild–moderate:** atovaquone + azithromycin.\n**Severe:** clindamycin + quinine. Exchange transfusion for high-grade parasitemia (>10%) or severe hemolysis.",
+          pearl: "The Maltese cross (tetrad form) inside an RBC is **pathognomonic for Babesia**. Because it shares the Ixodes tick with Borrelia burgdorferi and Anaplasma, always consider **co-infection** with Lyme disease. Asplenic patients face overwhelming, rapidly fatal parasitemia and require prompt treatment."
         },
         {
           name: "Naegleria fowleri",
-          summary: "Free-living ameba warm freshwater; enters via cribriform plate → primary amebic meningoencephalitis (PAM); rapidly fatal; treat amphotericin B",
-          gram: "Protozoa - Free-living ameba",
-          virulence: "**Thermophilic**. Enters via olfactory epithelium through the **cribriform plate** directly into the brain.",
-          disease: "**Primary Amebic Meningoencephalitis (PAM):** healthy young swimmers in warm freshwater lakes or hot springs. Rapid onset severe headache, fever, altered mental status, coma. **Death within 3-7 days**.",
-          lab_diagnosis: "**Tests:** PCR. CSF analysis shows high neutrophils, high protein, and low glucose. **Microscopy:** Wet mount of fresh CSF shows actively motile trophozoites . Brain tissue autopsy shows amebic trophozoites without cysts.",
-          tx: "**Amphotericin B** (IV + intrathecal) + miltefosine. Survival is exceedingly rare.",
-          pearl: "Swimming in warm freshwater lakes followed rapidly by fulminant meningoencephalitis strongly points to Naegleria. The organism must travel through the cribriform plate via the olfactory nerve; it cannot be acquired by swallowing contaminated water."
+          summary: "Free-living ameba; warm freshwater (lakes, hot springs); enters via cribriform plate → primary amebic meningoencephalitis (PAM); rapidly fatal; treat amphotericin B",
+          gram: "Protozoa — Free-living ameba",
+          virulence: "**Thermophilic** — thrives in warm freshwater bodies (lakes, ponds, hot springs, poorly maintained pools). Enters via olfactory epithelium, migrates through the **cribriform plate**, and destroys the olfactory bulbs before spreading to brain parenchyma.",
+          disease: "**Primary Amebic Meningoencephalitis (PAM):** occurs in young healthy swimmers in warm freshwater. Rapid-onset severe headache, fever, nausea, altered mental status, coma. **Death within 3–7 days** in >97% of cases.",
+          lab_diagnosis: "**Tests:** PCR (CDC). CSF shows high opening pressure, high neutrophils, high protein, low glucose.\n**Microscopy:** Fresh warm wet mount of CSF shows **actively motile trophozoites** (must examine immediately). Brain autopsy shows amebic trophozoites — no cyst form found in tissue.",
+          tx: "**Amphotericin B** (IV + intrathecal) + miltefosine + azithromycin. Survival is exceedingly rare even with treatment.",
+          pearl: "Swimming in warm freshwater → rapid fulminant meningoencephalitis in a young healthy person = Naegleria until proven otherwise. The organism travels through the **cribriform plate via the olfactory nerve**; it cannot be acquired by swallowing contaminated water. CSF resembles bacterial meningitis but bacterial cultures are negative."
         },
         {
           name: "Leishmania",
-          summary: "Sandfly vector cutaneous (skin ulcer), mucocutaneous (tissue destruction), visceral (kala-azar, splenomegaly, pancytopenia); treat liposomal amphotericin B",
-          gram: "Protozoa",
-          virulence: "**Phlebotomus sandfly** vector. Promastigotes are inoculated, and **amastigotes** infect and survive inside macrophages.",
-          disease: "**Cutaneous:** painless slowly enlarging ulcer. **Mucocutaneous:** tissue destruction of nose/palate. **Visceral (kala-azar):** massive hepatosplenomegaly, fever, pancytopenia, hypergammaglobulinemia, hyperpigmentation.",
-          lab_diagnosis: "**Tests:** PCR. Serology (rk39 rapid test for visceral). **Microscopy/Histology:** Biopsy of bone marrow, spleen, or ulcer margin shows non-flagellated amastigotes (Leishman-Donovan bodies) packed intracellularly within macrophages, featuring a rod-shaped kinetoplast next to the nucleus .",
-          tx: "**Visceral/severe:** **liposomal amphotericin B**. Cutaneous: miltefosine, amphotericin.",
-          pearl: "Massive hepatosplenomegaly, pancytopenia, fever, and hyperpigmentation form the classic presentation of kala-azar (visceral leishmaniasis). Cutaneous lesions caused by L. braziliensis must be treated aggressively to prevent devastating mucocutaneous tissue destruction years later."
+          summary: "Sandfly vector; three forms: cutaneous (skin ulcer), mucocutaneous (tissue destruction), visceral/kala-azar (hepatosplenomegaly, pancytopenia); treat with liposomal amphotericin B",
+          gram: "Protozoa — Kinetoplastida",
+          virulence: "**Phlebotomus sandfly** vector. Promastigotes (flagellated, extracellular) inoculated into skin → taken up by macrophages → transform into **amastigotes** (non-flagellated, intracellular) that resist killing inside phagolysosomes.",
+          disease: "**Cutaneous (Old World — Middle East, Central Asia, Africa; New World — Latin America):** painless, slowly enlarging, non-healing ulcer with raised borders at bite site ('volcano crater' appearance).\n**Mucocutaneous (L. braziliensis — Latin America):** destructive ulceration of nasal septum, palate, lips ('tapir nose'). Years after cutaneous infection.\n**Visceral/Kala-azar (L. donovani — Indian subcontinent, East Africa, Brazil):** massive **hepatosplenomegaly**, prolonged fever, pancytopenia, **hypergammaglobulinemia**, hyperpigmentation of skin ('kala-azar' = black fever in Hindi).",
+          lab_diagnosis: "**Tests:** PCR. Rapid rk39 strip test (visceral — highly sensitive).\n**Microscopy/Histology:** Biopsy of bone marrow, spleen, or ulcer margin shows non-flagellated **amastigotes (Leishman-Donovan bodies)** packed inside macrophages, with a characteristic rod-shaped kinetoplast adjacent to the nucleus.",
+          tx: "**Visceral/severe:** liposomal amphotericin B (drug of choice).\n**Cutaneous (uncomplicated):** miltefosine or topical amphotericin. Treat all L. braziliensis infections aggressively to prevent mucocutaneous spread.",
+          pearl: "Massive hepatosplenomegaly + pancytopenia + fever + hyperpigmentation = **kala-azar** (visceral Leishmania). Cutaneous L. braziliensis must be treated even if it appears to heal — delayed mucocutaneous destruction of the nose and palate can occur years later and is disfiguring."
         },
         {
           name: "Trichomonas vaginalis",
-          summary: "Flagellated protozoan STI malodorous yellow-green frothy vaginal discharge, strawberry cervix; no cyst form; sexual transmission only; treat both partners",
-          gram: "Protozoa - Flagellate (no cyst form)",
-          virulence: "**No cyst form** exists, meaning the trophozoite cannot survive outside the host, leading to strict sexual transmission.",
-          disease: "**Females:** malodorous yellow-green frothy vaginal discharge, pruritus, dysuria. **Strawberry cervix** (punctate hemorrhages). **Males:** usually asymptomatic urethritis.",
-          lab_diagnosis: "**Tests:** NAAT (PCR) is the gold standard. Vaginal pH is greater than 4.5. **Microscopy:** Wet mount shows actively motile (jerky or twitching), pear-shaped flagellated trophozoites slightly larger than WBCs.",
-          tx: "**Metronidazole** or tinidazole. **Treat both partners simultaneously**.",
-          pearl: "Because there is no environmentally resilient cyst form, transmission is exclusively sexual. Treating both partners simultaneously is mandatory, as reinfection from an untreated partner is the most common cause of treatment failure."
+          summary: "Flagellated STI; malodorous yellow-green frothy discharge, strawberry cervix; no cyst form, strict sexual transmission; treat both partners with metronidazole",
+          gram: "Protozoa — Flagellate (no cyst form)",
+          virulence: "**No cyst form** — the trophozoite cannot survive outside the host, making **sexual contact the only route of transmission**. Trophozoites adhere to vaginal and urethral epithelium via surface adhesins.",
+          disease: "**Females:** malodorous yellow-green frothy vaginal discharge, pruritus, dysuria. **Strawberry cervix** (colpitis macularis — punctate hemorrhagic spots). Vaginal pH >4.5.\n**Males:** usually asymptomatic; may cause mild urethritis or balanoposthitis.",
+          lab_diagnosis: "**Tests:** NAAT/PCR (gold standard — highest sensitivity). Vaginal pH >4.5.\n**Microscopy:** Wet mount shows actively motile pear-shaped flagellated trophozoites, slightly larger than WBCs, with characteristic jerky/tumbling motility.",
+          tx: "**Metronidazole** 2g PO single dose or tinidazole. **Treat both partners simultaneously** — failure to treat the partner is the most common cause of reinfection.",
+          pearl: "No cyst form = exclusively sexual transmission. Always treat both partners simultaneously. Metronidazole resistance is increasing; tinidazole is an alternative. Unlike bacterial vaginosis, Trichomonas causes an inflammatory discharge with WBCs on wet mount."
         }
       ]
     },
@@ -1196,36 +1196,37 @@ parasites: [
       organisms: [
         {
           name: "Intestinal Nematodes",
-          summary: "Pinworms (Enterobius), ascaris (giant roundworm), hookworms (Ancylostoma/Necator), strongyloides, whipworm",
-          gram: "Helminths - Nematodes (roundworms)",
-          virulence: "Varies by species. Features larval migrans patterns, tissue invasion, and autoinfection (Strongyloides).",
-          disease: "**Enterobius (pinworm):** perianal pruritus at night. **Ascaris:** Löffler pneumonia (larval migration), intestinal obstruction. **Hookworm:** skin penetration (cutaneous larva migrans), iron-deficiency anemia. **Trichuris (whipworm):** bloody diarrhea, rectal prolapse. **Strongyloides:** autoinfection; hyperinfection syndrome in immunocompromised patients causes gram-negative sepsis.",
-          lab_diagnosis: "**Tests:** Scotch tape test for Enterobius (oval, asymmetrically flattened eggs). Serology or agar plate culture for Strongyloides. **Microscopy:** Stool O&P shows characteristic eggs (Ascaris: large, thick-shelled, mammillated; Hookworm: thin-shelled, oval; Trichuris: barrel-shaped with bipolar plugs). Strongyloides shows rhabditiform larvae in stool rather than eggs.",
-          tx: "**Albendazole or mebendazole**. Strongyloides requires **ivermectin**.",
-          pearl: "Administering corticosteroids to a patient latently infected with Strongyloides can trigger a catastrophic autoinfection hyperinfection syndrome, disseminating gut flora and causing gram-negative sepsis. Löffler syndrome (transient pulmonary eosinophilia) marks the lung migration phase of Ascaris, hookworms, and Strongyloides."
+          summary: "Pinworm (Enterobius), ascaris, hookworms, strongyloides, whipworm; fecal-oral or skin penetration; albendazole/mebendazole for most; ivermectin for strongyloides",
+          gram: "Helminths — Nematodes (roundworms)",
+          virulence: "Each species uses distinct strategies: fecal-oral ingestion, larval skin penetration, or autoinfection. Löffler syndrome (eosinophilia + transient pulmonary infiltrates) occurs during larval lung migration.",
+          disease: "**Enterobius vermicularis (pinworm):** perianal pruritus at night; most common helminth in the US; children.\n**Ascaris lumbricoides:** Löffler pneumonia during larval lung migration; intestinal obstruction from large worm burden.\n**Ancylostoma/Necator (hookworms):** skin penetration (cutaneous larva migrans, ground itch); iron-deficiency anemia from intestinal blood loss.\n**Trichuris trichiura (whipworm):** bloody diarrhea, rectal prolapse.\n**Strongyloides stercoralis:** unique autoinfection cycle; **hyperinfection syndrome** in immunocompromised/steroid-treated patients → dissemination of gut flora → gram-negative sepsis.",
+          lab_diagnosis: "**Enterobius:** Scotch tape test (asymmetrically flattened eggs around perianal skin, best collected at night or early morning).\n**Ascaris/Hookworm/Trichuris:** stool O&P — characteristic eggs.\n**Strongyloides:** stool O&P shows **rhabditiform larvae** (not eggs); serology (IgG EIA); agar plate culture is most sensitive.",
+          tx: "**Albendazole or mebendazole** (Enterobius, Ascaris, hookworm, Trichuris). Treat all household members for pinworm.\n**Strongyloides: ivermectin** (drug of choice).",
+          pearl: "**Administering corticosteroids to a patient with latent Strongyloides triggers catastrophic hyperinfection syndrome** — always screen at-risk patients (immigrants, travelers, HTLV-1) before starting immunosuppression. Löffler syndrome (transient eosinophilia + pulmonary infiltrates) marks the larval lung migration phase shared by Ascaris, hookworms, and Strongyloides."
         },
         {
           name: "Tissue Nematodes & Trematodes",
-          summary: "Trichinella (undercooked pork), filariasis (lymphedema), schistosoma (bladder cancer/portal HTN), Clonorchis (cholangiocarcinoma)",
-          gram: "Helminths - Trematodes/Nematodes (tissue)",
-          virulence: "Tissue invasion, larval encystment, and severe immunopathology.",
-          disease: "**Trichinella spiralis:** undercooked pork/bear causes periorbital edema, myalgias, and eosinophilia. **Wuchereria bancrofti:** mosquito vector causes lymphatic obstruction (elephantiasis). **Onchocerca volvulus:** blackfly vector causes river blindness. **Schistosoma:** cercariae penetrate skin. S. mansoni/japonicum causes portal HTN and Symmers' pipe-stem fibrosis. S. haematobium causes squamous cell carcinoma of bladder. **Clonorchis:** undercooked fish causes cholangiocarcinoma.",
-          lab_diagnosis: "**Tests:** Muscle biopsy for Trichinella. Thick blood smear drawn at midnight for Wuchereria bancrofti (filariasis). Skin snip for Onchocerca. **Microscopy:** Stool or urine O&P for Schistosoma eggs (S. mansoni: lateral spine; S. haematobium: terminal spine). Stool O&P for Clonorchis eggs.",
-          tx: "Trichinella: albendazole. Filariasis: DEC. Onchocerca: **ivermectin**. Schistosoma and Clonorchis: **praziquantel**.",
-          pearl: "Schistosoma haematobium uniquely infects the venous plexus of the bladder, causing painless hematuria and greatly increasing the risk of squamous cell carcinoma of the bladder. Clonorchis sinensis infection is a major risk factor for cholangiocarcinoma."
+          summary: "Trichinella (undercooked pork/bear), filariasis (lymphedema), river blindness (Onchocerca), schistosoma (bladder SCC/portal HTN), Clonorchis (cholangiocarcinoma)",
+          gram: "Helminths — Nematodes/Trematodes (tissue)",
+          virulence: "Tissue invasion, larval encystment in muscle (Trichinella), lymphatic obstruction (Wuchereria), microfilariae in skin/eye (Onchocerca), and granulomatous immunopathology around schistosome eggs.",
+          disease: "**Trichinella spiralis** (undercooked pork, bear, wild game): periorbital edema, myalgias, myositis, eosinophilia.\n**Wuchereria bancrofti** (mosquito vector, tropics): lymphatic obstruction → chronic **elephantiasis** (massive limb/scrotal edema), hydrocele.\n**Onchocerca volvulus** (blackfly vector, sub-Saharan Africa/Latin America): microfilariae in skin → pruritus, subcutaneous nodules; microfilariae in cornea → **river blindness** (leading infectious cause of blindness worldwide).\n**Schistosoma** (cercariae penetrate skin in freshwater, sub-Saharan Africa/Latin America/Asia):\n— S. mansoni / S. japonicum → portal HTN, **Symmers' pipe-stem fibrosis**, esophageal varices.\n— S. haematobium (Africa) → hematuria, **squamous cell carcinoma of the bladder**.\n**Clonorchis sinensis** (undercooked freshwater fish, East Asia): biliary obstruction, **cholangiocarcinoma**.",
+          lab_diagnosis: "**Trichinella:** muscle biopsy (encysted larvae); serology; elevated CK and eosinophilia.\n**Wuchereria:** thick blood smear at **midnight** (microfilariae peak nocturnally); antigen detection.\n**Onchocerca:** skin snip (microfilariae); slit-lamp exam (corneal microfilariae).\n**Schistosoma:** stool O&P — S. mansoni (lateral spine), S. japonicum (small lateral spine); urine O&P — S. haematobium (terminal spine).\n**Clonorchis:** stool O&P (small, operculated eggs).",
+          tx: "Trichinella: **albendazole** + corticosteroids (for severe myositis).\nFilariasis (Wuchereria): **DEC** (diethylcarbamazine).\nOnchocerca: **ivermectin** (do NOT use DEC — causes Mazzotti reaction with severe inflammation).\nSchistosoma and Clonorchis: **praziquantel**.",
+          pearl: "**Schistosoma haematobium** uniquely infects the perivesical venous plexus → painless hematuria → greatly increased risk of **squamous cell carcinoma** of the bladder. **Clonorchis** infection is a major risk factor for **cholangiocarcinoma**. Do NOT use DEC for Onchocerca — the mass death of microfilariae causes a severe inflammatory reaction (Mazzotti reaction) that can worsen eye disease."
         },
         {
           name: "Cestodes (Tapeworms)",
-          summary: "Taenia (pork/beef), Echinococcus (cysts in liver/lung), Diphyllobothrium (B12 deficiency); neurocysticercosis causes seizures",
-          gram: "Helminths - Cestodes (tapeworms)",
-          virulence: "Larval forms are the most pathogenic in human intermediate hosts. Echinococcus forms slowly expanding hydatid cysts.",
-          disease: "**Taenia solium (pork tapeworm):** intestinal tapeworm from eating cysticerci. **Neurocysticercosis:** eating T. solium eggs causes larvae to encyst in the brain, leading to seizures. **Taenia saginata (beef):** intestinal only. **Echinococcus granulosus:** hydatid cysts in liver/lung. **Diphyllobothrium latum (fish tapeworm):** B12 deficiency leading to megaloblastic anemia.",
-          lab_diagnosis: "**Tests:** CT or MRI of the head for neurocysticercosis (calcified cysts, 'hole-in-one' sign). Ultrasound or CT for Echinococcus (large hydatid cyst with daughter cysts). **Microscopy:** Stool O&P shows proglottids or eggs (Taenia: thick, radially striated shell; Diphyllobothrium: oval, operculated).",
-          tx: "Intestinal tapeworms: **praziquantel**. Neurocysticercosis: **albendazole** + dexamethasone. Echinococcus: **PAIR** or surgery. Do NOT aspirate Echinococcus blindly.",
-          pearl: "Neurocysticercosis, the leading cause of adult-onset seizures in developing nations, is acquired by ingesting Taenia solium eggs via human feces, not by eating undercooked pork. Never aspirate an Echinococcus hydatid cyst blindly, as spilling the cyst fluid can trigger lethal anaphylaxis."
+          summary: "Taenia solium (pork/neurocysticercosis/seizures), Taenia saginata (beef/intestinal only), Echinococcus (hydatid cysts), Diphyllobothrium (B12 deficiency)",
+          gram: "Helminths — Cestodes (tapeworms)",
+          virulence: "Larval forms are the most pathogenic in humans (intermediate hosts). Echinococcus forms slowly expanding hydatid cysts with an outer germinal layer surrounded by a fibrous pericyst.",
+          disease: "**Taenia solium (pork tapeworm):** eating undercooked pork containing cysticerci → intestinal tapeworm.\n**Neurocysticercosis:** ingesting T. solium **eggs** (from contaminated human feces) → larvae encyst in the brain → **seizures** (leading cause of adult-onset seizures in endemic areas), hydrocephalus, focal deficits.\n**Taenia saginata (beef tapeworm):** intestinal tapeworm only — no neurocysticercosis.\n**Echinococcus granulosus** (dogs → sheep/humans, worldwide): slowly expanding **hydatid cysts** in liver (most common) and lung; rupture → anaphylaxis.\n**Diphyllobothrium latum** (undercooked freshwater fish, Scandinavia, Canada, Latin America): competes for vitamin B12 in terminal ileum → **megaloblastic anemia**.",
+          lab_diagnosis: "**Neurocysticercosis:** CT or MRI head shows calcified ring cysts ('hole-in-one' sign) at different stages of evolution.\n**Echinococcus:** Ultrasound/CT shows large **hydatid cyst with daughter cysts** inside; serology (IgG).\n**Stool O&P:** proglottids or thick radially striated eggs (Taenia); oval operculated eggs (Diphyllobothrium).",
+          tx: "Intestinal tapeworms: **praziquantel**.\nNeurocysticercosis: **albendazole + dexamethasone** (steroids reduce inflammatory response to dying larvae).\nEchinococcus: **PAIR** (puncture, aspiration, injection of hypertonic saline, re-aspiration) or surgical resection. Pre-treat with albendazole. **Never aspirate without pre-treatment** — spilling cyst fluid causes anaphylaxis.\nDiphyllobothrium: praziquantel + B12 supplementation.",
+          pearl: "Neurocysticercosis is acquired by eating **eggs** (not pork) — from contaminated human feces. A person who never eats pork can still get neurocysticercosis from a food handler with intestinal T. solium. Never blindly aspirate an Echinococcus cyst — spilled fluid triggers **fatal anaphylaxis**. Diphyllobothrium causes B12 deficiency from preferential uptake of B12 by the worm in the distal ileum."
         }
       ]
     }
 ]
+
 
 };
