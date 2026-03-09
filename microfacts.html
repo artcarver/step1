@@ -25,6 +25,61 @@
 }
 /* Search highlight uses sage tint */
 mark.search-hl { background: rgba(94,154,112,.18); color: var(--ink); border-radius: 2px; padding: 0 2px; }
+
+/* ── Sketchy panel ───────────────────────────────────────── */
+.sketchy-panel {
+  margin: 16px 0 4px;
+  border: 1.5px solid var(--border);
+  border-radius: 10px;
+  overflow: hidden;
+  background: var(--surface);
+}
+.sketchy-panel-header {
+  display: flex; align-items: center; gap: 8px;
+  padding: 8px 12px;
+  background: var(--surface2);
+  border-bottom: 1px solid var(--border);
+  font-size: 11px; font-weight: 700;
+  letter-spacing: .05em; text-transform: uppercase;
+  color: var(--dim);
+  cursor: pointer; user-select: none;
+}
+.sketchy-panel-header-icon { font-size: 13px; }
+.sketchy-panel-header-chevron { margin-left: auto; font-size: 10px; transition: transform .2s; }
+.sketchy-panel.collapsed .sketchy-panel-header-chevron { transform: rotate(-90deg); }
+.sketchy-panel.collapsed .sketchy-panel-body { display: none; }
+.sketchy-panel-body { padding: 10px 12px 12px; }
+.sketchy-scene-tabs {
+  display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 10px;
+}
+.sketchy-scene-tab {
+  font-size: 11px; font-weight: 600; padding: 3px 10px;
+  border-radius: 99px;
+  border: 1.5px solid var(--border);
+  background: var(--surface); color: var(--dim);
+  cursor: pointer; transition: all .15s;
+}
+.sketchy-scene-tab:hover { border-color: var(--cat-color); color: var(--ink2); }
+.sketchy-scene-tab.active {
+  background: var(--cat-color); border-color: var(--cat-color); color: #fff;
+}
+.sketchy-img-wrap img {
+  width: 100%; border-radius: 6px; display: block;
+  cursor: zoom-in; transition: opacity .15s;
+}
+/* ── Lightbox ────────────────────────────────────────────── */
+.sketchy-lightbox {
+  display: none; position: fixed; inset: 0; z-index: 9999;
+  background: rgba(0,0,0,.88);
+  align-items: center; justify-content: center;
+  cursor: zoom-out;
+}
+.sketchy-lightbox.open { display: flex; }
+.sketchy-lightbox img {
+  max-width: 92vw; max-height: 92vh;
+  border-radius: 8px; box-shadow: 0 8px 48px rgba(0,0,0,.6);
+}
+
 </style>
 </head>
 <body>
@@ -104,6 +159,7 @@ mark.search-hl { background: rgba(94,154,112,.18); color: var(--ink); border-rad
 </div>
 
 <script src="micro_data.js"></script>
+<script src="sketchy_map.js"></script>
 <script src="app.js"></script>
 <script>
 const CAT_META = {
@@ -341,6 +397,38 @@ function showModal() {
   document.getElementById('modal-body').scrollTop = 0;
   const starBtn = document.getElementById('modal-star-btn');
   if (starBtn) { updateStarBtn(modalOrgs[modalIdx]?.name || ''); }
+
+  // ── Sketchy panel ──────────────────────────────────────────
+  const sketchyEntry = (typeof SKETCHY_MAP !== 'undefined') ? SKETCHY_MAP[o.name] : null;
+  const existingPanel = document.getElementById('sketchy-panel');
+  if (existingPanel) existingPanel.remove();
+  if (sketchyEntry && sketchyEntry.scenes?.length) {
+    const scenes = sketchyEntry.scenes;
+    const tabsHtml = scenes.length > 1
+      ? `<div class="sketchy-scene-tabs">${scenes.map((s,i) =>
+          `<button class="sketchy-scene-tab${i===0?' active':''}" onclick="sketchyTab(this,${i})">${s.title}</button>`
+        ).join('')}</div>`
+      : '';
+    const panel = document.createElement('div');
+    panel.id = 'sketchy-panel';
+    panel.className = 'sketchy-panel';
+    panel.innerHTML = `
+      <div class="sketchy-panel-header" onclick="this.closest('.sketchy-panel').classList.toggle('collapsed')">
+        <span class="sketchy-panel-header-icon">🎨</span>
+        Sketchy Micro
+        <span class="sketchy-panel-header-chevron">▼</span>
+      </div>
+      <div class="sketchy-panel-body">
+        ${tabsHtml}
+        <div class="sketchy-img-wrap">
+          <img id="sketchy-img" src="${scenes[0].img}" alt="${scenes[0].title}"
+               onclick="sketchyLightbox('${scenes[0].img}')">
+        </div>
+      </div>`;
+    document.getElementById('modal-body').appendChild(panel);
+    panel._scenes = scenes;
+  }
+
   document.getElementById('micro-modal-overlay').classList.add('open');
   document.body.style.overflow = 'hidden';
 }
@@ -348,6 +436,26 @@ function showModal() {
 function closeModal() {
   document.getElementById('micro-modal-overlay').classList.remove('open');
   document.body.style.overflow = '';
+}
+
+// ── Sketchy helpers ────────────────────────────────────────
+function sketchyTab(btn, idx) {
+  const panel = btn.closest('.sketchy-panel');
+  panel.querySelectorAll('.sketchy-scene-tab').forEach((t,i) =>
+    t.classList.toggle('active', i === idx));
+  const scene = panel._scenes[idx];
+  const img = document.getElementById('sketchy-img');
+  img.src = scene.img;
+  img.alt = scene.title;
+  img.onclick = () => sketchyLightbox(scene.img);
+}
+function sketchyLightbox(src) {
+  const lb = document.getElementById('sketchy-lightbox');
+  lb.querySelector('img').src = src;
+  lb.classList.add('open');
+}
+function sketchyLightboxClose() {
+  document.getElementById('sketchy-lightbox').classList.remove('open');
 }
 
 // ── Bookmark filter button ──────────────────────────────────
@@ -513,5 +621,9 @@ document.addEventListener('DOMContentLoaded', () => {
   render();
 });
 </script>
+<div class="sketchy-lightbox" id="sketchy-lightbox" onclick="sketchyLightboxClose()">
+  <img src="" alt="Sketchy scene">
+</div>
+
 </body>
 </html>
