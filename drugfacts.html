@@ -13,325 +13,22 @@
   --accent-light: var(--sakura-light);
   --accent-glow:  rgba(196,80,94,.10);
 }
-</style>
 
-<style>
-/* ══════════════════════════════════════════════
-   FLASHCARD QUIZ — REDESIGNED
-   ══════════════════════════════════════════════ */
-
-/* ── Quiz layout: sidebar + card area ── */
-.quiz-layout {
-  display: flex; gap: 20px; align-items: flex-start;
-}
-
-/* Sidebar */
-.quiz-sidebar {
-  width: 0; overflow: hidden; flex-shrink: 0;
-  transition: width .2s ease;
-}
-.quiz-sidebar.open { width: 220px; }
-.qsb-inner {
-  width: 220px; padding: 16px 14px;
-  border: 1.5px solid var(--border); border-radius: 14px;
-  background: var(--surface); display: flex; flex-direction: column; gap: 14px;
-}
-.qsb-section { display: flex; flex-direction: column; gap: 6px; }
-.qsb-label {
-  font-size: 10px; font-weight: 700; text-transform: uppercase;
-  letter-spacing: 0.8px; color: var(--dim);
-}
-.qsb-pill-group { display: flex; gap: 5px; flex-wrap: wrap; }
-.qsb-pill {
-  padding: 4px 11px; border-radius: 99px; font-size: 11px; font-weight: 500;
-  border: 1.5px solid var(--border); background: transparent; color: var(--dim);
-  cursor: pointer; transition: all .15s;
-}
-.qsb-pill:hover { color: var(--ink2); border-color: var(--border2); }
-.qsb-pill.active { background: var(--surface2); border-color: var(--border2); color: var(--ink2); font-weight: 600; }
-
-.qsb-scope-group { display: flex; flex-direction: column; gap: 4px; }
-.qsb-scope-btn {
-  padding: 5px 10px; border-radius: 8px; font-size: 12px; font-weight: 500; text-align: left;
-  border: 1.5px solid var(--border); background: transparent; color: var(--dim);
-  cursor: pointer; transition: all .15s;
-}
-.qsb-scope-btn:hover { color: var(--ink2); border-color: var(--border2); }
-.qsb-scope-btn.active { background: var(--surface2); border-color: var(--border2); color: var(--ink2); font-weight: 600; }
-
-.qsb-actions { display: flex; flex-direction: column; gap: 5px; border-top: 1px solid var(--border); padding-top: 10px; }
-.qsb-action-btn {
-  padding: 5px 10px; border-radius: 8px; font-size: 12px; font-weight: 500; text-align: left;
-  border: 1.5px solid var(--border); background: transparent; color: var(--dim);
-  cursor: pointer; transition: all .15s; display: flex; align-items: center; gap: 6px;
-}
-.qsb-action-btn:hover { color: var(--ink2); border-color: var(--border2); }
-.qsb-action-danger:hover { color: var(--sakura2) !important; border-color: var(--sakura2) !important; }
-
-/* Card main area grows to fill */
-.quiz-main { flex: 1; min-width: 0; }
-
-/* ── Quiz top strip (SR pills + progress) ── */
-.quiz-strip-top {
-  display: flex; align-items: center; justify-content: space-between;
-  padding: 10px 0 0; gap: 12px;
-}
-.quiz-strip-right { display: flex; align-items: center; gap: 10px; flex-shrink: 0; }
-.sr-deck-pills { display: flex; gap: 6px; align-items: center; }
-
-/* SR deck pills — smaller, more refined */
-.sr-deck-pill {
-  display: inline-flex; align-items: center; gap: 4px;
-  padding: 4px 11px; border-radius: 99px;
-  border: 1.5px solid var(--border); background: var(--surface);
-  font-size: 11px; font-weight: 600; color: var(--dim);
-  cursor: pointer; transition: all .15s; white-space: nowrap;
-}
-.sr-deck-pill:hover { border-color: var(--sakura2); color: var(--ink2); }
-.sr-deck-pill.active { background: var(--sakura-light); border-color: var(--sakura2); color: var(--sakura2); }
-.sr-deck-pill.sr-pill-new.active { background: var(--gold-light); border-color: var(--gold); color: var(--gold); }
-.sr-deck-pill.sr-pill-all.active { background: var(--surface2); border-color: var(--border2); color: var(--ink2); }
-.sr-pill-num { font-family: 'DM Mono', monospace; font-size: 11px; font-weight: 700; }
-
-/* Divider */
-.quiz-topbar-divider { width: 1px; height: 18px; background: var(--border); flex-shrink: 0; }
-
-/* Settings toggle button */
-.quiz-settings-btn {
-  display: inline-flex; align-items: center; gap: 5px;
-  padding: 4px 11px; border-radius: 99px; font-size: 11px; font-weight: 600;
-  border: 1.5px solid var(--border); background: var(--surface); color: var(--dim);
-  cursor: pointer; transition: all .15s;
-}
-.quiz-settings-btn:hover { border-color: var(--border2); color: var(--ink2); }
-.quiz-settings-btn.active { background: var(--surface2); border-color: var(--border2); color: var(--ink2); }
-
-/* ── Progress bar ── */
-.quiz-progress-wrap {
-  height: 3px; background: var(--border); border-radius: 99px;
-  margin-bottom: 6px; overflow: hidden;
-}
-.quiz-progress-fill {
-  height: 100%; border-radius: 99px;
-  background: linear-gradient(90deg, var(--sakura2), color-mix(in srgb, var(--sakura2) 60%, var(--gold)));
-  transition: width .4s ease;
-}
-
-/* ── Quiz stat line ── */
-.quiz-stat-line {
-  font-size: 11px; color: var(--dim); font-family: 'DM Mono', monospace;
-  padding-bottom: 10px; letter-spacing: 0.2px;
-}
-.quiz-stat-line strong { color: var(--ink2); }
-.quiz-stat-line .qs-good  { color: var(--sage); }
-.quiz-stat-line .qs-again { color: var(--sakura2); }
-
-/* ── Custom category picker ── */
-.quiz-cat-picker {
-  display: flex; flex-wrap: wrap; gap: 6px; padding: 8px 0 4px;
-}
-.quiz-cat-chip {
-  padding: 3px 10px; border-radius: 99px; font-size: 11px; font-weight: 600;
-  border: 1.5px solid color-mix(in srgb, var(--chip-color) 40%, transparent);
-  background: color-mix(in srgb, var(--chip-color) 8%, transparent);
-  color: var(--chip-color); cursor: pointer; transition: all .15s;
-}
-.quiz-cat-chip.active {
-  background: color-mix(in srgb, var(--chip-color) 18%, transparent);
-  border-color: var(--chip-color);
-}
-
-/* ── Keyboard hint ── */
-.quiz-kbd-hint {
-  font-size: 10.5px; color: var(--dim); font-family: 'DM Mono', monospace;
-  opacity: .8; white-space: nowrap;
-}
-
-/* ══ CARD ══ */
-.quiz-card-wrap {
-  display: flex; flex-direction: column; align-items: center;
-  gap: 14px; padding: 8px 0 32px;
-}
-
-/* Nav row */
-.quiz-nav-row {
-  width: 100%; max-width: 600px;
-  display: flex; align-items: center; justify-content: space-between;
-}
-.quiz-nav-btn {
-  display: inline-flex; align-items: center; gap: 4px;
-  padding: 5px 12px; border-radius: 8px;
-  border: 1.5px solid var(--border); background: transparent;
-  font-size: 12px; font-weight: 500; color: var(--dim);
-  cursor: pointer; transition: all .15s;
-}
-.quiz-nav-btn:hover:not(:disabled) { color: var(--ink2); border-color: var(--border2); }
-.quiz-nav-btn:disabled { opacity: .35; cursor: default; }
-.quiz-nav-center { display: flex; align-items: center; gap: 8px; }
-.quiz-card-counter { font-family: 'DM Mono', monospace; font-size: 12px; color: var(--dim); }
-
-/* Bookmark button */
-.fc-star-btn {
-  background: none; border: none; cursor: pointer;
-  font-size: 16px; color: var(--dim); padding: 2px 4px; line-height: 1;
-  transition: color .15s, transform .1s;
-}
-.fc-star-btn:hover { color: var(--gold); transform: scale(1.15); }
-.fc-star-btn.starred { color: var(--gold); }
-
-/* ── THE CARD ── */
-.fc-card {
-  width: 100%; max-width: 600px;
-  border-radius: 16px; border: 1.5px solid var(--border);
-  background: var(--surface);
-  box-shadow: 0 2px 16px rgba(0,0,0,.06), 0 0 0 1px rgba(0,0,0,.03);
-  overflow: hidden;
-  animation: cardIn .25s cubic-bezier(.22,1,.36,1);
-}
-@keyframes cardIn {
-  from { opacity: 0; transform: translateY(8px) scale(0.985); }
-  to   { opacity: 1; transform: none; }
-}
-
-/* Front face */
-.fc-front {
-  display: flex; flex-direction: column; align-items: center;
-  text-align: center; padding: 40px 32px 32px;
-  cursor: pointer; user-select: none;
-  position: relative; min-height: 220px; justify-content: center;
-  gap: 0;
-}
-.fc-front::before {
-  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
-  background: var(--cat-color);
-}
-.fc-front-eyebrow {
-  font-size: 10px; font-weight: 700; letter-spacing: 1.2px;
-  text-transform: uppercase; color: var(--cat-color);
-  margin-bottom: 16px; opacity: .85;
-}
-.fc-front-q {
-  font-size: clamp(20px, 4vw, 28px); font-weight: 700;
-  font-family: 'Playfair Display', Georgia, serif; line-height: 1.25;
-  color: var(--ink); margin-bottom: 10px; letter-spacing: -0.3px;
-}
-.fc-front-hint {
-  font-size: 12px; color: var(--dim); margin-bottom: 28px;
-  font-weight: 500;
-}
-.fc-reveal-btn {
-  padding: 9px 24px; border-radius: 99px; font-size: 13px; font-weight: 600;
-  border: 1.5px solid var(--cat-color);
-  background: color-mix(in srgb, var(--cat-color) 8%, transparent);
-  color: var(--cat-color); cursor: pointer; transition: all .15s;
-  letter-spacing: .2px;
-}
-.fc-reveal-btn:hover {
-  background: color-mix(in srgb, var(--cat-color) 16%, transparent);
-  transform: translateY(-1px);
-}
-
-/* Back face */
-.fc-back { display: none; }
-.fc-back-header {
-  padding: 20px 24px 14px;
-  border-bottom: 1px solid var(--border);
-  position: relative;
-}
-.fc-back-header::before {
-  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
-  background: var(--cat-color);
-}
-.fc-back-eyebrow {
-  font-size: 10px; font-weight: 700; letter-spacing: 1px;
-  text-transform: uppercase; color: var(--cat-color);
-  margin-bottom: 6px; opacity: .85;
-}
-.fc-back-title {
-  font-size: clamp(18px, 3.5vw, 24px); font-weight: 700;
-  font-family: 'Playfair Display', Georgia, serif; color: var(--ink);
-  line-height: 1.2; letter-spacing: -0.2px;
-}
-.fc-aka {
-  margin-top: 6px; display: flex; flex-wrap: wrap; gap: 4px; align-items: center;
-}
-.fc-aka-token {
-  display: inline-block; font-size: 11px; font-weight: 500;
-  padding: 1px 8px; border-radius: 99px;
-  background: color-mix(in srgb, var(--cat-color) 10%, transparent);
-  color: var(--cat-color); border: 1px solid color-mix(in srgb, var(--cat-color) 25%, transparent);
-}
-.fc-aka-dot { font-size: 10px; color: var(--dim); margin: 0 1px; }
-
-/* Back fields */
-.fc-back-fields { padding: 16px 24px 20px; }
-.fc-fields-grid {
-  display: grid; grid-template-columns: 1fr 1fr; gap: 10px 16px;
-  margin-bottom: 10px;
-}
-@media (max-width: 500px) { .fc-fields-grid { grid-template-columns: 1fr; } }
-.fc-field { display: flex; flex-direction: column; gap: 3px; }
-.fc-field-lbl {
-  font-size: 9.5px; font-weight: 700; text-transform: uppercase;
-  letter-spacing: 0.8px; color: var(--cat-color); opacity: .8;
-}
-.fc-field-val {
-  font-size: 13px; color: var(--ink2); line-height: 1.5;
-}
-.fc-field-val strong { color: var(--ink); }
-/* Pearl field — full width, highlighted */
-.fc-field-pearl {
-  grid-column: 1 / -1;
-  margin-top: 4px; padding: 10px 14px; border-radius: 10px;
-  background: color-mix(in srgb, var(--cat-color) 7%, transparent);
-  border: 1px solid color-mix(in srgb, var(--cat-color) 20%, transparent);
-}
-.fc-field-pearl .fc-field-lbl { color: var(--cat-color); opacity: 1; }
-
-/* ── Rating buttons (2-button: Again / Got it) ── */
-.fc-rating-row {
-  width: 100%; max-width: 600px;
-  display: none; gap: 10px;
-}
-.fc-rating-row.visible { display: flex; }
-.fc-rate-btn {
-  flex: 1; display: flex; align-items: center; justify-content: center; gap: 8px;
-  padding: 13px 16px; border-radius: 12px; font-size: 15px; font-weight: 700;
-  border: 1.5px solid var(--border); background: var(--surface);
-  cursor: pointer; transition: all .15s; letter-spacing: .2px;
-}
-.fc-rate-btn:hover { transform: translateY(-2px); box-shadow: 0 4px 14px rgba(0,0,0,.1); }
-.fc-rate-btn .fc-rate-key {
-  font-family: 'DM Mono', monospace; font-size: 10px; font-weight: 600;
-  opacity: .45; padding: 1px 5px; border-radius: 4px;
-  border: 1px solid currentColor; line-height: 1.4;
-}
-.fc-rate-again { border-color: color-mix(in srgb, var(--sakura2) 40%, transparent); color: var(--sakura2); }
-.fc-rate-again:hover { background: color-mix(in srgb, var(--sakura2) 10%, transparent); border-color: var(--sakura2); }
-.fc-rate-good  { border-color: color-mix(in srgb, var(--sage) 50%, transparent); color: var(--sage); }
-.fc-rate-good:hover  { background: color-mix(in srgb, var(--sage) 10%, transparent); border-color: var(--sage); }
-
-/* ── Complete screen ── */
-.quiz-complete {
-  display: none; flex-direction: column; align-items: center;
-  text-align: center; padding: 48px 24px; gap: 8px;
-  max-width: 520px; margin: 0 auto;
-}
-.quiz-complete.visible { display: flex; }
-.quiz-complete-icon { font-size: 40px; margin-bottom: 4px; }
-.quiz-complete-title { font-size: 22px; font-weight: 700; font-family: 'Playfair Display', serif; color: var(--ink); }
-.quiz-complete-sub { font-size: 14px; color: var(--dim); margin-bottom: 8px; }
-.quiz-complete-stats { display: flex; gap: 20px; flex-wrap: wrap; justify-content: center; margin: 12px 0; }
-.qc-stat { display: flex; flex-direction: column; align-items: center; gap: 4px; }
-.qc-stat-num { font-size: 28px; font-weight: 700; font-family: 'Playfair Display', serif; }
-.qc-stat-lbl { font-size: 11px; color: var(--dim); font-weight: 500; }
-.quiz-restart-btn {
-  padding: 9px 22px; border-radius: 99px; font-size: 13px; font-weight: 600;
-  border: 1.5px solid var(--sakura2); background: var(--sakura-light); color: var(--sakura2);
-  cursor: pointer; transition: all .15s;
-}
-.quiz-restart-btn:hover { background: color-mix(in srgb, var(--sakura2) 20%, transparent); }
-.quiz-restart-outline { background: transparent; }
+/* ── Sketchy Panel ── */
+.sketchy-panel { margin-top: 18px; border: 1.5px solid var(--sakura2); border-radius: 12px; overflow: hidden; }
+.sketchy-panel-header { display: flex; align-items: center; gap: 8px; padding: 10px 14px; background: color-mix(in srgb, var(--sakura2) 10%, transparent); cursor: pointer; font-size: 13px; font-weight: 600; color: var(--sakura2); user-select: none; }
+.sketchy-panel-header-chevron { margin-left: auto; font-size: 10px; transition: transform .2s; }
+.sketchy-panel.collapsed .sketchy-panel-header-chevron { transform: rotate(-90deg); }
+.sketchy-panel.collapsed .sketchy-panel-body { display: none; }
+.sketchy-panel-body { padding: 10px 12px 12px; }
+.sketchy-scene-tabs { display: flex; gap: 6px; margin-bottom: 8px; flex-wrap: wrap; }
+.sketchy-scene-tab { padding: 3px 10px; border-radius: 20px; border: 1.5px solid var(--sakura2); background: transparent; color: var(--sakura2); font-size: 12px; cursor: pointer; transition: all .15s; }
+.sketchy-scene-tab.active { background: var(--sakura2); color: #fff; }
+.sketchy-img-wrap img { width: 100%; border-radius: 8px; cursor: zoom-in; display: block; }
+.sketchy-lightbox { display: none; position: fixed; inset: 0; background: rgba(0,0,0,.85); z-index: 9999; align-items: center; justify-content: center; }
+.sketchy-lightbox.open { display: flex; }
+.sketchy-lightbox img { max-width: 95vw; max-height: 92vh; border-radius: 10px; }
+.sketchy-lightbox-close { position: absolute; top: 18px; right: 24px; font-size: 28px; color: #fff; cursor: pointer; line-height: 1; }
 </style>
 </head>
 <body>
@@ -374,106 +71,12 @@
     </button>
   </div>
 
-  <!-- View mode bar -->
-  <div class="view-mode-bar">
-    <button class="mode-btn active" id="mode-browse" onclick="setMode('browse')">
-      <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round">
-        <rect x="1" y="1" width="6" height="6" rx="1.5"/><rect x="9" y="1" width="6" height="6" rx="1.5"/>
-        <rect x="1" y="9" width="6" height="6" rx="1.5"/><rect x="9" y="9" width="6" height="6" rx="1.5"/>
-      </svg>
-      Browse
-    </button>
-    <button class="mode-btn" id="mode-quiz" onclick="setMode('quiz')">
-      <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round">
-        <rect x="1" y="2" width="14" height="12" rx="2"/>
-        <line x1="5" y1="8" x2="11" y2="8"/><line x1="8" y1="5" x2="8" y2="11"/>
-      </svg>
-      Flashcard Quiz
-    </button>
-  </div>
-
-  <!-- Quiz strip: SR stats + progress -->
-  <div id="quiz-strip" style="display:none;">
-    <div class="quiz-strip-top">
-      <div class="sr-deck-pills">
-        <button class="sr-deck-pill sr-pill-due active" id="sr-pill-due" onclick="setSRMode('due')">
-          <span class="sr-pill-num" id="sr-due-count">0</span> Due
-        </button>
-        <button class="sr-deck-pill sr-pill-new" id="sr-pill-new" onclick="setSRMode('new')">
-          <span class="sr-pill-num" id="sr-new-count">0</span> New
-        </button>
-        <button class="sr-deck-pill sr-pill-all" id="sr-pill-all" onclick="setSRMode('all')">All</button>
-      </div>
-      <div class="quiz-strip-right">
-        <span class="quiz-kbd-hint">Space=flip · 1=Missed · 2=Got it</span>
-        <button class="quiz-settings-btn" id="quiz-settings-btn" onclick="toggleQuizSidebar()">
-          <svg width="12" height="12" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round">
-            <circle cx="8" cy="8" r="2.2"/>
-            <path d="M8 1.5v1.8M8 12.7v1.8M1.5 8h1.8M12.7 8h1.8M3.4 3.4l1.27 1.27M11.33 11.33l1.27 1.27M3.4 12.6l1.27-1.27M11.33 4.67l1.27-1.27"/>
-          </svg>
-          Settings
-        </button>
-      </div>
-    </div>
-    <div class="quiz-progress-wrap">
-      <div class="quiz-progress-fill" id="quiz-progress-fill" style="width:0%"></div>
-    </div>
-    <div class="quiz-stat-line" id="quiz-stat"></div>
-  </div>
-
   <!-- Tab bar -->
   <div class="cat-tab-bar" id="cat-tabs" role="tablist"></div>
 
   <!-- Browse panels -->
   <div id="panels-container"></div>
 
-  <!-- Quiz layout: sidebar + card area -->
-  <div class="quiz-layout" id="quiz-layout" style="display:none;">
-
-    <!-- Settings sidebar -->
-    <aside class="quiz-sidebar" id="quiz-sidebar">
-      <div class="qsb-inner">
-
-        <div class="qsb-section">
-          <div class="qsb-label">Direction</div>
-          <div class="qsb-pill-group">
-            <button class="qsb-pill active" id="dir-name" onclick="setQuizDir('name-to-facts')">Drug → Facts</button>
-            <button class="qsb-pill" id="dir-guess" onclick="setQuizDir('facts-to-name')">Facts → Drug</button>
-          </div>
-        </div>
-
-        <div class="qsb-section">
-          <div class="qsb-label">Scope</div>
-          <div class="qsb-scope-group">
-            <button class="qsb-scope-btn active" data-scope="current" onclick="setQuizScope('current')">Current tab</button>
-            <button class="qsb-scope-btn" data-scope="all" onclick="setQuizScope('all')">All drugs</button>
-            <button class="qsb-scope-btn" data-scope="custom" onclick="setQuizScope('custom')">Choose…</button>
-          </div>
-          <div class="quiz-cat-picker" id="quiz-cat-picker" style="display:none; margin-top:8px;"></div>
-        </div>
-
-        <div class="qsb-actions">
-          <button class="qsb-action-btn" onclick="shuffleQuiz()">
-            <svg width="11" height="11" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M1 4h2.5a4 4 0 013.2 1.6L8 7M15 4h-2.5a4 4 0 00-3.2 1.6L8 7m0 0l1.3 1.7A4 4 0 0012.5 10H15M1 12h2.5a4 4 0 003.2-1.6L8 9"/><path d="M13 2l2 2-2 2M13 8l2 2-2 2"/></svg>
-            Shuffle
-          </button>
-          <button class="qsb-action-btn" onclick="resetQuiz()">
-            <svg width="11" height="11" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M2 8a6 6 0 106-6H4m0 0L2 4m2-2v4"/></svg>
-            Reset deck
-          </button>
-          <button class="qsb-action-btn qsb-action-danger" onclick="confirmResetSR()">
-            <svg width="11" height="11" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 3l10 10M13 3L3 13"/></svg>
-            Reset SR progress
-          </button>
-        </div>
-
-      </div>
-    </aside>
-
-    <!-- Card area -->
-    <div class="quiz-main" id="quiz-container"></div>
-
-  </div>
 
 </div>
 
@@ -512,6 +115,7 @@
 </div>
 
 <script src="drug_data.js"></script>
+<script src="sketchy_map.js"></script>
 <script src="app.js"></script>
 <script>
 /* ============================================================
@@ -526,17 +130,6 @@
 let allDrugs = [];
 let activeTab = 'autonomic';
 let searchQ = '';
-let currentMode = 'browse';
-let quizDir = 'name-to-facts';
-let quizScope = 'current';       // 'current' | 'all' | 'custom'
-let quizCustomCats = new Set();  // active when quizScope === 'custom'
-let quizDrugs = [];
-let quizIdx = 0;
-let quizResults = { again: 0, good: 0 };
-let bookmarkFilter = false;
-let bookmarks = new Set();
-// which back-of-card fields are visible; pearl is always shown if present
-let quizVisibleFields = new Set(['moa','use','se','ci','pk']);
 
 // ── SM-2 Spaced Repetition Engine ─────────────────────────
 // Stores per-drug: { interval, easeFactor, dueDate, reps, lapses }
@@ -764,27 +357,6 @@ function stripMd(text) {
   return (text||'').replace(/\*\*(.*?)\*\*/g, '$1');
 }
 
-// ── Mode switching ─────────────────────────────────────────
-function setMode(mode) {
-  currentMode = mode;
-  document.getElementById('mode-browse').classList.toggle('active', mode === 'browse');
-  document.getElementById('mode-quiz').classList.toggle('active', mode === 'quiz');
-  const isQuiz = mode === 'quiz';
-  document.getElementById('quiz-strip').style.display   = isQuiz ? 'block' : 'none';
-  document.getElementById('quiz-layout').style.display  = isQuiz ? 'flex' : 'none';
-  document.getElementById('panels-container').style.display = isQuiz ? 'none' : '';
-  document.getElementById('cat-tabs').style.display     = isQuiz ? 'none' : '';
-  if (isQuiz) {
-    const sidebar = document.getElementById('quiz-sidebar');
-    const btn = document.getElementById('quiz-settings-btn');
-    if (sidebar && !sidebar.classList.contains('open')) {
-      sidebar.classList.add('open');
-      if (btn) btn.classList.add('active');
-    }
-    startQuiz();
-  }
-}
-
 // ── Main render ────────────────────────────────────────────
 function render() {
   const filtered = getFiltered();
@@ -798,7 +370,7 @@ function render() {
   document.getElementById('search-clear-btn').classList.toggle('visible', searchQ.length > 0);
   syncBookmarkCount();
   renderTabs();
-  if (currentMode === 'browse') renderPanels(filtered, isSearch || isBmFilter);
+  renderPanels(filtered, isSearch || isBmFilter);
 }
 
 function renderTabs() {
@@ -986,6 +558,33 @@ function showModal() {
   document.getElementById('modal-prev').disabled = modalIdx === 0;
   document.getElementById('modal-next').disabled = modalIdx === modalDrugs.length - 1;
   document.getElementById('modal-body').scrollTop = 0;
+
+  // ── Sketchy Pharm panel ──
+  const sketchyEntry = (typeof SKETCHY_MAP !== 'undefined') ? SKETCHY_MAP[d.name] : null;
+  const existingPanel = document.getElementById('sketchy-panel');
+  if (existingPanel) existingPanel.remove();
+  if (sketchyEntry) {
+    const panel = document.createElement('div');
+    panel.id = 'sketchy-panel';
+    panel.className = 'sketchy-panel';
+    const scenes = sketchyEntry.scenes;
+    const tabsHtml = scenes.length > 1
+      ? `<div class="sketchy-scene-tabs">${scenes.map((s,i) => `<button class="sketchy-scene-tab${i===0?' active':''}" onclick="sketchyTab(this,${i},'sketchy-panel')">${s.title}</button>`).join('')}</div>`
+      : '';
+    panel.innerHTML = `
+      <div class="sketchy-panel-header" onclick="this.closest('.sketchy-panel').classList.toggle('collapsed')">
+        Sketchy Pharm
+        <span class="sketchy-panel-header-chevron">▼</span>
+      </div>
+      <div class="sketchy-panel-body">
+        ${tabsHtml}
+        <div class="sketchy-img-wrap">
+          <img src="${scenes[0].img}" alt="${scenes[0].title}" onclick="sketchyLightbox(this.src)">
+        </div>
+      </div>`;
+    document.getElementById('modal-body').appendChild(panel);
+  }
+
   document.getElementById('drug-modal-overlay').classList.add('open');
   document.body.style.overflow = 'hidden';
   updateModalStarBtn(d.name);
@@ -995,6 +594,22 @@ function closeModal() {
   document.getElementById('drug-modal-overlay').classList.remove('open');
   document.body.style.overflow = '';
 }
+function sketchyTab(btn, idx, panelId) {
+  const panel = document.getElementById(panelId);
+  panel.querySelectorAll('.sketchy-scene-tab').forEach((t,i) => t.classList.toggle('active', i===idx));
+  const entry = SKETCHY_MAP[modalDrugs[modalIdx].name];
+  const img = panel.querySelector('.sketchy-img-wrap img');
+  img.src = entry.scenes[idx].img;
+  img.alt = entry.scenes[idx].title;
+}
+function sketchyLightbox(src) {
+  document.getElementById('sketchy-lightbox-img').src = src;
+  document.getElementById('sketchy-lightbox').classList.add('open');
+}
+function sketchyLightboxClose() {
+  document.getElementById('sketchy-lightbox').classList.remove('open');
+}
+
 function modalNav(dir) {
   const next = modalIdx + dir;
   if (next >= 0 && next < modalDrugs.length) { modalIdx = next; showModal(); }
@@ -1018,7 +633,6 @@ function switchTab(cat) {
   document.getElementById('drug-search').value = '';
   document.getElementById('bookmark-filter-btn').classList.remove('active');
   render();
-  if (currentMode === 'quiz') startQuiz();
 }
 
 function onSearch() {
@@ -1031,382 +645,6 @@ function clearSearch() {
   searchQ = '';
   render();
   document.getElementById('drug-search').focus();
-}
-
-// ── Quiz logic ─────────────────────────────────────────────
-function setQuizDir(dir) {
-  quizDir = dir;
-  document.getElementById('dir-name').classList.toggle('active', dir === 'name-to-facts');
-  document.getElementById('dir-guess').classList.toggle('active', dir === 'facts-to-name');
-  startQuiz();
-}
-
-function getQuizDrugs() {
-  if (quizScope === 'all') return [...allDrugs];
-  if (quizScope === 'custom' && quizCustomCats.size > 0)
-    return allDrugs.filter(d => quizCustomCats.has(d.category));
-  // 'current' — respect search/bookmark filter, fall back to active tab
-  return [...getFiltered()];
-}
-
-let srMode = 'due'; // 'due' | 'new' | 'all'
-
-function setSRMode(mode) {
-  srMode = mode;
-  document.querySelectorAll('.sr-deck-pill').forEach(b => b.classList.remove('active'));
-  const btn = document.getElementById('sr-pill-' + mode);
-  if (btn) btn.classList.add('active');
-  startQuiz();
-}
-
-function startQuiz() {
-  srLoad();
-  const allForScope = getQuizDrugs();
-  const today = todayStr();
-
-  if (srMode === 'due') {
-    // Due cards first (overdue sorted oldest first), then new cards
-    const due = allForScope.filter(d => srData[d.name] && srData[d.name].dueDate <= today)
-      .sort((a,b) => (srData[a.name].dueDate > srData[b.name].dueDate ? 1 : -1));
-    const newCards = allForScope.filter(d => !srData[d.name]);
-    quizDrugs = [...due, ...newCards];
-  } else if (srMode === 'new') {
-    quizDrugs = allForScope.filter(d => !srData[d.name]);
-  } else {
-    // All — due/overdue first, then by next due date
-    quizDrugs = [...allForScope].sort((a,b) => {
-      const da = srData[a.name]?.dueDate || '0000-00-00';
-      const db2 = srData[b.name]?.dueDate || '0000-00-00';
-      return da > db2 ? 1 : -1;
-    });
-  }
-
-  quizIdx = 0;
-  quizResults = { again: 0, good: 0 };
-  updateSRPills(allForScope);
-  renderQuizCard();
-  updateQuizProgress();
-}
-
-function updateSRPills(drugs) {
-  const stats = srGetStats(drugs || getQuizDrugs());
-  const dueEl = document.getElementById('sr-due-count');
-  const newEl = document.getElementById('sr-new-count');
-  if (dueEl) dueEl.textContent = stats.due + stats.newCards > 0 ? stats.due + stats.newCards : '0';
-  if (newEl) newEl.textContent = stats.newCards;
-}
-
-function confirmResetSR() {
-  if (confirm('Reset ALL spaced repetition progress? This cannot be undone.')) {
-    srData = {};
-    srSave();
-    startQuiz();
-  }
-}
-
-function setQuizScope(scope) {
-  quizScope = scope;
-  document.querySelectorAll('[data-scope]').forEach(b => {
-    b.classList.toggle('active', b.dataset.scope === scope);
-  });
-  const picker = document.getElementById('quiz-cat-picker');
-  if (picker) picker.style.display = scope === 'custom' ? 'flex' : 'none';
-  startQuiz();
-}
-
-function toggleQuizSidebar() {
-  const sidebar = document.getElementById('quiz-sidebar');
-  const btn = document.getElementById('quiz-settings-btn');
-  sidebar.classList.toggle('open');
-  btn.classList.toggle('active', sidebar.classList.contains('open'));
-}
-
-function toggleFieldVis(field, checkbox) {
-  if (checkbox.checked) quizVisibleFields.add(field);
-  else quizVisibleFields.delete(field);
-  // Re-render back face if currently showing
-  const back = document.getElementById('fc-back');
-  if (back && back.style.display !== 'none') renderBackFields();
-}
-
-function toggleQuizCat(cat, el) {
-  if (quizCustomCats.has(cat)) {
-    quizCustomCats.delete(cat);
-    el.classList.remove('active');
-  } else {
-    quizCustomCats.add(cat);
-    el.classList.add('active');
-  }
-  startQuiz();
-}
-
-function shuffleQuiz() {
-  quizDrugs = getQuizDrugs();
-  for (let i = quizDrugs.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
-    [quizDrugs[i], quizDrugs[j]] = [quizDrugs[j], quizDrugs[i]];
-  }
-  quizIdx = 0;
-  quizResults = { again: 0, good: 0 };
-  renderQuizCard();
-  updateQuizProgress();
-}
-
-function buildCatPicker() {
-  const picker = document.getElementById('quiz-cat-picker');
-  if (!picker) return;
-  picker.innerHTML = Object.entries(CAT_META).map(([cat, meta]) =>
-    `<button class="quiz-cat-chip" data-cat="${cat}" style="--chip-color:${meta.color}" onclick="toggleQuizCat('${cat}',this)">${meta.label}</button>`
-  ).join('');
-}
-
-function resetQuiz() { startQuiz(); }
-
-function updateQuizProgress() {
-  const done = quizIdx;
-  const total = quizDrugs.length;
-  const pct = total ? (done / total) * 100 : 0;
-  document.getElementById('quiz-progress-fill').style.width = pct + '%';
-  const stat = document.getElementById('quiz-stat');
-  if (stat) {
-    stat.innerHTML = total
-      ? `<strong>${done}/${total}</strong> &nbsp;·&nbsp; <span class="qs-good">✓ ${quizResults.good}</span> &nbsp; <span class="qs-again">✗ ${quizResults.again}</span>`
-      : quizScope === 'custom' && quizCustomCats.size === 0
-        ? 'Pick a category above'
-        : 'No drugs';
-  }
-}
-
-function renderQuizCard() {
-  const container = document.getElementById('quiz-container');
-
-  if (!quizDrugs.length) {
-    container.innerHTML = `<div class="quiz-complete visible">
-      <div class="quiz-complete-icon">🌸</div>
-      <div class="quiz-complete-title">No drugs to quiz</div>
-      <div class="quiz-complete-sub">${quizScope === 'custom' && quizCustomCats.size === 0 ? 'Select at least one category above.' : 'Adjust your tab, search, or bookmarks filter.'}</div>
-    </div>`;
-    return;
-  }
-
-  if (quizIdx >= quizDrugs.length) {
-    const total = quizDrugs.length;
-    const pct = total ? Math.round((quizResults.good / total) * 100) : 0;
-    container.innerHTML = `<div class="quiz-complete visible">
-      <div class="quiz-complete-icon">🎉</div>
-      <div class="quiz-complete-title">Round Complete!</div>
-      <div class="quiz-complete-sub">You reviewed all ${total} drug${total !== 1 ? 's' : ''}. <strong>${pct}%</strong> correct.</div>
-      <div class="quiz-complete-stats">
-        <div class="qc-stat"><div class="qc-stat-num" style="color:var(--sage)">${quizResults.good}</div><div class="qc-stat-lbl">✓ Got it</div></div>
-        <div class="qc-stat"><div class="qc-stat-num" style="color:var(--sakura2)">${quizResults.again}</div><div class="qc-stat-lbl">✗ Missed</div></div>
-      </div>
-      <div style="display:flex;gap:10px;flex-wrap:wrap;justify-content:center;">
-        <button class="quiz-restart-btn" onclick="resetQuiz()">↺ Review Again</button>
-        <button class="quiz-restart-btn quiz-restart-outline" onclick="shuffleQuiz()">⇄ New Shuffle</button>
-      </div>
-    </div>`;
-    return;
-  }
-
-  const d = quizDrugs[quizIdx];
-  const color = CAT_META[d.category]?.color || 'var(--sakura2)';
-  const catLabel = CAT_META[d.category]?.label || d.category;
-  const isNameToFacts = quizDir === 'name-to-facts';
-
-  const frontQ  = isNameToFacts ? d.name : stripMd(d.summary || d.moa || '').substring(0, 180) + (stripMd(d.summary||'').length > 180 ? '…' : '');
-  const frontHint = isNameToFacts ? `${d.groupName ? d.groupName + ' · ' : ''}${catLabel}` : catLabel;
-
-  const akaTokens = d.aka
-    ? d.aka.replace(/\|/g,'·').replace(/·+/g,'·').split('·').map(s => s.trim()).filter(Boolean)
-    : [];
-  const akaHtml = akaTokens.length
-    ? `<div class="fc-aka">${akaTokens.map(s=>`<span class="fc-aka-token">${s}</span>`).join('<span class="fc-aka-dot">·</span>')}</div>`
-    : '';
-
-  const ALL_BACK_FIELDS = [
-    isNameToFacts ? null : { key: 'sum', lbl: 'Summary',         val: d.summary },
-    { key: 'moa', lbl: 'Mechanism',         val: d.moa },
-    { key: 'use', lbl: 'Clinical Use',      val: d.use },
-    { key: 'se',  lbl: 'Side Effects',      val: d.se  },
-    { key: 'ci',  lbl: 'Contraindications', val: d.ci  },
-    { key: 'pk',  lbl: 'Pharmacokinetics',  val: d.pk  },
-    d.pearl ? { key: 'pearl', lbl: '★ Step 1 Pearl', val: d.pearl, isPearl: true } : null,
-  ].filter(f => f && f.val);
-
-  const visFields = ALL_BACK_FIELDS.filter(f => f.isPearl || f.key === 'sum' || quizVisibleFields.has(f.key));
-  const isStarred = bookmarks.has(d.name);
-
-  container.innerHTML = `
-    <div class="quiz-card-wrap">
-      <div class="quiz-nav-row">
-        <button class="quiz-nav-btn" onclick="quizNavBack()" ${quizIdx === 0 ? 'disabled' : ''}>
-          <svg width="10" height="10" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M8 2L4 6l4 4"/></svg>
-          Prev
-        </button>
-        <div class="quiz-nav-center">
-          <span class="quiz-card-counter">${quizIdx + 1} <span style="opacity:.4">/</span> ${quizDrugs.length}</span>
-          <button class="fc-star-btn ${isStarred ? 'starred' : ''}"
-            onclick="quizToggleStar(this,'${d.name.replace(/'/g,"&#39;")}')"
-            title="Bookmark">${isStarred ? '★' : '☆'}</button>
-        </div>
-        <button class="quiz-nav-btn" onclick="rateCard('skip')">
-          Skip
-          <svg width="10" height="10" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M4 2l4 4-4 4"/></svg>
-        </button>
-      </div>
-
-      <div class="fc-card fc-front" id="fc-front" style="--cat-color:${color}" onclick="flipCard()">
-        <div class="fc-front-eyebrow">${isNameToFacts ? 'Name this drug\u2019s facts' : 'Identify this drug'}</div>
-        <div class="fc-front-q">${frontQ}</div>
-        <div class="fc-front-hint">${frontHint}</div>
-        <button class="fc-reveal-btn" style="--cat-color:${color}" onclick="event.stopPropagation();flipCard()">
-          Reveal Answer
-        </button>
-      </div>
-
-      <div class="fc-card fc-back" id="fc-back" style="--cat-color:${color}">
-        <div class="fc-back-header">
-          <div class="fc-back-eyebrow">${catLabel}${d.groupName ? ' · ' + d.groupName : ''}</div>
-          <div class="fc-back-title">${isNameToFacts ? d.name : 'Answer'}</div>
-          ${akaHtml}
-        </div>
-        <div class="fc-back-fields" id="fc-back-fields">
-          ${buildFieldsHtml(visFields, color)}
-        </div>
-      </div>
-
-      <div class="fc-rating-row" id="fc-actions">
-        <button class="fc-rate-btn fc-rate-again" onclick="rateCard('again')" title="Missed it (1)">
-          ✗ <span class="fc-rate-label">Missed</span>
-          <span class="fc-rate-key">1</span>
-        </button>
-        <button class="fc-rate-btn fc-rate-good" onclick="rateCard('good')" title="Got it (2)">
-          ✓ <span class="fc-rate-label">Got it</span>
-          <span class="fc-rate-key">2</span>
-        </button>
-      </div>
-    </div>
-  `;
-}
-
-function buildFieldsHtml(fields, color) {
-  const mdFmt = v => v.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
-  const regular = fields.filter(f => !f.isPearl);
-  const pearl   = fields.find(f => f.isPearl);
-  let html = '';
-  if (regular.length) {
-    html += `<div class="fc-fields-grid" style="--cat-color:${color}">
-      ${regular.map(f => `<div class="fc-field">
-        <div class="fc-field-lbl">${f.lbl}</div>
-        <div class="fc-field-val">${mdFmt(f.val)}</div>
-      </div>`).join('')}
-    </div>`;
-  }
-  if (pearl) {
-    html += `<div class="fc-field fc-field-pearl" style="--cat-color:${color}">
-      <div class="fc-field-lbl">${pearl.lbl}</div>
-      <div class="fc-field-val">${mdFmt(pearl.val)}</div>
-    </div>`;
-  }
-  return html;
-}
-
-function renderBackFields() {
-  const fieldsEl = document.getElementById('fc-back-fields');
-  if (!fieldsEl) return;
-  const idx = document.getElementById('fc-front') ? quizIdx : quizIdx - 1;
-  const d = quizDrugs[quizIdx];
-  if (!d) return;
-  const color = CAT_META[d.category]?.color || 'var(--sakura2)';
-  const isNameToFacts = quizDir === 'name-to-facts';
-  const ALL = [
-    isNameToFacts ? null : { key: 'sum', lbl: 'Summary', val: d.summary },
-    { key: 'moa', lbl: 'Mechanism',         val: d.moa },
-    { key: 'use', lbl: 'Clinical Use',      val: d.use },
-    { key: 'se',  lbl: 'Side Effects',      val: d.se  },
-    { key: 'ci',  lbl: 'Contraindications', val: d.ci  },
-    { key: 'pk',  lbl: 'Pharmacokinetics',  val: d.pk  },
-    d.pearl ? { key: 'pearl', lbl: '★ Step 1 Pearl', val: d.pearl, isPearl: true } : null,
-  ].filter(f => f && f.val).filter(f => f.isPearl || f.key === 'sum' || quizVisibleFields.has(f.key));
-  fieldsEl.innerHTML = buildFieldsHtml(ALL, color);
-}
-
-function flipCard() {
-  const front = document.getElementById('fc-front');
-  const back  = document.getElementById('fc-back');
-  const actions = document.getElementById('fc-actions');
-  if (!front || !back) return;
-  if (front.style.display !== 'none') {
-    front.style.display = 'none';
-    back.style.display  = 'block';
-    if (actions) actions.classList.add('visible');
-  }
-}
-
-function renderIntervalPreview() {
-  const d = quizDrugs[quizIdx];
-  if (!d) return;
-  const c = srData[d.name] || { interval: 0, easeFactor: 2.5, reps: 0 };
-  function calcInterval(smScore) {
-    const ef = Math.max(1.3, c.easeFactor + 0.1 - (5-smScore)*(0.08 + (5-smScore)*0.02));
-    if (smScore === 0) return 1;
-    if (c.reps === 0) return 1;
-    if (c.reps === 1) return 6;
-    return Math.round(c.interval * ef);
-  }
-  function fmtDays(n) {
-    if (n <= 1) return '1d';
-    if (n < 30) return n + 'd';
-    if (n < 365) return Math.round(n/30) + 'mo';
-    return (n/365).toFixed(1) + 'y';
-  }
-  [['again',0],['hard',3],['good',4],['easy',5]].forEach(([r,s]) => {
-    const el = document.getElementById('ri-' + r);
-    if (el) el.textContent = fmtDays(calcInterval(s));
-  });
-}
-
-function rateCard(rating) {
-  if (rating !== 'skip') {
-    const d = quizDrugs[quizIdx];
-    if (d) {
-      const smScore = rating === 'again' ? 0 : 4;
-      srRate(d.name, smScore);
-      quizResults[rating] = (quizResults[rating] || 0) + 1;
-
-      if (rating === 'again') {
-        const remaining = quizDrugs.length - quizIdx - 1;
-        quizDrugs.splice(quizIdx + 1 + Math.min(5, Math.floor(remaining * 0.4)), 0, quizDrugs.splice(quizIdx, 1)[0]);
-        updateQuizProgress();
-        renderQuizCard();
-        return;
-      }
-    }
-  }
-  quizIdx++;
-  updateQuizProgress();
-  renderQuizCard();
-  updateSRPills();
-}
-
-function startQuizAgainOnly() {
-  resetQuiz();
-}
-
-function quizNavBack() {
-  if (quizIdx > 0) {
-    quizIdx--;
-    renderQuizCard();
-    updateQuizProgress();
-  }
-}
-
-function quizToggleStar(btn, name) {
-  toggleBookmark(name);
-  const isStarred = bookmarks.has(name);
-  btn.textContent = isStarred ? '★' : '☆';
-  btn.classList.toggle('starred', isStarred);
-  syncBookmarkCount();
 }
 
 // ── Keyboard shortcuts ─────────────────────────────────────
@@ -1422,26 +660,6 @@ document.addEventListener('keydown', e => {
     return;
   }
 
-  if (currentMode === 'quiz') {
-    const front = document.getElementById('fc-front');
-    const isFlipped = !front || front.style.display === 'none';
-    if (e.key === ' ') {
-      e.preventDefault();
-      if (!isFlipped) flipCard();
-    }
-    if (e.key === 'Enter') {
-      e.preventDefault();
-      if (!isFlipped) flipCard(); else rateCard('good');
-    }
-    if (isFlipped) {
-      if (e.key === '1') { e.preventDefault(); rateCard('again'); }
-      if (e.key === '2') { e.preventDefault(); rateCard('good'); }
-    }
-    if (e.key === 'ArrowLeft') { e.preventDefault(); quizNavBack(); }
-    if (e.key === 'ArrowRight') { e.preventDefault(); rateCard('skip'); }
-    return;
-  }
-
   if (e.key === '/' && document.activeElement !== search) {
     e.preventDefault(); search.focus(); search.select();
   }
@@ -1450,7 +668,7 @@ document.addEventListener('keydown', e => {
 
 window.addEventListener('appAuthStateChanged', (e) => {
   if (e.detail?.user) {
-    Promise.all([loadBookmarksFromCloud(), srLoadCloud()]).then(() => { if (allDrugs.length) render(); if (currentMode === 'quiz') startQuiz(); });
+    Promise.all([loadBookmarksFromCloud(), srLoadCloud()]).then(() => { if (allDrugs.length) render(); });
   } else {
     bookmarks = new Set();
     localStorage.removeItem(BK_LS_KEY);
@@ -1475,5 +693,9 @@ document.addEventListener('DOMContentLoaded', () => {
   render();
 });
 </script>
+<div class="sketchy-lightbox" id="sketchy-lightbox" onclick="sketchyLightboxClose()">
+  <span class="sketchy-lightbox-close" onclick="sketchyLightboxClose()">✕</span>
+  <img id="sketchy-lightbox-img" src="" alt="">
+</div>
 </body>
 </html>
