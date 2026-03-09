@@ -20,13 +20,64 @@
    FLASHCARD QUIZ — REDESIGNED
    ══════════════════════════════════════════════ */
 
-/* ── Quiz top bar (replaces old quiz-strip) ── */
-.quiz-topbar {
-  display: flex; align-items: center; gap: 10px;
-  padding: 12px 0 8px; flex-wrap: wrap;
+/* ── Quiz layout: sidebar + card area ── */
+.quiz-layout {
+  display: flex; gap: 20px; align-items: flex-start;
 }
-.quiz-topbar-left  { display: flex; gap: 6px; align-items: center; flex: 1; flex-wrap: wrap; }
-.quiz-topbar-right { display: flex; gap: 6px; align-items: center; flex-shrink: 0; }
+
+/* Sidebar */
+.quiz-sidebar {
+  width: 0; overflow: hidden; flex-shrink: 0;
+  transition: width .2s ease;
+}
+.quiz-sidebar.open { width: 220px; }
+.qsb-inner {
+  width: 220px; padding: 16px 14px;
+  border: 1.5px solid var(--border); border-radius: 14px;
+  background: var(--surface); display: flex; flex-direction: column; gap: 14px;
+}
+.qsb-section { display: flex; flex-direction: column; gap: 6px; }
+.qsb-label {
+  font-size: 10px; font-weight: 700; text-transform: uppercase;
+  letter-spacing: 0.8px; color: var(--dim);
+}
+.qsb-pill-group { display: flex; gap: 5px; flex-wrap: wrap; }
+.qsb-pill {
+  padding: 4px 11px; border-radius: 99px; font-size: 11px; font-weight: 500;
+  border: 1.5px solid var(--border); background: transparent; color: var(--dim);
+  cursor: pointer; transition: all .15s;
+}
+.qsb-pill:hover { color: var(--ink2); border-color: var(--border2); }
+.qsb-pill.active { background: var(--surface2); border-color: var(--border2); color: var(--ink2); font-weight: 600; }
+
+.qsb-scope-group { display: flex; flex-direction: column; gap: 4px; }
+.qsb-scope-btn {
+  padding: 5px 10px; border-radius: 8px; font-size: 12px; font-weight: 500; text-align: left;
+  border: 1.5px solid var(--border); background: transparent; color: var(--dim);
+  cursor: pointer; transition: all .15s;
+}
+.qsb-scope-btn:hover { color: var(--ink2); border-color: var(--border2); }
+.qsb-scope-btn.active { background: var(--surface2); border-color: var(--border2); color: var(--ink2); font-weight: 600; }
+
+.qsb-actions { display: flex; flex-direction: column; gap: 5px; border-top: 1px solid var(--border); padding-top: 10px; }
+.qsb-action-btn {
+  padding: 5px 10px; border-radius: 8px; font-size: 12px; font-weight: 500; text-align: left;
+  border: 1.5px solid var(--border); background: transparent; color: var(--dim);
+  cursor: pointer; transition: all .15s; display: flex; align-items: center; gap: 6px;
+}
+.qsb-action-btn:hover { color: var(--ink2); border-color: var(--border2); }
+.qsb-action-danger:hover { color: var(--sakura2) !important; border-color: var(--sakura2) !important; }
+
+/* Card main area grows to fill */
+.quiz-main { flex: 1; min-width: 0; }
+
+/* ── Quiz top strip (SR pills + progress) ── */
+.quiz-strip-top {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 10px 0 0; gap: 12px;
+}
+.quiz-strip-right { display: flex; align-items: center; gap: 10px; flex-shrink: 0; }
+.sr-deck-pills { display: flex; gap: 6px; align-items: center; }
 
 /* SR deck pills — smaller, more refined */
 .sr-deck-pill {
@@ -45,25 +96,15 @@
 /* Divider */
 .quiz-topbar-divider { width: 1px; height: 18px; background: var(--border); flex-shrink: 0; }
 
-/* Scope & direction pills — unified look */
-.quiz-opt-pill {
-  padding: 4px 11px; border-radius: 99px;
-  border: 1.5px solid var(--border); background: var(--surface);
-  font-size: 11px; font-weight: 500; color: var(--dim);
-  cursor: pointer; transition: all .15s; white-space: nowrap;
+/* Settings toggle button */
+.quiz-settings-btn {
+  display: inline-flex; align-items: center; gap: 5px;
+  padding: 4px 11px; border-radius: 99px; font-size: 11px; font-weight: 600;
+  border: 1.5px solid var(--border); background: var(--surface); color: var(--dim);
+  cursor: pointer; transition: all .15s;
 }
-.quiz-opt-pill:hover { color: var(--ink2); border-color: var(--border2); }
-.quiz-opt-pill.active { background: var(--surface2); border-color: var(--border2); color: var(--ink2); font-weight: 600; }
-
-/* Slim icon actions */
-.quiz-action-pill {
-  padding: 4px 10px; border-radius: 99px;
-  border: 1.5px solid var(--border); background: transparent;
-  font-size: 11px; font-weight: 500; color: var(--dim);
-  cursor: pointer; transition: all .15s; display: inline-flex; align-items: center; gap: 4px;
-}
-.quiz-action-pill:hover { color: var(--ink2); border-color: var(--border2); }
-.quiz-action-pill.danger:hover { color: var(--sakura2); border-color: var(--sakura2); }
+.quiz-settings-btn:hover { border-color: var(--border2); color: var(--ink2); }
+.quiz-settings-btn.active { background: var(--surface2); border-color: var(--border2); color: var(--ink2); }
 
 /* ── Progress bar ── */
 .quiz-progress-wrap {
@@ -351,11 +392,10 @@
     </button>
   </div>
 
-  <!-- Quiz top bar -->
+  <!-- Quiz strip: SR stats + progress -->
   <div id="quiz-strip" style="display:none;">
-    <div class="quiz-topbar">
-      <div class="quiz-topbar-left">
-        <!-- SR mode -->
+    <div class="quiz-strip-top">
+      <div class="sr-deck-pills">
         <button class="sr-deck-pill sr-pill-due active" id="sr-pill-due" onclick="setSRMode('due')">
           <span class="sr-pill-num" id="sr-due-count">0</span> Due
         </button>
@@ -363,26 +403,18 @@
           <span class="sr-pill-num" id="sr-new-count">0</span> New
         </button>
         <button class="sr-deck-pill sr-pill-all" id="sr-pill-all" onclick="setSRMode('all')">All</button>
-        <div class="quiz-topbar-divider"></div>
-        <!-- Direction -->
-        <button class="quiz-opt-pill active" id="dir-name" onclick="setQuizDir('name-to-facts')">Drug → Facts</button>
-        <button class="quiz-opt-pill" id="dir-guess" onclick="setQuizDir('facts-to-name')">Facts → Drug</button>
-        <div class="quiz-topbar-divider"></div>
-        <!-- Scope -->
-        <button class="quiz-opt-pill active" data-scope="current" onclick="setQuizScope('current')">Current tab</button>
-        <button class="quiz-opt-pill" data-scope="all" onclick="setQuizScope('all')">All drugs</button>
-        <button class="quiz-opt-pill" data-scope="custom" onclick="setQuizScope('custom')">Choose…</button>
       </div>
-      <div class="quiz-topbar-right">
+      <div class="quiz-strip-right">
         <span class="quiz-kbd-hint">Space=flip · 1=Missed · 2=Got it</span>
-        <button class="quiz-action-pill" onclick="shuffleQuiz()">⇄ Shuffle</button>
-        <button class="quiz-action-pill" onclick="resetQuiz()">↺ Reset</button>
-        <button class="quiz-action-pill danger" onclick="confirmResetSR()">✕ SR</button>
+        <button class="quiz-settings-btn" id="quiz-settings-btn" onclick="toggleQuizSidebar()">
+          <svg width="12" height="12" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round">
+            <circle cx="8" cy="8" r="2.2"/>
+            <path d="M8 1.5v1.8M8 12.7v1.8M1.5 8h1.8M12.7 8h1.8M3.4 3.4l1.27 1.27M11.33 11.33l1.27 1.27M3.4 12.6l1.27-1.27M11.33 4.67l1.27-1.27"/>
+          </svg>
+          Settings
+        </button>
       </div>
     </div>
-    <!-- Custom category picker -->
-    <div class="quiz-cat-picker" id="quiz-cat-picker" style="display:none;"></div>
-    <!-- Progress -->
     <div class="quiz-progress-wrap">
       <div class="quiz-progress-fill" id="quiz-progress-fill" style="width:0%"></div>
     </div>
@@ -395,9 +427,52 @@
   <!-- Browse panels -->
   <div id="panels-container"></div>
 
-  <!-- Quiz card area (no sidebar) -->
-  <div id="quiz-layout" style="display:none;">
-    <div id="quiz-container"></div>
+  <!-- Quiz layout: sidebar + card area -->
+  <div class="quiz-layout" id="quiz-layout" style="display:none;">
+
+    <!-- Settings sidebar -->
+    <aside class="quiz-sidebar" id="quiz-sidebar">
+      <div class="qsb-inner">
+
+        <div class="qsb-section">
+          <div class="qsb-label">Direction</div>
+          <div class="qsb-pill-group">
+            <button class="qsb-pill active" id="dir-name" onclick="setQuizDir('name-to-facts')">Drug → Facts</button>
+            <button class="qsb-pill" id="dir-guess" onclick="setQuizDir('facts-to-name')">Facts → Drug</button>
+          </div>
+        </div>
+
+        <div class="qsb-section">
+          <div class="qsb-label">Scope</div>
+          <div class="qsb-scope-group">
+            <button class="qsb-scope-btn active" data-scope="current" onclick="setQuizScope('current')">Current tab</button>
+            <button class="qsb-scope-btn" data-scope="all" onclick="setQuizScope('all')">All drugs</button>
+            <button class="qsb-scope-btn" data-scope="custom" onclick="setQuizScope('custom')">Choose…</button>
+          </div>
+          <div class="quiz-cat-picker" id="quiz-cat-picker" style="display:none; margin-top:8px;"></div>
+        </div>
+
+        <div class="qsb-actions">
+          <button class="qsb-action-btn" onclick="shuffleQuiz()">
+            <svg width="11" height="11" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M1 4h2.5a4 4 0 013.2 1.6L8 7M15 4h-2.5a4 4 0 00-3.2 1.6L8 7m0 0l1.3 1.7A4 4 0 0012.5 10H15M1 12h2.5a4 4 0 003.2-1.6L8 9"/><path d="M13 2l2 2-2 2M13 8l2 2-2 2"/></svg>
+            Shuffle
+          </button>
+          <button class="qsb-action-btn" onclick="resetQuiz()">
+            <svg width="11" height="11" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M2 8a6 6 0 106-6H4m0 0L2 4m2-2v4"/></svg>
+            Reset deck
+          </button>
+          <button class="qsb-action-btn qsb-action-danger" onclick="confirmResetSR()">
+            <svg width="11" height="11" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 3l10 10M13 3L3 13"/></svg>
+            Reset SR progress
+          </button>
+        </div>
+
+      </div>
+    </aside>
+
+    <!-- Card area -->
+    <div class="quiz-main" id="quiz-container"></div>
+
   </div>
 
 </div>
@@ -696,10 +771,18 @@ function setMode(mode) {
   document.getElementById('mode-quiz').classList.toggle('active', mode === 'quiz');
   const isQuiz = mode === 'quiz';
   document.getElementById('quiz-strip').style.display   = isQuiz ? 'block' : 'none';
-  document.getElementById('quiz-layout').style.display  = isQuiz ? 'block' : 'none';
+  document.getElementById('quiz-layout').style.display  = isQuiz ? 'flex' : 'none';
   document.getElementById('panels-container').style.display = isQuiz ? 'none' : '';
   document.getElementById('cat-tabs').style.display     = isQuiz ? 'none' : '';
-  if (isQuiz) startQuiz();
+  if (isQuiz) {
+    const sidebar = document.getElementById('quiz-sidebar');
+    const btn = document.getElementById('quiz-settings-btn');
+    if (sidebar && !sidebar.classList.contains('open')) {
+      sidebar.classList.add('open');
+      if (btn) btn.classList.add('active');
+    }
+    startQuiz();
+  }
 }
 
 // ── Main render ────────────────────────────────────────────
@@ -1031,7 +1114,12 @@ function setQuizScope(scope) {
   startQuiz();
 }
 
-function toggleQuizSidebar() { /* sidebar removed */ }
+function toggleQuizSidebar() {
+  const sidebar = document.getElementById('quiz-sidebar');
+  const btn = document.getElementById('quiz-settings-btn');
+  sidebar.classList.toggle('open');
+  btn.classList.toggle('active', sidebar.classList.contains('open'));
+}
 
 function toggleFieldVis(field, checkbox) {
   if (checkbox.checked) quizVisibleFields.add(field);
@@ -1250,7 +1338,7 @@ function flipCard() {
   if (!front || !back) return;
   if (front.style.display !== 'none') {
     front.style.display = 'none';
-    back.style.display  = '';
+    back.style.display  = 'block';
     if (actions) actions.classList.add('visible');
   }
 }
