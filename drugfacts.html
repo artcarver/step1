@@ -1168,7 +1168,7 @@ function renderQuizCard() {
       </div>
 
       <div class="fc-card fc-front" id="fc-front" style="--cat-color:${color}" onclick="flipCard()">
-        <div class="fc-front-eyebrow">${isNameToFacts ? 'Name this drug's facts' : 'Identify this drug'}</div>
+        <div class="fc-front-eyebrow">${isNameToFacts ? 'Name this drug\u2019s facts' : 'Identify this drug'}</div>
         <div class="fc-front-q">${frontQ}</div>
         <div class="fc-front-hint">${frontHint}</div>
         <button class="fc-reveal-btn" style="--cat-color:${color}" onclick="event.stopPropagation();flipCard()">
@@ -1248,7 +1248,7 @@ function flipCard() {
   const back  = document.getElementById('fc-back');
   const actions = document.getElementById('fc-actions');
   if (!front || !back) return;
-  if (!front.classList.contains('fc-flipped')) {
+  if (front.style.display !== 'none') {
     front.style.display = 'none';
     back.style.display  = '';
     if (actions) actions.classList.add('visible');
