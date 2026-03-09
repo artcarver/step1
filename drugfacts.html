@@ -130,6 +130,7 @@
 let allDrugs = [];
 let activeTab = 'autonomic';
 let searchQ = '';
+let bookmarkFilter = false;
 
 // ── SM-2 Spaced Repetition Engine ─────────────────────────
 // Stores per-drug: { interval, easeFactor, dueDate, reps, lapses }
@@ -689,7 +690,6 @@ document.addEventListener('DOMContentLoaded', () => {
   loadBookmarks();
   allDrugs = buildDrugList();
   activeTab = 'autonomic';
-  buildCatPicker();
   render();
 });
 </script>
