@@ -73,8 +73,8 @@
 
 .feat-skeleton {
   border-radius: var(--r-lg); border: 1px solid var(--border2);
-  background: var(--surface); padding: 16px 18px;
-  display: flex; flex-direction: column; gap: 9px; height: 112px;
+  background: var(--surface); padding: 14px 18px;
+  display: flex; flex-direction: column; gap: 8px; height: 96px;
 }
 .skel-line { border-radius: 6px; background: var(--border2); animation: shimmer 1.4s ease-in-out infinite; }
 .skel-accent-drug  { background: var(--sakura-light) !important; }
@@ -83,28 +83,26 @@
 
 .feat-card {
   display: none; flex-direction: column;
-  padding: 16px 18px 14px; cursor: pointer;
-  height: 112px; box-sizing: border-box;
+  padding: 14px 18px 12px; cursor: pointer; min-height: 0;
 }
 .feat-card:hover .feat-cta { opacity: 1; transform: translateX(2px); }
 .feat-eyebrow {
   font-size: 9px; font-weight: 700; letter-spacing: 1.8px;
-  text-transform: uppercase; color: var(--card-accent, var(--sakura2));
-  margin-bottom: 5px; flex-shrink: 0;
+  text-transform: uppercase; color: var(--card-accent, var(--sakura2)); margin-bottom: 6px;
 }
 .feat-name {
-  font-family: 'Playfair Display', serif; font-size: 15px; font-weight: 600;
-  line-height: 1.2; color: var(--ink); margin-bottom: 4px;
-  white-space: nowrap; overflow: hidden; text-overflow: ellipsis; flex-shrink: 0;
+  font-family: 'Playfair Display', serif; font-size: 16px; font-weight: 600;
+  line-height: 1.2; color: var(--ink); margin-bottom: 5px;
 }
 .feat-pearl {
-  font-size: 11.5px; color: var(--ink2); line-height: 1.45;
-  flex: 1; min-height: 0;
+  font-size: 12px; color: var(--ink2); line-height: 1.5;
+  flex: 1;
+  /* clamp to 2 lines */
   display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;
 }
 .feat-cta {
-  margin-top: auto; padding-top: 6px; font-size: 11px; font-weight: 600;
-  color: var(--card-accent, var(--sakura2)); opacity: .5; flex-shrink: 0;
+  margin-top: 8px; font-size: 11px; font-weight: 600;
+  color: var(--card-accent, var(--sakura2)); opacity: .5;
   transition: opacity var(--t), transform var(--t);
 }
 .feat-drug  { --card-accent: var(--sakura2); }
@@ -218,6 +216,33 @@
 .btn-save-sage { background: var(--sage); }
 .pearl-box-sage { background: var(--sage-light); border-color: #b0d4bc; }
 .pearl-box-sage .drug-label { color: var(--sage); }
+
+/* ── Sketchy Panel (in modals) ── */
+.sketchy-panel { margin-top: 4px; border-radius: 12px; overflow: hidden; border: 1.5px solid var(--sp-color, var(--sakura2)); }
+.sketchy-panel-header {
+  display: flex; align-items: center; gap: 8px;
+  padding: 10px 14px; cursor: pointer; user-select: none;
+  background: color-mix(in srgb, var(--sp-color, var(--sakura2)) 10%, transparent);
+  font-size: 13px; font-weight: 600; color: var(--sp-color, var(--sakura2));
+}
+.sketchy-panel-header-chevron { margin-left: auto; font-size: 10px; transition: transform .2s; }
+.sketchy-panel.collapsed .sketchy-panel-header-chevron { transform: rotate(-90deg); }
+.sketchy-panel.collapsed .sketchy-panel-body { display: none; }
+.sketchy-panel-body { padding: 10px 12px 12px; }
+.sketchy-scene-tabs { display: flex; gap: 6px; margin-bottom: 8px; flex-wrap: wrap; }
+.sketchy-scene-tab {
+  padding: 3px 10px; border-radius: 20px; font-size: 12px; cursor: pointer;
+  border: 1.5px solid var(--sp-color, var(--sakura2));
+  background: transparent; color: var(--sp-color, var(--sakura2));
+  transition: all .15s;
+}
+.sketchy-scene-tab:hover { background: color-mix(in srgb, var(--sp-color, var(--sakura2)) 12%, transparent); }
+.sketchy-scene-tab.active { background: var(--sp-color, var(--sakura2)); color: #fff; }
+.sketchy-img-wrap img { width: 100%; border-radius: 8px; cursor: zoom-in; display: block; }
+.sketchy-lightbox { display: none; position: fixed; inset: 0; background: rgba(0,0,0,.85); z-index: 99999; align-items: center; justify-content: center; }
+.sketchy-lightbox.open { display: flex; }
+.sketchy-lightbox img { max-width: 95vw; max-height: 92vh; border-radius: 10px; }
+.sketchy-lightbox-close { position: absolute; top: 18px; right: 24px; font-size: 28px; color: #fff; cursor: pointer; line-height: 1; }
 </style>
 </head>
 <body>
@@ -261,16 +286,16 @@
   <div class="sec-label">Today's High Yield</div>
   <div class="daily-grid">
     <div class="feat-skeleton i-card" id="dotd-skeleton" aria-hidden="true">
-      <div class="skel-line skel-accent-drug" style="height:9px; width:40%;"></div>
-      <div class="skel-line" style="height:18px; width:70%;"></div>
-      <div class="skel-line" style="height:12px; width:90%;"></div>
-      <div class="skel-line" style="height:12px; width:75%;"></div>
+      <div class="skel-line skel-accent-drug" style="height:10px; width:40%;"></div>
+      <div class="skel-line" style="height:20px; width:70%;"></div>
+      <div class="skel-line" style="height:13px; width:90%;"></div>
+      <div class="skel-line" style="height:13px; width:80%;"></div>
     </div>
     <div class="feat-skeleton i-card" id="ootd-skeleton" aria-hidden="true">
-      <div class="skel-line skel-accent-micro" style="height:9px; width:50%;"></div>
-      <div class="skel-line" style="height:18px; width:65%;"></div>
-      <div class="skel-line" style="height:12px; width:90%;"></div>
-      <div class="skel-line" style="height:12px; width:70%;"></div>
+      <div class="skel-line skel-accent-micro" style="height:10px; width:50%;"></div>
+      <div class="skel-line" style="height:20px; width:65%;"></div>
+      <div class="skel-line" style="height:13px; width:90%;"></div>
+      <div class="skel-line" style="height:13px; width:75%;"></div>
     </div>
     <div class="feat-card feat-drug i-card" id="dotd-card" onclick="openDotdModal()" role="button" tabindex="0" aria-label="Drug of the Day — click to expand">
       <div class="feat-eyebrow">Drug of the Day</div>
@@ -422,6 +447,7 @@
 
 <script src="drug_data.js"></script>
 <script src="micro_data.js"></script>
+<script src="sketchy_map.js"></script>
 <script src="app.js"></script>
 <script>
 const fmt  = t => t ? t.replace(/\*\*(.*?)\*\*/g,'<strong>$1</strong>') : '—';
@@ -462,6 +488,7 @@ function openDotdModal() {
     <div class="drug-row"><span class="drug-label">Side Effects</span><div class="drug-text">${fmt(dotdDrug.se)}</div></div>
     ${dotdDrug.ci ? `<div class="drug-row"><span class="drug-label">Contraindications</span><div class="drug-text">${fmt(dotdDrug.ci)}</div></div>` : ''}
     ${dotdDrug.pearl ? `<div class="pearl-box"><span class="drug-label">Pearl</span><div class="drug-text">${fmt(dotdDrug.pearl)}</div></div>` : ''}
+    ${buildSketchyPanel(dotdDrug.name, 'var(--sakura2)', 'Sketchy Pharm', 'dotd')}
   `;
   openModal('dotd-modal');
 }
@@ -507,8 +534,60 @@ function openOotdModal() {
     fields.filter(([,v]) => v)
       .map(([l,v]) => `<div class="drug-row"><span class="drug-label">${l}</span><div class="drug-text">${fmt(v)}</div></div>`)
       .join('') +
-    (ootdOrg.pearl ? `<div class="pearl-box pearl-box-sage"><span class="drug-label">Pearl</span><div class="drug-text">${fmt(ootdOrg.pearl)}</div></div>` : '');
+    (ootdOrg.pearl ? `<div class="pearl-box pearl-box-sage"><span class="drug-label">Pearl</span><div class="drug-text">${fmt(ootdOrg.pearl)}</div></div>` : '') +
+    buildSketchyPanel(ootdOrg.name, 'var(--sage)', 'Sketchy Micro', 'ootd');
   openModal('ootd-modal');
+}
+
+/* ── Sketchy panel builder ───────────────────────────────── */
+function buildSketchyPanel(name, color, label, prefix) {
+  if (typeof SKETCHY_MAP === 'undefined') return '';
+  const entry = SKETCHY_MAP[name];
+  if (!entry || !entry.scenes || !entry.scenes.length) return '';
+  const scenes = entry.scenes;
+  const tabs = scenes.length > 1
+    ? `<div class="sketchy-scene-tabs">${scenes.map((s,i) =>
+        `<button class="sketchy-scene-tab${i===0?' active':''}" onclick="sketchyModalTab(this,${i},'${prefix}')">${s.title}</button>`
+      ).join('')}</div>`
+    : '';
+  return `
+    <div class="sketchy-panel collapsed" id="${prefix}-sketchy-panel" style="--sp-color:${color}">
+      <div class="sketchy-panel-header" onclick="this.closest('.sketchy-panel').classList.toggle('collapsed')">
+        ${label}
+        <span class="sketchy-panel-header-chevron">▼</span>
+      </div>
+      <div class="sketchy-panel-body">
+        ${tabs}
+        <div class="sketchy-img-wrap">
+          <img id="${prefix}-sketchy-img" src="${scenes[0].img}" alt="${scenes[0].title}"
+               onclick="sketchyLightbox(this.src)">
+        </div>
+      </div>
+    </div>`;
+}
+
+function sketchyModalTab(btn, idx, prefix) {
+  const panel = btn.closest('.sketchy-panel');
+  panel.querySelectorAll('.sketchy-scene-tab').forEach((t,i) => t.classList.toggle('active', i===idx));
+  // find whose entry this is by looking up the current drug/org name
+  const name = prefix === 'dotd'
+    ? document.getElementById('dm-name').textContent
+    : document.getElementById('om-name').textContent;
+  if (typeof SKETCHY_MAP === 'undefined') return;
+  const entry = SKETCHY_MAP[name];
+  if (!entry) return;
+  const img = document.getElementById(prefix + '-sketchy-img');
+  img.src = entry.scenes[idx].img;
+  img.alt = entry.scenes[idx].title;
+  img.onclick = () => sketchyLightbox(img.src);
+}
+
+function sketchyLightbox(src) {
+  document.getElementById('sketchy-lightbox-img').src = src;
+  document.getElementById('sketchy-lightbox').classList.add('open');
+}
+function sketchyLightboxClose() {
+  document.getElementById('sketchy-lightbox').classList.remove('open');
 }
 
 /* ── UWorld strip — always visible with empty state ─────── */
@@ -643,5 +722,11 @@ document.addEventListener('DOMContentLoaded', () => {
   renderTrackers();
 });
 </script>
+<!-- ── SKETCHY LIGHTBOX ──────────────────────────────────── -->
+<div class="sketchy-lightbox" id="sketchy-lightbox" onclick="sketchyLightboxClose()">
+  <span class="sketchy-lightbox-close" onclick="sketchyLightboxClose()">✕</span>
+  <img id="sketchy-lightbox-img" src="" alt="">
+</div>
+
 </body>
 </html>
