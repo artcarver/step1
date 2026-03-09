@@ -10,6 +10,7 @@ const SKETCHY_MAP = {
 
   "Staphylococcus aureus": { scenes: [{ img: "sketchy_images/bacteria/1.1 - Staph Aureus.png", title: "Staph Aureus" }] },
   "Staphylococcus epidermidis": { scenes: [{ img: "sketchy_images/bacteria/1.2 - Staph Epidermis.png", title: "Staph Epidermidis" }] },
+  "Staphylococcus saprophyticus": { scenes: [{ img: "sketchy_images/bacteria/1.2 - Staph Epidermis.png", title: "Staph Epidermidis / Saprophyticus" }] },
   "Streptococcus pyogenes (Group A Strep)": { scenes: [{ img: "sketchy_images/bacteria/1.3 - Strep Pyogenes.png", title: "Strep Pyogenes" }] },
   "Streptococcus agalactiae (Group B Strep)": { scenes: [{ img: "sketchy_images/bacteria/1.4 - Strep Agalactiae.png", title: "Strep Agalactiae" }] },
   "Streptococcus pneumoniae": { scenes: [{ img: "sketchy_images/bacteria/1.5 - Strep pneumoniae - Strep Viridans.png", title: "Strep Pneumoniae & Viridans" }] },
