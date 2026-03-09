@@ -154,28 +154,28 @@ function buildOrgList() {
 }
 
 const SEARCH_ALIASES = [
-  { patterns: ['gram positive', 'gram+', 'gram +', 'gram-positive'], replace: 'gp' },
-  { patterns: ['gram negative', 'gram-', 'gram -', 'gram-negative'], replace: 'gn' },
-  { patterns: ['gp cocci', 'gram positive cocci', 'gram+ cocci'], replace: 'gp cocci' },
-  { patterns: ['gn cocci', 'gram negative cocci', 'gram- cocci'], replace: 'gn cocci' },
-  { patterns: ['gp rods', 'gram positive rods', 'gram+ rods', 'gp bacilli', 'gram positive bacilli'], replace: 'gp rods' },
-  { patterns: ['gn rods', 'gram negative rods', 'gram- rods', 'gn bacilli', 'gram negative bacilli'], replace: 'gn rods' },
+  { patterns: ['gram positive', 'gram+', 'gram +', 'gram-positive'], replace: 'gp', category: 'bacteria' },
+  { patterns: ['gram negative', 'gram-', 'gram -', 'gram-negative'], replace: 'gn', category: 'bacteria' },
+  { patterns: ['gp cocci', 'gram positive cocci', 'gram+ cocci'], replace: 'gp cocci', category: 'bacteria' },
+  { patterns: ['gn cocci', 'gram negative cocci', 'gram- cocci'], replace: 'gn cocci', category: 'bacteria' },
+  { patterns: ['gp rods', 'gram positive rods', 'gram+ rods', 'gp bacilli', 'gram positive bacilli'], replace: 'gp rods', category: 'bacteria' },
+  { patterns: ['gn rods', 'gram negative rods', 'gram- rods', 'gn bacilli', 'gram negative bacilli'], replace: 'gn rods', category: 'bacteria' },
 ];
 
 function normalizeQuery(q) {
   for (const alias of SEARCH_ALIASES) {
     for (const pat of alias.patterns) {
-      // exact match OR the query is a prefix of a pattern (handles mid-typing)
-      if (pat === q || pat.startsWith(q)) return alias.replace;
+      if (pat === q || pat.startsWith(q)) return { term: alias.replace, category: alias.category || null };
     }
   }
-  return q;
+  return { term: q, category: null };
 }
 
 function getFiltered() {
   if (searchQ) {
-    const nq = normalizeQuery(searchQ);
+    const { term: nq, category: ncat } = normalizeQuery(searchQ);
     return allOrgs.filter(o => {
+      if (ncat && o.category !== ncat) return false;
       const blob = [o.name, o.gram, o.summary, o.disease, o.tx, o.pearl, o.virulence, o.lab_diagnosis]
         .filter(Boolean).join(' ').toLowerCase();
       return blob.includes(nq);
@@ -194,7 +194,7 @@ function fmt(text, q) {
   let out = esc(text);
   out = out.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
   if (q) {
-    const nq = normalizeQuery(q);
+    const nq = normalizeQuery(q).term;
     const terms = nq !== q ? [nq, q] : [q];
     for (const term of terms) {
       const sq = term.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
