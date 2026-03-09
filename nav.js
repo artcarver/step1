@@ -34,46 +34,24 @@
   loadChain(sdkUrls, 'auth.js');
 })();
 
-// ── Nav active-state styles ────────────────────────────────────
-(function injectNavStyles() {
-  const style = document.createElement('style');
-  style.textContent = `
-    .nav-link {
-      position: relative;
-      font-weight: 500;
-      color: var(--ink2, #666);
-      text-decoration: none;
-      padding: 5px 10px;
-      border-radius: 8px;
-      transition: color .15s, background .15s;
-    }
-    .nav-link:hover {
-      color: var(--ink, #111);
-      background: color-mix(in srgb, var(--ink, #111) 6%, transparent);
-    }
-    .nav-link.active {
-      color: var(--nav-active-color, var(--accent, #3a7a5a));
-      background: color-mix(in srgb, var(--nav-active-color, var(--accent, #3a7a5a)) 10%, transparent);
-      font-weight: 600;
-    }
-    .nav-link.active::after {
-      content: '';
-      position: absolute;
-      bottom: -1px;
-      left: 10px;
-      right: 10px;
-      height: 2px;
-      border-radius: 2px;
-      background: var(--nav-active-color, var(--accent, #3a7a5a));
-      opacity: 0.7;
-    }
-  `;
-  document.head.appendChild(style);
-})();
-
 // ── Nav + Modal ────────────────────────────────────────────────
 (function () {
   const currentPage = location.pathname.split('/').pop() || 'index.html';
+
+  // Set --nav-active-color per page if not already set by the page itself
+  const PAGE_COLORS = {
+    'index.html':         'var(--sakura2)',
+    'drugfacts.html':     'var(--sakura2)',
+    'microfacts.html':    'var(--sage)',
+    'sketchy-pharm.html': 'var(--sakura2)',
+    'sketchy-micro.html': 'var(--sage)',
+    'pixorize.html':      'var(--sky)',
+    'dashboard.html':     'var(--gold)',
+  };
+  const pageColor = PAGE_COLORS[currentPage];
+  if (pageColor && !document.documentElement.style.getPropertyValue('--nav-active-color')) {
+    document.documentElement.style.setProperty('--nav-active-color', pageColor);
+  }
 
   function navLink(href, label) {
     const active = currentPage === href ? ' active' : '';
