@@ -150,14 +150,14 @@ cv: [
     drugs: [
       {
         name: "ACE Inhibitors",
-        aka: "Lisinopril · Enalapril · Captopril · Ramipril · Benazepril · Fosinopril · Quinapril · Perindopril",
-        summary: "Block angiotensin-converting enzyme to reduce angiotensin II and aldosterone, lowering blood pressure and reducing cardiac remodeling. First-line for hypertension, heart failure with reduced EF, diabetic nephropathy, and post-MI.",
-        moa: "Inhibit **angiotensin-converting enzyme (ACE)** → ↓ Ang I→II conversion → ↓ vasoconstriction + ↓ aldosterone → ↓ BP + ↓ preload/afterload; ↑ bradykinin (ACE also degrades bradykinin)",
-        use: "Hypertension (first-line); HFrEF (↓ mortality, ↓ remodeling); post-MI with reduced EF; diabetic nephropathy (↓ proteinuria, slow CKD progression, esp. Type 1 DM); CKD with proteinuria",
-        se: "**Dry cough** (↑ bradykinin — most common reason to switch to ARB); **angioedema** (bradykinin-mediated, can be life-threatening — absolute contraindication to rechallenge); **hyperkalemia** (↓ aldosterone); **↑ creatinine** (especially with bilateral renal artery stenosis); teratogenic (fetal renal toxicity — Category D/X in 2nd/3rd trimester)",
-        ci: "Pregnancy (renal tubular dysgenesis, oligohydramnios — Category D/X); history of ACE-inhibitor–induced angioedema; bilateral renal artery stenosis (GFR depends on Ang II constriction of efferent arteriole); hyperkalemia; concurrent use with aliskiren in DM/CKD",
-        pk: "Most are prodrugs (enalapril→enalaprilat, ramipril→ramiprilat) activated by hepatic hydrolysis\n**Captopril:** active drug, t½ ~2 hr, renal excretion, 3× daily\n**Lisinopril:** not a prodrug, hydrophilic, renal excretion, once daily\nMost renally eliminated — dose-reduce in CKD",
-        pearl: "**Cough vs. angioedema:** Cough (↑ bradykinin in airways) is common (~10–15%) and improves with switch to ARB. Angioedema (↑ bradykinin in submucosa) is rare but dangerous — do NOT switch to ARB (same bradykinin mechanism). Switch to CCB or thiazide for the ACE-intolerant patient who develops angioedema."
+        aka: "Lisinopril · Enalapril · Captopril · Ramipril · Benazepril · Fosinopril",
+        summary: "Inhibit ACE to reduce Ang II and accumulate bradykinin — first-line for HFrEF, post-MI, and diabetic nephropathy.",
+        moa: "Inhibit **angiotensin-converting enzyme (ACE)** → ↓ Ang II (↓ vasoconstriction + ↓ aldosterone) + ↑ **bradykinin** (vasodilation, but causes cough and angioedema).\nReduces efferent > afferent glomerular arteriolar tone — acutely ↓ GFR but reduces proteinuria long-term.",
+        use: "Hypertension, **HFrEF** (reduce mortality), **post-MI** (prevent remodeling), **diabetic nephropathy** (antiproteinuric — Type 1 DM), CKD with proteinuria.",
+        se: "**CATCHH:** **C**ough (bradykinin-mediated, 10–15%), **A**ngioedema (rare but life-threatening), **T**eratogen (fetal renal dysgenesis — Category D/X), **C**reatinine rise (~30% acceptable), **H**yperkalemia, **H**ypotension (first dose).",
+        ci: "**Pregnancy** (Category D/X); bilateral renal artery stenosis (GFR depends on Ang II efferent constriction); prior ACEi-associated angioedema; hyperkalemia.",
+        pk: "Most are prodrugs (enalapril→enalaprilat, ramipril→ramiprilat) requiring hepatic hydrolysis. Renally excreted — dose-reduce in CKD.\n**Captopril:** active drug; sulfhydryl group (↑ rash/taste disturbance); t½ ~2 hr, 3× daily.",
+        pearl: "**ACEi cough and angioedema are both bradykinin-mediated** — switching to ARB eliminates cough (ARB does not raise bradykinin). But angioedema risk may persist early after switching.\n**Do not use in bilateral RAS** — GFR depends on Ang II–mediated efferent constriction; removing this causes acute kidney injury."
       },
       {
         name: "ARBs (Angiotensin Receptor Blockers)",
@@ -173,13 +173,13 @@ cv: [
       {
         name: "Aliskiren",
         aka: "Aliskiren (Tekturna)",
-        summary: "Direct renin inhibitor that blocks the first and rate-limiting step of the RAAS cascade. Used for hypertension but contraindicated in combination with ACEi or ARBs in diabetics or CKD.",
-        moa: "Directly inhibits **renin** → ↓ cleavage of angiotensinogen to Ang I → ↓ downstream Ang II and aldosterone",
-        use: "Hypertension (monotherapy or add-on); limited role due to contraindication with ACEi/ARBs in high-risk patients",
-        se: "Hyperkalemia, ↑ creatinine, diarrhea (most common GI effect), angioedema (rare); teratogenic",
-        ci: "Pregnancy; combination with ACEi or ARB in patients with diabetes or CKD (FDA black box — ↑ renal failure, hyperkalemia, hypotension)",
-        pk: "Oral, poor bioavailability (~3%); t½ ~40 hr (longest RAAS agent); renal excretion; high-fat meals reduce absorption. CYP3A4 substrate; P-gp substrate — avoid cyclosporine.",
-        pearl: "**Aliskiren uniquely lowers plasma renin activity (PRA)** — ACEi/ARBs cause compensatory ↑ renin via feedback. However, in clinical trials (ALTITUDE), adding aliskiren to ACEi/ARB in diabetic CKD increased adverse outcomes without mortality benefit. It's mainly a back-pocket agent for ACEi/ARB-intolerant patients."
+        summary: "Direct **renin inhibitor** — blocks the RAAS at its first and rate-limiting step.",
+        moa: "Directly binds and inhibits **renin**, preventing cleavage of angiotensinogen → Ang I.\nUniquely **lowers plasma renin activity (PRA)**, whereas ACEi and ARBs increase PRA via loss of Ang II negative feedback.",
+        use: "Hypertension (monotherapy or add-on). Limited role — no proven outcomes benefit over ACEi/ARBs.",
+        se: "Hyperkalemia, ↑ creatinine, **diarrhea** (more GI SE than ACEi/ARBs), hypotension; teratogenic.",
+        ci: "Pregnancy; **combination with ACEi or ARB in diabetics or CKD** (FDA black box — ↑ AKI, hyperkalemia, hypotension without benefit — ALTITUDE trial).",
+        pk: "Poor oral bioavailability (~2.5%); fatty meals reduce absorption. Renally eliminated. Long t½ (~40 hr).",
+        pearl: "**Aliskiren is the only RAAS blocker that lowers PRA** — ACEi/ARBs both increase PRA via loss of Ang II feedback.\nCombination RAAS blockade (aliskiren + ACEi/ARB) is contraindicated in diabetics due to increased harm without benefit."
       },
       {
         name: "Hydralazine & Direct Vasodilators",
@@ -576,13 +576,13 @@ neuro: [
       {
         name: "Propofol, Etomidate & Ketamine",
         aka: "Propofol (Diprivan) · Etomidate (Amidate) · Ketamine (Ketalar)",
-        summary: "IV anesthetic induction agents with distinct mechanisms and hemodynamic profiles. Propofol is most widely used; etomidate maintains hemodynamic stability; ketamine provides dissociative anesthesia with bronchodilation.",
-        moa: "**Propofol:** potentiates **GABA-A** + inhibits NMDA receptor → CNS depression; mechanism of action similar to barbiturates but at different site. **Etomidate:** potentiates **GABA-A** (steroid analog binding site). **Ketamine:** blocks **NMDA (N-methyl-D-aspartate) receptor** → dissociative anesthesia; also ↑ SNS activity → maintains BP/HR",
-        use: "**Propofol:** anesthesia induction/maintenance, ICU sedation, procedural sedation, refractory status epilepticus\n**Etomidate:** anesthesia induction in hemodynamically unstable patients (cardiogenic shock, trauma — minimal cardiac effects), RSI\n**Ketamine:** emergency RSI especially in bronchospasm or hypotension, pediatric procedures (dissociative sedation), refractory depression (IV sub-anesthetic dose, intranasal esketamine)",
-        se: "**Propofol:** **propofol infusion syndrome** (prolonged high-dose ICU infusion → metabolic acidosis, rhabdomyolysis, cardiac failure — rare but fatal); hypotension (vasodilation); pain on injection; hypertriglyceridemia (lipid emulsion); urine/secretion turns green (benign). **Etomidate:** **adrenal suppression** (inhibits 11β-hydroxylase → ↓ cortisol synthesis — avoid in septic shock); myoclonus; nausea. **Ketamine:** **emergence reactions** (hallucinations, dissociation — mitigated by concurrent benzodiazepine); ↑ IOP/ICP (use cautiously in glaucoma/TBI), ↑ secretions (glycopyrrolate pre-treatment)",
-        ci: "Propofol: egg/soy allergy (lipid formulation — reassess, true allergy is rare); Etomidate: adrenal insufficiency, septic shock requiring steroids; Ketamine: active psychosis, uncontrolled hypertension, ↑ ICP (relative — clinical controversy)",
-        pk: "All: IV bolus induction; rapid redistribution to fat/muscle → short duration (minutes)\n**Propofol:** t½ context-sensitive (short for bolus, long for infusion), hepatic + extrahepatic metabolism, green-colored lipid emulsion vehicle\n**Etomidate:** t½ ~75 min, hepatic esterase\n**Ketamine:** t½ ~2–3 hr, hepatic (CYP3A4/2B6), active metabolite norketamine",
-        pearl: "**Etomidate is the only induction agent that preserves hemodynamic stability** — it does not drop blood pressure, making it ideal for unstable trauma or septic patients. However, even a single induction dose suppresses cortisol for 4–8+ hours by blocking 11β-hydroxylase. **Ketamine is unique** in maintaining (or raising) BP via catecholamine release — it's the induction agent of choice when bronchospasm and hypotension coexist (e.g., severe asthma exacerbation with shock)."
+        summary: "IV induction anesthetics — each has a distinct **hemodynamic niche** that determines when to choose one over another.",
+        moa: "**Propofol:** potentiates **GABA-A** + inhibits NMDA → CNS depression; also vasodilatory.\n**Etomidate:** potentiates **GABA-A** (steroid analog site) — minimal cardiac/vascular effects.\n**Ketamine:** blocks **NMDA receptors** → dissociative anesthesia; stimulates sympathetic outflow → ↑ HR, BP, bronchodilation.",
+        use: "**Propofol:** routine induction/maintenance, ICU sedation, procedural sedation, refractory status epilepticus.\n**Etomidate:** induction in **hemodynamically unstable patients** (cardiogenic shock, trauma, GI bleed).\n**Ketamine:** **bronchospasm or hypotension** (asthma exacerbation, RSI); pediatric procedural sedation; refractory depression (esketamine intranasal).",
+        se: "**Propofol:** hypotension (vasodilation), **propofol infusion syndrome** (prolonged high-dose ICU → metabolic acidosis + rhabdomyolysis + cardiac failure), green urine (harmless).\n**Etomidate:** **adrenal suppression** (inhibits 11β-hydroxylase → ↓ cortisol — even single induction dose suppresses 24 hr; avoid in septic shock), myoclonus, nausea.\n**Ketamine:** **emergence reactions** (hallucinations, dissociation — mitigated by benzodiazepine co-administration), ↑ ICP/IOP, ↑ secretions.",
+        ci: "Propofol: egg/soy allergy (lipid vehicle). Etomidate: septic shock, adrenal insufficiency. Ketamine: elevated ICP, active psychosis.",
+        pk: "Clinical duration of all three determined by **redistribution into fat** (not metabolism).\nPropofol: CYP2B6 + extrahepatic. Etomidate: hepatic esterase. Ketamine: hepatic (CYP3A4/2B6), active norketamine metabolite.",
+        pearl: "**Etomidate preserves hemodynamics but suppresses cortisol** via 11β-hydroxylase inhibition — ideal for unstable patients, but even a single dose can suppress HPA axis for 24 hr.\n**Ketamine raises BP and bronchodilates** — the only induction agent of choice in the **hypotensive asthmatic** patient."
       },
       {
         name: "Inhaled Anesthetics",
@@ -651,14 +651,14 @@ neuro: [
     drugs: [
       {
         name: "SSRIs & SNRIs",
-        aka: "Fluoxetine (Prozac) · Sertraline (Zoloft) · Escitalopram · Paroxetine · Citalopram — SSRIs | Venlafaxine (Effexor) · Duloxetine (Cymbalta) · Desvenlafaxine — SNRIs",
-        summary: "Block serotonin (SSRIs) or serotonin and norepinephrine (SNRIs) reuptake transporters to increase synaptic monoamine concentration. First-line antidepressants for depression, anxiety disorders, PTSD, OCD, and multiple pain conditions.",
-        moa: "**SSRIs:** selectively inhibit **serotonin transporter (SERT)** → ↑ synaptic 5-HT. **SNRIs:** inhibit **SERT + norepinephrine transporter (NET)** → ↑ 5-HT and NE; therapeutic effects require weeks of sustained receptor adaptation (↓ autoreceptor sensitivity)",
-        use: "Major depressive disorder (first-line); generalized anxiety, social anxiety, panic disorder, PTSD, OCD (SSRIs/SNRIs first-line); premenstrual dysphoric disorder (fluoxetine, sertraline); bulimia nervosa (fluoxetine); fibromyalgia/neuropathic pain/diabetic neuropathy (duloxetine); stress urinary incontinence (duloxetine); hot flashes (venlafaxine in menopause)",
-        se: "**Sexual dysfunction** (most common reason for discontinuation — ↓ libido, anorgasmia); **GI effects** (nausea, diarrhea — early, usually improves); **insomnia or sedation**; **SIADH/hyponatremia** (especially elderly); **serotonin syndrome** with MAOIs, tramadol, triptans (hyperthermia, clonus, agitation); Paroxetine: most anticholinergic of SSRIs; **SSRI discontinuation syndrome** (abrupt stop — 'FINISH': Flu-like, Insomnia, Nausea, Imbalance, Sensory disturbances, Hyperarousal) — worse with short t½ drugs (paroxetine); fluoxetine: safest (long t½ ~5 days → self-tapering)",
-        ci: "MAOIs within 14 days (washout 14 days before/after MAOI — serotonin syndrome); MAO inhibitors for all SSRIs/SNRIs; Citalopram/escitalopram: prolonged QTc (dose limit); Paroxetine: pregnancy (neonatal adaptation syndrome, cardiac defects — relative CI, use sertraline instead)",
-        pk: "**Fluoxetine:** longest t½ ~1–4 days + active metabolite norfluoxetine (~1–2 weeks) — self-tapering, MAOI washout 5 weeks after stopping\n**Paroxetine:** shortest t½ ~21 hr — worst discontinuation syndrome; strong CYP2D6 inhibitor\n**Sertraline:** preferred in pregnancy and post-MI\n**Duloxetine:** CYP1A2/2D6 substrate\n**Venlafaxine:** minimal CYP interactions",
-        pearl: "**Serotonin syndrome vs. NMS:** Serotonin syndrome = hyperthermia + clonus/hyperreflexia + agitation + diarrhea (SERT/5-HT excess — treat with cyproheptadine). NMS = hyperthermia + rigidity + hyporeflexia + ↑ CK (dopamine depletion — treat with dantrolene/bromocriptine). **Key test question:** serotonin syndrome has clonus/hyperreflexia; NMS has lead-pipe rigidity and hyporeflexia."
+        aka: "Fluoxetine (Prozac) · Sertraline (Zoloft) · Escitalopram · Paroxetine · Citalopram — SSRIs | Venlafaxine (Effexor) · Duloxetine (Cymbalta) — SNRIs",
+        summary: "**First-line antidepressants** — inhibit serotonin (SSRIs) or serotonin + NE (SNRIs) reuptake. Broad utility across depression, anxiety, and pain disorders.",
+        moa: "**SSRIs:** inhibit **SERT** → ↑ synaptic 5-HT.\n**SNRIs:** inhibit **SERT + NET** → ↑ 5-HT and NE.\nTherapeutic effects require weeks (receptor downregulation/adaptation); side effects begin immediately.",
+        use: "**First-line for MDD, GAD, panic disorder, PTSD, OCD, social anxiety.**\nDuloxetine: diabetic neuropathy, fibromyalgia, chronic MSK pain, stress urinary incontinence.\nFluoxetine: bulimia nervosa, PMDD.\nVenlafaxine: hot flashes in menopause.\nEscitalopram/citalopram: most selective SSRIs (fewest DDIs).",
+        se: "**Sexual dysfunction** (most common reason for discontinuation — ↓ libido, anorgasmia).\nGI upset, insomnia, early anxiety.\n**SIADH/hyponatremia** (especially elderly).\n**Serotonin syndrome** (with MAOIs, tramadol, triptans — hyperthermia, clonus, agitation, diarrhea).\n**Discontinuation syndrome** (abrupt stop — 'FINISH': flu-like, insomnia, nausea, imbalance, sensory, hyperarousal); worst with paroxetine (shortest t½), least with fluoxetine.",
+        ci: "MAOIs within 14 days (washout required — 14 days; **5 weeks after fluoxetine** before starting MAOI).\nCitalopram/escitalopram: dose-dependent QTc prolongation (dose limit).\nParoxetine: caution in pregnancy (neonatal adaptation syndrome — prefer sertraline).",
+        pk: "**Fluoxetine:** t½ ~4–6 days + active norfluoxetine (~1–2 weeks) — self-tapering, minimal discontinuation syndrome; MAOI washout 5 weeks after stopping.\n**Paroxetine:** shortest t½ (~21 hr) — worst discontinuation; potent CYP2D6 inhibitor; most anticholinergic SSRI.\n**Sertraline:** preferred in pregnancy and post-MI.",
+        pearl: "**Serotonin syndrome vs. NMS:**\nSerotonin syndrome = hyperreflexia/clonus + tremor + agitation + diarrhea; rapid onset (hours); caused by serotonergic drugs; treat with **cyproheptadine**.\nNMS = lead-pipe rigidity + high fever + hyporeflexia + ↑ CK; gradual onset (days); caused by antipsychotics; treat with **dantrolene + bromocriptine**."
       },
       {
         name: "Tricyclic Antidepressants (TCAs)",
@@ -716,15 +716,16 @@ neuro: [
     drugs: [
       {
         name: "Valproate",
-        aka: "Valproic Acid (Depakene) · Valproate Sodium (Depacon IV) · Divalproex (Depakote)",
-        summary: "Broad-spectrum antiepileptic and mood stabilizer that enhances GABAergic inhibition and blocks sodium and T-type calcium channels. First-line for generalized seizures, bipolar mania, and migraine prophylaxis.",
-        moa: "Multiple mechanisms: ↑ **GABA synthesis and ↓ GABA degradation** (↑ GABA-T inhibition → ↑ GABA levels) + **block voltage-gated Na⁺ channels** (inactivated state) + **block T-type Ca²⁺ channels** (especially for absence seizures)",
-        use: "Generalized tonic-clonic seizures; absence seizures (drug of choice — also blocks T-type Ca²⁺ channels); myoclonic seizures; juvenile myoclonic epilepsy (drug of choice); bipolar disorder mania (faster than lithium); migraine prophylaxis; status epilepticus (IV valproate — second-line); complex partial seizures",
-        se: "**Hepatotoxicity** (idiosyncratic, potentially fatal — especially in children <2 yr with mitochondrial disease — check LFTs); **teratogenicity** (**neural tube defects** — 1–4% risk, highest of all AEDs — folate supplementation reduces but does not eliminate; also cognitive impairment in offspring); **pancreatitis** (rare, serious); GI upset (take with food), weight gain, **hair loss** (alopecia), tremor; **thrombocytopenia** and platelet dysfunction; hyperammonemia (even without LFT elevation)",
-        ci: "**Pregnancy** (highest teratogenic risk of all AEDs — neural tube defects, cognitive effects; use only if no safer alternative); urea cycle disorders (valproate → ↑ ammonia — can be fatal); hepatic disease; mitochondrial disorders (Alpers disease in children)",
-        pk: "Oral or IV; t½ ~9–16 hr; hepatic metabolism (glucuronidation + β-oxidation + CYP2C9); **NOT a CYP inducer** (unlike phenytoin/carbamazepine); inhibits CYP2C9 and epoxide hydrolase (↑ phenobarbital, lamotrigine, carbamazepine epoxide levels). Protein-bound (90%) — displacement interactions possible.",
-        pearl: "**Valproate is the broadest-spectrum AED** — effective for nearly all seizure types. However, it's the **most teratogenic** and should be avoided in women of childbearing potential (folic acid does NOT reliably prevent NTDs). The **drug interaction pearls:** valproate inhibits lamotrigine glucuronidation → ↑ lamotrigine levels 2× → halve lamotrigine dose when adding valproate."
+        aka: "Valproic Acid (Depakene) · Divalproex (Depakote) · Valproate Sodium (Depacon IV)",
+        summary: "**Broadest-spectrum AED** — first-line for absence, myoclonic, and generalized seizures and bipolar mania; most teratogenic AED.",
+        moa: "Multiple mechanisms: ↑ **GABA synthesis + ↓ GABA degradation** (inhibits GABA-T) + blocks **voltage-gated Na⁺ channels** + blocks **T-type Ca²⁺ channels** (absence seizures).",
+        use: "**Absence seizures** (± ethosuximide); myoclonic seizures; generalized tonic-clonic seizures; **juvenile myoclonic epilepsy** (drug of choice).\n**Bipolar disorder:** mania (faster than lithium).\n**Migraine prophylaxis.**\nStatus epilepticus (IV — second-line).",
+        se: "**Hepatotoxicity** (idiosyncratic, potentially fatal — especially children <2 yr with mitochondrial disease — monitor LFTs).\n**Teratogenicity:** **neural tube defects** (1–4% — highest of all AEDs; also cognitive impairment in offspring).\n**Pancreatitis** (rare, serious).\nWeight gain, hair loss (alopecia), tremor, thrombocytopenia.\n**Hyperammonemia** (even without LFT elevation).",
+        ci: "**Pregnancy** (highest teratogenic risk of all AEDs — strongly avoid in women of childbearing potential).\nUrea cycle disorders (↑ NH₃ → encephalopathy); hepatic disease; mitochondrial disorders.",
+        pk: "Oral or IV; t½ ~9–16 hr; hepatic (glucuronidation + CYP2C9).\n**NOT a CYP inducer** (unlike phenytoin/carbamazepine).\n**Inhibits CYP2C9 and UGT** → ↑ lamotrigine (~2×), ↑ phenobarbital levels.\nHighly protein-bound (90%).",
+        pearl: "**Valproate inhibits lamotrigine glucuronidation** — double the lamotrigine level when added to valproate; always halve lamotrigine dose.\n**Most teratogenic AED** — folic acid does NOT reliably prevent NTDs.\n**Carnitine** used to treat valproate-induced hepatotoxicity (valproate depletes carnitine)."
       },
+
       {
         name: "Phenytoin",
         aka: "Phenytoin (Dilantin) · Fosphenytoin (Cerebyx — IV prodrug)",
@@ -738,37 +739,38 @@ neuro: [
       },
       {
         name: "Carbamazepine",
-        aka: "Carbamazepine (Tegretol, Carbatrol) · Oxcarbazepine (Trileptal) · Eslicarbazepine",
-        summary: "Sodium channel blocker structurally related to TCAs. Used for focal seizures, generalized tonic-clonic seizures, trigeminal neuralgia, and bipolar disorder. Notable for autoinduction and dangerous blood dyscrasias.",
-        moa: "Blocks **voltage-gated Na⁺ channels** in the inactivated state → stabilizes neuronal membranes → ↓ repetitive firing; also reduces synaptic transmission of high-frequency stimulation",
-        use: "Focal (partial) seizures (drug of choice); generalized tonic-clonic seizures\n**Trigeminal neuralgia:** first-line — remarkably effective\nBipolar disorder (second-line mood stabilizer, especially for rapid cycling)\n**Diabetes insipidus:** ADH-sensitizing effect — central DI adjunct",
-        se: "**SIADH/hyponatremia** (↑ ADH sensitivity — common, especially in elderly); **aplastic anemia** and **agranulocytosis** (rare, potentially fatal — CBCs required); **SJS/TEN** (↑ risk with HLA-B*1502 — common in Han Chinese/Southeast Asians — screen before prescribing); diplopia/ataxia/dizziness (dose-related); **hepatotoxicity**; teratogenicity (neural tube defects — relative CI in pregnancy; folic acid supplementation); **autoinduction** (induces its own CYP3A4 metabolism → ↓ levels over first 3–4 weeks — dose may need increasing)",
-        ci: "Concurrent MAOIs (CNS toxicity); known history of bone marrow suppression; HLA-B*1502 carriers (SJS risk — screen Asian patients); concurrent tricyclic antidepressants (structural similarity → additive toxicity); porphyria",
-        pk: "Oral, t½ initially ~25–65 hr → decreases to ~12–17 hr after autoinduction (induces CYP3A4, CYP2C9, CYP1A2 — its own and many other drugs' metabolism). Strong inducer: ↓ OCP efficacy (breakthrough pregnancy), ↓ warfarin, ↓ other AEDs, ↓ cyclosporine. Active 10,11-epoxide metabolite (via CYP3A4) → also pharmacologically active. Oxcarbazepine: ketone analog, converted to active monohydroxy metabolite, less enzyme induction than carbamazepine.",
-        pearl: "**Carbamazepine = SIADH + aplastic anemia + SJS in Han Chinese + autoinduction.** Screen HLA-B*1502 before prescribing to Southeast Asian or Chinese patients. The autoinduction complicates dosing: therapeutic level may fall after first few weeks as the drug induces its own metabolism. **Trigeminal neuralgia** — lancinating unilateral facial pain — responds dramatically to carbamazepine."
+        aka: "Carbamazepine (Tegretol) · Oxcarbazepine (Trileptal) · Eslicarbazepine",
+        summary: "**Na⁺ channel blocker** — first-line for focal seizures and **trigeminal neuralgia**; notorious for autoinduction and dangerous blood dyscrasias.",
+        moa: "Blocks **voltage-gated Na⁺ channels** in the inactivated state → ↓ repetitive neuronal firing.\nAlso useful for mood stabilization (bipolar disorder).",
+        use: "Focal (partial) seizures (drug of choice); generalized tonic-clonic seizures.\n**Trigeminal neuralgia:** first-line — dramatically effective.\nBipolar disorder (especially rapid cycling, mixed episodes).\nCentral DI (↑ ADH sensitivity).",
+        se: "**Diplopia, ataxia, nausea** (dose-related).\n**Aplastic anemia and agranulocytosis** (rare, potentially fatal — monitor CBC).\n**SIADH/hyponatremia** (↑ ADH sensitivity — especially elderly).\n**SJS/TEN** (↑ risk with **HLA-B*1502** — Han Chinese/Southeast Asians — screen before prescribing).\nTeratogenic (neural tube defects); **autoinduction** (↓ own levels over 3–4 weeks — may need dose increase).",
+        ci: "Prior bone marrow suppression; concurrent MAOIs; **HLA-B*1502 positivity** (screen Asian patients); porphyria.",
+        pk: "**Induces its own metabolism (autoinduction)** via CYP3A4 → t½ decreases from ~25–65 hr to ~12–17 hr after 3–4 weeks.\nPotent CYP inducer → ↓ OCPs (breakthrough pregnancy), ↓ warfarin, ↓ other AEDs.\n**Oxcarbazepine:** keto-analog with less enzyme induction and fewer DDIs.",
+        pearl: "**Carbamazepine = SIADH + aplastic anemia + SJS in Han Chinese + autoinduction.**\nScreen **HLA-B*1502** before prescribing to Southeast Asian/Chinese patients.\n**Autoinduction:** drug induces its own CYP3A4 metabolism — may need to increase dose in first 3–5 weeks to maintain therapeutic levels."
       },
       {
         name: "Lamotrigine",
         aka: "Lamotrigine (Lamictal)",
-        summary: "Broad-spectrum AED that blocks voltage-gated sodium channels and inhibits glutamate release. Used for focal and generalized epilepsy, bipolar disorder maintenance, and Lennox-Gastaut syndrome.",
-        moa: "Block **voltage-gated Na⁺ channels** (inactivated state) → ↓ neuronal excitability; also inhibits presynaptic **glutamate** and **aspartate** release → ↓ excitatory neurotransmission",
-        use: "Focal (partial) seizures; generalized tonic-clonic seizures; Lennox-Gastaut syndrome (↓ drop attacks); juvenile myoclonic epilepsy (adjunct); bipolar I disorder maintenance (first-line for **bipolar depression** — more effective than lithium for depressive episodes); absence seizures (second-line); trigeminal neuralgia",
-        se: "**Stevens-Johnson syndrome / TEN** (most serious — higher risk with rapid titration and concurrent valproate — MUST titrate very slowly); **rash** (incidence ~10%, usually benign morbilliform — must distinguish from SJS); **blurred/double vision**, dizziness, ataxia; headache; insomnia",
-        ci: "History of lamotrigine-induced SJS/TEN; children <2 yr on valproate + lamotrigine combination (↑ SJS risk); rapid dose escalation (major risk factor for SJS)",
-        pk: "Oral; t½ ~25 hr (monotherapy), but dramatically affected by enzyme inducers/inhibitors: **Valproate inhibits UGT → ↑ t½ to ~60 hr** (must halve lamotrigine dose + titrate very slowly). **Enzyme inducers (carbamazepine, phenytoin)** ↓ t½ to ~12 hr (must use higher doses). Hepatic glucuronidation (UGT1A4).",
-        pearl: "**The lamotrigine-valproate interaction is critical:** valproate inhibits UGT1A4, approximately doubling lamotrigine levels. If not accounted for, the slow titration schedule must be even slower and the final dose is half. The risk of **SJS with rapid titration** is the most feared complication — lamotrigine has a strict dose escalation schedule (start low, go slow: typically 25 mg every 2 weeks). It is the preferred AED for bipolar depression."
+        summary: "Broad-spectrum Na⁺ channel blocker and glutamate inhibitor — first-line for **bipolar depression** and major AED; SJS risk with rapid titration or valproate co-use.",
+        moa: "Blocks **voltage-gated Na⁺ channels** (inactivated state) + inhibits presynaptic **glutamate and aspartate release** → ↓ excitatory neurotransmission.",
+        use: "Focal and generalized tonic-clonic seizures; Lennox-Gastaut syndrome.\n**Bipolar I disorder maintenance** — **preferred for bipolar depression** (more effective than lithium for depressive episodes).\nJuvenile myoclonic epilepsy (adjunct); trigeminal neuralgia.",
+        se: "**SJS/TEN** (most serious — especially with rapid titration or concurrent valproate which doubles levels — MUST titrate slowly).\nBenign morbilliform rash (~10% — must distinguish from SJS).\nDizziness, diplopia, ataxia, headache.",
+        ci: "Rapid dose escalation (major SJS risk factor).\nHistory of lamotrigine-induced SJS/TEN.",
+        pk: "Oral; t½ ~25 hr (monotherapy).\n**Valproate inhibits UGT1A4** → ↑ t½ to ~60 hr (halve lamotrigine dose + titrate very slowly when adding valproate).\n**Enzyme inducers** (carbamazepine, phenytoin) → ↓ t½ to ~12 hr (need higher doses).",
+        pearl: "**Lamotrigine + valproate interaction:** valproate doubles lamotrigine levels by inhibiting glucuronidation — always halve the dose and use an even slower titration schedule.\n**SJS risk** is the most feared complication of rapid dose escalation — always start low and go slow (25 mg every 2 weeks).\nPreferred AED for bipolar depression — uniquely effective where lithium often falls short."
       },
       {
         name: "Ethosuximide",
         aka: "Ethosuximide (Zarontin)",
-        summary: "Selectively blocks T-type calcium channels in thalamic neurons to suppress absence seizures. Drug of choice for childhood absence epilepsy when seizures are the only concern.",
-        moa: "Block **T-type (low-threshold) voltage-gated Ca²⁺ channels** in thalamic relay neurons → ↓ spike-wave discharges (3 Hz) characteristic of absence seizures; no sodium channel activity",
-        use: "**Childhood absence epilepsy** (drug of choice when no convulsive seizures; valproate preferred if co-existing tonic-clonic seizures — broader spectrum); juvenile absence epilepsy",
-        se: "**GI upset** (nausea, vomiting, abdominal pain — most common; take with food); drowsiness, hiccups; blood dyscrasias (leukopenia, aplastic anemia — rare, monitor CBC); behavioral changes; lupus-like syndrome (rare)",
-        ci: "Hypersensitivity; avoid in patients with tonic-clonic seizures without co-prescription of valproate/another AED (ethosuximide does NOT prevent tonic-clonic seizures — may cause loss of protection); severe hepatic/renal disease",
-        pk: "Oral; t½ ~30–60 hr in adults, ~30 hr in children; hepatic CYP3A4 metabolism; 25% renal excretion unchanged. Minimal protein binding. No significant enzyme induction. Valproate ↑ ethosuximide levels by inhibiting metabolism.",
-        pearl: "**Ethosuximide is the most selective AED in pharmacology** — it only blocks T-type Ca²⁺ channels and is only effective for absence seizures. It has NO effect on tonic-clonic or focal seizures. When a child has both absence and tonic-clonic seizures, use **valproate** (covers both) instead. Classic exam: absence seizure → staring, lip smacking, immediate recovery — treat with ethosuximide or valproate."
+        summary: "**T-type Ca²⁺ channel blocker** — drug of choice for **absence seizures only**; has no effect on any other seizure type.",
+        moa: "Selectively blocks **T-type (low-threshold) Ca²⁺ channels** in thalamic relay neurons → ↓ 3-Hz spike-and-wave oscillations characteristic of absence seizures.\nNo Na⁺ channel or GABAergic activity.",
+        use: "**Childhood absence epilepsy** (drug of choice when no co-existing convulsive seizures).\nValproate preferred when patient also has tonic-clonic seizures (broader spectrum).",
+        se: "**GI upset** (nausea, vomiting — most common; take with food).\nDrowsiness, hiccups; blood dyscrasias (CBC monitoring); lupus-like syndrome (rare).",
+        ci: "Do NOT use as monotherapy if patient has both absence and tonic-clonic seizures — no protection against convulsive seizures (use valproate instead).",
+        pk: "Oral; t½ ~30–60 hr adults, ~30 hr children; hepatic CYP3A4; minimal protein binding.\nValproate ↑ ethosuximide levels (inhibits metabolism).",
+        pearl: "**Ethosuximide is the most selective AED** — only T-type Ca²⁺ channels, only absence seizures.\n**Absence seizure** = brief staring, eye blinking, lip smacking, immediate recovery (no postictal phase) — do NOT confuse with complex focal seizures (which have postictal confusion).\n**When both absence and tonic-clonic:** use valproate (covers both)."
       },
+
       {
         name: "Topiramate",
         aka: "Topiramate (Topamax) · Phentermine/Topiramate (Qsymia)",
@@ -780,6 +782,7 @@ neuro: [
         pk: "Oral; t½ ~19–23 hr; minimal hepatic metabolism (mainly excreted unchanged in urine — dose-reduce in CKD); moderate CYP3A4 inducer (↓ OCP efficacy — contraceptive counseling required); CYP2C19 inhibitor. Carbonic anhydrase inhibition → hyperchloremic metabolic acidosis.",
         pearl: "**Topiramate's cognitive 'dumbing down' effect** ('Dopamax') is the most clinically significant adverse effect — it affects memory and language more than other AEDs. However, its ability to cause **weight loss** makes it preferred in obese patients with epilepsy or migraine. Unique among AEDs for both migraine prophylaxis AND weight reduction (hence Qsymia formulation)."
       },
+
       {
         name: "Levetiracetam",
         aka: "Levetiracetam (Keppra) · Brivaracetam (Briviact)",
@@ -791,6 +794,7 @@ neuro: [
         pk: "Oral or IV; t½ ~6–8 hr; **minimal hepatic metabolism** (largely excreted unchanged by kidneys — CrCl-based dosing); **no CYP interactions** — major advantage over phenytoin/carbamazepine/valproate; no protein binding; not enzyme-inducing. IV and oral bioequivalent — IV loading is fast and effective.",
         pearl: "**Levetiracetam is the simplest AED pharmacokinetically** — no significant drug interactions, renally cleared, available IV and PO. However, its 'Keppra rage' (irritability, aggression) is a real clinical problem and must be counseled. Vitamin B6 (pyridoxine) may reduce behavioral side effects. It has become the preferred IV agent in many hospitals for acute seizure management due to safety vs. phenytoin (no cardiac effects, no need for cardiac monitoring)."
       },
+
       {
         name: "Gabapentin, Tiagabine & Vigabatrin",
         aka: "Gabapentin (Neurontin) · Pregabalin (Lyrica) — Calcium channel modulators | Tiagabine (Gabitril) — GABA reuptake inhibitor | Vigabatrin (Sabril) — GABA transaminase inhibitor",
