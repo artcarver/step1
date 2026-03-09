@@ -153,12 +153,32 @@ function buildOrgList() {
   return list;
 }
 
+const SEARCH_ALIASES = [
+  { patterns: ['gram positive', 'gram+', 'gram +', 'gram-positive'], replace: 'gp' },
+  { patterns: ['gram negative', 'gram-', 'gram -', 'gram-negative'], replace: 'gn' },
+  { patterns: ['gp cocci', 'gram positive cocci', 'gram+ cocci'], replace: 'gp cocci' },
+  { patterns: ['gn cocci', 'gram negative cocci', 'gram- cocci'], replace: 'gn cocci' },
+  { patterns: ['gp rods', 'gram positive rods', 'gram+ rods', 'gp bacilli', 'gram positive bacilli'], replace: 'gp rods' },
+  { patterns: ['gn rods', 'gram negative rods', 'gram- rods', 'gn bacilli', 'gram negative bacilli'], replace: 'gn rods' },
+];
+
+function normalizeQuery(q) {
+  let normalized = q;
+  for (const alias of SEARCH_ALIASES) {
+    for (const pat of alias.patterns) {
+      if (normalized === pat) return alias.replace;
+    }
+  }
+  return normalized;
+}
+
 function getFiltered() {
   if (searchQ) {
+    const nq = normalizeQuery(searchQ);
     return allOrgs.filter(o => {
       const blob = [o.name, o.gram, o.summary, o.disease, o.tx, o.pearl, o.virulence, o.lab_diagnosis]
         .filter(Boolean).join(' ').toLowerCase();
-      return blob.includes(searchQ);
+      return blob.includes(nq);
     });
   }
   if (activeTab === 'bookmarks' || bookmarkFilter) return allOrgs.filter(o => isBookmarked(o.name));
@@ -174,8 +194,12 @@ function fmt(text, q) {
   let out = esc(text);
   out = out.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
   if (q) {
-    const sq = q.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-    out = out.replace(new RegExp(`(${sq})(?![^<]*>)`, 'gi'), '<mark class="search-hl">$1</mark>');
+    const nq = normalizeQuery(q);
+    const terms = nq !== q ? [nq, q] : [q];
+    for (const term of terms) {
+      const sq = term.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+      out = out.replace(new RegExp(`(${sq})(?![^<]*>)`, 'gi'), '<mark class="search-hl">$1</mark>');
+    }
   }
   return out;
 }
