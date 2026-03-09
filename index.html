@@ -73,8 +73,8 @@
 
 .feat-skeleton {
   border-radius: var(--r-lg); border: 1px solid var(--border2);
-  background: var(--surface); padding: 14px 18px;
-  display: flex; flex-direction: column; gap: 8px; height: 96px;
+  background: var(--surface); padding: 16px 18px;
+  display: flex; flex-direction: column; gap: 9px; height: 112px;
 }
 .skel-line { border-radius: 6px; background: var(--border2); animation: shimmer 1.4s ease-in-out infinite; }
 .skel-accent-drug  { background: var(--sakura-light) !important; }
@@ -83,26 +83,28 @@
 
 .feat-card {
   display: none; flex-direction: column;
-  padding: 14px 18px 12px; cursor: pointer; min-height: 0;
+  padding: 16px 18px 14px; cursor: pointer;
+  height: 112px; box-sizing: border-box;
 }
 .feat-card:hover .feat-cta { opacity: 1; transform: translateX(2px); }
 .feat-eyebrow {
   font-size: 9px; font-weight: 700; letter-spacing: 1.8px;
-  text-transform: uppercase; color: var(--card-accent, var(--sakura2)); margin-bottom: 6px;
+  text-transform: uppercase; color: var(--card-accent, var(--sakura2));
+  margin-bottom: 5px; flex-shrink: 0;
 }
 .feat-name {
-  font-family: 'Playfair Display', serif; font-size: 16px; font-weight: 600;
-  line-height: 1.2; color: var(--ink); margin-bottom: 5px;
+  font-family: 'Playfair Display', serif; font-size: 15px; font-weight: 600;
+  line-height: 1.2; color: var(--ink); margin-bottom: 4px;
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis; flex-shrink: 0;
 }
 .feat-pearl {
-  font-size: 12px; color: var(--ink2); line-height: 1.5;
-  flex: 1;
-  /* clamp to 2 lines */
+  font-size: 11.5px; color: var(--ink2); line-height: 1.45;
+  flex: 1; min-height: 0;
   display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;
 }
 .feat-cta {
-  margin-top: 8px; font-size: 11px; font-weight: 600;
-  color: var(--card-accent, var(--sakura2)); opacity: .5;
+  margin-top: auto; padding-top: 6px; font-size: 11px; font-weight: 600;
+  color: var(--card-accent, var(--sakura2)); opacity: .5; flex-shrink: 0;
   transition: opacity var(--t), transform var(--t);
 }
 .feat-drug  { --card-accent: var(--sakura2); }
@@ -259,16 +261,16 @@
   <div class="sec-label">Today's High Yield</div>
   <div class="daily-grid">
     <div class="feat-skeleton i-card" id="dotd-skeleton" aria-hidden="true">
-      <div class="skel-line skel-accent-drug" style="height:10px; width:40%;"></div>
-      <div class="skel-line" style="height:20px; width:70%;"></div>
-      <div class="skel-line" style="height:13px; width:90%;"></div>
-      <div class="skel-line" style="height:13px; width:80%;"></div>
+      <div class="skel-line skel-accent-drug" style="height:9px; width:40%;"></div>
+      <div class="skel-line" style="height:18px; width:70%;"></div>
+      <div class="skel-line" style="height:12px; width:90%;"></div>
+      <div class="skel-line" style="height:12px; width:75%;"></div>
     </div>
     <div class="feat-skeleton i-card" id="ootd-skeleton" aria-hidden="true">
-      <div class="skel-line skel-accent-micro" style="height:10px; width:50%;"></div>
-      <div class="skel-line" style="height:20px; width:65%;"></div>
-      <div class="skel-line" style="height:13px; width:90%;"></div>
-      <div class="skel-line" style="height:13px; width:75%;"></div>
+      <div class="skel-line skel-accent-micro" style="height:9px; width:50%;"></div>
+      <div class="skel-line" style="height:18px; width:65%;"></div>
+      <div class="skel-line" style="height:12px; width:90%;"></div>
+      <div class="skel-line" style="height:12px; width:70%;"></div>
     </div>
     <div class="feat-card feat-drug i-card" id="dotd-card" onclick="openDotdModal()" role="button" tabindex="0" aria-label="Drug of the Day — click to expand">
       <div class="feat-eyebrow">Drug of the Day</div>
