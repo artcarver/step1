@@ -8,7 +8,7 @@
 const CAT_META = {
   autonomic:      { label: 'Autonomics',      color: '#c4505e', desc: 'Parasympathetic (cholinergic) and sympathetic (adrenergic) drug classes. Master receptor subtypes first — M1/M2/M3, α1/α2, β1/β2 — and the drugs fall into place. High-yield for organ-specific side effects and clinical applications.' },
   cv:             { label: 'Cardio & Renal',  color: '#9e3a5a', desc: 'The most tested drug system on Step 1. Know ACEi/ARBs cold — they appear in HF, HTN, CKD, and post-MI vignettes. Antiarrhythmic classes: think ion channels first, then drugs. Diuretic electrolyte effects are guaranteed questions.' },
-  blood:          { label: 'Hematology',      color: '#7a3a8a', desc: 'Anticoagulants appear on nearly every Step 1 exam — know reversal agents cold. Heparin-induced thrombocytopenia (HIT) is a classic trap. NSAIDs are the most-prescribed drugs in medicine; their mechanism and GI/renal toxicity are ubiquitous.' },
+  blood:          { label: 'Blood',      color: '#7a3a8a', desc: 'Anticoagulants appear on nearly every Step 1 exam — know reversal agents cold. Heparin-induced thrombocytopenia (HIT) is a classic trap. NSAIDs are the most-prescribed drugs in medicine; their mechanism and GI/renal toxicity are ubiquitous.' },
   neuro:          { label: 'Neuro & Psych',   color: '#5a4490', desc: 'Psych block is massive on Step 1. Memorize antidepressant side effect profiles — TCA overdose, SSRI serotonin syndrome, and bupropion seizures appear constantly. Antipsychotic EPS and NMS are classic vignettes. Lithium toxicity has a narrow therapeutic window.' },
   micro:          { label: 'Microbiology',    color: '#3a6e7a', desc: 'Organized by mechanism: cell wall inhibitors → protein synthesis → DNA/folate → cell membrane. For each drug know its unique toxicity, not just its coverage. Antibiotic-associated C. diff (clindamycin, fluoroquinolones, cephalosporins) is a perennial vignette.' },
   gi:             { label: 'GI & Motility',   color: '#9e6a3d', desc: 'Focus on acid suppression, motility agents, and mucosal protection. High-yield for C. difficile associations and metabolic interactions with PPIs.' },
@@ -27,35 +27,35 @@ autonomic: [
       {
         name: "Cholinomimetics (Direct)",
         aka: "Bethanechol · Carbachol · Pilocarpine · Methacholine",
-        summary: "Direct **muscarinic agonists** activating parasympathetic end-organs. Resistant to AChE hydrolysis.",
-        moa: "Directly bind and activate **muscarinic (M1–M5) receptors** → ↑ parasympathetic tone at smooth muscle, glands, and heart.\nResistant to acetylcholinesterase hydrolysis (prolonged vs. ACh).",
-        use: "**Bethanechol:** postop ileus, urinary retention.\n**Pilocarpine:** open-angle glaucoma (↑ aqueous outflow); Sjögren dry mouth/eyes.\n**Methacholine:** provocative challenge test for asthma diagnosis.\n**Carbachol:** intraocular miosis during surgery.",
-        se: "**DUMBBELLS:** Diarrhea, Urination, Miosis, Bradycardia, Bronchospasm, Emesis, Lacrimation, Salivation; abdominal cramps.",
-        ci: "Asthma or COPD (bronchospasm); bowel or bladder obstruction; peptic ulcer disease (↑ acid); Parkinson disease (worsens tremor).",
-        pk: "**Bethanechol:** oral/SC; quaternary amine — does NOT cross BBB; renally excreted.\n**Pilocarpine:** topical ophthalmic or oral (Sjögren).\n**Methacholine:** inhaled only; rapidly hydrolyzed by non-specific cholinesterases.",
-        pearl: "**Bethanechol** is safe for urinary retention because it does not cross the BBB (quaternary amine — no CNS stimulation).\n**Pilocarpine** constricts the pupil and contracts the ciliary muscle → opens the trabecular meshwork → ↑ aqueous outflow."
+        summary: "Direct **Muscarinic Agonists** activating parasympathetic end-organs.\nResistant to **AChE** hydrolysis.",
+        moa: "Directly bind/activate **Muscarinic (M1–M5)** receptors.\n↑ Parasympathetic tone at smooth muscle, glands, and heart.\nResistant to **AChE** (prolonged action vs. $ACh$).",
+        use: "**Bethanechol**: Postop ileus, urinary retention.\n**Pilocarpine**: Open-angle glaucoma (↑ aqueous outflow); Sjögren dry mouth/eyes.\n**Methacholine**: Bronchial challenge for asthma diagnosis.\n**Carbachol**: Intraocular miosis during surgery.",
+        se: "**DUMBBELLS**: Diarrhea, Urination, Miosis, Bradycardia, Bronchospasm, Emesis, Lacrimation, Salivation.\nAbdominal cramps via smooth muscle contraction.",
+        ci: "**Asthma/COPD** (bronchospasm).\n**Bowel/Bladder obstruction**.\n**Peptic Ulcer** (↑ acid).\n**Parkinson** (worsens tremor).",
+        pk: "**Bethanechol**: Quaternary amine (does NOT cross BBB).\n**Pilocarpine**: Topical (glaucoma) or oral (Sjögren).\n**Methacholine**: Inhaled only.",
+        pearl: "**Bethanechol** is safe for urinary retention because it lacks CNS activity (quaternary).\n**Pilocarpine** contracts ciliary muscle → opens trabecular meshwork → ↑ aqueous outflow."
       },
       {
         name: "Acetylcholinesterase Inhibitors",
         aka: "Neostigmine · Pyridostigmine · Physostigmine · Edrophonium · Donepezil · Rivastigmine · Galantamine",
-        summary: "Reversibly inhibit **AChE** to ↑ synaptic ACh at muscarinic and nicotinic receptors. Used for myasthenia gravis, Alzheimer dementia, and NMB reversal.",
-        moa: "Inhibit **acetylcholinesterase (AChE)** → ↓ ACh hydrolysis → ↑ ACh at muscarinic and nicotinic synapses.",
-        use: "**Neostigmine/Pyridostigmine:** myasthenia gravis; reversal of non-depolarizing NMB.\n**Edrophonium:** diagnosis of MG (Tensilon test — ultra-short action, t½ ~2 min).\n**Donepezil/Rivastigmine/Galantamine:** Alzheimer dementia (symptomatic only).\n**Physostigmine:** anticholinergic/atropine toxicity (only AChEI that crosses BBB).",
-        se: "Cholinergic crisis (DUMBBELLS at high doses): bradycardia, bronchospasm, lacrimation, urination, diarrhea, emesis, miosis; muscle fasciculations (nicotinic).",
-        ci: "Bowel or bladder obstruction; succinylcholine co-administration with neostigmine (↑ Phase I block).\n**Physostigmine:** avoid in TCA overdose (lowers seizure threshold).",
-        pk: "**Physostigmine:** tertiary amine — crosses BBB; t½ ~1–2 hr.\n**Neostigmine/Pyridostigmine:** quaternary amines — do NOT cross BBB; renal elimination.\n**Edrophonium:** ultra-short, t½ ~2 min.\n**Donepezil:** oral, t½ ~70 hr, hepatic (CYP2D6/3A4).",
-        pearl: "**Organophosphate poisoning = irreversible AChE inhibition** (nerve agents: sarin, VX; pesticides: parathion).\nTreat with **atropine** (high-dose — blocks DUMBBELLS) + **pralidoxime** (regenerates AChE — must give before irreversible 'aging')."
+        summary: "Reversibly inhibit **AChE** to ↑ synaptic $ACh$ concentration.\nUsed for Myasthenia Gravis, Alzheimer, and NMB reversal.",
+        moa: "Inhibit **Acetylcholinesterase** → ↓ $ACh$ hydrolysis.\n↑ $ACh$ at both Muscarinic and Nicotinic synapses.",
+        use: "**Neostigmine/Pyridostigmine**: Myasthenia Gravis; NMB reversal.\n**Edrophonium**: MG diagnosis (Tensilon test — $t_{1/2}$ ~2 min).\n**Donepezil/Rivastigmine**: Alzheimer dementia symptoms.\n**Physostigmine**: Anticholinergic/Atropine toxicity (crosses BBB).",
+        se: "**Cholinergic Crisis** (DUMBBELLS).\n**Nicotinic effects**: Muscle fasciculations and weakness.",
+        ci: "**Bowel/Bladder obstruction**.\n**Succinylcholine**: Neostigmine ↑ Phase I block.\n**Physostigmine**: Avoid in TCA overdose (seizure risk).",
+        pk: "**Physostigmine**: Tertiary amine (crosses BBB).\n**Neo/Pyridostigmine**: Quaternary (no BBB).\n**Edrophonium**: Ultra-short duration ($t_{1/2}$ ~2 min).",
+        pearl: "**Organophosphate Poisoning** = Irreversible AChE inhibition.\n**Treatment**: Atropine (blocks Muscarinic) + Pralidoxime (regenerates AChE before aging)."
       },
       {
         name: "Muscarinic Antagonists (Anticholinergics)",
         aka: "Atropine · Scopolamine · Ipratropium · Tiotropium · Oxybutynin · Tolterodine · Benztropine · Glycopyrrolate",
-        summary: "Competitively block **muscarinic receptors** to reduce parasympathetic tone. 'Hot as a hare, dry as a bone, red as a beet, blind as a bat, mad as a hatter.'",
-        moa: "Competitive antagonism at **muscarinic (M1–M5) receptors** → ↓ parasympathetic activity at smooth muscle, glands, and sinoatrial node.",
-        use: "**Atropine:** symptomatic bradycardia; organophosphate poisoning; pre-op to dry secretions.\n**Scopolamine:** motion sickness (transdermal patch).\n**Ipratropium/Tiotropium:** COPD bronchodilation (first-line).\n**Oxybutynin/Tolterodine:** overactive bladder.\n**Benztropine:** drug-induced Parkinsonism (EPS).\n**Glycopyrrolate:** antisialagogue; does NOT cross BBB.",
-        se: "**Can't see** (mydriasis, cycloplegia) · **can't spit** (dry mouth) · **can't pee** (urinary retention) · **can't poop** (constipation) · tachycardia · hyperthermia · flushing · delirium (especially elderly).",
-        ci: "Narrow-angle glaucoma (mydriasis closes drainage angle → acute crisis); BPH (urinary retention); tachyarrhythmias; myasthenia gravis.",
-        pk: "**Ipratropium/Tiotropium:** inhaled quaternary amines — minimal systemic absorption.\n**Glycopyrrolate:** quaternary — does NOT cross BBB.\n**Scopolamine:** transdermal, 72 hr duration.\n**Atropine:** IV/IM/SC, t½ ~2–3 hr.",
-        pearl: "**Classic tox vignette:** elderly patient with confusion, dilated pupils, urinary retention, dry flushed skin, tachycardia = anticholinergic toxicity.\nAntidote: **physostigmine** (tertiary amine, crosses BBB) — not neostigmine."
+        summary: "Competitively block **Muscarinic receptors**.\n'Hot as a hare, dry as a bone, red as a beet, blind as a bat, mad as a hatter'.",
+        moa: "Competitive antagonism at **M1–M5** receptors.\n↓ Parasympathetic activity at smooth muscle, glands, and SA node.",
+        use: "**Atropine**: Symptomatic bradycardia; organophosphate antidote.\n**Scopolamine**: Motion sickness (patch).\n**Ipratropium/Tiotropium**: COPD/Asthma bronchodilation.\n**Oxybutynin**: Overactive bladder.\n**Benztropine**: Drug-induced Parkinsonism (EPS).\n**Glycopyrrolate**: Pre-op to dry secretions (no BBB).",
+        se: "**Can't see** (mydriasis), **Can't spit** (dry mouth), **Can't pee** (retention), **Can't poop** (constipation).\n**Tachycardia**, **Hyperthermia**, and **Delirium** (especially elderly).",
+        ci: "**Narrow-angle glaucoma** (mydriasis closes angle).\n**BPH** (worsens retention).\n**Myasthenia Gravis**.",
+        pk: "**Ipratropium**: Quaternary; minimal systemic absorption inhaled.\n**Glycopyrrolate**: Quaternary; no CNS entry.\n**Scopolamine**: Transdermal (72 hr duration).",
+        pearl: "**Antidote for Anticholinergic Toxicity**: Physostigmine (tertiary amine, crosses BBB).\nElderly patients are highly sensitive to CNS side effects."
       }
     ]
   },
@@ -65,133 +65,131 @@ autonomic: [
       {
         name: "Epinephrine & Norepinephrine",
         aka: "Epinephrine (Adrenaline, EpiPen) · Norepinephrine (Levophed)",
-        summary: "Endogenous catecholamines — epinephrine for **anaphylaxis and cardiac arrest**; norepinephrine is first-line **vasopressor in septic shock**.",
-        moa: "**Epinephrine:** full agonist at α1/α2/β1/β2. Low doses: β2 dominates (bronchodilation, ↓ SVR); high doses: α1 dominates (vasoconstriction).\n**Norepinephrine:** α1/α2/β1 agonist, minimal β2 → predominant vasoconstriction with modest inotropy.",
-        use: "**Epinephrine:** anaphylaxis (IM lateral thigh — first-line); cardiac arrest (IV/IO); croup (nebulized racemic); co-administered with local anesthetics (↑ duration).\n**Norepinephrine:** first-line vasopressor in septic shock (maintain MAP ≥65 mmHg).",
-        se: "Hypertension, tachycardia, arrhythmias.\n**Epinephrine:** hyperglycemia (β2 → glycogenolysis/gluconeogenesis).\n**Norepinephrine:** reflex bradycardia; tissue necrosis with extravasation (prefer central line).",
-        ci: "Relative CI with cocaine/amphetamine toxicity (synergistic catecholamine surge → arrhythmia, HTN crisis).\nNo absolute CI in true anaphylaxis — always give epinephrine.",
-        pk: "Both: IV infusion, t½ ~2 min, rapidly degraded by MAO and COMT — not effective orally.\n**Epinephrine IM lateral thigh:** peak plasma ~8 min — faster than deltoid or SC.",
-        pearl: "**Epinephrine in anaphylaxis:** α1 → vasoconstriction (↑BP, ↓laryngeal edema); β1 → ↑CO; β2 → bronchodilation + ↓mast cell mediator release.\nIM lateral thigh is faster than deltoid and far safer than IV/SC — never delay for IV access."
+        summary: "**Epinephrine** for anaphylaxis and cardiac arrest.\n**Norepinephrine** is first-line for septic shock.",
+        moa: "**Epinephrine**: Agonist at $\alpha_1, \alpha_2, \beta_1, \beta_2$.\nLow dose: $\beta_2$ (bronchodilation, ↓ SVR); High dose: $\alpha_1$ (vasoconstriction).\n**Norepinephrine**: $\alpha_1, \alpha_2 > \beta_1$.\nPredominant vasoconstriction with modest inotropy; minimal $\beta_2$.",
+        use: "**Epinephrine**: Anaphylaxis (IM lateral thigh); Croup (nebulized).\n**Norepinephrine**: Septic shock (maintain MAP ≥65 mmHg).",
+        se: "**Hypertension**, **Tachycardia**, and **Arrhythmias**.\n**Norepinephrine**: Reflex bradycardia; tissue necrosis if extravasated.\n**Epinephrine**: Hyperglycemia ($\beta_2$ glycogenolysis).",
+        ci: "**Cocaine/Amphetamine toxicity** (synergistic catecholamine surge).\nNo absolute CI in true anaphylaxis.",
+        pk: "Both: IV infusion; $t_{1/2}$ ~2 min; degraded by **MAO** and **COMT**.\nIM lateral thigh peaks in ~8 min.",
+        pearl: "**Epi in Anaphylaxis**: $\alpha_1$ ↓ edema; $\beta_1$ ↑ CO; $\beta_2$ bronchodilation + ↓ mast cell release.\nNever delay Epi for IV access in anaphylaxis."
       },
-      {
+            {
         name: "Dopamine & Dobutamine",
         aka: "Dopamine (Intropin) · Dobutamine (Dobutrex)",
-        summary: "**Dopamine** has dose-dependent receptor selectivity from renal vasodilation to vasoconstriction; **dobutamine** is a pure inodilator. Both used for cardiac pump failure.",
-        moa: "**Dopamine (dose-dependent):**\n• Low (1–3 µg/kg/min): D1 → renal/mesenteric vasodilation.\n• Mid (3–10 µg/kg/min): β1 → ↑ inotropy/HR.\n• High (>10 µg/kg/min): α1 → vasoconstriction.\n**Dobutamine:** β1 > β2 → ↑ contractility + mild ↓ afterload; does NOT reliably ↑ MAP.",
-        use: "**Dopamine:** cardiogenic shock with hypotension; symptomatic bradycardia with hypotension (second-line).\n**Dobutamine:** cardiogenic shock/acute decompensated HF (↑ CO without excess ↑ afterload); pharmacological stress echocardiography.",
-        se: "Both: tachyarrhythmias, ↑ myocardial O2 demand.\n**Dobutamine:** hypotension (β2 vasodilation); may precipitate ischemia in severe CAD.\n**Dopamine:** ischemia at high doses.",
-        ci: "**Dobutamine:** HOCM (worsens outflow obstruction); uncorrected hypovolemia.\n**Dopamine:** tachyarrhythmias; NE now preferred over dopamine in septic shock guidelines.",
-        pk: "Both: IV continuous infusion only; t½ ~2 min; titrated to effect.\nDobutamine metabolized by COMT + sulfation.",
-        pearl: "**Dobutamine stress echo:** ↑ HR and contractility unmask regional wall motion abnormalities in CAD — used when patient can't exercise.\nUnlike NE, dobutamine does NOT reliably maintain BP — if BP support is also needed, add a vasopressor."
+        summary: "**Dopamine** has dose-dependent receptor selectivity.\n**Dobutamine** is a pure inodilator for pump failure.",
+        moa: "**Dopamine**:\n• Low (1–3 µg): $D_1$ → renal/mesenteric vasodilation.\n• Mid (3–10 µg): $\beta_1$ → ↑ inotropy/HR.\n• High (>10 µg): $\alpha_1$ → vasoconstriction.\n**Dobutamine**: $\beta_1 > \beta_2$ → ↑ contractility + mild ↓ afterload.",
+        use: "**Dopamine**: Cardiogenic shock with hypotension.\n**Dobutamine**: Acute decompensated HF; Stress echocardiography.",
+        se: "**Tachyarrhythmias** and ↑ myocardial $O_2$ demand.\n**Dobutamine**: Hypotension ($\beta_2$ vasodilation).\n**Dopamine**: Ischemia at high doses.",
+        ci: "**Dobutamine**: HOCM (worsens outflow obstruction).\n**Dopamine**: Septic shock (Norepinephrine is preferred).",
+        pk: "Both: IV continuous infusion; $t_{1/2}$ ~2 min.\nTitrated to hemodynamic effect.",
+        pearl: "**Stress Echo**: Dobutamine unmasks wall motion abnormalities by ↑ cardiac work.\nDobutamine does NOT reliably maintain BP; may need a vasopressor."
       },
       {
         name: "Phenylephrine & Isoproterenol",
         aka: "Phenylephrine (Neo-Synephrine) · Isoproterenol (Isuprel)",
-        summary: "Selective adrenergic agonists with **opposite hemodynamic profiles**: phenylephrine raises BP with reflex bradycardia; isoproterenol raises HR with hypotension.",
-        moa: "**Phenylephrine:** selective **α1** agonist → ↑ SVR, ↑ BP, reflex bradycardia (↓ HR via baroreceptors).\n**Isoproterenol:** non-selective **β1 + β2** agonist → ↑ HR/contractility + peripheral/pulmonary vasodilation.",
-        use: "**Phenylephrine:** vasopressor for hypotension without tachycardia (e.g., spinal anesthesia); nasal decongestant (topical); mydriatic eye drops.\n**Isoproterenol:** complete heart block (bridge to pacemaker); severe bradycardia refractory to atropine.",
-        se: "**Phenylephrine:** reflex bradycardia, severe hypertension, tissue ischemia.\n**Isoproterenol:** tachycardia, arrhythmias, hypotension, ↑ myocardial O2 demand.",
-        ci: "**Phenylephrine:** severe hypertension, HOCM.\n**Isoproterenol:** tachyarrhythmias, angina (↑ O2 demand).",
-        pk: "**Phenylephrine:** IV infusion or IM/SC; rapid onset, t½ ~5 min; predominantly sulfate conjugation.\n**Isoproterenol:** IV infusion; t½ ~2 min; metabolized by COMT.",
-        pearl: "**Phenylephrine causes predictable reflex bradycardia** (pure α1 → ↑BP → baroreceptor activation → vagal slowing). Useful when tachycardia is itself the problem. Contrast with epinephrine, which raises both BP and HR."
+        summary: "Selective agonists with **Opposite Hemodynamics**.\n**Phenylephrine** ↑ BP/↓ HR; **Isoproterenol** ↓ BP/↑ HR.",
+        moa: "**Phenylephrine**: Selective **$\alpha_1$** agonist → ↑ SVR/BP + reflex bradycardia.\n**Isoproterenol**: Non-selective **$\beta_1 + \beta_2$** agonist → ↑ HR + vasodilation.",
+        use: "**Phenylephrine**: Hypotension without tachycardia; Nasal decongestant; Mydriatic.\n**Isoproterenol**: Heart block (bridge to pacemaker); Refractory bradycardia.",
+        se: "**Phenylephrine**: Severe hypertension; tissue ischemia.\n**Isoproterenol**: Tachycardia, arrhythmias, hypotension.",
+        ci: "**Phenylephrine**: Severe HTN, HOCM.\n**Isoproterenol**: Angina (↑ $O_2$ demand).",
+        pk: "**Phenylephrine**: IV infusion or IM; $t_{1/2}$ ~5 min.\n**Isoproterenol**: IV infusion; $t_{1/2}$ ~2 min.",
+        pearl: "**Reflex Bradycardia**: Phenylephrine is pure $\alpha_1$ → ↑ BP → baroreceptor trigger → vagal slowing."
       },
       {
         name: "Beta Blockers (β-blockers)",
-        aka: "Propranolol · Metoprolol (Lopressor, Toprol XL) · Atenolol · Carvedilol · Labetalol · Bisoprolol · Esmolol · Nadolol · Timolol",
-        summary: "Competitive **β-adrenergic antagonists** reducing HR, contractility, and renin release. Cornerstone therapy for hypertension, heart failure, arrhythmias, and post-MI cardioprotection.",
-        moa: "Competitive antagonism at **β1 (cardiac) and/or β2 (pulmonary, vascular) receptors** → ↓ cAMP → ↓ HR, ↓ contractility, ↓ AV conduction, ↓ renin release.",
-        use: "**HFrEF** (carvedilol, metoprolol succinate, bisoprolol — proven mortality benefit).\n**Post-MI** (↓ remodeling, ↓ sudden death).\n**Hypertension, stable angina** (↓ O2 demand).\n**AF/flutter rate control; PSVT** (esmolol IV).\n**Propranolol:** migraine prophylaxis, essential tremor, portal HTN, hyperthyroidism symptoms.\n**Timolol:** glaucoma (eye drops).",
-        se: "**Bradycardia, AV block, bronchospasm** (β2 blockade — avoid in asthma/COPD).\nFatigue, erectile dysfunction, cold extremities, ↑ TG/↓ HDL.\n**Masks hypoglycemia** (blocks tachycardia/tremor warning — sweating preserved).\nRebound angina/HTN if stopped abruptly (receptor upregulation).",
-        ci: "Decompensated HF (acutely); cardiogenic shock; high-degree AV block or sick sinus syndrome; severe asthma/COPD (non-selective agents).\n**Cocaine toxicity:** β-blockade leaves α1 vasoconstriction unopposed → hypertensive crisis.",
-        pk: "**Propranolol:** non-selective β1+β2; lipophilic → crosses BBB; heavy hepatic first-pass; t½ ~4 hr.\n**Metoprolol:** β1-selective; hepatic (CYP2D6).\n**Atenolol:** β1-selective; hydrophilic → renal excretion, less CNS penetration.\n**Esmolol:** IV only; t½ ~9 min (ester hydrolysis) — perioperative rate control.\n**Carvedilol/Labetalol:** β1+β2+α1 blockade.",
-        pearl: "**Only carvedilol, metoprolol succinate, and bisoprolol** have proven mortality benefit in HFrEF — not all β-blockers are interchangeable.\n**Never stop abruptly** — taper over ≥1–2 weeks to avoid rebound tachycardia/ischemia from receptor upregulation."
+        aka: "Propranolol · Metoprolol · Atenolol · Carvedilol · Labetalol · Bisoprolol · Esmolol · Nadolol · Timolol",
+        summary: "Competitive **β-antagonists** reducing HR, contractility, and renin.\nCornerstone for HF, MI, and Hypertension.",
+        moa: "Block **$\beta_1$ (cardiac)** and/or **$\beta_2$ (vascular/lung)** receptors.\n↓ $cAMP$ → ↓ HR, ↓ AV conduction, ↓ contractility, and ↓ renin.",
+        use: "**HFrEF**: Carvedilol, Metoprolol succinate, Bisoprolol (mortality benefit).\n**Post-MI**: ↓ Remodeling and sudden death.\n**Propranolol**: Migraine prophylaxis, Essential tremor, Portal HTN.\n**Esmolol**: Acute SVT rate control ($t_{1/2}$ ~9 min).",
+        se: "**Bradycardia**, **AV block**, and **Bronchospasm** ($\beta_2$ block).\n**Masks Hypoglycemia** (blocks tachycardia/tremor; sweating preserved).\n**Rebound Tachycardia/Ischemia** if stopped abruptly.",
+        ci: "**Severe Asthma/COPD** (non-selective agents).\n**Decompensated HF**; High-degree AV block.\n**Cocaine Toxicity**: Unopposed $\alpha_1$ vasoconstriction → HTN crisis.",
+        pk: "**Lipophilic (Propranolol)**: Crosses BBB.\n**Hydrophilic (Atenolol)**: Renal excretion.\n**Esmolol**: $t_{1/2}$ ~9 min.",
+        pearl: "**Only Carvedilol, Metoprolol Succinate, and Bisoprolol** have mortality benefit in chronic HFrEF.\nAlways **Taper** doses to avoid upregulation-mediated ischemia."
       },
       {
         name: "Alpha Blockers (α-blockers)",
-        aka: "Prazosin · Terazosin · Doxazosin · Tamsulosin (Flomax) · Phentolamine · Phenoxybenzamine",
-        summary: "**α-adrenergic antagonists** causing arterial dilation and urogenital smooth muscle relaxation. Used for BPH, hypertension, and pheochromocytoma.",
-        moa: "**Prazosin/Terazosin/Doxazosin/Tamsulosin:** selective **α1 blockade** → ↓ vascular and prostate smooth muscle tone.\n**Phentolamine/Phenoxybenzamine:** non-selective **α1 + α2 blockade** → vasodilation; α2 block also ↑ NE release (reflex tachycardia).",
-        use: "**Tamsulosin:** BPH (α1A-selective → prostate smooth muscle relaxation).\n**Prazosin:** PTSD nightmares, hypertension.\n**Terazosin/Doxazosin:** BPH and hypertension (longer t½ — once daily).\n**Phentolamine:** acute hypertensive crisis from pheochromocytoma or tyramine reaction (IV).\n**Phenoxybenzamine:** pre-op pheochromocytoma management (irreversible, long-acting).",
-        se: "**First-dose orthostatic hypotension** (take first dose at bedtime).\nReflex tachycardia, dizziness, nasal congestion.\n**Tamsulosin:** intraoperative floppy iris syndrome (warn ophthalmologist before cataract surgery).",
-        ci: "Concurrent PDE5 inhibitors (additive hypotension — severe ↓BP); aortic stenosis (preload reduction may worsen hemodynamics).",
-        pk: "**Prazosin:** t½ ~3 hr, hepatic.\n**Terazosin/Doxazosin:** t½ 8–22 hr — once daily.\n**Tamsulosin:** t½ ~15 hr; α1A-selective; hepatic (CYP3A4/2D6).\n**Phenoxybenzamine:** irreversible alkylation of α receptors; duration ~24 hr.\n**Phentolamine:** reversible competitive; IV only; t½ ~19 min.",
-        pearl: "For **pheochromocytoma surgery:** establish α blockade (phenoxybenzamine) FIRST, then add β-blocker — never β-block first (unopposed α1 → catastrophic hypertensive crisis).\n**Phenoxybenzamine is irreversible** (non-competitive); phentolamine is reversible (competitive)."
+        aka: "Prazosin · Terazosin · Doxazosin · Tamsulosin · Phentolamine · Phenoxybenzamine",
+        summary: "**α-antagonists** causing arterial dilation and prostate relaxation.\nUsed for BPH, PTSD nightmares, and Pheochromocytoma.",
+        moa: "**Selective ($\alpha_1$)**: Prazosin, Tamsulosin → ↓ vascular/prostate tone.\n**Non-selective ($\alpha_1 + \alpha_2$)**: Phentolamine, Phenoxybenzamine.\n$\alpha_2$ block → ↑ $NE$ release → Reflex tachycardia.",
+        use: "**Tamsulosin**: BPH ($\alpha_{1A}$ selective; ↓ BP impact).\n**Prazosin**: PTSD nightmares.\n**Phentolamine**: Hypertensive crisis (Pheo, Tyramine).\n**Phenoxybenzamine**: Pre-op Pheochromocytoma (irreversible).",
+        se: "**First-dose Orthostatic Hypotension** (take at bedtime).\n**Reflex Tachycardia** (non-selective agents); Nasal congestion.\n**Floppy Iris Syndrome**: Tamsulosin complicates cataract surgery.",
+        ci: "**PDE5 Inhibitors**: Additive severe hypotension.\n**Aortic Stenosis**: Preload reduction worsens hemodynamics.",
+        pk: "**Phenoxybenzamine**: Irreversible; duration ~24 hr.\n**Phentolamine**: Reversible competitive; $t_{1/2}$ ~19 min.",
+        pearl: "**Pheochromocytoma Rule**: Always $\alpha$-block FIRST, then $\beta$-block.\n$\beta$-blocker first → unopposed $\alpha_1$ → catastrophic Hypertensive Crisis."
       },
       {
         name: "Local Anesthetics",
         aka: "Lidocaine · Bupivacaine · Ropivacaine · Mepivacaine · Prilocaine · Benzocaine · Cocaine · Tetracaine",
-        summary: "Reversibly block **voltage-gated Na⁺ channels** to prevent action potential propagation. Used for local/regional/neuraxial anesthesia and ventricular arrhythmias (lidocaine).",
-        moa: "Block **voltage-gated Na⁺ channels** (inactivated state, use-dependent) → prevent membrane depolarization.\nFibers blocked in order: small unmyelinated C-fibers first (pain/autonomic) → temperature → touch → pressure → motor last.",
-        use: "Local infiltration; nerve blocks; epidural/spinal anesthesia.\n**Lidocaine IV:** ventricular arrhythmias — class IB antiarrhythmic.\n**Cocaine:** ENT procedures (only local anesthetic with vasoconstriction via NE reuptake inhibition).",
-        se: "**CNS toxicity first** (circumoral numbness → tinnitus → seizures → coma).\n**Cardiovascular toxicity at higher levels** — bupivacaine most cardiotoxic (wide QRS, fatal arrhythmias).\n**Prilocaine/Benzocaine:** methemoglobinemia.\nAllergic reactions: esters > amides.",
-        ci: "Bupivacaine IV for arrhythmias (cardiotoxic); epinephrine-containing formulations on end-arteries (digits, nose, penis, ear — ischemic necrosis).",
-        pk: "**Esters** (cocaine, benzocaine, tetracaine, procaine) — hydrolyzed by plasma pseudocholinesterase; higher allergy risk.\n**Amides** (lidocaine, bupivacaine, ropivacaine — two 'i's before '-caine') — hepatic CYP450; lower allergy risk.\nEpinephrine co-injection ↑ duration ~50% via local vasoconstriction.",
-        pearl: "**Acidic/infected tissue** has more ionized drug (charged form can't cross membrane) → local anesthetics work poorly in abscesses — increase dose or use general anesthesia.\n**Bupivacaine cardiotoxicity:** treat with **20% lipid emulsion (Intralipid)** to sequester the drug."
+        summary: "Block **Voltage-gated $Na^+$ channels** to stop action potentials.\nOrder of block: Small/unmyelinated (Pain) → Temperature → Touch → Motor.",
+        moa: "Block **$Na^+$ channels** (bind inactivated state, use-dependent).\nFibers blocked: C > $A\delta$ > $A\gamma$ > $A\beta$ > $A\alpha$.",
+        use: "Local infiltration; Nerve blocks; Epidural/Spinal anesthesia.\n**IV Lidocaine**: Ventricular arrhythmias (Class IB).\n**Cocaine**: ENT procedures (intrinsic vasoconstrictor).",
+        se: "**CNS Toxicity**: Circumoral numbness → Tinnitus → Seizures.\n**Cardiotoxicity**: Bupivacaine (fatal arrhythmias).\n**Methemoglobinemia**: Prilocaine/Benzocaine.",
+        ci: "**Bupivacaine IV** (severe cardiotoxicity).\n**Epi-containing formulas** on end-arteries (fingers, nose, penis) → ischemia.",
+        pk: "**Amides** (Lidocaine, Bupivacaine): Two 'i's in name; Hepatic metabolism.\n**Esters** (Cocaine, Benzocaine): One 'i' in name; Plasma pseudocholinesterase.",
+        pearl: "**Lipid Rescue**: Treat Bupivacaine cardiotoxicity with **20% Lipid Emulsion**.\nEpinephrine co-injection ↑ duration and ↓ systemic toxicity."
       },
       {
         name: "Neuromuscular Blocking Agents",
-        aka: "Succinylcholine (Anectine) · Rocuronium (Zemuron) · Vecuronium · Pancuronium · Atracurium · Cisatracurium",
-        summary: "Block NMJ transmission for intubation and surgical relaxation — **depolarizing** (succinylcholine) vs. **non-depolarizing** (all others) with different reversal strategies.",
-        moa: "**Succinylcholine (depolarizing):** persistent agonist at **nicotinic ACh receptors (NMJ)** → sustained depolarization → fasciculations then flaccid paralysis. Resistant to AChE.\n**Non-depolarizing (rocuronium, vecuronium, etc.):** competitive antagonists at nicotinic ACh receptors — no fasciculations; reversed by sugammadex or neostigmine.",
-        use: "**Succinylcholine:** RSI (fastest onset ~60 sec; rapid offset).\n**Rocuronium:** RSI when succinylcholine contraindicated (reversed by sugammadex).\n**Vecuronium/Pancuronium:** intermediate/long surgical paralysis.\n**Atracurium/Cisatracurium:** organ-independent elimination (preferred in renal/hepatic failure).",
-        se: "**Succinylcholine:** hyperkalemia (dangerous in burns/crush/denervation — avoid >24 hr post-injury); malignant hyperthermia (with volatile anesthetics); ↑ intraocular/intragastric pressure; prolonged block in pseudocholinesterase deficiency.\n**Non-depolarizing:** histamine release (atracurium); tachycardia (pancuronium).",
-        ci: "**Succinylcholine:** burns/crush injury/prolonged immobilization/denervation >24 hr; personal/family history of malignant hyperthermia; hyperkalemia; pseudocholinesterase deficiency.",
-        pk: "**Succinylcholine:** hydrolyzed by plasma pseudocholinesterase; t½ ~10 min; onset ~60 sec.\n**Rocuronium:** hepatic elimination; reversed by sugammadex (encapsulates drug).\n**Atracurium/Cisatracurium:** Hofmann elimination (spontaneous — organ-independent).\n**Vecuronium:** hepatic/renal.",
-        pearl: "**Succinylcholine hyperkalemia:** K⁺ efflux from depolarized muscle — safe on Day 0 of a burn, dangerous after Day 1 (extrajunctional receptor upregulation).\n**Malignant hyperthermia** (ryanodine receptor mutation → uncontrolled SR Ca²⁺ release): treat with **dantrolene** + aggressive cooling."
+        aka: "Succinylcholine · Rocuronium · Vecuronium · Pancuronium · Atracurium · Cisatracurium",
+        summary: "Block NMJ for intubation and surgery.\n**Depolarizing** (Succinylcholine) vs. **Non-depolarizing** (all others).",
+        moa: "**Succinylcholine**: $ACh$ agonist → sustained depolarization → flaccid paralysis.\n**Non-depolarizing**: Competitive Nicotinic antagonists.",
+        use: "**Succinylcholine**: Rapid Sequence Intubation (RSI).\n**Rocuronium**: RSI alternative; reversed by **Sugammadex**.\n**Atracurium**: Preferred in renal/hepatic failure.",
+        se: "**Succinylcholine**: **Hyperkalemia** (avoid in burns/crush >24 hr); **Malignant Hyperthermia**.\n**Non-depolarizing**: Histamine release (Atracurium); Tachycardia (Pancuronium).",
+        ci: "**Succinylcholine**: Burns, crush, or denervation >24 hr.\nHistory of **Malignant Hyperthermia**.",
+        pk: "**Succinylcholine**: $t_{1/2}$ ~10 min; plasma pseudocholinesterase.\n**Atracurium/Cisatracurium**: **Hofmann elimination** (spontaneous).\n**Rocuronium**: Reversed by Sugammadex.",
+        pearl: "**Malignant Hyperthermia**: Ryanodine receptor mutation → $Ca^{2+}$ dump.\n**Treatment**: Dantrolene (blocks RyR1) + cooling."
       }
     ]
   }
 ],
-
-
 cv: [
   {
     group: "RAAS / Antihypertensives",
     drugs: [
       {
         name: "ACE Inhibitors",
-        aka: "Lisinopril · Enalapril · Captopril · Ramipril · Benazepril · Fosinopril",
-        summary: "Inhibit ACE to reduce Ang II and accumulate bradykinin — first-line for HFrEF, post-MI, and diabetic nephropathy.",
-        moa: "Inhibit **angiotensin-converting enzyme (ACE)** → ↓ Ang II (↓ vasoconstriction + ↓ aldosterone) + ↑ **bradykinin** (vasodilation, but causes cough and angioedema).\nReduces efferent > afferent glomerular arteriolar tone — acutely ↓ GFR but reduces proteinuria long-term.",
-        use: "Hypertension, **HFrEF** (reduce mortality), **post-MI** (prevent remodeling), **diabetic nephropathy** (antiproteinuric — Type 1 DM), CKD with proteinuria.",
-        se: "**CATCHH:** **C**ough (bradykinin-mediated, 10–15%), **A**ngioedema (rare but life-threatening), **T**eratogen (fetal renal dysgenesis — Category D/X), **C**reatinine rise (~30% acceptable), **H**yperkalemia, **H**ypotension (first dose).",
-        ci: "**Pregnancy** (Category D/X); bilateral renal artery stenosis (GFR depends on Ang II efferent constriction); prior ACEi-associated angioedema; hyperkalemia.",
-        pk: "Most are prodrugs (enalapril→enalaprilat, ramipril→ramiprilat) requiring hepatic hydrolysis. Renally excreted — dose-reduce in CKD.\n**Captopril:** active drug; sulfhydryl group (↑ rash/taste disturbance); t½ ~2 hr, 3× daily.",
-        pearl: "**ACEi cough and angioedema are both bradykinin-mediated** — switching to ARB eliminates cough (ARB does not raise bradykinin). But angioedema risk may persist early after switching.\n**Do not use in bilateral RAS** — GFR depends on Ang II–mediated efferent constriction; removing this causes acute kidney injury."
+        aka: "Lisinopril · Enalapril · Captopril · Ramipril · Benazepril · Fosinopril · Quinapril · Perindopril",
+        summary: "Block **ACE** to ↓ Ang II and Aldosterone.\nFirst-line for HTN, HFrEF, Diabetes, and post-MI.",
+        moa: "Inhibit **ACE** → ↓ Ang I to II conversion → ↓ Vasoconstriction + ↓ Aldosterone.\n↑ **Bradykinin** (ACE also degrades bradykinin) → Vasodilation.",
+        use: "**HFrEF**: ↓ Mortality and cardiac remodeling.\n**Diabetic Nephropathy**: ↓ Proteinuria; slows CKD progression.\n**Hypertension**: Especially with DM or CKD.\n**Post-MI**: Reduces LV dysfunction.",
+        se: "**Cough**: Dry/non-productive via ↑ **Bradykinin**.\n**Angioedema**: Airway emergency (bradykinin-mediated).\n**Hyperkalemia**: Via ↓ Aldosterone.\n**Creatinine bump**: Significant in **Bilateral Renal Artery Stenosis**.\n**Teratogenic**: Fetal renal dysgenesis.",
+        ci: "**Pregnancy** (Category D/X).\n**Bilateral Renal Artery Stenosis**.\n**History of Angioedema**.",
+        pk: "Most are **Prodrugs** (e.g., Enalapril → Enalaprilat).\n**Captopril/Lisinopril**: Active drugs (not prodrugs).\nRenal elimination; dose-reduce in CKD.",
+        pearl: "**Angioedema** is an absolute CI to all RAAS inhibitors (switch to CCB/Thiazide).\nCreatinine ↑ <30% is often acceptable after starting therapy."
       },
       {
         name: "ARBs (Angiotensin Receptor Blockers)",
-        aka: "Losartan (Cozaar) · Valsartan (Diovan) · Irbesartan · Candesartan · Olmesartan · Telmisartan · Azilsartan",
-        summary: "Block the AT1 angiotensin II receptor to reduce vasoconstriction and aldosterone without affecting bradykinin. Preferred alternative to ACE inhibitors when cough or angioedema occur.",
-        moa: "Competitive antagonism at **AT1 (angiotensin II type 1) receptor** → ↓ vasoconstriction, ↓ aldosterone secretion, ↓ cardiac remodeling; no effect on bradykinin degradation (no cough/angioedema via bradykinin)",
-        use: "Hypertension; HFrEF (alternative to ACEi, equally effective); post-MI; diabetic nephropathy (Type 2 DM — losartan/irbesartan reduce ESRD); ACEi-induced cough (switch to ARB); stroke prevention (losartan in HTN with LVH)",
-        se: "**Hyperkalemia** (↓ aldosterone); **↑ creatinine**; fetal toxicity (same as ACEi — avoid in pregnancy); no cough (does not affect bradykinin); angioedema (rare, bradykinin-independent mechanism — do NOT rechallenge if occurs with ACEi)",
-        ci: "Pregnancy; bilateral renal artery stenosis; hyperkalemia; concurrent use with ACEi + aliskiren triple combination (↑ adverse events without benefit — ONTARGET trial)",
-        pk: "**Losartan:** oral, hepatic metabolism (CYP2C9 to active metabolite E-3174), t½ of metabolite ~6–9 hr; also uricosuric (lowers urate — useful in gout + HTN)\n**Valsartan:** minimal hepatic metabolism, biliary excretion\nAll once-daily oral dosing; most hepatically eliminated — safer in CKD than ACEi for drug accumulation",
-        pearl: "**ARBs are NOT better than ACEi — they are equivalent** in mortality for HF/post-MI. They are preferred only when ACEi causes **cough**. Losartan uniquely **lowers uric acid** (blocks URAT1 transporter) — it's the preferred ARB in a hypertensive patient with gout. Do NOT combine ACEi + ARB (dual RAAS blockade ↑ AKI/hyperkalemia without CV benefit)."
+        aka: "Losartan · Valsartan · Irbesartan · Candesartan · Olmesartan · Telmisartan · Azilsartan",
+        summary: "Block **AT1 receptors** to inhibit Ang II action.\nPreferred alternative to ACEi when cough occurs.",
+        moa: "Competitive antagonism at **AT1 Receptor**.\nBlocks vasoconstriction and Aldosterone secretion.\nNo effect on Bradykinin (No cough).",
+        use: "**Hypertension/HFrEF**: Equivalent mortality benefit to ACEi.\n**Diabetic Nephropathy**: Losartan/Irbesartan reduce ESRD risk.\n**Gout**: **Losartan** uniquely lowers uric acid.",
+        se: "**Hyperkalemia** and **↑ Creatinine**.\n**Teratogenic** (Category D/X).\n**No Cough**.",
+        ci: "**Pregnancy**.\n**Bilateral Renal Artery Stenosis**.\n**Dual RAAS blockade**: Do NOT combine with ACEi (↑ AKI risk).",
+        pk: "**Losartan**: Metabolized to active metabolite E-3174.\n**Uricosuric**: Losartan blocks **URAT1** transporter.\nOnce-daily oral dosing.",
+        pearl: "**Losartan** is the drug of choice for a hypertensive patient with **Gout**.\nARBs do NOT cause the bradykinin-mediated cough found in ACEi."
       },
       {
         name: "Aliskiren",
         aka: "Aliskiren (Tekturna)",
-        summary: "Direct **renin inhibitor** — blocks the RAAS at its first and rate-limiting step.",
-        moa: "Directly binds and inhibits **renin**, preventing cleavage of angiotensinogen → Ang I.\nUniquely **lowers plasma renin activity (PRA)**, whereas ACEi and ARBs increase PRA via loss of Ang II negative feedback.",
-        use: "Hypertension (monotherapy or add-on). Limited role — no proven outcomes benefit over ACEi/ARBs.",
-        se: "Hyperkalemia, ↑ creatinine, **diarrhea** (more GI SE than ACEi/ARBs), hypotension; teratogenic.",
-        ci: "Pregnancy; **combination with ACEi or ARB in diabetics or CKD** (FDA black box — ↑ AKI, hyperkalemia, hypotension without benefit — ALTITUDE trial).",
-        pk: "Poor oral bioavailability (~2.5%); fatty meals reduce absorption. Renally eliminated. Long t½ (~40 hr).",
-        pearl: "**Aliskiren is the only RAAS blocker that lowers PRA** — ACEi/ARBs both increase PRA via loss of Ang II feedback.\nCombination RAAS blockade (aliskiren + ACEi/ARB) is contraindicated in diabetics due to increased harm without benefit."
+        summary: "**Direct Renin Inhibitor** blocking the rate-limiting step of RAAS.",
+        moa: "Directly inhibits **Renin** → ↓ Angiotensinogen conversion to Ang I.\nUniquely ↓ **Plasma Renin Activity (PRA)**.",
+        use: "**Hypertension**: Monotherapy or add-on.\nLimited clinical role vs. ACEi/ARBs.",
+        se: "**Hyperkalemia**, **↑ Creatinine**, and **Diarrhea**.\nRare Angioedema.",
+        ci: "**Pregnancy**.\n**Combination with ACEi/ARB in DM/CKD** (↑ Renal failure).",
+        pk: "Poor oral bioavailability (~3%).\n$t_{1/2}$ ~40 hr (very long).",
+        pearl: "Unlike ACEi/ARBs which cause a compensatory ↑ in Renin, Aliskiren ↓ **PRA**."
       },
       {
         name: "Hydralazine & Direct Vasodilators",
-        aka: "Hydralazine (Apresoline) · Minoxidil · Diazoxide",
-        summary: "Direct-acting arteriolar vasodilators that reduce afterload. Hydralazine plus nitrates is an alternative to ACEi/ARBs in HFrEF; minoxidil is used for refractory hypertension and hair loss.",
-        moa: "**Hydralazine:** increases **cGMP** in vascular smooth muscle → arteriolar vasodilation (preferential) → ↓ afterload; exact mechanism unclear (possible ↑ NO). **Minoxidil:** opens **K⁺ ATP channels** → membrane hyperpolarization → arteriolar vasodilation",
-        use: "**Hydralazine:** severe hypertension in pregnancy (IV — safe), hypertensive emergency\n**Hydralazine + isosorbide dinitrate:** HFrEF in African Americans (A-HeFT trial — ↓ mortality) or ACEi/ARB-intolerant\n**Minoxidil:** severe refractory HTN, topical for androgenic alopecia",
-        se: "**Reflex tachycardia** (↓ BP → ↑ SNS → ↑ HR); fluid retention; Hydralazine: **drug-induced lupus** (slow acetylators at highest risk — ANA+, anti-histone antibodies — resolves on stopping); Minoxidil: hypertrichosis (topical and systemic), pericardial effusion, severe fluid retention",
-        ci: "Hydralazine: severe tachycardia, dissecting aortic aneurysm, CAD (reflex tachycardia worsens ischemia); Minoxidil: pheochromocytoma (reflex tachycardia)",
-        pk: "**Hydralazine:** oral or IV, t½ ~1 hr, acetylated in liver (slow acetylators — higher plasma levels, ↑ lupus risk); active drug (not prodrug)\n**Minoxidil:** oral or topical, t½ ~4 hr, hepatic sulfation to active minoxidil sulfate",
-        pearl: "**Drug-induced lupus triad with hydralazine:** slow acetylator + high dose + female sex = highest risk. Features: arthralgia, serositis, rash, ANA+, **anti-histone antibodies** (vs. idiopathic lupus which has anti-dsDNA/anti-Sm). Crucially, CNS and renal involvement are rare in drug-induced lupus."
-      },
+        aka: "Hydralazine · Minoxidil · Diazoxide",
+        summary: "**Arteriolar Vasodilators** that reduce afterload.\nHydralazine + Nitrates is a mortality-benefit combo for HFrEF.",
+        moa: "**Hydralazine**: ↑ $cGMP$ in vascular smooth muscle → Arteriolar vasodilation.\n**Minoxidil**: Opens **$K^+_{ATP}$ channels** → Hyperpolarization → Vasodilation.",
+        use: "**Hydralazine**: HTN in Pregnancy (IV); Hypertensive Emergency.\n**HFrEF**: Hydralazine + Isosorbide Dinitrate (↓ mortality in Black patients).\n**Minoxidil**: Severe refractory HTN; Topical for Alopecia.",
+        se: "**Reflex Tachycardia**: (Always co-prescribe $\beta$-blocker).\n**Fluid Retention**: Edema.\n**Drug-Induced Lupus**: Hydralazine (**Anti-histone Ab+**; slow acetylators).\n**Hypertrichosis**: Minoxidil (unwanted hair growth).",
+        ci: "**CAD/Angina**: Reflex tachycardia can trigger MI.\n**Aortic Aneurysm**: Rapid vasodilation risk.",
+        pk: "**Acetylation**: Hydralazine is metabolized by liver N-acetyltransferase.\n**Slow Acetylators**: Higher risk for drug-induced lupus.",
+        pearl: "**Drug-Induced Lupus Triad**: Slow acetylator + High dose + Female.\nLabs: **Anti-histone Abs** (vs. Anti-dsDNA in idiopathic lupus)."
+      }
     ]
   },
   {
@@ -199,59 +197,59 @@ cv: [
     drugs: [
       {
         name: "Loop Diuretics",
-        aka: "Furosemide (Lasix) · Bumetanide · Torsemide · Ethacrynic Acid",
-        summary: "Most potent diuretics; block the Na-K-2Cl cotransporter in the thick ascending limb. First-line for acute pulmonary edema, volume overload in heart failure, and hypercalcemia.",
-        moa: "Inhibit **Na⁺-K⁺-2Cl⁻ cotransporter (NKCC2)** in the thick ascending loop of Henle → ↓ medullary osmotic gradient → ↑ water, Na⁺, K⁺, Cl⁻, Ca²⁺, Mg²⁺ excretion",
-        use: "Acute pulmonary edema (IV furosemide — immediate venodilation before diuresis); chronic HF; nephrotic syndrome; cirrhosis with ascites\n**Hypercalcemia:** saline + furosemide\nHypertensive emergency; SIADH (adjunct)\n**Ethacrynic acid:** sulfa-allergic patients (only non-sulfonamide loop diuretic)",
-        se: "**Hypokalemia** (most tested) → arrhythmias; **hyponatremia**; metabolic **alkalosis** (↑ H⁺ excretion); **ototoxicity** (especially IV high-dose, synergistic with aminoglycosides); **hypomagnesemia**; **hyperuricemia** (gout); hypocalcemia (unlike thiazides); dehydration/azotemia",
-        ci: "Anuria; severe electrolyte depletion; sulfa allergy (furosemide, bumetanide, torsemide — use ethacrynic acid instead)",
-        pk: "**Furosemide:** oral bioavailability variable (10–100%), t½ ~1–2 hr, renal secretion (acts from luminal side); IV onset ~5 min\n**Torsemide:** better oral bioavailability (~80%), hepatic metabolism (longer effective duration)\n**Bumetanide:** 40× more potent by weight than furosemide",
-        pearl: "**'Loops Lose calcium' — thiazides retain it.** Loop diuretics block Ca²⁺ reabsorption in the TAL → hypocalcemia (useful in hypercalcemia). Thiazides enhance Ca²⁺ reabsorption in DCT → hypercalcemia (useful in calcium nephrolithiasis). This reciprocal effect is a classic Step 1 distinction."
+        aka: "Furosemide · Bumetanide · Torsemide · Ethacrynic Acid",
+        summary: "Most potent diuretics. Block **NKCC2** in the **TAL**.\nFirst-line for **Acute Pulmonary Edema**.",
+        moa: "Inhibit **NKCC2** ($Na^+/K^+/2Cl^-$) in **Thick Ascending Limb**.\n↑ Excretion of $Na^+, K^+, Cl^-, Ca^{2+}, Mg^{2+}$.\nStimulates $PGE$ (vasodilation of afferent arteriole).",
+        use: "**Edema**: HF, Cirrhosis, Nephrotic Syndrome.\n**Acute Pulmonary Edema**: Rapid IV onset.\n**Hypercalcemia**: 'Loops Lose Calcium'.\n**Ethacrynic acid**: Use if patient has severe **Sulfa Allergy**.",
+        se: "**OHH DAANG!**:\n**O**totoxicity · **H**ypokalemia / **H**ypomagnesemia.\n**D**ehydration / **A**zotemia.\n**A**llergy (**Sulfa** — except Ethacrynic acid).\n**A**lkalosis (Metabolic).\n**N**ephritis (Interstitial).\n**G**out (**Hyperuricemia**).",
+        ci: "**Anuria**; Severe electrolyte depletion.\n**Sulfa Allergy** (except Ethacrynic acid).",
+        pk: "Secreted into lumen by **Organic Acid Transporters**.\nNSAIDs ↓ loop effect by blocking vasodilatory $PGE$.",
+        pearl: "**Loops Lose Calcium** vs. Thiazides save it.\n**Ethacrynic Acid** is more ototoxic than furosemide."
       },
       {
         name: "Thiazide Diuretics",
         aka: "Hydrochlorothiazide (HCTZ) · Chlorthalidone · Metolazone · Indapamide",
-        summary: "Block Na-Cl cotransporter in the distal convoluted tubule, causing moderate natriuresis. First-line for uncomplicated hypertension and prevention of calcium nephrolithiasis.",
-        moa: "Inhibit **Na⁺-Cl⁻ cotransporter (NCC)** in the distal convoluted tubule → ↑ Na⁺/water excretion; ↑ Ca²⁺ reabsorption (Na⁺ depletion → ↑ basolateral Na-Ca exchange)",
-        use: "Hypertension (first-line, especially in elderly/Black patients/with osteoporosis); calcium nephrolithiasis (↓ urinary Ca²⁺ excretion); nephrogenic diabetes insipidus (paradoxical — mild volume depletion → ↑ proximal reabsorption → ↓ distal delivery → ↓ urine volume); osteoporosis (reduces urinary Ca loss)",
-        se: "**Hypokalemia** (→ alkalosis); **hyponatremia** (most common electrolyte cause of serious hyponatremia in elderly); **hyperglycemia** (↓ insulin secretion); **hypercalcemia** (↑ Ca²⁺ reabsorption); **hyperlipidemia** (↑ LDL, ↑ TG); **hyperuricemia** (gout); sulfa allergy cross-reactivity",
-        ci: "Anuria; sulfa allergy (HCTZ is a sulfonamide derivative — use chlorthalidone, a non-sulfonamide, in sulfa-allergic); gout (exacerbates hyperuricemia — relative CI); hyponatremia",
-        pk: "**HCTZ:** oral, t½ ~6–15 hr, renally secreted, ineffective in GFR <30 mL/min (use loop instead)\n**Chlorthalidone:** longer t½ (~40–60 hr) — preferred for sustained BP control\n**Metolazone:** acts in proximal tubule too, effective in low GFR (synergistic with loop diuretics for refractory edema)",
-        pearl: "**Thiazides cause hypo- everything except Ca²⁺:** Hyponatremia, Hypokalemia, Hypochloremia, metabolic alkalosis, Hyperlipidemia + **Hyper-**: calcium, glucose, uric acid. The mnemonic **HyperGLUC** (Glucose, Lipids, Uric acid, Calcium) covers the 'hypers'. Chlorthalidone has stronger evidence than HCTZ for CV outcomes (ALLHAT trial)."
+        summary: "Block **NCC** in **Distal Convoluted Tubule**.\nFirst-line for HTN and **Calcium Stones**.",
+        moa: "Inhibit **NCC** ($Na^+/Cl^-$) in **Distal Convoluted Tubule**.\n↑ Excretion of $Na^+, K^+, Cl^-$.\n↑ **Calcium Reabsorption** (unlike loops).",
+        use: "**Hypertension**: First-line.\n**Nephrolithiasis**: Prevents calcium stones by ↓ urinary calcium.\n**Osteoporosis**: Reduces bone loss.\n**Diabetes Insipidus**: Paradoxically ↓ urine volume in Nephrogenic DI.",
+        se: "**HyperGLUC**:\n**Hyper**-**G**lycemia / **L**ipidemia / **U**ricemia / **C**alcemia.\n**Hyponatremia** and **Hypokalemia**.\n**Sulfa Allergy**.",
+        ci: "**Anuria**; Sulfa allergy.\n**Gout**: Worsens hyperuricemia.\nIneffective if **eGFR <30** (except Metolazone).",
+        pk: "Secreted via organic acid pathway.\n**Chlorthalidone**: Longer $t_{1/2}$ and superior CV outcomes vs. HCTZ.",
+        pearl: "**Thiazides save Calcium**.\nHyponatremia is a major risk in elderly patients."
       },
       {
         name: "K⁺-Sparing Diuretics",
-        aka: "Spironolactone (Aldactone) · Eplerenone (Inspra) · Amiloride · Triamterene",
-        summary: "Weak diuretics that retain potassium by blocking aldosterone action or epithelial sodium channels. Spironolactone and eplerenone reduce mortality in heart failure and primary hyperaldosteronism.",
-        moa: "**Spironolactone/eplerenone:** competitive antagonists at **mineralocorticoid (aldosterone) receptors** in collecting duct → ↓ Na⁺ reabsorption + ↓ K⁺ secretion. **Amiloride/triamterene:** directly block **epithelial Na⁺ channels (ENaC)** in collecting duct → same net effect",
-        use: "**Spironolactone/Eplerenone:** HFrEF (↓ mortality post-MI with HF, RALES/EPHESUS trials); primary hyperaldosteronism/Conn syndrome (drug of choice or bridge to surgery)\nCombined with loop/thiazide to prevent hypokalemia; hepatic cirrhosis with ascites\n**Spironolactone:** polycystic ovary syndrome (anti-androgen)\n**Amiloride:** Liddle syndrome (targets ENaC directly)",
-        se: "**Hyperkalemia** (dangerous — monitor K⁺, avoid in CKD/high K⁺ diet); Spironolactone: **gynecomastia** and menstrual irregularities (anti-androgen/progestogenic — eplerenone is selective, less endocrine SE); Triamterene: crystalluria/nephrolithiasis",
-        ci: "Hyperkalemia (K⁺ >5.5 mEq/L); severe renal failure (anuria/oliguria — dangerous hyperkalemia); concurrent ACEi + ARB + aldosterone antagonist triple combination (↑↑ hyperkalemia risk)",
-        pk: "**Spironolactone:** oral, hepatic metabolism to active metabolite canrenone, t½ of metabolite ~17 hr (slow onset of effect — days to weeks for full effect)\n**Eplerenone:** more selective, less first-pass, t½ ~4–6 hr, CYP3A4 substrate\n**Amiloride/Triamterene:** renal excretion, onset faster than spironolactone",
-        pearl: "**Spironolactone's mortality benefit in HF (RALES)** was demonstrated at low doses (25 mg) — far below its antihypertensive dose. The benefit is anti-fibrotic/anti-remodeling via aldosterone receptor blockade in the myocardium, not just diuresis. Monitor **K⁺ and creatinine** within 1 week of starting in HF (high hyperkalemia risk with ACEi/ARBs)."
+        aka: "Spironolactone · Eplerenone · Amiloride · Triamterene",
+        summary: "Retain $K^+$ by blocking Aldosterone or **ENaC** in the collecting duct.\nMortality benefit in HFrEF.",
+        moa: "**Spironolactone/Eplerenone**: **Aldosterone Antagonists** in Cortical Collecting Duct.\n**Amiloride/Triamterene**: Direct **ENaC** blockers.",
+        use: "**HFrEF**: ↓ Mortality and fibrosis (RALES trial).\n**Primary Hyperaldosteronism** (Conn Syndrome).\n**Ascites**: Cirrhosis drug of choice.\n**PCOS**: Spironolactone (anti-androgen).\n**Liddle Syndrome**: Amiloride.",
+        se: "**Hyperkalemia** (potentially fatal).\n**Gynecomastia** and **Decreased Libido**: Spironolactone (Non-selective).\n**Eplerenone** is selective; does NOT cause gynecomastia.",
+        ci: "**Hyperkalemia** ($K^+ >5.5$).\n**Severe Renal Failure**.\nAvoid combining with ACEi/ARBs without close monitoring.",
+        pk: "**Spironolactone**: Prodrug converted to Canrenone.\nSlow onset (days) as it requires gene expression changes.",
+        pearl: "**Spironolactone in HF**: Mortality benefit is due to anti-fibrotic effects, NOT diuresis.\nMonitor $K^+$ and $Cr$ within 1 week of starting."
       },
       {
         name: "Carbonic Anhydrase Inhibitors",
-        aka: "Acetazolamide (Diamox) · Dorzolamide (Trusopt, topical) · Brinzolamide (topical) · Methazolamide",
-        summary: "Inhibit carbonic anhydrase in the proximal tubule and ciliary body, causing bicarbonate wasting and reduced intraocular pressure. Used for glaucoma, altitude sickness, and metabolic alkalosis.",
-        moa: "Inhibit **carbonic anhydrase (CA)** → ↓ H⁺/HCO₃⁻ production → ↓ Na⁺-H⁺ exchange in PCT → ↑ HCO₃⁻, Na⁺, K⁺ excretion; in ciliary body: ↓ aqueous humor production → ↓ IOP",
-        use: "**Open-angle glaucoma:** topical dorzolamide/brinzolamide\n**Acute angle-closure glaucoma:** acetazolamide IV — reduces IOP rapidly\n**Altitude sickness:** prevention and treatment (acetazolamide — metabolic acidosis → ↑ respiratory drive)\n**Idiopathic intracranial hypertension** (pseudotumor cerebri)\nCorrect metabolic alkalosis (rare)",
-        se: "**Metabolic acidosis** (HCO₃⁻ wasting — hyperchloremic, normal anion gap); **hypokalemia**; **sulfa allergy** cross-reactivity; kidney stones (↓ urinary citrate; alkaline urine → Ca-phosphate stones); drowsiness, paresthesias (tingling in extremities — common, benign); teratogenic (not for use in pregnancy)",
-        ci: "Sulfa allergy; hepatic cirrhosis (↑ NH₃ — ↓ acid → less NH₄⁺ trapped in urine → ↑ serum ammonia); severe acidosis; chronic obstructive pulmonary disease (worsens acidosis → reduced respiratory compensation); hypokalemia",
-        pk: "**Acetazolamide:** oral/IV, t½ ~2–4 hr, renal excretion (unchanged), effective only when GFR adequate\n**Dorzolamide/Brinzolamide:** topical ophthalmic — minimal systemic absorption, avoids systemic SE\nOnset of IOP reduction: topical 1–2 hr, oral 1–2 hr for acetazolamide",
-        pearl: "**Acetazolamide for altitude sickness** works by causing metabolic acidosis → stimulates peripheral chemoreceptors → ↑ respiratory drive → compensatory respiratory alkalosis → net ↑ in tissue oxygenation. Start 1–2 days before ascent. The sulfa cross-reactivity is theoretical in most patients but should be checked."
+        aka: "Acetazolamide · Dorzolamide · Brinzolamide",
+        summary: "Inhibit **CA** in Proximal Tubule.\nUsed for **Glaucoma**, **Altitude Sickness**, and **Metabolic Alkalosis**.",
+        moa: "Inhibit **Carbonic Anhydrase** → ↓ $H^+$ secretion / ↓ $HCO_3^-$ reabsorption in **PCT**.\nCauses **Bicarbonaturia** (alkaline urine).\n↓ Aqueous humor production in ciliary body.",
+        use: "**Glaucoma**: ↓ Intraocular pressure.\n**Altitude Sickness**: Acidosis ↑ respiratory drive.\n**Pseudotumor Cerebri**: ↓ CSF production.\n**Metabolic Alkalosis**: Corrects via $HCO_3^-$ excretion.",
+        se: "**Hyperchloremic Metabolic Acidosis**.\n**Hypokalemia**.\n**Paresthesias** (tingling in fingers/toes).\n**Sulfa Allergy**.\n**Kidney Stones**: Alkaline urine promotes calcium-phosphate stones.",
+        ci: "**Cirrhosis**: ↑ $NH_3$ accumulation.\n**Sulfa Allergy**.",
+        pk: "Renal elimination.\n**Dorzolamide**: Topical; avoids systemic acidosis.",
+        pearl: "**Altitude Mechanism**: Metabolic acidosis → Peripheral chemoreceptor trigger → ↑ Ventilation → ↑ $O_2$."
       },
       {
         name: "Mannitol",
         aka: "Mannitol (Osmitrol)",
-        summary: "Osmotic diuretic that reduces intracranial and intraocular pressure by drawing water from the CNS into the vasculature. Used emergently for cerebral edema and acute glaucoma.",
-        moa: "**Osmotic agent** in proximal tubule and loop of Henle → ↓ water reabsorption → ↑ urine output; in cerebral edema: ↑ plasma osmolality → draws fluid from brain tissue into vasculature",
-        use: "Elevated intracranial pressure (traumatic brain injury, herniation syndromes — IV bolus); acute angle-closure glaucoma (pre-op IOP reduction); prevention of acute tubular necrosis (ATN) in high-risk surgery (maintains tubular flow — controversial evidence); forced diuresis in certain drug overdoses",
-        se: "**Initial volume expansion** (can precipitate pulmonary edema — caution in HF); **↑ serum osmolality** → hypernatremia; rebound ICP increase (if barrier disrupted); electrolyte disturbances (hyponatremia, hypokalemia with prolonged use); renal failure with high doses (paradoxical)",
-        ci: "Anuria (no effect); severe congestive heart failure (volume load); severe dehydration; active intracranial bleeding (volume expansion may worsen)",
-        pk: "IV only; not metabolized, renally filtered/excreted without reabsorption; t½ ~1–2 hr. Onset of ICP reduction: 15–30 min, duration 3–8 hr. Does NOT cross the blood-brain barrier (under normal conditions) — this is essential to its mechanism.",
-        pearl: "**Mannitol stays out of cells — it works by osmosis.** If the blood-brain barrier is severely disrupted (as in severe TBI), mannitol can leak into brain tissue and reverse the osmotic gradient (rebound ICP ↑). **Hypertonic saline (3%)** is increasingly preferred in TBI because it does not cause rebound and provides volume expansion without initial hypervolemia risk."
-      },
+        summary: "**Osmotic Diuretic** used for cerebral edema and acute glaucoma.",
+        moa: "Increases **Plasma Osmolality** → Draws fluid from cells into vasculature.\nActs primarily in Proximal Tubule and Descending Loop.",
+        use: "**Increased ICP**: Traumatic brain injury / Herniation.\n**Acute Glaucoma**: Rapidly ↓ IOP.",
+        se: "**Pulmonary Edema**: Due to initial intravascular volume expansion.\n**Dehydration** and **Hypernatremia**.",
+        ci: "**Anuria**.\n**Severe Heart Failure** (volume load).\n**Active Intracranial Bleeding**.",
+        pk: "IV only; Not metabolized; Renally excreted.",
+        pearl: "**Caution in HF**: The initial volume surge can trigger fatal pulmonary edema."
+      }
     ]
   },
   {
@@ -259,15 +257,15 @@ cv: [
     drugs: [
       {
         name: "Calcium Channel Blockers (CCBs)",
-        aka: "Amlodipine (Norvasc) · Nifedipine · Felodipine · Nicardipine — Dihydropyridines (DHP) | Verapamil · Diltiazem — Non-DHPs",
-        summary: "Block voltage-gated L-type calcium channels in vascular smooth muscle (dihydropyridines) or cardiac tissue (non-dihydropyridines). Used for hypertension, angina, and rate control in supraventricular arrhythmias.",
-        moa: "Block **voltage-gated L-type Ca²⁺ channels** → ↓ intracellular Ca²⁺. **DHPs** (amlodipine, nifedipine): vascular selectivity → ↓ SVR/vasodilation. **Non-DHPs** (verapamil, diltiazem): cardiac > vascular → ↓ HR (SA node) + ↓ AV conduction + ↓ contractility",
-        use: "All CCBs: hypertension, chronic stable angina (↓ O2 demand); Verapamil/diltiazem: rate control in AF/flutter, PSVT (AV nodal block), hypertrophic cardiomyopathy; Amlodipine: vasospastic (Prinzmetal) angina, Raynaud phenomenon; Nicardipine/clevidipine: IV for hypertensive emergency; Nifedipine: preterm labor tocolysis",
-        se: "**DHPs:** peripheral edema (ankles — arteriolar dilation → ↑ capillary pressure), reflex tachycardia (nifedipine > amlodipine — longer t½ less reflex), flushing, headache. **Non-DHPs:** **bradycardia**, **AV block**, **constipation** (verapamil — classic), negative inotropy (avoid in HFrEF)",
-        ci: "Non-DHPs (verapamil/diltiazem): HFrEF (negative inotropy), cardiogenic shock, high-degree AV block, sick sinus syndrome, WPW with AF (can increase antegrade conduction via accessory pathway); verapamil + β-blocker combination: complete heart block",
-        pk: "**Amlodipine:** oral, t½ ~35–50 hr (longest — once daily, fewer missed-dose effects), hepatic (CYP3A4)\n**Nifedipine:** ER formulation for HTN; short-acting (IR) only for hypertensive emergencies/tocolysis\n**Verapamil:** oral or IV, t½ ~6–8 hr, significant first-pass hepatic metabolism, CYP3A4; also a P-gp inhibitor (↑ digoxin levels)\n**Diltiazem:** IV for AF rate control, oral for HTN/angina",
-        pearl: "**Verapamil is the most constipating drug in pharmacology** — autonomic innervation of the GI tract uses L-type Ca²⁺ channels for smooth muscle contraction. **DHP edema is not from fluid overload** — it's from arteriolar dilation increasing capillary hydrostatic pressure; it does NOT respond to diuretics (add ACEi or switch drugs)."
-      },
+        aka: "Dihydropyridines (Amlodipine, Nifedipine) | Non-DHPs (Verapamil, Diltiazem)",
+        summary: "Block **L-type Calcium Channels** in vessels (DHP) or heart (Non-DHP).",
+        moa: "Block **Voltage-gated L-type $Ca^{2+}$ channels**.\n**DHPs**: Vascular smooth muscle relaxation → ↓ SVR.\n**Non-DHPs**: Cardiac focus → ↓ HR, ↓ AV conduction, ↓ Contractility.",
+        use: "**Hypertension**: DHPs first-line.\n**Angina**: Stable and **Prinzmetal (Vasospastic)**.\n**Raynaud Phenomenon**: Amlodipine/Nifedipine.\n**Rate Control (AF/SVT)**: Verapamil/Diltiazem.\n**Subarachnoid Hemorrhage**: **Nimodipine** (prevents vasospasm).",
+        se: "**DHPs**: Peripheral edema (ankles); Reflex tachycardia; Flushing.\n**Non-DHPs**: **Bradycardia**, **AV block**, and **Constipation** (Verapamil).\n**Hyperprolactinemia**: Verapamil.",
+        ci: "**HFrEF**: Non-DHPs (Negative inotropy worsens failure).\n**$\beta$-blockers**: Avoid combo with Verapamil (↑ heart block risk).",
+        pk: "**Verapamil**: Strong **P-gp inhibitor** (↑ Digoxin levels).\n**Amlodipine**: Longest $t_{1/2}$ (~40 hr).",
+        pearl: "**Verapamil is most constipating**.\n**DHP Edema** is not fluid overload; it is pre-capillary vasodilation."
+      }
     ]
   },
   {
@@ -276,102 +274,102 @@ cv: [
       {
         name: "Adenosine",
         aka: "Adenosine (Adenocard)",
-        summary: "Endogenous purine nucleoside that transiently blocks AV conduction. Drug of choice for acute termination of PSVT and for diagnosing supraventricular arrhythmias.",
-        moa: "Activates **A1 adenosine receptors** on AV node → ↑ K⁺ conductance (IKAdo) + ↓ Ca²⁺ current → hyperpolarization → transient **AV nodal block** (slows/stops conduction)",
-        use: "First-line for acute PSVT (AV nodal re-entrant and AV re-entrant tachycardias); diagnostic tool to unmask atrial flutter/fibrillation by slowing ventricular rate; not effective for AF, atrial flutter, or VT",
-        se: "**Transient chest pain/tightness** (adenosine receptors in coronary arteries — brief ischemia-like sensation); **flushing**; **dyspnea**; **transient complete heart block** (seconds — expected therapeutic effect); sense of impending doom; bronchospasm (avoid in asthma)",
-        ci: "Asthma/severe reactive airway disease (bronchospasm via A2B receptors); high-degree AV block or sick sinus syndrome (without pacemaker); WPW with AF (may precipitate VF via accessory pathway)",
-        pk: "IV only (central or antecubital); t½ ~10 seconds (fastest elimination of any drug — degraded by adenosine deaminase in erythrocytes and endothelium). **Must give rapid IV push** followed by saline flush. Xanthines (caffeine, theophylline) are competitive antagonists — increase dose needed. Dipyridamole blocks adenosine uptake → ↑ effects.",
-        pearl: "**Adenosine's t½ of ~10 seconds** is why side effects are brief and dramatic. Its effects are competitively blocked by **caffeine and theophylline** (both xanthine adenosine receptor antagonists) — a patient on theophylline may require higher doses. Always warn the patient: 'you will feel terrible for about 10 seconds, then it will pass.'"
+        summary: "**PSVT Terminator**. Briefly stops the AV node.",
+        moa: "Activates **A1 receptors** on AV node → ↑ $K^+$ conductance / ↓ $Ca^{2+}$ current → **Hyperpolarization**.\nCauses transient **Complete Heart Block**.",
+        use: "**Acute PSVT**: Drug of choice for conversion to sinus rhythm.\nDiagnostic tool to unmask atrial flutter.",
+        se: "**Sense of Impending Doom**.\n**Chest pain**, **Flushing**, and **Dyspnea**.\nBronchospasm.",
+        ci: "**Asthma** (bronchospasm risk).\n**2nd/3rd degree heart block**.",
+        pk: "Ultra-short $t_{1/2}$ (~10 seconds).\nMust give as **Rapid IV Push**.\n**Caffeine/Theophylline**: Block adenosine receptors.",
+        pearl: "Inform the patient: 'You will feel terrible for 10 seconds, then it will pass'."
       },
       {
         name: "Class IA Antiarrhythmics",
         aka: "Quinidine · Procainamide · Disopyramide",
-        summary: "Intermediate Na⁺ channel blockers with additional K⁺ channel blockade that prolongs the QRS and QTc. Used for atrial and ventricular arrhythmias but carry significant proarrhythmic risk.",
-        moa: "Block **voltage-gated Na⁺ channels** (intermediate kinetics — moderate QRS widening) + block **K⁺ channels (IKr)** → ↑ action potential duration → ↑ refractory period → ↑ QTc",
-        use: "AF/AFL conversion to sinus rhythm; ventricular tachycardia/VT; Wolff-Parkinson-White (quinidine/procainamide — slows accessory pathway); Procainamide: acute wide-complex tachycardia of uncertain etiology (IV)",
-        se: "**Torsades de pointes** (↑ QTc — most dangerous); **proarrhythmic** (↑ mortality in structural heart disease); Quinidine: **cinchonism** (tinnitus, headache, visual changes at toxic doses), thrombocytopenia, diarrhea, ↑ digoxin levels; Procainamide: **drug-induced lupus** (anti-histone Ab, N-acetyl procainamide metabolite — more common than hydralazine lupus), agranulocytosis",
-        ci: "Prolonged QTc or history of torsades; complete AV block without pacemaker; myasthenia gravis (disopyramide has strong anticholinergic activity → worsens); HFrEF (disopyramide — strong negative inotropy)",
-        pk: "**Quinidine:** oral, t½ ~6–8 hr, hepatic (CYP3A4), inhibits CYP2D6, P-gp inhibitor → ↑ digoxin levels (halve digoxin dose)\n**Procainamide:** IV or oral, t½ ~3–4 hr, hepatic N-acetylation to NAPA (active, ↑ QTc more than procainamide) — slow acetylators: ↑ lupus risk\n**Disopyramide:** oral, strong anticholinergic, negative inotrope",
-        pearl: "**Quinidine + digoxin = dangerous combination:** quinidine inhibits P-glycoprotein (renal/biliary digoxin efflux) and displaces digoxin from tissue binding → ↑ digoxin levels by ~2×. **Always halve the digoxin dose** when starting quinidine. Procainamide causes lupus in 30% of patients on chronic therapy — check ANA annually."
+        summary: "Intermediate $Na^+$ blockers that **↑ QTc**.",
+        moa: "Block **$Na^+$ channels** (intermediate) + **$K^+$ channels**.\n↑ Action Potential Duration (APD) and ↑ refractory period.",
+        use: "Atrial and ventricular arrhythmias; **WPW Syndrome**.",
+        se: "**Torsades de Pointes** (via ↑ QTc).\n**Cinchonism**: Quinidine (tinnitus, headache).\n**Drug-Induced Lupus**: Procainamide.\n**Anticholinergic SE**: Disopyramide.",
+        ci: "**Prolonged QTc**; Heart failure (Disopyramide negative inotropy).",
+        pk: "**Quinidine**: Inhibits P-gp and displaces Digoxin.",
+        pearl: "**Procainamide** is the drug of choice for **stable WPW** with tachycardia."
       },
       {
         name: "Class IB Antiarrhythmics",
         aka: "Lidocaine · Mexiletine · Phenytoin",
-        summary: "Fast Na⁺ channel blockers that selectively suppress depolarized (ischemic/fast-firing) tissue with minimal effect on normal myocardium. Used for ventricular arrhythmias, particularly post-MI.",
-        moa: "Block **voltage-gated Na⁺ channels** (fast on/off kinetics — minimal QRS widening) preferentially in **depolarized/ischemic tissue** → ↓ automaticity in Purkinje fibers and ventricles; ↓ action potential duration (↓ QTc — opposite of Class IA)",
-        use: "**Lidocaine IV:** acute ventricular tachycardia/VF after defibrillation (especially ischemic VT)\n**Mexiletine:** chronic ventricular arrhythmias, myotonic dystrophy\n**Phenytoin:** digitalis-induced arrhythmias (drug of choice)",
-        se: "Lidocaine: **CNS toxicity** (perioral numbness, tinnitus, tremor, seizures, respiratory arrest — correlates with plasma level); cardiovascular depression at high levels; Mexiletine: nausea, tremor; Phenytoin (chronic): gingival hyperplasia, hirsutism, ataxia, teratogenicity",
-        ci: "High-degree AV block (SA or AV node suppression); Stokes-Adams attack; hypersensitivity; hepatic failure (lidocaine — extensive first-pass)",
-        pk: "**Lidocaine:** IV only (extensive first-pass — oral not used for arrhythmia), t½ ~2 hr, hepatic (CYP3A4), dose-reduce in hepatic failure/HF\n**Mexiletine:** oral analog of lidocaine, t½ ~10–12 hr, hepatic\n**Phenytoin:** non-linear (zero-order) kinetics — small dose changes cause large level changes; hepatic (CYP2C9/2C19), strong inducer",
-        pearl: "**Class IB drugs shorten the APD and selectively suppress ischemic tissue** — they bind Na⁺ channels in the fast inactivated state (prevalent in depolarized/ischemic tissue). Normal myocardium (resting, hyperpolarized) is largely unaffected. This explains why **lidocaine is the drug of choice for ischemic VT** but is ineffective for supraventricular arrhythmias."
+        summary: "Fast $Na^+$ blockers. Selective for **Ischemic Tissue**.",
+        moa: "Block **$Na^+$ channels** (fast kinetics).\n**Selective for Depolarized/Ischemic cells**.\n↓ APD (Shortens refractory period).",
+        use: "**Acute Ventricular Arrhythmias Post-MI** (Ischemic VT/VF).\n**Phenytoin**: Drug of choice for Digitalis-induced arrhythmias.",
+        se: "**CNS Toxicity**: Seizures, tremor, paresthesias.\nLeast cardiotoxic of Class I.",
+        ci: "**High-degree Heart Block**.",
+        pk: "**Lidocaine**: Extensive first-pass; IV only for arrhythmias.",
+        pearl: "**Class IB** are unique because they only affect ischemic tissue; ineffective for SVT."
       },
       {
         name: "Class IC Antiarrhythmics",
-        aka: "Flecainide (Tambocor) · Propafenone (Rythmol)",
-        summary: "Potent Na⁺ channel blockers with the most pronounced QRS widening. Effective for AF in structurally normal hearts but absolutely contraindicated in structural heart disease due to proarrhythmic mortality.",
-        moa: "Block **voltage-gated Na⁺ channels** (slow on/off kinetics — marked QRS widening) → profound slowing of conduction throughout the myocardium; Propafenone also has mild β-blocking and K⁺-channel blocking activity",
-        use: "Maintenance of sinus rhythm in AF/atrial flutter in patients with **no structural heart disease** ('pill-in-pocket' strategy for paroxysmal AF); WPW-associated arrhythmias; ventricular arrhythmias in structurally normal hearts",
-        se: "**Proarrhythmic** — can convert AF to AFL with 1:1 AV conduction (always co-prescribe an AV nodal blocker); can precipitate life-threatening VT/VF in structural heart disease; neurologic: dizziness, visual disturbances; Propafenone: bronchospasm (β-blocking effect)",
-        ci: "**Structural heart disease** (post-MI, LV dysfunction, HF — CAST trial showed ↑ mortality); cardiogenic shock; high-degree AV block; significant QRS prolongation (>120 ms at baseline)",
-        pk: "Flecainide: oral, t½ ~12–27 hr, renal + hepatic elimination, CYP2D6 substrate. Propafenone: oral, t½ ~6 hr (extensive metabolizers) or ~17 hr (poor metabolizers via CYP2D6). Both require QRS monitoring — increase dose cautiously.",
-        pearl: "**CAST trial (1989)** — the landmark lesson: IC drugs successfully suppressed PVCs post-MI but **tripled mortality** from arrhythmia compared to placebo. Suppressing the surrogate marker (PVCs) worsened the outcome. This permanently changed cardiology: **Class IC drugs are absolutely contraindicated in structural heart disease**, including any history of MI or LV dysfunction."
+        aka: "Flecainide · Propafenone",
+        summary: "Potent $Na^+$ blockers. **Strongest QRS widening**.",
+        moa: "Block **$Na^+$ channels** (slow kinetics).\nProfoundly slows conduction throughout the heart.\nNo effect on APD.",
+        use: "**SVT/AF** in patients with **Normal Heart Structure**.",
+        se: "**Proarrhythmic**: Can trigger VT in damaged hearts.",
+        ci: "**Structural Heart Disease** (Post-MI, HF, LVH) — **CAST Trial**.",
+        pk: "Renal/Hepatic elimination.",
+        pearl: "**CAST Trial Landmark**: IC drugs successfully stopped PVCs but **Tripled Mortality** post-MI."
       },
       {
         name: "Class III Antiarrhythmics",
-        aka: "Amiodarone (Cordarone, Pacerone) · Sotalol · Dofetilide · Ibutilide · Dronedarone",
-        summary: "Block potassium channels to markedly prolong repolarization and the refractory period. Amiodarone is the most broadly used antiarrhythmic despite extensive multi-organ toxicity; sotalol and dofetilide are used for AF/VT.",
-        moa: "Block **K⁺ channels (IKr — hERG)** → ↑ action potential duration → ↑ refractory period (↑ QTc); Amiodarone also blocks Na⁺/Ca²⁺ channels + β-adrenergic receptors (non-competitive) — 'pan-channel' blocker; **Sotalol** also has β-blocking activity",
-        use: "**Amiodarone:** VF/pulseless VT in ACLS (IV); AF/AFL rate and rhythm control (highly effective but reserved due to toxicity); refractory VT\n**Sotalol:** AF maintenance, ventricular arrhythmias (requires in-hospital initiation — ↑ QTc monitoring)\n**Dofetilide:** AF maintenance (hospital initiation — strict renal dosing)\n**Ibutilide:** IV conversion of recent-onset AF/AFL",
-        se: "**Amiodarone:** **pulmonary toxicity** (most serious — interstitial pneumonitis/fibrosis); **thyroid dysfunction** (hypothyroid or hyperthyroid — 37% iodine by weight); **hepatotoxicity** (monitor LFTs); **corneal microdeposits** (benign, nearly universal — do not confuse with toxicity); **blue-gray skin discoloration** (photosensitivity); **neurologic** (tremor, peripheral neuropathy); **torsades** (rare despite ↑ QTc — less than expected). Sotalol/dofetilide: **Torsades de pointes** (↑↑ QTc — most dangerous SE)",
-        ci: "Amiodarone: pregnancy (neonatal thyroid toxicity), severe sinus node dysfunction or high-degree AV block (without pacemaker), iodine allergy (relative); Sotalol/dofetilide: prolonged QTc, CrCl <20 mL/min, hypokalemia/hypomagnesemia",
-        pk: "**Amiodarone:** oral or IV; extremely lipophilic, Vd ~60 L/kg; t½ **40–55 days** (longest of any antiarrhythmic — weeks to months for steady state and washout); hepatic metabolism to active N-desethylamiodarone; inhibits CYP2C9 (↑ warfarin), CYP3A4, P-gp (↑ digoxin); check TFTs, LFTs, CXR, PFTs annually\n**Sotalol:** renal elimination, t½ ~12 hr, dose-reduce in CKD\n**Dofetilide:** renal elimination — strict dose reduction by CrCl",
-        pearl: "**Amiodarone's half-life of 40–55 days** means drug interactions (warfarin, digoxin, statins) persist weeks after stopping. Every patient starting amiodarone needs baseline and annual: **TFTs, LFTs, CXR, PFTs, and ophthalmology exam**. The 37% iodine content = 200-mg tablet delivers ~75 mg iodine (daily iodine need is ~0.15 mg) — explaining the thyroid effects."
+        aka: "Amiodarone · Sotalol · Dofetilide · Ibutilide · Dronedarone",
+        summary: "**$K^+$ channel blockers**. Significantly **↑ QTc**.",
+        moa: "Block **$K^+$ channels** (IKr) → ↑ APD and refractory period.\n**Amiodarone**: Also blocks $Na^+, Ca^{2+}$, and $\beta$-receptors.",
+        use: "**Amiodarone**: ACLS (VF/VT); AF/AFL.\n**Sotalol**: AF maintenance.",
+        se: "**Amiodarone**: **Pulmonary Fibrosis**, Hepatotoxicity, Thyroid dysfunction, Blue skin.\n**Sotalol**: Torsades de Pointes (High risk).",
+        ci: "**Amiodarone**: Pregnancy; Lung disease.",
+        pk: "**Amiodarone**: $t_{1/2}$ ~40–60 days; Lipophilic; Biliary excretion.",
+        pearl: "**Amiodarone Baseline Testing**: TFTs, LFTs, PFTs (CXR), and Eye exam."
       },
       {
         name: "Digoxin",
-        aka: "Digoxin (Lanoxin) · Digitalis",
-        summary: "Cardiac glycoside that inhibits the Na-K-ATPase pump to increase intracellular calcium and enhance contractility. Used for heart failure and rate control in atrial fibrillation; narrow therapeutic index.",
-        moa: "Inhibit **Na⁺/K⁺-ATPase** → ↑ intracellular Na⁺ → ↓ Na⁺-Ca²⁺ exchanger activity → ↑ intracellular Ca²⁺ → **↑ inotropy**; also enhances vagal tone → ↓ AV conduction (↓ rate in AF)",
-        use: "HFrEF (symptom control, ↓ hospitalizations — no mortality benefit); rate control in AF/flutter (especially in HF where β-blockers/CCBs are poorly tolerated); atrial flutter (↓ ventricular rate)",
-        se: "**Toxicity (narrow TI):** GI (nausea, vomiting, anorexia — often first sign), **CNS (xanthopsia — yellow/green visual halos, blurry vision, confusion)**, **arrhythmias** (any type — PVCs, bigeminy, complete AV block, VF); **Hypokalemia, hypomagnesemia, hypercalcemia** → sensitize myocardium to digoxin toxicity",
-        ci: "Ventricular fibrillation or VT; hypertrophic obstructive cardiomyopathy (↑ outflow obstruction); accessory pathway conduction in WPW (↑ accessory pathway conduction → VF); AV block (relative, depending on degree)",
-        pk: "Oral or IV; t½ ~36 hr; predominantly renal excretion (unchanged) — **dose-reduce significantly in CKD** and elderly; Vd large (6–7 L/kg) — not dialyzable. Narrow therapeutic index: 0.5–2.0 ng/mL (in HF, target 0.5–0.9 ng/mL). Many drug interactions: quinidine/verapamil/amiodarone ↑ levels (inhibit P-gp).",
-        pearl: "**Treating digoxin toxicity:** (1) Stop digoxin; (2) correct hypokalemia/hypomagnesemia (K⁺ <4 mEq/L sensitizes Na-K-ATPase to digoxin); (3) **digoxin-specific Fab antibody fragments (Digibind)** for severe toxicity/arrhythmia — binds free digoxin in plasma; (4) atropine for bradycardia/heart block; (5) lidocaine for ventricular arrhythmias. **Avoid cardioversion** — can cause refractory VF in digoxin toxicity."
+        aka: "Digoxin · Digitalis",
+        summary: "**Na-K-ATPase inhibitor**. ↑ Contractility / ↓ AV conduction.",
+        moa: "Inhibits **$Na^+/K^+$-ATPase** → ↑ Intracellular $Na^+$ → ↓ Na-Ca exchanger → **↑ Intracellular $Ca^{2+}$**.\n**Vagotonic**: Stimulates vagus nerve → ↓ HR.",
+        use: "**HFrEF**: Symptom control (No mortality benefit).\n**Rate Control in AF**: Especially if HF present.",
+        se: "**GI**: N/V/Anorexia (Early sign).\n**CNS**: **Xanthopsia** (Yellow/green halos).\n**Arrhythmias**: Any type (PVCs, AV block).\n**Hypokalemia** sensitizes the heart to Digoxin toxicity.",
+        ci: "**Hypokalemia**; WPW; AV block.",
+        pk: "Renal elimination; $t_{1/2}$ ~40 hr; narrow TI.",
+        pearl: "**Toxicity Treatment**: (1) Correct K+ (2) **Digibind** (Fab) (3) Atropine."
       },
       {
         name: "Magnesium Sulfate",
-        aka: "Magnesium Sulfate (MgSO₄) · Magnesium (IV)",
-        summary: "Divalent cation that acts as a physiologic calcium antagonist and membrane stabilizer. Used for torsades de pointes, eclampsia/preeclampsia, severe asthma, and hypomagnesemia.",
-        moa: "**Mg²⁺ blocks voltage-gated Ca²⁺ channels** and stabilizes the cardiac membrane → ↓ early afterdepolarizations (EADs) in torsades; also blocks NMDA receptors (anticonvulsant in eclampsia); ↓ ACh release at NMJ; ↓ bronchial smooth muscle tone",
-        use: "Torsades de pointes (drug of choice — IV bolus regardless of Mg²⁺ level); eclampsia seizure prevention and treatment (first-line over benzodiazepines in obstetrics); severe acute asthma (IV Mg²⁺ as adjunct); hypomagnesemia (replacement); preterm labor tocolysis (short-term); digitalis-induced arrhythmias (adjunct)",
-        se: "**Hypermagnesemia (dose-dependent):** loss of deep tendon reflexes (first sign — check patellar reflex), respiratory depression, cardiac arrest (at very high levels); flushing, nausea; vasodilation/hypotension with rapid infusion",
-        ci: "Heart block or myocardial damage; renal failure (risk of accumulation — dose-reduce and monitor levels); prior to delivery if very high levels (neonatal respiratory depression)",
-        pk: "IV or IM; t½ ~4 hr in normal renal function; exclusively renally eliminated (unchanged) — accumulates in CKD. Therapeutic level for eclampsia: 4–7 mEq/L. Antidote for hypermagnesemia: **calcium gluconate IV** (directly antagonizes Mg²⁺ at cell membrane).",
-        pearl: "**Torsades de pointes management: Mg²⁺ first, then overdrive pacing.** Mg²⁺ suppresses EADs (the triggering mechanism) without needing to correct QTc first. In eclampsia, **Mg²⁺ outperforms benzodiazepines** for both prevention and treatment of seizures (Magpie trial). Monitor deep tendon reflexes — loss signals toxicity before respiratory arrest."
+        aka: "Magnesium Sulfate · Magnesium (IV)",
+        summary: "Divalent cation and physiologic calcium antagonist.\nDrug of choice for **Torsades de Pointes**.",
+        moa: "Blocks voltage-gated **$Ca^{2+}$ channels** and stabilizes membrane.\nBlocks **NMDA receptors** (anticonvulsant in eclampsia).",
+        use: "**Torsades de Pointes**: IV bolus (even if Mg is normal).\n**Eclampsia**: Seizure prevention/treatment.\n**Severe Asthma**: Adjunct bronchodilation.",
+        se: "**Hypermagnesemia**: Loss of DTRs (first sign), respiratory depression.\nFlushing, hypotension.",
+        ci: "**Heart block**; Renal failure (accumulation).",
+        pk: "Renally eliminated.\nAntidote: **Calcium Gluconate**.",
+        pearl: "**Mg outperforms Benzos** for eclampsia seizures."
       },
       {
         name: "Ranolazine & Ivabradine",
-        aka: "Ranolazine (Ranexa) · Ivabradine (Corlanor)",
-        summary: "Novel antianginal and heart failure agents with unique mechanisms distinct from traditional rate-pressure products. Ranolazine blocks late sodium current; ivabradine selectively inhibits the If funny current in the SA node.",
-        moa: "**Ranolazine:** blocks **late Na⁺ current (INaL)** → ↓ Na⁺ overload → ↓ intracellular Ca²⁺ → ↓ diastolic wall tension → improves myocardial efficiency without ↓ HR or BP. **Ivabradine:** blocks **HCN channel (If 'funny' current)** in SA node → slows spontaneous depolarization → ↓ HR with NO effect on contractility or BP",
-        use: "Ranolazine: chronic stable angina (add-on when other agents insufficient — does not reduce HR or BP); Ivabradine: HFrEF with HR ≥70 bpm in sinus rhythm despite β-blocker maximum tolerated dose (↓ hospitalization); inappropriate sinus tachycardia",
-        se: "Ranolazine: ↑ QTc (mild), constipation, dizziness, nausea; Ivabradine: **bradycardia**, **phosphenes/visual brightness** (brief light flashes — If channels also in retinal cells), AF (monitor)",
-        ci: "Ranolazine: liver cirrhosis, concurrent use of potent CYP3A4 inhibitors; Ivabradine: AF (only works in sinus rhythm), HR <60 bpm, sick sinus syndrome, severe hepatic impairment",
-        pk: "**Ranolazine:** oral, t½ ~7 hr, hepatic (CYP3A4 + CYP2D6), dose twice daily; inhibits CYP2D6 (mild)\n**Ivabradine:** oral, t½ ~11 hr, hepatic (CYP3A4) — avoid with strong CYP3A4 inhibitors (azoles, clarithromycin → ↑ bradycardia)",
-        pearl: "**Ivabradine is the only drug that reduces HR without affecting BP, contractility, or the QT interval.** Its phosphenes (visual brightness when entering bright light) are due to HCN channel expression in the retina — benign but alarming to patients. It requires **sinus rhythm to work** — completely ineffective in AF."
+        aka: "Ranolazine · Ivabradine",
+        summary: "Novel antianginal and HF agents with unique mechanisms.",
+        moa: "**Ranolazine**: Blocks **Late $Na^+$ current** → ↓ $Na^+$ overload → ↓ $Ca^{2+}$ → ↓ Diastolic wall tension.\n**Ivabradine**: Blocks **$I_f$ 'funny' current** in SA node → ↓ HR.",
+        use: "**Ranolazine**: Chronic stable angina (refractory).\n**Ivabradine**: HFrEF with HR ≥70 bpm (despite max $\beta$-blockers).",
+        se: "**Ranolazine**: Mild ↑ QTc.\n**Ivabradine**: **Phosphenes** (visual light flashes); Bradycardia.",
+        ci: "**Ranolazine**: Liver cirrhosis.\n**Ivabradine**: AF; Sick Sinus Syndrome.",
+        pk: "Both: Oral; CYP3A4 substrates.",
+        pearl: "**Ivabradine** reduces HR without affecting BP or contractility."
       },
       {
         name: "Milrinone & Nesiritide",
-        aka: "Milrinone (Primacor) · Nesiritide (Natrecor)",
-        summary: "Positive inotropes used for acute decompensated heart failure. Milrinone inhibits PDE3 to increase cAMP; nesiritide is recombinant BNP that promotes natriuresis and vasodilation.",
-        moa: "**Milrinone:** inhibit **phosphodiesterase 3 (PDE3)** → ↑ cAMP → ↑ PKA → ↑ Ca²⁺ in cardiomyocytes (↑ inotropy) + vascular smooth muscle relaxation (↑ cAMP → vasodilation/↓ afterload). **Nesiritide:** recombinant human **BNP** → activates guanylate cyclase → ↑ cGMP → vasodilation + natriuresis",
-        use: "Milrinone: acute decompensated HF refractory to standard therapy (bridge to transplant/LVAD), cardiogenic shock; Nesiritide: acutely decompensated HF with dyspnea (symptom relief) — role limited by lack of mortality benefit",
-        se: "**Milrinone:** hypotension (vasodilatory), arrhythmias (↑ cAMP → triggered arrhythmias), ↑ mortality with chronic use (not for outpatient); Nesiritide: **hypotension** (most common — dose-limiting), headache",
-        ci: "Milrinone: severe outflow tract obstruction (HOCM); Nesiritide: use with caution in hypotension (SBP <100 mmHg); low-output states",
-        pk: "Milrinone: IV infusion only; t½ ~2–3 hr, primarily renal elimination — reduce dose in CKD. Nesiritide: IV infusion, t½ ~18 min, proteolytic clearance.",
-        pearl: "**Milrinone is an 'inodilator'** — it simultaneously increases inotropy and decreases afterload (by vasodilation). Unlike dobutamine, it bypasses β-receptors (useful in patients on high-dose β-blockers). But it increases arrhythmia risk and is linked to ↑ mortality in chronic outpatient use (OPTIME trial) — for inpatient, short-term bridge therapy only."
-      },
+        aka: "Milrinone · Nesiritide",
+        summary: "Positive inotropes for acute decompensated heart failure.",
+        moa: "**Milrinone**: **PDE3 Inhibitor** → ↑ $cAMP$ → ↑ Inotropy + Vasodilation.\n**Nesiritide**: Recombinant **BNP** → ↑ $cGMP$ → Vasodilation + Natriuresis.",
+        use: "**Milrinone**: Acute HF refractory to standard therapy; Bridge to transplant.\n**Nesiritide**: Decompensated HF with dyspnea.",
+        se: "**Milrinone**: Hypotension, Arrhythmias.\n**Nesiritide**: Hypotension.",
+        ci: "**Milrinone**: HOCM.",
+        pk: "Both: IV infusion only.\nMilrinone: Dose-reduce in CKD.",
+        pearl: "**Milrinone** is an 'inodilator' that bypasses $\beta$-receptors."
+      }
     ]
   },
   {
@@ -379,154 +377,26 @@ cv: [
     drugs: [
       {
         name: "Statins (HMG-CoA Reductase Inhibitors)",
-        aka: "Atorvastatin (Lipitor) · Rosuvastatin (Crestor) · Simvastatin · Pravastatin · Lovastatin · Fluvastatin · Pitavastatin",
-        summary: "Inhibit the rate-limiting step in cholesterol synthesis, primarily reducing LDL-C by upregulating hepatic LDL receptors. First-line therapy for ASCVD risk reduction and familial hypercholesterolemia.",
-        moa: "Competitive inhibition of **HMG-CoA reductase** (rate-limiting enzyme in the mevalonate pathway) → ↓ hepatic cholesterol synthesis → ↑ LDL receptor expression → ↑ LDL-C clearance from plasma; also anti-inflammatory/pleiotropic effects",
-        use: "ASCVD risk reduction (primary and secondary prevention); familial hypercholesterolemia; acute coronary syndrome (high-intensity statin — atorvastatin 80 mg, rosuvastatin 40 mg regardless of LDL); post-MI (pleiotropic benefit beyond LDL reduction)",
-        se: "**Myopathy** (myalgia → myositis → rhabdomyolysis with ↑ CK → AKI — risk with gemfibrozil/niacin combination); **hepatotoxicity** (mild transaminase elevation — monitor LFTs); new-onset diabetes (modest risk — outweighed by CV benefit); teratogenic (avoid in pregnancy)",
-        ci: "Pregnancy and breastfeeding (teratogenic — inhibit fetal cholesterol synthesis needed for myelination); active hepatic disease; concurrent use of gemfibrozil (↑ rhabdomyolysis risk — avoid; fenofibrate safer); concurrent use of potent CYP3A4 inhibitors with simvastatin (lovastatin) — ↑ statin levels → myopathy",
-        pk: "Most metabolized by CYP3A4 (atorvastatin, simvastatin, lovastatin) — vulnerable to azole antifungals, macrolides, protease inhibitors\n**Pravastatin and rosuvastatin:** NOT CYP3A4 substrates — fewer interactions (safer with immunosuppressants like cyclosporine)\n**Atorvastatin/Rosuvastatin:** longest t½ (~14–19 hr) — can be taken any time\nOthers: take at night (peak cholesterol synthesis is nocturnal)",
-        pearl: "**Rosuvastatin and pravastatin are not CYP3A4 substrates** — preferred in transplant patients on cyclosporine/tacrolimus. When a patient reports muscle pain on a statin, check CK: if markedly elevated, hold statin. The dreaded complication, **rhabdomyolysis**, is rare but life-threatening — screen for gemfibrozil co-use, hypothyroidism, and renal impairment (all ↑ statin levels)."
+        aka: "Atorvastatin · Rosuvastatin · Simvastatin · Pravastatin · Lovastatin · Fluvastatin · Pitavastatin",
+        summary: "Inhibit rate-limiting step in cholesterol synthesis.\nFirst-line for ASCVD risk reduction.",
+        moa: "Competitive inhibition of **HMG-CoA Reductase**.\n↑ **LDL Receptor** expression → ↑ LDL clearance.",
+        use: "**ASCVD Risk Reduction**: Primary and secondary prevention.\n**Post-MI**: Pleiotropic anti-inflammatory benefits.",
+        se: "**Myopathy**: (Myalgia → Rhabdomyolysis); **Hepatotoxicity** (↑ LFTs).\nNew-onset Diabetes risk.",
+        ci: "**Pregnancy** (Teratogenic).\nActive liver disease; Gemfibrozil (↑ Rhabdo risk).",
+        pk: "**Rosuvastatin/Pravastatin**: Not CYP3A4 substrates (fewer interactions).\nAtorvastatin: Long $t_{1/2}$.",
+        pearl: "**Rhabdomyolysis** is rare but life-threatening; check CK if muscle pain occurs."
       },
       {
         name: "Fibrates & Niacin",
-        aka: "Gemfibrozil (Lopid) · Fenofibrate (Tricor) · Bezafibrate — Fibrates | Niacin (Niaspan) — Vitamin B3",
-        summary: "Fibrates activate PPARα to reduce triglycerides and raise HDL; niacin primarily raises HDL and lowers TG via inhibition of hepatic VLDL secretion. Both are second-line lipid agents with significant drug interactions.",
-        moa: "**Fibrates:** activate **PPARα (peroxisome proliferator-activated receptor α)** → ↑ lipoprotein lipase (LPL) expression → ↑ TG hydrolysis + ↑ HDL synthesis + ↓ VLDL production. **Niacin:** inhibits **DGAT2** in liver + inhibits lipolysis in adipose tissue (via GPR109A) → ↓ VLDL secretion → ↓ TG + ↓ LDL + ↑ HDL (most effective HDL-raising drug)",
-        use: "Fibrates: hypertriglyceridemia (TG >500 mg/dL — primary use to prevent pancreatitis), mixed dyslipidemia; Niacin: isolated low HDL, mixed dyslipidemia (largely fallen out of favor — AIM-HIGH, HPS2-THRIVE showed no CV benefit on statin)",
-        se: "**Fibrates:** **myopathy/rhabdomyolysis** (especially with statins — gemfibrozil most dangerous via CYP2C8 inhibition; fenofibrate safer); cholelithiasis (↑ biliary cholesterol); **Niacin:** **flushing** (most common — prostaglandin-mediated, prevented by aspirin 325 mg 30 min before dose), hepatotoxicity, hyperglycemia, hyperuricemia (gout), acanthosis nigricans",
-        ci: "Fibrates: severe hepatic/renal disease; gallbladder disease; Gemfibrozil: concurrent statin (↑ myopathy — prefer fenofibrate); Niacin: peptic ulcer disease, active gout, uncontrolled DM (hyperglycemia), hepatic disease",
-        pk: "**Gemfibrozil:** oral, t½ ~1.5 hr, hepatic glucuronidation, inhibits CYP2C8 (↑ simvastatin/repaglinide levels)\n**Fenofibrate:** oral prodrug (fenofibric acid active), renal excretion, t½ ~20 hr, less drug interaction\n**Niacin:** oral immediate-release (more flushing, less hepatotoxic) or extended-release (less flushing, more hepatotoxic)",
-        pearl: "**Gemfibrozil + statin = dangerous combination** (inhibits both statin metabolism and statin glucuronidation → ↑ statin AUC up to 5×). **Fenofibrate is far safer with statins** (no CYP2C8 inhibition). Niacin flushing is prostaglandin-mediated — **aspirin blocks it** by inhibiting prostaglandin synthesis. This flushing effect differentiates niacin from all other lipid drugs."
-      },
-    ]
-  },
-],
-
-blood: [
-  {
-    group: "Anticoagulants",
-    drugs: [
-      {
-        name: "Heparin (UFH & LMWH)",
-        aka: "Unfractionated Heparin (UFH) · Enoxaparin (Lovenox) · Dalteparin · Tinzaparin · Fondaparinux",
-        summary: "Parenteral anticoagulants that potentiate antithrombin III to inhibit clotting factors. UFH is used in hospital settings requiring reversible anticoagulation; LMWHs are preferred for outpatient DVT/PE and ACS.",
-        moa: "Bind and activate **antithrombin III (AT-III)** → ↑ inhibition of **thrombin (IIa)** and **Factor Xa** (UFH inhibits both; LMWH predominantly inhibits Xa; Fondaparinux exclusively inhibits Xa)",
-        use: "**UFH:** acute PE/DVT, ACS, cardiopulmonary bypass, hemodialysis, bridging therapy\n**LMWH:** DVT/PE treatment and prophylaxis, ACS (STEMI/NSTEMI), pregnancy (preferred anticoagulant — does not cross placenta)\n**Fondaparinux:** DVT/PE prophylaxis post-orthopedic surgery, HIT (no cross-reactivity)",
-        se: "**Bleeding** (all); **Heparin-induced thrombocytopenia (HIT)** — UFH > LMWH > fondaparinux; UFH: **osteoporosis** (long-term), hypoaldosteronism/hyperkalemia; HIT Type II: immune-mediated (IgG vs. PF4-heparin complex) → paradoxical thrombosis (not just bleeding)",
-        ci: "Active bleeding; severe thrombocytopenia; HIT (any heparin — switch to direct thrombin inhibitors: argatroban, bivalirudin, or fondaparinux); intracranial hemorrhage",
-        pk: "**UFH:** IV or SC, t½ ~1–2 hr, hepatic/endothelial metabolism; monitor with **aPTT** (target 60–100 sec)\n**LMWH:** SC, more predictable PK, t½ ~4–6 hr, renal elimination — reduce dose in CKD; monitor with **anti-Xa levels** in obesity/renal failure\n**Reversal:** protamine sulfate reverses UFH completely, LMWH partially (~60%), ineffective for fondaparinux",
-        pearl: "**HIT Type II diagnosis:** platelet drop >50% + thrombosis + PF4-heparin antibodies (ELISA) + 4Ts score. Immediately stop ALL heparin products (including line flushes) and start a **non-heparin anticoagulant** — argatroban (hepatic clearance — preferred in renal failure), bivalirudin, or fondaparinux. Do NOT give platelets (fuels thrombosis)."
-      },
-      {
-        name: "Warfarin",
-        aka: "Warfarin (Coumadin, Jantoven)",
-        summary: "Vitamin K epoxide reductase inhibitor that depletes active clotting factors II, VII, IX, X and proteins C/S. Used for chronic anticoagulation in AF, VTE, and mechanical heart valves.",
-        moa: "Inhibit **Vitamin K epoxide reductase (VKOR)** → ↓ regeneration of active Vitamin K (hydroquinone form) → ↓ γ-carboxylation of clotting factors **II, VII, IX, X** and anticoagulant proteins **C and S**",
-        use: "Chronic AF (stroke prevention, CHA₂DS₂-VASc ≥2); mechanical heart valves (only anticoagulant indicated); recurrent VTE (especially with antiphospholipid syndrome); left ventricular thrombus",
-        se: "**Bleeding** (most common); **skin/tissue necrosis** (early — protein C/S depletion before factor depletion → transient hypercoagulability, especially in protein C/S deficiency); **teratogenicity** (embryopathy — nasal hypoplasia, stippled epiphyses in 1st trimester; CNS malformations in 2nd/3rd); warfarin-induced calciphylaxis (rare)",
-        ci: "Pregnancy (crosses placenta — use LMWH instead); active bleeding; inability to monitor INR reliably; elective surgery (bridge with heparin); severe hepatic disease (synthesizes clotting factors → unpredictable INR)",
-        pk: "Oral; t½ ~36–42 hr; highly protein-bound (albumin — displacement interactions); hepatic (CYP2C9 — S-warfarin, more active). Monitor with **INR** (target 2–3 for most; 2.5–3.5 for mechanical mitral valve). Reversal: **Vitamin K** (slow, 12–24 hr); **4-factor PCC** (Kcentra — fastest); **FFP** (volume burden). VKORC1 and CYP2C9 polymorphisms affect dosing.",
-        pearl: "**Warfarin's early anticoagulation paradox:** first 2–3 days can be hypercoagulable because Protein C (t½ ~8 hr) and S are depleted before factors II (t½ ~72 hr) and X (t½ ~40 hr). Always bridge with heparin for ≥5 days and until INR is therapeutic for ≥2 consecutive days. **Factor VII** (t½ ~6 hr) falls first — INR rises early but does not indicate therapeutic anticoagulation."
-      },
-      {
-        name: "Direct Oral Anticoagulants (DOACs)",
-        aka: "Apixaban (Eliquis) · Rivaroxaban (Xarelto) · Edoxaban · Betrixaban — Factor Xa inhibitors | Dabigatran (Pradaxa) — Direct thrombin inhibitor",
-        summary: "Target-specific oral anticoagulants that directly inhibit factor Xa or thrombin without requiring antithrombin III. Preferred over warfarin for nonvalvular AF and VTE due to predictable dosing and fewer interactions.",
-        moa: "**Factor Xa inhibitors** (apixaban, rivaroxaban, edoxaban): directly inhibit **free and clot-bound Factor Xa** → ↓ thrombin generation. **Dabigatran:** direct competitive inhibitor of **thrombin (Factor IIa)** — free and fibrin-bound",
-        use: "Nonvalvular AF (stroke prevention); VTE treatment and prophylaxis; post-orthopedic surgery DVT prophylaxis; ACS (rivaroxaban low-dose add-on); NOT for mechanical heart valves or valvular AF (warfarin required)",
-        se: "**Bleeding** (GI bleeding higher with dabigatran/rivaroxaban than warfarin; intracranial hemorrhage lower than warfarin — major safety advantage); dabigatran: dyspepsia/GI upset (take with food); no routine monitoring required",
-        ci: "Mechanical heart valves (RE-ALIGN trial: dabigatran inferior — warfarin required); severe renal failure (dabigatran relies on renal clearance — avoid if CrCl <30 mL/min); active major bleeding; severe hepatic impairment",
-        pk: "**Dabigatran:** oral prodrug, 80% renal clearance — most renally dependent DOAC; P-gp substrate; reversal agent: **idarucizumab** (Praxbind — monoclonal antibody)\n**Apixaban:** CYP3A4 + P-gp, ~27% renal — safest in CKD; reversal: **andexanet alfa** (recombinant Xa decoy)\n**Rivaroxaban:** CYP3A4 + P-gp, 33% renal\nAll: no routine INR monitoring; factor Xa inhibitors: anti-Xa levels for clinical decision-making",
-        pearl: "**DOACs vs warfarin:** Similar or better efficacy, more predictable, fewer food/drug interactions, LOWER intracranial hemorrhage. However, they are **NOT for mechanical valves** (RE-ALIGN trial showed ↑ stroke and bleeding with dabigatran vs. warfarin). The reversal agents — idarucizumab (dabigatran) and andexanet alfa (Xa inhibitors) — are expensive but available for life-threatening bleeding."
-      },
-    ]
-  },
-  {
-    group: "Antiplatelets",
-    drugs: [
-      {
-        name: "Aspirin (Antiplatelet)",
-        aka: "Aspirin (ASA) · Acetylsalicylic Acid",
-        summary: "**Irreversible COX-1 inhibitor** — the cornerstone antiplatelet agent for ASCVD prevention.",
-        moa: "Irreversibly **acetylates COX-1** → permanently inhibits TXA₂ synthesis in platelets (no nucleus → can't regenerate COX).\nAlso inhibits PGI₂ in endothelium (endothelium can regenerate COX) — net effect is antiplatelet.",
-        use: "**ACS** (chew immediately in STEMI/NSTEMI — fastest absorption).\n**ASCVD secondary prevention** (post-MI, post-stroke, PAD).\n**DAPT** with P2Y12 inhibitor post-PCI.\n**Low-dose:** pre-eclampsia prevention; colorectal cancer chemoprevention.\n**High-dose:** Kawasaki disease (anti-inflammatory).",
-        se: "**GI bleeding/ulceration** (COX-1 protects gastric mucosa — use PPI).\n**Reye syndrome** in children with viral infections (avoid <16 yr).\n**NSAID-exacerbated respiratory disease** (AERD — aspirin-sensitive asthma, leukotriene shunting).\n**Salicylism:** tinnitus, nausea (high doses).",
-        ci: "Children with viral infections (Reye syndrome); NSAID-sensitive asthma; active GI bleeding; severe renal failure.\nThird trimester pregnancy (↓ PGE₂ → premature closure of ductus arteriosus).",
-        pk: "Antiplatelet effect lasts **entire platelet lifespan (~7–10 days)** — platelets can't synthesize new COX.\nStop 7–10 days before elective surgery. 81 mg = antiplatelet; >1.5 g/day = anti-inflammatory.",
-        pearl: "**Aspirin overdose:** (1) early **respiratory alkalosis** (salicylate directly stimulates respiratory center) → (2) **high anion gap metabolic acidosis** (uncouples oxidative phosphorylation).\nThis biphasic mixed acid-base picture is classic and high-yield."
-      },
-      {
-        name: "P2Y12 & GP IIb/IIIa Blockers",
-        aka: "Clopidogrel (Plavix) · Ticagrelor (Brilinta) · Prasugrel (Effient) — P2Y12 | Abciximab · Eptifibatide · Tirofiban — GP IIb/IIIa",
-        summary: "P2Y12 inhibitors block ADP-mediated platelet activation; GP IIb/IIIa inhibitors block the final common pathway of platelet aggregation. Used for ACS, post-PCI, and high-risk coronary interventions.",
-        moa: "**P2Y12 inhibitors:** block **P2Y12 (ADP receptor)** on platelets → ↓ cAMP degradation → ↓ platelet activation/aggregation (clopidogrel/prasugrel: irreversible; ticagrelor: reversible). **GP IIb/IIIa inhibitors:** block **glycoprotein IIb/IIIa (αIIbβ3)** → prevent fibrinogen cross-linking between platelets → ↓ final platelet aggregation",
-        use: "**Clopidogrel:** DAPT with aspirin post-PCI/ACS, ischemic stroke prevention\n**Ticagrelor:** preferred over clopidogrel in ACS (PLATO trial — ↓ CV death/MI)\n**Prasugrel:** STEMI patients undergoing PCI (TRITON — ↓ CV events vs. clopidogrel, ↑ bleeding)\n**GP IIb/IIIa inhibitors:** high-risk PCI (abciximab), ACS with planned PCI (eptifibatide/tirofiban)",
-        se: "P2Y12: **bleeding**; Clopidogrel: rare TTP; Ticagrelor: **dyspnea** (adenosine-mediated — most unique SE), bradycardia; Prasugrel: ↑ bleeding (contraindicated in prior stroke/TIA); GP IIb/IIIa: **thrombocytopenia** (abciximab → immune), bleeding",
-        ci: "Prasugrel: prior stroke or TIA (↑ intracranial hemorrhage — contraindicated), age ≥75 or weight <60 kg (relative); all P2Y12: active bleeding; GP IIb/IIIa: active bleeding, recent stroke, severe HTN, thrombocytopenia",
-        pk: "**Clopidogrel:** oral prodrug requiring CYP2C19 activation (poor metabolizers have ↓ efficacy — PPI co-use may reduce activation); irreversible, effect lasts 7 days\n**Ticagrelor:** active drug (no prodrug), reversible, t½ ~12 hr, twice daily\n**Prasugrel:** prodrug, more potent and faster than clopidogrel, irreversible\n**Abciximab:** IV, irreversible (Fab fragment), platelet function recovers in 24–48 hr (transfuse platelets to reverse)",
-        pearl: "**Clopidogrel's achilles heel is CYP2C19:** ~25% of patients are poor metabolizers (especially Asians, some Black patients) and derive less antiplatelet benefit. **Omeprazole** (a CYP2C19 inhibitor) reduces clopidogrel activation — use **pantoprazole** instead. **Ticagrelor** bypasses this problem (not a prodrug) and has superior outcomes in PLATO trial."
-      },
-      {
-        name: "PDE3/PDE5 Inhibitors (Antiplatelet)",
-        aka: "Cilostazol (Pletal) — PDE3 inhibitor | Dipyridamole (Persantine, Aggrenox with ASA) — PDE inhibitor + adenosine uptake inhibitor",
-        summary: "Increase intraplatelet cAMP (cilostazol) or cAMP/cGMP (dipyridamole) to inhibit platelet aggregation and cause vasodilation. Used for peripheral arterial disease and secondary stroke prevention.",
-        moa: "**Cilostazol:** inhibit **PDE3** in platelets and vascular smooth muscle → ↑ cAMP → ↓ platelet aggregation + vasodilation. **Dipyridamole:** inhibit **PDE** + block adenosine reuptake → ↑ adenosine (↑ cAMP/cGMP) → ↓ platelet aggregation + coronary vasodilation",
-        use: "Cilostazol: intermittent claudication (peripheral arterial disease — ↑ walking distance); Dipyridamole + aspirin (Aggrenox): secondary stroke prevention; Dipyridamole IV: cardiac stress testing (coronary vasodilator — coronary steal phenomenon unmasks CAD in patients who cannot exercise)",
-        se: "Cilostazol: headache, **palpitations/tachycardia** (↑ cAMP in heart — contraindicated in HF), diarrhea; Dipyridamole: headache, flushing, hypotension; Dipyridamole stress test: chest pain, bronchospasm (reversed by aminophylline/theophylline)",
-        ci: "Cilostazol: **heart failure of any severity** (↑ mortality risk — phosphodiesterase inhibitor in HF analogous to milrinone); Dipyridamole: hypotension; Dipyridamole stress test: asthma (↑ adenosine → bronchospasm)",
-        pk: "Cilostazol: oral, t½ ~11 hr, CYP3A4 + CYP2C19, twice daily. Dipyridamole: oral (Aggrenox ER), IV for stress testing; inhibits adenosine deaminase and adenosine reuptake transporter → ↑ adenosine effects (theophylline reverses vasodilatory effects). Dipyridamole IV for stress test: onset ~2 min, reversed by aminophylline.",
-        pearl: "**Dipyridamole cardiac stress test works by adenosine-mediated coronary steal:** Normal arteries vasodilate; stenotic territories cannot dilate further → relative underperfusion is unmasked. Reversed immediately by **aminophylline/theophylline** (adenosine receptor antagonists). This is the same mechanism as adenosine stress testing — both are contraindicated in asthma."
-      },
-      {
-        name: "tPA & Thrombolytics",
-        aka: "Alteplase (tPA, Activase) · Tenecteplase (TNKase) · Reteplase · Streptokinase · Urokinase",
-        summary: "Activate plasminogen to plasmin, which dissolves existing thrombi. Used for acute ischemic stroke, massive PE, STEMI without PCI availability, and occluded catheters.",
-        moa: "Convert **plasminogen → plasmin** (serine protease) → cleaves fibrin cross-links → thrombus dissolution; tPA and derivatives are fibrin-selective (bind fibrin clot → activate plasminogen locally); streptokinase: non-fibrin-selective systemic plasminogen activator",
-        use: "Acute ischemic stroke (alteplase or tenecteplase within 3–4.5 hr of onset); massive/submassive PE with hemodynamic compromise; STEMI when PCI unavailable within 120 min; occluded central venous catheters (low-dose alteplase); DVT (catheter-directed thrombolysis for massive proximal DVT)",
-        se: "**Intracranial hemorrhage** (most feared — 3–6% in ischemic stroke); systemic bleeding; reperfusion injury; Streptokinase: allergic reactions/anaphylaxis (bacterial antigen), fever; hypotension (bradykinin release)",
-        ci: "Prior intracranial hemorrhage (absolute); ischemic stroke within 3 months; active internal bleeding (except menses); intracranial neoplasm/AVM/aneurysm; BP >185/110 (must be controlled first for stroke thrombolysis); recent surgery/trauma/head injury within 3 months; current anticoagulant use (relative — depends on level)",
-        pk: "**Alteplase:** IV bolus + infusion, t½ ~5 min (extremely short, biologic clearance), fibrin-selective\n**Tenecteplase:** single IV bolus (convenience), longer t½ (~20 min), fibrin-specific — preferred in STEMI\n**Streptokinase:** IV infusion, non-selective, t½ ~18 min, immunogenic (cannot re-use within 1 year due to antibodies)\n**Reversal:** cryoprecipitate (repletes fibrinogen); aminocaproic acid or tranexamic acid (plasmin inhibitors)",
-        pearl: "**Stroke thrombolysis window:** alteplase up to 3 hr (or 4.5 hr in select patients); **must exclude hemorrhage on CT first** (non-contrast CT sufficient). Absolute contraindication: any prior intracranial hemorrhage. The mnemonic for contraindications: **BRAIN** — Bleeding (active), Recent surgery, Anticoagulants (active), Intracranial pathology, Numbers (BP >185/110)."
-      },
-    ]
-  },
-  {
-    group: "Gout Agents",
-    drugs: [
-      {
-        name: "Allopurinol & Febuxostat",
-        aka: "Allopurinol (Zyloprim) · Febuxostat (Uloric)",
-        summary: "Xanthine oxidase inhibitors that reduce uric acid synthesis. Used for chronic gout prophylaxis, uric acid nephrolithiasis, and tumor lysis syndrome prevention. Do NOT use during acute gout flares.",
-        moa: "Inhibit **xanthine oxidase (XO)** → ↓ conversion of hypoxanthine → xanthine → uric acid → ↓ serum urate levels; Allopurinol is a prodrug (converted to oxypurinol by XO)",
-        use: "Chronic gout prophylaxis (started ≥2 weeks after acute flare resolves); uric acid nephrolithiasis prevention; tumor lysis syndrome prophylaxis (high-risk chemotherapy); HGPRT deficiency (Lesch-Nyhan syndrome — allopurinol reduces urate but does not treat neurologic/behavioral symptoms)",
-        se: "**Hypersensitivity reaction** (allopurinol — rash to **DRESS/Stevens-Johnson syndrome** — highest risk with HLA-B*5801, common in Han Chinese/Thai — screen before prescribing); acute gout flare when first started (mobilization of urate crystals — always co-prescribe colchicine or NSAID for prophylaxis); Febuxostat: **↑ cardiovascular events** (FDA black box — higher all-cause mortality than allopurinol in CARES trial)",
-        ci: "Acute gout flare (will worsen by mobilizing urate — wait until flare resolves); azathioprine or 6-MP co-administration without dose reduction (xanthine oxidase normally metabolizes these → inhibiting XO → drug accumulation → myelosuppression); Febuxostat: cardiovascular disease history (relative — prefer allopurinol)",
-        pk: "**Allopurinol:** oral, prodrug → oxypurinol (active, t½ ~18–30 hr) by xanthine oxidase; renal elimination — dose-reduce in CKD; start low (100 mg/day) and titrate to target uric acid <6 mg/dL\n**Febuxostat:** oral, non-purine analog, hepatic metabolism (CYP1A2/2C8), t½ ~5–8 hr; no renal dose adjustment needed (mild-moderate CKD)",
-        pearl: "**Allopurinol + azathioprine/6-MP is a critical drug interaction:** azathioprine and 6-MP are metabolized by xanthine oxidase — allopurinol inhibition → 4–5× drug accumulation → life-threatening myelosuppression. If both must be used, reduce azathioprine/6-MP dose to 25% of usual. This interaction is frequently tested."
-      },
-      {
-        name: "Colchicine",
-        aka: "Colchicine (Colcrys, Mitigare)",
-        summary: "Anti-inflammatory agent that inhibits microtubule polymerization and blocks neutrophil migration into joints. Used for acute gout flares, gout prophylaxis, pericarditis, and familial Mediterranean fever.",
-        moa: "Bind **β-tubulin** → inhibit microtubule polymerization → ↓ neutrophil chemotaxis and phagocytosis of urate crystals; does NOT lower uric acid levels",
-        use: "Acute gout flare (most effective if started within 12–24 hr of onset); gout prophylaxis during urate-lowering therapy initiation; acute and recurrent pericarditis (colchicine + NSAID first-line); familial Mediterranean fever (FMF) — prevents attacks; Behçet disease",
-        se: "**GI toxicity** — dose-dependent: nausea, vomiting, **diarrhea** (crampy — most common dose-limiting SE); **myopathy** and **neuropathy** (especially with long-term use or CYP3A4/P-gp inhibitors); myelosuppression (rare, high doses)",
-        ci: "Severe renal failure (CrCl <10 mL/min — marked accumulation); concurrent strong CYP3A4 + P-gp inhibitors (cyclosporine, clarithromycin, ritonavir → ↑ colchicine levels → toxicity, even fatal); hepatic failure",
-        pk: "Oral; t½ ~27 hr; hepatic (CYP3A4) + renal elimination; P-gp substrate. Modern low-dose protocol (1.2 mg then 0.6 mg 1 hr later) is as effective as high-dose with far less GI toxicity (AGREE trial).",
-        pearl: "**Colchicine does NOT lower uric acid** — it only treats the inflammatory response to crystals. During prophylaxis when starting allopurinol/febuxostat, give colchicine for 3–6 months to prevent mobilization flares. The classic exam scenario: colchicine toxicity mimics **organophosphate poisoning** (GI crisis, muscle weakness, multi-organ failure) — diarrhea is the first warning sign."
-      },
-      {
-        name: "Probenecid",
-        aka: "Probenecid · Sulfinpyrazone",
-        summary: "Uricosuric agent that inhibits renal urate reabsorption to increase uric acid excretion. Used for chronic gout when xanthine oxidase inhibitors are contraindicated, and to prolong penicillin/cephalosporin levels.",
-        moa: "Inhibit **URAT1 (urate transporter 1)** in the proximal tubule → ↓ uric acid reabsorption → ↑ urinary uric acid excretion (uricosuric); also inhibits OAT1/OAT3 → ↓ tubular secretion of penicillins/cephalosporins → ↑ antibiotic plasma levels",
-        use: "Chronic gout prophylaxis (alternative to allopurinol — especially if allopurinol intolerant); urate-lowering therapy in under-excretors (low 24-hr urine uric acid); penicillin/ampicillin adjunct (prolong antibiotic levels — used in gonorrhea treatment historically); adjunct with cephalosporins",
-        se: "Acute gout flare when first started (mobilizing urate); uric acid nephrolithiasis (↑ urinary uric acid → stone formation — ensure high urine output, urinary alkalization); GI upset; hypersensitivity (sulfa-related — sulfinpyrazone)",
-        ci: "Uric acid nephropathy or uric acid kidney stones (will worsen); CrCl <30 mL/min (ineffective — needs adequate tubular function); acute gout flare (start ≥2 weeks after flare); aspirin use (low-dose aspirin blocks uricosuric effect by competing at URAT1 — major interaction)",
-        pk: "Oral, hepatic glucuronidation, t½ ~5–8 hr; competes with drugs secreted by OAT transporters (MTX, penicillins, NSAIDs) — clinically useful (prolong penicillin) or harmful (↑ methotrexate toxicity). Drink ≥2 L water/day to prevent stone formation.",
-        pearl: "**Probenecid is the classic drug that lowers uric acid by INCREASING urine uric acid** (vs. allopurinol which decreases production). Paradox: ↑ urine uric acid → ↑ stone risk — always alkalinize urine and ensure high fluid intake. **Aspirin blocks uricosuric effect** (competes at URAT1) — never co-prescribe low-dose aspirin with probenecid for gout."
-      },
+        aka: "Gemfibrozil · Fenofibrate · Bezafibrate | Niacin (Vitamin B3)",
+        summary: "Fibrates target Triglycerides via PPAR$\alpha$.\nNiacin raises HDL and inhibits VLDL secretion.",
+        moa: "**Fibrates**: Activate **PPAR$\alpha$** → ↑ LPL expression → ↑ TG hydrolysis.\n**Niacin**: Inhibits **DGAT2** in liver + inhibits lipolysis in adipose.",
+        use: "**Fibrates**: Severe Hypertriglyceridemia (prevents pancreatitis).\n**Niacin**: Low HDL; Mixed dyslipidemia.",
+        se: "**Fibrates**: **Myopathy** (especially with Statins); Gallstones.\n**Niacin**: **Flushing** (prostaglandin-mediated); Hyperglycemia; Hyperuricemia (Gout).",
+        ci: "**Fibrates**: Gallbladder disease.\n**Niacin**: Active Gout; Peptic Ulcer.",
+        pk: "**Gemfibrozil**: Potent CYP2C8 inhibitor (Avoid with Statins).\n**Fenofibrate**: Safer with Statins.",
+        pearl: "**Aspirin blocks Niacin flushing** by inhibiting prostaglandin synthesis."
+      }
     ]
   },
   {
@@ -534,19 +404,145 @@ blood: [
     drugs: [
       {
         name: "Nitrates",
-        aka: "Nitroglycerin (NTG, Nitrostat, Nitro-Bid) · Isosorbide Dinitrate (ISDN) · Isosorbide Mononitrate (ISMN) · Sodium Nitroprusside",
-        summary: "Nitric oxide donors that relax vascular smooth muscle to reduce cardiac preload and afterload. Used for acute angina, ACS, decompensated HF, and hypertensive emergencies.",
-        moa: "Release **nitric oxide (NO)** → activate **guanylyl cyclase** → ↑ cGMP → activate protein kinase G → dephosphorylate myosin light chain → **vascular smooth muscle relaxation**; venous > arterial at low doses (↓ preload dominant); arterial at high doses (↓ afterload + ↓ coronary vasospasm); coronary vasodilation (Prinzmetal angina)",
-        use: "**Sublingual NTG:** acute angina attack (onset 1–3 min)\n**Long-acting nitrates (ISDN/ISMN):** stable angina prophylaxis\n**IV NTG:** ACS (ongoing chest pain, HTN, pulmonary edema), acute decompensated HF (↓ preload/afterload), hypertensive emergency with pulmonary edema\n**Sodium nitroprusside:** most potent — hypertensive emergency, aortic dissection\nEsophageal spasm (relaxes smooth muscle)",
-        se: "**Headache** (cerebral vasodilation — most common; tolerance develops)\n**Orthostatic hypotension + reflex tachycardia** (↓ preload → ↓ CO)\n**Tachyphylaxis/tolerance** (continuous use — require 8–12 hr nitrate-free interval daily)\n**Nitroprusside:** cyanide toxicity (give hydroxocobalamin or thiosulfate); methemoglobinemia",
-        ci: "**Concurrent PDE5 inhibitors** (sildenafil/tadalafil/vardenafil — ↑↑ cGMP → severe hypotension — absolute CI within 24–48 hr)\nSevere hypotension (SBP <90 mmHg); hypovolemia\n**RV infarction** (preload-dependent — nitrates → cardiovascular collapse; exclude in inferior MI before SL NTG)\nSevere AS (preload reduction → ↓ CO across fixed stenosis)",
-        pk: "**Sublingual NTG:** onset 1–3 min, duration 30 min; extensive hepatic first-pass (avoid oral NTG)\n**IV NTG:** titrated infusion, immediate onset\n**ISMN:** t½ ~5 hr, renal (no first-pass — mononitrate, no hepatic conversion needed)\n**Nitroprusside:** IV only, onset seconds; metabolized to cyanide → thiocyanate (renal); limit dose >2 µg/kg/min and duration",
-        pearl: "**Nitrate tolerance** is a major clinical problem with continuous nitrate use — occurs within 24 hours via multiple mechanisms (↓ NO bioavailability, neurohormonal counterregulation). The solution is a **nitrate-free interval** (usually 8–12 hours, often overnight). **Nitroprusside cyanide toxicity** risk increases with high doses (>2 µg/kg/min) or prolonged infusion — monitor thiocyanate levels and limit to shortest necessary duration."
+        aka: "Nitroglycerin · Isosorbide Dinitrate · Isosorbide Mononitrate · Sodium Nitroprusside",
+        summary: "Nitric oxide donors that relax vascular smooth muscle.",
+        moa: "Release **Nitric Oxide (NO)** → ↑ $cGMP$ → Vasodilation.\nVenous > Arterial (↓ Preload dominant).",
+        use: "**Acute Angina** (SL NTG); **ACS**; **Hypertensive Emergency** (Nitroprusside).",
+        se: "**Headache**; **Reflex Tachycardia**; **Tachyphylaxis** (Nitrate-free interval needed).\n**Cyanide Toxicity**: Nitroprusside.",
+        ci: "**PDE5 Inhibitors** (Absolute CI — severe hypotension).\n**RV Infarction** (Preload-dependent).",
+        pk: "SL NTG: Fast onset; Nitroprusside: IV only (Cyanide metabolite).",
+        pearl: "**Nitrate Tolerance** occurs within 24 hr; requires 8–12 hr drug-free window."
+      }
+    ]
+  }
+],
+blood: [
+  {
+    group: "Anticoagulants",
+    drugs: [
+      {
+        name: "Heparin (UFH & LMWH)",
+        aka: "Unfractionated Heparin (UFH) · Enoxaparin · Dalteparin · Tinzaparin · Fondaparinux",
+        summary: "Parenteral anticoagulants that activate **Antithrombin III**.\nUFH is for acute use; LMWH for VTE and pregnancy.",
+        moa: "Binds and activates **Antithrombin III (AT-III)**.\n**UFH**: Inhibits **Thrombin (IIa)** and **Xa** equally.\n**LMWH**: Predominantly inhibits **Xa**.",
+        use: "**Acute PE/DVT**; ACS; **Pregnancy** (preferred anticoagulant).\n**Cardiopulmonary Bypass**: UFH.",
+        se: "**Bleeding**.\n**HIT Type II**: IgG vs. PF4-heparin complex → Paradoxical **Thrombosis**.\n**Osteoporosis**: Long-term UFH.\n**Hypoaldosteronism**: Hyperkalemia risk.",
+        ci: "**HIT**: Absolute CI to all heparins (use Argatroban/Bivalirudin).\nActive major bleeding.",
+        pk: "**UFH**: Monitor with **aPTT**; short $t_{1/2}$ (~1–2 hr).\n**LMWH**: Predictable PK; no routine monitoring (check anti-Xa in obesity/CKD).\n**Reversal**: **Protamine Sulfate** (Full for UFH, partial for LMWH).",
+        pearl: "**HIT Management**: Stop all heparin immediately.\nSwitch to **Direct Thrombin Inhibitors** (Argatroban, Bivalirudin)."
       },
+      {
+        name: "Warfarin",
+        aka: "Warfarin (Coumadin)",
+        summary: "**Vitamin K Antagonist** for chronic anticoagulation.\nRequired for **Mechanical Heart Valves**.",
+        moa: "Inhibits **Vitamin K Epoxide Reductase (VKOR)**.\n↓ Synthesis of Factors **II, VII, IX, X** and **Proteins C/S**.",
+        use: "**Chronic AF**; **VTE**; **Mechanical Valves** (only indicated agent).",
+        se: "**Bleeding**.\n**Skin Necrosis**: Early Protein C depletion.\n**Teratogenic**: Bone/CNS malformations (Category X).",
+        ci: "**Pregnancy**; Active bleeding; Protein C/S deficiency.",
+        pk: "Monitor with **PT/INR** (Factor VII falls first).\n$t_{1/2}$ ~40 hr; Metabolized by **CYP2C9**.",
+        pearl: "**Warfarin Bridge**: Always bridge with Heparin for ≥5 days.\n**Reversal**: **4-factor PCC** (Fastest) or **Vitamin K** (Slow)."
+      },
+      {
+        name: "Direct Oral Anticoagulants (DOACs)",
+        aka: "Apixaban · Rivaroxaban · Edoxaban · Dabigatran",
+        summary: "Target-specific anticoagulants with no routine monitoring required.\nPreferred for nonvalvular AF and VTE.",
+        moa: "**Factor Xa Inhibitors** (Apixaban, Rivaroxaban).\n**Direct Thrombin Inhibitor** (Dabigatran).",
+        use: "**Nonvalvular AF**; **VTE** Treatment and prophylaxis.",
+        se: "**Bleeding** (ICH risk lower than Warfarin).\n**Dabigatran**: Dyspepsia.",
+        ci: "**Mechanical Heart Valves** (Dabigatran is inferior).\n**Severe Renal Failure** (especially Dabigatran).",
+        pk: "**Dabigatran**: 80% renal clearance.\n**Reversal**: **Idarucizumab** (Dabigatran); **Andexanet alfa** (Xa inhibitors).",
+        pearl: "**DOAC vs. Warfarin**: No diet restrictions, no INR monitoring."
+      }
     ]
   },
+  {
+    group: "Antiplatelets",
+    drugs: [
+      {
+        name: "Aspirin (Antiplatelet)",
+        aka: "Aspirin (ASA)",
+        summary: "**Irreversible COX-1 inhibitor**.\nFoundational for ASCVD secondary prevention.",
+        moa: "Irreversibly **Acetylates COX-1** → inhibits **TXA₂**.\nPermanently inhibits platelet aggregation.",
+        use: "**ACS**; **Post-MI/Stroke**; **Preeclampsia** prevention.",
+        se: "**GI Bleeding**; **Reye Syndrome** (children with viral infection).\n**AERD**: Aspirin-sensitive asthma (leukotriene shunting).\n**Tinnitus**: Early sign of toxicity.",
+        ci: "**Children** with viral illness; **Active Peptic Ulcer**.",
+        pk: "Effect lasts **7–10 days** (platelet lifespan).\n**Overdose**: Respiratory Alkalosis + Mixed AG-Metabolic Acidosis.",
+        pearl: "**Salicylate Overdose**: Classic mixed acid-base picture.\nAlkalinize urine with $NaHCO_3$."
+      },
+      {
+        name: "P2Y12 & GP IIb/IIIa Blockers",
+        aka: "Clopidogrel · Ticagrelor · Prasugrel | Abciximab · Eptifibatide · Tirofiban",
+        summary: "P2Y12 block ADP-mediated activation.\nGP IIb/IIIa block the final common pathway (aggregation).",
+        moa: "**P2Y12 Inhibitors**: Block **ADP receptor**.\n**GP IIb/IIIa Inhibitors**: Block **$\alpha_{IIb}\beta_3$ receptor** (prevents fibrinogen cross-linking).",
+        use: "**DAPT**: Post-stent/ACS (Clopidogrel/Ticagrelor).\n**Prasugrel**: STEMI with PCI.\n**Abciximab**: High-risk PCI.",
+        se: "**Bleeding**; **Ticagrelor**: Dyspnea.\n**Abciximab**: Thrombocytopenia.",
+        ci: "**Prasugrel**: History of TIA/Stroke.",
+        pk: "**Clopidogrel**: Prodrug activated by **CYP2C19**.\n**Omeprazole** inhibits CYP2C19 → ↓ efficacy.",
+        pearl: "**TTP** is a rare boards association with Clopidogrel."
+      },
+      {
+        name: "PDE3/PDE5 Inhibitors (Antiplatelet)",
+        aka: "Cilostazol · Dipyridamole",
+        summary: "Increase intraplatelet $cAMP$ to inhibit aggregation.",
+        moa: "**Cilostazol**: **PDE3 Inhibitor** → ↑ $cAMP$ → ↓ Aggregation + Vasodilation.\n**Dipyridamole**: Inhibits **PDE** + blocks adenosine reuptake.",
+        use: "**Cilostazol**: Intermittent Claudication (PAD).\n**Dipyridamole**: Secondary stroke prevention (with Aspirin).\n**Cardiac Stress Test**: IV Dipyridamole.",
+        se: "**Cilostazol**: Headache, palpitations.\n**Dipyridamole**: Headache, flushing.",
+        ci: "**Cilostazol**: **Heart Failure** (↑ mortality risk).",
+        pk: "Cilostazol: Oral; CYP3A4.",
+        pearl: "**Coronary Steal**: Dipyridamole unmasks CAD in stress testing."
+      },
+      {
+        name: "tPA & Thrombolytics",
+        aka: "Alteplase · Tenecteplase · Reteplase · Streptokinase",
+        summary: "Clot busters that convert plasminogen to plasmin.",
+        moa: "Convert **Plasminogen → Plasmin**.\nCleaves fibrin cross-links → dissolves existing thrombus.",
+        use: "**Ischemic Stroke** (within 3–4.5 hr window).\n**Massive PE** with hemodynamic compromise.\n**STEMI** (if PCI is unavailable).",
+        se: "**Intracranial Hemorrhage**; Systemic bleeding.",
+        ci: "**BRAIN**:\n**B**leeding; **R**ecent surgery; **A**nticoagulants; **I**ntracranial pathology; **N**umbers (BP >185/110).",
+        pk: "Alteplase: Short $t_{1/2}$ (~5 min).\n**Reversal**: **Cryoprecipitate** or **Aminocaproic acid**.",
+        pearl: "**CT Head** must exclude hemorrhage before administration."
+      }
+    ]
+  },
+  {
+    group: "Gout Agents",
+    drugs: [
+      {
+        name: "Allopurinol & Febuxostat",
+        aka: "Allopurinol · Febuxostat",
+        summary: "**Xanthine Oxidase Inhibitors** for chronic prophylaxis.",
+        moa: "Inhibit **Xanthine Oxidase** → ↓ Uric Acid.",
+        use: "**Chronic Gout Prophylaxis**; **Tumor Lysis Syndrome**.",
+        se: "**HSR/SJS**: Allopurinol (screen **HLA-B*5801**).\n**Acute Gout Flare**: When first started.",
+        ci: "**Acute Gout Flare**: Do NOT start during an active attack.\n**Azathioprine/6-MP**: Severe toxicity interaction.",
+        pk: "Allopurinol: Renal; Febuxostat: Hepatic.",
+        pearl: "**The Interaction**: Allopurinol + Azathioprine = Myelosuppression."
+      },
+      {
+        name: "Colchicine",
+        aka: "Colchicine",
+        summary: "**Microtubule Inhibitor** for acute gout flares.",
+        moa: "Binds **$\beta$-tubulin** → inhibits polymerization.\n↓ Neutrophil chemotaxis.",
+        use: "**Acute Gout Flare**; **Pericarditis**.",
+        se: "**Diarrhea** (dose-limiting); **Myopathy**.",
+        ci: "**Severe Renal Failure**; **CYP3A4 inhibitors**.",
+        pk: "Hepatic and renal elimination.",
+        pearl: "Diarrhea is the classic warning sign of toxicity."
+      },
+      {
+        name: "Probenecid",
+        aka: "Probenecid",
+        summary: "**Uricosuric Agent** that ↑ uric acid excretion.",
+        moa: "Inhibits **URAT1** in proximal tubule.\nInhibits **OAT** → ↓ secretion of Penicillins.",
+        use: "**Chronic Gout**; **Antibiotic Adjunct**.",
+        se: "**Uric Acid Stones**; Acute Gout Flare.",
+        ci: "**History of Kidney Stones**; **Aspirin**.",
+        pk: "Hepatic glucuronidation.",
+        pearl: "Probenecid makes you pee out the uric acid."
+      }
+    ]
+  }
 ],
-
 neuro: [
   {
     group: "Anxiolytics & Sedatives",
@@ -914,69 +910,69 @@ micro: [
       {
         name: "Natural Penicillins",
         aka: "Penicillin G (IV/IM) · Penicillin V (oral) · Benzathine Penicillin G · Procaine Penicillin G",
-        summary: "Narrow-spectrum beta-lactams that disrupt gram-positive cell wall synthesis by inhibiting PBPs. First-line for Group A Strep pharyngitis, syphilis, rheumatic fever prophylaxis, and susceptible gram-positive infections.",
-        moa: "Bind and inhibit **penicillin-binding proteins (PBPs)** → prevent transpeptidation/cross-linking of peptidoglycan → cell wall defect → osmotic lysis (bactericidal against actively dividing organisms)",
-        use: "**Streptococcal pharyngitis:** penicillin V oral — first-line\n**Rheumatic fever prophylaxis:** benzathine G IM monthly\n**Syphilis** (primary/secondary/latent): benzathine G IM single dose\n**Neurosyphilis:** penicillin G IV × 10–14 days\nMeningococcal meningitis; clostridial infections; actinomycosis; aspiration pneumonia (anaerobic coverage)",
-        se: "**Hypersensitivity** (most important — 1–10% allergy; IgE-mediated anaphylaxis ~0.01%; cross-reactivity with cephalosporins ~1–2%); GI upset (oral); **Jarisch-Herxheimer reaction** (fever/chills/hypotension 2–8 hr after starting syphilis/Lyme treatment — spirochete pyrogen release, not an allergic reaction)",
-        ci: "Penicillin anaphylaxis history (cross-reactivity with cephalosporins ~1–2% — avoid all β-lactams or desensitize); note: Jarisch-Herxheimer is not an allergy and is not a contraindication to continuing treatment",
-        pk: "**Penicillin G:** IV or IM, t½ ~30 min, acid-labile (not oral); renally excreted; time-dependent bactericidal killing\n**Penicillin V:** acid-stable oral formulation\n**Benzathine G:** IM depot, very slow release — detectable levels 2–4 weeks (ideal for monthly rheumatic fever prophylaxis and single-dose syphilis)\nNeurosyphilis requires IV penicillin G — benzathine does not achieve adequate CSF levels",
-        pearl: "**Jarisch-Herxheimer reaction** is not a penicillin allergy — treat with antipyretics and reassurance, not epinephrine. **Neurosyphilis always requires IV penicillin G** — benzathine IM fails to reach therapeutic CSF concentrations. Benzathine G is one of the few antibiotics dosed as a single injection for a primary infection."
+        summary: "Narrow-spectrum **$\beta$-lactams** disrupting cell wall synthesis.\nFirst-line for **Syphilis** and **Group A Strep**.",
+        moa: "Bind and inhibit **PBPs** (Penicillin-Binding Proteins).\nPrevent peptidoglycan **transpeptidation** (cross-linking).\nBactericidal against actively dividing organisms.",
+        use: "**Syphilis** (Benzathine G IM single dose).\n**Strep Pharyngitis** (Penicillin V).\n**Rheumatic Fever** prophylaxis.\n**Neurosyphilis** (Penicillin G IV).",
+        se: "**Hypersensitivity** (Anaphylaxis risk).\n**Jarisch-Herxheimer Reaction**: Fever/hypotension after starting treatment for spirochetes (Syphilis, Lyme).",
+        ci: "True Penicillin Anaphylaxis (1–2% cross-reactivity with cephalosporins).",
+        pk: "Penicillin G is acid-labile (not oral).\nBenzathine G is a **long-acting depot** injection (2–4 weeks).",
+        pearl: "**Jarisch-Herxheimer** is not an allergy; it is caused by pyrogen release from dying spirochetes."
       },
       {
         name: "Anti-Staphylococcal Penicillins",
-        aka: "Nafcillin · Oxacillin · Dicloxacillin (oral) · Cloxacillin",
-        summary: "Beta-lactamase-resistant penicillins specifically designed for methicillin-susceptible Staphylococcus aureus (MSSA). Preferred over vancomycin for MSSA bacteremia and endocarditis due to superior outcomes.",
-        moa: "Bind **PBPs** → inhibit peptidoglycan cross-linking → bactericidal; bulky side chain sterically hinders staphylococcal beta-lactamase active site → resistance to enzymatic hydrolysis",
-        use: "**MSSA bacteremia and endocarditis:** drug of choice — superior to vancomycin\nMSSA osteomyelitis, septic arthritis, skin/soft tissue infections\nSurgical prophylaxis in orthopedic/cardiac procedures; cellulitis when MSSA coverage needed",
-        se: "Hypersensitivity (class effect — all penicillins); **nafcillin: hepatotoxicity** (hepatic elimination → hepatic adverse effects more common); phlebitis at IV site; interstitial nephritis (less common than historical methicillin)",
-        ci: "Penicillin allergy (anaphylaxis); MRSA infection (altered PBP2a confers resistance — ineffective; use vancomycin or daptomycin); severe hepatic disease (nafcillin — hepatically eliminated, accumulation risk)",
-        pk: "**Nafcillin/Oxacillin:** IV only; **nafcillin: hepatic elimination** (biliary) — no renal dose adjustment required, unique among beta-lactams\n**Dicloxacillin:** oral, take on empty stomach (food reduces absorption), t½ ~0.5–1 hr\nAll: time-dependent bactericidal activity",
-        pearl: "**Always de-escalate from vancomycin to nafcillin/oxacillin when MSSA is confirmed** — outcomes are significantly better (lower mortality, faster clearance). Vancomycin is inferior to anti-staphylococcal penicillins for MSSA. **Nafcillin is hepatically eliminated** (unusual for antibiotics) — safe in renal failure without dose adjustment."
+        aka: "Nafcillin · Oxacillin · Dicloxacillin",
+        summary: "Beta-lactamase-resistant penicillins for **MSSA**.\nBulky side chains prevent enzymatic hydrolysis.",
+        moa: "Bind **PBPs** to inhibit cross-linking.\nSide chain sterically hinders **Staphylococcal $\beta$-lactamase**.",
+        use: "**MSSA** Bacteremia, Endocarditis, and Osteomyelitis.\n(Not for MRSA).",
+        se: "Hypersensitivity.\n**Nafcillin**: Hepatotoxicity and neutropenia.",
+        ci: "Penicillin Allergy; **MRSA** (altered PBP2a).",
+        pk: "**Nafcillin**: Hepatic elimination (no renal adjustment needed).\nDicloxacillin: Oral (empty stomach).",
+        pearl: "**Superior to Vancomycin** for confirmed MSSA infections."
       },
       {
         name: "Aminopenicillins",
-        aka: "Ampicillin · Amoxicillin (Amoxil) · Ampicillin-Sulbactam (Unasyn) · Amoxicillin-Clavulanate (Augmentin)",
-        summary: "Extended-spectrum penicillins covering gram-positives plus selected gram-negatives (H. influenzae, E. coli, Listeria). Beta-lactamase inhibitor combinations add coverage against beta-lactamase producers.",
-        moa: "Bind **PBPs** → inhibit peptidoglycan cross-linking; amino group extends gram-negative outer membrane penetration; **beta-lactamase inhibitors** (clavulanate, sulbactam): irreversible suicide inhibitors of beta-lactamase enzymes → protect aminopenicillin from hydrolysis",
-        use: "**Ampicillin:** Listeria monocytogenes (only beta-lactam active — cephalosporins are not); enterococcal UTI/endocarditis; GBS intrapartum prophylaxis; bacterial meningitis empiric therapy (add to cover Listeria in >50 yr/immunocompromised)\n**Amoxicillin:** H. pylori triple therapy, dental endocarditis prophylaxis, otitis media, early Lyme disease\n**Augmentin:** animal/human bites, sinusitis, polymicrobial skin infections\n**Unasyn:** intra-abdominal/pelvic infections",
-        se: "Hypersensitivity (all penicillins); **ampicillin rash** (maculopapular non-IgE-mediated rash in ~80–100% of patients with active EBV mononucleosis or CLL — does NOT indicate penicillin allergy); GI diarrhea (clavulanate — common); C. difficile colitis",
-        ci: "Penicillin allergy (anaphylaxis); known active EBV mononucleosis (ampicillin/amoxicillin predictably causes rash — use alternative antibiotic, though not an absolute contraindication)",
-        pk: "**Ampicillin:** IV/IM only (poor oral absorption); t½ ~1 hr, renally excreted\n**Amoxicillin:** excellent oral bioavailability (~80%), t½ ~1 hr\n**Augmentin:** oral; clavulanate absorption is good but causes GI upset (diarrhea)\n**Unasyn:** IV/IM; sulbactam also has intrinsic activity against Acinetobacter\nAll renally eliminated — dose-reduce in CKD",
-        pearl: "**Listeria is the critical ampicillin indication** — all generations of cephalosporins lack Listeria coverage. In empiric meningitis for patients >50 yr, pregnant, or immunocompromised, **always add ampicillin** to the regimen. The ampicillin rash in EBV is a drug-virus interaction (not a true penicillin allergy) and does not predict future hypersensitivity."
+        aka: "Ampicillin · Amoxicillin · Unasyn · Augmentin",
+        summary: "Extended-spectrum penicillins for Gram(+) and select Gram(-).\nCombined with **$\beta$-lactamase inhibitors** (Clavulanate, Sulbactam).",
+        moa: "Same as penicillin; amino group ↑ Gram(-) penetration.\n**Inhibitors**: Irreversibly bind $\beta$-lactamases to protect the drug.",
+        use: "**Ampicillin**: **Listeria** monocytogenes (Meningitis in >50/infants); Enterococcus.\n**Amoxicillin**: H. pylori triple therapy; Otitis media; Dental prophylaxis.\n**Augmentin**: Bites (Human/Animal); Sinusitis.",
+        se: "**Ampicillin Rash**: Non-allergic maculopapular rash with **EBV/Mono**.\nDiarrhea (Clavulanate-mediated).",
+        ci: "Penicillin Allergy; Active EBV infection (Rash risk).",
+        pk: "**Amoxicillin**: High oral bioavailability.\nAmpicillin: Poor oral absorption (mostly IV/IM).",
+        pearl: "**Listeria is the catch**: Cephalosporins do NOT cover Listeria; always use Ampicillin."
       },
       {
         name: "Extended-Spectrum Penicillins",
-        aka: "Piperacillin-Tazobactam (Pip-Tazo, Zosyn) · Ticarcillin-Clavulanate (Timentin)",
-        summary: "Anti-pseudomonal penicillins with the broadest gram-positive, gram-negative (including Pseudomonas), and anaerobic coverage of all penicillins. Pip-tazo is a workhorse for nosocomial and polymicrobial infections.",
-        moa: "Piperacillin: extended-spectrum PBP binding including **anti-pseudomonal activity**; **tazobactam**: irreversible beta-lactamase inhibitor → expands coverage against beta-lactamase-producing Klebsiella, E. coli, and many anaerobes",
-        use: "Hospital-acquired infections (pneumonia, UTI, bacteremia); polymicrobial abdominal infections (perforated bowel, diverticulitis); **febrile neutropenia** (empiric — covers Pseudomonas); complicated skin/soft tissue infections; diabetic foot infections; biliary sepsis",
-        se: "Hypersensitivity (all penicillins); **hypokalemia** (piperacillin — non-reabsorbable anion → tubular K⁺ loss); thrombocytopenia; ↑ LFTs; high sodium load (caution in heart failure); neurotoxicity (non-convulsive status epilepticus) at very high doses in renal failure",
-        ci: "Penicillin anaphylaxis; ESBL-producing organisms at high burden (inoculum effect may render pip-tazo unreliable — prefer carbapenem for bacteremia with ESBL); severe renal failure without dose adjustment",
-        pk: "IV infusion only; t½ ~1 hr, renally excreted — dose-reduce in CKD. Time-dependent killing → extended infusion (4-hr) optimizes pharmacodynamic target attainment against Pseudomonas at high MICs. Tazobactam mirrors piperacillin PK.",
-        pearl: "**ESBL-producing organisms:** pip-tazo appears susceptible on standard susceptibility testing but may fail clinically for bacteremia due to inoculum effect — **use carbapenem for ESBL bacteremia**. However, pip-tazo remains appropriate for uncomplicated ESBL UTI. **Hypokalemia** in critically ill patients on pip-tazo is clinically significant — monitor and replete K⁺."
+        aka: "Piperacillin-Tazobactam (Zosyn)",
+        summary: "Anti-pseudomonal penicillins with the broadest coverage.\nWorkhorse for hospital infections.",
+        moa: "Extended PBP binding + **$\beta$-lactamase inhibitor**.\nCovers **Pseudomonas** and Anaerobes.",
+        use: "**Nosocomial Infections** (HAP/VAP).\n**Febrile Neutropenia** (Empiric coverage).\nPolymicrobial abdominal infections.",
+        se: "**Hypokalemia** (Tubular K⁺ loss).\nThrombocytopenia at high doses.",
+        ci: "Penicillin Anaphylaxis.",
+        pk: "IV infusion; **Extended 4-hr infusion** optimizes killing.",
+        pearl: "**ESBL warning**: May fail in ESBL bacteremia due to 'inoculum effect' (use Carbapenems)."
       },
       {
         name: "Cephalosporins",
-        aka: "1G: Cefazolin · Cephalexin | 2G: Cefuroxime · Cefoxitin · Cefaclor | 3G: Ceftriaxone · Cefotaxime · Ceftazidime · Cefixime | 4G: Cefepime | 5G: Ceftaroline",
-        summary: "Beta-lactam antibiotics with progressively broader gram-negative coverage across generations; only 5th-generation ceftaroline covers MRSA. Ceftriaxone is the most versatile agent; cefazolin is the dominant surgical prophylaxis agent.",
-        moa: "Bind **penicillin-binding proteins (PBPs)** → inhibit peptidoglycan transpeptidation → bactericidal; beta-lactam ring is more resistant to many beta-lactamases than penicillins but susceptible to ESBLs and carbapenemases",
-        use: "**1G (Cefazolin):** surgical prophylaxis, MSSA skin infections\n**2G (Cefoxitin):** polymicrobial/GYN/abdominal infections (anaerobic coverage)\n**3G (Ceftriaxone):** bacterial meningitis, gonorrhea, CAP, Lyme disease, typhoid fever\n**Ceftazidime:** Pseudomonas\n**4G (Cefepime):** febrile neutropenia, nosocomial infections with Pseudomonas risk\n**5G (Ceftaroline):** MRSA skin infections, CAP",
-        se: "Hypersensitivity (1–2% cross-reactivity with penicillins — lower than historically taught, based on R1 side chain similarity not just beta-lactam ring); GI upset; **ceftriaxone**: biliary sludge/pseudolithiasis (calcium-ceftriaxone precipitate — especially neonates), disulfiram reaction with alcohol (MTT side-chain agents: cefotetan, cefoperazone); C. difficile",
-        ci: "Severe cephalosporin allergy; **ceftriaxone contraindicated in neonates receiving IV calcium** (fatal cardiopulmonary precipitation); ESBL organisms (unreliable coverage — use carbapenem); Listeria infections (all generations — innate resistance)",
-        pk: "Most renally eliminated — dose-reduce in CKD\n**Ceftriaxone:** t½ ~8 hr (once-daily dosing); ~50% biliary excretion\n**Cefazolin:** t½ ~1.8 hr, preferred surgical prophylaxis (redose every 4 hr intraoperatively)\n**Cefepime:** penetrates CSF (unlike ceftazidime)\nAll: time-dependent bactericidal killing",
-        pearl: "**Generational gram-negative coverage increases but gram-positive decreases:** 1G best gram-positive → 5G covers MRSA (exception to trend). **No cephalosporin covers Listeria or Enterococcus** (intrinsic resistance). Modern evidence shows penicillin-cephalosporin cross-reactivity is ~1–2% (not 10%) and is driven by R1 side chain similarity, not shared beta-lactam ring."
+        aka: "Cefazolin (1G) · Cefoxitin (2G) · Ceftriaxone (3G) · Cefepime (4G) · Ceftaroline (5G)",
+        summary: "Progressively broader Gram(-) coverage by generation.\nOnly 5th Gen (**Ceftaroline**) covers **MRSA**.",
+        moa: "Bind **PBPs**; more resistant to some $\beta$-lactamases than penicillins.\nBactericidal.",
+        use: "**1G (Cefazolin)**: Surgical prophylaxis.\n**2G (Cefoxitin)**: Anaerobes/Pelvic infections.\n**3G (Ceftriaxone)**: Meningitis, Gonorrhea, Lyme.\n**4G (Cefepime)**: **Pseudomonas**; Febrile Neutropenia.\n**5G (Ceftaroline)**: MRSA.",
+        se: "**Ceftriaxone**: Biliary sludge/Pseudolithiasis; contraindicated in neonates.\nDisulfiram-like reaction (MTT side-chain agents).",
+        ci: "Cephalosporin/Penicillin Anaphylaxis.\nNeonates receiving IV Calcium (Precipitation risk).",
+        pk: "**Ceftriaxone**: Once daily ($t_{1/2}$ ~8 hr); biliary excretion.\nMost others: Renal excretion.",
+        pearl: "**LAME Resistance**: Cephalosporins do NOT cover **L**isteria, **A**typicals, **M**RSA (except 5G), **E**nterococci."
       },
       {
         name: "Carbapenems & Monobactams",
-        aka: "Imipenem-Cilastatin (Primaxin) · Meropenem · Ertapenem · Doripenem — Carbapenems | Aztreonam — Monobactam",
-        summary: "Carbapenems are the broadest beta-lactams, covering most gram-positives, gram-negatives (ESBL), and anaerobes; aztreonam is a narrow gram-negative-only agent safe in penicillin-allergic patients.",
-        moa: "**Carbapenems:** bind all PBPs with broad-spectrum activity; stable to most beta-lactamases except carbapenemases (KPC, NDM, OXA-48). **Aztreonam:** binds specifically **PBP3** of gram-negative bacteria only → bactericidal against aerobic gram-negatives including Pseudomonas; no activity against gram-positives or anaerobes",
-        use: "**Carbapenems:** ESBL-producing organisms, MDR gram-negatives, polymicrobial abdominal/pelvic infections, febrile neutropenia\n**Imipenem:** broad empiric coverage\n**Ertapenem:** community-acquired ESBL infections and outpatient IV therapy (NO Pseudomonas coverage)\n**Meropenem:** preferred for CNS infections (lower seizure risk)\n**Aztreonam:** gram-negative infections in penicillin-allergic patients, Pseudomonas in cystic fibrosis",
-        se: "Carbapenems: **seizures** (imipenem — lowers seizure threshold, especially in renal failure; meropenem/ertapenem much lower risk); GI upset; C. difficile; cross-reactivity with penicillin allergy (~1%); Aztreonam: minimal cross-reactivity with other beta-lactams — safe in penicillin allergy; **cross-reacts with ceftazidime** (identical R1 side chain)",
-        ci: "Ertapenem: do NOT use for Pseudomonas, Acinetobacter, or enterococcal infections (no activity); imipenem in seizure-prone patients without renal dose adjustment; aztreonam + ceftazidime allergy (shared R1 side chain — cross-reactivity possible)",
-        pk: "All IV; time-dependent killing\n**Imipenem:** co-formulated with cilastatin (inhibits renal dehydropeptidase I → prevents tubular hydrolysis)\n**Meropenem:** stable without inhibitor\n**Ertapenem:** t½ ~4 hr — once-daily dosing; all others q6–8h\n**Aztreonam:** t½ ~1.7 hr, renal excretion\nAll renally eliminated — dose-adjust in CKD",
-        pearl: "**Ertapenem = carbapenem without Pseudomonas/Acinetobacter coverage** — use for ESBL or community infections, never empirically where Pseudomonas is suspected. **Aztreonam is safe in penicillin allergy** (monocyclic beta-lactam, no cross-reactivity) EXCEPT with ceftazidime (shared R1 side chain → may cross-react). Imipenem seizure risk is real in renal failure — prefer meropenem for CNS infections or in CKD."
-      },
+        aka: "Imipenem · Meropenem · Ertapenem | Aztreonam",
+        summary: "**Carbapenems**: Broadest $\beta$-lactams (Gram+, Gram-, Anaerobes).\n**Aztreonam**: Gram(-) only; safe in penicillin allergy.",
+        moa: "**Carbapenems**: Bind multiple PBPs; resistant to many $\beta$-lactamases.\n**Aztreonam**: Binds **PBP3** only.",
+        use: "**Carbapenems**: ESBL-producing organisms; MDR infections.\n**Aztreonam**: Gram(-) infections in **Penicillin-Allergic** patients.",
+        se: "**Imipenem**: **Seizures** (especially in renal failure).\n**Ertapenem**: No Pseudomonas/Enterococcus coverage.",
+        ci: "**Aztreonam**: Cross-reacts with **Ceftazidime** (shared side chain).",
+        pk: "**Imipenem**: Co-formulated with **Cilastatin** (inhibits renal dehydropeptidase I).\nRenal elimination for all.",
+        pearl: "**Ertapenem is the outlier**: The only carbapenem with no Pseudomonas activity."
+      }
     ]
   },
   {
@@ -984,103 +980,103 @@ micro: [
     drugs: [
       {
         name: "Vancomycin",
-        aka: "Vancomycin (Vancocin)",
-        summary: "Glycopeptide antibiotic that inhibits cell wall synthesis by binding D-Ala-D-Ala peptidoglycan precursors. Drug of choice for MRSA and C. difficile (oral formulation); active only against gram-positive organisms.",
-        moa: "Bind **D-Ala-D-Ala terminus** of peptidoglycan precursors → prevent transglycosylation and transpeptidation → bactericidal against most gram-positives (bacteriostatic against enterococci); too large to penetrate gram-negative outer membrane",
-        use: "MRSA infections (bacteremia, endocarditis, pneumonia, osteomyelitis — IV); **C. difficile colitis** (oral — not absorbed from GI tract, acts locally); gram-positive infections in penicillin-allergic patients; enterococcal endocarditis (± gentamicin synergy); MRSA meningitis",
-        se: "**Red man syndrome** (rapid infusion → direct mast cell degranulation → flushing/erythema/pruritus of face/neck/trunk — NOT IgE-mediated; prevent with slow infusion ≥60 min ± diphenhydramine pretreatment); **nephrotoxicity** (especially synergistic with aminoglycosides or NSAIDs); **ototoxicity** (cochlear + vestibular at supratherapeutic levels); thrombophlebitis; thrombocytopenia",
-        ci: "VRE infections (vancomycin-resistant enterococcus — use linezolid or daptomycin); previous true vancomycin hypersensitivity beyond red man syndrome; oral vancomycin will not treat systemic infections (not absorbed)",
-        pk: "IV for systemic infections; oral for C. difficile (not absorbed — no systemic effect)\nMonitor with **AUC/MIC** (ASHP/IDSA 2020 — target AUC 400–600 mg·h/L; replaced trough-only monitoring)\nt½ ~6 hr; renally eliminated — dose-adjust for renal function\nRequires central IV access for prolonged therapy (peripheral extravasation → tissue necrosis)",
-        pearl: "**Red man syndrome vs. true allergy:** red man = rate-related, non-IgE → slow infusion + diphenhydramine → can continue vancomycin. True IgE allergy (rare) → switch drug. **Oral vancomycin for C. difficile is local therapy** — it never enters the bloodstream, which is exactly why it works (high luminal concentrations). IV vancomycin does NOT treat C. diff."
+        aka: "Vancomycin",
+        summary: "Glycopeptide for Gram(+) only.\nDrug of choice for **MRSA** and **C. diff** (oral).",
+        moa: "Binds **D-Ala-D-Ala** terminus of peptidoglycan precursors.\nPrevents transglycosylation and transpeptidation.\n(Not for Gram-negative — too large to cross outer membrane).",
+        use: "**MRSA** (IV).\n**C. difficile** colitis (Oral only — not absorbed).\nPenicillin-allergic patients with serious Gram(+) infections.",
+        se: "**Red Man Syndrome** (Non-IgE mast cell degranulation — prevent with slow infusion).\n**Nephrotoxicity** (Synergy with Aminoglycosides).\nOtotoxicity (Supratherapeutic levels).",
+        ci: "**VRE** (Vancomycin-Resistant Enterococcus).",
+        pk: "**AUC/MIC monitoring** standard.\nRenal elimination; dose-adjust in CKD.",
+        pearl: "**Oral vs. IV**: Oral is for gut only; IV is for systemic only. They are not interchangeable."
       },
       {
         name: "Aminoglycosides",
-        aka: "Gentamicin · Tobramycin · Amikacin · Streptomycin · Neomycin",
-        summary: "Concentration-dependent bactericidal antibiotics that irreversibly inhibit the 30S ribosomal subunit. Used for serious gram-negative infections, endocarditis synergy, and select atypical organisms. Narrow therapeutic index with nephrotoxicity and ototoxicity.",
-        moa: "Enter bacteria via oxygen-dependent active transport → bind **30S ribosomal subunit** → cause mRNA misreading → incorporation of wrong amino acids → aberrant proteins insert into cell membrane → membrane disruption → bactericidal; require aerobic metabolism for uptake",
-        use: "Serious gram-negative infections (Pseudomonas, Enterobacteriaceae — often synergy with beta-lactams)\n**Endocarditis synergy:** gentamicin + penicillin/vancomycin for enterococcal or streptococcal endocarditis\n**Streptomycin:** TB (second-line), plague, tularemia, brucellosis\n**Neomycin:** topical/oral (hepatic encephalopathy — ↓ gut ammonia-producers)\n**Amikacin:** aminoglycoside-resistant gram-negatives",
-        se: "**Nephrotoxicity** (proximal tubular accumulation in lysosomes → ATN; nonoliguric AKI, usually reversible; risk ↑ with hypovolemia, concurrent nephrotoxins); **ototoxicity** (cochlear = irreversible high-frequency sensorineural hearing loss; vestibular = ataxia/nystagmus — cumulative, dose-dependent); **neuromuscular blockade** (high doses → ↓ ACh release at NMJ — additive with non-depolarizing NMBs)",
-        ci: "Pregnancy (fetal ototoxicity — 8th cranial nerve damage); myasthenia gravis (NMJ blockade worsens weakness); anaerobic infections (inactive — requires O₂-dependent transport); concurrent ototoxic drugs without monitoring (loop diuretics + aminoglycosides = synergistic ototoxicity — avoid combination)",
-        pk: "IV/IM; concentration-dependent killing + prolonged post-antibiotic effect → **once-daily extended-interval dosing** preferred (high Cmax for efficacy + trough washout ↓ nephrotoxicity)\nt½ ~2–3 hr in normal renal function; renally eliminated — strict dose adjustment in CKD\nMonitor: random level + Hartford nomogram, or trough <1 µg/mL with once-daily dosing",
-        pearl: "**Aminoglycosides are inactive in anaerobic/acidic environments** (abscesses, infected tissue) — require the proton motive force for uptake. **Once-daily dosing reduces nephrotoxicity** by allowing tubular accumulation to clear between doses (saturable uptake into proximal tubule). Loop diuretics + aminoglycosides = synergistic ototoxicity — a classic combination to avoid."
+        aka: "Gentamicin · Tobramycin · Amikacin · Neomycin",
+        summary: "Potent bactericidal drugs for serious Gram(-) infections.\nRequire oxygen for uptake.",
+        moa: "Irreversibly inhibit **30S subunit**.\nCause mRNA misreading → aberrant protein insertion → membrane disruption.\n**Concentration-dependent** killing.",
+        use: "**Serious Gram(-)** (Pseudomonas, Klebsiella).\n**Endocarditis Synergy**: Low-dose + Beta-lactam/Vancomycin.\n**Neomycin**: Bowel prep; Hepatic encephalopathy.",
+        se: "**Nephrotoxicity** (ATN; usually reversible).\n**Ototoxicity** (Sensorineural; irreversible).\n**Neuromuscular Blockade** (ACh release inhibition).",
+        ci: "**Myasthenia Gravis**; Pregnancy (Fetal ototoxicity).",
+        pk: "**Once-daily dosing** (High $C_{max}$ / Low trough) reduces toxicity.\nRenal elimination.",
+        pearl: "**Ineffective against Anaerobes**: Uptake requires $O_2$ (proton motive force)."
       },
       {
         name: "Tetracyclines",
-        aka: "Doxycycline (Vibramycin) · Tetracycline · Minocycline · Tigecycline",
-        summary: "Bacteriostatic antibiotics blocking 30S ribosomal protein synthesis. Broad coverage including intracellular organisms; doxycycline is among the most versatile antibiotics for atypical, tick-borne, and STI pathogens.",
-        moa: "Bind **30S ribosomal subunit** → block **aminoacyl-tRNA binding to the A site** → prevent peptide chain elongation → bacteriostatic; concentrated intracellularly via active transport → effective against intracellular organisms",
-        use: "**Doxycycline:** Rickettsia (RMSF, Q fever, typhus — drug of choice), Lyme disease (first-line early/disseminated), Chlamydia, atypical pneumonia (Mycoplasma, Chlamydophila), community-acquired MRSA skin infections, anthrax prophylaxis/treatment, brucellosis (+ rifampin), malaria prophylaxis\n**Tetracycline:** H. pylori (quadruple therapy), acne\n**Minocycline:** acne vulgaris\n**Tigecycline:** MDR organisms (carbapenem-resistant, MRSA)",
-        se: "**Photosensitivity** (↑ UV sensitivity — sunburn; advise sun avoidance/SPF); **GI upset** (nausea — take with food; doxycycline can be taken with food without significant absorption loss); **dental discoloration and enamel hypoplasia** (binds Ca²⁺ in developing teeth — **avoid in children <8 yr and pregnancy**); esophageal ulceration (take with full glass of water, remain upright); anti-anabolic effect → ↑ BUN (tetracycline — avoid in renal failure; doxycycline is safe)",
-        ci: "Children <8 years (permanent tooth discoloration — **exception: doxycycline is used for RMSF even in children** because mortality risk outweighs dental staining); pregnancy (fetal bone/tooth effects); chelation by divalent cations (Ca²⁺, Mg²⁺, Al³⁺, Fe²⁺) → ↓ absorption (separate from dairy, antacids, iron by ≥2 hr)",
-        pk: "**Doxycycline:** oral or IV, t½ ~16–18 hr (twice daily), oral bioavailability ~93%, **fecal/biliary elimination** — safe in renal failure\n**Tetracycline:** renal elimination — avoid in CKD\n**Tigecycline:** IV only, t½ ~42 hr, biliary excretion\n**Minocycline:** better lipophilicity → CNS penetration, vestibular SE",
-        pearl: "**Doxycycline for RMSF is always appropriate, even in children <8 yr** — the mortality from untreated Rocky Mountain spotted fever far outweighs the risk of dental staining. Doxycycline is also unique in being **safe in renal failure** (fecal elimination), unlike the parent compound tetracycline. Dairy/antacids chelate tetracyclines — separate by at least 2 hours."
+        aka: "Doxycycline · Tetracycline · Minocycline",
+        summary: "Bacteriostatic broad-spectrum antibiotics.\nDrug of choice for Tick-borne and Atypical pathogens.",
+        moa: "Bind **30S subunit** → block **aminoacyl-tRNA** binding to A-site.\nIntracellular concentration is high.",
+        use: "**Doxycycline**: **Rickettsia** (RMSF), Lyme, Chlamydia, Mycoplasma.\n**Acne**; MRSA skin infections.",
+        se: "**Photosensitivity**.\n**Teeth discoloration** and bone growth inhibition in children.\n**Pill Esophagitis** (Stay upright).",
+        ci: "**Pregnancy** and **Children <8 yr**.\n(Exception: RMSF in children).",
+        pk: "**Chelation**: Absorption ↓ by Dairy/Antacids ($Ca^{2+}, Mg^{2+}, Fe^{2+}$).\n**Doxycycline**: Fecal/Biliary elimination (safe in CKD).",
+        pearl: "**Doxy in CKD**: The only tetracycline not requiring renal adjustment."
       },
       {
         name: "Macrolides",
-        aka: "Azithromycin (Zithromax) · Clarithromycin (Biaxin) · Erythromycin",
-        summary: "Bacteriostatic antibiotics blocking 50S ribosomal protein synthesis. Broad coverage of gram-positives plus atypical organisms; widely used for CAP, atypical pneumonias, STIs, and H. pylori therapy.",
-        moa: "Bind **50S ribosomal subunit** (23S rRNA) → block **translocation** of peptidyl-tRNA from A site to P site → inhibit peptide chain elongation → bacteriostatic (bactericidal at high concentrations against some organisms)",
-        use: "**Azithromycin:** CAP, atypical pneumonia (Mycoplasma, Chlamydophila, Legionella — first-line), Chlamydia (1 g single dose), MAC prophylaxis/treatment in HIV, pertussis (drug of choice), Campylobacter\n**Clarithromycin:** H. pylori eradication (triple therapy), MAC treatment, CAP\n**Erythromycin:** GI prokinetic (motilin receptor agonist), CAP",
-        se: "**QTc prolongation** (all macrolides — azithromycin highest risk; avoid in QTc >450 ms or concurrent QTc-prolonging drugs); **GI upset** (erythromycin worst — cramps, N/V via motilin receptor stimulation; azithromycin better tolerated); **hepatotoxicity** (erythromycin estolate — cholestatic); **drug interactions** (clarithromycin = strong CYP3A4 inhibitor → ↑ statins, cyclosporine, warfarin; azithromycin minimal CYP interactions)",
-        ci: "QTc prolongation or torsades history; concurrent QTc-prolonging medications; clarithromycin: concurrent colchicine or ergotamine in renal/hepatic failure (↑ toxicity); erythromycin: concurrent cisapride/pimozide (torsades)",
-        pk: "**Azithromycin:** oral or IV, t½ ~68 hr (concentrates intracellularly 100–1000× plasma; 5-day course = 10-day tissue levels), minimal CYP metabolism\n**Clarithromycin:** oral, t½ ~5–7 hr, active 14-OH metabolite, **strong CYP3A4 inhibitor**\n**Erythromycin:** IV/oral, t½ ~2 hr, strong CYP3A4 inhibitor, poor GI tolerability",
-        pearl: "**Azithromycin concentrates massively in tissues** (intracellular:plasma ratio ~100:1) — plasma levels are very low and do NOT reflect tissue concentrations. This is why a short course works for long periods. **Clarithromycin is a strong CYP3A4 inhibitor** (unlike azithromycin) — dangerous with statins (rhabdomyolysis), colchicine, and many other drugs."
+        aka: "Azithromycin · Clarithromycin · Erythromycin",
+        summary: "Bacteriostatic 50S inhibitors for **Atypical Pneumonias** and STIs.",
+        moa: "Bind **50S subunit** (23S rRNA) → block **translocation**.\nBacteriostatic.",
+        use: "**Atypicals**: Mycoplasma, Legionella, Chlamydophila.\n**STIs**: Chlamydia (single dose Azithro).\n**H. pylori**: Clarithromycin.",
+        se: "**QTc Prolongation**.\n**MACRO**: **M**otility (GI upset), **A**rrhythmia (QT), **C**holestatic hepatitis, **R**ash, **O**utput (CYP inhibitor).",
+        ci: "QTc >450 ms; Prior Macrolide hepatitis.",
+        pk: "**Azithromycin**: Massive tissue concentration ($t_{1/2}$ ~68 hr).\n**CYP3A4 Inhibition**: Clarithro/Erythro (Strong); Azithro (None).",
+        pearl: "**Azithromycin** is preferred for lacking drug interactions."
       },
       {
         name: "Clindamycin",
-        aka: "Clindamycin (Cleocin)",
-        summary: "Bacteriostatic lincosamide antibiotic blocking 50S ribosomal translocation. Excellent activity against gram-positive organisms and anaerobes; used for skin infections, anaerobic infections, toxin-producing Staph/Strep, and PCP prophylaxis.",
-        moa: "Bind **50S ribosomal subunit** → inhibit **peptidyl transferase** (same site as macrolides and chloramphenicol — MLSB cross-resistance) → block translocation → bacteriostatic; penetrates well into bone and abscess cavities",
-        use: "Skin/soft tissue infections (community-acquired MRSA — D-zone test required); anaerobic infections (aspiration pneumonia, lung abscess, intra-abdominal)\n**Group A Strep toxic shock:** + penicillin — clindamycin suppresses toxin production\nSevere malaria (+ quinine/artesunate); bone/joint infections (excellent penetration)\nPCP pneumonia (+ primaquine, alternative regimen); bacterial vaginosis",
-        se: "**C. difficile colitis** (highest risk among common antibiotics — disrupts colonic flora profoundly; historical association even predates widespread CDI recognition); GI upset; rash; hepatotoxicity (mild ↑ LFTs)",
-        ci: "History of clindamycin-associated C. difficile or pseudomembranous colitis; concurrent use with erythromycin or chloramphenicol (compete at 50S binding site — antagonism); avoid in patients already at high CDI risk",
-        pk: "Oral or IV; excellent oral bioavailability (~90%); t½ ~2–3 hr; hepatic (CYP3A4) → active metabolites\nExcellent tissue penetration including bone, abscesses, and intracellular compartments\nCheck **D-zone test** in erythromycin-resistant MRSA before use (inducible resistance)",
-        pearl: "**Clindamycin for toxin-mediated streptococcal/staphylococcal disease** — it inhibits ribosomal function, thus halting toxin protein synthesis even after cell death. In Strep toxic shock, always use **penicillin + clindamycin** (pen kills organisms; clinda stops toxin production). **D-zone test:** if MRSA is erythromycin-resistant, test for inducible clindamycin resistance before prescribing — false susceptibility occurs."
+        aka: "Clindamycin",
+        summary: "50S inhibitor for Gram(+) and **Anaerobes**.\nSuppresses bacterial toxins.",
+        moa: "Binds **50S subunit** → inhibits peptide bond formation (translocation).",
+        use: "**Anaerobes Above Diaphragm** (Aspiration pneumonia, lung abscess).\n**Group A Strep Toxic Shock**: Blocks toxin production.\n**MRSA** skin infections.",
+        se: "**C. difficile Colitis** (Highest risk association).",
+        ci: "History of CDI.",
+        pk: "Excellent bone penetration.\n**D-zone test**: Required if Erythromycin-resistant Staph (detects inducible resistance).",
+        pearl: "**Aspiration pneumonia** choice: Clindamycin (Above diaphragm) vs Metronidazole (Below)."
       },
       {
         name: "Misc. Antibacterials",
-        aka: "Linezolid (Zyvox) · Daptomycin (Cubicin) · Chloramphenicol · Polymyxin B · Colistin (Polymyxin E) · Nitrofurantoin (Macrobid) · Fosfomycin",
-        summary: "Mechanistically diverse antibiotics serving specialized roles for resistant gram-positives, MDR gram-negatives, and urinary tract infections. Linezolid and daptomycin are key agents against VRE and MRSA; polymyxins are last-resort MDR agents.",
-        moa: "**Linezolid:** binds **23S rRNA of 50S subunit** → blocks **initiation complex formation** (unique mechanism — no cross-resistance with macrolides/clindamycin) → bacteriostatic (bactericidal against streptococci). **Daptomycin:** inserts into **gram-positive cell membrane** → Ca²⁺-dependent depolarization → membrane disruption → rapid bactericidal killing. **Chloramphenicol:** binds **50S subunit** → inhibits peptidyl transferase → bacteriostatic. **Polymyxins:** bind **lipopolysaccharide (LPS)** of gram-negative outer membrane → disrupt membrane → bactericidal detergent-like effect. **Nitrofurantoin:** reduced to reactive intermediates by bacterial nitroreductases → DNA/protein/cell wall damage → bactericidal (urinary concentrations only). **Fosfomycin:** inhibits **MurA** (UDP-N-acetylglucosamine enolpyruvyl transferase) → blocks first step of peptidoglycan synthesis",
-        use: "**Linezolid:** VRE, MRSA (oral bioavailability 100% → step-down therapy), MRSA pneumonia\n**Daptomycin:** VRE bacteremia/endocarditis, MRSA bacteremia — **NOT for pulmonary infections** (inactivated by surfactant)\n**Chloramphenicol:** bacterial meningitis in severe penicillin allergy, RMSF in pregnancy, typhoid\n**Polymyxin B/Colistin:** last-resort for carbapenem-resistant Acinetobacter/Pseudomonas\n**Nitrofurantoin:** uncomplicated lower UTI\n**Fosfomycin:** uncomplicated UTI (single oral dose)",
-        se: "Linezolid: **thrombocytopenia** (most common — monitor CBC weekly), **serotonin syndrome** (MAOI activity — avoid all serotonergic drugs), peripheral/optic neuropathy (prolonged use >4 weeks); Daptomycin: **myopathy/rhabdomyolysis** (monitor CK weekly; hold statins), **eosinophilic pneumonia** (rare but serious — presents as new pulmonary infiltrates); Chloramphenicol: **aplastic anemia** (irreversible, idiosyncratic — rare but often fatal), **gray baby syndrome** (accumulation in neonates → cardiovascular collapse), dose-dependent bone marrow suppression; Polymyxins: **nephrotoxicity** (major — dose-limiting) + **neurotoxicity** (paresthesias, neuromuscular blockade); Nitrofurantoin: pulmonary reactions, hepatotoxicity (chronic use), peripheral neuropathy, hemolytic anemia in G6PD deficiency",
-        ci: "Linezolid: serotonergic drugs (SSRIs, SNRIs, TCAs, meperidine — serotonin syndrome); Daptomycin: **pneumonia** (inactivated by pulmonary surfactant — absolute CI for lung infections); Chloramphenicol: neonates (gray baby syndrome), bone marrow suppression; Polymyxins: use only for MDR organisms with no alternatives (nephrotoxicity); Nitrofurantoin: **CrCl <30 mL/min** (inadequate urinary concentration + accumulation of toxic metabolites), term pregnancy (hemolytic anemia in newborn), G6PD deficiency",
-        pk: "**Linezolid:** oral (100% bioavailability = IV equivalent) or IV; t½ ~5 hr; weak MAO inhibitor activity\n**Daptomycin:** IV only; t½ ~8 hr; renally eliminated — dose-adjust in CKD\n**Chloramphenicol:** oral/IV; hepatic glucuronidation; **CYP450 inhibitor** (↑ phenytoin, warfarin)\n**Polymyxins:** IV/inhaled; renally eliminated; dose-adjust in CKD\n**Nitrofurantoin:** oral; concentrates in urine — effective only for lower UTI\n**Fosfomycin:** oral (single 3g sachet) or IV",
-        pearl: "**Daptomycin is inactivated by lung surfactant** — never use for pneumonia (this is a classic exam trap). **Linezolid has 100% oral bioavailability** — oral linezolid is truly equivalent to IV, enabling safe outpatient completion of MRSA therapy. **Chloramphenicol aplastic anemia** (irreversible, idiosyncratic) is distinct from its dose-dependent bone marrow suppression (reversible) — the idiosyncratic form is the dangerous one that ends careers."
+        aka: "Linezolid · Daptomycin · Chloramphenicol · Polymyxins · Nitrofurantoin · Fosfomycin",
+        summary: "Specialized agents for resistant pathogens and simple UTIs.",
+        moa: "**Linezolid**: 50S (23S) inhibitor; blocks initiation complex.\n**Daptomycin**: Membrane depolarization (Lipopeptide).\n**Nitrofurantoin**: DNA/Protein damage.",
+        use: "**VRE / MRSA**: Linezolid and Daptomycin.\n**UTI**: Nitrofurantoin (Cystitis only).\n**MDR Gram(-)**: Polymyxins (Last resort).",
+        se: "**Linezolid**: **Thrombocytopenia**; **Serotonin Syndrome** (weak MAOI).\n**Daptomycin**: **Myopathy** (↑ CK; hold statins).\n**Chloramphenicol**: **Gray Baby Syndrome**; Aplastic Anemia.",
+        ci: "**Daptomycin in Pneumonia**: Inactivated by pulmonary surfactant.",
+        pk: "Linezolid: 100% oral bioavailability.\nNitrofurantoin: Contraindicated if **CrCl <30**.",
+        pearl: "**Daptomycin for Pneumonia** is a classic Step 1 trap: Surfactant kills the drug."
       },
       {
         name: "Fluoroquinolones",
-        aka: "Ciprofloxacin (Cipro) · Levofloxacin (Levaquin) · Moxifloxacin (Avelox) · Norfloxacin · Delafloxacin",
-        summary: "Inhibit bacterial DNA gyrase and topoisomerase IV to prevent DNA replication. Broad-spectrum concentration-dependent bactericidal agents used for UTIs, pneumonia, GI infections, and atypical/intracellular organisms.",
-        moa: "Inhibit **DNA gyrase (topoisomerase II)** and **topoisomerase IV** → prevent DNA supercoiling/unwinding → block DNA replication and transcription → rapid concentration-dependent bactericidal killing",
-        use: "**Ciprofloxacin:** gram-negative UTI/pyelonephritis/prostatitis, Pseudomonas, anthrax (first-line), Campylobacter, typhoid, traveler's diarrhea; meningococcal prophylaxis (single dose)\n**Levofloxacin:** CAP (covers atypicals + S. pneumoniae), UTI, prostatitis, TB (second-line)\n**Moxifloxacin:** CAP, atypical infections, TB (second-line) — no urinary penetration",
-        se: "**QTc prolongation** (all — avoid with other QTc-prolonging drugs; moxifloxacin greatest risk); **tendinopathy/tendon rupture** (Achilles most common — FDA black box; risk ↑ with corticosteroids, age >60, renal failure); **CNS effects** (insomnia, dizziness, seizures — crosses BBB); **peripheral neuropathy** (potentially irreversible — FDA black box); **photosensitivity**; **hypoglycemia/hyperglycemia** (glyburide interaction); cartilage damage (avoid in children/pregnancy — animal data); C. difficile",
-        ci: "Myasthenia gravis (neuromuscular blocking → worsens weakness — FDA black box); children/adolescents <18 yr and pregnancy (cartilage toxicity — animal data; used only when benefit outweighs risk, e.g., anthrax exposure); concurrent QTc-prolonging drugs with moxifloxacin; history of fluoroquinolone tendon rupture",
-        pk: "Excellent oral bioavailability (~70–99%) — oral often equivalent to IV\nConcentration-dependent killing + prolonged post-antibiotic effect → once-daily dosing for most\n**Ciprofloxacin:** t½ ~4–5 hr, renal elimination; moderate CYP1A2 inhibitor (↑ theophylline)\n**Levofloxacin:** t½ ~6–8 hr, primarily renal (dose-reduce in CKD)\n**Moxifloxacin:** t½ ~12 hr, hepatic/fecal — no renal dose adjustment; **low urinary levels (avoid for UTI)**\nChelated by divalent cations (antacids, Ca²⁺, Fe²⁺) — take 2 hr before or 6 hr after",
-        pearl: "**Ciprofloxacin for Pseudomonas** is the only oral option with reliable Pseudomonal activity — valuable for outpatient treatment of Pseudomonal UTI/prostatitis. **Fluoroquinolone tendinopathy** risk is highest with concurrent corticosteroids + age >60 — warn patients to stop and call if Achilles pain develops. Moxifloxacin has NO reliable urinary penetration — do not use for UTI."
+        aka: "Ciprofloxacin · Levofloxacin · Moxifloxacin",
+        summary: "DNA synthesis inhibitors for UTIs, Pneumonia, and Gram(-) coverage.",
+        moa: "Inhibit **DNA Gyrase** (Topoisomerase II) and **Topoisomerase IV**.\nBactericidal; concentration-dependent.",
+        use: "**Ciprofloxacin**: Gram(-) UTI; Pseudomonas.\n**Respiratory (Levo/Moxi)**: S. pneumoniae; Atypicals.\n**Anthrax** prophylaxis.",
+        se: "**Tendon Rupture** (Achilles); **QTc Prolongation**.\n**Peripheral Neuropathy** (Potentially irreversible).\nCartilage damage in children.",
+        ci: "**Myasthenia Gravis** (Exacerbation); Pregnancy.",
+        pk: "**Chelation**: Absorption ↓ by Dairy/Antacids.\n**Moxifloxacin**: Minimal urine penetration (not for UTI).",
+        pearl: "**Achilles warning**: Risk ↑ with corticosteroids and age >60."
       },
       {
         name: "Metronidazole",
-        aka: "Metronidazole (Flagyl) · Tinidazole",
-        summary: "Prodrug nitroimidazole selectively reduced in anaerobic organisms to a toxic radical that damages DNA. First-line for C. difficile, bacterial vaginosis, Trichomonas, Giardia, and serious anaerobic infections.",
-        moa: "Enters cells and is reduced by **ferredoxin/PFOR (pyruvate:ferredoxin oxidoreductase)** in anaerobic organisms → generates **cytotoxic nitro radical anion** → DNA strand breaks → bactericidal/antiprotozoal; reduction only occurs in anaerobic/microaerophilic conditions (selective toxicity)",
-        use: "**C. difficile:** oral — first-line mild-moderate (vancomycin/fidaxomicin preferred severe)\n**Bacterial vaginosis:** oral or vaginal gel — first-line\n**Trichomonas vaginalis:** oral — must treat partner simultaneously\n**Giardia:** oral — first-line\nEntamoeba histolytica; anaerobic infections (intra-abdominal, aspiration pneumonia, brain abscess); H. pylori eradication; Crohn disease (perianal)",
-        se: "**Metallic taste** (most common complaint); **disulfiram-like reaction** with alcohol (acetaldehyde accumulation → nausea/vomiting/flushing — **avoid alcohol during and 48 hr after treatment**); GI upset, nausea; **peripheral neuropathy** (high-dose or prolonged therapy); **CNS toxicity** (encephalopathy, seizures, cerebellar ataxia — rare, high cumulative dose); dark urine (harmless metabolite discoloration)",
-        ci: "First trimester pregnancy (theoretical teratogenicity — use clindamycin topically for BV in 1st trimester; metronidazole used in 2nd/3rd trimester if needed); concurrent alcohol use or disulfiram (severe disulfiram-like reaction); concurrent lithium (may ↑ lithium levels)",
-        pk: "Oral or IV; excellent oral bioavailability (~100%) — oral = IV for most infections\nt½ ~8 hr; hepatic metabolism (CYP2C9, CYP3A4); some renal excretion of metabolites\nPenetrates brain, abscesses, and bone — effective for CNS anaerobic infections\nInhibits CYP2C9 → ↑ warfarin levels (monitor INR)",
-        pearl: "**Metronidazole is selectively toxic to anaerobes** — the nitro group is only reduced (activated) when the oxidation-reduction potential is very low (anaerobic environment). Aerobic organisms cannot activate the prodrug. **The disulfiram-like reaction with alcohol** is predictable and potentially severe — always counsel patients to avoid alcohol for 48 hours after the last dose."
+        aka: "Metronidazole",
+        summary: "DNA-damaging radical generator for **Anaerobes** and **Protozoa**.",
+        moa: "Reduced by **Ferredoxin** in anaerobes → generates toxic free radicals → DNA strand breaks.",
+        use: "**Anaerobes Below Diaphragm** (Bacteroides, C. diff).\n**GET GAP**: **G**iardia, **E**ntamoeba, **T**richomonas, **G**ardnerella, **A**naerobes, **P**ylori.",
+        se: "**Disulfiram-like reaction** with alcohol.\n**Metallic taste**; Dark urine.",
+        ci: "**Alcohol use**; 1st Trimester Pregnancy.",
+        pk: "100% oral bioavailability; Hepatic metabolism.",
+        pearl: "**Disulfiram rule**: Avoid alcohol during and 48 hr after treatment."
       },
       {
         name: "TMP-SMX (Trimethoprim-Sulfamethoxazole)",
-        aka: "Trimethoprim-Sulfamethoxazole (Bactrim, Septra) · Co-trimoxazole",
-        summary: "Sequential inhibitors of folate synthesis that act synergistically against many gram-positive and gram-negative bacteria, Pneumocystis, and Toxoplasma. First-line for PCP prophylaxis and treatment, UTIs, community-acquired MRSA skin infections, and Nocardia.",
-        moa: "**Sulfamethoxazole:** inhibits **dihydropteroate synthase** → blocks PABA incorporation into dihydrofolate (structural analog/competitive inhibitor). **Trimethoprim:** inhibits **dihydrofolate reductase (DHFR)** → blocks conversion of DHF → THF (active folate) → sequential inhibition → ↓ purine and thymidine synthesis → bacteriostatic (bactericidal synergy of 1:5 ratio)",
-        use: "**PCP treatment:** high-dose TMP-SMX — first-line\n**PCP prophylaxis:** low-dose — when CD4 <200/µL\nCommunity-acquired MRSA skin/soft tissue; UTI/pyelonephritis; Nocardia (high-dose, prolonged)\nToxoplasma prophylaxis; **Stenotrophomonas maltophilia** (drug of choice); Isospora/Cyclospora; Listeria (alternative to ampicillin in penicillin allergy)",
-        se: "**Hypersensitivity** (rash — common; SJS/TEN — rare; sulfa allergy); **bone marrow suppression** (megaloblastic anemia/pancytopenia — ↓ folate production; leucovorin supplement may help); **hyperkalemia** (trimethoprim blocks ENaC → potassium retention — resembles amiloride, especially relevant in HIV patients on ACEi/ARBs); **nephrotoxicity** (trimethoprim competes with creatinine tubular secretion → ↑ serum creatinine without true GFR reduction — can be alarming but is often benign); crystalluria (sulfonamide — ensure adequate hydration); **drug interactions**: ↑ warfarin (SMX inhibits CYP2C9), ↑ methotrexate toxicity",
-        ci: "Sulfa allergy (SJS/TEN history — absolute); severe renal failure (sulfonamide crystalluria; metabolite accumulation); late pregnancy/neonates (kernicterus — displaces bilirubin from albumin); megaloblastic anemia/folate deficiency; concurrent methotrexate (additive folate antagonism → severe toxicity)",
-        pk: "Oral or IV; excellent oral bioavailability (~100%); t½ TMP ~11 hr, SMX ~10 hr — well matched for 1:5 ratio dosing\nRenal elimination — dose-reduce in CKD\nTMP inhibits creatinine tubular secretion → apparent ↑ Cr (~0.1–0.2 mg/dL) without true GFR change\nHigh-dose PCP: TMP 15–20 mg/kg/day ÷ q6–8h × 21 days",
-        pearl: "**TMP mimics amiloride** — it blocks epithelial Na⁺ channels (ENaC) in the collecting duct → ↑ serum K⁺. In HIV patients already on ACEi/ARBs for nephropathy, high-dose TMP-SMX for PCP can cause severe hyperkalemia. **The creatinine rise from TMP is a lab artifact** — TMP competes with creatinine for tubular secretion, raising serum creatinine 0.1–0.2 mg/dL without actual kidney damage."
-      },
+        aka: "TMP-SMX · Bactrim",
+        summary: "Synergistic folate synthesis inhibitors.\nFirst-line for **PCP** and **Nocardia**.",
+        moa: "**SMX**: Inhibits Dihydropteroate Synthase (PABA analog).\n**TMP**: Inhibits **DHFR** (Dihydrofolate Reductase).",
+        use: "**PCP** Prophylaxis/Treatment.\n**UTI**; Nocardia; community-MRSA skin infections.",
+        se: "**Sulfa Allergy** (SJS/TEN); **Bone Marrow Suppression**.\n**Hyperkalemia** (TMP mimics Amiloride/blocks ENaC).\n**Kernicterus** in neonates.",
+        ci: "Sulfa Anaphylaxis; Term Pregnancy; G6PD Deficiency.",
+        pk: "TMP competes with **Creatinine** for secretion (pseudoelevation of Cr).",
+        pearl: "**Hyperkalemia risk** is significant in HIV patients on high-dose therapy."
+      }
     ]
   },
   {
@@ -1088,26 +1084,26 @@ micro: [
     drugs: [
       {
         name: "Tuberculosis Drugs (RIPE)",
-        aka: "Rifampin (R) · Isoniazid (I, INH) · Pyrazinamide (P) · Ethambutol (E) — first-line RIPE therapy | Rifabutin · Rifapentine · Streptomycin · Bedaquiline — adjuncts/MDR-TB",
-        summary: "Four-drug RIPE regimen is standard initial TB treatment for 2 months, followed by rifampin + isoniazid for 4 months. Each drug has distinct mechanisms and unique toxicity profiles that are heavily tested.",
-        moa: "**Rifampin (R):** inhibit **RNA polymerase (β-subunit)** → block mRNA synthesis → bactericidal. **Isoniazid (I):** prodrug activated by catalase-peroxidase (KatG) → inhibit **InhA (enoyl-ACP reductase)** → block mycolic acid synthesis → bactericidal against active TB. **Pyrazinamide (P):** acidic environment (phagolysosomes) → activated to pyrazinoic acid → disrupts membrane potential + inhibits fatty acid synthesis → bactericidal against dormant/latent bacilli. **Ethambutol (E):** inhibit **arabinosyl transferase** → block arabinogalactan synthesis (cell wall component) → bacteriostatic",
-        use: "**Active TB:** RIPE × 2 months → RI × 4 months (standard 6-month regimen)\n**Latent TB (LTBI):** isoniazid × 9 months, or rifampin × 4 months, or rifapentine + INH × 12 weeks\n**Rifampin:** meningococcal prophylaxis, H. influenzae prophylaxis\n**Rifabutin:** MAC prophylaxis in HIV (fewer CYP interactions than rifampin)\n**MDR-TB:** add bedaquiline, linezolid, moxifloxacin",
-        se: "**Rifampin:** **orange discoloration** of body fluids (urine, tears, saliva, sweat — harmless but alarming; stains contact lenses permanently); hepatotoxicity; **potent CYP450 inducer** (↓ OCP, warfarin, protease inhibitors, methadone, many other drugs — one of the most important drug interactions in medicine); flu-like syndrome (intermittent dosing); **INH:** **peripheral neuropathy** (pyridoxine deficiency — B6 supplementation always given concurrently); **hepatotoxicity** (age-dependent — rare <35 yr, ↑ with age, alcohol, hepatic disease); **drug-induced lupus** (slow acetylators — ANA+, anti-histone Ab); sideroblastic anemia; **Pyrazinamide:** **hyperuricemia** (gout) + **hepatotoxicity** (most hepatotoxic of RIPE); **Ethambutol:** **optic neuritis** (retrobulbar — dose-dependent; visual acuity and color vision testing required before and during therapy — reversible if caught early)",
-        ci: "Rifampin: concurrent protease inhibitors (rifabutin preferred); acute hepatic disease (hepatotoxicity concern); INH: active hepatic disease, prior INH-induced hepatitis; Pyrazinamide: severe gout, severe hepatic disease; Ethambutol: pre-existing optic neuritis, visual impairment, children too young to report visual changes (cannot monitor)",
-        pk: "**Rifampin:** oral/IV, t½ ~2–3 hr, hepatic/biliary elimination; **induces its own metabolism** (autoinduction)\n**INH:** oral/IM; t½ varies by acetylator status — fast: ~1 hr; slow: ~3 hr (slow acetylators: ↑ hepatotoxicity + lupus risk)\n**Pyrazinamide:** oral, hepatic amidase → pyrazinoic acid\n**Ethambutol:** oral, renal elimination — dose-reduce in CKD",
-        pearl: "**RIPE mnemonic for toxicities:** Rifampin = Red/orange secretions + CYP inducer; Isoniazid = Idiosyncratic hepatitis + neuropathy (B6); Pyrazinamide = Puffy joints (gout/hyperuricemia) + hepatitis; Ethambutol = Eye (optic neuritis — check vision). Always give **pyridoxine (B6) with INH** to prevent peripheral neuropathy. Rifampin's drug interactions are pervasive — it is the most important CYP inducer in clinical practice."
+        aka: "Rifampin (R) · Isoniazid (I) · Pyrazinamide (P) · Ethambutol (E)",
+        summary: "Four-drug regimen for active TB.\nUnique multi-organ toxicities.",
+        moa: "**R**: Inhibits **RNA Polymerase**.\n**I**: Inhibits **Mycolic Acid** synthesis (Prodrug).\n**P**: Phagolysosome activation (Unknown exact mechanism).\n**E**: Inhibits **Arabinosyltransferase** (Cell wall).",
+        use: "**Active TB**: RIPE for 2 months → RI for 4 months.\n**Latent TB**: INH for 9 months or Rifampin for 4 months.",
+        se: "**R**: **Orange Secretions**; Potent CYP induction.\n**I**: **Peripheral Neuropathy** (prevent with $B_6$); Drug-induced Lupus.\n**P**: **Hyperuricemia** (Gout); Hepatotoxicity.\n**E**: **Optic Neuritis** (Color blindness).",
+        ci: "Severe Gout (Pyrazinamide); Pre-existing Optic Neuritis (Ethambutol).",
+        pk: "**Rifampin**: Strong **CYP450 Inducer** (↓ Warfarin, OCPs).\n**INH**: Metabolism by **Acetylation** (Slow acetylators = ↑ Toxicity).",
+        pearl: "**Always give Vitamin $B_6$** (Pyridoxine) with Isoniazid."
       },
       {
         name: "Leprosy Drugs",
         aka: "Dapsone · Rifampin · Clofazimine",
-        summary: "Multi-drug therapy (MDT) is standard for leprosy to prevent resistance. Dapsone is the backbone; rifampin adds bactericidal activity; clofazimine treats multibacillary disease and provides anti-inflammatory benefit.",
-        moa: "**Dapsone:** inhibit **dihydropteroate synthase** → block bacterial folate synthesis (same target as sulfonamides — structural analog of PABA); bacteriostatic against Mycobacterium leprae. **Rifampin:** inhibit **RNA polymerase** → bactericidal (provides rapid killing to prevent resistance). **Clofazimine:** binds **mycobacterial DNA** + generates reactive oxygen species → bactericidal; also anti-inflammatory (↓ TNF, ↓ leukocyte motility)",
-        use: "**Leprosy (Hansen disease) — WHO MDT:**\nPaucibacillary: dapsone + rifampin × 6 months\nMultibacillary: dapsone + rifampin + clofazimine × 12 months\n**Dapsone:** PCP prophylaxis (alternative to TMP-SMX), toxoplasmosis prophylaxis (+ pyrimethamine), dermatitis herpetiformis",
-        se: "Dapsone: **hemolytic anemia** (methemoglobin reductase inhibition + oxidative stress — dose-dependent; severe in **G6PD deficiency** — screen before prescribing); methemoglobinemia (cyanosis despite normal O₂ sat on pulse ox — treat with methylene blue); agranulocytosis (rare); **Dapsone hypersensitivity syndrome** ('sulfone syndrome' — rash, fever, hepatitis); Rifampin: orange secretions, CYP induction (same as anti-TB use); Clofazimine: **reddish-brown skin and eye discoloration** (reversible but cosmetically distressing — major adherence issue), GI upset, skin dryness",
-        ci: "Dapsone: G6PD deficiency (hemolytic anemia — screen before use); severe sulfa hypersensitivity (cross-reactivity); anemia; Clofazimine: severe GI disease (GI enteropathy at high doses)",
-        pk: "**Dapsone:** oral, t½ ~28 hr, hepatic acetylation + CYP3A4 substrate; enterohepatic recycling\n**Rifampin:** oral — same PK as anti-TB use; strong CYP inducer\n**Clofazimine:** oral, highly lipophilic (Vd >1000 L/kg — deposits in fat/skin/macrophages), t½ ~70 days (prolonged discoloration after stopping)",
-        pearl: "**Dapsone hemolysis in G6PD deficiency** — G6PD produces NADPH for glutathione regeneration; without it, oxidative damage to red cells → hemolysis. Always screen for G6PD before dapsone (same as primaquine, rasburicase). **Clofazimine discoloration** can last months to years after stopping (extremely long t½ from lipophilic tissue accumulation) — must counsel patients before starting treatment."
-      },
+        summary: "MDT (Multi-Drug Therapy) for Hansen disease.",
+        moa: "**Dapsone**: Folate inhibitor (PABA analog).\n**Clofazimine**: Generates ROS; anti-inflammatory.",
+        use: "**Leprosy**: Paucibacillary (D+R) vs Multibacillary (D+R+C).\n**Dapsone**: PCP prophylaxis.",
+        se: "**Dapsone**: **Hemolysis in G6PD Deficiency**; Methemoglobinemia.\n**Clofazimine**: Brownish-pink skin discoloration.",
+        ci: "G6PD Deficiency (Dapsone).",
+        pk: "Clofazimine: $t_{1/2}$ ~70 days (lipophilic accumulation).",
+        pearl: "**Clofazimine skin changes** can last years after stopping."
+      }
     ]
   },
   {
@@ -1115,48 +1111,48 @@ micro: [
     drugs: [
       {
         name: "Amphotericin B",
-        aka: "Amphotericin B Deoxycholate (conventional) · Liposomal Amphotericin B (AmBisome) · Amphotericin B Lipid Complex (ABLC)",
-        summary: "Polyene antifungal with the broadest fungicidal activity. First-line for severe systemic fungal infections and cryptococcal meningitis; liposomal formulations dramatically reduce nephrotoxicity while maintaining efficacy.",
-        moa: "Bind **ergosterol** in fungal cell membrane → form transmembrane pores → ↑ membrane permeability → leakage of K⁺, Mg²⁺, sugars → cell death (fungicidal); some binding to mammalian cholesterol explains toxicity",
-        use: "**Cryptococcal meningitis:** induction (± flucytosine) — first-line\n**Mucormycosis:** liposomal — first-line\nInvasive aspergillosis (alternative to voriconazole); severe candidiasis/candidemia; histoplasmosis/coccidioidomycosis (severe/disseminated); empiric therapy in febrile neutropenia when azoles have failed",
-        se: "**Nephrotoxicity** (most important — dose-dependent proximal tubular injury + renal vasoconstriction → ↑ Cr, electrolyte wasting; liposomal formulation greatly reduces but does not eliminate); **infusion-related reactions** (fever, chills, rigors — 'shake and bake' — pretreat with diphenhydramine/acetaminophen ± meperidine; less with liposomal); **hypokalemia + hypomagnesemia** (tubular electrolyte wasting — replace aggressively); normocytic anemia (↓ erythropoietin from renal tubular injury); phlebitis (peripheral IV)",
-        ci: "Renal failure without liposomal formulation (conventional is very nephrotoxic — use liposomal in CKD); concurrent nephrotoxins without careful monitoring; use conventional formulation only when cost is prohibitive and patient has normal renal function",
-        pk: "IV only; t½ ~15 days (prolonged tissue redistribution); primarily fecal/biliary elimination\nLiposomal: reduces peak plasma and tubular exposure → markedly less nephrotoxicity\n**Nystatin** (same class): topical/oral only — too toxic for systemic use; no CSF penetration (flucytosine added for cryptococcal meningitis)",
-        pearl: "**Conventional vs. liposomal amphotericin B:** same mechanism and efficacy, but liposomal reduces nephrotoxicity ~3-fold — always use liposomal when renal function is impaired or prolonged therapy is expected. The **'shake and bake' infusion reaction** is histamine-mediated, not IgE-allergic — pretreat, slow the infusion, and continue. Nystatin (same polyene class) is only used topically due to systemic toxicity."
+        aka: "Amphotericin B · AmBisome",
+        summary: "Broadest fungicidal agent for life-threatening systemic infections.",
+        moa: "Binds **Ergosterol** → forms membrane **pores** → leakage of ions.",
+        use: "**Cryptococcal Meningitis** (± Flucytosine).\n**Mucormycosis**; Invasive Aspergillosis.",
+        se: "**Nephrotoxicity** (Renal vasoconstriction + direct injury).\n**'Shake and Bake'**: Infusion reactions (Fever/Chills).\n**Hypokalemia / Hypomagnesemia** (Tubular wasting).",
+        ci: "Renal Failure (use Liposomal AmBisome to mitigate).",
+        pk: "IV only; Not dialyzable; prolonged tissue redistribution.",
+        pearl: "**Supplement $K^+$ and $Mg^{2+}$** aggressively during treatment."
       },
       {
         name: "Azole Antifungals",
-        aka: "Fluconazole (Diflucan) · Itraconazole · Voriconazole (Vfend) · Posaconazole · Isavuconazole · Ketoconazole (largely obsolete systemically)",
-        summary: "Inhibit ergosterol synthesis by blocking CYP51 (lanosterol demethylase). Triazoles are first-line for many fungal infections; voriconazole is gold standard for invasive aspergillosis. Extensive CYP drug interactions.",
-        moa: "Inhibit **CYP51 (14-alpha-lanosterol demethylase)** in fungal cells → block conversion of lanosterol → ergosterol → ↓ ergosterol in fungal membrane → ↑ toxic methylated sterols → impaired membrane function (fungistatic against most; fungicidal against some Candida)",
-        use: "**Fluconazole:** Candida (esophageal, vaginal, invasive — susceptible strains), cryptococcal meningitis maintenance, coccidioidomycosis, neutropenia prophylaxis\n**Voriconazole:** invasive aspergillosis (first-line), fluconazole-resistant Candida\n**Itraconazole:** histoplasmosis (mild-moderate — first-line), blastomycosis, sporotrichosis, onychomycosis\n**Posaconazole:** aspergillosis prophylaxis/salvage, mucormycosis (salvage)\n**Isavuconazole:** aspergillosis and mucormycosis (first-line alternative)",
-        se: "**All azoles:** hepatotoxicity (monitor LFTs; ketoconazole worst), QTc prolongation, **strong CYP3A4 inhibition** (↑ statins, cyclosporine, tacrolimus, warfarin)\n**Voriconazole unique:** visual disturbances/photopsia (~30% — reversible), periostitis (long-term), skin SCC (photosensitivity + prolonged use)\n**Itraconazole:** negative inotropy (avoid in HF)\n**Ketoconazole:** adrenal insufficiency (↓ cortisol synthesis), gynecomastia",
-        ci: "Concurrent QTc-prolonging drugs (all); narrow-TI CYP3A4 substrates (ergotamine, cisapride)\nItraconazole: HFrEF (negative inotropic)\nKetoconazole: systemic use largely abandoned — topical only",
-        pk: "**Fluconazole:** oral/IV, best CSF penetration of all azoles (70–80% serum levels), t½ ~30 hr, renal elimination — dose-reduce in CKD\n**Voriconazole:** oral/IV, non-linear PK (CYP2C19 polymorphism — poor metabolizers ~5× higher levels; TDM important)\n**Itraconazole:** oral capsule requires food + acid; solution better absorbed\n**Posaconazole:** requires food for absorption (delayed-release or IV preferred)",
-        pearl: "**Voriconazole visual side effects** (photopsia — seeing flashing lights, altered color perception) occur in ~30% of patients — they are reversible, usually mild, and do not require stopping therapy. More serious is **voriconazole-associated SCC** (squamous cell carcinoma) with prolonged use + sun exposure — sunscreen is essential. Fluconazole has the **best CSF penetration** of all azoles — hence its role in cryptococcal meningitis maintenance therapy."
+        aka: "Fluconazole · Voriconazole · Itraconazole · Posaconazole",
+        summary: "Ergosterol synthesis inhibitors with extensive drug interactions.",
+        moa: "Inhibit **CYP51** (Lanosterol 14-$\alpha$-demethylase).\nBlock Lanosterol → Ergosterol conversion.",
+        use: "**Fluconazole**: Candida; Cryptococcal maintenance.\n**Voriconazole**: First-line for **Aspergillus**.\n**Itraconazole**: Histoplasmosis; Blastomycosis.",
+        se: "**All**: Hepatotoxicity; **QTc Prolongation**.\n**Voriconazole**: **Visual Disturbances** (Photopsia); Skin SCC.",
+        ci: "CYP3A4 substrates (Statins, Warfarin).\nItraconazole: Avoid in Heart Failure.",
+        pk: "**Fluconazole**: Best CSF penetration.\n**Strong CYP3A4 inhibitors**.",
+        pearl: "**Visual flashes** with Voriconazole are common and reversible."
       },
       {
         name: "Echinocandins & Flucytosine",
-        aka: "Caspofungin (Cancidas) · Micafungin · Anidulafungin — Echinocandins | Flucytosine (5-FC, Ancobon) — Pyrimidine analog",
-        summary: "Echinocandins block fungal cell wall beta-glucan synthesis; flucytosine inhibits fungal nucleic acid synthesis. Echinocandins are first-line for candidemia; flucytosine is used only in combination (cryptococcal meningitis induction).",
-        moa: "**Echinocandins:** non-competitive inhibition of **beta-(1,3)-D-glucan synthase** → ↓ beta-glucan in fungal cell wall → osmotic instability → fungicidal against Candida; fungistatic against Aspergillus (affects hyphal tips). **Flucytosine:** taken up by fungal cytosine permease → deaminated to **5-fluorouracil (5-FU)** → incorporated into RNA (↓ protein synthesis) + inhibits **thymidylate synthase** → ↓ DNA synthesis → fungistatic",
-        use: "**Echinocandins:** candidemia/invasive candidiasis (first-line); esophageal candidiasis (second-line); empiric therapy in febrile neutropenia; salvage aspergillosis (caspofungin + voriconazole)\n**Flucytosine:** always in combination — never monotherapy; cryptococcal meningitis induction (+ amphotericin B); chromoblastomycosis",
-        se: "**Echinocandins:** generally very well tolerated; histamine-like infusion reactions (caspofungin); mild ↑ LFTs\n**Flucytosine:** bone marrow suppression (neutropenia/thrombocytopenia — 5-FU metabolite; dose-dependent, especially in renal failure); GI toxicity; hepatotoxicity; must monitor levels (therapeutic 25–100 µg/mL; toxicity >100)",
-        ci: "Echinocandins: poor CSF penetration — avoid for CNS fungal infections\nFlucytosine: never monotherapy (rapid resistance); severe renal failure without dose adjustment; concurrent bone marrow suppressants",
-        pk: "**Echinocandins:** IV only; t½ ~9–26 hr; hepatic (non-CYP — **minimal drug interactions**, major advantage); no renal dose adjustment\n**Flucytosine:** oral, t½ ~3–6 hr, renally eliminated — strict dose adjustment in CKD; narrow therapeutic index",
-        pearl: "**Echinocandins have the fewest drug interactions of all systemic antifungals** (not CYP substrates or inhibitors) — safe with immunosuppressants, antiretrovirals, and narrow-TI drugs where azoles are dangerous. **Flucytosine must never be used alone** — resistance develops rapidly (mutational loss of permease or deaminase). In cryptococcal meningitis, flucytosine + amphotericin B sterilizes CSF faster than either alone (COAT trial)."
+        aka: "Caspofungin · Micafungin | Flucytosine",
+        summary: "**Echinocandins**: First-line for Candidemia.\n**Flucytosine**: Synergistic add-on.",
+        moa: "**Echinocandins**: Inhibit **$\beta$-glucan** synthesis (Cell wall).\n**Flucytosine**: Converted to **5-FU** → inhibits DNA/RNA synthesis.",
+        use: "**Echinocandins**: Candidemia; Febrile neutropenia.\n**Flucytosine**: Cryptococcal meningitis induction (with Ampho B).",
+        se: "**Flucytosine**: **Bone Marrow Suppression** (Dose-limiting).",
+        ci: "**Flucytosine Monotherapy**: Never used alone (resistance).",
+        pk: "Echinocandins: IV only; Minimal drug interactions.",
+        pearl: "**Echinocandins** are the 'Penicillins of fungi' (target cell wall)."
       },
       {
         name: "Dermatophyte Drugs",
-        aka: "Terbinafine (Lamisil) · Griseofulvin · Nystatin (topical) · Ciclopirox",
-        summary: "Topical and oral agents targeting superficial fungal infections of skin, hair, and nails caused by dermatophytes. Terbinafine is first-line for onychomycosis; griseofulvin is used primarily for tinea capitis in children.",
-        moa: "**Terbinafine:** inhibit **squalene epoxidase** → block ergosterol synthesis + accumulate toxic squalene → fungicidal against dermatophytes. **Griseofulvin:** bind **microtubule-associated proteins** → inhibit fungal mitosis (blocks metaphase) → fungistatic; deposits in keratin-forming cells. **Nystatin:** bind **ergosterol** (same as amphotericin B) → pore formation → fungicidal (topical only — too toxic for systemic use). **Ciclopirox:** chelates metal cations (inhibits metal-dependent enzymes) → disrupts membrane/mitochondria",
-        use: "**Terbinafine:** onychomycosis (oral — first-line), tinea pedis/corporis/cruris\n**Griseofulvin:** tinea capitis (drug of choice in children — oral required; topicals inadequate)\n**Nystatin:** oral candidiasis (swish-and-swallow), vaginal/cutaneous candidiasis (topical)\n**Ciclopirox:** topical alternative for nail/skin dermatophytes",
-        se: "Terbinafine: **hepatotoxicity** (rare — monitor LFTs; idiosyncratic), taste disturbance (dysgeusia — common, usually resolves), GI upset, **CYP2D6 inhibitor** (↑ TCAs, antipsychotics); Griseofulvin: photosensitivity, GI upset, headache, **CYP inducer** (↓ OCP efficacy), teratogenicity; Nystatin: nausea when swallowed (oral formulation); minimal systemic SE (not absorbed)",
-        ci: "Terbinafine: severe hepatic disease, prior terbinafine hepatotoxicity; Griseofulvin: pregnancy (teratogenic), porphyria (CYP induction → ↑ heme synthesis), SLE (may exacerbate), severe hepatic disease; Nystatin: systemic use (toxic at systemic doses — topical only)",
-        pk: "**Terbinafine:** oral, highly lipophilic → deposits in nail matrix for months; t½ plasma ~36 hr, nail t½ ~100 days; CYP2D6 inhibitor\n**Griseofulvin:** oral, fatty-meal absorption, deposits in keratin; t½ ~24 hr; hepatic CYP inducer\n**Nystatin:** topical/swallowed — negligible systemic absorption",
-        pearl: "**Terbinafine works by accumulating in nail keratin** — it is detectable in nails for months after stopping treatment (explains short treatment course efficacy). Griseofulvin is the **only effective oral drug for tinea capitis** because it deposits in newly forming keratin where the dermatophyte invades; topical agents cannot penetrate the hair follicle. Nystatin cannot be used systemically due to its toxicity profile."
-      },
+        aka: "Terbinafine · Griseofulvin · Nystatin",
+        summary: "Agents for superficial hair, skin, and nail infections.",
+        moa: "**Terbinafine**: Inhibits **Squalene Epoxidase**.\n**Griseofulvin**: Blocks **Microtubules** (Mitosis).\n**Nystatin**: Pore formation (same as Ampho B).",
+        use: "**Terbinafine**: Onychomycosis (Nails).\n**Griseofulvin**: **Tinea Capitis** (Scalp) in children.\n**Nystatin**: Thrush (Swish-and-swallow).",
+        se: "**Terbinafine**: Hepatotoxicity (idiosyncratic); Dysgeusia.\n**Griseofulvin**: **CYP Inducer**; Photosensitivity.",
+        ci: "Pregnancy/Porphyria (Griseofulvin).",
+        pk: "Terbinafine concentrates in keratin for months.",
+        pearl: "**Griseofulvin** requires oral administration for scalp fungal penetration."
+      }
     ]
   },
   {
@@ -1164,70 +1160,70 @@ micro: [
     drugs: [
       {
         name: "NRTIs & NNRTIs",
-        aka: "NRTIs: Zidovudine (AZT) · Tenofovir (TDF/TAF) · Emtricitabine (FTC) · Lamivudine (3TC) · Abacavir (ABC) · Stavudine | NNRTIs: Efavirenz · Nevirapine · Rilpivirine · Doravirine",
-        summary: "NRTIs are prodrugs incorporated as chain terminators into HIV DNA; NNRTIs are allosteric reverse transcriptase inhibitors. Both classes are essential components of antiretroviral regimens but have distinct resistance patterns and side effects.",
-        moa: "**NRTIs (nucleoside/nucleotide reverse transcriptase inhibitors):** phosphorylated intracellularly to triphosphate → competitively incorporated into HIV DNA by **reverse transcriptase** → act as **chain terminators** (no 3'-OH → block elongation). **NNRTIs:** bind **allosteric (non-catalytic) site** on reverse transcriptase → conformational change → inhibit polymerase activity",
-        use: "All: components of combination ART for HIV\n**Tenofovir/emtricitabine (Truvada/Descovy):** PrEP\n**Zidovudine:** perinatal prophylaxis (prevention of maternal-to-child transmission)\n**Lamivudine/tenofovir:** active against HBV (treat HIV/HBV coinfection)\nEfavirenz-based regimens: resource-limited settings",
-        se: "**NRTIs (class):** lactic acidosis + hepatic steatosis (mitochondrial toxicity — stavudine/zidovudine worst)\n**Zidovudine:** bone marrow suppression (anemia, neutropenia)\n**Tenofovir (TDF):** nephrotoxicity + Fanconi syndrome, ↓ bone mineral density\n**Abacavir:** hypersensitivity (HLA-B*5701 — fever, rash, GI, respiratory; fatal on rechallenge — **screen before prescribing**)\n**Efavirenz:** CNS effects (vivid dreams, dizziness, depression, psychosis — worst weeks 1–4), teratogenicity\n**Nevirapine:** hepatotoxicity (especially women CD4 >250), rash/SJS",
-        ci: "Abacavir: HLA-B*5701 positive (hypersensitivity — absolute CI; screen all patients before prescribing); Efavirenz: pregnancy 1st trimester (neural tube defect concern — use alternative); Nevirapine: women with CD4 >250 or men with CD4 >400 (↑ severe hepatotoxicity); Tenofovir: severe CKD without dose adjustment",
-        pk: "NRTIs: prodrugs → intracellular phosphorylation to active triphosphate; intracellular t½ >> plasma t½ → once/twice daily dosing\nNNRTIs: oral, hepatic CYP3A4; efavirenz: strong CYP inducer + substrate\n**TAF** (tenofovir alafenamide): lower plasma levels → less renal/bone toxicity than TDF — preferred in CKD/osteoporosis\nRilpivirine: requires gastric acid for absorption (PPIs reduce levels)",
-        pearl: "**Screen HLA-B*5701 before every abacavir prescription** — the hypersensitivity reaction is a pharmacogenomic reaction: if HLA-B*5701 positive, abacavir is absolutely contraindicated. Rechallenge is potentially fatal. **Tenofovir alafenamide (TAF) is preferred over TDF** in patients with renal disease or osteoporosis — it delivers higher intracellular drug concentrations at lower systemic doses, reducing renal and bone toxicity."
+        aka: "Zidovudine · Tenofovir · Abacavir | Efavirenz · Nevirapine",
+        summary: "Backbone of HIV ART; block Reverse Transcriptase.",
+        moa: "**NRTIs**: Competitively inhibit RT; cause **Chain Termination** (lack 3'-OH).\n**NNRTIs**: Allosteric inhibition of RT (no phosphorylation needed).",
+        use: "**HIV ART Combinations**.\n**Zidovudine**: Perinatal prophylaxis.\n**Tenofovir**: PrEP.",
+        se: "**NRTIs**: Lactic Acidosis (Mitochondrial toxicity).\n**Abacavir**: **Hypersensitivity** (HLA-B*5701).\n**Zidovudine**: Anemia.\n**Efavirenz**: Vivid dreams; CNS side effects.",
+        ci: "**HLA-B*5701 Positive** (Abacavir absolute CI).",
+        pk: "NRTIs require intracellular phosphorylation to active form.",
+        pearl: "**Screen HLA-B*5701** before starting Abacavir."
       },
       {
         name: "Protease & Integrase Inhibitors",
-        aka: "Protease Inhibitors (PIs): Ritonavir · Atazanavir · Darunavir · Lopinavir/Ritonavir — Integrase Strand Transfer Inhibitors (INSTIs): Raltegravir · Elvitegravir · Dolutegravir · Bictegravir · Cabotegravir",
-        summary: "PIs block HIV protease to prevent viral maturation; INSTIs block integration of viral DNA into the host genome. INSTIs are now preferred first-line ART due to excellent efficacy, tolerability, and high barrier to resistance.",
-        moa: "**Protease inhibitors:** bind **HIV aspartyl protease** active site → prevent cleavage of gag-pol polyprotein → produce immature, non-infectious viral particles. **INSTIs (integrase strand transfer inhibitors):** block **HIV integrase** (strand transfer step) → prevent insertion of HIV cDNA into host chromosome",
-        use: "**PIs:** HIV combination regimens; ritonavir as **PK booster** (sub-therapeutic dose inhibits CYP3A4 → ↑ co-PI levels); darunavir: preferred PI\n**INSTIs:** first-line ART (dolutegravir + TAF/FTC = WHO first-line); cabotegravir IM every 2 months: first long-acting injectable ART",
-        se: "**PIs:** metabolic syndrome (lipodystrophy, dyslipidemia, insulin resistance); atazanavir: benign indirect hyperbilirubinemia (↓ UGT1A1); kidney stones (atazanavir, indinavir); extensive CYP3A4 inhibition\n**INSTIs:** generally well-tolerated; dolutegravir: ↑ Cr (OCT2 block — not true renal damage), neural tube defect signal (ongoing surveillance); weight gain (INSTIs > PIs > NRTIs)",
-        ci: "PIs: concurrent narrow-TI CYP3A4 substrates (simvastatin — rhabdomyolysis; rifampin — ↓ PI levels; ergotamine — vasospasm)\nAtazanavir: PPIs (↓ gastric acid → ↓ absorption)\nDolutegravir: first trimester (neural tube defect signal)",
-        pk: "**PIs:** oral, hepatic CYP3A4; ritonavir booster 100–200 mg/day → inhibits CYP3A4 → extends co-PI t½ to 12–24 hr\n**INSTIs:** dolutegravir t½ ~14 hr; bictegravir t½ ~17 hr; hepatic (UGT1A1 ± CYP3A4); minimal renal excretion\n**Cabotegravir:** IM depot, t½ ~5–6 weeks",
-        pearl: "**Ritonavir boosting** (pharmacokinetic enhancement): low-dose ritonavir dramatically inhibits CYP3A4 → extends t½ of co-administered PIs from hours to 12–24 hr, enabling once-daily dosing. This is pharmacokinetic cheating — ritonavir is not added for antiviral effect. INSTIs (especially dolutegravir and bictegravir) have a **high genetic barrier to resistance** — single mutations rarely cause resistance, unlike older drugs. This is why they are now universally first-line."
+        aka: "Ritonavir · Darunavir | Dolutegravir · Bictegravir",
+        summary: "PIs block maturation; INSTIs block integration.\nINSTIs are preferred first-line.",
+        moa: "**PIs**: Block HIV Protease → immature, non-infectious virions.\n**INSTIs**: Block HIV Integrase → prevent insertion into host DNA.",
+        use: "**HIV ART**.\n**Ritonavir**: 'Booster' (inhibits CYP3A4 to ↑ other PI levels).",
+        se: "**PIs**: **Metabolic Syndrome** (Lipodystrophy, Hyperglycemia).\n**INSTIs**: Weight gain; benign ↑ Creatinine (Dolutegravir).",
+        ci: "PIs: Concurrent Simvastatin (Rhabdo risk).",
+        pk: "Ritonavir is used as a PK enhancer, not for antiviral effect.",
+        pearl: "**High genetic barrier**: INSTIs (Dolutegravir) are harder to develop resistance against."
       },
       {
         name: "HIV Entry Inhibitors",
-        aka: "Maraviroc (Selzentry) — CCR5 antagonist | Enfuvirtide (Fuzeon) — Fusion inhibitor | Ibalizumab — CD4 post-attachment inhibitor | Fostemsavir — gp120 attachment inhibitor",
-        summary: "Block HIV entry into CD4+ T cells by targeting either the CCR5 co-receptor, the gp41 fusion peptide, or the CD4 receptor/gp120 interaction. Used for treatment-experienced patients with multidrug-resistant HIV.",
-        moa: "**Maraviroc:** allosteric antagonist of **CCR5 co-receptor** → prevents gp120 binding to CCR5 → blocks viral entry (active only against CCR5-tropic virus; CXCR4-tropic virus is resistant). **Enfuvirtide:** peptide that binds **gp41 heptad repeat HR1** → prevents gp41 conformational change → blocks fusion of viral and cell membranes. **Ibalizumab:** monoclonal antibody binding **CD4 receptor domain 2** → prevents post-attachment gp120/coreceptor interaction",
-        use: "Treatment-experienced patients with MDR HIV — salvage regimens\n**Maraviroc:** confirm CCR5 tropism first (Trofile assay)\n**Enfuvirtide:** twice-daily SC injection — last resort only",
-        se: "**Maraviroc:** URI, cough, rash, hepatotoxicity\n**Enfuvirtide:** injection site reactions (nodules, erythema, pain — major limitation), eosinophilia\n**Ibalizumab:** infusion reactions, rash",
-        ci: "**Maraviroc:** CXCR4-tropic or dual/mixed-tropic HIV (ineffective — test tropism first), severe hepatic disease\n**Enfuvirtide:** extensive injection site skin disease\nIbalizumab: severe infusion reaction history",
-        pk: "**Maraviroc:** oral, t½ ~14–18 hr, CYP3A4 + P-gp substrate — dose-adjust with inhibitors/inducers\n**Enfuvirtide:** SC only (peptide, not orally bioavailable), t½ ~3.8 hr (twice daily)\n**Ibalizumab:** IV q2 weeks, t½ ~64 hr (IgG antibody)",
-        pearl: "**Maraviroc requires a tropism test before prescribing** — it only blocks CCR5-tropic HIV. If a patient has CXCR4-tropic or dual-tropic virus, maraviroc provides no benefit and may select for CXCR4-tropic variants. This tropism switch can also occur during therapy. Enfuvirtide is highly effective but its **twice-daily subcutaneous injection** and high cost (>$20,000/month) limit its use to truly salvage situations."
+        aka: "Maraviroc · Enfuvirtide",
+        summary: "Salvage agents for MDR-HIV that block entry into CD4 cells.",
+        moa: "**Maraviroc**: **CCR5** Antagonist (blocks gp120 binding).\n**Enfuvirtide**: Fusion inhibitor (binds **gp41**).",
+        use: "**MDR-HIV Salvage**.",
+        se: "**Enfuvirtide**: Severe injection site reactions (nodules).",
+        ci: "**CXCR4-tropic HIV** (Maraviroc only works for CCR5-tropic).",
+        pk: "Maraviroc requires a tropism test (Trofile) before use.",
+        pearl: "**Enfuvirtide** is SC injection only."
       },
       {
         name: "Herpes & CMV Antivirals",
-        aka: "Acyclovir (Zovirax) · Valacyclovir (Valtrex) · Famciclovir · Penciclovir — HSV/VZV | Ganciclovir · Valganciclovir (Valcyte) · Foscarnet · Cidofovir — CMV",
-        summary: "Nucleoside analogs and pyrophosphate analogs targeting herpesvirus DNA polymerases. Acyclovir/valacyclovir are first-line for HSV and VZV; ganciclovir/valganciclovir for CMV; foscarnet and cidofovir are nephrotoxic alternatives for resistant CMV.",
-        moa: "**Acyclovir/valacyclovir/famciclovir:** prodrugs activated by **viral thymidine kinase (TK)** → phosphorylated to triphosphate → competitive inhibition of **viral DNA polymerase** + chain termination (no 3'-OH); selective for infected cells (TK only expressed in virus-infected cells — minimal host toxicity). **Ganciclovir/valganciclovir:** phosphorylated by **CMV UL97 kinase** → inhibit **CMV DNA polymerase**; also chain terminator. **Foscarnet:** directly inhibit **viral DNA polymerase pyrophosphate binding site** (does NOT require viral TK activation — active against TK-deficient acyclovir-resistant HSV and UL97-mutant ganciclovir-resistant CMV). **Cidofovir:** nucleotide analog, requires no viral activation → active against most DNA viruses",
-        use: "**Acyclovir/valacyclovir:** HSV-1/2 (primary, recurrences, suppression), VZV (zoster, chickenpox), HSV encephalitis (IV acyclovir — first-line)\n**Valacyclovir:** preferred oral agent (3–5× bioavailability of oral acyclovir)\n**Ganciclovir/valganciclovir:** CMV retinitis/colitis/pneumonitis in HIV; CMV prophylaxis in transplant\n**Foscarnet:** acyclovir-resistant HSV/VZV (TK-deficient), ganciclovir-resistant CMV\n**Cidofovir:** CMV retinitis (alternative), adenovirus, BK virus in transplant",
-        se: "**Acyclovir (IV):** nephrotoxicity (crystallizes in tubules — hydrate aggressively), CNS toxicity (encephalopathy in renal failure)\n**Ganciclovir/valganciclovir:** bone marrow suppression (neutropenia, thrombocytopenia — additive with AZT; monitor CBC), teratogenicity\n**Foscarnet:** nephrotoxicity (severe), electrolyte disturbances (↓ Ca²⁺, Mg²⁺, K⁺ — hypocalcemia → seizures), genital ulcers\n**Cidofovir:** severe nephrotoxicity (prehydrate + probenecid required), uveitis",
-        ci: "Ganciclovir: severe neutropenia/thrombocytopenia, concurrent AZT (additive marrow toxicity)\nFoscarnet: severe renal failure without dose adjustment\nCidofovir: probenecid allergy, severe renal failure",
-        pk: "**Acyclovir oral:** poor bioavailability (~15–30%); IV for encephalitis/severe VZV\n**Valacyclovir:** L-valine ester prodrug → ~55% bioavailability\n**Ganciclovir:** IV, t½ ~4 hr, renal — dose-adjust\n**Valganciclovir:** oral prodrug → ganciclovir, ~60% bioavailability\n**Foscarnet:** IV only, t½ ~3–7 hr — hydrate aggressively\n**Cidofovir:** IV q1–2 weeks; **probenecid required** (blocks tubular secretion → ↓ nephrotoxicity)",
-        pearl: "**Acyclovir mechanism of selective toxicity:** viral TK (but not cellular TK) phosphorylates acyclovir → selective accumulation in virus-infected cells only. Resistance = TK-deficient mutants (treated with foscarnet which bypasses TK). **Foscarnet treats TK-deficient acyclovir-resistant HSV and UL97-deficient ganciclovir-resistant CMV** — it directly inhibits the viral DNA polymerase without needing kinase activation. Always monitor calcium and magnesium with foscarnet (chelates divalent cations → symptomatic hypocalcemia)."
+        aka: "Acyclovir · Valacyclovir | Ganciclovir · Foscarnet",
+        summary: "DNA polymerase inhibitors for HSV, VZV, and CMV.",
+        moa: "**Acyclovir**: Guanosine analog; phosphorylated by **Viral Thymidine Kinase** (TK).\n**Ganciclovir**: Phosphorylated by CMV **UL97 kinase**.\n**Foscarnet**: Pyrophosphate analog; directly inhibits polymerase.",
+        use: "**HSV/VZV**: Acyclovir/Valacyclovir.\n**CMV**: Ganciclovir/Valganciclovir.\n**Acyclovir-resistant HSV**: Foscarnet.",
+        se: "**Acyclovir**: Obstructive Nephropathy (Crystal-induced; hydrate!).\n**Ganciclovir**: **Bone Marrow Suppression**.\n**Foscarnet**: **Nephrotoxicity** and Hypocalcemia (Seizures).",
+        ci: "Severe Neutropenia (Ganciclovir).",
+        pk: "**Valacyclovir**: Prodrug with superior oral bioavailability.",
+        pearl: "**TK-Deficient Resistance**: Foscarnet does NOT require viral activation; it treats Acyclovir-resistant HSV."
       },
       {
         name: "Influenza Antivirals",
-        aka: "Oseltamivir (Tamiflu) · Zanamivir (Relenza) · Baloxavir (Xofluza) · Amantadine · Rimantadine (largely obsolete)",
-        summary: "Neuraminidase inhibitors (oseltamivir, zanamivir) and cap-dependent endonuclease inhibitors (baloxavir) are active against influenza A and B; M2 inhibitors (amantadine) are active only against influenza A and resistance is widespread.",
-        moa: "**Oseltamivir/zanamivir:** inhibit **influenza neuraminidase** → prevent cleavage of sialic acid → newly assembled virions remain attached to cell surface → cannot spread (reduce symptoms by ~1 day if started within 48 hr). **Baloxavir:** inhibit **cap-dependent endonuclease** (PB2 subunit) → block viral mRNA synthesis → inhibit replication. **Amantadine/rimantadine:** block **M2 ion channel** → prevent viral uncoating → block influenza A replication (resistance now >99% of seasonal H3N2 and H1N1 strains in USA — largely obsolete)",
-        use: "**Oseltamivir/zanamivir/baloxavir:** influenza A and B treatment (within 48 hr — reduces duration ~1 day; greater benefit in high-risk/hospitalized); influenza prophylaxis (oseltamivir)\n**Amantadine:** Parkinson disease (dopaminergic — separate indication); NOT for influenza (>99% resistance)",
-        se: "**Oseltamivir:** nausea, vomiting (take with food); rare neuropsychiatric events (especially children)\n**Zanamivir:** bronchospasm (inhaled)\n**Amantadine:** CNS effects (insomnia, dizziness, confusion, livedo reticularis), ankle edema, teratogenicity",
-        ci: "Zanamivir: severe asthma or COPD (bronchospasm — absolute CI)\nAmantadine: influenza (near-universal resistance — abandoned for this use)\nAll: severe renal failure without dose adjustment (renally cleared)",
-        pk: "**Oseltamivir:** oral prodrug → active carboxylate (hepatic esterase), t½ ~6–10 hr; renal — dose-reduce in CKD\n**Zanamivir:** inhaled dry powder; minimal systemic absorption\n**Baloxavir:** oral single dose; t½ ~100 hr\n**Amantadine:** oral, t½ ~12–18 hr, renal excretion — dose-reduce in CKD",
-        pearl: "**Neuraminidase inhibitors must be started within 48 hours** for maximum clinical benefit — they reduce symptom duration by only ~1 day in otherwise healthy patients, but provide more significant benefit in high-risk patients (elderly, immunocompromised, hospitalized). **Amantadine is not used for influenza** anymore (>99% resistance) but is still used in Parkinson disease as a dopamine agonist/NMDA antagonist. Baloxavir offers a single-dose treatment option."
+        aka: "Oseltamivir · Zanamivir · Baloxavir",
+        summary: "Reduce flu duration by ~1 day if started within 48 hr.",
+        moa: "**Oseltamivir/Zanamivir**: **Neuraminidase Inhibitors**; prevent virion release.\n**Baloxavir**: Endonuclease inhibitor; blocks mRNA synthesis.",
+        use: "**Influenza A and B** (Treatment and Prophylaxis).",
+        se: "**Oseltamivir**: GI upset.\n**Zanamivir**: Bronchospasm.",
+        ci: "**Asthma / COPD** (Zanamivir inhaled absolute CI).",
+        pk: "Oseltamivir: Oral; Zanamivir: Inhaled; Baloxavir: Single oral dose.",
+        pearl: "**Neuraminidase** prevents sialic acid cleavage → virions stuck to cell."
       },
       {
         name: "Ribavirin & Interferons",
-        aka: "Ribavirin (Virazole) · Peginterferon alfa-2a (Pegasys) · Peginterferon alfa-2b (PegIntron) · Interferon beta-1a/b · Interferon gamma",
-        summary: "Broad-spectrum antivirals and immunomodulators. Ribavirin is a guanosine analog used with direct-acting antivirals for HCV and severe RSV; interferons modulate immune response and are used for HCV, HBV, multiple sclerosis, and malignancies.",
-        moa: "**Ribavirin:** phosphorylated to triphosphate → inhibits **IMP dehydrogenase** → depletes GTP → ↓ viral RNA synthesis; also inhibits mRNA capping and incorporates into viral RNA as mutagen → **error catastrophe**. **Interferons (IFN-α/β/γ):** bind **type I (IFN-α/β) or type II (IFN-γ) interferon receptors** → activate **JAK-STAT signaling** → induce antiviral state (MxA proteins, 2'-5' oligoadenylate synthetase → RNase L → RNA degradation), immunomodulation, anti-proliferative effect",
-        use: "**Ribavirin:** HCV (+ peginterferon or DAAs); inhaled for severe RSV in immunocompromised; Lassa fever\n**Peginterferon alfa:** HCV (pegIFN + ribavirin ± DAA); chronic HBV (finite course → seroconversion)\n**IFN-β:** multiple sclerosis (↓ relapse frequency)\n**IFN-γ:** chronic granulomatous disease prophylaxis\n**IFN-α:** hairy cell leukemia, Kaposi sarcoma, melanoma, condylomata",
-        se: "**Ribavirin:** hemolytic anemia (RBC accumulation → oxidative damage — dose-dependent; monitor Hgb); **teratogenic** (two forms of contraception × 6 months after — both partners)\n**Interferons:** flu-like syndrome (nearly universal at initiation — inject at bedtime, premedicate with acetaminophen); neuropsychiatric effects (depression, suicidality — screen and monitor); bone marrow suppression; autoimmune thyroiditis; alopecia",
-        ci: "Ribavirin: pregnancy (Category X), hemolytic anemia, severe renal failure, concurrent didanosine (↑ mitochondrial toxicity)\nInterferons: severe depression/suicidality; decompensated cirrhosis (IFN-α — precipitates hepatic failure in Child-Pugh B/C); autoimmune hepatitis",
-        pk: "**Ribavirin:** oral or inhaled; plasma t½ ~12 hr, **RBC t½ ~40 days** (accumulates in erythrocytes — prolonged hemolysis after stopping)\n**Peginterferon:** SC weekly injection; PEGylation ↑ t½ from ~8 hr to ~60–80 hr → weekly dosing",
-        pearl: "**Ribavirin hemolytic anemia** is predictable and dose-dependent — erythrocytes lack the mechanisms to clear ribavirin triphosphate once it accumulates. Monitor hemoglobin weekly in the first 8 weeks. **Pegylation of interferons** was a major advance: attaching PEG polymers reduces renal clearance and proteolysis, extending t½ from ~8 hours to ~60–80 hours → once-weekly instead of thrice-weekly injections with similar or better antiviral efficacy."
-      },
+        aka: "Ribavirin | Interferon-alpha/beta/gamma",
+        summary: "Broad antivirals and immunomodulators.",
+        moa: "**Ribavirin**: Inhibits IMP Dehydrogenase; RNA mutagen.\n**Interferons**: Activate JAK-STAT → induce antiviral state.",
+        use: "**HCV**: Ribavirin + DAAs.\n**MS**: IFN-beta.\n**CGD**: IFN-gamma.",
+        se: "**Ribavirin**: **Hemolytic Anemia**; **Severe Teratogen**.\n**Interferons**: **Flu-like Syndrome**; Depression.",
+        ci: "**Pregnancy** (Ribavirin Category X; use 2 forms of contraception).",
+        pk: "Ribavirin accumulates in RBCs ($t_{1/2}$ ~40 days).",
+        pearl: "**Ribavirin teratogenicity** persists for 6 months after treatment."
+      }
     ]
   },
   {
@@ -1235,109 +1231,118 @@ micro: [
     drugs: [
       {
         name: "Antimalarials",
-        aka: "Chloroquine · Hydroxychloroquine (Plaquenil) · Mefloquine · Primaquine · Artemether-Lumefantrine (Coartem) · Artesunate · Quinine · Atovaquone-Proguanil (Malarone) · Doxycycline",
-        summary: "Target different stages of the Plasmodium life cycle. Artemisinin-based combination therapies (ACTs) are first-line for uncomplicated malaria; IV artesunate for severe malaria; primaquine is essential for radical cure of P. vivax/ovale (hypnozoite eradication).",
-        moa: "**Chloroquine/hydroxychloroquine:** accumulate in parasite digestive vacuole → inhibit **heme polymerization** → toxic heme accumulation → parasite death; also alkalinize lysosome. **Artemisinins:** activated by intraparasitic iron → generate **free radicals** → alkylate parasite proteins and membranes → rapid multi-stage killing. **Primaquine:** oxidative radical intermediates → kill **hepatic hypnozoites** (dormant liver stage of P. vivax/ovale). **Quinine:** multiple mechanisms including heme toxicity; also ↑ quinidine-like cardiac effects. **Atovaquone-proguanil:** atovaquone inhibits **mitochondrial electron transport** (cytochrome bc1); proguanil inhibits **DHFR**",
-        use: "**Uncomplicated malaria:** artemether-lumefantrine or atovaquone-proguanil (first-line for chloroquine-resistant P. falciparum); chloroquine: P. vivax/ovale/malariae in sensitive regions\n**Severe malaria:** IV artesunate (first-line globally — superior to quinine)\n**Radical cure (P. vivax/ovale):** primaquine (eliminates liver hypnozoites — add to chloroquine)\n**Prophylaxis:** atovaquone-proguanil (daily), doxycycline (daily), mefloquine (weekly)\n**Hydroxychloroquine:** RA, SLE",
-        se: "**Chloroquine/hydroxychloroquine:** retinopathy (cumulative, irreversible — regular ophthalmology exams), QTc prolongation; chloroquine overdose: fatally cardiotoxic\n**Primaquine:** hemolytic anemia in G6PD deficiency (screen before use), methemoglobinemia\n**Quinine:** cinchonism (tinnitus, headache, vertigo), QTc prolongation, hypoglycemia (↑ insulin)\n**Mefloquine:** neuropsychiatric (insomnia, anxiety, psychosis — black box; avoid in psychiatric history)\n**Artemisinins:** generally well tolerated",
-        ci: "Primaquine: **G6PD deficiency** (always screen), pregnancy\nChloroquine: history of retinopathy\nMefloquine: psychiatric disorders, seizure disorder, cardiac conduction defects\nQuinine: myasthenia gravis, QTc prolongation",
-        pk: "**Chloroquine/hydroxychloroquine:** oral, t½ ~50 days (binds melanin in retina — explains retinopathy)\n**Primaquine:** oral, hepatic → carboxyprimaquine\n**Artemisinins:** short t½ (~1–3 hr) → must combine with longer-acting partner drug (ACT)\n**Atovaquone-proguanil:** take with fatty food (↑ atovaquone absorption)\n**Quinine:** narrow TI — cinchonism at therapeutic levels",
-        pearl: "**Primaquine requires G6PD screening before use** — it is the only drug that eliminates hypnozoites (dormant liver stage) of P. vivax and P. ovale, which cause relapsing malaria months to years after initial infection. Without primaquine, patients with vivax/ovale malaria will relapse. **Tafenoquine** (single-dose hypnozoitocide) is a newer alternative to 14-day primaquine regimen, also requiring G6PD screening."
+        aka: "Chloroquine · Primaquine · Mefloquine · Artemisinins",
+        summary: "Target different stages of Plasmodium life cycle.",
+        moa: "**Chloroquine**: Blocks **Heme Polymerization** → toxic heme buildup.\n**Primaquine**: Kills **Hypnozoites** (Liver stage).\n**Artemisinins**: Generate toxic free radicals.",
+        use: "**Malaria**: Chloroquine (sensitive areas); ACTs (resistant areas).\n**P. vivax/ovale**: MUST add Primaquine.",
+        se: "**Chloroquine**: Retinopathy (long-term).\n**Primaquine**: **Hemolysis in G6PD Deficiency**.\n**Mefloquine**: Neuropsychiatric effects (Dreams/Psychosis).",
+        ci: "**G6PD Deficiency** (Primaquine).",
+        pk: "ACT (Artemisinin-based Combination Therapy) is the global standard.",
+        pearl: "**Primaquine = Radical Cure**: Prevents relapse of P. vivax/ovale."
       },
       {
         name: "Anti-helminthics",
-        aka: "Albendazole · Mebendazole — Benzimidazoles | Ivermectin — Ivermectin | Praziquantel — Trematodes/Cestodes | Pyrantel Pamoate · Diethylcarbamazine (DEC) · Niclosamide",
-        summary: "Target helminth microtubule synthesis (benzimidazoles), neuromuscular function (ivermectin, pyrantel), or tegument integrity (praziquantel). Drug selection depends on whether the pathogen is a nematode, trematode, or cestode.",
-        moa: "**Albendazole/mebendazole:** bind **β-tubulin** → inhibit tubulin polymerization → impair microtubule formation → block glucose uptake + disrupt cell division → larvicidal and ovicidal (slow acting). **Ivermectin:** bind **glutamate-gated Cl⁻ channels** (invertebrate-specific GluCl) → hyperpolarization → paralysis → killing; also potentiate GABA. **Praziquantel:** increase **Ca²⁺ permeability** of parasite tegument → muscular contraction/spasm → disruption of tegument → host immune-mediated killing. **Pyrantel:** nicotinic ACh receptor agonist (parasites) → spastic paralysis. **DEC:** activates host immune system to kill microfilariae",
-        use: "**Albendazole:** intestinal nematodes (broadest coverage — pinworm, roundworm, hookworm, strongyloides), neurocysticercosis (+ corticosteroids), hydatid cyst (Echinococcus — + surgery), filariasis\n**Mebendazole:** pinworm (first-line), whipworm, hookworm (less systemic than albendazole)\n**Ivermectin:** strongyloidiasis (drug of choice), onchocerciasis, lymphatic filariasis, scabies, head lice\n**Praziquantel:** all trematodes (schistosomiasis, liver flukes) and all cestodes (T. solium, T. saginata)\n**DEC:** lymphatic filariasis, loiasis",
-        se: "**Albendazole/mebendazole:** mild GI upset; albendazole high-dose: hepatotoxicity, myelosuppression, teratogenicity\n**Ivermectin:** Mazzotti reaction (dying microfilariae — fever, rash, hypotension; pretreat with antihistamines/steroids); encephalopathy with high Loa loa burden (screen before treating in endemic areas)\n**Praziquantel:** nausea, dizziness; fever/seizures in neurocysticercosis (dying cysts — always co-prescribe corticosteroids)\n**DEC:** Mazzotti reaction in onchocerciasis (use ivermectin instead)",
-        ci: "Albendazole: pregnancy (teratogenic)\nIvermectin: high Loa loa microfilaremia (encephalopathy risk)\nPraziquantel: ocular cysticercosis (inflammatory optic damage — surgery first); concurrent rifampin (↓ praziquantel levels via CYP induction)\nDEC: onchocerciasis (Mazzotti reaction — use ivermectin)",
-        pk: "**Albendazole:** poor oral absorption → enhanced by fatty meal; hepatic → albendazole sulfoxide (active); t½ ~8–12 hr\n**Mebendazole:** minimal systemic absorption (local GI action)\n**Ivermectin:** oral, t½ ~18 hr; hepatic/fecal; concentrates in adipose tissue\n**Praziquantel:** oral, t½ ~1.5 hr, extensive first-pass; take with food\n**DEC:** oral, renal elimination",
-        pearl: "**Praziquantel covers all flatworms (trematodes + cestodes) — remember 'Praz for flatworms, Albendazole for roundworms.'** However, **neurocysticercosis (T. solium larvae in brain)** requires careful management: praziquantel (or albendazole) kills cysts, which provokes inflammation → seizures/cerebral edema → always co-prescribe **dexamethasone** and seizure prophylaxis. **Ivermectin for Loa loa** co-infection can cause fatal encephalopathy from rapid microfilariae killing — screen and use DEC instead."
-      },
+        aka: "Albendazole · Praziquantel · Ivermectin",
+        summary: "Target worms via microtubules, paralysis, or membrane damage.",
+        moa: "**Albendazole**: Inhibits **$\beta$-tubulin** polymerization.\n**Praziquantel**: ↑ $Ca^{2+}$ permeability → spastic paralysis.\n**Ivermectin**: Blocks glutamate-gated $Cl^-$ channels.",
+        use: "**Albendazole**: Nematodes (Roundworms); Hydatid cysts.\n**Praziquantel**: Trematodes (Flukes); Cestodes (Tapeworms).\n**Ivermectin**: Strongyloides; Scabies.",
+        se: "**Mazzotti Reaction**: Fever/rash due to dying microfilariae.",
+        ci: "Pregnancy (Albendazole).",
+        pk: "Take Albendazole with a fatty meal to ↑ absorption for systemic use.",
+        pearl: "**'Praz for flatworms, Al-bend-azole for roundworms.'**"
+      }
     ]
-  },
+  }
 ],
-
 gi: [
   {
-    group: "GI / Hepatic",
+    group: "Acid Management",
     drugs: [
       {
+        name: "H2 Blockers",
+        aka: "Cimetidine · Ranitidine · Famotidine · Nizatidine",
+        summary: "Reversible block of **H2 receptors** to ↓ acid secretion.",
+        moa: "Competitive antagonism of **H2 receptors** on gastric parietal cells.\n↓ $cAMP$ → ↓ activity of $H^+/K^+$-ATPase pump.\nSpecifically blocks **basal** and nocturnal acid secretion.",
+        use: "**GERD**; Peptic Ulcer Disease (PUD); Gastritis.",
+        se: "**Cimetidine**: Potent **P450 inhibitor**; **Anti-androgenic** (Gynecomastia, Impotence).\n**Ranitidine**: Recalled in many regions due to NDMA impurities.",
+        ci: "Severe renal failure (requires dose adjustment).",
+        pk: "Renal excretion.",
+        pearl: "**Cimetidine** is the classic 'boards' drug for multiple interactions and hormonal side effects."
+      },
+      {
         name: "PPIs (Proton Pump Inhibitors)",
-        aka: "Omeprazole (Prilosec) · Lansoprazole · Pantoprazole · Esomeprazole (Nexium) · Rabeprazole · Dexlansoprazole",
-        summary: "Irreversibly inhibit the gastric H⁺/K⁺-ATPase proton pump to produce profound acid suppression. First-line for GERD, peptic ulcer disease, H. pylori eradication, and prevention of NSAID-induced gastropathy.",
-        moa: "Prodrugs activated in the acidic canaliculus of parietal cells → active sulfenamide → covalently bind **H⁺/K⁺-ATPase (proton pump)** at cysteine residues → irreversible inhibition → ↓ gastric acid secretion (up to 90% reduction); new pump synthesis required for recovery (24–48 hr)",
-        use: "GERD (first-line); peptic ulcer disease (healing and prevention); H. pylori eradication (PPI + clarithromycin + amoxicillin)\nNSAID-induced gastropathy prevention (high-risk patients); Zollinger-Ellison syndrome (high-dose)\nErosive esophagitis; stress ulcer prophylaxis (ICU — ventilator/coagulopathy)",
-        se: "**Hypomagnesemia** (chronic — tetany, arrhythmias)\n**↑ C. difficile risk** (↓ acid → ↓ gastric barrier)\n**Osteoporosis/fractures** (↓ Ca²⁺ absorption — Ca²⁺ requires acid for absorption)\n**Drug interaction:** omeprazole/esomeprazole inhibit CYP2C19 → ↓ clopidogrel activation → use pantoprazole with clopidogrel\nChronic: ↑ pneumonia risk, vitamin B12 deficiency",
-        ci: "Concurrent rilpivirine (requires acid for absorption — PPI → drug failure)\nHigh-dose methotrexate (↑ MTX levels)\nChronic use without indication (reassess periodically)",
-        pk: "Oral (or IV for omeprazole/pantoprazole/esomeprazole); prodrugs activated in parietal cell canaliculus at pH <4\nTake 30–60 min before meals (pump must be actively secreting)\nt½ ~1–2 hr (plasma) but acid suppression lasts ~24–48 hr (irreversible covalent binding)\nNew pump resynthesis takes ~18 hr — explains incomplete first-dose suppression",
-        pearl: "**PPIs are prodrugs that require an active, acid-secreting proton pump to be activated** — take 30–60 min before the first meal of the day. Omeprazole and esomeprazole inhibit CYP2C19 → reduce clopidogrel activation → ↓ antiplatelet effect: **use pantoprazole** as the safer PPI with clopidogrel. Chronic PPI use is vastly over-prescribed — periodically reassess necessity and consider step-down therapy."
+        aka: "Omeprazole · Lansoprazole · Esomeprazole · Pantoprazole · Rabeprazole",
+        summary: "**Irreversible** inhibitors of the final step of acid secretion.",
+        moa: "Irreversibly inhibit the **$H^+/K^+$-ATPase** (Proton Pump) in parietal cells.\nMost effective suppressors of gastric acid.",
+        use: "**PUD**; **GERD**; **Zollinger-Ellison Syndrome**.\nPart of **H. pylori** eradication triple therapy.",
+        se: "**↑ Risk of C. difficile** infection and Pneumonia.\n**Hypomagnesemia** (long-term use).\n↓ Absorption of $B_{12}$, Iron, and Calcium (risk of fractures).",
+        ci: "Concurrent use of **Clopidogrel** (Omeprazole inhibits CYP2C19).",
+        pk: "Prodrugs requiring an acidic environment for activation.\nTake 30–60 min **before** a meal.",
+        pearl: "**Irreversible binding** means effects last 24–48 hr despite short plasma $t_{1/2}$."
       },
       {
-        name: "H2 Receptor Blockers",
-        aka: "Famotidine (Pepcid) · Ranitidine (recalled) · Cimetidine (Tagamet) · Nizatidine",
-        summary: "Competitive H2 receptor antagonists that reduce histamine-stimulated gastric acid secretion. Used for GERD, peptic ulcer disease, and stress ulcer prophylaxis; largely replaced by PPIs but useful for on-demand/nocturnal acid suppression.",
-        moa: "Competitive antagonism at **H2 (histamine type 2) receptors** on gastric parietal cells → ↓ histamine-stimulated gastric acid secretion (↓ cAMP → ↓ proton pump activity); reduce both basal and meal-stimulated acid but less complete than PPIs (~70% vs. ~90%)",
-        use: "GERD (mild-moderate; on-demand; adjunct to PPI for nocturnal acid breakthrough); peptic ulcer disease; stress ulcer prophylaxis (ICU)\nUrticaria/allergic reactions (H2 + H1 antihistamine); famotidine IV: hospitalized patients unable to take oral PPIs",
-        se: "**Cimetidine (most interactions):** broad CYP450 inhibition (CYP1A2/2C9/2D6/3A4 — ↑ warfarin, theophylline, phenytoin, TCAs); anti-androgenic (gynecomastia, impotence); CNS effects (confusion — elderly/renal failure)\nRanitidine: recalled 2020 (NDMA carcinogen)\nAll: tolerance within days of continuous use",
-        ci: "Cimetidine: any narrow-TI CYP substrate (many interactions — avoid; use famotidine)\nRenal failure without dose adjustment (all renally cleared)\nRanitidine: unavailable (recalled)",
-        pk: "All oral or IV; renally eliminated — dose-reduce in CKD\n**Famotidine:** t½ ~2.5–3.5 hr, minimal drug interactions — **preferred H2 blocker**\n**Cimetidine:** t½ ~2 hr, extensive CYP inhibition — avoid",
-        pearl: "**Famotidine is the preferred H2 blocker** — it lacks cimetidine's CYP inhibition and anti-androgen effects. **Cimetidine was the first H2 blocker** and was a blockbuster drug, but its extensive CYP450 inhibition makes it the most dangerous of the class for drug interactions. H2 blockers are useful for **nocturnal acid breakthrough** in patients on PPIs who still have nighttime symptoms (PPIs don't fully suppress nocturnal acid)."
+        name: "Antacids",
+        aka: "Aluminum Hydroxide · Calcium Carbonate · Magnesium Hydroxide",
+        summary: "Directly neutralize gastric acid to provide rapid symptom relief.",
+        moa: "Weak bases that react with gastric $HCl$ to form water and a salt.\nNeutralize acid; do NOT inhibit secretion.",
+        use: "Occasional heartburn / Dyspepsia.",
+        se: "**Aluminum**: **Al**umin-**um** causes **Constipation**.\n**Magnesium**: **Mg** causes **Diarrhea** (Must-go).\n**Calcium Carbonate**: Hypercalcemia; Rebound acid secretion.",
+        ci: "**Renal Failure**: Risk of aluminum/magnesium accumulation.",
+        pk: "Rapid onset; short duration of action.",
+        pearl: "Often combined (e.g., Maalox) to balance constipation and diarrhea effects."
       },
       {
-        name: "Ondansetron (5-HT3 Antagonist Antiemetics)",
-        aka: "Ondansetron (Zofran) · Granisetron · Dolasetron · Palonosetron · Metoclopramide · Prochlorperazine · Dronabinol",
-        summary: "5-HT3 antagonists block serotonin-mediated vomiting signals from the gut and chemoreceptor trigger zone. First-line for chemotherapy-induced, postoperative, and pregnancy-related nausea and vomiting.",
-        moa: "**5-HT3 antagonists (ondansetron class):** block **5-HT3 (serotonin type 3) receptors** on vagal afferents in the gut and in the area postrema/nucleus tractus solitarius → ↓ signals triggering the vomiting reflex. **Metoclopramide:** D2 antagonist + 5-HT4 agonist → ↑ gastric emptying (prokinetic) + blocks CTZ. **Prochlorperazine:** D2 antagonist at CTZ → antiemetic",
-        use: "**Ondansetron:** CINV (first-line highly emetogenic regimens), PONV, radiation-induced nausea, pregnancy nausea (second-line)\n**Metoclopramide:** gastroparesis, GERD (prokinetic), migraine nausea\n**Prochlorperazine:** CINV, acute nausea, migraine (IV/IM)\n**Dronabinol (THC):** refractory CINV, HIV-associated anorexia",
-        se: "**Ondansetron:** QTc prolongation (avoid IV >32 mg single dose), constipation (most common), headache\n**Metoclopramide:** tardive dyskinesia (D2 blockade — chronic >3 months; FDA black box; risk highest elderly women), acute EPS/dystonia\n**Prochlorperazine:** EPS, sedation, QTc\n**Dronabinol:** euphoria, dizziness, anxiety",
-        ci: "Ondansetron: QTc >450 ms, congenital long QT, concurrent QTc-prolonging drugs\nMetoclopramide: bowel obstruction/perforation, Parkinson disease, pheochromocytoma, prior tardive dyskinesia\nProchlorperazine: Parkinson disease, bone marrow suppression",
-        pk: "**Ondansetron:** oral/IV/ODT, t½ ~4–6 hr, hepatic (CYP3A4/1A2); oral = IV for most patients\n**Metoclopramide:** oral/IV/IM, t½ ~5–6 hr, primarily renal\n**Palonosetron:** t½ ~40 hr — preferred for multi-day chemotherapy",
-        pearl: "**Metoclopramide tardive dyskinesia** is permanent in some patients — restrict use to <3 months continuous therapy (FDA black box). For CINV, combine **5-HT3 antagonist + dexamethasone + NK1 receptor antagonist** (aprepitant) for highly emetogenic regimens (platinum-based chemotherapy). Ondansetron's QTc risk is dose-dependent — the single IV dose cap of 32 mg was added after cardiac deaths were reported."
-      },
-      {
-        name: "Misoprostol & GI Mucosal Agents",
-        aka: "Misoprostol (Cytotec) · Sucralfate (Carafate) · Bismuth Subsalicylate (Pepto-Bismol) · Aluminum/Magnesium Hydroxide (Maalox, Mylanta)",
-        summary: "Cytoprotective and acid-neutralizing agents protecting the gastric mucosa via prostaglandin agonism, physical coating, or direct acid neutralization. Misoprostol is also used in obstetrics for cervical ripening, labor induction, and PPH.",
-        moa: "**Misoprostol (PGE1 analog):** activates **prostaglandin E receptors** → ↑ mucus/bicarbonate secretion + ↓ acid secretion (EP3) + mucosal vasodilation (cytoprotective); also stimulates uterine smooth muscle contraction. **Sucralfate:** aluminum salt of sucrose octasulfate → polymerizes in acidic pH → binds to ulcer crater proteins → physical barrier coating → prevents acid/pepsin damage. **Bismuth:** antimicrobial (H. pylori), coating, ↓ prostaglandins. **Antacids:** direct acid neutralization (Al(OH)₃ + Mg(OH)₂ → salts + water)",
-        use: "**Misoprostol:** NSAID-induced gastropathy prevention; cervical ripening/labor induction; PPH prevention/treatment (IM/sublingual); medication abortion (+ mifepristone)\n**Sucralfate:** stress ulcer prophylaxis (preferred in ventilated patients — lower VAP risk vs. PPIs); peptic ulcer maintenance\n**Bismuth:** H. pylori eradication (quadruple therapy), travelers' diarrhea\n**Antacids:** symptomatic heartburn relief (fast onset, short duration)",
-        se: "**Misoprostol:** diarrhea (most common — dose-limiting), abdominal cramps; uterine hyperstimulation (obstetric doses); teratogenic (Möbius syndrome, limb defects)\n**Sucralfate:** constipation (Al³⁺); binds drugs (fluoroquinolones, phenytoin, digoxin — separate ≥2 hr); Al accumulation in renal failure\n**Bismuth:** black stools/tongue (harmless — warn patients); salicylate toxicity at high doses\n**Antacids:** Al(OH)₃ → constipation; Mg(OH)₂ → diarrhea",
-        ci: "Misoprostol: **pregnancy when uterine stimulation not intended** (causes rupture); prior uterine surgery/cesarean\nSucralfate: renal failure (aluminum accumulation); avoid co-administering with drugs requiring rapid absorption\nBismuth: aspirin allergy (contains salicylate); children with viral illness (Reye syndrome)",
-        pk: "**Misoprostol:** oral or vaginal, t½ ~20–40 min (active acid), hepatic de-esterification\n**Sucralfate:** minimal systemic absorption; requires acid to polymerize — take on empty stomach, separate from PPIs/antacids\n**Bismuth/antacids:** not absorbed; act locally",
-        pearl: "**Misoprostol is the only PGE1 analog used both for GI protection and obstetric indications** — its uterotonic property is the basis for cervical ripening, labor induction, and PPH treatment. The same property makes it an absolute contraindication in pregnant patients not intended to deliver. **Sucralfate requires acid** to polymerize and coat the ulcer — do not give simultaneously with PPIs or antacids (reduces efficacy)."
-      },
-      {
-        name: "Antidiarrheals & Loperamide",
-        aka: "Loperamide (Imodium) · Diphenoxylate/Atropine (Lomotil) · Bismuth Subsalicylate · Cholestyramine",
-        summary: "Peripheral opioid receptor agonists (loperamide, diphenoxylate) slow GI motility to reduce diarrhea; bismuth and cholestyramine serve adjunct roles. Used for acute nonspecific diarrhea and chronic diarrhea syndromes.",
-        moa: "**Loperamide:** binds **peripheral μ-opioid receptors** in the gut myenteric plexus → ↓ peristalsis + ↑ anal sphincter tone + ↓ fluid/electrolyte secretion → antidiarrheal; does not cross BBB at therapeutic doses (P-gp efflux). **Diphenoxylate:** similar peripheral μ-opioid agonism; combined with atropine (subtherapeutic) to deter abuse. **Cholestyramine:** bile acid sequestrant → binds bile acids in gut → ↓ bile acid-induced diarrhea (bile acid malabsorption/Clostridium difficile toxin binding)",
-        use: "**Loperamide:** acute nonspecific diarrhea (travelers', IBS-D), chemotherapy-induced diarrhea, ileostomy output reduction\n**Diphenoxylate/atropine:** acute diarrhea\n**Cholestyramine:** bile acid diarrhea (post-cholecystectomy, Crohn ileal resection), hypercholesterolemia (primary indication)",
-        se: "**Loperamide:** toxic megacolon (infectious diarrhea — motility suppression traps pathogen); CNS/cardiac toxicity at abuse doses (crosses BBB when P-gp saturated → arrhythmias)\n**Diphenoxylate/atropine:** CNS depression, anticholinergic effects (dry mouth, urinary retention)\n**Cholestyramine:** constipation; binds many drugs (warfarin, digoxin, levothyroxine — separate by 4–6 hr)",
-        ci: "Loperamide/diphenoxylate: **bloody diarrhea or infectious diarrhea** (C. difficile, Shigella, Salmonella, STEC — toxic megacolon + HUS risk); severe IBD flare; diphenoxylate: children <2 yr\nCholestyramine: complete biliary obstruction",
-        pk: "**Loperamide:** oral, t½ ~10–14 hr; **P-gp substrate** (efflux keeps it out of CNS — CNS effects only at P-gp saturating/abuse doses); hepatic; fecal\n**Diphenoxylate:** oral, hepatic → active diphenoxylic acid (t½ ~14 hr)\n**Cholestyramine:** not absorbed (resin — GI lumen only)",
-        pearl: "**Never use loperamide in suspected infectious diarrhea with bloody stool or fever** — the classic danger is STEC (E. coli O157:H7) where motility inhibition traps Shiga toxin → dramatically increases HUS risk. Also contraindicated in C. difficile where motility suppression → toxic megacolon. Loperamide at high abuse doses crosses the BBB (P-gp saturation) and has caused QRS widening/arrhythmias — the FDA now limits OTC package size."
-      },
+        name: "Mucosal Protectors",
+        aka: "Sucralfate · Bismuth Subsalicylate · Misoprostol",
+        summary: "Enhance gastric mucosal defenses without affecting acid levels.",
+        moa: "**Sucralfate**: Forms a physical 'bandage' over ulcers (requires acid).\n**Bismuth**: Coats ulcers; direct antimicrobial against **H. pylori**.\n**Misoprostol**: **PGE1 analog** → ↑ mucus/bicarbonate + ↓ acid.",
+        use: "**Sucralfate**: Duodenal ulcers.\n**Misoprostol**: Prevention of **NSAID-induced ulcers**.\n**Bismuth**: Quadruple therapy for H. pylori; Traveler's diarrhea.",
+        se: "**Misoprostol**: Diarrhea; **Abortion** (uterine contractions).\n**Bismuth**: Black tongue/stools.",
+        ci: "**Misoprostol**: **Pregnancy** (Category X).",
+        pk: "Sucralfate requires multiple daily doses.",
+        pearl: "**Bismuth** black stools can be confused with melena (check the 'summary' for history)."
+      }
     ]
   },
   {
-    group: "GI / Hepatic",
+    group: "Motility & Emesis",
     drugs: [
       {
-        name: "Osmotic Laxatives",
-        aka: "Polyethylene Glycol (MiraLAX, GoLYTELY) · Lactulose · Magnesium Hydroxide (Milk of Magnesia) · Magnesium Citrate · Sodium Phosphate · Sorbitol · Glycerin (suppository)",
-        summary: "Draw water into the intestinal lumen via osmotic pressure to soften stool and stimulate defecation. Used for constipation, bowel prep, hepatic encephalopathy (lactulose), and opioid-induced constipation.",
-        moa: "**PEG:** non-absorbable, non-metabolized polymer → retains water in lumen via osmosis → softens stool + stimulates peristalsis. **Lactulose:** non-absorbable disaccharide → colonic bacteria metabolize to short-chain fatty acids and lactic acid → acidify colon → trap NH₄⁺ (ionized, non-absorbable) → ↓ systemic ammonia absorption (hepatic encephalopathy) + osmotic effect. **Magnesium salts:** osmotic + ↑ CCK release → ↑ motility. **Sodium phosphate:** osmotic — risk of phosphate nephropathy in CKD",
-        use: "**PEG (MiraLAX):** constipation (first-line — safe, effective, tasteless)\n**PEG (GoLYTELY):** colonoscopy bowel preparation (large-volume isotonic solution — safe in renal failure)\n**Lactulose:** hepatic encephalopathy (↓ ammonia — first-line; titrate to 2–3 soft stools/day); chronic constipation\n**Magnesium hydroxide:** acute constipation, antacid\n**Magnesium citrate:** bowel prep; acute constipation\n**Sodium phosphate:** bowel prep (avoid in CKD — nephrotoxic)",
-        se: "**PEG:** bloating, flatulence, nausea (large volumes); minimal systemic effects (not absorbed)\n**Lactulose:** flatulence, bloating, diarrhea (sweet taste → poor adherence); rarely hypernatremia\n**Magnesium salts:** hypermagnesemia (renal failure — avoid); diarrhea; dehydration\n**Sodium phosphate:** hyperphosphatemia, hypocalcemia, acute phosphate nephropathy (CKD — contraindicated)",
-        ci: "Magnesium-containing agents: renal failure (↑ Mg accumulation → hypermagnesemia → cardiac arrest)\nSodium phosphate: CKD, elderly, heart failure, medications altering renal perfusion (ACEi, diuretics — ↑ phosphate nephropathy risk)\nLactulose: galactosemia",
-        pk: "**PEG:** not absorbed, not metabolized, excreted intact in stool; isotonic solutions (GoLYTELY) do not alter fluid/electrolyte balance significantly\n**Lactulose:** not absorbed by small intestine; metabolized by colonic bacteria; onset 24–48 hr\n**Magnesium salts:** 15–20% absorbed (renally excreted — toxic in CKD); onset 0.5–6 hr\n**Sodium phosphate:** 2–9% absorbed; onset 0.5–6 hr; risk of electrolyte shifts and nephropathy",
-        pearl: "**Lactulose for hepatic encephalopathy** works by trapping ammonia as NH₄⁺ in an acidic colon — reducing systemic ammonia levels. The target is 2–3 soft stools per day (not diarrhea). **PEG (MiraLAX) is the safest osmotic laxative** — not absorbed, no electrolyte effects, and tasteless (dissolves in any liquid). GoLYTELY (high-volume PEG) is isotonic and safe even in renal failure for bowel prep, unlike sodium phosphate which causes phosphate nephropathy in CKD."
+        name: "Antiemetics",
+        aka: "Ondansetron · Metoclopramide · Promethazine · Scopolamine · Aprepitant",
+        summary: "Block neurotransmitters in the **Chemoreceptor Trigger Zone (CTZ)** or gut.",
+        moa: "**Ondansetron**: **5-HT3 antagonist** (Vagal and CTZ).\n**Metoclopramide**: **D2 antagonist** (Prokinetic + CTZ).\n**Aprepitant**: **NK1 antagonist** (Substance P block).",
+        use: "**Ondansetron**: Post-op and Chemotherapy-induced nausea.\n**Metoclopramide**: **Gastroparesis** (Diabetic/Post-op).\n**Scopolamine**: Motion sickness.",
+        se: "**Ondansetron**: **QTc Prolongation**; Headache; Constipation.\n**Metoclopramide**: **EPS** (Parkinsonism, Tardive Dyskinesia); Fatigue.",
+        ci: "**Metoclopramide**: Small bowel obstruction; Parkinson disease.",
+        pk: "Metoclopramide ↑ gastric emptying rate.",
+        pearl: "**Aprepitant** is uniquely effective for delayed chemotherapy-induced vomiting."
       },
+      {
+        name: "Laxatives",
+        aka: "Psyllium · Polyethylene Glycol (PEG) · Magnesium Citrate · Bisacodyl · Senna",
+        summary: "Increase bowel movements via bulk, osmosis, or direct stimulation.",
+        moa: "**Bulk (Psyllium)**: Draws water into stool; distends colon.\n**Osmotic (PEG/Mg)**: Non-absorbable solutes pull water into lumen.\n**Stimulant (Senna/Bisacodyl)**: Directly irritate enteric nerves.",
+        use: "**Constipation**; **Bowel Prep** (PEG/Mg Citrate) for colonoscopy.",
+        se: "**Dehydration** and electrolyte disturbances (Osmotics).\n**Melanosis Coli**: Senna (brown pigmentation of colon wall).",
+        ci: "**Bowel Obstruction**.",
+        pk: "Bulk-forming agents require adequate hydration to work.",
+        pearl: "**Lactulose** (Osmotic) is also used for **Hepatic Encephalopathy** to trap $NH_3$."
+      },
+      {
+        name: "Anti-diarrheals",
+        aka: "Loperamide · Diphenoxylate-Atropine",
+        summary: "Opioid agonists that slow GI transit time.",
+        moa: "Activate **$\mu$-opioid receptors** in the myenteric plexus.\n↓ Acetylcholine release → ↓ Peristalsis → ↑ water absorption.",
+        use: "**Non-infectious Diarrhea**.",
+        se: "**Constipation**; Dizziness.\n**Diphenoxylate**: CNS effects at high doses (Atropine added to prevent abuse).",
+        ci: "**Infectious Diarrhea** (C. diff, EHEC, Salmonella) — risk of **Toxic Megacolon**.",
+        pk: "**Loperamide**: Does not cross the BBB (no analgesic effect).",
+        pearl: "**Rule of Thumb**: Never use anti-diarrheals if the patient has bloody stool or high fever."
+      }
     ]
-  },
+  }
 ],
-
 endo: [
   {
     group: "Diabetes",
