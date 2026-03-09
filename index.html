@@ -160,7 +160,7 @@
 .tr-sub { font-size: 10px; color: var(--muted); line-height: 1.45; }
 
 /* ── Reference cards ── */
-.ref-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: var(--gap); }
+.ref-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--gap); }
 .tool-card { padding: 14px 16px 13px; display: block; position: relative; }
 .tool-card:hover .card-arrow { color: var(--card-accent, var(--sakura2)); transform: translate(2px,-2px); }
 .card-arrow { position: absolute; top: 12px; right: 14px; font-size: 14px; color: var(--dim); transition: color var(--t), transform var(--t); }
@@ -385,11 +385,7 @@
       <div class="card-title">Question of the Day</div>
       <p class="card-desc">Bootcamp's free daily Step 1 question — a quick way to keep your streak alive.</p>
     </a>
-    <a class="tool-card i-card" href="https://www.pathoma.com" target="_blank" rel="noopener" style="--card-accent:var(--peach);">
-      <span class="card-arrow" aria-hidden="true">↗</span>
-      <div class="card-title">Pathoma</div>
-      <p class="card-desc">Dr. Sattar's high-yield pathology videos — essential viewing for Step 1 Path.</p>
-    </a>
+
   </div>
 
   <!-- ── QUOTE ─────────────────────────────────────────── -->
