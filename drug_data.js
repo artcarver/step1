@@ -143,10 +143,9 @@ autonomic: [
   }
 ],
 
-
 cv: [
   {
-    group: "RAAS / Antihypertensives",
+    group: "RAAS & Hypertension",
     drugs: [
       {
         name: "ACE Inhibitors",
@@ -255,7 +254,7 @@ cv: [
     ]
   },
   {
-    group: "Antihypertensive Adjuncts",
+    group: "Heart Failure & Ischemia",
     drugs: [
       {
         name: "Calcium Channel Blockers (CCBs)",
@@ -267,6 +266,50 @@ cv: [
         ci: "Non-DHPs (verapamil/diltiazem): HFrEF (negative inotropy), cardiogenic shock, high-degree AV block, sick sinus syndrome, WPW with AF (can increase antegrade conduction via accessory pathway); verapamil + β-blocker combination: complete heart block",
         pk: "**Amlodipine:** oral, t½ ~35–50 hr (longest — once daily, fewer missed-dose effects), hepatic (CYP3A4)\n**Nifedipine:** ER formulation for HTN; short-acting (IR) only for hypertensive emergencies/tocolysis\n**Verapamil:** oral or IV, t½ ~6–8 hr, significant first-pass hepatic metabolism, CYP3A4; also a P-gp inhibitor (↑ digoxin levels)\n**Diltiazem:** IV for AF rate control, oral for HTN/angina",
         pearl: "**Verapamil is the most constipating drug in pharmacology** — autonomic innervation of the GI tract uses L-type Ca²⁺ channels for smooth muscle contraction. **DHP edema is not from fluid overload** — it's from arteriolar dilation increasing capillary hydrostatic pressure; it does NOT respond to diuretics (add ACEi or switch drugs)."
+      },
+      {
+        name: "Nitrates",
+        aka: "Nitroglycerin (NTG, Nitrostat, Nitro-Bid) · Isosorbide Dinitrate (ISDN) · Isosorbide Mononitrate (ISMN) · Sodium Nitroprusside",
+        summary: "Nitric oxide donors that relax vascular smooth muscle to reduce cardiac preload and afterload. Used for acute angina, ACS, decompensated HF, and hypertensive emergencies.",
+        moa: "Release **nitric oxide (NO)** → activate **guanylyl cyclase** → ↑ cGMP → activate protein kinase G → dephosphorylate myosin light chain → **vascular smooth muscle relaxation**.\nVenous > arterial at low doses (↓ preload dominant); arterial dilation at high doses (↓ afterload + coronary vasospasm relief).\nCoronary vasodilation especially effective in Prinzmetal (vasospastic) angina.",
+        use: "**Sublingual NTG:** acute angina attack (onset 1–3 min)\n**Long-acting nitrates (ISDN/ISMN):** stable angina prophylaxis\n**IV NTG:** ACS (ongoing chest pain, HTN, pulmonary edema), acute decompensated HF (↓ preload/afterload), hypertensive emergency with pulmonary edema\n**Sodium nitroprusside:** most potent — hypertensive emergency, aortic dissection\nEsophageal spasm (relaxes smooth muscle)",
+        se: "**Headache** (cerebral vasodilation — most common; tolerance develops)\n**Orthostatic hypotension + reflex tachycardia** (↓ preload → ↓ CO)\n**Tachyphylaxis/tolerance** (continuous use — require 8–12 hr nitrate-free interval daily)\n**Nitroprusside:** cyanide toxicity (give hydroxocobalamin or thiosulfate); methemoglobinemia",
+        ci: "**Concurrent PDE5 inhibitors** (sildenafil/tadalafil/vardenafil — ↑↑ cGMP → severe hypotension — absolute CI within 24–48 hr)\nSevere hypotension (SBP <90 mmHg); hypovolemia\n**RV infarction** (preload-dependent — nitrates → cardiovascular collapse; exclude in inferior MI before SL NTG)\nSevere AS (preload reduction → ↓ CO across fixed stenosis)",
+        pk: "**Sublingual NTG:** onset 1–3 min, duration 30 min; extensive hepatic first-pass (avoid oral NTG)\n**IV NTG:** titrated infusion, immediate onset\n**ISMN:** t½ ~5 hr, renal (no first-pass — mononitrate, no hepatic conversion needed)\n**Nitroprusside:** IV only, onset seconds; metabolized to cyanide → thiocyanate (renal); limit dose >2 µg/kg/min and duration",
+        pearl: "**RV infarction is the most tested nitrate contraindication:** inferior STEMI + hypotension + clear lungs = RV MI. The RV is preload-dependent — sublingual NTG causes venodilation → ↓ RV filling → ↓ CO → cardiovascular collapse. Always get a right-sided ECG (V4R) before giving NTG in inferior MI. **Nitrate tolerance** develops within 24 hr of continuous use via superoxide-mediated mitochondrial inactivation of aldehyde dehydrogenase (the enzyme that converts nitrates to NO) — the 8–12 hr nitrate-free interval restores enzyme function."
+      },
+      {
+        name: "Ranolazine & Ivabradine",
+        aka: "Ranolazine (Ranexa) · Ivabradine (Corlanor)",
+        summary: "Novel antianginal and heart failure agents with unique mechanisms distinct from traditional rate-pressure products. Ranolazine blocks late sodium current; ivabradine selectively inhibits the If funny current in the SA node.",
+        moa: "**Ranolazine:** blocks **late Na⁺ current (INaL)** → ↓ Na⁺ overload → ↓ intracellular Ca²⁺ → ↓ diastolic wall tension → improves myocardial efficiency without ↓ HR or BP. **Ivabradine:** blocks **HCN channel (If 'funny' current)** in SA node → slows spontaneous depolarization → ↓ HR with NO effect on contractility or BP",
+        use: "Ranolazine: chronic stable angina (add-on when other agents insufficient — does not reduce HR or BP); Ivabradine: HFrEF with HR ≥70 bpm in sinus rhythm despite β-blocker maximum tolerated dose (↓ hospitalization); inappropriate sinus tachycardia",
+        se: "Ranolazine: ↑ QTc (mild), constipation, dizziness, nausea; Ivabradine: **bradycardia**, **phosphenes/visual brightness** (brief light flashes — If channels also in retinal cells), AF (monitor)",
+        ci: "Ranolazine: liver cirrhosis, concurrent use of potent CYP3A4 inhibitors; Ivabradine: AF (only works in sinus rhythm), HR <60 bpm, sick sinus syndrome, severe hepatic impairment",
+        pk: "**Ranolazine:** oral, t½ ~7 hr, hepatic (CYP3A4 + CYP2D6), dose twice daily; inhibits CYP2D6 (mild)\n**Ivabradine:** oral, t½ ~11 hr, hepatic (CYP3A4) — avoid with strong CYP3A4 inhibitors (azoles, clarithromycin → ↑ bradycardia)",
+        pearl: "**Ivabradine is the only drug that reduces HR without affecting BP, contractility, or the QT interval.** Its phosphenes (visual brightness when entering bright light) are due to HCN channel expression in the retina — benign but alarming to patients. It requires **sinus rhythm to work** — completely ineffective in AF."
+      },
+      {
+        name: "Milrinone & Nesiritide",
+        aka: "Milrinone (Primacor) · Nesiritide (Natrecor)",
+        summary: "Positive inotropes used for acute decompensated heart failure. Milrinone inhibits PDE3 to increase cAMP; nesiritide is recombinant BNP that promotes natriuresis and vasodilation.",
+        moa: "**Milrinone:** inhibit **phosphodiesterase 3 (PDE3)** → ↑ cAMP → ↑ PKA → ↑ Ca²⁺ in cardiomyocytes (↑ inotropy) + vascular smooth muscle relaxation (↑ cAMP → vasodilation/↓ afterload). **Nesiritide:** recombinant human **BNP** → activates guanylate cyclase → ↑ cGMP → vasodilation + natriuresis",
+        use: "Milrinone: acute decompensated HF refractory to standard therapy (bridge to transplant/LVAD), cardiogenic shock; Nesiritide: acutely decompensated HF with dyspnea (symptom relief) — role limited by lack of mortality benefit",
+        se: "**Milrinone:** hypotension (vasodilatory), arrhythmias (↑ cAMP → triggered arrhythmias), ↑ mortality with chronic use (not for outpatient); Nesiritide: **hypotension** (most common — dose-limiting), headache",
+        ci: "Milrinone: severe outflow tract obstruction (HOCM); Nesiritide: use with caution in hypotension (SBP <100 mmHg); low-output states",
+        pk: "Milrinone: IV infusion only; t½ ~2–3 hr, primarily renal elimination — reduce dose in CKD. Nesiritide: IV infusion, t½ ~18 min, proteolytic clearance.",
+        pearl: "**Milrinone is an 'inodilator'** — it simultaneously increases inotropy and decreases afterload (by vasodilation). Unlike dobutamine, it bypasses β-receptors (useful in patients on high-dose β-blockers). But it increases arrhythmia risk and is linked to ↑ mortality in chronic outpatient use (OPTIME trial) — for inpatient, short-term bridge therapy only."
+      },
+      {
+        name: "Digoxin",
+        aka: "Digoxin (Lanoxin) · Digitalis",
+        summary: "Cardiac glycoside that inhibits the Na-K-ATPase pump to increase intracellular calcium and enhance contractility. Used for heart failure and rate control in atrial fibrillation; narrow therapeutic index.",
+        moa: "Inhibit **Na⁺/K⁺-ATPase** → ↑ intracellular Na⁺ → ↓ Na⁺-Ca²⁺ exchanger activity → ↑ intracellular Ca²⁺ → **↑ inotropy**; also enhances vagal tone → ↓ AV conduction (↓ rate in AF)",
+        use: "HFrEF (symptom control, ↓ hospitalizations — no mortality benefit); rate control in AF/flutter (especially in HF where β-blockers/CCBs are poorly tolerated); atrial flutter (↓ ventricular rate)",
+        se: "**Toxicity (narrow TI):** GI (nausea, vomiting, anorexia — often first sign), **CNS (xanthopsia — yellow/green visual halos, blurry vision, confusion)**, **arrhythmias** (any type — PVCs, bigeminy, complete AV block, VF); **Hypokalemia, hypomagnesemia, hypercalcemia** → sensitize myocardium to digoxin toxicity",
+        ci: "Ventricular fibrillation or VT; hypertrophic obstructive cardiomyopathy (↑ outflow obstruction); accessory pathway conduction in WPW (↑ accessory pathway conduction → VF); AV block (relative, depending on degree)",
+        pk: "Oral or IV; t½ ~36 hr; predominantly renal excretion (unchanged) — **dose-reduce significantly in CKD** and elderly; Vd large (6–7 L/kg) — not dialyzable. Narrow therapeutic index: 0.5–2.0 ng/mL (in HF, target 0.5–0.9 ng/mL). Many drug interactions: quinidine/verapamil/amiodarone ↑ levels (inhibit P-gp).",
+        pearl: "**Treating digoxin toxicity:** (1) Stop digoxin; (2) correct hypokalemia/hypomagnesemia (K⁺ <4 mEq/L sensitizes Na-K-ATPase to digoxin); (3) **digoxin-specific Fab antibody fragments (Digibind)** for severe toxicity/arrhythmia — binds free digoxin in plasma; (4) atropine for bradycardia/heart block; (5) lidocaine for ventricular arrhythmias. **Avoid cardioversion** — can cause refractory VF in digoxin toxicity."
       },
     ]
   },
@@ -329,17 +372,6 @@ cv: [
         pearl: "**Amiodarone's half-life of 40–55 days** means drug interactions (warfarin, digoxin, statins) persist weeks after stopping. Every patient starting amiodarone needs baseline and annual: **TFTs, LFTs, CXR, PFTs, and ophthalmology exam**. The 37% iodine content = 200-mg tablet delivers ~75 mg iodine (daily iodine need is ~0.15 mg) — explaining the thyroid effects."
       },
       {
-        name: "Digoxin",
-        aka: "Digoxin (Lanoxin) · Digitalis",
-        summary: "Cardiac glycoside that inhibits the Na-K-ATPase pump to increase intracellular calcium and enhance contractility. Used for heart failure and rate control in atrial fibrillation; narrow therapeutic index.",
-        moa: "Inhibit **Na⁺/K⁺-ATPase** → ↑ intracellular Na⁺ → ↓ Na⁺-Ca²⁺ exchanger activity → ↑ intracellular Ca²⁺ → **↑ inotropy**; also enhances vagal tone → ↓ AV conduction (↓ rate in AF)",
-        use: "HFrEF (symptom control, ↓ hospitalizations — no mortality benefit); rate control in AF/flutter (especially in HF where β-blockers/CCBs are poorly tolerated); atrial flutter (↓ ventricular rate)",
-        se: "**Toxicity (narrow TI):** GI (nausea, vomiting, anorexia — often first sign), **CNS (xanthopsia — yellow/green visual halos, blurry vision, confusion)**, **arrhythmias** (any type — PVCs, bigeminy, complete AV block, VF); **Hypokalemia, hypomagnesemia, hypercalcemia** → sensitize myocardium to digoxin toxicity",
-        ci: "Ventricular fibrillation or VT; hypertrophic obstructive cardiomyopathy (↑ outflow obstruction); accessory pathway conduction in WPW (↑ accessory pathway conduction → VF); AV block (relative, depending on degree)",
-        pk: "Oral or IV; t½ ~36 hr; predominantly renal excretion (unchanged) — **dose-reduce significantly in CKD** and elderly; Vd large (6–7 L/kg) — not dialyzable. Narrow therapeutic index: 0.5–2.0 ng/mL (in HF, target 0.5–0.9 ng/mL). Many drug interactions: quinidine/verapamil/amiodarone ↑ levels (inhibit P-gp).",
-        pearl: "**Treating digoxin toxicity:** (1) Stop digoxin; (2) correct hypokalemia/hypomagnesemia (K⁺ <4 mEq/L sensitizes Na-K-ATPase to digoxin); (3) **digoxin-specific Fab antibody fragments (Digibind)** for severe toxicity/arrhythmia — binds free digoxin in plasma; (4) atropine for bradycardia/heart block; (5) lidocaine for ventricular arrhythmias. **Avoid cardioversion** — can cause refractory VF in digoxin toxicity."
-      },
-      {
         name: "Magnesium Sulfate",
         aka: "Magnesium Sulfate (MgSO₄) · Magnesium (IV)",
         summary: "Divalent cation that acts as a physiologic calcium antagonist and membrane stabilizer. Used for torsades de pointes, eclampsia/preeclampsia, severe asthma, and hypomagnesemia.",
@@ -349,28 +381,6 @@ cv: [
         ci: "Heart block or myocardial damage; renal failure (risk of accumulation — dose-reduce and monitor levels); prior to delivery if very high levels (neonatal respiratory depression)",
         pk: "IV or IM; t½ ~4 hr in normal renal function; exclusively renally eliminated (unchanged) — accumulates in CKD. Therapeutic level for eclampsia: 4–7 mEq/L. Antidote for hypermagnesemia: **calcium gluconate IV** (directly antagonizes Mg²⁺ at cell membrane).",
         pearl: "**Torsades de pointes management: Mg²⁺ first, then overdrive pacing.** Mg²⁺ suppresses EADs (the triggering mechanism) without needing to correct QTc first. In eclampsia, **Mg²⁺ outperforms benzodiazepines** for both prevention and treatment of seizures (Magpie trial). Monitor deep tendon reflexes — loss signals toxicity before respiratory arrest."
-      },
-      {
-        name: "Ranolazine & Ivabradine",
-        aka: "Ranolazine (Ranexa) · Ivabradine (Corlanor)",
-        summary: "Novel antianginal and heart failure agents with unique mechanisms distinct from traditional rate-pressure products. Ranolazine blocks late sodium current; ivabradine selectively inhibits the If funny current in the SA node.",
-        moa: "**Ranolazine:** blocks **late Na⁺ current (INaL)** → ↓ Na⁺ overload → ↓ intracellular Ca²⁺ → ↓ diastolic wall tension → improves myocardial efficiency without ↓ HR or BP. **Ivabradine:** blocks **HCN channel (If 'funny' current)** in SA node → slows spontaneous depolarization → ↓ HR with NO effect on contractility or BP",
-        use: "Ranolazine: chronic stable angina (add-on when other agents insufficient — does not reduce HR or BP); Ivabradine: HFrEF with HR ≥70 bpm in sinus rhythm despite β-blocker maximum tolerated dose (↓ hospitalization); inappropriate sinus tachycardia",
-        se: "Ranolazine: ↑ QTc (mild), constipation, dizziness, nausea; Ivabradine: **bradycardia**, **phosphenes/visual brightness** (brief light flashes — If channels also in retinal cells), AF (monitor)",
-        ci: "Ranolazine: liver cirrhosis, concurrent use of potent CYP3A4 inhibitors; Ivabradine: AF (only works in sinus rhythm), HR <60 bpm, sick sinus syndrome, severe hepatic impairment",
-        pk: "**Ranolazine:** oral, t½ ~7 hr, hepatic (CYP3A4 + CYP2D6), dose twice daily; inhibits CYP2D6 (mild)\n**Ivabradine:** oral, t½ ~11 hr, hepatic (CYP3A4) — avoid with strong CYP3A4 inhibitors (azoles, clarithromycin → ↑ bradycardia)",
-        pearl: "**Ivabradine is the only drug that reduces HR without affecting BP, contractility, or the QT interval.** Its phosphenes (visual brightness when entering bright light) are due to HCN channel expression in the retina — benign but alarming to patients. It requires **sinus rhythm to work** — completely ineffective in AF."
-      },
-      {
-        name: "Milrinone & Nesiritide",
-        aka: "Milrinone (Primacor) · Nesiritide (Natrecor)",
-        summary: "Positive inotropes used for acute decompensated heart failure. Milrinone inhibits PDE3 to increase cAMP; nesiritide is recombinant BNP that promotes natriuresis and vasodilation.",
-        moa: "**Milrinone:** inhibit **phosphodiesterase 3 (PDE3)** → ↑ cAMP → ↑ PKA → ↑ Ca²⁺ in cardiomyocytes (↑ inotropy) + vascular smooth muscle relaxation (↑ cAMP → vasodilation/↓ afterload). **Nesiritide:** recombinant human **BNP** → activates guanylate cyclase → ↑ cGMP → vasodilation + natriuresis",
-        use: "Milrinone: acute decompensated HF refractory to standard therapy (bridge to transplant/LVAD), cardiogenic shock; Nesiritide: acutely decompensated HF with dyspnea (symptom relief) — role limited by lack of mortality benefit",
-        se: "**Milrinone:** hypotension (vasodilatory), arrhythmias (↑ cAMP → triggered arrhythmias), ↑ mortality with chronic use (not for outpatient); Nesiritide: **hypotension** (most common — dose-limiting), headache",
-        ci: "Milrinone: severe outflow tract obstruction (HOCM); Nesiritide: use with caution in hypotension (SBP <100 mmHg); low-output states",
-        pk: "Milrinone: IV infusion only; t½ ~2–3 hr, primarily renal elimination — reduce dose in CKD. Nesiritide: IV infusion, t½ ~18 min, proteolytic clearance.",
-        pearl: "**Milrinone is an 'inodilator'** — it simultaneously increases inotropy and decreases afterload (by vasodilation). Unlike dobutamine, it bypasses β-receptors (useful in patients on high-dose β-blockers). But it increases arrhythmia risk and is linked to ↑ mortality in chronic outpatient use (OPTIME trial) — for inpatient, short-term bridge therapy only."
       },
     ]
   },
@@ -401,24 +411,7 @@ cv: [
       },
     ]
   },
- {
-    group: "Antianginals",
-    drugs: [
-      {
-        name: "Nitrates",
-        aka: "Nitroglycerin (NTG, Nitrostat, Nitro-Bid) · Isosorbide Dinitrate (ISDN) · Isosorbide Mononitrate (ISMN) · Sodium Nitroprusside",
-        summary: "Nitric oxide donors that relax vascular smooth muscle to reduce cardiac preload and afterload. Used for acute angina, ACS, decompensated HF, and hypertensive emergencies.",
-        moa: "Release **nitric oxide (NO)** → activate **guanylyl cyclase** → ↑ cGMP → activate protein kinase G → dephosphorylate myosin light chain → **vascular smooth muscle relaxation**.\nVenous > arterial at low doses (↓ preload dominant); arterial dilation at high doses (↓ afterload + coronary vasospasm relief).\nCoronary vasodilation especially effective in Prinzmetal (vasospastic) angina.",
-        use: "**Sublingual NTG:** acute angina attack (onset 1–3 min)\n**Long-acting nitrates (ISDN/ISMN):** stable angina prophylaxis\n**IV NTG:** ACS (ongoing chest pain, HTN, pulmonary edema), acute decompensated HF (↓ preload/afterload), hypertensive emergency with pulmonary edema\n**Sodium nitroprusside:** most potent — hypertensive emergency, aortic dissection\nEsophageal spasm (relaxes smooth muscle)",
-        se: "**Headache** (cerebral vasodilation — most common; tolerance develops)\n**Orthostatic hypotension + reflex tachycardia** (↓ preload → ↓ CO)\n**Tachyphylaxis/tolerance** (continuous use — require 8–12 hr nitrate-free interval daily)\n**Nitroprusside:** cyanide toxicity (give hydroxocobalamin or thiosulfate); methemoglobinemia",
-        ci: "**Concurrent PDE5 inhibitors** (sildenafil/tadalafil/vardenafil — ↑↑ cGMP → severe hypotension — absolute CI within 24–48 hr)\nSevere hypotension (SBP <90 mmHg); hypovolemia\n**RV infarction** (preload-dependent — nitrates → cardiovascular collapse; exclude in inferior MI before SL NTG)\nSevere AS (preload reduction → ↓ CO across fixed stenosis)",
-        pk: "**Sublingual NTG:** onset 1–3 min, duration 30 min; extensive hepatic first-pass (avoid oral NTG)\n**IV NTG:** titrated infusion, immediate onset\n**ISMN:** t½ ~5 hr, renal (no first-pass — mononitrate, no hepatic conversion needed)\n**Nitroprusside:** IV only, onset seconds; metabolized to cyanide → thiocyanate (renal); limit dose >2 µg/kg/min and duration",
-        pearl: "**RV infarction is the most tested nitrate contraindication:** inferior STEMI + hypotension + clear lungs = RV MI. The RV is preload-dependent — sublingual NTG causes venodilation → ↓ RV filling → ↓ CO → cardiovascular collapse. Always get a right-sided ECG (V4R) before giving NTG in inferior MI. **Nitrate tolerance** develops within 24 hr of continuous use via superoxide-mediated mitochondrial inactivation of aldehyde dehydrogenase (the enzyme that converts nitrates to NO) — the 8–12 hr nitrate-free interval restores enzyme function."
-      },
-    ]
-  },
 ],
-
 blood: [
   {
     group: "Anticoagulants",
