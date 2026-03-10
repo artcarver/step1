@@ -446,7 +446,7 @@
 <script src="sketchy_map.js"></script>
 <script src="app.js"></script>
 <script>
-const fmt  = t => t ? t.replace(/\*\*(.*?)\*\*/g,'<strong>$1</strong>').replace(/\\\\n/g, '<br>')
+const fmt  = t => t ? t.replace(/\*\*(.*?)\*\*/g,'<strong>$1</strong>').replace(/\\\\n/g, '<br>') : '—';
 const bare = t => t ? t.replace(/\*\*/g,'') : '';
 
 function seed() {
