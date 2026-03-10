@@ -393,7 +393,7 @@ function renderAll() {
           <div class="cat-accent ${accent}"></div>
           <div>
             <div class="cat-name">${cat.name}</div>
-            <div class="cat-why">${cat.why} · ${(()=>{const tot=cat.videos.reduce((s,v)=>{const[mm,ss]=(v.time||'0:0').split(':');return s+parseInt(mm||0)*60+parseInt(ss||0);},0);const h=Math.floor(tot/3600),m=Math.floor((tot%3600)/60);return h?h+'h '+(m?m+'min':''):m+'min';})()}</div>
+            <div class="cat-why">${cat.why} · ${(()=>{const tot=cat.videos.reduce((s,v)=>{const[mm,ss]=(v.time||'').split(':');return s+(Number(mm)||0)*60+(Number(ss)||0);},0);const h=Math.floor(tot/3600),m=Math.floor((tot%3600)/60);return h?h+'h '+(m?m+'min':''):m?m+'min':'';})()}</div>
           </div>
         </div>
         <div class="cat-header-right">
