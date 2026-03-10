@@ -374,6 +374,7 @@ function fmt(text, q) {
     const sq = q.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
     out = out.replace(new RegExp(`(${sq})(?![^<]*>)`, 'gi'), '<mark class="search-hl">$1</mark>');
   }
+  out = out.replace(/\n/g, '<br>');
   return out;
 }
 
