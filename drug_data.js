@@ -27,35 +27,35 @@ autonomic: [
       {
         name: "Cholinomimetics (Direct)",
         aka: "Bethanechol · Carbachol · Pilocarpine · Methacholine",
-        summary: "Direct **muscarinic agonists** activating parasympathetic end-organs. Resistant to AChE hydrolysis.",
-        moa: "Directly bind and activate **muscarinic (M1–M5) receptors** → ↑ parasympathetic tone at smooth muscle, glands, and heart.\nResistant to acetylcholinesterase hydrolysis (prolonged vs. ACh).",
-        use: "**Bethanechol:** postop ileus, urinary retention.\n**Pilocarpine:** open-angle glaucoma (↑ aqueous outflow); Sjögren dry mouth/eyes.\n**Methacholine:** provocative challenge test for asthma diagnosis.\n**Carbachol:** intraocular miosis during surgery.",
-        se: "**DUMBBELLS:** Diarrhea, Urination, Miosis, Bradycardia, Bronchospasm, Emesis, Lacrimation, Salivation; abdominal cramps.",
-        ci: "Asthma or COPD (bronchospasm); bowel or bladder obstruction; peptic ulcer disease (↑ acid); Parkinson disease (worsens tremor).",
-        pk: "**Bethanechol:** oral/SC; quaternary amine — does NOT cross BBB; renally excreted.\n**Pilocarpine:** topical ophthalmic or oral (Sjögren).\n**Methacholine:** inhaled only; rapidly hydrolyzed by non-specific cholinesterases.",
-        pearl: "**Bethanechol** is safe for urinary retention because it does not cross the BBB (quaternary amine — no CNS stimulation).\n**Pilocarpine** constricts the pupil and contracts the ciliary muscle → opens the trabecular meshwork → ↑ aqueous outflow."
+        summary: "Direct Muscarinic Agonists activating parasympathetic end-organs.\nResistant to AChE (Acetylcholinesterase) hydrolysis.",
+        moa: "Directly bind/activate Muscarinic (M1, M2, M3) receptors.\nM1/M3 = Gq pathway (↑ IP3/DAG); M2 = Gi (↓ cAMP).\nResistant to AChE → prolonged action compared to ACh.",
+        use: "Bethanechol: Postop/neurogenic ileus and urinary retention ('Bethany, call me to empty your bladder').\nPilocarpine: Open-angle and acute closed-angle glaucoma (↑ aqueous outflow); Sjögren syndrome (sweat, tears, saliva).\nMethacholine: Bronchial challenge for asthma diagnosis.\nCarbachol: Miosis for intraocular surgery.",
+        se: "DUMBBELLS: Diarrhea, Urination, Miosis, Bradycardia, Bronchospasm, Emesis, Lacrimation, Salivation.\nSweating (M3 effect on eccrine glands).",
+        ci: "Asthma/COPD (bronchospasm).\nPeptic Ulcer (↑ gastric acid).\nBowel/Bladder obstruction.",
+        pk: "Bethanechol: Quaternary amine (polar, does NOT cross BBB).\nPilocarpine: Tertiary amine (non-polar, crosses BBB).",
+        pearl: "Pilocarpine contracts the ciliary muscle → pulls on scleral spur → opens trabecular meshwork to drain aqueous humor."
       },
       {
         name: "Acetylcholinesterase Inhibitors",
         aka: "Neostigmine · Pyridostigmine · Physostigmine · Edrophonium · Donepezil · Rivastigmine · Galantamine",
-        summary: "Reversibly inhibit **AChE** to ↑ synaptic ACh at muscarinic and nicotinic receptors. Used for myasthenia gravis, Alzheimer dementia, and NMB reversal.",
-        moa: "Inhibit **acetylcholinesterase (AChE)** → ↓ ACh hydrolysis → ↑ ACh at muscarinic and nicotinic synapses.",
-        use: "**Neostigmine/Pyridostigmine:** myasthenia gravis; reversal of non-depolarizing NMB.\n**Edrophonium:** diagnosis of MG (Tensilon test — ultra-short action, t½ ~2 min).\n**Donepezil/Rivastigmine/Galantamine:** Alzheimer dementia (symptomatic only).\n**Physostigmine:** anticholinergic/atropine toxicity (only AChEI that crosses BBB).",
-        se: "Cholinergic crisis (DUMBBELLS at high doses): bradycardia, bronchospasm, lacrimation, urination, diarrhea, emesis, miosis; muscle fasciculations (nicotinic).",
-        ci: "Bowel or bladder obstruction; succinylcholine co-administration with neostigmine (↑ Phase I block).\n**Physostigmine:** avoid in TCA overdose (lowers seizure threshold).",
-        pk: "**Physostigmine:** tertiary amine — crosses BBB; t½ ~1–2 hr.\n**Neostigmine/Pyridostigmine:** quaternary amines — do NOT cross BBB; renal elimination.\n**Edrophonium:** ultra-short, t½ ~2 min.\n**Donepezil:** oral, t½ ~70 hr, hepatic (CYP2D6/3A4).",
-        pearl: "**Organophosphate poisoning = irreversible AChE inhibition** (nerve agents: sarin, VX; pesticides: parathion).\nTreat with **atropine** (high-dose — blocks DUMBBELLS) + **pralidoxime** (regenerates AChE — must give before irreversible 'aging')."
+        summary: "Reversibly inhibit AChE to ↑ synaptic ACh concentration.\nUsed for Myasthenia Gravis, Alzheimer, and NMB reversal.",
+        moa: "Inhibit Acetylcholinesterase → ↓ ACh hydrolysis.\n↑ ACh at both Muscarinic and Nicotinic synapses.",
+        use: "Neostigmine/Pyridostigmine: Myasthenia Gravis (long-term treatment); NMB reversal.\nEdrophonium: MG diagnosis (Tensilon test — ultra-short action).\nPhysostigmine: Antidote for Atropine/Anticholinergic toxicity.\nDonepezil: Alzheimer dementia (↑ CNS ACh levels).",
+        se: "Cholinergic Crisis: DUMBBELLS + Muscle fasciculations/weakness (nicotinic effects).\nMay cause Bradycardia and AV block.",
+        ci: "Bowel/Bladder obstruction.\nSuccinylcholine (Neostigmine worsens Phase I block).",
+        pk: "Physostigmine: Tertiary (crosses BBB; 'Phixes' Atropine overdose).\nNeo/Pyridostigmine: Quaternary (No BBB).",
+        pearl: "Organophosphate Poisoning: Irreversible AChE inhibition via covalent bonding.\nTreatment: Atropine (Muscarinic only) + Pralidoxime (regenerates AChE before aging)."
       },
       {
         name: "Muscarinic Antagonists (Anticholinergics)",
         aka: "Atropine · Scopolamine · Ipratropium · Tiotropium · Oxybutynin · Tolterodine · Benztropine · Glycopyrrolate",
-        summary: "Competitively block **muscarinic receptors** to reduce parasympathetic tone. 'Hot as a hare, dry as a bone, red as a beet, blind as a bat, mad as a hatter.'",
-        moa: "Competitive antagonism at **muscarinic (M1–M5) receptors** → ↓ parasympathetic activity at smooth muscle, glands, and sinoatrial node.",
-        use: "**Atropine:** symptomatic bradycardia; organophosphate poisoning; pre-op to dry secretions.\n**Scopolamine:** motion sickness (transdermal patch).\n**Ipratropium/Tiotropium:** COPD bronchodilation (first-line).\n**Oxybutynin/Tolterodine:** overactive bladder.\n**Benztropine:** drug-induced Parkinsonism (EPS).\n**Glycopyrrolate:** antisialagogue; does NOT cross BBB.",
-        se: "**Can't see** (mydriasis, cycloplegia) · **can't spit** (dry mouth) · **can't pee** (urinary retention) · **can't poop** (constipation) · tachycardia · hyperthermia · flushing · delirium (especially elderly).",
-        ci: "Narrow-angle glaucoma (mydriasis closes drainage angle → acute crisis); BPH (urinary retention); tachyarrhythmias; myasthenia gravis.",
-        pk: "**Ipratropium/Tiotropium:** inhaled quaternary amines — minimal systemic absorption.\n**Glycopyrrolate:** quaternary — does NOT cross BBB.\n**Scopolamine:** transdermal, 72 hr duration.\n**Atropine:** IV/IM/SC, t½ ~2–3 hr.",
-        pearl: "**Classic tox vignette:** elderly patient with confusion, dilated pupils, urinary retention, dry flushed skin, tachycardia = anticholinergic toxicity.\nAntidote: **physostigmine** (tertiary amine, crosses BBB) — not neostigmine."
+        summary: "Competitively block Muscarinic receptors.\nMnemonic: 'Hot as a hare, dry as a bone, red as a beet, blind as a bat, mad as a hatter'.",
+        moa: "Competitive antagonism at M1–M5 receptors.\nM1 (CNS/Gastric), M2 (Heart SA/AV nodes), M3 (Glands/Bladder/Smooth Muscle).",
+        use: "Atropine: Bradycardia; Organophosphate antidote.\nScopolamine: Motion sickness.\nIpratropium/Tiotropium: COPD/Asthma bronchodilation.\nOxybutynin/Tolterodine: Overactive bladder (urge incontinence).\nBenztropine: Parkinson tremor and Acute Dystonia (EPS).\nGlycopyrrolate: Pre-op to dry airway secretions.",
+        se: "Can't see (Mydriasis), Can't spit (Dry mouth), Can't pee (Retention), Can't poop (Constipation).\nTachycardia and Hyperthermia (due to ↓ sweating).",
+        ci: "Acute angle-closure glaucoma (mydriasis closes the angle).\nBPH (worsens urinary retention).\nElderly (causes delirium/confusion).",
+        pk: "Ipratropium: Quaternary; minimizes systemic side effects when inhaled.\nAtropine: Half-life ~2–3 hr.",
+        pearl: "Atropine effect on the heart: Blocks M2 receptors on the SA node → ↑ HR. No effect on blood pressure because most vessels lack parasympathetic innervation."
       }
     ]
   },
@@ -64,80 +64,80 @@ autonomic: [
     drugs: [
       {
         name: "Epinephrine & Norepinephrine",
-        aka: "Epinephrine (Adrenaline, EpiPen) · Norepinephrine (Levophed)",
-        summary: "Endogenous catecholamines — epinephrine for **anaphylaxis and cardiac arrest**; norepinephrine is first-line **vasopressor in septic shock**.",
-        moa: "**Epinephrine:** full agonist at α1/α2/β1/β2. Low doses: β2 dominates (bronchodilation, ↓ SVR); high doses: α1 dominates (vasoconstriction).\n**Norepinephrine:** α1/α2/β1 agonist, minimal β2 → predominant vasoconstriction with modest inotropy.",
-        use: "**Epinephrine:** anaphylaxis (IM lateral thigh — first-line); cardiac arrest (IV/IO); croup (nebulized racemic); co-administered with local anesthetics (↑ duration).\n**Norepinephrine:** first-line vasopressor in septic shock (maintain MAP ≥65 mmHg).",
-        se: "Hypertension, tachycardia, arrhythmias.\n**Epinephrine:** hyperglycemia (β2 → glycogenolysis/gluconeogenesis).\n**Norepinephrine:** reflex bradycardia; tissue necrosis with extravasation (prefer central line).",
-        ci: "Relative CI with cocaine/amphetamine toxicity (synergistic catecholamine surge → arrhythmia, HTN crisis).\nNo absolute CI in true anaphylaxis — always give epinephrine.",
-        pk: "Both: IV infusion, t½ ~2 min, rapidly degraded by MAO and COMT — not effective orally.\n**Epinephrine IM lateral thigh:** peak plasma ~8 min — faster than deltoid or SC.",
-        pearl: "**Epinephrine in anaphylaxis:** α1 → vasoconstriction (↑BP, ↓laryngeal edema); β1 → ↑CO; β2 → bronchodilation + ↓mast cell mediator release.\nIM lateral thigh is faster than deltoid and far safer than IV/SC — never delay for IV access."
+        aka: "Epinephrine (Adrenaline) · Norepinephrine (Levophed)",
+        summary: "Endogenous catecholamines with powerful cardiovascular effects.\nMaster the Alpha/Beta selectivity for Step 1.",
+        moa: "Epinephrine: Agonist at α1, α2, β1, β2. Low dose = β dominant (vasodilation); High dose = α dominant (vasoconstriction).\nNorepinephrine: α1, α2 > β1 (No β2 activity).",
+        use: "Epinephrine: Anaphylaxis; Cardiac arrest; Croup (nebulized).\nNorepinephrine: Septic shock (First-line to ↑ MAP).",
+        se: "Hypertension, Tachycardia, and Arrhythmias.\nNorepinephrine: Reflex bradycardia (α1 constriction → ↑ BP → baroreceptor reflex).\nLocal tissue necrosis if extravasated (Treat with Phentolamine).",
+        ci: "Cocaine or Amphetamine use (leads to hypertensive crisis).",
+        pk: "IV infusion only due to rapid degradation by MAO and COMT.\nPoor oral bioavailability.",
+        pearl: "G-Protein Couplings: α1 (Gq), α2 (Gi), β1 (Gs), β2 (Gs).\nMnemonic: 'QISS' (α1, α2, β1, β2)."
       },
       {
         name: "Dopamine & Dobutamine",
         aka: "Dopamine (Intropin) · Dobutamine (Dobutrex)",
-        summary: "**Dopamine** has dose-dependent receptor selectivity from renal vasodilation to vasoconstriction; **dobutamine** is a pure inodilator. Both used for cardiac pump failure.",
-        moa: "**Dopamine (dose-dependent):**\n• Low (1–3 µg/kg/min): D1 → renal/mesenteric vasodilation.\n• Mid (3–10 µg/kg/min): β1 → ↑ inotropy/HR.\n• High (>10 µg/kg/min): α1 → vasoconstriction.\n**Dobutamine:** β1 > β2 → ↑ contractility + mild ↓ afterload; does NOT reliably ↑ MAP.",
-        use: "**Dopamine:** cardiogenic shock with hypotension; symptomatic bradycardia with hypotension (second-line).\n**Dobutamine:** cardiogenic shock/acute decompensated HF (↑ CO without excess ↑ afterload); pharmacological stress echocardiography.",
-        se: "Both: tachyarrhythmias, ↑ myocardial O2 demand.\n**Dobutamine:** hypotension (β2 vasodilation); may precipitate ischemia in severe CAD.\n**Dopamine:** ischemia at high doses.",
-        ci: "**Dobutamine:** HOCM (worsens outflow obstruction); uncorrected hypovolemia.\n**Dopamine:** tachyarrhythmias; NE now preferred over dopamine in septic shock guidelines.",
-        pk: "Both: IV continuous infusion only; t½ ~2 min; titrated to effect.\nDobutamine metabolized by COMT + sulfation.",
-        pearl: "**Dobutamine stress echo:** ↑ HR and contractility unmask regional wall motion abnormalities in CAD — used when patient can't exercise.\nUnlike NE, dobutamine does NOT reliably maintain BP — if BP support is also needed, add a vasopressor."
+        summary: "Inotropes used for shock and pump failure.",
+        moa: "Dopamine: Dose-dependent. Low = D1 (renal vasodilation); Medium = β1 (Inotropy); High = α1 (Vasoconstriction).\nDobutamine: β1 > β2. Increases contractility with mild vasodilation (Inodilator).",
+        use: "Dopamine: Unstable bradycardia; Heart failure with hypotension.\nDobutamine: Acute decompensated Heart Failure (Inotropic support); Stress Echocardiography.",
+        se: "Tachycardia and Ventricular arrhythmias.\nIncreases myocardial O2 demand (can trigger angina).",
+        ci: "HOCM (Dobutamine worsens the outflow tract gradient).",
+        pk: "IV infusion only; Half-life <2 min.",
+        pearl: "Dobutamine 'Inodilator' effect: ↑ Contractility (β1) + ↓ Afterload (β2) = ↑ Cardiac Output."
       },
       {
         name: "Phenylephrine & Isoproterenol",
         aka: "Phenylephrine (Neo-Synephrine) · Isoproterenol (Isuprel)",
-        summary: "Selective adrenergic agonists with **opposite hemodynamic profiles**: phenylephrine raises BP with reflex bradycardia; isoproterenol raises HR with hypotension.",
-        moa: "**Phenylephrine:** selective **α1** agonist → ↑ SVR, ↑ BP, reflex bradycardia (↓ HR via baroreceptors).\n**Isoproterenol:** non-selective **β1 + β2** agonist → ↑ HR/contractility + peripheral/pulmonary vasodilation.",
-        use: "**Phenylephrine:** vasopressor for hypotension without tachycardia (e.g., spinal anesthesia); nasal decongestant (topical); mydriatic eye drops.\n**Isoproterenol:** complete heart block (bridge to pacemaker); severe bradycardia refractory to atropine.",
-        se: "**Phenylephrine:** reflex bradycardia, severe hypertension, tissue ischemia.\n**Isoproterenol:** tachycardia, arrhythmias, hypotension, ↑ myocardial O2 demand.",
-        ci: "**Phenylephrine:** severe hypertension, HOCM.\n**Isoproterenol:** tachyarrhythmias, angina (↑ O2 demand).",
-        pk: "**Phenylephrine:** IV infusion or IM/SC; rapid onset, t½ ~5 min; predominantly sulfate conjugation.\n**Isoproterenol:** IV infusion; t½ ~2 min; metabolized by COMT.",
-        pearl: "**Phenylephrine causes predictable reflex bradycardia** (pure α1 → ↑BP → baroreceptor activation → vagal slowing). Useful when tachycardia is itself the problem. Contrast with epinephrine, which raises both BP and HR."
+        summary: "Selective agonists with opposite effects on Heart Rate and Blood Pressure.",
+        moa: "Phenylephrine: Pure α1 agonist. Strong vasoconstriction → ↑ SVR → Reflex bradycardia.\nIsoproterenol: Pure β1 + β2 agonist. ↑ HR (β1) + Vasodilation (β2) → ↓ SVR/BP.",
+        use: "Phenylephrine: Nasal decongestant; Mydriatic (no cycloplegia); Hypotension during anesthesia.\nIsoproterenol: Torsades de pointes (rarely); Bridge to pacemaker in heart block.",
+        se: "Phenylephrine: Hypertension; rebound congestion (rhinitis medicamentosa).\nIsoproterenol: Tachycardia and flushing.",
+        ci: "Phenylephrine: Severe hypertension.\nIsoproterenol: Ischemic heart disease (↑ workload).",
+        pk: "Phenylephrine: Topical or IV.\nIsoproterenol: IV infusion.",
+        pearl: "Reflex Bradycardia: If a drug ↑ BP with NO direct cardiac effect (like Phenylephrine), the baroreceptor reflex will always ↓ the HR."
       },
       {
         name: "Beta Blockers (β-blockers)",
-        aka: "Propranolol · Metoprolol (Lopressor, Toprol XL) · Atenolol · Carvedilol · Labetalol · Bisoprolol · Esmolol · Nadolol · Timolol",
-        summary: "Competitive **β-adrenergic antagonists** reducing HR, contractility, and renin release. Cornerstone therapy for hypertension, heart failure, arrhythmias, and post-MI cardioprotection.",
-        moa: "Competitive antagonism at **β1 (cardiac) and/or β2 (pulmonary, vascular) receptors** → ↓ cAMP → ↓ HR, ↓ contractility, ↓ AV conduction, ↓ renin release.",
-        use: "**HFrEF** (carvedilol, metoprolol succinate, bisoprolol — proven mortality benefit).\n**Post-MI** (↓ remodeling, ↓ sudden death).\n**Hypertension, stable angina** (↓ O2 demand).\n**AF/flutter rate control; PSVT** (esmolol IV).\n**Propranolol:** migraine prophylaxis, essential tremor, portal HTN, hyperthyroidism symptoms.\n**Timolol:** glaucoma (eye drops).",
-        se: "**Bradycardia, AV block, bronchospasm** (β2 blockade — avoid in asthma/COPD).\nFatigue, erectile dysfunction, cold extremities, ↑ TG/↓ HDL.\n**Masks hypoglycemia** (blocks tachycardia/tremor warning — sweating preserved).\nRebound angina/HTN if stopped abruptly (receptor upregulation).",
-        ci: "Decompensated HF (acutely); cardiogenic shock; high-degree AV block or sick sinus syndrome; severe asthma/COPD (non-selective agents).\n**Cocaine toxicity:** β-blockade leaves α1 vasoconstriction unopposed → hypertensive crisis.",
-        pk: "**Propranolol:** non-selective β1+β2; lipophilic → crosses BBB; heavy hepatic first-pass; t½ ~4 hr.\n**Metoprolol:** β1-selective; hepatic (CYP2D6).\n**Atenolol:** β1-selective; hydrophilic → renal excretion, less CNS penetration.\n**Esmolol:** IV only; t½ ~9 min (ester hydrolysis) — perioperative rate control.\n**Carvedilol/Labetalol:** β1+β2+α1 blockade.",
-        pearl: "**Only carvedilol, metoprolol succinate, and bisoprolol** have proven mortality benefit in HFrEF — not all β-blockers are interchangeable.\n**Never stop abruptly** — taper over ≥1–2 weeks to avoid rebound tachycardia/ischemia from receptor upregulation."
+        aka: "Propranolol · Metoprolol · Atenolol · Carvedilol · Labetalol · Bisoprolol · Esmolol · Nadolol",
+        summary: "Block β-receptors to ↓ cardiac work and renin release.",
+        moa: "Cardioselective (β1): Metoprolol, Atenolol, Esmolol (M-A-E).\nNon-selective (β1 + β2): Propranolol, Nadolol, Timolol.\nNon-selective + α1 block: Carvedilol, Labetalol.",
+        use: "HFrEF Mortality Benefit: Carvedilol, Metoprolol Succinate, Bisoprolol.\nPost-MI: Reduces remodeling.\nHypertension: Labetalol (Pregnancy); Carvedilol.\nHyperthyroidism: Propranolol (blocks T4 to T3 conversion).\nVariceal bleeding prophylaxis: Nadolol/Propranolol.",
+        se: "Bradycardia and AV block.\nBronchospasm (Non-selective agents block β2).\nMasks hypoglycemia (blocks tachycardia/tremors in diabetics).\nFatigue and Erectile Dysfunction.",
+        ci: "Severe Asthma/COPD (relative CI for cardioselective).\nCocaine toxicity (leads to unopposed α1 vasoconstriction).",
+        pk: "Esmolol: Ultra-short acting (Half-life ~9 min).\nLipophilic (Propranolol) crosses BBB better.",
+        pearl: "β2 blockade in the liver ↓ Glycogenolysis, which is why β-blockers are dangerous for diabetics prone to hypoglycemia."
       },
       {
         name: "Alpha Blockers (α-blockers)",
-        aka: "Prazosin · Terazosin · Doxazosin · Tamsulosin (Flomax) · Phentolamine · Phenoxybenzamine",
-        summary: "**α-adrenergic antagonists** causing arterial dilation and urogenital smooth muscle relaxation. Used for BPH, hypertension, and pheochromocytoma.",
-        moa: "**Prazosin/Terazosin/Doxazosin/Tamsulosin:** selective **α1 blockade** → ↓ vascular and prostate smooth muscle tone.\n**Phentolamine/Phenoxybenzamine:** non-selective **α1 + α2 blockade** → vasodilation; α2 block also ↑ NE release (reflex tachycardia).",
-        use: "**Tamsulosin:** BPH (α1A-selective → prostate smooth muscle relaxation).\n**Prazosin:** PTSD nightmares, hypertension.\n**Terazosin/Doxazosin:** BPH and hypertension (longer t½ — once daily).\n**Phentolamine:** acute hypertensive crisis from pheochromocytoma or tyramine reaction (IV).\n**Phenoxybenzamine:** pre-op pheochromocytoma management (irreversible, long-acting).",
-        se: "**First-dose orthostatic hypotension** (take first dose at bedtime).\nReflex tachycardia, dizziness, nasal congestion.\n**Tamsulosin:** intraoperative floppy iris syndrome (warn ophthalmologist before cataract surgery).",
-        ci: "Concurrent PDE5 inhibitors (additive hypotension — severe ↓BP); aortic stenosis (preload reduction may worsen hemodynamics).",
-        pk: "**Prazosin:** t½ ~3 hr, hepatic.\n**Terazosin/Doxazosin:** t½ 8–22 hr — once daily.\n**Tamsulosin:** t½ ~15 hr; α1A-selective; hepatic (CYP3A4/2D6).\n**Phenoxybenzamine:** irreversible alkylation of α receptors; duration ~24 hr.\n**Phentolamine:** reversible competitive; IV only; t½ ~19 min.",
-        pearl: "For **pheochromocytoma surgery:** establish α blockade (phenoxybenzamine) FIRST, then add β-blocker — never β-block first (unopposed α1 → catastrophic hypertensive crisis).\n**Phenoxybenzamine is irreversible** (non-competitive); phentolamine is reversible (competitive)."
+        aka: "Prazosin · Terazosin · Doxazosin · Tamsulosin · Phentolamine · Phenoxybenzamine",
+        summary: "Block α-receptors for BPH and blood pressure control.",
+        moa: "Selective α1 blockers: Prazosin, Tamsulosin (α1A selective for prostate).\nNon-selective: Phentolamine (Reversible), Phenoxybenzamine (Irreversible).",
+        use: "Tamsulosin: BPH symptoms (relaxes smooth muscle in prostate neck).\nPrazosin: PTSD-related nightmares.\nPhenoxybenzamine: Pre-operative management of Pheochromocytoma.\nPhentolamine: Hypertensive crisis from MAOI/Tyramine or Cocaine.",
+        se: "First-dose Orthostatic Hypotension (Prazosin).\nReflex Tachycardia (especially with non-selective agents).\nFloppy Iris Syndrome (Tamsulosin).",
+        ci: "PDE-5 inhibitors (e.g., Sildenafil) → severe hypotension.",
+        pk: "Phenoxybenzamine is irreversible (covalent); effects last 24–48 hr after stopping.",
+        pearl: "Pheochromocytoma Rule: Always give an Alpha-blocker FIRST. Giving a Beta-blocker first causes unopposed α1 vasoconstriction and a hypertensive crisis."
       },
       {
         name: "Local Anesthetics",
-        aka: "Lidocaine · Bupivacaine · Ropivacaine · Mepivacaine · Prilocaine · Benzocaine · Cocaine · Tetracaine",
-        summary: "Reversibly block **voltage-gated Na⁺ channels** to prevent action potential propagation. Used for local/regional/neuraxial anesthesia and ventricular arrhythmias (lidocaine).",
-        moa: "Block **voltage-gated Na⁺ channels** (inactivated state, use-dependent) → prevent membrane depolarization.\nFibers blocked in order: small unmyelinated C-fibers first (pain/autonomic) → temperature → touch → pressure → motor last.",
-        use: "Local infiltration; nerve blocks; epidural/spinal anesthesia.\n**Lidocaine IV:** ventricular arrhythmias — class IB antiarrhythmic.\n**Cocaine:** ENT procedures (only local anesthetic with vasoconstriction via NE reuptake inhibition).",
-        se: "**CNS toxicity first** (circumoral numbness → tinnitus → seizures → coma).\n**Cardiovascular toxicity at higher levels** — bupivacaine most cardiotoxic (wide QRS, fatal arrhythmias).\n**Prilocaine/Benzocaine:** methemoglobinemia.\nAllergic reactions: esters > amides.",
-        ci: "Bupivacaine IV for arrhythmias (cardiotoxic); epinephrine-containing formulations on end-arteries (digits, nose, penis, ear — ischemic necrosis).",
-        pk: "**Esters** (cocaine, benzocaine, tetracaine, procaine) — hydrolyzed by plasma pseudocholinesterase; higher allergy risk.\n**Amides** (lidocaine, bupivacaine, ropivacaine — two 'i's before '-caine') — hepatic CYP450; lower allergy risk.\nEpinephrine co-injection ↑ duration ~50% via local vasoconstriction.",
-        pearl: "**Acidic/infected tissue** has more ionized drug (charged form can't cross membrane) → local anesthetics work poorly in abscesses — increase dose or use general anesthesia.\n**Bupivacaine cardiotoxicity:** treat with **20% lipid emulsion (Intralipid)** to sequester the drug."
+        aka: "Lidocaine · Bupivacaine · Mepivacaine · Prilocaine · Benzocaine · Cocaine",
+        summary: "Block voltage-gated Na+ channels to inhibit nerve conduction.",
+        moa: "Bind inactivated Na+ channels from the inside of the cell.\nOrder of loss: Pain (smallest) → Temperature → Touch → Motor (largest/myelinated).",
+        use: "Minor surgical procedures; Spinal/Epidural anesthesia.\nLidocaine: Also a Class IB Antiarrhythmic.",
+        se: "CNS Toxicity: Tinnitus, metallic taste, seizures.\nBupivacaine: Severe cardiotoxicity.\nBenzocaine/Prilocaine: Methemoglobinemia.",
+        ci: "Injection into infected (acidic) tissue: Drug is ionized and cannot cross the nerve membrane.",
+        pk: "Amides: Two 'i's in the name (Lidocaine, Bupivacaine) - Hepatic metabolism.\nEsters: One 'i' (Procaine, Cocaine) - Plasma pseudocholinesterase.",
+        pearl: "Epinephrine is often added to vasoconstrict the area, which ↓ systemic absorption and ↑ duration of action."
       },
       {
-        name: "Neuromuscular Blocking Agents",
-        aka: "Succinylcholine (Anectine) · Rocuronium (Zemuron) · Vecuronium · Pancuronium · Atracurium · Cisatracurium",
-        summary: "Block NMJ transmission for intubation and surgical relaxation — **depolarizing** (succinylcholine) vs. **non-depolarizing** (all others) with different reversal strategies.",
-        moa: "**Succinylcholine (depolarizing):** persistent agonist at **nicotinic ACh receptors (NMJ)** → sustained depolarization → fasciculations then flaccid paralysis. Resistant to AChE.\n**Non-depolarizing (rocuronium, vecuronium, etc.):** competitive antagonists at nicotinic ACh receptors — no fasciculations; reversed by sugammadex or neostigmine.",
-        use: "**Succinylcholine:** RSI (fastest onset ~60 sec; rapid offset).\n**Rocuronium:** RSI when succinylcholine contraindicated (reversed by sugammadex).\n**Vecuronium/Pancuronium:** intermediate/long surgical paralysis.\n**Atracurium/Cisatracurium:** organ-independent elimination (preferred in renal/hepatic failure).",
-        se: "**Succinylcholine:** hyperkalemia (dangerous in burns/crush/denervation — avoid >24 hr post-injury); malignant hyperthermia (with volatile anesthetics); ↑ intraocular/intragastric pressure; prolonged block in pseudocholinesterase deficiency.\n**Non-depolarizing:** histamine release (atracurium); tachycardia (pancuronium).",
-        ci: "**Succinylcholine:** burns/crush injury/prolonged immobilization/denervation >24 hr; personal/family history of malignant hyperthermia; hyperkalemia; pseudocholinesterase deficiency.",
-        pk: "**Succinylcholine:** hydrolyzed by plasma pseudocholinesterase; t½ ~10 min; onset ~60 sec.\n**Rocuronium:** hepatic elimination; reversed by sugammadex (encapsulates drug).\n**Atracurium/Cisatracurium:** Hofmann elimination (spontaneous — organ-independent).\n**Vecuronium:** hepatic/renal.",
-        pearl: "**Succinylcholine hyperkalemia:** K⁺ efflux from depolarized muscle — safe on Day 0 of a burn, dangerous after Day 1 (extrajunctional receptor upregulation).\n**Malignant hyperthermia** (ryanodine receptor mutation → uncontrolled SR Ca²⁺ release): treat with **dantrolene** + aggressive cooling."
+        name: "Neuromuscular Blocking Agents (NMBs)",
+        aka: "Succinylcholine · Rocuronium · Vecuronium · Atracurium",
+        summary: "Block the Neuromuscular Junction (NMJ) for intubation and surgery.",
+        moa: "Succinylcholine: Depolarizing agent (ACh agonist); causes Phase I (prolonged depolarization) and Phase II (desensitization).\nNon-depolarizing (-oniums): Competitive Nicotinic (Nm) Antagonists.",
+        use: "Succinylcholine: Rapid Sequence Intubation (RSI) due to fast onset.\nNon-depolarizing: Maintenance of paralysis during surgery.",
+        se: "Succinylcholine: Hyperkalemia; Malignant Hyperthermia; Postop myalgia.\nAtracurium: Histamine release (hypotension/flushing).",
+        ci: "Succinylcholine: Burns, crush injuries, or denervation (due to up-regulated Nm receptors causing fatal K+ release).\nHistory of Malignant Hyperthermia.",
+        pk: "Atracurium: Hofmann elimination (spontaneous degradation; safe in renal/hepatic failure).",
+        pearl: "Malignant Hyperthermia: Triggered by Succinylcholine or Inhaled Anesthetics. Caused by RyR1 mutation → Ca2+ dump. Treatment: Dantrolene."
       }
     ]
   }
