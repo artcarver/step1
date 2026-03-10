@@ -867,6 +867,19 @@ Here is my data:
    DASHBOARD LOGIC
    ============================================================ */
 
+// ── Date helpers (local-time safe) ────────────────────────
+// new Date("YYYY-MM-DD") is parsed as UTC midnight by spec,
+// which shifts the date by one day for users behind UTC.
+// Always use these helpers instead.
+function parseLocalDate(s) {
+  const [y, m, d] = s.split('-').map(Number);
+  return new Date(y, m - 1, d);
+}
+function localToday() {
+  const n = new Date();
+  return n.getFullYear() + '-' + String(n.getMonth()+1).padStart(2,'0') + '-' + String(n.getDate()).padStart(2,'0');
+}
+
 const K = {
   entries:  'uw-entries',
   exams:    'uw-exams',
@@ -1092,12 +1105,12 @@ function renderStats() {
   const today = new Date(); today.setHours(0,0,0,0);
   for (let i = 0; i < 365; i++) {
     const d = new Date(today); d.setDate(today.getDate() - i);
-    const key = d.toISOString().split('T')[0];
+    const key = d.getFullYear() + '-' + String(d.getMonth()+1).padStart(2,'0') + '-' + String(d.getDate()).padStart(2,'0');
     if (dateset.has(key)) { streak++; } else { break; }
   }
   let needed = null;
   if (settings.finishBy) {
-    const finish = new Date(settings.finishBy + 'T12:00:00');
+    const finish = parseLocalDate(settings.finishBy);
     const now = new Date(); now.setHours(0,0,0,0);
     const calDays    = Math.max(0, Math.round((finish - now) / 86400000));
     const studyDays  = Math.round(calDays * (settings.studyDays.length || 5) / 7);
@@ -1128,12 +1141,12 @@ function groupEntries(view) {
   const map = new Map();
   entries.forEach(e => {
     let key;
-    const d = new Date(e.date + 'T12:00:00');
+    const d = parseLocalDate(e.date);
     if (view === 'daily') { key = e.date; }
     else if (view === 'weekly') {
       const day = d.getDay();
       const mon = new Date(d); mon.setDate(d.getDate() - (day === 0 ? 6 : day - 1));
-      key = mon.toISOString().split('T')[0];
+      key = mon.getFullYear() + '-' + String(mon.getMonth()+1).padStart(2,'0') + '-' + String(mon.getDate()).padStart(2,'0');
     } else { key = e.date.substring(0, 7); }
     if (!map.has(key)) map.set(key, { qs: 0 });
     map.get(key).qs += e.qs;
@@ -1141,11 +1154,11 @@ function groupEntries(view) {
   const sortedKeys = [...map.keys()].sort();
   const firstKey = sortedKeys[0], lastKey = sortedKeys[sortedKeys.length - 1];
   if (view === 'daily') {
-    const cur = new Date(firstKey + 'T12:00:00'), end = new Date(lastKey + 'T12:00:00');
-    while (cur <= end) { const k = cur.toISOString().split('T')[0]; if (!map.has(k)) map.set(k, { qs: 0 }); cur.setDate(cur.getDate() + 1); }
+    const cur = parseLocalDate(firstKey), end = parseLocalDate(lastKey);
+    while (cur <= end) { const k = cur.getFullYear() + '-' + String(cur.getMonth()+1).padStart(2,'0') + '-' + String(cur.getDate()).padStart(2,'0'); if (!map.has(k)) map.set(k, { qs: 0 }); cur.setDate(cur.getDate() + 1); }
   } else if (view === 'weekly') {
-    const cur = new Date(firstKey + 'T12:00:00'), end = new Date(lastKey + 'T12:00:00');
-    while (cur <= end) { const k = cur.toISOString().split('T')[0]; if (!map.has(k)) map.set(k, { qs: 0 }); cur.setDate(cur.getDate() + 7); }
+    const cur = parseLocalDate(firstKey), end = parseLocalDate(lastKey);
+    while (cur <= end) { const k = cur.getFullYear() + '-' + String(cur.getMonth()+1).padStart(2,'0') + '-' + String(cur.getDate()).padStart(2,'0'); if (!map.has(k)) map.set(k, { qs: 0 }); cur.setDate(cur.getDate() + 7); }
   } else {
     const [fy, fm] = firstKey.split('-').map(Number), [ly, lm] = lastKey.split('-').map(Number);
     let y = fy, m = fm;
@@ -1154,7 +1167,7 @@ function groupEntries(view) {
   return [...map.entries()].sort((a,b) => a[0].localeCompare(b[0])).slice(-30).map(([key, val]) => ({
     label: view === 'monthly'
       ? new Date(parseInt(key.split('-')[0]), parseInt(key.split('-')[1])-1, 1).toLocaleDateString('en-US',{month:'short'})
-      : new Date(key + 'T12:00:00').toLocaleDateString('en-US',{month:'short',day:'numeric'}),
+      : parseLocalDate(key).toLocaleDateString('en-US',{month:'short',day:'numeric'}),
     qs: val.qs,
   }));
 }
@@ -1199,7 +1212,7 @@ function renderHistory() {
   histPage = Math.min(histPage, pages - 1);
   const start = histPage * HIST_PAGE_SIZE;
   const rows = sorted.slice(start, start + HIST_PAGE_SIZE).map(e => {
-    const dateStr = new Date(e.date + 'T12:00:00').toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'});
+    const dateStr = parseLocalDate(e.date).toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'});
     const isEditing = e.id === editingId;
     return `<tr id="row-${e.id}" class="${isEditing ? 'editing-row' : ''}">
       <td>${dateStr}</td>
@@ -1241,7 +1254,7 @@ function renderExams() {
   const el = document.getElementById('exam-container');
   if (!exams.length) { el.innerHTML = '<div class="hist-empty">No practice exams logged yet.</div>'; return; }
   const rows = [...exams].reverse().map(e => {
-    const dateStr = new Date(e.date + 'T12:00:00').toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'});
+    const dateStr = parseLocalDate(e.date).toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'});
     const epcChip = e.epc != null ? `<span class="score-chip ${e.epc>=70?'chip-green':e.epc>=55?'chip-yellow':'chip-red'}">${e.epc}%</span>` : '—';
     const eppChip = e.epp != null ? `<span class="score-chip chip-blue">${e.epp}% pass</span>` : '—';
     const isEditing = e.id === editingExamId;
@@ -1348,7 +1361,7 @@ function showPaceModal() {
   let html = '<div>';
   html += paceRow('Questions remaining', remaining.toLocaleString());
   if (settings.finishBy) {
-    const finish = new Date(settings.finishBy + 'T12:00:00');
+    const finish = parseLocalDate(settings.finishBy);
     const now = new Date(); now.setHours(0,0,0,0);
     const calDays   = Math.max(0, Math.round((finish - now) / 86400000));
     const studyDays = Math.round(calDays * (settings.studyDays.length || 5) / 7);
@@ -1563,7 +1576,7 @@ function showToast(msg) {
 document.addEventListener('DOMContentLoaded', () => {
   loadAll();
   renderAll();
-  const today = new Date().toISOString().split('T')[0];
+  const today = localToday();
   document.getElementById('log-date').value  = today;
   document.getElementById('exam-date').value = today;
 });
