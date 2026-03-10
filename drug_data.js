@@ -905,20 +905,21 @@ micro: [
     drugs: [
       {
         name: "Natural Penicillins",
-        aka: "Penicillin G (IV/IM) · Penicillin V (oral) · Benzathine Penicillin G · Procaine Penicillin G",
-        summary: "Narrow-spectrum **$\beta$-lactams** disrupting cell wall synthesis.\nFirst-line for **Syphilis** and **Group A Strep**.",
+        aka: "Penicillin G (IV/IM) · Penicillin V (oral) · Benzathine Penicillin G",
+        summary: "Narrow-spectrum **β-lactams** disrupting cell wall synthesis.\nFirst-line for **Syphilis** and **Group A Strep**.",
         moa: "Bind and inhibit **PBPs** (Penicillin-Binding Proteins).\nPrevent peptidoglycan **transpeptidation** (cross-linking).\nBactericidal against actively dividing organisms.",
-        use: "**Syphilis** (Benzathine G IM single dose).\n**Strep Pharyngitis** (Penicillin V).\n**Rheumatic Fever** prophylaxis.\n**Neurosyphilis** (Penicillin G IV).",
+        use: "**Syphilis** (Benzathine G IM single dose).\n**Strep Pharyngitis** (Penicillin V).\n**Actinomyces israelii** (Yellow sulfur granules).\n**Neurosyphilis** (Penicillin G IV).",
         se: "**Hypersensitivity** (Anaphylaxis risk).\n**Jarisch-Herxheimer Reaction**: Fever/hypotension after starting treatment for spirochetes (Syphilis, Lyme).",
-        ci: "True Penicillin Anaphylaxis (1–2% cross-reactivity with cephalosporins).",
-        pk: "Penicillin G is acid-labile (not oral).\nBenzathine G is a **long-acting depot** injection (2–4 weeks).",
-        pearl: "**Jarisch-Herxheimer** is not an allergy; it is caused by pyrogen release from dying spirochetes."
+        ci: "True Penicillin Anaphylaxis.",
+        pk: "Penicillin G is acid-labile (not oral).\nBenzathine G is a **long-acting depot** injection.",
+        pearl: "**Jarisch-Herxheimer** is caused by pyrogen release from dying spirochetes.\n**Resistance**: Cleavage of β-lactam ring by **β-lactamase**."
       },
+      
       {
         name: "Anti-Staphylococcal Penicillins",
         aka: "Nafcillin · Oxacillin · Dicloxacillin",
         summary: "Beta-lactamase-resistant penicillins for **MSSA**.\nBulky side chains prevent enzymatic hydrolysis.",
-        moa: "Bind **PBPs** to inhibit cross-linking.\nSide chain sterically hinders **Staphylococcal $\beta$-lactamase**.",
+        moa: "Bind **PBPs** to inhibit cross-linking.\nSide chain sterically hinders **Staphylococcal β-lactamase**.",
         use: "**MSSA** Bacteremia, Endocarditis, and Osteomyelitis.\n(Not for MRSA).",
         se: "Hypersensitivity.\n**Nafcillin**: Hepatotoxicity and neutropenia.",
         ci: "Penicillin Allergy; **MRSA** (altered PBP2a).",
@@ -928,11 +929,11 @@ micro: [
       {
         name: "Aminopenicillins",
         aka: "Ampicillin · Amoxicillin · Unasyn · Augmentin",
-        summary: "Extended-spectrum penicillins for Gram(+) and select Gram(-).\nCombined with **$\beta$-lactamase inhibitors** (Clavulanate, Sulbactam).",
-        moa: "Same as penicillin; amino group ↑ Gram(-) penetration.\n**Inhibitors**: Irreversibly bind $\beta$-lactamases to protect the drug.",
-        use: "**Ampicillin**: **Listeria** monocytogenes (Meningitis in >50/infants); Enterococcus.\n**Amoxicillin**: H. pylori triple therapy; Otitis media; Dental prophylaxis.\n**Augmentin**: Bites (Human/Animal); Sinusitis.",
+        summary: "Extended-spectrum penicillins for Gram(+) and select Gram(-).\nCombined with **β-lactamase inhibitors** (Clavulanate, Sulbactam).",
+        moa: "Same as penicillin; amino group ↑ Gram(-) penetration.\n**Inhibitors**: Irreversibly bind β-lactamases to protect the drug.",
+        use: "**Ampicillin**: **Listeria** monocytogenes (Meningitis in infants/>50); Enterococcus.\n**Amoxicillin**: H. pylori triple therapy; Otitis media; Dental prophylaxis.\n**Augmentin**: Bites (Human/Animal); Sinusitis.",
         se: "**Ampicillin Rash**: Non-allergic maculopapular rash with **EBV/Mono**.\nDiarrhea (Clavulanate-mediated).",
-        ci: "Penicillin Allergy; Active EBV infection (Rash risk).",
+        ci: "Penicillin Allergy; Active EBV infection.",
         pk: "**Amoxicillin**: High oral bioavailability.\nAmpicillin: Poor oral absorption (mostly IV/IM).",
         pearl: "**Listeria is the catch**: Cephalosporins do NOT cover Listeria; always use Ampicillin."
       },
@@ -940,9 +941,9 @@ micro: [
         name: "Extended-Spectrum Penicillins",
         aka: "Piperacillin-Tazobactam (Zosyn)",
         summary: "Anti-pseudomonal penicillins with the broadest coverage.\nWorkhorse for hospital infections.",
-        moa: "Extended PBP binding + **$\beta$-lactamase inhibitor**.\nCovers **Pseudomonas** and Anaerobes.",
+        moa: "Extended PBP binding + **β-lactamase inhibitor**.\nCovers **Pseudomonas** and Anaerobes.",
         use: "**Nosocomial Infections** (HAP/VAP).\n**Febrile Neutropenia** (Empiric coverage).\nPolymicrobial abdominal infections.",
-        se: "**Hypokalemia** (Tubular K⁺ loss).\nThrombocytopenia at high doses.",
+        se: "**Hypokalemia** (Tubular $K^+$ loss).\nThrombocytopenia at high doses.",
         ci: "Penicillin Anaphylaxis.",
         pk: "IV infusion; **Extended 4-hr infusion** optimizes killing.",
         pearl: "**ESBL warning**: May fail in ESBL bacteremia due to 'inoculum effect' (use Carbapenems)."
@@ -950,23 +951,23 @@ micro: [
       {
         name: "Cephalosporins",
         aka: "Cefazolin (1G) · Cefoxitin (2G) · Ceftriaxone (3G) · Cefepime (4G) · Ceftaroline (5G)",
-        summary: "Progressively broader Gram(-) coverage by generation.\nOnly 5th Gen (**Ceftaroline**) covers **MRSA**.",
-        moa: "Bind **PBPs**; more resistant to some $\beta$-lactamases than penicillins.\nBactericidal.",
-        use: "**1G (Cefazolin)**: Surgical prophylaxis.\n**2G (Cefoxitin)**: Anaerobes/Pelvic infections.\n**3G (Ceftriaxone)**: Meningitis, Gonorrhea, Lyme.\n**4G (Cefepime)**: **Pseudomonas**; Febrile Neutropenia.\n**5G (Ceftaroline)**: MRSA.",
-        se: "**Ceftriaxone**: Biliary sludge/Pseudolithiasis; contraindicated in neonates.\nDisulfiram-like reaction (MTT side-chain agents).",
-        ci: "Cephalosporin/Penicillin Anaphylaxis.\nNeonates receiving IV Calcium (Precipitation risk).",
-        pk: "**Ceftriaxone**: Once daily ($t_{1/2}$ ~8 hr); biliary excretion.\nMost others: Renal excretion.",
-        pearl: "**LAME Resistance**: Cephalosporins do NOT cover **L**isteria, **A**typicals, **M**RSA (except 5G), **E**nterococci."
+        summary: "Bactericidal β-lactams. General trend: Increasing Gram(-) coverage and CNS penetration from 1st to 3rd generation.",
+        moa: "Bind **PBPs** → inhibit transpeptidation.\nLess susceptible to penicillinases.\n**5G (Ceftaroline)**: Binds altered PBP2a to cover MRSA.",
+        use: "**1G (Cefazolin)**: Surgical prophylaxis; **PEcK** (Proteus, E. coli, Klebsiella).\n**2G (Cefoxitin/Cefuroxime)**: **HENS PEcK** (H. influenzae, Enterobacter, Neisseria, Serratia + PEcK).\n**3G (Ceftriaxone)**: Meningitis, Gonorrhea, Lyme; **Ceftazidime**: Pseudomonas.\n**4G (Cefepime)**: Potent **Pseudomonas** + Gram(+) coverage.\n**5G (Ceftaroline)**: **MRSA** (does NOT cover Pseudomonas).",
+        se: "**Ceftriaxone**: Biliary sludge; **Kernicterus** in neonates.\n**MTT side chain agents**: Disulfiram-like reaction; Vitamin K antagonism (↑ bleeding).\nCross-reactivity (~10%) in Penicillin-allergic patients.",
+        ci: "**Neonates**: Avoid Ceftriaxone (use Cefotaxime instead) + avoid IV Calcium.\nTrue Penicillin Anaphylaxis.",
+        pk: "**3G/4G**: Cross the Blood-Brain Barrier (excellent CSF levels).\n**Ceftriaxone**: Biliary excretion; all others renal.",
+        pearl: "**LAME Resistance**: Cephalosporins do NOT cover **L**isteria, **A**typicals, **M**RSA (except 5G), **E**nterococci.\n1st Gen = Gram(+); 3rd Gen = Gram(-); 4th Gen = Both."
       },
       {
         name: "Carbapenems & Monobactams",
         aka: "Imipenem · Meropenem · Ertapenem | Aztreonam",
-        summary: "**Carbapenems**: Broadest $\beta$-lactams (Gram+, Gram-, Anaerobes).\n**Aztreonam**: Gram(-) only; safe in penicillin allergy.",
-        moa: "**Carbapenems**: Bind multiple PBPs; resistant to many $\beta$-lactamases.\n**Aztreonam**: Binds **PBP3** only.",
+        summary: "**Carbapenems**: Broadest β-lactams (Gram+, Gram-, Anaerobes).\n**Aztreonam**: Gram(-) only; safe in penicillin allergy.",
+        moa: "**Carbapenems**: Bind multiple PBPs; resistant to many β-lactamases.\n**Aztreonam**: Binds **PBP3** only.",
         use: "**Carbapenems**: ESBL-producing organisms; MDR infections.\n**Aztreonam**: Gram(-) infections in **Penicillin-Allergic** patients.",
         se: "**Imipenem**: **Seizures** (especially in renal failure).\n**Ertapenem**: No Pseudomonas/Enterococcus coverage.",
         ci: "**Aztreonam**: Cross-reacts with **Ceftazidime** (shared side chain).",
-        pk: "**Imipenem**: Co-formulated with **Cilastatin** (inhibits renal dehydropeptidase I).\nRenal elimination for all.",
+        pk: "**Imipenem**: Co-formulated with **Cilastatin** (inhibits renal dehydropeptidase I).",
         pearl: "**Ertapenem is the outlier**: The only carbapenem with no Pseudomonas activity."
       }
     ]
@@ -983,7 +984,7 @@ micro: [
         se: "**Red Man Syndrome** (Non-IgE mast cell degranulation — prevent with slow infusion).\n**Nephrotoxicity** (Synergy with Aminoglycosides).\nOtotoxicity (Supratherapeutic levels).",
         ci: "**VRE** (Vancomycin-Resistant Enterococcus).",
         pk: "**AUC/MIC monitoring** standard.\nRenal elimination; dose-adjust in CKD.",
-        pearl: "**Oral vs. IV**: Oral is for gut only; IV is for systemic only. They are not interchangeable."
+        pearl: "**Resistance**: Amino acid change from **D-Ala-D-Ala** to **D-Ala-D-Lac**."
       },
       {
         name: "Aminoglycosides",
@@ -991,10 +992,10 @@ micro: [
         summary: "Potent bactericidal drugs for serious Gram(-) infections.\nRequire oxygen for uptake.",
         moa: "Irreversibly inhibit **30S subunit**.\nCause mRNA misreading → aberrant protein insertion → membrane disruption.\n**Concentration-dependent** killing.",
         use: "**Serious Gram(-)** (Pseudomonas, Klebsiella).\n**Endocarditis Synergy**: Low-dose + Beta-lactam/Vancomycin.\n**Neomycin**: Bowel prep; Hepatic encephalopathy.",
-        se: "**Nephrotoxicity** (ATN; usually reversible).\n**Ototoxicity** (Sensorineural; irreversible).\n**Neuromuscular Blockade** (ACh release inhibition).",
+        se: "**Nephrotoxicity** (ATN); **Ototoxicity** (Irreversible).\n**Neuromuscular Blockade** (ACh release inhibition).",
         ci: "**Myasthenia Gravis**; Pregnancy (Fetal ototoxicity).",
-        pk: "**Once-daily dosing** (High $C_{max}$ / Low trough) reduces toxicity.\nRenal elimination.",
-        pearl: "**Ineffective against Anaerobes**: Uptake requires $O_2$ (proton motive force)."
+        pk: "**Once-daily dosing** reduces toxicity.\nRenal elimination.",
+        pearl: "**Resistance**: Bacterial **modifying enzymes** (acetylation, phosphorylation, adenylation).\n**Ineffective against Anaerobes**: Uptake requires $O_2$."
       },
       {
         name: "Tetracyclines",
@@ -1005,7 +1006,7 @@ micro: [
         se: "**Photosensitivity**.\n**Teeth discoloration** and bone growth inhibition in children.\n**Pill Esophagitis** (Stay upright).",
         ci: "**Pregnancy** and **Children <8 yr**.\n(Exception: RMSF in children).",
         pk: "**Chelation**: Absorption ↓ by Dairy/Antacids ($Ca^{2+}, Mg^{2+}, Fe^{2+}$).\n**Doxycycline**: Fecal/Biliary elimination (safe in CKD).",
-        pearl: "**Doxy in CKD**: The only tetracycline not requiring renal adjustment."
+        pearl: "**Resistance**: ↓ uptake or ↑ efflux by plasmid-encoded pumps."
       },
       {
         name: "Macrolides",
@@ -1013,10 +1014,10 @@ micro: [
         summary: "Bacteriostatic 50S inhibitors for **Atypical Pneumonias** and STIs.",
         moa: "Bind **50S subunit** (23S rRNA) → block **translocation**.\nBacteriostatic.",
         use: "**Atypicals**: Mycoplasma, Legionella, Chlamydophila.\n**STIs**: Chlamydia (single dose Azithro).\n**H. pylori**: Clarithromycin.",
-        se: "**QTc Prolongation**.\n**MACRO**: **M**otility (GI upset), **A**rrhythmia (QT), **C**holestatic hepatitis, **R**ash, **O**utput (CYP inhibitor).",
+        se: "**QTc Prolongation**.\n**MACRO**: **M**otility, **A**rrhythmia (QT), **C**holestatic hepatitis, **R**ash, **O**utput (CYP inhibitor).",
         ci: "QTc >450 ms; Prior Macrolide hepatitis.",
-        pk: "**Azithromycin**: Massive tissue concentration ($t_{1/2}$ ~68 hr).\n**CYP3A4 Inhibition**: Clarithro/Erythro (Strong); Azithro (None).",
-        pearl: "**Azithromycin** is preferred for lacking drug interactions."
+        pk: "**CYP3A4 Inhibition**: Clarithro/Erythro (Strong); Azithro (None).",
+        pearl: "**Resistance**: Methylation of 23S rRNA binding site.\n**Azithromycin** is preferred because it does not inhibit CYP450."
       },
       {
         name: "Clindamycin",
@@ -1046,10 +1047,10 @@ micro: [
         summary: "DNA synthesis inhibitors for UTIs, Pneumonia, and Gram(-) coverage.",
         moa: "Inhibit **DNA Gyrase** (Topoisomerase II) and **Topoisomerase IV**.\nBactericidal; concentration-dependent.",
         use: "**Ciprofloxacin**: Gram(-) UTI; Pseudomonas.\n**Respiratory (Levo/Moxi)**: S. pneumoniae; Atypicals.\n**Anthrax** prophylaxis.",
-        se: "**Tendon Rupture** (Achilles); **QTc Prolongation**.\n**Peripheral Neuropathy** (Potentially irreversible).\nCartilage damage in children.",
-        ci: "**Myasthenia Gravis** (Exacerbation); Pregnancy.",
-        pk: "**Chelation**: Absorption ↓ by Dairy/Antacids.\n**Moxifloxacin**: Minimal urine penetration (not for UTI).",
-        pearl: "**Achilles warning**: Risk ↑ with corticosteroids and age >60."
+        se: "**Tendon Rupture** (Achilles); **QTc Prolongation**.\n**Peripheral Neuropathy**; Cartilage damage in children.",
+        ci: "**Myasthenia Gravis**; Pregnancy.",
+        pk: "**Chelation**: Absorption ↓ by Dairy/Antacids.\n**Moxifloxacin**: Low urine penetration (not for UTI).",
+        pearl: "**Resistance**: Mutations in **DNA gyrase** or efflux pumps.\n**Achilles warning**: Risk ↑ with corticosteroids and age >60."
       },
       {
         name: "Metronidazole",
@@ -1082,13 +1083,14 @@ micro: [
         name: "Tuberculosis Drugs (RIPE)",
         aka: "Rifampin (R) · Isoniazid (I) · Pyrazinamide (P) · Ethambutol (E)",
         summary: "Four-drug regimen for active TB.\nUnique multi-organ toxicities.",
-        moa: "**R**: Inhibits **RNA Polymerase**.\n**I**: Inhibits **Mycolic Acid** synthesis (Prodrug).\n**P**: Phagolysosome activation (Unknown exact mechanism).\n**E**: Inhibits **Arabinosyltransferase** (Cell wall).",
+        moa: "**R**: Inhibits **RNA Polymerase**.\n**I**: Inhibits **Mycolic Acid** synthesis (Prodrug activated by **KatG**).\n**P**: Phagolysosome activation.\n**E**: Inhibits **Arabinosyltransferase**.",
         use: "**Active TB**: RIPE for 2 months → RI for 4 months.\n**Latent TB**: INH for 9 months or Rifampin for 4 months.",
         se: "**R**: **Orange Secretions**; Potent CYP induction.\n**I**: **Peripheral Neuropathy** (prevent with $B_6$); Drug-induced Lupus.\n**P**: **Hyperuricemia** (Gout); Hepatotoxicity.\n**E**: **Optic Neuritis** (Color blindness).",
         ci: "Severe Gout (Pyrazinamide); Pre-existing Optic Neuritis (Ethambutol).",
-        pk: "**Rifampin**: Strong **CYP450 Inducer** (↓ Warfarin, OCPs).\n**INH**: Metabolism by **Acetylation** (Slow acetylators = ↑ Toxicity).",
-        pearl: "**Always give Vitamin $B_6$** (Pyridoxine) with Isoniazid."
+        pk: "**Rifampin**: Strong **CYP450 Inducer**.\n**INH**: Metabolism by **Acetylation** (Slow acetylators = ↑ Toxicity).",
+        pearl: "**Rifampin 4 R's**: **R**NA polymerase, **R**evs up P450, **R**ed/orange secretions, **R**apid resistance if used alone.\n**Always give Vitamin $B_6$** with Isoniazid."
       },
+      
       {
         name: "Leprosy Drugs",
         aka: "Dapsone · Rifampin · Clofazimine",
@@ -1123,7 +1125,7 @@ micro: [
         moa: "Inhibit **CYP51** (Lanosterol 14-$\alpha$-demethylase).\nBlock Lanosterol → Ergosterol conversion.",
         use: "**Fluconazole**: Candida; Cryptococcal maintenance.\n**Voriconazole**: First-line for **Aspergillus**.\n**Itraconazole**: Histoplasmosis; Blastomycosis.",
         se: "**All**: Hepatotoxicity; **QTc Prolongation**.\n**Voriconazole**: **Visual Disturbances** (Photopsia); Skin SCC.",
-        ci: "CYP3A4 substrates (Statins, Warfarin).\nItraconazole: Avoid in Heart Failure.",
+        ci: "CYP3A4 substrates (Statins, Warfarin).",
         pk: "**Fluconazole**: Best CSF penetration.\n**Strong CYP3A4 inhibitors**.",
         pearl: "**Visual flashes** with Voriconazole are common and reversible."
       },
@@ -1131,7 +1133,7 @@ micro: [
         name: "Echinocandins & Flucytosine",
         aka: "Caspofungin · Micafungin | Flucytosine",
         summary: "**Echinocandins**: First-line for Candidemia.\n**Flucytosine**: Synergistic add-on.",
-        moa: "**Echinocandins**: Inhibit **$\beta$-glucan** synthesis (Cell wall).\n**Flucytosine**: Converted to **5-FU** → inhibits DNA/RNA synthesis.",
+        moa: "**Echinocandins**: Inhibit **β-glucan** synthesis (Cell wall).\n**Flucytosine**: Converted to **5-FU** → inhibits DNA/RNA synthesis.",
         use: "**Echinocandins**: Candidemia; Febrile neutropenia.\n**Flucytosine**: Cryptococcal meningitis induction (with Ampho B).",
         se: "**Flucytosine**: **Bone Marrow Suppression** (Dose-limiting).",
         ci: "**Flucytosine Monotherapy**: Never used alone (resistance).",
@@ -1240,7 +1242,7 @@ micro: [
         name: "Anti-helminthics",
         aka: "Albendazole · Praziquantel · Ivermectin",
         summary: "Target worms via microtubules, paralysis, or membrane damage.",
-        moa: "**Albendazole**: Inhibits **$\beta$-tubulin** polymerization.\n**Praziquantel**: ↑ $Ca^{2+}$ permeability → spastic paralysis.\n**Ivermectin**: Blocks glutamate-gated $Cl^-$ channels.",
+        moa: "**Albendazole**: Inhibits **β-tubulin** polymerization.\n**Praziquantel**: ↑ $Ca^{2+}$ permeability → spastic paralysis.\n**Ivermectin**: Blocks glutamate-gated $Cl^-$ channels.",
         use: "**Albendazole**: Nematodes (Roundworms); Hydatid cysts.\n**Praziquantel**: Trematodes (Flukes); Cestodes (Tapeworms).\n**Ivermectin**: Strongyloides; Scabies.",
         se: "**Mazzotti Reaction**: Fever/rash due to dying microfilariae.",
         ci: "Pregnancy (Albendazole).",
