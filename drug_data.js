@@ -1005,7 +1005,7 @@ micro: [
         ci: "Children <8 (permanent tooth discoloration — **exception: Doxy for RMSF**); Pregnancy (fetal bone/tooth effects); **Divalent cations** (Ca2+, Mg2+, Al3+, Fe2+) → chelation → ↓ absorption (separate from dairy/antacids by ≥2 hr).",
         pk: "**Doxycycline:** oral/IV, t½ ~18 hr, oral ~93%, **fecal/biliary elimination** (safe in renal failure).\n**Tetracycline:** renal elimination (avoid in CKD).\n**Tigecycline:** IV only, t½ ~42 hr, biliary excretion.\n**Minocycline:** lipophilic → CNS penetration.",
         pearl: "**RMSF & Doxycycline Rule:** Rickettsia rickettsii has >20% mortality if delayed — start empirically. CDC states Doxycycline is first-line **at any age**; cosmetic staining risk is outweighed by life-saving benefit. **Doxycycline's fecal/biliary excretion** makes it unique and safe in renal failure; it does not cause anti-anabolic azotemia like traditional tetracycline."
-      }
+      },
       {
         name: "Macrolides",
         aka: "Azithromycin (Zithromax) · Clarithromycin (Biaxin) · Erythromycin",
