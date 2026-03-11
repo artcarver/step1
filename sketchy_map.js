@@ -283,8 +283,6 @@ const SKETCHY_MAP = {
   "Acetaminophen Toxicity & N-Acetylcysteine": { scenes: [{ img: "sketchy_images/blood & inflammation/3.1 - NSAIDs.png", title: "NSAIDs (partial — acetaminophen adjacent)" }] },
   "Ethanol Metabolism, Disulfiram & Alcohol Antidotes": { scenes: [{ img: "sketchy_images/neuro & psych/3.3 - MAO inhibitors.png", title: "MAOIs (partial — disulfiram-like reactions)" }] },
 
-};
-
   // ════════════════════════════════════════════════════════
   // SMOOTH MUSCLE
   // ════════════════════════════════════════════════════════
