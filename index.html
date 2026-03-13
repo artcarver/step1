@@ -1,728 +1,1068 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8"/>
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet"/>
-<link rel="stylesheet" href="style.css"/>
-<title>Step 1 Study Hub</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="description" content="Log BFRB episodes, near misses, and resistances in real time.">
+<link rel="manifest" href="manifest.json">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="Groundwork">
+<link rel="apple-touch-icon" href="icon-192.png">
+<title>Groundwork — Log</title>
+<meta name="theme-color" id="theme-color-meta" content="#F5F5F3">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;1,400&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="base.css">
 <style>
-:root {
-  --nav-active-color: var(--sakura2);
-  --gap: 10px;
+
+/* ── STAGGER ENTRY ── */
+@keyframes fadeUp {
+  from { opacity:0; transform:translateY(12px); }
+  to   { opacity:1; transform:translateY(0); }
+}
+.anim { opacity:0; animation:fadeUp .4s ease forwards; }
+.d1{animation-delay:.04s}.d2{animation-delay:.10s}.d3{animation-delay:.16s}
+.d4{animation-delay:.22s}.d5{animation-delay:.28s}.d6{animation-delay:.34s}
+
+main {
+  max-width: 540px;
+  margin: 0 auto;
+  /* pad top for sticky nav */
+  padding: calc(var(--nav-h,52px) + 16px) 16px 120px;
 }
 
-/* ── Shared card base ── */
-.i-card {
-  background: var(--surface);
-  border: 1px solid var(--border2);
-  border-radius: var(--r-lg);
-  transition: transform var(--t), box-shadow var(--t), border-color var(--t);
-  position: relative; overflow: hidden;
+/* ── MODE TOGGLE ── */
+.mode-toggle {
+  display: inline-flex;
+  background: var(--sur);
+  border: 1px solid var(--bdr);
+  border-radius: var(--pill);
+  padding: 3px;
+  margin-bottom: 20px;
 }
-.i-card:hover {
-  transform: var(--lift);
-  box-shadow: var(--shadow-md), inset 3px 0 0 0 var(--card-accent, var(--sakura2));
-  border-color: color-mix(in srgb, var(--card-accent, var(--sakura2)) 25%, var(--border2));
+.mode-btn {
+  background: none; border: none;
+  border-radius: var(--pill);
+  padding: 6px 18px;
+  font-size: 13px; font-weight: 600;
+  color: var(--mu);
+  cursor: pointer; transition: var(--tr);
+  font-family: 'DM Sans', sans-serif;
+  touch-action: manipulation;
 }
-.i-card:focus-visible { outline: 2px solid var(--sakura2); outline-offset: 2px; }
+.mode-btn.on {
+  background: var(--card);
+  color: var(--tx);
+  box-shadow: var(--s1);
+}
 
-/* ── Section label ── */
-.sec-label {
-  font-size: 10px; font-weight: 700; letter-spacing: 2.5px;
-  text-transform: uppercase; color: var(--muted);
-  display: flex; align-items: center; gap: 12px;
-  padding: 6px 0 6px;
-  margin-top: 6px;
+/* ── FORM STEP LABELS ── */
+.step-label {
+  font-size: 10px; font-weight: 700;
+  letter-spacing: .1em; text-transform: uppercase;
+  color: var(--mu);
+  margin-bottom: 10px; margin-top: 6px;
+  padding-left: 2px;
 }
-.sec-label::after { content: ''; flex: 1; height: 1px; background: var(--border2); }
 
-/* ── Hero — 50/50 grid, countdown centred in right half ── */
-.hero {
-  padding: 28px 0 18px;
-  display: grid; grid-template-columns: 1fr 1fr;
-  gap: 0; align-items: center;
+/* ── AREA GROUPS ── */
+.area-group { margin-bottom: 6px; }
+.area-parent {
+  width: 100%; text-align: left;
+  justify-content: flex-start;
+  position: relative; padding-right: 32px;
 }
-.hero-left { padding-right: 40px; }
-.hero-eyebrow {
-  font-size: 10px; font-weight: 700; letter-spacing: 3px;
-  text-transform: uppercase; color: var(--sakura2); margin-bottom: 10px; opacity: .8;
+.area-parent::after {
+  content: '';
+  position: absolute; right: 14px;
+  width: 8px; height: 8px;
+  border-right: 1.5px solid currentColor;
+  border-bottom: 1.5px solid currentColor;
+  transform: translateY(-65%) rotate(45deg);
+  transition: transform .2s; opacity: .5;
 }
-.hero-title {
-  font-family: 'Playfair Display', serif;
-  font-size: clamp(28px, 3.2vw, 46px);
-  font-weight: 700; line-height: 1.12; color: var(--ink);
+.area-parent.open::after { transform: translateY(-35%) rotate(-135deg); }
+.area-sub {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
+  gap: 6px; margin-top: 6px; padding-left: 12px;
 }
-.hero-title em { font-style: italic; color: var(--sakura2); }
+.area-sub.hidden { display: none; }
 
-/* ── Countdown — centered in the right column ── */
-.hero-countdown {
-  margin: 0 auto !important;
-  padding: 24px 32px 20px !important;
-  min-width: 210px !important; max-width: 260px !important;
+/* ── SAVE BUTTON INACTIVE STATE ── */
+/* btn-primary.inactive is defined in base.css but we reinforce here */
+#btn-save-all {
+  transition: background .2s, opacity .2s, border-color .2s;
 }
-.hero-countdown .cd-eyebrow { margin-bottom: 10px !important; font-size: 9px !important; letter-spacing: 2.5px !important; font-weight: 700 !important; opacity: 1 !important; color: var(--ink2) !important; }
-.hero-countdown .cd-days { font-size: 72px !important; letter-spacing: -4px !important; }
-.hero-countdown .cd-unit { font-size: 14px !important; }
-.cd-number-row { margin-bottom: 8px !important; }
-.hero-countdown .cd-date { font-size: 15px !important; margin-bottom: 18px !important; }
-.hero-countdown .cd-date-empty { font-size: 12px !important; }
 
-/* ── Today's High Yield — compact horizontal cards ── */
-.daily-grid { display: grid; grid-template-columns: 1fr 1fr; gap: var(--gap); }
+/* ── SUCCESS SCREEN ── */
+.success-msg {
+  text-align: center;
+  padding: 60px 20px;
+  display: flex; flex-direction: column; align-items: center;
+}
+.success-icon {
+  width: 56px; height: 56px;
+  background: var(--sagel); color: var(--sage);
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 28px; margin-bottom: 20px;
+}
+.success-title { font-family: 'Lora', serif; font-size: 22px; color: var(--tx); margin-bottom: 8px; }
+.success-body  { font-size: 14px; color: var(--mu); max-width: 320px; line-height: 1.55; }
 
-.feat-skeleton {
-  border-radius: var(--r-lg); border: 1px solid var(--border2);
-  background: var(--surface); padding: 14px 18px;
-  display: flex; flex-direction: column; gap: 8px; height: 96px;
+/* ── TOAST (uses nav-h token for positioning) ── */
+.toast {
+  position: fixed;
+  top: calc(var(--nav-h,52px) + 12px);
+  left: 50%; transform: translateX(-50%) translateY(-20px);
+  opacity: 0; background: var(--tx);
+  border-radius: var(--pill); padding: 11px 22px;
+  font-size: 13px; font-weight: 600; color: #fff;
+  transition: all .3s ease; z-index: 999;
+  pointer-events: none; white-space: nowrap;
 }
-.skel-line { border-radius: 6px; background: var(--border2); animation: shimmer 1.4s ease-in-out infinite; }
-.skel-accent-drug  { background: var(--sakura-light) !important; }
-.skel-accent-micro { background: var(--sage-light)   !important; }
-@keyframes shimmer { 0%,100%{opacity:.55} 50%{opacity:1} }
+.toast.show { transform: translateX(-50%) translateY(0); opacity: 1; }
+.toast.err  { background: var(--ac); }
 
-.feat-card {
-  display: none; flex-direction: column;
-  padding: 14px 18px 12px; cursor: pointer; min-height: 0;
-}
-.feat-card:hover .feat-cta { opacity: 1; transform: translateX(2px); }
-.feat-eyebrow {
-  font-size: 9px; font-weight: 700; letter-spacing: 1.8px;
-  text-transform: uppercase; color: var(--card-accent, var(--sakura2)); margin-bottom: 6px;
-}
-.feat-name {
-  font-family: 'Playfair Display', serif; font-size: 16px; font-weight: 600;
-  line-height: 1.2; color: var(--ink); margin-bottom: 5px;
-}
-.feat-pearl {
-  font-size: 12px; color: var(--ink2); line-height: 1.5;
-  flex: 1;
-  /* clamp to 2 lines */
-  display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;
-}
-.feat-cta {
-  margin-top: 8px; font-size: 11px; font-weight: 600;
-  color: var(--card-accent, var(--sakura2)); opacity: .5;
-  transition: opacity var(--t), transform var(--t);
-}
-.feat-drug  { --card-accent: var(--sakura2); }
-.feat-micro { --card-accent: var(--sage); }
-
-/* ── Tracker bar ── */
-.tracker-bar {
-  display: flex;
-  background: var(--surface);
-  border: 1px solid var(--border2);
-  border-radius: var(--r-lg);
+/* Full mode section transitions */
+.full-section {
   overflow: hidden;
-  transition: box-shadow var(--t);
+  transition: max-height .35s ease, opacity .3s ease;
+  max-height: 0; opacity: 0;
 }
-.tracker-bar:hover { box-shadow: var(--shadow-md); }
-
-.tr-seg {
-  flex: 1; min-width: 0;
-  padding: 12px 16px 11px;
-  display: flex; flex-direction: column;
-  text-decoration: none; color: inherit;
-  transition: background var(--t);
-}
-.tr-seg:hover {
-  background: color-mix(in srgb, var(--tr-color, var(--lavender)) 5%, var(--surface));
-}
-.tr-seg-uw { flex: 1.25; }
-
-.tr-sep { width: 1px; background: var(--border2); flex-shrink: 0; margin: 8px 0; }
-
-.tr-label {
-  font-size: 9px; font-weight: 700; letter-spacing: 2px;
-  text-transform: uppercase; color: var(--tr-color, var(--lavender));
-  margin-bottom: 8px;
-}
-.tr-bar-bg {
-  width: 100%; height: 7px;
-  background: var(--border2); border-radius: 99px;
-  overflow: hidden; position: relative; margin-bottom: 9px;
-}
-.tr-bar-w {
-  position: absolute; height: 100%; border-radius: 99px;
-  background: color-mix(in srgb, var(--tr-color, var(--lavender)) 35%, transparent);
-  transition: width .8s ease;
-}
-.tr-bar-r {
-  position: absolute; height: 100%; border-radius: 99px;
-  background: var(--tr-color, var(--lavender)); opacity: .85;
-  transition: width .8s ease;
-}
-.tr-pct {
-  font-size: 12px; font-weight: 600; line-height: 1;
-  color: var(--muted); margin-bottom: 3px;
-}
-.tr-sub { font-size: 10px; color: var(--muted); line-height: 1.45; }
-
-/* ── Reference cards ── */
-.ref-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--gap); }
-.tool-card { padding: 14px 16px 13px; display: block; position: relative; }
-.tool-card:hover .card-arrow { color: var(--card-accent, var(--sakura2)); transform: translate(2px,-2px); }
-.card-arrow { position: absolute; top: 12px; right: 14px; font-size: 14px; color: var(--dim); transition: color var(--t), transform var(--t); }
-.card-title { font-family: 'Playfair Display', serif; font-size: 15px; font-weight: 600; color: var(--ink); margin-bottom: 4px; margin-top: 0; }
-.card-desc  { font-size: 12px; color: var(--ink2); line-height: 1.5; }
-.card-pharm { --card-accent: var(--sakura2); }
-.card-micro { --card-accent: var(--sage); }
-
-/* ── Quote ── */
-.motive-band {
-  margin-top: 20px; border-top: 1px solid var(--border2);
-  padding: 16px 0 4px; text-align: center;
-}
-.motive-qt { font-family: 'Playfair Display', serif; font-size: 14px; font-style: italic; color: var(--ink2); line-height: 1.7; }
-.motive-attr { display: block; margin-top: 6px; font-size: 10px; font-weight: 700; letter-spacing: 1.2px; text-transform: uppercase; color: var(--muted); }
-
-/* ── Responsive ── */
-@media (max-width: 860px) {
-  .hero { grid-template-columns: 1fr; padding: 18px 0 12px; gap: 12px; }
-  .hero-countdown { min-width: unset !important; width: 100% !important; text-align: center; align-items: center; }
-  .tr-seg { padding: 10px 12px 9px; }
-}
-@media (max-width: 640px) {
-  .daily-grid { grid-template-columns: 1fr; }
-  .tracker-bar { flex-wrap: wrap; }
-  .tr-sep { display: none; }
-  .tr-seg { flex: 0 0 50%; border-bottom: 1px solid var(--border2); }
-  .tr-seg:nth-child(odd) { border-right: 1px solid var(--border2); }
-  .tr-seg:nth-last-child(-n+2) { border-bottom: none; }
-  .tr-seg-uw { flex: 0 0 50%; }
-}
-
-
-/* ── Personal trip banner ── */
-.trip-banner {
-  display: none;
-  align-items: center; gap: 10px;
-  margin-top: 12px;
-  padding: 8px 14px;
-  background: color-mix(in srgb, var(--sky) 8%, var(--surface));
-  border: 1px solid color-mix(in srgb, var(--sky) 22%, transparent);
-  border-radius: var(--r);
-  font-size: 12px; color: var(--ink2); line-height: 1.4;
-}
-.trip-banner.visible { display: flex; }
-.trip-banner-icon { font-size: 16px; flex-shrink: 0; }
-.trip-banner strong { color: var(--ink); }
-.trip-banner-days {
-  margin-left: auto; font-size: 11px; font-weight: 700;
-  color: var(--sky); white-space: nowrap; flex-shrink: 0;
-}
-/* ── Modal helpers ── */
-.btn-save-sage { background: var(--sage); }
-.pearl-box-sage { background: var(--sage-light); border-color: #b0d4bc; }
-.pearl-box-sage .drug-label { color: var(--sage); }
-
-/* ── Sketchy Panel (in modals) ── */
-.sketchy-panel { margin-top: 4px; border-radius: 12px; overflow: hidden; border: 1.5px solid var(--sp-color, var(--sakura2)); }
-.sketchy-panel-header {
-  display: flex; align-items: center; gap: 8px;
-  padding: 10px 14px; cursor: pointer; user-select: none;
-  background: color-mix(in srgb, var(--sp-color, var(--sakura2)) 10%, transparent);
-  font-size: 13px; font-weight: 600; color: var(--sp-color, var(--sakura2));
-}
-.sketchy-panel-header-chevron { margin-left: auto; font-size: 10px; transition: transform .2s; }
-.sketchy-panel.collapsed .sketchy-panel-header-chevron { transform: rotate(-90deg); }
-.sketchy-panel.collapsed .sketchy-panel-body { display: none; }
-.sketchy-panel-body { padding: 10px 12px 12px; }
-.sketchy-scene-tabs { display: flex; gap: 6px; margin-bottom: 8px; flex-wrap: wrap; }
-.sketchy-scene-tab {
-  padding: 3px 10px; border-radius: 20px; font-size: 12px; cursor: pointer;
-  border: 1.5px solid var(--sp-color, var(--sakura2));
-  background: transparent; color: var(--sp-color, var(--sakura2));
-  transition: all .15s;
-}
-.sketchy-scene-tab:hover { background: color-mix(in srgb, var(--sp-color, var(--sakura2)) 12%, transparent); }
-.sketchy-scene-tab.active { background: var(--sp-color, var(--sakura2)); color: #fff; }
-.sketchy-img-wrap img { width: 100%; border-radius: 8px; cursor: zoom-in; display: block; }
-.sketchy-lightbox { display: none; position: fixed; inset: 0; background: rgba(0,0,0,.85); z-index: 99999; align-items: center; justify-content: center; }
-.sketchy-lightbox.open { display: flex; }
-.sketchy-lightbox img { max-width: 95vw; max-height: 92vh; border-radius: 10px; }
-.sketchy-lightbox-close { position: absolute; top: 18px; right: 24px; font-size: 28px; color: #fff; cursor: pointer; line-height: 1; }
+.full-section.on { max-height: 9999px; opacity: 1; }
 </style>
+
+<script>
+(function() {
+  const stored = localStorage.getItem('gw-theme');
+  if (stored === 'dark') {
+    document.documentElement.setAttribute('data-theme', 'dark');
+    const m = document.getElementById('theme-color-meta');
+    if (m) m.setAttribute('content', '#161618');
+  }
+})();
+</script>
 </head>
 <body>
 
-<div class="petals" aria-hidden="true">
-  <div class="petal"></div><div class="petal"></div><div class="petal"></div>
-  <div class="petal"></div><div class="petal"></div><div class="petal"></div>
-  <div class="petal"></div><div class="petal"></div><div class="petal"></div>
-  <div class="petal"></div>
-</div>
-
-<script src="nav.js"></script>
-
-<div class="wrap">
-
-  <!-- ── HERO + COUNTDOWN (integrated) ──────────────────── -->
-  <header class="hero">
-    <div class="hero-left">
-      <div class="hero-eyebrow">USMLE Step 1 Study Hub</div>
-      <h1 class="hero-title">Your <em>Study Resources,</em> All in One Place</h1>
-    </div>
-
-    <div class="hero-countdown" aria-label="Exam countdown">
-      <div class="cd-eyebrow">Days to Step 1</div>
-      <div class="cd-number-row">
-        <span class="cd-days" id="cd-days">—</span>
-        <span class="cd-unit">days</span>
-      </div>
-      <span class="cd-date" id="cd-date"><span class="cd-date-empty">No exam date set</span></span>
-      <button class="cd-edit" id="cd-edit-btn" onclick="openDateModal()">Set Exam Date ✦</button>
-    </div>
-  </header>
-
-  <div class="trip-banner" id="trip-banner">
-    <span class="trip-banner-icon">✈</span>
-    <div><strong>Japan trip</strong> · April 15, 2026</div>
-    <span class="trip-banner-days" id="trip-days"></span>
-  </div>
-
-  <!-- ── TODAY'S HIGH YIELD ─────────────────────────────── -->
-  <div class="sec-label">Today's High Yield</div>
-  <div class="daily-grid">
-    <div class="feat-skeleton i-card" id="dotd-skeleton" aria-hidden="true">
-      <div class="skel-line skel-accent-drug" style="height:10px; width:40%;"></div>
-      <div class="skel-line" style="height:20px; width:70%;"></div>
-      <div class="skel-line" style="height:13px; width:90%;"></div>
-      <div class="skel-line" style="height:13px; width:80%;"></div>
-    </div>
-    <div class="feat-skeleton i-card" id="ootd-skeleton" aria-hidden="true">
-      <div class="skel-line skel-accent-micro" style="height:10px; width:50%;"></div>
-      <div class="skel-line" style="height:20px; width:65%;"></div>
-      <div class="skel-line" style="height:13px; width:90%;"></div>
-      <div class="skel-line" style="height:13px; width:75%;"></div>
-    </div>
-    <div class="feat-card feat-drug i-card" id="dotd-card" onclick="openDotdModal()" role="button" tabindex="0" aria-label="Drug of the Day — click to expand">
-      <div class="feat-eyebrow">Drug of the Day</div>
-      <div class="feat-name" id="dotd-name"></div>
-      <div class="feat-pearl" id="dotd-pearl"></div>
-      <div class="feat-cta">View full card ↗</div>
-    </div>
-    <div class="feat-card feat-micro i-card" id="ootd-card" onclick="openOotdModal()" role="button" tabindex="0" aria-label="Organism of the Day — click to expand">
-      <div class="feat-eyebrow">Organism of the Day</div>
-      <div class="feat-name" id="ootd-name"></div>
-      <div class="feat-pearl" id="ootd-pearl"></div>
-      <div class="feat-cta">View full card ↗</div>
-    </div>
-  </div>
-
-  <!-- ── PROGRESS ────────────────────────────────────────── -->
-  <div class="sec-label">Progress</div>
-  <div class="tracker-bar">
-
-    <!-- UWorld -->
-    <a class="tr-seg tr-seg-uw" href="dashboard.html" style="--tr-color:var(--lavender);" aria-label="UWorld progress — open dashboard">
-      <div class="tr-label">UWorld</div>
-      <div class="tr-bar-bg" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" id="uw-bar-role">
-        <div class="tr-bar-r" id="uw-fill" style="width:0%"></div>
-      </div>
-      <div class="tr-pct" id="uw-pct">0%</div>
-      <div class="tr-sub" id="uw-sub">Set up in UWorld Dashboard</div>
-      <div class="tr-sub"><span id="uw-qday">—</span> q/day &middot; <span id="uw-remaining">—</span> left</div>
-    </a>
-
-    <div class="tr-sep"></div>
-
-    <!-- Sketchy Pharm -->
-    <a class="tr-seg" href="sketchy-pharm.html" style="--tr-color:var(--sakura2);" aria-label="Sketchy Pharm progress">
-      <div class="tr-label">Sk. Pharm</div>
-      <div class="tr-bar-bg">
-        <div class="tr-bar-w" id="tp-bar-w" style="width:0%"></div>
-        <div class="tr-bar-r" id="tp-bar-r" style="width:0%"></div>
-      </div>
-      <div class="tr-pct" id="tp-pct">0%</div>
-      <div class="tr-sub" id="tp-stats">0 / 101 reviewed</div>
-    </a>
-
-    <div class="tr-sep"></div>
-
-    <!-- Sketchy Micro -->
-    <a class="tr-seg" href="sketchy-micro.html" style="--tr-color:var(--sage);" aria-label="Sketchy Micro progress">
-      <div class="tr-label">Sk. Micro</div>
-      <div class="tr-bar-bg">
-        <div class="tr-bar-w" id="tm-bar-w" style="width:0%"></div>
-        <div class="tr-bar-r" id="tm-bar-r" style="width:0%"></div>
-      </div>
-      <div class="tr-pct" id="tm-pct">0%</div>
-      <div class="tr-sub" id="tm-stats">0 / 104 reviewed</div>
-    </a>
-
-    <div class="tr-sep"></div>
-
-    <!-- Pixorize -->
-    <a class="tr-seg" href="pixorize.html" style="--tr-color:var(--sky);" aria-label="Pixorize progress">
-      <div class="tr-label">Pixorize</div>
-      <div class="tr-bar-bg">
-        <div class="tr-bar-w" id="tpx-bar-w" style="width:0%"></div>
-        <div class="tr-bar-r" id="tpx-bar-r" style="width:0%"></div>
-      </div>
-      <div class="tr-pct" id="tpx-pct">0%</div>
-      <div class="tr-sub" id="tpx-stats">0 / 244 reviewed</div>
-    </a>
-
-  </div>
-
-  <!-- ── REFERENCE ──────────────────────────────────────── -->
-  <div class="sec-label">Reference & Resources</div>
-  <div class="ref-grid">
-    <a class="tool-card i-card card-pharm" href="drugfacts.html">
-      <span class="card-arrow" aria-hidden="true">↗</span>
-      <div class="card-title">Drug Facts</div>
-      <p class="card-desc">Complete Step 1 pharmacology — mechanism, side effects, clinical pearls, and tier ratings across all systems.</p>
-    </a>
-    <a class="tool-card i-card card-micro" href="microfacts.html">
-      <span class="card-arrow" aria-hidden="true">↗</span>
-      <div class="card-title">Micro Facts</div>
-      <p class="card-desc">Bacteria, viruses, fungi, and parasites — virulence factors, diseases, treatments, and high-yield pearls.</p>
-    </a>
-    <a class="tool-card i-card card-ext" href="https://bootcamp.com/med-school/usmle-step-1-question-of-the-day" target="_blank" rel="noopener" style="--card-accent:var(--gold);">
-      <span class="card-arrow" aria-hidden="true">↗</span>
-      <div class="card-title">Question of the Day</div>
-      <p class="card-desc">Bootcamp's free daily Step 1 question — a quick way to keep your streak alive.</p>
-    </a>
-
-  </div>
-
-  <!-- ── QUOTE ─────────────────────────────────────────── -->
-  <div class="motive-band">
-    <p class="motive-qt" id="daily-quote"></p>
-    <span class="motive-attr" id="quote-attr"></span>
-  </div>
-
-  <footer class="footer">
-    <div>Step 1 Study Hub</div>
-    <div id="footer-date"></div>
-  </footer>
-</div>
-
-
-<!-- ── DRUG OF THE DAY MODAL ──────────────────────────────── -->
-<div class="modal-overlay" id="dotd-modal" role="dialog" aria-modal="true" aria-labelledby="dm-name">
-  <div class="modal detail-modal" style="max-width:720px;">
-    <div class="modal-header">
-      <div>
-        <div style="font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--sakura2);margin-bottom:4px;" id="dm-group"></div>
-        <div class="modal-title" id="dm-name"></div>
-        <div style="font-size:12px;color:var(--muted);font-style:italic;" id="dm-aka"></div>
-      </div>
-      <button onclick="closeModal('dotd-modal')" class="modal-close-btn" aria-label="Close">&times;</button>
-    </div>
-    <div id="dm-summary" style="font-size:13px;color:var(--ink2);line-height:1.65;padding:12px 0 16px;border-bottom:1px solid var(--border2);margin-bottom:4px;"></div>
-    <div id="dm-content" style="max-height:60vh;overflow-y:auto;padding-right:6px;"></div>
-    <div class="modal-btns" style="margin-top:20px;padding-top:16px;border-top:1px solid var(--border);">
-      <button class="btn-cancel" onclick="closeModal('dotd-modal')">Close</button>
-      <a href="drugfacts.html" class="btn-save" style="text-decoration:none;display:inline-block;">All Drug Facts ↗</a>
-    </div>
+<div class="auth-screen on" id="auth-screen">
+  <div class="auth-card">
+    <div class="auth-card-title">Groundwork</div>
+    <div class="auth-card-sub">Sign in to log events.</div>
+    <button class="google-btn" onclick="signInWithGoogle()">Continue with Google</button>
   </div>
 </div>
 
-<!-- ── ORGANISM OF THE DAY MODAL ──────────────────────────── -->
-<div class="modal-overlay" id="ootd-modal" role="dialog" aria-modal="true" aria-labelledby="om-name">
-  <div class="modal detail-modal" style="max-width:720px;">
-    <div class="modal-header">
-      <div>
-        <div style="font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--sage);margin-bottom:4px;" id="om-group"></div>
-        <div class="modal-title" id="om-name"></div>
-        <div style="font-size:12px;color:var(--muted);font-style:italic;" id="om-aka"></div>
+<div id="gw-nav"></div>
+
+<div id="app">
+<main>
+
+  <div id="log-form">
+    <!-- Header row: title + mode toggle -->
+    <div style="display:flex; align-items:baseline; justify-content:space-between; margin-bottom:16px" class="anim d1">
+      <div class="page-title" style="margin-bottom:0">Log</div>
+      <div class="mode-toggle" role="group" aria-label="Log mode">
+        <button class="mode-btn on" id="mode-quick" onclick="setMode('quick')" aria-pressed="true">Quick</button>
+        <button class="mode-btn"   id="mode-full"  onclick="setMode('full')"  aria-pressed="false">Full</button>
       </div>
-      <button onclick="closeModal('ootd-modal')" class="modal-close-btn" aria-label="Close">&times;</button>
     </div>
-    <div id="om-summary" style="font-size:13px;color:var(--ink2);line-height:1.65;padding:12px 0 16px;border-bottom:1px solid var(--border2);margin-bottom:4px;"></div>
-    <div id="om-content" style="max-height:60vh;overflow-y:auto;padding-right:6px;"></div>
-    <div class="modal-btns" style="margin-top:20px;padding-top:16px;border-top:1px solid var(--border);">
-      <button class="btn-cancel" onclick="closeModal('ootd-modal')">Close</button>
-      <a href="microfacts.html" class="btn-save btn-save-sage" style="text-decoration:none;display:inline-block;">All Micro Facts ↗</a>
-    </div>
-  </div>
-</div>
 
-<script src="drug_data.js"></script>
-<script src="micro_data.js"></script>
-<script src="sketchy_map.js"></script>
-<script src="app.js"></script>
-<script>
-const fmt  = t => t ? t.replace(/\*\*(.*?)\*\*/g,'<strong>$1</strong>').replace(/\n/g,'<br>') : '—';
-const bare = t => t ? t.replace(/\*\*/g,'') : '';
+    <div class="card anim d2">
 
-function seed() {
-  const d = new Date();
-  return d.getFullYear()*10000 + (d.getMonth()+1)*100 + d.getDate();
-}
-
-/* ── Drug of the Day ─────────────────────────────────────── */
-let dotdDrug = null;
-function initDotd() {
-  if (typeof DRUGS === 'undefined') return;
-  const all = [];
-  Object.values(DRUGS).forEach(cat => cat.forEach(grp =>
-    grp.drugs.filter(d => d.pearl).forEach(d => all.push({...d, groupName: grp.group}))
-  ));
-  if (!all.length) return;
-  dotdDrug = all[seed() % all.length];
-  document.getElementById('dotd-name').textContent = dotdDrug.name;
-  const p = bare(dotdDrug.summary) || bare(dotdDrug.pearl) || 'High-yield concept — tap to review.';
-  document.getElementById('dotd-pearl').textContent = p.length > 130 ? p.slice(0,130)+'…' : p;
-  // Swap skeleton → real card
-  document.getElementById('dotd-skeleton').style.display = 'none';
-  document.getElementById('dotd-card').style.display = 'flex';
-}
-
-function openDotdModal() {
-  if (!dotdDrug) return;
-  document.getElementById('dm-name').textContent = dotdDrug.name;
-  document.getElementById('dm-aka').textContent = dotdDrug.aka || '';
-  document.getElementById('dm-group').textContent = dotdDrug.groupName || 'Pharmacology';
-  document.getElementById('dm-summary').innerHTML = fmt(dotdDrug.summary) || '';
-  document.getElementById('dm-content').innerHTML = `
-    <div class="drug-row"><span class="drug-label">Mechanism</span><div class="drug-text">${fmt(dotdDrug.moa)}</div></div>
-    <div class="drug-row"><span class="drug-label">Clinical Use</span><div class="drug-text">${fmt(dotdDrug.use)}</div></div>
-    <div class="drug-row"><span class="drug-label">Side Effects</span><div class="drug-text">${fmt(dotdDrug.se)}</div></div>
-    ${dotdDrug.ci ? `<div class="drug-row"><span class="drug-label">Contraindications</span><div class="drug-text">${fmt(dotdDrug.ci)}</div></div>` : ''}
-    ${dotdDrug.pearl ? `<div class="pearl-box"><span class="drug-label">Pearl</span><div class="drug-text">${fmt(dotdDrug.pearl)}</div></div>` : ''}
-    ${buildSketchyPanel(dotdDrug.name, 'var(--sakura2)', 'Sketchy Pharm', 'dotd')}
-  `;
-  openModal('dotd-modal');
-}
-
-/* ── Organism of the Day ─────────────────────────────────── */
-let ootdOrg = null;
-function initOotd() {
-  if (typeof MICRO === 'undefined') return;
-  const all = [];
-  Object.values(MICRO).forEach(category => {
-    category.forEach(groupObj => {
-      if (groupObj.organisms && Array.isArray(groupObj.organisms)) {
-        groupObj.organisms.forEach(org => {
-          if (org.name) all.push({...org, groupName: groupObj.group});
-        });
-      }
-    });
-  });
-  if (!all.length) return;
-  ootdOrg = all[(seed() + 37) % all.length];
-  document.getElementById('ootd-name').textContent = ootdOrg.name;
-  const p = bare(ootdOrg.summary) || bare(ootdOrg.pearl) || 'High-yield organism — tap to review.';
-  document.getElementById('ootd-pearl').textContent = p.length > 130 ? p.slice(0,130)+'…' : p;
-  // Swap skeleton → real card
-  document.getElementById('ootd-skeleton').style.display = 'none';
-  document.getElementById('ootd-card').style.display = 'flex';
-}
-
-function openOotdModal() {
-  if (!ootdOrg) return;
-  document.getElementById('om-name').textContent = ootdOrg.name;
-  document.getElementById('om-aka').textContent = ootdOrg.aka || '';
-  document.getElementById('om-group').textContent = ootdOrg.groupName || 'Microbiology';
-  document.getElementById('om-summary').innerHTML = fmt(ootdOrg.summary) || '';
-  const fields = [
-    ['Gram Stain / Type', ootdOrg.gram],
-    ['Virulence',         ootdOrg.virulence],
-    ['Diseases',          ootdOrg.disease],
-    ['Lab Diagnosis',     ootdOrg.lab_diagnosis],
-    ['Treatment',         ootdOrg.tx],
-  ];
-  document.getElementById('om-content').innerHTML =
-    fields.filter(([,v]) => v)
-      .map(([l,v]) => `<div class="drug-row"><span class="drug-label">${l}</span><div class="drug-text">${fmt(v)}</div></div>`)
-      .join('') +
-    (ootdOrg.pearl ? `<div class="pearl-box pearl-box-sage"><span class="drug-label">Pearl</span><div class="drug-text">${fmt(ootdOrg.pearl)}</div></div>` : '') +
-    buildSketchyPanel(ootdOrg.name, 'var(--sage)', 'Sketchy Micro', 'ootd');
-  openModal('ootd-modal');
-}
-
-/* ── Sketchy panel builder ───────────────────────────────── */
-function buildSketchyPanel(name, color, label, prefix) {
-  if (typeof SKETCHY_MAP === 'undefined') return '';
-  const entry = SKETCHY_MAP[name];
-  if (!entry || !entry.scenes || !entry.scenes.length) return '';
-  const scenes = entry.scenes;
-  const tabs = scenes.length > 1
-    ? `<div class="sketchy-scene-tabs">${scenes.map((s,i) =>
-        `<button class="sketchy-scene-tab${i===0?' active':''}" onclick="sketchyModalTab(this,${i},'${prefix}')">${s.title}</button>`
-      ).join('')}</div>`
-    : '';
-  return `
-    <div class="sketchy-panel collapsed" id="${prefix}-sketchy-panel" style="--sp-color:${color}">
-      <div class="sketchy-panel-header" onclick="this.closest('.sketchy-panel').classList.toggle('collapsed')">
-        ${label}
-        <span class="sketchy-panel-header-chevron">▼</span>
-      </div>
-      <div class="sketchy-panel-body">
-        ${tabs}
-        <div class="sketchy-img-wrap">
-          <img id="${prefix}-sketchy-img" src="${scenes[0].img}" alt="${scenes[0].title}"
-               onclick="sketchyLightbox(this.src)">
+      <!-- WHEN -->
+      <div class="field">
+        <label class="field-label">When</label>
+        <div class="grid-2">
+          <div class="tag on" onclick="selectTiming('now', this)">Right now</div>
+          <div class="tag"    onclick="selectTiming('earlier', this)">Earlier</div>
+        </div>
+        <div id="core-time-wrap" class="hidden" style="margin-top:12px">
+          <input type="datetime-local" id="core-time">
         </div>
       </div>
-    </div>`;
-}
 
-function sketchyModalTab(btn, idx, prefix) {
-  const panel = btn.closest('.sketchy-panel');
-  panel.querySelectorAll('.sketchy-scene-tab').forEach((t,i) => t.classList.toggle('active', i===idx));
-  // find whose entry this is by looking up the current drug/org name
-  const name = prefix === 'dotd'
-    ? document.getElementById('dm-name').textContent
-    : document.getElementById('om-name').textContent;
-  if (typeof SKETCHY_MAP === 'undefined') return;
-  const entry = SKETCHY_MAP[name];
-  if (!entry) return;
-  const img = document.getElementById(prefix + '-sketchy-img');
-  img.src = entry.scenes[idx].img;
-  img.alt = entry.scenes[idx].title;
-  img.onclick = () => sketchyLightbox(img.src);
-}
+      <!-- BEHAVIOR -->
+      <div class="field">
+        <label class="field-label">Behavior</label>
+        <div class="grid-2">
+          <div class="tag" onclick="selectBehavior('picking', this)">Picking</div>
+          <div class="tag" onclick="selectBehavior('biting',  this)">Biting</div>
+        </div>
+      </div>
 
-function sketchyLightbox(src) {
-  document.getElementById('sketchy-lightbox-img').src = src;
-  document.getElementById('sketchy-lightbox').classList.add('open');
-}
-function sketchyLightboxClose() {
-  document.getElementById('sketchy-lightbox').classList.remove('open');
-}
+      <!-- EVERYTHING GATED ON BEHAVIOR SELECTION -->
+      <div id="behavior-gated" style="display:none">
 
-/* ── UWorld strip — always visible with empty state ─────── */
-function renderUWorld() {
-  const uwSet     = Store.get('uw-settings', { total: 3661, finishBy: '', studyDays: [1,2,3,4,5] });
-  const total     = uwSet.total || 3661;
-  const done      = Store.get('uw-unique-done', 0);
-  const pct       = Math.min(100, Math.round(done / total * 100));
-  const remaining = Math.max(0, total - done);
+        <!-- OUTCOME -->
+        <div class="field">
+          <label class="field-label">Outcome</label>
+          <div class="grid-3">
+            <div class="tag sage-on" onclick="selectOutcome('Resisted',  this)">Resisted</div>
+            <div class="tag"         onclick="selectOutcome('Near Miss', this)">Near Miss</div>
+            <div class="tag"         onclick="selectOutcome('Episode',   this)">Episode</div>
+          </div>
+        </div>
 
-  const fillEl = document.getElementById('uw-fill');
-  if (fillEl) fillEl.style.width = pct + '%';
-  const pctEl  = document.getElementById('uw-pct');
-  if (pctEl)  pctEl.textContent  = pct + '%';
-  const remEl  = document.getElementById('uw-remaining');
-  if (remEl)  remEl.textContent  = remaining.toLocaleString();
-  const barRole = document.getElementById('uw-bar-role');
-  if (barRole) barRole.setAttribute('aria-valuenow', pct);
-  const subEl  = document.getElementById('uw-sub');
-  if (subEl)  subEl.textContent  = done > 0
-    ? done.toLocaleString() + ' / ' + total.toLocaleString() + ' done'
-    : 'Set up in UWorld Dashboard';
+        <!-- PRE-FEELING (quick + full) -->
+        <div class="field" id="pre-feeling-field">
+          <label class="field-label">How were you feeling before?</label>
+          <div class="grid-auto">
+            <div class="tag" onclick="selectTag('core','pre_feeling',this)">Calm / neutral</div>
+            <div class="tag" onclick="selectTag('core','pre_feeling',this)">Anxious / tense</div>
+            <div class="tag" onclick="selectTag('core','pre_feeling',this)">Frustrated / angry</div>
+            <div class="tag" onclick="selectTag('core','pre_feeling',this)">Low / sad</div>
+            <div class="tag" onclick="selectTag('core','pre_feeling',this)">Self-conscious</div>
+            <div class="tag" onclick="selectTag('core','pre_feeling',this)">Restless / flat</div>
+            <div class="tag" onclick="selectTag('core','pre_feeling',this)">Scattered / unfocused</div>
+          </div>
+        </div>
 
-  let needed = null;
-  if (uwSet.finishBy) {
-    const finish    = new Date(uwSet.finishBy + 'T12:00:00');
-    const now       = new Date(); now.setHours(0,0,0,0);
-    const calDays   = Math.max(0, Math.round((finish - now) / 86400000));
-    const studyDays = Math.round(calDays * ((uwSet.studyDays || [1,2,3,4,5]).length / 7));
-    needed = studyDays > 0 ? Math.ceil(remaining / studyDays) : null;
-  } else {
-    const days = getDaysRemaining();
-    if (days && days > 0) needed = Math.ceil(remaining / days);
-  }
-  const qDayEl = document.getElementById('uw-qday');
-  if (qDayEl) qDayEl.textContent = needed !== null ? needed : '—';
-}
+        <!-- URGE BEFORE (quick + full) -->
+        <div class="field" style="margin-bottom:0">
+          <label class="field-label">Urge level</label>
+          <div class="slider-row">
+            <input type="range" min="1" max="10" value="5" id="core-urge"
+              oninput="updateSlider(this,'core-urge-val','urge')">
+            <div class="slider-val" id="core-urge-val">5</div>
+          </div>
+          <div class="slider-lbls"><span>1 — barely there</span><span>10 — unmanageable</span></div>
+        </div>
 
-window.onCloudSyncComplete = function() {
-  renderUWorld();
-  renderTrackers();
-  initDotd();
-  initOotd();
-};
+        <!-- URGE AFTER (quick + full) — label changes by outcome -->
+        <div class="field" style="margin-bottom:0">
+          <label class="field-label" id="urge-after-label">Urge level after</label>
+          <div class="slider-row">
+            <input type="range" min="1" max="10" value="3" id="core-urge-after"
+              oninput="updateSlider(this,'core-urge-after-val','urge_after')">
+            <div class="slider-val" id="core-urge-after-val">3</div>
+          </div>
+          <div class="slider-lbls"><span>1 — gone</span><span>10 — still high</span></div>
+        </div>
 
-/* ── Progress trackers ───────────────────────────────────── */
-function renderTrackers() {
-  loadTracker('sketchy-pharm', 101,  'tp-bar',  'tp-stats',  'tp-pct');
-  loadTracker('sketchy-micro', 104,  'tm-bar',  'tm-stats',  'tm-pct');
-  loadTracker('pixorize',      244, 'tpx-bar', 'tpx-stats', 'tpx-pct');
-}
+        <!-- ── FULL MODE SECTIONS ───────────────────────────── -->
+        <div class="full-section" id="full-core">
 
-function loadTracker(key, total, bId, sId, pId) {
-  const data = Store.get(key, {});
-  let w = 0, r = 0;
-  Object.values(data).forEach(v => {
-    if (v && typeof v === 'object') { if (v.w) w++; if (v.r) r++; }
-    else { if (v==='w'||v==='wr') w++; if (v==='r'||v==='wr') r++; }
-  });
-  const pct  = total > 0 ? Math.round(r / total * 100) : 0;
-  const pctW = total > 0 ? Math.round(w / total * 100) : 0;
-  document.getElementById(bId+'-r').style.width = pct + '%';
-  document.getElementById(bId+'-w').style.width = pctW + '%';
-  document.getElementById(pId).textContent = pct + '%';
-  document.getElementById(sId).textContent = w > 0 ? `${r} / ${total} reviewed · ${w} watched` : `${r} / ${total} reviewed`;
-}
+          <!-- Divider -->
+          <div class="divider" style="margin-top:20px;margin-bottom:18px"></div>
 
-/* ── Keyboard support for feat-cards ────────────────────── */
-document.addEventListener('keydown', e => {
-  if (e.key === 'Enter' || e.key === ' ') {
-    const t = e.target;
-    if (t.id === 'dotd-card') { e.preventDefault(); openDotdModal(); }
-    if (t.id === 'ootd-card') { e.preventDefault(); openOotdModal(); }
-  }
-});
+          <!-- Where / What (episode & near miss only) -->
+          <div id="core-details" class="hidden">
 
-/* ── Countdown button state ──────────────────────────────
-   app.js owns Firebase and writes to #cd-days / #cd-date.
-   We just watch those elements and toggle the button style.
-   ──────────────────────────────────────────────────────── */
-function syncCountdownBtn() {
-  const daysEl = document.getElementById('cd-days');
-  const btn    = document.getElementById('cd-edit-btn');
-  if (!daysEl || !btn) return;
-  const hasDate = daysEl.textContent.trim() !== '—' && daysEl.textContent.trim() !== '';
-  if (hasDate) {
-    btn.textContent = 'Edit ✦';
-    btn.classList.add('cd-edit-set');
-  } else {
-    btn.textContent = 'Set Exam Date ✦';
-    btn.classList.remove('cd-edit-set');
-  }
-}
+            <div class="field" id="where-field">
+              <label class="field-label">Where</label>
+              <div id="where-tags-picking" style="display:none">
+                <div class="area-group">
+                  <div class="tag area-parent" onclick="toggleArea('face',this)">Face</div>
+                  <div class="area-sub hidden" id="area-face">
+                    <div class="tag" onclick="toggleMultiTag('core','where',this)">Forehead</div>
+                    <div class="tag" onclick="toggleMultiTag('core','where',this)">Temples</div>
+                    <div class="tag" onclick="toggleMultiTag('core','where',this)">Cheeks</div>
+                    <div class="tag" onclick="toggleMultiTag('core','where',this)">Nose</div>
+                    <div class="tag" onclick="toggleMultiTag('core','where',this)">Chin / Jaw</div>
+                    <div class="tag" onclick="toggleMultiTag('core','where',this)">Lips</div>
+                  </div>
+                </div>
+                <div class="area-group">
+                  <div class="tag area-parent" onclick="toggleArea('head',this)">Head &amp; Neck</div>
+                  <div class="area-sub hidden" id="area-head">
+                    <div class="tag" onclick="toggleMultiTag('core','where',this)">Scalp</div>
+                    <div class="tag" onclick="toggleMultiTag('core','where',this)">Hairline</div>
+                    <div class="tag" onclick="toggleMultiTag('core','where',this)">Behind Ears</div>
+                    <div class="tag" onclick="toggleMultiTag('core','where',this)">Ears</div>
+                    <div class="tag" onclick="toggleMultiTag('core','where',this)">Neck</div>
+                  </div>
+                </div>
+                <div class="area-group">
+                  <div class="tag area-parent" onclick="toggleArea('torso',this)">Chest &amp; Back</div>
+                  <div class="area-sub hidden" id="area-torso">
+                    <div class="tag" onclick="toggleMultiTag('core','where',this)">Chest</div>
+                    <div class="tag" onclick="toggleMultiTag('core','where',this)">Shoulders</div>
+                    <div class="tag" onclick="toggleMultiTag('core','where',this)">Abdomen</div>
+                    <div class="tag" onclick="toggleMultiTag('core','where',this)">Upper Back</div>
+                    <div class="tag" onclick="toggleMultiTag('core','where',this)">Lower Back</div>
+                  </div>
+                </div>
+                <div class="area-group">
+                  <div class="tag area-parent" onclick="toggleArea('arms',this)">Arms &amp; Hands</div>
+                  <div class="area-sub hidden" id="area-arms">
+                    <div class="tag" onclick="toggleMultiTag('core','where',this)">Upper Arms</div>
+                    <div class="tag" onclick="toggleMultiTag('core','where',this)">Forearms</div>
+                    <div class="tag" onclick="toggleMultiTag('core','where',this)">Wrists</div>
+                    <div class="tag" onclick="toggleMultiTag('core','where',this)">Hands</div>
+                    <div class="tag" onclick="toggleMultiTag('core','where',this)">Fingers / Cuticles</div>
+                  </div>
+                </div>
+                <div class="area-group">
+                  <div class="tag area-parent" onclick="toggleArea('legs',this)">Legs &amp; Feet</div>
+                  <div class="area-sub hidden" id="area-legs">
+                    <div class="tag" onclick="toggleMultiTag('core','where',this)">Thighs</div>
+                    <div class="tag" onclick="toggleMultiTag('core','where',this)">Knees</div>
+                    <div class="tag" onclick="toggleMultiTag('core','where',this)">Shins / Calves</div>
+                    <div class="tag" onclick="toggleMultiTag('core','where',this)">Ankles</div>
+                    <div class="tag" onclick="toggleMultiTag('core','where',this)">Feet</div>
+                  </div>
+                </div>
+                <div class="area-group">
+                  <div class="tag area-parent" onclick="toggleArea('lower',this)">Groin &amp; Glutes</div>
+                  <div class="area-sub hidden" id="area-lower">
+                    <div class="tag" onclick="toggleMultiTag('core','where',this)">Groin</div>
+                    <div class="tag" onclick="toggleMultiTag('core','where',this)">Buttocks</div>
+                    <div class="tag" onclick="toggleMultiTag('core','where',this)">Inner Thighs</div>
+                  </div>
+                </div>
+              </div>
+              <div class="grid-auto" id="where-tags-biting" style="display:none">
+                <div class="tag" onclick="toggleMultiTag('core','where',this)">Left Hand</div>
+                <div class="tag" onclick="toggleMultiTag('core','where',this)">Right Hand</div>
+                <div class="tag" onclick="toggleMultiTag('core','where',this)">Both Hands</div>
+                <div class="tag" onclick="toggleMultiTag('core','where',this)">Lips / Mouth</div>
+              </div>
+            </div>
 
-document.addEventListener('DOMContentLoaded', () => {
-  // Let app.js initialise first (it runs synchronously after DOMContentLoaded too)
-  requestAnimationFrame(() => {
-    syncCountdownBtn();
-    // Watch for app.js / Firebase async updates to cd-days
-    const daysEl = document.getElementById('cd-days');
-    if (daysEl) {
-      new MutationObserver(syncCountdownBtn).observe(daysEl, { childList: true, characterData: true, subtree: true });
-    }
-  });
-});
+            <div class="field" id="what-field">
+              <label class="field-label">What (Target)</label>
+              <div class="grid-auto" id="what-tags-picking" style="display:none">
+                <div class="tag" onclick="toggleMultiTag('core','what',this)">Blemish / Pimple</div>
+                <div class="tag" onclick="toggleMultiTag('core','what',this)">Blackhead</div>
+                <div class="tag" onclick="toggleMultiTag('core','what',this)">Sebaceous Filaments</div>
+                <div class="tag" onclick="toggleMultiTag('core','what',this)">Scab</div>
+                <div class="tag" onclick="toggleMultiTag('core','what',this)">Dry Skin</div>
+                <div class="tag" onclick="toggleMultiTag('core','what',this)">Texture / Bump</div>
+                <div class="tag" onclick="toggleMultiTag('core','what',this)">Ingrown Hair</div>
+              </div>
+              <div class="grid-auto" id="what-tags-biting" style="display:none">
+                <div class="tag" onclick="toggleMultiTag('core','what',this)">Cuticle</div>
+                <div class="tag" onclick="toggleMultiTag('core','what',this)">Nail Edge</div>
+                <div class="tag" onclick="toggleMultiTag('core','what',this)">Hangnail</div>
+                <div class="tag" onclick="toggleMultiTag('core','what',this)">Finger Skin</div>
+                <div class="tag" onclick="toggleMultiTag('core','what',this)">Inner Cheek</div>
+                <div class="tag" onclick="toggleMultiTag('core','what',this)">Lip Tissue</div>
+              </div>
+            </div>
 
+            <div class="field" id="mirror-field" style="display:none">
+              <label class="field-label">Mirror / camera involved?</label>
+              <div class="grid-2">
+                <div class="tag" onclick="selectTag('core','mirror',this)">No mirror</div>
+                <div class="tag" onclick="selectTag('core','mirror',this)">Regular mirror</div>
+                <div class="tag" onclick="selectTag('core','mirror',this)">Magnifying mirror</div>
+                <div class="tag" onclick="selectTag('core','mirror',this)">Phone camera</div>
+              </div>
+            </div>
 
-/* ── Personal trip reminder (ghstilson only) ─────────────── */
-document.addEventListener('appAuthStateChanged', e => {
-  const user = e.detail;
-  if (user && user.email === 'ghstilson@gmail.com') {
-    showTripBanner();
-  }
-});
-function showTripBanner() {
-  const banner = document.getElementById('trip-banner');
-  const daysEl = document.getElementById('trip-days');
-  if (!banner) return;
-  const trip = new Date('2026-04-15T12:00:00');
-  const now = new Date(); now.setHours(0,0,0,0);
-  const diff = Math.round((trip - now) / 86400000);
-  if (diff < 0) return; // trip has passed, don't show
-  daysEl.textContent = diff === 0 ? 'Today!' : diff === 1 ? 'Tomorrow!' : diff + ' days away';
-  banner.classList.add('visible');
-}
+            <div class="field" id="skin-impact-field" style="display:none">
+              <label class="field-label">Skin impact</label>
+              <div class="grid-2">
+                <div class="tag" onclick="selectTag('core','skin_impact',this)">None</div>
+                <div class="tag" onclick="selectTag('core','skin_impact',this)">Minor</div>
+                <div class="tag" onclick="selectTag('core','skin_impact',this)">Moderate</div>
+                <div class="tag" onclick="selectTag('core','skin_impact',this)">Significant</div>
+                <div class="tag" onclick="selectTag('core','skin_impact',this)">Pain / sensitivity</div>
+              </div>
+            </div>
 
-/* ── Init ────────────────────────────────────────────────── */
-document.addEventListener('DOMContentLoaded', () => {
-  initDotd();
-  initOotd();
-  renderUWorld();
-  renderTrackers();
-});
-</script>
-<!-- ── SKETCHY LIGHTBOX ──────────────────────────────────── -->
-<div class="sketchy-lightbox" id="sketchy-lightbox" onclick="sketchyLightboxClose()">
-  <span class="sketchy-lightbox-close" onclick="sketchyLightboxClose()">✕</span>
-  <img id="sketchy-lightbox-img" src="" alt="">
+            <div class="field" id="ritual-field" style="display:none">
+              <label class="field-label">Aftermath / Ritual</label>
+              <div class="grid-2">
+                <div class="tag" onclick="selectTag('core','ritual',this)">Discarded</div>
+                <div class="tag" onclick="selectTag('core','ritual',this)">Examined</div>
+                <div class="tag" onclick="selectTag('core','ritual',this)">Chewed / Bit</div>
+                <div class="tag" onclick="selectTag('core','ritual',this)">Ingested</div>
+              </div>
+            </div>
+
+            <div class="field">
+              <label class="field-label">Awareness</label>
+              <div class="grid-3">
+                <div class="tag" onclick="selectTag('core','awareness',this)">Automatic</div>
+                <div class="tag" onclick="selectTag('core','awareness',this)">Mid-action</div>
+                <div class="tag" onclick="selectTag('core','awareness',this)">Urge first</div>
+              </div>
+            </div>
+
+            <div class="field">
+              <label class="field-label">Duration</label>
+              <div class="grid-2">
+                <div class="tag" onclick="selectTag('core','duration',this)">&lt; 1 min</div>
+                <div class="tag" onclick="selectTag('core','duration',this)">1–10 min</div>
+                <div class="tag" onclick="selectTag('core','duration',this)">10–30 min</div>
+                <div class="tag" onclick="selectTag('core','duration',this)">30+ min</div>
+              </div>
+            </div>
+
+          </div><!-- /core-details -->
+
+        </div><!-- /full-core -->
+
+      </div><!-- /behavior-gated -->
+
+    </div><!-- /card 1 -->
+
+    <!-- CONTEXT CARD — full mode only -->
+    <div class="card full-section" id="full-ctx" style="margin-top:12px">
+
+      <div id="ctx-gated" style="display:none">
+
+        <div class="field">
+          <label class="field-label">Pre-event activity</label>
+          <div class="grid-2">
+            <div class="tag" onclick="selectTag('ctx','pre_action',this)">Scanning / Feeling</div>
+            <div class="tag" onclick="selectTag('ctx','pre_action',this)">Resting Posture</div>
+            <div class="tag" onclick="selectTag('ctx','pre_action',this)">Mirror Checking</div>
+            <div class="tag" onclick="selectTag('ctx','pre_action',this)">Idle / Nothing</div>
+          </div>
+        </div>
+
+        <div class="field">
+          <label class="field-label">Primary Trigger</label>
+          <div class="grid-auto">
+            <div class="tag" onclick="selectTag('ctx','trigger',this)">Anxiety / Stress</div>
+            <div class="tag" onclick="selectTag('ctx','trigger',this)">Boredom / Idle</div>
+            <div class="tag" onclick="selectTag('ctx','trigger',this)">Fatigue / Depleted</div>
+            <div class="tag" onclick="selectTag('ctx','trigger',this)">Sensory</div>
+            <div class="tag" onclick="selectTag('ctx','trigger',this)">Visual</div>
+            <div class="tag" onclick="selectTag('ctx','trigger',this)">Perfectionism</div>
+            <div class="tag" onclick="selectTag('ctx','trigger',this)">Cognitive</div>
+          </div>
+        </div>
+
+        <div class="field">
+          <label class="field-label">Environment</label>
+          <div class="grid-auto">
+            <div class="tag" onclick="selectTag('ctx','environment',this)">Bathroom</div>
+            <div class="tag" onclick="selectTag('ctx','environment',this)">Couch / Bed</div>
+            <div class="tag" onclick="selectTag('ctx','environment',this)">Kitchen</div>
+            <div class="tag" onclick="selectTag('ctx','environment',this)">Desk / Study</div>
+            <div class="tag" onclick="selectTag('ctx','environment',this)">Clinical / Work</div>
+            <div class="tag" onclick="selectTag('ctx','environment',this)">Transit / Car</div>
+            <div class="tag" onclick="selectTag('ctx','environment',this)">Social / Out</div>
+          </div>
+        </div>
+
+        <div class="field">
+          <label class="field-label">Activity</label>
+          <div class="grid-auto">
+            <div class="tag" onclick="selectTag('ctx','activity',this)">Watching TV</div>
+            <div class="tag" onclick="selectTag('ctx','activity',this)">On Phone</div>
+            <div class="tag" onclick="selectTag('ctx','activity',this)">Getting Ready</div>
+            <div class="tag" onclick="selectTag('ctx','activity',this)">Cooking</div>
+            <div class="tag" onclick="selectTag('ctx','activity',this)">Working / Studying</div>
+            <div class="tag" onclick="selectTag('ctx','activity',this)">Resting / Idle</div>
+            <div class="tag" onclick="selectTag('ctx','activity',this)">In Conversation</div>
+            <div class="tag" onclick="selectTag('ctx','activity',this)">Other</div>
+          </div>
+        </div>
+
+        <div class="field" id="escalation-field" style="display:none">
+          <label class="field-label">Session pattern</label>
+          <div class="grid-auto">
+            <div class="tag" onclick="selectTag('ctx','escalation',this)">Single pick</div>
+            <div class="tag" onclick="selectTag('ctx','escalation',this)">Short session</div>
+            <div class="tag" onclick="selectTag('ctx','escalation',this)">Escalated</div>
+            <div class="tag" onclick="selectTag('ctx','escalation',this)">Couldn't stop</div>
+          </div>
+        </div>
+
+        <div class="field" id="post-feeling-field" style="display:none">
+          <label class="field-label">Post-event feeling</label>
+          <div class="grid-2">
+            <div class="tag" onclick="selectTag('ctx','post_feeling',this)">Calm / relieved</div>
+            <div class="tag" onclick="selectTag('ctx','post_feeling',this)">Still activated</div>
+            <div class="tag" onclick="selectTag('ctx','post_feeling',this)">Shame / self-critical</div>
+            <div class="tag" onclick="selectTag('ctx','post_feeling',this)">Low / sad</div>
+            <div class="tag" onclick="selectTag('ctx','post_feeling',this)">Neutral / flat</div>
+            <div class="tag" onclick="selectTag('ctx','post_feeling',this)">Frustrated</div>
+          </div>
+        </div>
+
+        <div class="field" id="aftercare-field" style="display:none">
+          <label class="field-label">Post-episode aftercare</label>
+          <div class="grid-2">
+            <div class="tag" onclick="selectTag('ctx','aftercare',this)">Yes</div>
+            <div class="tag" onclick="selectTag('ctx','aftercare',this)">No</div>
+          </div>
+        </div>
+
+        <!-- Intervention: Yes/No first, then details -->
+        <div class="field">
+          <label class="field-label">Intervention attempted?</label>
+          <div class="grid-2">
+            <div class="tag" id="int-yes-tag" onclick="toggleIntervention(true,  this)">Yes</div>
+            <div class="tag" id="int-no-tag"  onclick="toggleIntervention(false, this)">No</div>
+          </div>
+        </div>
+
+        <div id="intervention-block" class="hidden">
+          <div class="field">
+            <label class="field-label">Which tool?</label>
+            <div class="grid-auto" id="tools-grid">
+              <div class="tag" onclick="toggleMultiTag('ctx','tools',this)">Competing Response</div>
+              <div class="tag" onclick="toggleMultiTag('ctx','tools',this)">Urge Surfing</div>
+              <div class="tag" onclick="toggleMultiTag('ctx','tools',this)">Grounding</div>
+              <div class="tag" onclick="toggleMultiTag('ctx','tools',this)">Fidget / Sensory</div>
+              <div class="tag" onclick="toggleMultiTag('ctx','tools',this)">Environmental Block</div>
+              <div class="tag" onclick="toggleMultiTag('ctx','tools',this)">Left the room</div>
+              <div class="tag" onclick="toggleMultiTag('ctx','tools',this)">Covered skin</div>
+              <div class="tag" onclick="toggleMultiTag('ctx','tools',this)">Sat on hands</div>
+              <div class="tag" onclick="toggleMultiTag('ctx','tools',this)">Put on gloves</div>
+              <div class="tag" onclick="toggleMultiTag('ctx','tools',this)">Occupied hands</div>
+            </div>
+          </div>
+          <div class="field">
+            <label class="field-label">Effectiveness (1–5)</label>
+            <div class="grid-auto" style="grid-template-columns:repeat(5,1fr)">
+              <div class="tag" onclick="selectTag('ctx','eff',this)">1</div>
+              <div class="tag" onclick="selectTag('ctx','eff',this)">2</div>
+              <div class="tag" onclick="selectTag('ctx','eff',this)">3</div>
+              <div class="tag" onclick="selectTag('ctx','eff',this)">4</div>
+              <div class="tag" onclick="selectTag('ctx','eff',this)">5</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="field" style="margin-bottom:0">
+          <label class="field-label">Reflection <span style="font-weight:400;text-transform:none;letter-spacing:0;font-size:11px;color:var(--mu)">(optional)</span></label>
+          <textarea id="narrative-notes" placeholder="Write freely — what were you feeling, what was the situation? This stays private." rows="4"></textarea>
+        </div>
+
+        <div class="field" style="margin-bottom:0">
+          <label class="field-label">Notes <span style="font-weight:400;text-transform:none;letter-spacing:0;font-size:11px;color:var(--mu)">(optional)</span></label>
+          <textarea id="ctx-notes" placeholder="Specific details or context…"></textarea>
+        </div>
+
+      </div><!-- /ctx-gated -->
+
+    </div><!-- /full-ctx card -->
+
+    <!-- SAVE ACTION BAR -->
+    <div class="action-bar" id="bar-save">
+      <div class="action-inner">
+        <button class="btn-primary inactive" id="btn-save-all" onclick="saveAll()" disabled>Save</button>
+      </div>
+    </div>
+
+  </div><!-- /log-form -->
+
+  <!-- SUCCESS SCREEN -->
+  <div id="screen-success" class="hidden">
+    <div class="success-msg">
+      <div class="success-icon">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="20 6 9 17 4 12"/>
+        </svg>
+      </div>
+      <div class="success-title" id="success-title">Logged.</div>
+      <div class="success-body"  id="success-body"></div>
+      <button class="btn-primary" style="margin-top:24px;max-width:200px" onclick="resetForm()">Log another</button>
+      <div style="margin-top:14px">
+        <a href="tracker.html" id="edit-entry-link" style="font-size:13px;color:var(--mu);text-decoration:none;border-bottom:1px solid var(--bdr2)">Edit this entry in Patterns</a>
+      </div>
+    </div>
+  </div>
+
+</main>
 </div>
 
+<div class="toast" id="toast"></div>
+
+<script type="module">
+import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js';
+import { getAuth, GoogleAuthProvider, signInWithPopup, signInWithRedirect,
+  getRedirectResult, onAuthStateChanged, signOut as fbSignOut }
+  from 'https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js';
+import { getFirestore, collection, addDoc, doc, serverTimestamp }
+  from 'https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js';
+
+const firebaseConfig = {
+  apiKey:            "AIzaSyBpLjdsDss2eI7Ku9Ak1GDhnfavJdpY8OM",
+  authDomain:        "skin-picking-log.firebaseapp.com",
+  projectId:         "skin-picking-log",
+  storageBucket:     "skin-picking-log.firebasestorage.app",
+  messagingSenderId: "162906566118",
+  appId:             "1:162906566118:web:a89abbd383fc847ba97a27"
+};
+
+const app  = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+const db   = getFirestore(app);
+window._db = db;
+const provider = new GoogleAuthProvider();
+
+window._uid          = null;
+window._currentDocId = null;
+
+const isStandalone =
+  window.navigator.standalone === true ||
+  window.matchMedia('(display-mode: standalone)').matches;
+
+window.signInWithGoogle = async () => {
+  try {
+    isStandalone
+      ? await signInWithRedirect(auth, provider)
+      : await signInWithPopup(auth, provider);
+  } catch(e) { console.error('Sign in error:', e); }
+};
+window.signOut = async () => { await fbSignOut(auth); };
+getRedirectResult(auth).catch(e => console.error('Redirect result error:', e));
+
+onAuthStateChanged(auth, user => {
+  window._uid = user ? user.uid : null;
+  document.getElementById('auth-screen').classList.toggle('on', !user);
+  document.getElementById('app').classList.toggle('on', !!user);
+  if (user) {
+    initSliders();
+    handleArrivalParams();
+  }
+});
+
+// ════════════════════════════════════════════════════════════
+// STATE
+// ════════════════════════════════════════════════════════════
+const state = {
+  core: {
+    timing: 'now', bfrb: null, outcome: null,
+    where: [], what: [],
+    ritual: null, awareness: null, duration: null,
+    urge: 5, urge_after: 3,
+    pre_feeling: null, mirror: null, skin_impact: null
+  },
+  ctx: {
+    pre_action: null, trigger: null, environment: null,
+    activity: null, escalation: null, aftercare: null,
+    post_feeling: null, tried_tool: null, tools: [], eff: null
+  }
+};
+
+// Current mode: 'quick' | 'full'
+let currentMode = localStorage.getItem('gw-log-mode') || 'quick';
+
+// ════════════════════════════════════════════════════════════
+// MODE TOGGLE
+// ════════════════════════════════════════════════════════════
+window.setMode = (mode) => {
+  currentMode = mode;
+  localStorage.setItem('gw-log-mode', mode);
+
+  document.getElementById('mode-quick').classList.toggle('on', mode === 'quick');
+  document.getElementById('mode-quick').setAttribute('aria-pressed', String(mode === 'quick'));
+  document.getElementById('mode-full').classList.toggle('on', mode === 'full');
+  document.getElementById('mode-full').setAttribute('aria-pressed', String(mode === 'full'));
+
+  const fullCore = document.getElementById('full-core');
+  const fullCtx  = document.getElementById('full-ctx');
+  const isFullMode = mode === 'full';
+
+  fullCore.classList.toggle('on', isFullMode);
+  fullCtx.classList.toggle('on', isFullMode);
+
+  // Show ctx-gated only if behavior is already selected
+  if (isFullMode && state.core.bfrb) {
+    document.getElementById('ctx-gated').style.display = 'block';
+  }
+};
+
+// Apply saved mode on load
+document.addEventListener('DOMContentLoaded', () => {
+  setMode(currentMode);
+  initSliders();
+});
+
+// ════════════════════════════════════════════════════════════
+// ARRIVAL PARAMS — from interventions.html redirect
+// ════════════════════════════════════════════════════════════
+function handleArrivalParams() {
+  const params = new URLSearchParams(window.location.search);
+  if (params.get('from') !== 'intervention') return;
+
+  const outcome = params.get('outcome'); // 'held' | 'failed'
+  const tool    = params.get('tool');    // 'motor' | 'decouple' | 'surf' | 'unhook' | 'shock' | 'ground'
+
+  // Step 1: pick a behavior (picking as default, reveals gated fields)
+  const pickingTag = document.querySelector('#log-form .grid-2 .tag');
+  if (pickingTag) pickingTag.click();
+
+  // Step 2: select outcome
+  if (outcome === 'held') {
+    const resistedTag = document.querySelector('#behavior-gated .grid-3 .tag.sage-on');
+    if (resistedTag) resistedTag.click();
+  } else if (outcome === 'failed') {
+    const episodeTags = document.querySelectorAll('#behavior-gated .grid-3 .tag');
+    const ep = [...episodeTags].find(t => t.textContent.trim() === 'Episode');
+    if (ep) ep.click();
+  }
+
+  // Step 3: if there's a tool param, switch to Full mode and pre-fill
+  if (tool) {
+    setMode('full');
+    // Mark "Yes" to intervention
+    const yesTag = document.getElementById('int-yes-tag');
+    if (yesTag) {
+      document.querySelectorAll('#log-form .grid-2 .tag').forEach(t => t.classList.remove('on'));
+      yesTag.classList.add('on');
+      state.ctx.tried_tool = true;
+      document.getElementById('intervention-block').classList.remove('hidden');
+    }
+    // Map tool param → tool label in the grid
+    const toolMap = {
+      motor:    'Competing Response',
+      decouple: 'Competing Response',
+      surf:     'Urge Surfing',
+      unhook:   'Urge Surfing',
+      shock:    'Fidget / Sensory',
+      ground:   'Grounding',
+    };
+    const label = toolMap[tool];
+    if (label) {
+      const toolTag = [...document.querySelectorAll('#tools-grid .tag')]
+        .find(t => t.textContent.trim() === label);
+      if (toolTag) toolTag.click();
+    }
+  }
+
+  history.replaceState({}, '', 'index.html');
+}
+
+// ════════════════════════════════════════════════════════════
+// UI HELPERS
+// ════════════════════════════════════════════════════════════
+function updateSaveBtn() {
+  const btn = document.getElementById('btn-save-all');
+  const ready = !!(state.core.bfrb && state.core.outcome);
+  btn.disabled = !ready;
+  btn.classList.toggle('inactive', !ready);
+}
+
+window.selectTiming = (val, el) => {
+  el.parentElement.querySelectorAll('.tag').forEach(t => t.classList.remove('on'));
+  el.classList.add('on');
+  state.core.timing = val;
+  document.getElementById('core-time-wrap').classList.toggle('hidden', val !== 'earlier');
+};
+
+window.selectBehavior = (val, el) => {
+  el.parentElement.querySelectorAll('.tag').forEach(t => t.classList.remove('on'));
+  el.classList.add('on');
+  state.core.bfrb    = val;
+  state.core.where   = [];
+  state.core.what    = [];
+  state.core.outcome = null;
+
+  document.getElementById('behavior-gated').style.display = 'block';
+
+  // Reset outcome
+  document.querySelectorAll('#behavior-gated .grid-3 .tag').forEach(t => t.classList.remove('on'));
+
+  // Reset outcome-dependent sections
+  document.getElementById('core-details').classList.add('hidden');
+  document.getElementById('post-feeling-field').style.display  = 'none';
+  document.getElementById('aftercare-field').style.display     = 'none';
+  document.getElementById('escalation-field').style.display    = 'none';
+  document.getElementById('intervention-block').classList.add('hidden');
+  document.getElementById('int-yes-tag').classList.remove('on');
+  document.getElementById('int-no-tag').classList.remove('on');
+  state.ctx.tried_tool = null;
+
+  // Reset area groups
+  document.querySelectorAll('.area-sub').forEach(s => s.classList.add('hidden'));
+  document.querySelectorAll('.area-parent').forEach(p => p.classList.remove('open'));
+
+  const pickVis = val === 'picking' ? '' : 'none';
+  const biteVis = val === 'biting'  ? '' : 'none';
+  document.getElementById('where-tags-picking').style.display = pickVis;
+  document.getElementById('where-tags-biting').style.display  = biteVis;
+  document.getElementById('what-tags-picking').style.display  = pickVis;
+  document.getElementById('what-tags-biting').style.display   = biteVis;
+  document.querySelectorAll('#where-field .tag, #what-field .tag').forEach(t => t.classList.remove('on'));
+
+  const mirrorField = document.getElementById('mirror-field');
+  if (mirrorField) mirrorField.style.display = val === 'picking' ? 'block' : 'none';
+  if (val !== 'picking') {
+    state.core.mirror = null; state.core.skin_impact = null; state.ctx.aftercare = null;
+  }
+
+  // In full mode show context card
+  if (currentMode === 'full') {
+    document.getElementById('ctx-gated').style.display = 'block';
+  }
+
+  updateSaveBtn();
+
+  setTimeout(() => document.getElementById('behavior-gated')
+    .scrollIntoView({ behavior: 'smooth', block: 'start' }), 50);
+};
+
+window.selectOutcome = (val, el) => {
+  el.parentElement.querySelectorAll('.tag').forEach(t => t.classList.remove('on'));
+  el.classList.add('on');
+  state.core.outcome = val;
+
+  const isResisted  = val === 'Resisted';
+  const isNearMiss  = val === 'Near Miss';
+  const isEpisode   = val === 'Episode';
+  const showDetails = isNearMiss || isEpisode;
+
+  // ── Contextual urge-after label (clinical fix) ──────────────
+  const afterLabel = document.getElementById('urge-after-label');
+  if (isResisted)   afterLabel.textContent = 'Urge relief after resisting';
+  else if (isNearMiss) afterLabel.textContent = 'Urge level after near miss';
+  else if (isEpisode)  afterLabel.textContent = 'Urge level after episode';
+  else afterLabel.textContent = 'Urge level after';
+
+  // Where / what / awareness / duration
+  document.getElementById('core-details').classList.toggle('hidden', !showDetails);
+
+  // Ritual: episode only
+  document.getElementById('ritual-field').style.display = isEpisode ? 'block' : 'none';
+
+  // Skin impact: episode + picking
+  document.getElementById('skin-impact-field').style.display =
+    (isEpisode && state.core.bfrb === 'picking') ? 'block' : 'none';
+
+  // Mirror: episode / near-miss + picking
+  const mirrorField = document.getElementById('mirror-field');
+  if (mirrorField && state.core.bfrb === 'picking') {
+    mirrorField.style.display = showDetails ? 'block' : 'none';
+  }
+
+  // Context visibility
+  document.getElementById('post-feeling-field').style.display  = showDetails ? 'block' : 'none';
+  document.getElementById('aftercare-field').style.display     =
+    (isEpisode && state.core.bfrb === 'picking') ? 'block' : 'none';
+  document.getElementById('escalation-field').style.display    = isEpisode ? 'block' : 'none';
+
+  // Clean state when switching
+  if (!showDetails) {
+    state.core.where = []; state.core.what = [];
+    state.core.awareness = null; state.core.duration = null;
+    state.core.ritual = null; state.core.skin_impact = null;
+    document.querySelectorAll('#core-details .tag').forEach(t => t.classList.remove('on'));
+  }
+
+  // ── Intervention block ───────────────────────────────────────
+  // CLINICAL FIX: do NOT auto-open or pre-select "Yes" for Resisted.
+  // Resisting does not mean a tool was used — the user decides.
+  // The original pre-selected Yes and opened the block automatically,
+  // which inflated intervention-effectiveness data.
+  // All three outcomes: leave intervention Y/N untouched.
+  // (We only auto-fill if arriving from interventions.html via URL param.)
+
+  updateSaveBtn();
+};
+
+window.selectTag = (level, key, el) => {
+  el.parentElement.querySelectorAll('.tag').forEach(t => t.classList.remove('on'));
+  el.classList.add('on');
+  const txt = el.querySelector('div') ? el.querySelector('div').textContent.trim() : el.textContent.trim();
+  state[level][key] = txt;
+};
+
+window.toggleArea = (id, el) => {
+  const sub = document.getElementById('area-' + id);
+  if (!sub) return;
+  const isOpen = !sub.classList.contains('hidden');
+  sub.classList.toggle('hidden', isOpen);
+  el.classList.toggle('open', !isOpen);
+  if (isOpen) {
+    sub.querySelectorAll('.tag.on').forEach(t => {
+      const idx = state.core.where.indexOf(t.textContent.trim());
+      if (idx > -1) state.core.where.splice(idx, 1);
+      t.classList.remove('on');
+    });
+  }
+};
+
+window.toggleMultiTag = (level, key, el) => {
+  const val = el.textContent.trim();
+  const arr = state[level][key];
+  const idx = arr.indexOf(val);
+  if (idx > -1) { arr.splice(idx, 1); el.classList.remove('on'); }
+  else          { arr.push(val);      el.classList.add('on');    }
+};
+
+window.updateSlider = (el, valId, key) => {
+  const pct = ((el.value - 1) / 9) * 100;
+  el.style.background = `linear-gradient(to right, var(--ac) ${pct}%, var(--bdr) ${pct}%)`;
+  document.getElementById(valId).textContent = el.value;
+  state.core[key] = parseInt(el.value);
+};
+
+function initSliders() {
+  const s  = document.getElementById('core-urge');
+  const sa = document.getElementById('core-urge-after');
+  if (s)  updateSlider(s,  'core-urge-val',      'urge');
+  if (sa) updateSlider(sa, 'core-urge-after-val', 'urge_after');
+}
+
+window.toggleIntervention = (didTry, el) => {
+  const siblings = el.parentElement.querySelectorAll('.tag');
+  siblings.forEach(t => t.classList.remove('on'));
+  el.classList.add('on');
+  state.ctx.tried_tool = didTry;
+  document.getElementById('intervention-block').classList.toggle('hidden', !didTry);
+};
+
+// ════════════════════════════════════════════════════════════
+// TOAST
+// ════════════════════════════════════════════════════════════
+window.showToast = (msg, isErr = false) => {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.className   = 'toast' + (isErr ? ' err' : '');
+  void t.offsetWidth;
+  t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 3000);
+};
+
+// ════════════════════════════════════════════════════════════
+// SUBMIT
+// ════════════════════════════════════════════════════════════
+window.saveAll = async () => {
+  if (!state.core.bfrb)    { showToast('Choose a behaviour first', true); return; }
+  if (!state.core.outcome) { showToast('Choose an outcome first', true);  return; }
+
+  const btn = document.getElementById('btn-save-all');
+  btn.disabled = true; btn.textContent = 'Saving…';
+
+  const finalTime = state.core.timing === 'now'
+    ? new Date()
+    : (document.getElementById('core-time').value
+        ? new Date(document.getElementById('core-time').value)
+        : new Date());
+
+  const outcomeKey =
+    state.core.outcome === 'Near Miss' ? 'near_miss' :
+    state.core.outcome === 'Episode'   ? 'did'       : 'resisted';
+
+  const docData = {
+    bfrb_type:                 state.core.bfrb,
+    entry_type:                outcomeKey,
+    urge_before:               state.core.urge,
+    urge_after:                state.core.urge_after,
+    pre_feeling:               state.core.pre_feeling || '',
+    created_at:                finalTime,
+    pre_action:                state.ctx.pre_action  || '',
+    primary_trigger:           state.ctx.trigger     || '',
+    environment:               state.ctx.environment || '',
+    activity:                  state.ctx.activity    || '',
+    escalation:                state.ctx.escalation  || '',
+    aftercare:                 state.ctx.aftercare   || '',
+    post_feeling:              state.ctx.post_feeling || '',
+    tried_intervention:        state.ctx.tried_tool === true,
+    interventions:             state.ctx.tools.join(', '),
+    intervention_effectiveness: state.ctx.eff ? parseInt(state.ctx.eff) : null,
+    narrative_notes:           (document.getElementById('narrative-notes')?.value || '').trim(),
+    notes:                     (document.getElementById('ctx-notes')?.value || '').trim(),
+  };
+
+  if (outcomeKey !== 'resisted') {
+    docData.body_areas = state.core.where.join(', ');
+    docData.target     = state.core.what.join(', ');
+    docData.awareness  = state.core.awareness || '';
+    docData.duration   = state.core.duration  || '';
+    if (outcomeKey === 'did') docData.post_ritual = state.core.ritual || '';
+  }
+  if (state.core.bfrb === 'picking') {
+    docData.mirror = state.core.mirror || '';
+    if (outcomeKey === 'did') docData.skin_impact = state.core.skin_impact || '';
+  }
+
+  try {
+    const docRef = await addDoc(collection(db, 'users', window._uid, 'entries'), docData);
+    window._currentDocId = docRef.id;
+
+    const msgs = {
+      resisted:  { title: 'Logged.',  body: 'Resistance entries are the most clinically useful data point.' },
+      near_miss: { title: 'Logged.',  body: 'Near misses show active friction in the urge-response chain — useful for pattern analysis.' },
+      did:       { title: 'Logged.',  body: 'Episode data drives the pattern analysis. This entry counts.' }
+    };
+    const msg = msgs[outcomeKey];
+    document.getElementById('success-title').textContent = msg.title;
+    document.getElementById('success-body').textContent  = msg.body;
+
+    document.getElementById('log-form').classList.add('hidden');
+    document.getElementById('bar-save').classList.add('hidden');
+    document.getElementById('screen-success').classList.remove('hidden');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+
+  } catch(e) {
+    console.error('Save error:', e);
+    showToast('Error saving — try again', true);
+    btn.disabled = false; btn.textContent = 'Save';
+    btn.classList.add('inactive');
+  }
+};
+
+// ════════════════════════════════════════════════════════════
+// RESET
+// ════════════════════════════════════════════════════════════
+window.resetForm = () => {
+  state.core = {
+    timing: 'now', bfrb: null, outcome: null,
+    where: [], what: [], ritual: null, awareness: null, duration: null,
+    urge: 5, urge_after: 3, pre_feeling: null, mirror: null, skin_impact: null
+  };
+  state.ctx = {
+    pre_action: null, trigger: null, environment: null,
+    activity: null, escalation: null, aftercare: null,
+    post_feeling: null, tried_tool: null, tools: [], eff: null
+  };
+  window._currentDocId = null;
+
+  document.querySelectorAll('.tag').forEach(t => t.classList.remove('on'));
+  document.querySelectorAll('.area-sub').forEach(s => s.classList.add('hidden'));
+  document.querySelectorAll('.area-parent').forEach(p => p.classList.remove('open'));
+
+  // Default "Right now" tag on
+  const firstTag = document.querySelector('#log-form .grid-2 .tag');
+  if (firstTag) firstTag.classList.add('on');
+
+  document.getElementById('core-time').value = '';
+  document.getElementById('core-time-wrap').classList.add('hidden');
+  document.getElementById('behavior-gated').style.display   = 'none';
+  document.getElementById('core-details').classList.add('hidden');
+  document.getElementById('ritual-field').style.display     = 'none';
+  document.getElementById('post-feeling-field').style.display = 'none';
+  document.getElementById('aftercare-field').style.display  = 'none';
+  document.getElementById('escalation-field').style.display = 'none';
+  document.getElementById('mirror-field').style.display     = 'none';
+  document.getElementById('skin-impact-field').style.display = 'none';
+  document.getElementById('intervention-block').classList.add('hidden');
+  document.getElementById('int-yes-tag').classList.remove('on');
+  document.getElementById('int-no-tag').classList.remove('on');
+  document.getElementById('ctx-gated').style.display        = 'none';
+  document.getElementById('narrative-notes').value          = '';
+  document.getElementById('ctx-notes').value                = '';
+  document.getElementById('urge-after-label').textContent   = 'Urge level after';
+
+  const s  = document.getElementById('core-urge');
+  const sa = document.getElementById('core-urge-after');
+  s.value = 5;  updateSlider(s,  'core-urge-val',      'urge');
+  sa.value = 3; updateSlider(sa, 'core-urge-after-val', 'urge_after');
+
+  const btn = document.getElementById('btn-save-all');
+  btn.disabled = true; btn.textContent = 'Save'; btn.classList.add('inactive');
+
+  document.getElementById('log-form').classList.remove('hidden');
+  document.getElementById('bar-save').classList.remove('hidden');
+  document.getElementById('screen-success').classList.add('hidden');
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+};
+
+// Enter key shortcut (desktop)
+document.addEventListener('keydown', e => {
+  if (e.key !== 'Enter' || e.target.tagName === 'TEXTAREA' || e.target.tagName === 'INPUT') return;
+  if (!document.getElementById('log-form').classList.contains('hidden')) {
+    e.preventDefault();
+    document.getElementById('btn-save-all').click();
+  }
+});
+
+</script>
+<script src="nav.js"></script>
+<script src="daily-state-widget.js"></script>
 </body>
 </html>
